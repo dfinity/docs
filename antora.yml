@@ -1,4 +1,4 @@
-name: documentation
+name: docs
 title: DFINITY for Developers
 version: 'master'
 start_page: ROOT:index.adoc

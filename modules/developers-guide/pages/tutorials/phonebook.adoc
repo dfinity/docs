@@ -1,0 +1,228 @@
+= Importing standard library functions
+December 2019 (Alpha)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:linkedcss:
+:toc:
+:toc: right
+:toc-title: TUTORIAL - STANDARD LIBRARY
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+In this tutorial, you are going to write a simple program that enables you to store and look up telephone numbers. 
+This tutorial illustrates how to import and use a few basic standard library functions.
+
+For this tutorial, the standard library functions are defined in the  `+list.mo+` and `+assocList.mo+` library files and enable you to work with lists as linked key-value pairs. 
+In this example, the *key* is a `+name+` and the *value* is the `+phone+` text string associated with that name. 
+
+This program supports the following types of function calls:
+
+* The `+insert+` function call accepts the `+name+` and `+phone+` key-value pair as input stored in the `+book+` variable.
+* The `+lookup+` function is a query that uses the specified the `+name+` as input to find the associated phone number.
+
+== Before you begin
+
+Before starting the tutorial, verify the following:
+
+* You have downloaded and installed the SDK as described in
+link:../getting-started{outfilesuffix}[Getting started].
+* You have stopped any network client processes running on the local
+computer.
+
+This tutorial takes approximately 10 minutes to complete.
+
+== Create a new project
+
+To create a new project for this tutorial:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already
+have one open.
+. Change to the folder you are using for your {IC} sample projects.
+. Create a new project by running the following command:
++
+[source,bash]
+----
+dfx new phonebook
+----
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd phonebook
+----
+
+////
+== Modify the default configuration
+
+You have already seen that creating a new project adds a default `dfx.json` configuration file to your project directory.
+In this tutorial, you will modify the default setting for the program name to illustrate how you can customize your project environment.
+
+To modify the default `+dfx.json+` configuration file:
+
+. Open the `+dfx.json+` configuration file in a text editor, then change  the default `+main.mo+` program name to `+phonebook.mo+`.
++
+For example:
++
+[source,bash,subs="quotes"]
+----
+{
+  "canisters": {
+    "phonebook": {
+      "frontend": {
+        "entrypoint": "src/phonebook/public/index.js"
+      },
+      "main": "src/phonebook/*phonebook.mo*"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/"
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "serve_root": "canisters/phonebook/assets"
+    }
+  },
+}
+----
+. Save your changes and close the file to continue.
+////
+
+== Modify the default template program
+
+You have already seen that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
+In this tutorial, you will create a new `+main.mo+` file for the simple phone number lookup program.
+
+To modify the default template source code:
+
+. Open the `+src/phonebook/main.mo+` file in a text editor and delete the existing content.
+. Copy and paste the following sample code into the `+main.mo+` file:
++
+[source,motoko]
+----
+include::example$phonebook.mo
+----
+
+== Build and deploy the program
+
+You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local client network.
+
+To build the program executable:
+
+. Change to the root directory for your project, if necessary.
++ 
+For example, if your project root directory is `+~/ic-projects/phonebook+`, run the following command:
++
+[source,bash]
+----
+cd ~/ic-projects/phonebook
+----
+. Build the WebAssembly executable by running the following command:
++
+[source,bash]
+----
+dfx build --skip-frontend
+----
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start
+----
++
+When you run the `+dfx start+` command without the `+--background+` option, the processes start in the current terminal so you need to open a new terminal shell to continue.
+. Open a new terminal shell, then change the root directory for your project.
++
+For example:
++
+[source,bash]
+----
+cd ~/ic-projects/phonebook
+----
+. Deploy your `+phonebook+` project on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install phonebook 
+----
+
+== Add names and numbers using the insert function
+
+You now have a program deployed as a *canister* on your local client network and can test your program by using `+dfx canister call+` commands.
+
+To test the program you have deployed on the local client network:
+
+. Use the `+dfx canister call+` command to call the canister `+phonebook+` using the `+insert+` function and pass it a name and phone number by running the following command:
++
+[source,bash]
+----
+dfx canister call phonebook insert '("Chris Lynn", "01 415 792 1333")'
+----
+. Add a second name and number pair by running the following command:
++
+[source,bash]
+----
+dfx canister call phonebook insert '("Maya Garcia", "01 408 395 7276")'
+----
+. Verify that the command returns the number associated with "Chris Lynn" using the `+lookup+` function by running the following command:
++
+[source,bash,subs="quotes"]
+----
+dfx canister call phonebook lookup '("Chris Lynn")'
+----
++
+The command returns output similar to the following:
++
+[source,bash]
+----
+(opt "01 415 792 1333")
+----
++
+. Try to call the `+lookup+` function with the number associated with "Maya Garcia" by running the following command:
++
+[source,bash]
+----
+dfx canister call phonebook lookup '("01 408 395 7276")'
+----
++
+Note that, in this case, the command returns (none) because the phone number is not a key associated with the "Maya Garcia" name entry.
+. Try to call the `+lookup+` function again to return the phone numbers for both "Maya Garcia" and "Chris Lynn" by running the following command:
++
+[source,bash]
+----
+dfx canister call phonebook lookup '("Maya Garcia","Chris Lynn")'
+----
++
+Because the program is written to return one value for one key, the command only returns the phone number associated with the first key—the "Maya Garcia" name entry.
+For example:
++
+[source,bash,subs="quotes"]
+----
+(opt "01 408 395 7276")
+----
+. Stop the {IC} processes running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
+
+== Revise the source code in your program
+
+To extend what you have learned in this tutorial, you might want to try modifying the source code to return different results.
+
+For example, you might want to change the source code so that instead of a program that inserts and looks up a current key-value (name-phone) pair to create a program that stores contact information similar to a database "record" in which a primary key is associated with multiple fields.
+In this example, your program might enable users or another program to add information—such as a home phone number, a cell phone number, an email address, and a street address—and selectively return all or specific field values.
+
+//// 
+To experiment with modifying the source code for this tutorial:
+- Insert list of potential changes
+- Insert new sample code for a more advanced example
+////

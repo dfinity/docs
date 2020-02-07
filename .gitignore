@@ -1,0 +1,20 @@
+/build/
+/node_modules/
+/public/
+result*
+
+# Building
+build/
+target/
+
+# Nix-related directories.
+.cargo-home/
+
+# IDEs
+.idea/
+.vscode/
+*~
+
+# Mac Temporary Files
+.DS_Store
+**/.DS_Store

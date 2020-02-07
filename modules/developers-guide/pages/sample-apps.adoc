@@ -1,0 +1,235 @@
+= Sample code, applications, and microservices
+December 2019 (Alpha)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:linkedcss:
+:toc:
+:toc: right
+:toc-title: SAMPLE PROJECTS
+:toclevels: 1
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+Sample code, applications, and microservices developed by DFINITY and contributed by the community will soon be available from the DFINITY website and DFINITY public Git repository.
+By accessing the website or the public repository, you will be able to directly download, clone, fork, or share sample projects.
+You will also be able to contribute your own project or suggest updates to published projects using the standard Git work flow. 
+
+Sample projects provide a way for you to experiment and collaborate with other developers.
+The projects and sample code are not, however, intended to be used as commercial applications and do not provide any explicit or implied support or warranty of any kind.
+
+Because updates to the website and public repository are still forthcoming, no sample projects are currently available for direct download access yet. 
+In the meantime, this section provides a preliminary look at some sample code for applications and microservices that you can copy and modify to jump-start your own projects.
+When the DFINITY website and public repository host these projects, the section will provide direct links to the published sample applications and microservices.
+
+== Application: Simple to-do checklist
+
+The `+motoko-to-do+` project illustrates creating a simple to-do application using the {proglang} programming language.
+
+=== Basic functions
+
+The project consists of the following public functions.
+
+- The `+encode+` function encodes a list of unsigned 8-bit integers in hexadecimal format:
+
+- The `+decode+` function decodes a list of unsigned 8-bit integers in hexadecimal format.
+
+=== Configuration file
+
+The project uses the default `+dfx.json+` configuration file with the following change.
+
+[source,bash]
+----
+  "canisters": {
+    "assistant": {
+      "main": "src/assistant/main.mo"
+    }
+----
+
+=== Source code
+
+In addition to standard libraries, this project is implemented using the following {proglang} source code files. 
+- The `+utils.mo+` file contains the core functions for adding, completing, and removing to-do items. 
+- The `+types.mo+` file defines the properties for `+ToDo+` items as a custom data type definition.
+- The `+main.mo+` file contains the actor definition and public functions that the compiled canister exposes.
+
+==== utils.mo
+
+[source,motoko]
+----
+include::example$motoko-to-do/utils.mo[]
+----
+
+==== types.mo
+
+[source,motoko]
+----
+include::example$motoko-to-do/types.mo[]
+----
+
+==== main.mo
+
+[source,motoko]
+----
+include::example$motoko-to-do/main.mo[]
+----
+
+////
+== Application: Reversi game
+
+The `+reversi+` project illustrates creating a Reversi-style strategy game using the {proglang} programming language.
+////
+== Microservice: Hex encoding and decoding
+
+The `+mo-hex+` project implements hexadecimal encoding and decoding routines for the {proglang} programming language.
+
+=== Basic functions
+
+The project consists of the following public functions.
+
+- The `+encode+` function encodes a list of unsigned 8-bit integers in hexadecimal format.
+- The `+decode+` function decodes a list of unsigned 8-bit integers in hexadecimal format.
+
+=== Configuration file
+
+The project uses the default `+dfx.json+` configuration file with the following changes.
+
+[source,bash]
+----
+{
+    "canisters": {
+        "hex": {
+            "main": "test/main.mo"
+        }
+    },
+    "defaults": {
+        "build": {
+            "output": "target"
+        },
+}
+----
+
+=== Source code
+
+The project includes the following `+hex.mo+` source code.
+
+[source,motoko]
+----
+include::example$hex/hex.mo[]
+----
+
+== Microservice: Polynomial long-division in GF(256)
+
+This program performs polynomial long division for a Galois field GF(256) element.
+
+=== Source code
+
+In addition to standard libraries, this project uses two main {proglang} source code files. 
+- The `+galois.mo+` file contains the core programming logic. 
+- The `+nat.mo+` file contains additional functions that are imported for use in the `+galois.mo+` file.
+
+==== galois.mo
+
+[source,motoko]
+----
+include::example$galois/galois.mo[]
+----
+
+==== nat.mo
+
+[source,motoko]
+----
+include::example$galois/nat.mo[]
+----
+
+////
+== QR code generator
+
+The `+mo-qr+` project implements a QR barcode generating service using the {proglang} programming language.
+
+=== Basic functions
+
+The project consists of multiple source code files.
+
+- The `+encode+` function encodes a list of unsigned 8-bit integers in hexadecimal format:
++
+[source,motoko]
+----
+public func encode(list : List<Word8>) : Text
+----
+
+- The `+decode+` function decodes a list of unsigned 8-bit integers in hexadecimal format.
++
+[source,motoko]
+----
+public func decode(text : Text) : Result<List<Word8>, DecodeError>
+----
+
+=== Configuration file
+
+The project includes the following `+dfx.json+` configuration file.
+
+[source,motoko]
+----
+{
+    "canisters": {
+        "qr": {
+            "main": "app/main.mo"
+        }
+    },
+    "defaults": {
+        "build": {
+            "output": "target"
+        },
+        "start": {
+            "address": "127.0.0.1",
+            "port": 8080
+        }
+    },
+    "version": 1
+}
+----
+
+=== Source code
+
+The project includes the following `+main.mo+` source code.
+
+[source,motoko]
+----
+
+/**
+ * Module      : main.mo
+ * Copyright   : 2019 Enzo Haussecker
+ * License     : Apache 2.0
+ * Maintainer  : Enzo Haussecker <enzo@dfinity.org>
+ * Stability   : Experimental
+ */
+
+import Prelude "mo:stdlib/prelude";
+import QR "../src/qr";
+
+let qrEncode = QR.QR.qrEncode;
+let qrShow = QR.QR.qrShow;
+let qrVersion = QR.QR.qrVersion;
+
+actor App {
+
+  public func example() : async Text {
+    let result = qrEncode(qrVersion(1), #M, #Numeric, "01234567");
+    switch result {
+      case (?matrix) {
+        qrShow(matrix)
+      };
+      case _ {
+        Prelude.printLn("Error: Invalid input!");
+        Prelude.unreachable()
+      }
+    }
+  };
+
+}
+----
+////

@@ -1,0 +1,20 @@
+= Get support
+
+== Search the Knowledge Base
+
+++++
+<div class="container" role="search">
+  <label for="search-input" class="search"></label>
+  <input autocomplete="off" id="search-input" class="search-input" type="text" placeholder="How can we help you today?">
+  <div id="search-results" class="search-results">
+    <div class="grid">
+    </div>
+  </div>
+</div>
+++++
+
+== Featured articles
+
+== Popular topics
+
+== Submit a request for help

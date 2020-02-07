@@ -1,0 +1,102 @@
+= Troubleshooting and tips
+December 2019 (Alpha)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:linkedcss:
+:toc:
+:toc: right
+:toc-title: TROUBLESHOOTING
+:toclevels: 1
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+This section is meant to address some of the known issues and bugs we've encountered with the DFINITY Canister SDK alpha. Please know that we are working continuously to address these and updating our documentation.
+
+Please also note that this is an alpha release, and we will be furiously working on improvements to the SDK in the coming weeks and months. We really appreciate your feedback, and we'll make an effort to address your questions and recommendations in the next version.
+
+We would like to be fully transparent that we may not be very responsive as we'll be primarily focused on the development of the next revisions; however, should you have specific technical questions or issues beyond those listed below, please reach out to support@dfinity.org.
+
+== Migrating an existing project
+
+Currently, there is no automatic migration or backward compatibility for any projects that you might have created using previous versions of the `+dfx+` command-line interface.
+After upgrading to the latest version, you might see error or failure messages if you attempt to build or install a project created with a previous version of the `+dfx+` command-line interface.
+
+In many cases, however, you can continue to work with projects from a previous release by manually changing the dfx setting in the dfx.json configuration file, then rebuilding the project to be compatible with the version of the `+dfx+` command-line interface you have currently installed.
+
+For example, if you have a project that was created with `+dfx+` version `+0.4.9+`, open the `+dfx.json+` file in a text editor and change the `+dfx+` setting to the latest version:
+[source,bash]
+----
+    "dfx": "0.5.0",
+----
+
+== Reinstalling dfx
+
+Many of the bugs you might encounter can be addressed by uninstalling and reinstalling the `+dfx+` command-line interface.
+Here are a few ways to reinstall `+dfx+`:
+
+[source,bash]
+----
+~/.cache/dfinity/uninstall.sh && sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"
+----
+
+[source,bash]
+----
+rm -rf ~/.cache/dfinity && rm $(which dfx) && sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"
+----
+
+== Xcode prerequisite
+
+Some versions of the {sdk-short-name} prompted you to install Xcode when creating a new project on a macOS computer.
+The prompt has been removed and the `+dfx new+` command does not require you to install any macOS developer tools.
+However, you should have Developer Command Line Tools installed if you want to create a Git repository for your project.
+
+You can check whether you have the developer tools installed by running `+xcode-select -p+`.
+You can install the developer tools by running `+xcode-select --install+`.
+
+== Failed build when using VMs
+
+If you are running `+dfx+` using a virtual machine image on Ubuntu or CentOS, you might see an error message that looks like this when you attempt to run the `+dfx build+` command:
+
+[source,bash]
+-----
+Building hello...
+An error occured:
+Io(
+    Os {
+        code: 2,
+        kind: NotFound,
+        message: "No such file or directory",
+    },
+)
+-----
+
+== Handling orphan processes
+
+The dfx execution tool runs multiple processes.
+Sometimes the processes do not get properly terminated.
+If you encounter an issue where you suspect or you receive a message that a process is already running in the background, run the following command:
+
+[source,bash]
+----
+pkill client nodemanager dfx
+----
+
+== Memory leak
+
+Fixing memory leaks is an ongoing process. If you encounter any error messages related to memory leaks, you should do the following:
+
+. Run `+dfx stop+` to stop currently running processes.
+. Uninstal `+dfx+` to prevent further degradation.
+. Re-install `+dfx+`
+. Run `+dfx start+` to restart client processes.
+
+Alternatively, you can remove the `+.cache/dfinity+` directory and re-install the latest `+dfx+` binary.
+For example:
+[source,bash]
+----
+rm -rf ~/.cache/dfinity && sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"
+----

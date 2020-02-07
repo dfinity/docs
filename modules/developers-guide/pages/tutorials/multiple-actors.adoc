@@ -1,0 +1,285 @@
+= Using multiple actors
+December 2019 (Alpha)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:linkedcss:
+:toc:
+:toc: right
+:toc-title: TUTORIAL - MULTIPLE ACTORS
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+In this tutorial, you are going to create a project with multiple actors. 
+Currently, you can only define one actor in a {proglang} file and a single actor is always compiled to a single canister.
+In addition, you cannot yet call functions defined in an actor in one canister from an actor defined in another canister or define an actor class to support multiple actor instances in your {proglang} programs.
+You can, however, create **projects** that have multiple actors and can build multiple canisters from the same `+dfx.json+` configuration file.
+
+For this tutorial, you are going to create separate program files for three actors in the same project. 
+This project defines the following unrelated actors:
+
+* The `+assistant+` actor provides functions to add and show tasks in a to-do list.
++
+For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is included in link:../sample-apps{outfilesuffix}[Sample code, applications, and microservices].
+
+* The `+rock_paper_scissors+` actor provides a function for determining a winner in a hard-coded rock-paper-scissors contest.
++
+This code sample illustrates the basic use of `+switch+` and `+case+` in a {proglang} program with hard-coded players and choices.
+
+* The `+daemon+` actor provides mock functions for starting and stopping a daemon.
++
+This code sample simply assigns a variable and prints messages for demonstration purposes.
+
+== Before you begin
+
+Before starting the tutorial, verify the following:
+
+* You have downloaded and installed the SDK as described in
+link:../getting-started{outfilesuffix}[Getting started].
+* You have stopped any network client processes running on the local
+computer.
+
+This tutorial takes approximately 20 minutes to complete.
+
+== Create a new project
+
+To create a new project for this tutorial:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Change to the folder you are using for your {IC} sample projects.
+. Create a new project by running the following command:
++
+[source,bash]
+----
+dfx new multiple_actors
+----
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd multiple_actors
+----
+
+== Modify the default configuration
+
+You have already seen that creating a new project adds a default `dfx.json` configuration file to your project directory.
+For this tutorial, you need to add sections to this file to specify the location of each program that defines an actor you want to build.
+
+To modify the default `+dfx.json+` configuration file:
+
+. Open the `+dfx.json+` configuration file in a text editor, then change the default `+multiple_actors+` canister name and source directory to `+assistant+`.
++
+For example:
++
+[source,bash,subs="quotes"]
+----
+  "canisters": {
+    "*assistant*": {
+      "main": "src/*assistant*/main.mo"
+    },
+----
++
+Because you are going to add settings to this `+canister+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file.
+. Add a new canister name and source file location for the `+rock_paper_scissors+` program and a new canister name and source file location for the `+daemon+` program files below the `+assistant+` source file location.
++
+For example:
++
+[source,bash,subs="quotes"]
+----
+    *"rock_paper_scissors": {
+      "main": "src/rock_paper_scissors/main.mo"
+    },
+    "daemon": {
+      "main": "src/daemon/main.mo"
+	}*
+----
++
+You can leave the other sections as-is. 
+. Change the name of the default source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
++
+[source,bash]
+----
+mv src/multiple_actors/ src/assistant/
+----
+. Copy the `+assistant+` source file directory to create the main program file for the `+rock_paper_scissors+` actor by running the following command:
++
+[source,bash]
+----
+cp -r src/assistant/ src/rock_paper_scissors/
+----
+. Copy the `+assistant+` source file directory to create the main program file for the `+daemon+` actor by running the following command:
++
+[source,bash]
+----
+cp -r src/assistant/ src/daemon/
+----
+
+== Modify the default template programs
+
+You now have three separate directories in the `+src+` directory, each with a template `+main.mo+` file.
+For this tutorial, you will replace the content in each template `+main.mo+` file with a different actor.
+
+To modify the default template source code:
+
+. Open the `+src/assistant/main.mo+` file in a text editor and delete the existing content.
+. Copy and paste the following sample code into the file:
++
+[source,motoko]
+----
+include::example$multiple-actors/assistant/main.mo
+----
+. Open the `+src/rock_paper_scissors/main.mo+` file in a text editor and delete the existing content.
+. Copy and paste the following sample code into the file:
++
+[source,motoko]
+----
+include::example$multiple-actors/rock_paper_scissors/main.mo
+----
+. Open the `+src/daemon/main.mo+` file in a text editor and delete the existing content.
+. Copy and paste the following sample code into the file:
++
+[source,motoko]
+----
+include::example$multiple-actors/daemon/main.mo
+
+----
+
+== Build all of the canisters in the project
+
+You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local client network.
+
+To build the executable for each actor in the project:
+
+. Change to the `+~/ic-projects/multiple_actors+` root directory for your project, if needed.
+. Build the WebAssembly executable for each program by running the following command:
++
+[source,bash]
+----
+dfx build --skip-frontend
+----
++
+If the command is successful, it builds all of the canisters you have specified in the `+dfx.json+` file.
++
+[source,bash]
+----
+Building assistant...
+Building rock_paper_scissors...
+Building daemon...
+----
+
+== Deploy the canisters in the project
+
+You now have three separate compiled programs—one for each actor—ready for deployment.
+
+To deploy the canisters:
+
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start
+----
+. Open a new terminal shell, then change the `+~/ic-projects/multiple_actors+` root directory for your project.
++
+For example:
++
+[source,bash]
+----
+cd ~/ic-projects/multiple_actors
+----
+. Deploy your `+assistant+` canister on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install assistant
+----
+. Deploy the `+rock_paper_scissors+` canister on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install rock_paper_scissors 
+----
+. Deploy the `+daemon+` canister on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install daemon 
+----
+
+== Verify deployment by calling functions
+
+You now have three programs deployed as a *canisters* on your local client network and can test each program by using `+dfx canister call+` commands.
+
+To test the programs you have deployed on the local client network:
+
+. Use the `+dfx canister call+` command to call the canister `+assistant+` using the `+addTodo+` function and pass it the task you want to add by running the following command:
++
+[source,bash]
+----
+dfx canister call assistant addTodo '("Schedule monthly demos")'
+----
+. Verify that the command returns the to-do list item using the `+showTodos+` function by running the following command:
++
+[source,bash,subs="quotes"]
+----
+dfx canister call assistant showTodos
+----
++
+The command returns output similar to the following:
++
+[source,bash]
+----
+("
+___TO-DOs___
+(1) Schedule monthly demos
+----
+. Use the `+dfx canister call+` command to call the canister `+rock_paper_scissors+` using the `+contest+` function by running the following command:
++
+[source,bash,subs="quotes"]
+----
+dfx canister call rock_paper_scissors contest
+----
++
+The command returns the result of the hard-coded contest similar to the following:
++
+[source,bash]
+----
+    Dec 11 08:48:16.508 INFO Created checkpoint @2206707 in 53.769593ms
+("Bob won")
+----
+. Use the `+dfx canister call+` command to call the canister `+daemon+` using the `+launch+` function by running the following command:
++
+[source,bash]
+----
+dfx canister call daemon launch
+----
+. Verify the mock `+launch+` function returns "The daemon process is running" message":
++
+[source,bash]
+----
+(""The daemon process is running"")
+----
+. Stop the {IC} processes running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
+
+////
+== Import an actor
+
+To extend what you have learned in this tutorial, you might want to try modifying the source code to return different results.
+ 
+As features are added, the tutorial can be modified to illustrate other functionality such as:
+- How to import an actor
+- How to call a function in another actor
+- How to include multiple actors in a single program
+- How and when to add an actor class
+
+////

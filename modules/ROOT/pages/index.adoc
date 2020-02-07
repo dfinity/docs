@@ -1,0 +1,78 @@
+= DFINITY for Developers
+:release: January 2020 (Alpha)
+:page-layout: home
+:page-home:
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+++++
+    <!-- Download Center section -->
+      <div class="four-columns">
+        <div class="row-type">
+          <p>Download center</p>
+          <p class="row-verb">Get</p>
+        </div>
+        <div class="box1"><a href="download.html">
+        <p class="service-name">Full SDK</p>
+        <p class="tagline">Download the full SDK to write code that runs directly on the internet.</p></a>
+        </div>
+        <div class="box2"><a href="language-guide/motoko.html">
+        <p class="service-name">Motoko</p>
+        <p class="tagline">Download Motoko programming language binaries independent of the SDK.</p></a>
+        </div>
+        <div class="box3"><a href="samples-nav.html">
+        <p class="service-name">Samples</p>
+        <p class="tagline">Access sample code, applications, and microservices written for the Internet Computer.</p></a>
+        </div>
+      </div>
+
+    <!-- Documentation Center section -->
+      <div class="four-columns">
+        <div class="row-type">
+          <p>Documentation center</p>
+          <p class="row-verb">Learn</p>
+        </div>
+        <div class="box1"><a href="quickstart/quickstart.html">
+        <p class="service-name">Quick start</p>
+        <p class="tagline">Jump start development with a tutorial that shows you how to write and deploy programs on the Internet Computer.</p></a>
+        </div>
+        <div class="box2"><a href="developers-guide/dev-index.html">
+        <p class="service-name">Developer's Guide</p>
+        <p class="tagline">Take a deeper dive into how you can use the software development kit to create applications that run on the Internet Computer.</p></a>
+       </div>
+       <div class="box3"><a href="language-guide/motoko.html">
+       <p class="service-name">Programmer's Guide</p>
+       <p class="tagline">Explore the Motoko programming language through sample code and reference information.</p></a>
+       </div>
+      </div>
+    </div>
+
+    <!-- Resource Center section -->
+    <div class="four-columns">
+        <div class="row-type">
+          <p>Resource center</p>
+          <p class="row-verb">Connect</p>
+        </div>
+        <div class="box1"><a href="https://dfinity.org/documents">
+        <p class="service-name">Tech</p>
+        <p class="tagline">Learn more about the technology and ecosystem that serves as the foundation of the Internet Computer platform.</p></a>
+        </div>
+        <div class="box2"><a href="https://dfinity.org/community">
+        <p class="service-name">Forums</p>
+        <p class="tagline">Join the conversation in our community forums and find out more about events, meetups, and other opportunities to connect.</p></a>
+        </div>
+        <div class="box3"><a href="support.html">
+        <p class="service-name">Support</p>
+        <p class="tagline">Have a comment, question, correction, or suggestion? Search the knowledge base or send us feedback.</p></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+++++

@@ -1,0 +1,5 @@
+= Compiler reference
+:proglang: Motoko
+:company-id: DFINITY
+
+Placeholder for compiler command line reference information.

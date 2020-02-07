@@ -1,7 +1,7 @@
-name: docs
+name: my-docs
 title: DFINITY for Developers
 version: 'master'
-#start_page: dfinity:index.adoc
+start_page: index.adoc
 nav:
   - modules/quickstart/quick-nav.adoc
   - modules/developers-guide/dev-nav.adoc

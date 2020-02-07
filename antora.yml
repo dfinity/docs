@@ -1,0 +1,9 @@
+name: documentation
+title: DFINITY for Developers
+version: 'master'
+#start_page: dfinity:index.adoc
+nav:
+  - modules/quickstart/quick-nav.adoc
+  - modules/developers-guide/dev-nav.adoc
+  - modules/language-guide/lang-nav.adoc
+  - modules/release-notes/rn-nav.adoc

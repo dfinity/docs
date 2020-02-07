@@ -1,0 +1,290 @@
+= Incrementing a value to illustrate persistence
+December 2019 (Alpha)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:linkedcss:
+:toc:
+:toc: right
+:toc-title: TUTORIAL - SIMPLE PERSISTENCE
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+In this tutorial, you are going to write a program that creates a single actor (object) and provides a few basic functions.
+
+For this tutorial, the actor is named `+Counter+`. 
+The program uses the `+currentValue+` variable to contain a natural number that represents the current value of the counter. 
+This program supports the following types of function calls:
+
+* The `+increment+` function call updates the current value, incrementing by 1 (no return value).
+* The `+get+` function call queries and returns the current value.
+* The `+set+` function call updates the current value to an arbitrary numeric value you specify as an argument.
+
+This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister. 
+By calling the function to increment a value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.
+
+Like the other sample programs, this tutorial demonstrates a simple, but realistic, workflow in which you perform the following steps:
+
+* Create a new project.
+* Write a program that uses {proglang} code.
+* Compile the code into a WebAssembly module that you deploy.
+* Deploy the canister on the local network client.
+* Invoke the canister methods to increment then read the value of a counter.
+
+The following diagram provides a simplified overview of the workflow passing from the developer’s command-line environment to the internet computer network client deployed locally:
+
+image:../dev-work-flow-2.png[Overview of the developer work flow]
+
+As the diagram suggests, the network infrastructure and the development environment co-exist on the same computer in this tutorial.
+
+== Before you begin
+
+Before starting the tutorial, verify the following:
+
+* You have downloaded and installed the SDK as described in link:../getting-started{outfilesuffix}[Getting started].
+* You have stopped any network client processes running on the local computer.
+
+This tutorial takes approximately 20 minutes to complete.
+
+== Create a new project
+
+To create a new project directory for this tutorial:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Change to the folder you are using for your {IC} sample projects.
+. Create a new project by running the following command:
++
+[source,bash]
+----
+dfx new my_counter
+----
++
+The command creates a new project, including a default project directory structure under the `+my_counter+` project name and a Git repository for your project.
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd my_counter
+----
+[arabic]
+. View the top-level directory structure of the new project by running the following command:
++
+[source,bash]
+----
+ls -l
+----
++
+The command displays output similar to the following if you have `+node.js+` installed in your development environment:
++
+[source,bash]
+----
+total 976
+-rw-r--r--    1 pubs  staff    1031 Dec 17 13:43 README.md
+-rw-r--r--    1 pubs  staff     400 Dec 17 13:43 dfx.json
+drwxr-xr-x  818 pubs  staff   26176 Dec 17 13:44 node_modules
+-rw-r--r--    1 pubs  staff  482988 Dec 17 13:44 package-lock.json
+-rw-r--r--    1 pubs  staff     262 Dec 17 13:43 package.json
+drwxr-xr-x    3 pubs  staff      96 Dec 17 13:43 src
+-rw-r--r--    1 pubs  staff    1803 Dec 17 13:43 webpack.config.js
+----
+
+== Modify the default configuration
+
+You have already seen that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
+In this tutorial, you will modify the default settings to use a different name for your program directories within your project.
+
+To modify the default `+dfx.json+` configuration file:
+
+. Open the `+dfx.json+` configuration file in a text editor and change the default `+my_counter+` settings to  `+increment_counter+`.
++
+For example:
++
+[source,json,subs="quotes"]
+----
+{
+  "canisters": {
+    "my_counter": {
+      "frontend": {
+        "entrypoint": "src/*increment_counter*/public/index.js"
+      },
+      "main": "src/*increment_counter*/main.mo"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/"
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "serve_root": "canisters/*increment_counter*/assets"
+    }
+  },
+}
+----
++
+You can leave the rest of the default settings as they are.
+. Save your change and close the `+dfx.json+` file to continue.
+. Change the name of the source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command
++
+[source,bash]
+----
+mv src/my_counter/ src/increment_counter/
+----
+
+== Modify the default template program
+
+You have already seen that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
+In this tutorial, you modify the template code to create the Counter program.
+
+To modify the default template source code:
+
+. Change to the source code directory for your project by running the following command:
++
+[source,bash]
+----
+cd src/increment_counter
+----
+. Open the template `+main.mo+` file in a text editor and delete the existing content.
+. Copy and paste the following sample code into the `+main.mo+` file:
++
+[source,motoko]
+----
+include::example$counter.mo[]
+----
+. Save your changes and close the file to continue.
+
+== Build and deploy the program
+
+You now have a Counter program that you can compile into an executable WebAssembly module and deploy on your local client network.
+
+To build and deploy the program:
+
+. Navigate to the root of your `+my_counter+` project directory.
++
+For example, if you have created `+my_counter+` as your project directory in the `+~/ic-projects+` folder, change to that directory by running the following command:
++
+[source,bash]
+----
+cd ~/ic-projects/my_counter
+----
+. Build the WebAssembly executable by running the following command:
++
+[source,bash]
+----
+dfx build
+----
++
+The command displays output similar to the following:
++
+[source,bash]
+----
+Building my_counter...
+Building frontend code...
+----
++
+After running the `+dfx build+` command, your program is encapsulated in a unique object—the canister—that can be deployed.
+[arabic]
+. Verify that the `+canisters/my_counter+` directory created by the `+build+` command contains the WebAssembly and related application files by running the following command.
++
+[source,bash]
+----
+ls -l canisters/my_counter
+----
+. Start the {IC} network client processes by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
+. Deploy the canister you created by running a `+dfx canister install+` command and specifying the _canister_name_.
++
+For this tutorial, the canister name is `+my_counter+`. 
+By substituting `+my_counter+` for the _canister_name_ variable, you can deploy by running the following command:
++
+[source,bash]
+----
+dfx canister install my_counter
+----
++
+If no error is returned, your canister has been successfully deployed on the local network.
+
+== Invoke methods on the deployed canister
+
+After successfully deploying the canister, you can simulate an end-user invoking the methods provided by the canister. 
+For this tutorial, you invoke a `+get+` method to query the value of a counter, an `+increment+` method that increments the counter each time it is called, and a `+set+` method to pass an argument to update the counter to an arbitrary value you specify.
+
+To test invoking methods on the deployed canister:
+
+[arabic]
+. Run the following command to invoke the `+get+` function, which reads
+the current value of the `+currentValue+` variable on the deployed canister:
++
+[source,bash]
+----
+dfx canister call my_counter get
+----
++
+Note that you could use the `+--async+` option with this command to indicate that you want to poll the client for the result with a separate `+request-status+` call. 
+By default, the `+dfx canister call+` command waits for the result rather than requiring you to make a separate `+request-status+` call. 
++
+The command returns the current value of the `+currentValue+` variable as zero:
++
+[source,bash,subs="quotes"]
+----
+(*0*)
+----
+[arabic]
+. Run the following command to invoke the `+increment+` function to increment the value of the `+currentValue+` variable on the deployed canister by one:
++
+[source,bash,subs="quotes"]
+----
+dfx canister call my_counter increment
+----
++
+This command increments the value of the variable.
+[arabic]
+. Rerun the following command to get the current value of the `+currentValue+` variable on the deployed canister:
++
+[source,bash]
+----
+dfx canister call my_counter get 
+----
++
+The command returns the current value of the `+currentValue+` variable as one:
++
+[source,bash,subs="quotes"]
+----
+(*1*)
+----
+[arabic]
+. Run additional commands to experiment with invoking other methods and using different values.
++
+For example, try commands similar to the following:
++
+[source,bash]
+----
+dfx canister call my_counter set --type number 987 
+dfx canister call my_counter get
+----
++
+Returns the current value of 987.
++
+[source,bash]
+----
+dfx canister call my_counter increment 
+dfx canister call my_counter get
+----
++
+Returns the incremented value of 988.
+. Stop the {IC} processes running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----

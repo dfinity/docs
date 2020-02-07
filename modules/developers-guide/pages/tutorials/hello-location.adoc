@@ -1,0 +1,322 @@
+= Passing arguments in a terminal
+January 2020 (Alpha)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:toc:
+:toc: right
+:toc-title: TUTORIAL - PASS ARGUMENTS
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+This tutorial provides a simple variation on the default program that lets you pass a single string argument to a single actor (object), compile the code to create a canister, then retrieve the argument.
+
+This tutorial illustrates the options to explicitly specify the argument type and how to have the argument type inferred using the interface description language (IDL).
+The tutorial also illustrates how you could modify the program to allow it to accept more than one value for the string argument.
+
+== Before you begin
+
+* You have downloaded and installed the SDK as described in
+link:../getting-started{outfilesuffix}[Getting started].
+* You have stopped any network client processes running on the local computer.
+
+This tutorial takes approximately 20 minutes to complete.
+
+== Create a new project
+
+To create a new project for this tutorial:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Change to the folder you are using for your {IC} sample projects.
+. Create a new project by running the following command:
++
+[source,bash]
+----
+dfx new hello_location
+----
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd hello_location
+----
+
+== Verify the default configuration
+
+You have already seen that creating a new project adds a default `dfx.json` configuration file to your project directory.
+Review the default settings in the file to verify the file and directory names reflect the names you want to use.
+
+To verify settings in the default `+dfx.json+` configuration file:
+
+. Open the `+dfx.json+` configuration file in a text editor.
+. Check the default settings for the `+hello_location+` project.
++
+[source,json,subs="quotes"]
+----
+{
+  "canisters": {
+    "*hello_location*": {
+      "frontend": {
+        "entrypoint": "src/*hello_location*/public/index.js"
+      },
+      "main": "src/*hello_location*/main.mo"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/"
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "serve_root": "canisters/*hello_location*/assets"
+    }
+  },
+}
+----
+. Close the file to continue.
+
+== Modify the default template program
+
+You have already seen that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
+
+To modify the default template source code:
+
+. Open the `+src/hello_location/main.mo+` source code file in a text editor.
+. Modify the default source code to replace the `+greet+` function with a `+location+` function and the `+name+` argument with a `+city+` argument.
++
+For example:
++
+[source,bash,subs="quotes"]
+----
+actor {
+    public func *location(city* : Text) : async Text {
+        return "Hello, " # *city* # "!";
+    };
+};
+----
+. Save your changes and close the file to continue.
+
+== Build and deploy the program
+
+You now have a program that you can compile into an executable WebAssembly module that you can deploy—using the canister model—on your local client network.
+
+To build the program executable:
+
+. Build the WebAssembly executable by running the following command:
++
+[source,bash]
+----
+dfx build
+----
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
+. Deploy your `+hello_location+` project on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install hello_location
+----
++
+The command displays output similar to the following:
++
+[source,bash]
+----
+Installing code for canister hello_location, with canister_id ic:E75C3765B661880C3E
+----
+
+== Pass a string argument to the canister
+
+You now have a program deployed as a *canister* on your local client network and can test your program by using `+dfx canister call+` commands.
+
+To test the program you have deployed on the local client network:
+
+. Call the `+location+` method in the program and pass your `+city+` argument of type `+string+` by running the following command:
++
+[source,bash,subs="quotes"]
+----
+dfx canister call hello_location location *"San Francisco"* --type string
+----
++
+In this example, you are explicitly identifying your argument data type as a string.
+The command displays output similar to the following:
++
+[source,bash,subs="quotes"]
+----
+(*"Hello, San Francisco!"*)
+----
+. Call the `+location+` method in the program and pass your `+city+` argument without specifying a type to have the interface description language infer the type automatically by running the following command:
++
+[source,bash]
+----
+dfx canister call hello_location location '("Paris")'
+----
+The command displays output similar to the following:
++
+[source,bash,subs="quotes"]
+----
+(*"Hello, Paris!"*)
+----
+. Rerun the `+dfx canister call+` command using San Francisco as the `+city+` argument without specifying a type to have the interface description language infer the type automatically by running the following command:
++
+[source,bash,subs="quotes"]
+----
+dfx canister call hello_location location '("San Francisco")'
+----
+The command displays output similar to the following:
++
+[source,bash,subs="quotes"]
+----
+(*"Hello, San Francisco!"*)
+----
++ 
+Because your program only accepts a single string argument, specifying multiple strings only returns the first argument.
++
+For example, if you run the following command:
++
+[source,bash,subs="quotes"]
+----
+dfx canister call hello_location location '("San Francisco","Paris","Rome")'
+----
++
+Only the first argument is returned:
++
+[source,bash,subs="quotes"]
+----
+(*"Hello, San Francisco!"*)
+----
+
+== Revise the source code in your program
+
+To extend what you have learned in this tutorial, you might want to try modifying the source code to return different results.
+For example, you might want to modify the `+location+` function to return multiple city names.
+
+To experiment with modifying the source code for this tutorial:
+
+[arabic]
+. Open the `+dfx.json+` configuration file in a text editor and change the default `+hello_location+` settings to `+favorite-cities+`.
+For example:
++
+[source,json,subs="quotes"]
+----
+{
+  "canisters": {
+    "*favorite-cities*": {
+      "frontend": {
+        "entrypoint": "src/*favorite-cities*/public/index.js"
+      },
+      "main": "src/*favorite-cities*/main.mo"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/"
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "serve_root": "canisters/*favorite-cities*/assets"
+    }
+----
+. Copy the `hello_location` source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command
++
+[source,bash]
+----
+cp -r src/hello_location src/favorite-cities
+----
+. Copy and paste the following code sample to replace the `+location+` function with two new functions.
++
+For example:
++
+[source,bash,subs="quotes"]
+----
+actor {
+    public func location(cities : [Text]) : async Text {
+        return "Hello, from " # (debug_show cities) # "!";
+    };
+    public func location_pretty(cities : [Text]) : async Text {
+        var str = "Hello from ";
+        for (city in cities.vals()) {
+                str := str # city #", ";
+        };
+        return str # "bon voyage!";
+    }
+};
+----
++
+You might notice that `+Text+` in this code example is enclosed by square (`+[ ]+`) brackets. By itself, `+Text+` represents a collection of UTF-8 characters. 
+The square brackets around a type indicate that it is an *array* of that type.
+In this context, therefore, the `+[Text]+` indicates an array of a collection of UTF-8 characters, enabling the program to accept and return multiple text strings.
++
+The code sample also uses the basic format of an `+apply+` operation for the array, which can be abstracted as:
++
+[source,bash,subs="quotes"]
+----
+public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
+    var ys : [B] = [];
+    for (f in fs.vals()) {
+      ys := append<B>(ys, map<A, B>(f, xs));
+    };
+    ys;
+};
+----
++
+For information about the functions that perform operations on arrays, see the description of the standard library `+array.mo+` in the _{proglang} Programming Language Reference_.
+. Build the WebAssembly executable by running the following command:
++
+[source,bash]
+----
+dfx build --skip-frontend
+----
++
+For this tutorial, you can build using the `--skip-frontend` because you aren't changing the default front-end for the new program.
+If you also wanted to update the front-end, you would open the default `+src/favorite-cities/public/index.js+` file to change the canister name and make other changes. 
+. Deploy your `+favorite-cities+` program on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install favorite-cities
+----
+. Call the `+location+` method in the program and pass your `+city+` argument using the interface description syntax by running the following command:
++
+[source,bash]
+----
+dfx canister call favorite-cities location '(vec {"San Francisco";"Paris";"Rome"})'
+----
++
+The command uses the interface description syntax `+(vec { val1; val2; val3; })+` to return vector of values.
+For more information about the interface description syntax, see link:../cli-reference{outfilesuffix}#idl-syntax[Interface description syntax for arguments].
++
+This command displays output similar to the following:
++
+[source,bash]
+----
+("Hello, from [\"San Francisco\", \"Paris\", \"Rome\"]!")
+----
+. Call the `+location_pretty+` method in the program and pass your `+city+` argument using the interface description syntax by running the following command:
++
+[source,bash]
+----
+dfx canister call favorite-cities location_pretty '(vec {"San Francisco";"Paris";"Rome"})'
+----
++
+The command displays output similar to the following:
++
+[source,bash]
+----
+("Hello from San Francisco, Paris, Rome, bon voyage!")
+----
+. Stop the {IC} processes running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----

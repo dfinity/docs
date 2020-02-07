@@ -1,0 +1,44 @@
+= Download center
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+== Install directly from a terminal
+
+. Open a terminal shell on your local computer.
+
+. Running the following `+curl+` command:
++
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
+
+== Download a packaged release
+
+[width="100%",cols=3*,"35%,30%,35%",options="header",]
+|===
+|Version |Tag |Documentation and supported platforms
+|SDK 0.5.0 (February 2020) |sdk-0.5.0-RELEASE |Release notes / changelog
++
+Supported platforms
+
+|SDK 0.4.13 (January 2020) |sdk-0.4.13-RELEASE |Release notes / changelog
++ Supported platforms
+|===
+
+== Use a package manager
+
+[source,bash]
+----
+npm install dfx
+----
+
+[source,bash]
+----
+brew install dfx
+----

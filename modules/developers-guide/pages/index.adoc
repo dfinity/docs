@@ -1,0 +1,39 @@
+:title:  Developer Center
+= DFINITY Developer Center
+December 2019 (Alpha)
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:page-layout: home
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+Are you ready to write code that runs directly on the internet?
+
+Dive in right away with the xref:quickstart{outfilesuffix}[Quick start].
+
+The Alpha release of the DFINITY Canister SDK is available for download now. The contents of this release are built directly from the production source code repository and are ready for you to start exploring a new frontier—the next generation of the open internet.
+
+The {platform} is poised to help you start a revolution with a new way to design, build, and release software with superpowers.
+
+// * xref:about-this-guide.adoc[About this guide]
+* xref:introduction-key-concepts{outfilesuffix}[Introduction and key concepts]
+* xref:getting-started{outfilesuffix}[Getting started]
+* xref:tutorials-intro{outfilesuffix}[Tutorials: Writing actor-based programs]
+** xref:tutorials/actor-hello-world{outfilesuffix}[Using an actor in Hello, World!]
+** xref:tutorials/hello-location{outfilesuffix}[Passing arguments in a terminal]
+** xref:tutorials/counter-tutorial{outfilesuffix}[Incrementing a counter]
+** xref:tutorials/calculator{outfilesuffix}[Exploring calculator functions]
+** xref:tutorials/phonebook{outfilesuffix}[Importing standard library functions]
+** xref:tutorials/multiple-actors{outfilesuffix}[Using multiple actors]
+* xref:customize-projects{outfilesuffix}[Customizing projects]
+* xref:basic-syntax-rules{outfilesuffix}[Learning the basics of {proglang}]
+* xref:lang-service-ide{outfilesuffix}[Language server and development client support]
+* xref:cli-reference{outfilesuffix}[Command-line reference]
+* xref:glossary{outfilesuffix}[Glossary]
+* xref:troubleshooting{outfilesuffix}[Troubleshooting and tips]
+* xref:sample-apps{outfilesuffix}[Sample code, applications, and microservices]
+* xref:sdk-release-notes{outfilesuffix}[Release notes (Alpha)]
+
+Return to link:../index{outfilesuffix}[DFINITY Canister SDK & Motoko] or the link:../language-guide/index{outfilesuffix}[{proglang} Programming Language Reference].

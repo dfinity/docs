@@ -1,0 +1,508 @@
+= Learning the basics of {proglang}
+December 2019 (Alpha)
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+
+One key feature of the {platform} is the {proglang} programming language. 
+The {proglang} programming language is a high-level, general purpose language that is similar to other modern programming languages, but specifically designed to handle asynchronous messaging efficiently.
+
+Although {proglang} provides an interpreter that can be used interactively and a standalone compiler, you can write programs and compile your code without using either one directly. 
+Instead, in most cases, you interact with the programming language indirectly through an editor of your choice and using the `+dfx+` command-line execution tool.
+
+To help you get started using this new language, this section provides a brief overview of the language and describes a few basic conventions for writing programs using {proglang}. 
+For more complete information about programming in {proglang}, including specific language features and detailed examples, see the _Language Reference Guide_.
+
+== Actors and asynchronous messaging
+
+As you start to explore the {proglang} programming language, you should keep in mind that each application consists of an *actor* that communicates with other actors by passing messages asynchronously.
+
+An actor is a special kind of object that passes its messages in an isolated state. 
+When you define an actor, its messages are processed in sequence but in isolation from on each other. As an example of using actors, consider the following program:
+
+[source,bash]
+----
+let result1 = await service1.computeAnswer(params);
+let result2 = await service2.computeAnswer(params);
+finalStep(result1, result2)
+----
+
+In this example, the program makes two requests to two distinct
+services. 
+Each service is implemented internally as an actor (object).
+The program waits using the `+await+` keyword to wait for each result value in sequence. 
+The program then uses the result from each request them in the final step, calling the function `+finalStep+`.
+
+The actor-based programming model is particularly well-suited for writing programs intended to run on the {platform}.
+However, you can also write programs in {proglang} to run on other platforms and inside of other frameworks. 
+If you are writing programs to run on other platforms, you might not use actor objects or asynchronous messaging at all.
+
+== Interface descriptions and {proglang}
+
+To support multiple languages and cross-language communication, the {proglang} compiler automates the production and consumption of interface descriptions. 
+The {proglang} compiler generates the interface descriptions using the type signatures in your {proglang} programs and the structure of imported pre-defined interfaces.
+
+== Prelude and standard library functions
+
+Like other languages, {proglang} includes many common functions in predefined prelude and standard library files that you can import into your programs. 
+By importing the prelude or standard library, you can use common functions like `println` without explicitly defining them in your programs.
+
+For example, you might include a line similar to the following to import list functions from the standard library: 
+
+[source,bash]
+----
+import List "../../motoko/stdlib/list";
+----
+
+== Basic language features
+
+This section describes the basic language conventions you need to know for programming in {proglang}.
+
+=== Comments
+
+You can use single-line, multi-line, or nested multi-line comments to include descriptive non-executable text in your code. 
+For example, use comments to add context about a code block as a note to yourself or as information you want to share with anyone reviewing or maintaining your code. 
+Properly-formatted comments are treated as whitespace and ignored by the compiler.
+
+==== Single-line comments
+
+Single-line comments begin with two forward-slashes (//) and consist of the characters following `+//+` to the end of the same line. 
+For example, you can have single-line comments above, below, or on the same line as the code to which the comment applies.
+
+[source,bash]
+----
+// This is a single-line comment on its own line above relevant code
+import List = "ListLib";
+----
+
+==== Multi-line and nested comments
+
+You can also include single-line, multi-line, and nested multi-line comments by starting with a forward-slash followed by an asterisk (/\*) and ending with an asterisk followed by a forward-slash (*/). 
+For example:
+
+[source,bash]
+----
+/* 
+This is a comment that is split into 
+multiple lines. 
+*/
+----
+
+You can also write nested multi-line comments by starting a multi-line comment block, then starting a second multi-line comment within the first block. 
+For example:
+
+[source,bash]
+----
+/* This is the start of the first multi-line comment block.
+   /* This is the second, nested multi-line comment. */
+This is the end of the first multi-line comment block. */
+----
+
+=== Programs, declarations, and expressions
+
+Each {proglang} program consists of zero or more declarations, followed by an optional expression. 
+For example, the following snippet consists of two declarations for the variables `+x+` and `+y+` followed by an expression, forming a single program:
+
+[source,bash]
+----
+let x = 1;
+let y = x + 1;
+x * y + x;
+----
+
+As illustrated in this example, you use a semi-colon (;) to terminate declarations and expressions. For example, to evaluate a simple equation:
+
+[source,bash]
+----
+1 + 3; // When executed, the result would be "4 : Nat" value and type
+----
+
+== Numbers, text and operators
+
+{proglang} supports the following number types:
+
+* Natural numbers (`+Nat+`) are positive whole integers.
+* Integer numbers (`+Int+`) are positive, negative, or zero whole number values.
+* Floating point numbers (`+Float+`) are fractional numeric 32-bit or 64-bit values.
+
+Basic arithmetic operators work as you would expect. For example:
+
+[source,bash]
+----
+1 + 1;      // = 2
+0.1 + 0.2;  // = 0.3
+8 - 1;      // = 7
+10 * 2;     // = 20
+35 / 5;     // = 7
+----
+
+You can use double (") quotes to enclose text. For example:
+
+[source,bash]
+----
+let name = "Chris"; // let name : Text = "Chris"
+----
+
+=== Relational operators
+
+You can use the following relational operators in {proglang} programs.
+
+[cols=",",options="header",]
+|===
+|Use this |To define this relationship
+|`+␣<␣+` |Less than. The operator must be enclosed in whitespace.
+|`+␣>␣+` |Greater than. The operator must be enclosed in whitespace.
+|`+==+` |Equals.
+|`+!=+` |Not equals.
+|`+<=+` |Less than or equal to.
+|`+>=+` |Greater than or equal to.
+|===
+
+=== Numeric binary operators
+
+[cols=",",options="header",]
+|===
+|Use this |For this operation
+|`+++` |Addition.
+|`+-+` |Subtraction.
+|`+*+` |Multiplication.
+|`+/+` |Division.
+|`+%+` |Modulo.
+|`+**+` |Exponentiation.
+|===
+
+=== Bitwise binary operators
+
+[cols=",",options="header",]
+|===
+|Use this |For this operation
+|`+&+` |Bitwise AND.
+|`+\|+` |Bitwise OR.
+|`+^+` |Exclusive OR.
+|`+<<+` |Shift left.
+|`+␣>>+` |Shift right. The operator must be preceded by whitespace.
+|`+<<>+` |Rotate left.
+|`+<>>+` |Rotate right.
+|===
+
+=== String operators
+
+[cols=",",options="header",]
+|===
+|Use this |For this operation
+|`+#+` |Text concatenation.
+|===
+
+=== Assignment operators
+
+[cols=",",options="header",]
+|===
+|Use this |For this operation
+|`+:=+` |Assignment using an in-place update.
+|`++=+` |In place addition.
+|`+-=+` |In place subtraction.
+|`+*=+` |In place multiplication.
+|`+/=+` |In place divide.
+|`+%=+` |In place modulo.
+|`+**=+` |In place exponentiation.
+|`+&=+` |In place logical AND.
+|`+\|=+` |In place logical OR.
+|`+^=+` |In place exclusive OR.
+|`+<<=+` |In place shift left.
+|`+>>=+` |In place shift right.
+|`+<<>=+` |In place rotate left.
+|`+<>>=+` |In place rotate right.
+|`+#=+` |In place concatenation.
+|===
+
+=== Variables
+
+Variables enable you to relate static names and types with dynamic values that are present only when a program is executed.
+
+You can declare variable names, and if necessary the data type, using the `+let+` keyword. For example, you can use the following notation to set the variable `+x+` to the natural number 1:
+
+[source,bash]
+----
+let x : Nat = 1;
+----
+
+In this example, the compiler can infer that the expression 1 has type `+Nat+`, and that `+x+` has the same type. Therefore, you can use the following annotation without changing the meaning of the program:
+
+[source,bash]
+----
+let x = 1
+----
+
+=== Primitive values
+
+{proglang} supports the following primitive types:
+
+* Booleans (true, false)
+* Integers (…​,-2, -1, 0, 1, 2, …​)
+* Natural numbers (0, 1, 2, …​)
+* Words (fixed-width numbers)
+* Characters (Unicode code points)
+* Text values (strings of Unicode characters)
+
+Integers and natural numbers do not silently over- or under-flow. 
+Instead, they use representations that grow to accommodate any finite number. There are also fixed-width integers and natural numbers (in 8-, 16-, 32-, and 64-bit) types that trap on arithmetic over- and under-flow. The fixed-width integers are signed. The fixed-width natural numbers are unsigned.
+
+Word values have fixed width. Arithmetic for Word types is performed using modulo 2**N where N is the width of the word type in bits.
+
+{proglang} does not allow unchecked, uncaught overflows.
+
+All primitive types are shareable so that they can be sent and received across remote function calls.
+
+=== Non-primitive values
+
+Building on the primitive values and types above, the language permits user-defined types, and each of the following non-primitive value forms and associated types:
+
+* Tuples, including the unit value (the "`empty tuple`").
+* Arrays, in both immutable and mutable forms.
+* Objects, with named, unordered fields and methods.
+* Variants, with named constructors and optional payload values.
+* Function values, including shareable functions that can be called remotely.
+* Async values, otherwise known as *futures* or *promises*, that can be synchronized with using `+await+`.
+* Optional values, that can either be `+null+` or of the form `+? v+`, for a proper value `+v+`. 
+
+
+Note that if your function is returning an optional value of type `+T+`, then the function's return type should be of the form '? T':
+prefixing a type with question mark (?) adds the `null` value. 
+For example, you would use the following syntax to indicate that the return value of the type identified by `+?Phone+` is optional (for example, the return value can be `+null+` as well as a proper phone number):
+
+[source,motoko,subs="quotes"]
+----
+public query func lookup(name: Name): async *?Phone* {
+        return A.find<Name, Phone>(book, name, nameEq);
+    };
+----
+
+=== Functions
+
+First-class functions support multiple arguments and returns and can be polymorphic.
+
+* `+T -> U+`
+* `+(T, U) -> (V, W)+`
+* `+(x : T, y : U) -> V+`
+* `+<A, B>(x : T, y : U) -> (V, W)+`
+
+Functions can be defined as `+public+` or `+private+`, `+shared+`, or locally-scoped.
+
+
+=== Objects and actors
+
+Objects are structural record types with fields that can be mutable or immutable. 
+Objects with immutable fields are shareable.
+
+....
+{var x : Int; color : Color}
+{x : Int; color: Color}
+....
+
+Actors are restricted objects with the following characteristics:
+
+* State must be isolated.
+* Public methods are implicitly `+shared+`.
+* All interactions are asynchronous.
+
+Actor objects are marked as `+actor+` with syntax similar to the
+following:
+
+....
+actor {
+  private var c = 0;
+  public func inc() { c += 1 };
+  public func get() : async Int { c }
+}
+....
+
+The fields of an actor are functions that return either:
+
+* An empty unit return type `+()+` which is similar to a `+void+` return value.
+* An `+async+` return type, which is essentially a `+promise+` to return a future value.
+
+=== Arrays
+
+You can define immutable or mutable arrays. 
+The assignment syntax you use is the same for both immutable and mutable arrays, but you cannot change immutable arrays after allocation.
+
+The following is an example of a simple, immutable array that holds three natural numbers, and has the type `+[Nat]+`:
+
+[source,bash]
+----
+let test_array : [Nat] = [1, 2, 3] ;
+----
+
+In general, an immutable array uses square brackets around the type of the array’s elements, which must share a single common type.
+Because immutable arrays cannot be modified,immutable arrays are safe to send and share.
+
+Unlike immutable arrays, each mutable array in {proglang} introduces a private actor state which can be used locally but cannot be used in cases where immutable arrays are expected. 
+Mutable arrays cannot be shared or sent in messages. 
+For more information about working with arrays, see the _{proglang} Language Reference_.
+
+=== Tuples
+
+A tuple is a data structure that contains a sequence of elements. 
+The number of element in the sequence is fixed, but the elements can consist of different data types. 
+Tuples are often used when you want to have a data structure for an object with specific properties, but you don't want to create a separate type for it.
+
+The following example defines a tuple for a three-dimensional point using integers to specify locations to represent the point on the x-axis, y-axis, and z-axis and a color.
+
+[source,bash]
+----
+  type Point3D = (Int, Int, Int, Color);
+  let origin = (0, 0, 0, Color.Red);
+  let (x, y, z, _) = origin;
+
+  func isOrigin(p : Point3D) : Bool {
+    switch p {
+      case (0, 0, 0, _) true; // pattern match
+      case _ false;
+    }
+  }
+----
+
+=== Conditional and switching
+
+{proglang} supports all the common constructs for expressing conditions and switching between cases.
+
+For example, you can write `+if+` and `+if else+` conditions with syntax similar to the following:
+
+[source,bash]
+----
+if <exp>
+  ...
+----
+
+[source,bash]
+----
+if <exp>
+  ... 
+else <exp>
+  ...
+----
+
+You can also use `+switch+` and `+case+` syntax similar to the following:
+
+[source,bash]
+----
+switch <exp> { 
+  case 1 
+    ...;
+  case 2 
+    ...;
+  case 3
+    ...}
+----
+
+=== While, Loops, and iteration
+
+* `+while (p()) ...+`
+* `+loop ...+`
+* `+loop ... while (p())+`
+* `+for (x in f()) ...+`
+
+=== Label, break, and continue
+
+Labels help ensure control flow is structured and can be used with the `+break+` and `+continue+` keywords.
+
+* `+label l exp+`
+* `+break l+` (more generally, `+break l exp+`)
+* `+continue l+`
+
+== Identifiers
+
+Identifiers are alphanumeric. 
+They must start with an uppercase or lowercase letter and can include a combination of uppercase or lowercase letters, numbers, and underscores.
+
+== Reserved keywords
+
+The following keywords are reserved for specific purposes and cannot be used as identifiers or for any other purpose in {proglang} code:
+
+[width="100%",cols="40%,60%",options="header",]
+|===
+|This keyword |Is reserved for this purpose
+|actor |Declare actor identifiers, actor objects and actor classes.
+
+|and |Boolean conjunction (short-circuiting).
+
+|async |Declare an asynchronous function or create a future.
+
+|assert |Assert a Boolean property (trapping when false).
+
+|await |Await the result of an asynchronous computation.
+
+|break |Exit from a labelled expression or loop (possibly with a value).
+
+|case |Case of a preceding `switch` expression, consisting of a pattern and expression.
+
+|catch |Failure branch of a preceding `try` expression.
+
+|class |Class declaration (actor, object and module classes).
+
+|continue |Continue with the next iteration of `loop` or `while` or `for`.
+
+|debug |Conditional debug expressions, excluded from `release` code.
+
+|debug_show |Display a debug message.
+
+|else |False branch of a conditional expression.
+
+|false |Boolean literal value *false*.
+
+|for |Iterate over the items of an iterator.
+
+|func |Declare a name function or anonymous function value.
+
+|if | Branch on a Boolean value.
+
+|ignore |Discard the value of an expression.
+
+|import |Import a source file or other resource as a named module.
+
+|in | Indicatethe domain of `for` loop.
+
+|module |Declare a module identifier or module expression.
+
+|not |Negate a Boolean value.
+
+|null |The literal value of type `Null`.
+
+|object | Declare an object identifier or object expression.
+
+|or |Boolean disjunction (short-circuiting).
+
+|label |Label an expression for early exit via `break`.
+
+|let |Bind an identifier (or pattern) to a value.
+
+|loop |Enter a loop (possibly with a guarded exit).
+
+|private |Restrict the visibility of a declaration to the enclosing
+actor, object, module or class.
+
+|public |Publish a declaration as member(s) of the enclosing
+actor, object, module or class.
+
+|query |A modifier on shared functions that return results without modifying state.
+
+|return |Exit from a function or async block (possibly with a value).
+
+|shared |Declare a function that can be called remotely.
+
+|switch |Conditional pattern matching, defined by cases.
+
+|throw |Exit from an expression with an error.
+
+|true |A Boolean value returned as the result of a comparison.
+
+|try |Declare a scoped error handler.
+
+|type |Declare a type abbreviation.
+
+|var |Specify a (mutable) variable, field or array that can be updated.
+
+|while |Enter a guarded loop.
+|===

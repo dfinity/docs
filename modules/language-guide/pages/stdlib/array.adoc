@@ -1,0 +1,65 @@
+Append two arrays:
+[source,motoko]
+----
+public func append<A>(xs : [A], ys : [A]) : [A] 
+----
+
+Apply an array of functions to an array of arguments (of matching lengths):
+[source,motoko]
+----
+public func apply<A, B>(fs : [A -> B], xs : [A]) : [B]
+----
+
+Apply a function to each array element, produce an array of (all) results:
+[source,motoko]
+----
+public func bind<A, B>(xs : [A], f : A -> [B]) : [B]
+----
+
+Fold over the array:
+[source,motoko]
+----
+public func foldl<A, B>(f : (B, A) -> B, initial : B, xs : [A]) : B
+----
+
+Fold over the array:
+[source,motoko]
+----
+public func foldr<A, B>(f : (A, B) -> B, initial : B, xs : [A]) : B
+----
+
+Find an element in the array:
+[source,motoko]
+----
+public func find<A>(f : A -> Bool, xs : [A]) : ?A
+----
+
+Convert a mutable array into an immutable one:
+[source,motoko]
+----
+public func freeze<A>(xs : [var A]) : [A]
+----
+
+Convert an array of arrays into a single (flattened) array:
+[source,motoko]
+----
+public func join<A>(xs : [[A]]) : [A]
+----
+
+Map each array element by the given mapping function:
+[source,motoko]
+----
+public func map<A, B>(f : A -> B, xs : [A]) : [B]
+----
+
+// todo: comment here
+[source,motoko]
+----
+public func pure<A>(x: A) : [A] ;
+----
+
+Convert an immutable array into a mutable one:
+[source,motoko]
+----
+public func thaw<A>(xs : [A]) : [var A]
+----

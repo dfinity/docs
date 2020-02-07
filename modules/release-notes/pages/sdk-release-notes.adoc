@@ -1,0 +1,81 @@
+= DFINITY Developer Release Notes
+December 2019 (Alpha 4)
+:toc:
+:toc: right
+:toc-title: QUICK LINKS
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:page-layout: releasenotes
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+:release: 0.5.0
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+
+The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
+{proglang} is a new programming language optimized for creating tamper-proof software and open internet services that will be hosted on the Internet Computer.
+
+The {sdk-short-name} provides everything you need to perform the following key tasks:
+
+- Author canisters in {proglang} and compile them to WebAssembly.
+- Run {IC} client processes locally on your development computer.
+- Deploy compiled programs as standalone canisters and interact with the canisters using a command-line interface.
+
+This {release} version of the {sdk-long-name} is an interim update of the Alpha release recently shared with the development community and made available to the public for preliminary testing, demonstration, and exploration.
+As part of our commitment to continuous improvement and iterative development focused on addressing developer feedback, this version includes numerous fixes and enhancements.
+
+[IMPORTANT]
+=====================================================================
+Note that {sdk-long-name} and {proglang} programming language are Alpha-quality releases intended to give you an early look at the potential for building applications that run on the {IC}.
+This {release} version of the software and programming language should not be used for developing production applications at this time.
+=====================================================================
+
+== Highlights of what's new in {release}
+
+The {release} release includes the following new features and capabilities:
+
+- Module imports no longer require `+.mo+` file extensions.
++
+For example, `+import List "mo:stdlib/list.mo";+` now becomes `+import List "mo:stdlib/list";+`
+- All functionality required for LinkedUp to compile is included in this version.
+- What was previously referred to as the Internet Computer `+client+` is being renamed to `+replica+`.
++
+Documentation is in the process of being updated to reflect this change.
+- New tutorials have been added to provide additional guidance to new developers and include more sample code.
+
+== Issues fixed in this release
+
+This section covers the issues fixed in this release.
+The {release} release includes the following fixes to reported issues:
+
+- Main.js is no longer hardcoded
+- Improved error messages when using `+--client+` flag incorrectly
+- Improved syntax error messages for Motoko compiler
+
+== Known issues and limitations
+
+This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+If there are workarounds to any of the issues described in this section, you can find them in the link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] section.
+
+The {release} release includes the following known issues and limitations:
+
+- There is a breaking change to Motoko which removes definitions like `+debugPrint+`, `+abs+` and `+range+` from the default scope. You now have to import them through the Motoko standard library.
++
+For help with importing from the standard library, check out link:../language-guide/stdlib/stdlib-intro{outfilesuffix}[Using the Motoko standard library] in the Motoko language reference and the link:../developers-guide/tutorials/phonebook{outfilesuffix}[Importing standard library functions] tutorial.
+
+- Float support in the {proglang} programming language that is compiled to WebAssembly.
++
+Although {proglang} recognizes floating point numbers, there are some limitations related to the deterministic requirements of the {IC} that can create issues when compiling {proglang} source code that includes floating point data types into WebAssembly for deployment.
+To simplify the development of test and demonstration programs that run on the current {release} release, you should avoid using Float data types for now.
+
+- Using fixed-length Word data type arguments when running `+dfx+` commands.
++
+Fixed-length Word32 data types are not yet supported in the `+dfx+` command-line interface.
+As an alternative, you can convert integers to Word32 using the standard library function `+int32ToWord32(intToInt32(value))+`` until the support for fixed-length Word32 and Nat32 data types is added.
+
+== Additional questions and feedback
+
+Check out link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] for additional technical support.

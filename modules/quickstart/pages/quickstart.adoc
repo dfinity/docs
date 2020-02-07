@@ -1,0 +1,229 @@
+= Quick start
+December 2019 (Alpha)
+:toc:
+:toc: right
+:toc-title: QUICK START
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+//:icons: font
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[quick-start-intro]]
+This {sdk-long-name} is an Alpha release that provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} client node.
+
+IMPORTANT: For this *Alpha* release, only *macOS* and *Linux* platforms are supported. In addition, you won’t be able to install your programs on an externally-managed Developer Network just yet, but that capability is coming soon.
+
+By developing programs that run on the {platform}, you can deploy secure, tamper-proof applications and provide web-based services without the restrictions or expense of a proprietary infrastructure, the complexities of database management and maintenance, or the investment in hardware required to run enterprise-scale software.
+
+If you want to learn more about the {platform} and how it can transform distributed computing and the application landscape, check out link:https://dfinity.org/faq[Frequently Asked Questions] or the videos posted on the https://www.youtube.com/channel/UCOyguKlTxoDK3HRzmGbLyAg[DFINITY Official Youtube Channel].
+
+If you are ready to start developing applications that run on the {platform}, it only takes a few minutes to get up and running.
+
+[[before-you-begin]]
+== Before you begin
+
+Before you download and install this release of the SDK, verify the following:
+
+* You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
+* You should have `+node.js+` installed if you want your project to include the default template files for front-end development in your project.
+* You should have Developer Command Line Tools installed if you want to create a Git repository for your project and your development environment is on a macOS computer.
+You can check whether you have the developer tools installed by running `+xcode-select -p+`.
+You can install the developer tools by running `+xcode-select --install+`.
+
+[[download-and-install]]
+== Download and install
+
+The most straightforward option for accessing the {sdk-long-name} is to download the SDK package from within a terminal shell on your local computer.
+With this installation option, you can be logged on as any user and no additional software is required.
+
+To download and install from a terminal shell:
+
+[arabic]
+. Open a terminal shell on your local computer.
++
+For example, on macOS open the Applications folder, then open Utilities
+and double-click *Terminal*.
+. Download and install the SDK package by running the following command:
++
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
++
+This command prompts you to read and accept the license agreement before installing the `+dfx+` command-line interface executable and its dependencies on your local computer.
+. Review the license agreement, then type `+y+` and press Enter if you want to continue with the installation.
++
+[source,bash]
+----
+Do you agree and wish to install the DFINITY ALPHA SDK [y/N]?
+----
++ The default response is No.
+You must type `+y+` and press Enter to continue.
++
+The command displays information about the components being installed on the local computer.
+
+[[verify-the-sdk-is-ready-to-use]]
+== Verify the SDK is ready to use
+
+If the installation script runs without any errors, everything you need to start developing programs that run on the {platform}  will be available on your local computer.
+
+To verify the SDK is ready to use:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already
+have one open.
+. Check that you have the SDK developer command-line interface installed and the executable is available in your PATH by running the following command:
++
+[source,bash]
+----
+dfx --version
+----
++
+The command displays version information for the developer command-line interface similar to the following:
++
+[source,bash]
+----
+dfx 0.5.0
+----
+. Preview usage information for the other developer command-line interface sub-commands by running the following command:
++
+[source,bash]
+----
+dfx --help
+----
++
+The command displays usage information for the `+dfx+` parent command and its subcommands.
+
+[[create-a-new-project]]
+== Create a new project
+
+You are now ready to create a new project for your first sample application.
+
+To create a new project directory for your first application:
+
+[arabic]
+. Create a new project directory for your first application by running the following commands:
++
+[source,bash]
+----
+dfx new hello
+----
++
+The `+dfx new hello+` command creates a new `+hello+` project with a default project directory, some template files, and a new Git repository for your project.
++
+If you have `+node.js+` installed locally, creating a new project also adds some template front-end code and dependencies.
+[arabic]
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd hello
+----
+
+[[build-the-project]]
+== Build the program
+
+Your new `+hello+` project includes a simple default program in the `+src/hello+` directory that you can compile.
+
+To build the program executable:
+
+[arabic]
+. View the contents of the source directory for your project directory by running the following command:
++
+[source,bash]
+----
+ls -l src/hello
+----
++
+Note that the `src/hello` directory includes a default `+main.mo+` program for your project and a `+public+` directory.
+For this _Quick start_, you only need to use the `+main.mo+` program.
+. Build the executable from the default `+main.mo+` file by running the following command:
++
+[source,bash]
+----
+dfx build
+----
+. Verify the command displays output indicating that the build is successful.
++
+For example, if you have `+node.js+` installed you should see output similar to the following:
++
+[source,bash]
+----
+  Done building canisters...
+  Done building frontend...
+⠁ Bundling frontend assets in the canister...
+----
+
+[[start-the-local-network-and-deploy]]
+== Start the local network and deploy
+
+You now have a program that can be deployed on your local client network.
+
+[arabic]
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
++
+Depending on your platform and local security settings, you might see a warning displayed. 
+If you are prompted to allow or deny incoming network connections, click *Allow*.
++
+The `+--background+` option starts {IC} client processes then runs them in the background so that you can continue to the next step without opening another terminal shell on your local computer.
+. Deploy the default program on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install hello
+----
++
+You should see an installation confirmation message for your canister similar to the following:
++
+[source,bash]
+----
+Installing code for canister hello, with canister_id ic:795EA5F537665EED24
+Jan 28 18:33:26.850 INFO Successfully inserted an ingress message into IngressPool, Application: P2P/ArtifactPool
+Jan 28 18:33:27.262 INFO Created checkpoint @488 in 2.976797ms, StateManager: 1
+----
+. Call the predefined `+greet+` method in the program by running the following command:
++
+[source,bash]
+----
+dfx canister call hello greet "there" --type string
+----
++
+This example uses the `+dfx canister call+` command to pass "there" as an argument of type `+string+` to the `+greet+` function.
+. Verify the command displays the return value of the `+greet+` function (Hello, there!).
++
+For example:
++
+[source,bash, subs="quotes"]
+----
+Jan 28 18:34:25.832 INFO Successfully inserted an ingress message into IngressPool, Application: P2P/ArtifactPool
+("Hello, there!")
+----
+. Stop the {IC} client processes running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
+
+[[next-steps]]
+== Next steps
+
+This _Quick start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
+There are more detailed examples and tutorials for you to explore in the link:../developers-guide/dev-index{outfilesuffix}[_Developer’s Guide_] and in the link:../language-guide/index{outfilesuffix}[_{proglang} Programming Language Guide_].
+
+* Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].
+* Want to join the community? Visit our https://dfinity.org/community/[community forum].
+* Want to stay informed about new features and updates? Sign up for https://dfinity.org/newsletter[Developer updates].
+

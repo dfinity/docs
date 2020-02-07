@@ -1,0 +1,266 @@
+= Exploring calculator functions
+December 2019 (Alpha)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:linkedcss:
+:toc:
+:toc: right
+:toc-title: TUTORIAL - CALCULATOR
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+In this tutorial, you are going to write a simple calculator program that creates a single actor with several public entry-point functions to perform basic arithmetic operations.
+
+For this tutorial, the actor is named `+Calc+`. 
+The program uses the `+cell+` variable to contain an integer number that represents the current result of a calculator operation. 
+
+This program supports the following types of function calls:
+
+* The `+add+` function call accepts input and performs addition.
+* The `+sub+` function call accepts input and performs subtraction.
+* The `+mul+` function call accepts input and performs multiplication.
+* The `+div+` function call accepts input and performs division.
+* The `+clearall+` function clears the `+cell+` value stored as the result of previous operations, resetting the `+cell+` value to zero.
+
+The `+div+` function also includes code to prevent the program from attempting to divide by zero.
+
+== Before you begin
+
+Before starting the tutorial, verify the following:
+
+* You have downloaded and installed the SDK as described in
+link:../getting-started{outfilesuffix}[Getting started].
+* You have stopped any network client processes running on the local
+computer.
+
+This tutorial takes approximately 20 minutes to complete.
+
+== Create a new project
+
+To create a new project for this tutorial:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already
+have one open.
+. Change to the folder you are using for your {IC} sample projects.
+. Create a new project by running the following command:
++
+[source,bash]
+----
+dfx new calc
+----
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd calc
+----
+
+== Modify the default configuration
+
+You have already seen that creating a new project adds a default `dfx.json` configuration file to your project directory.
+In this tutorial, you will modify several of the default settings to illustrate ways you can customize your project environment.
+
+To modify the default `+dfx.json+` configuration file:
+
+. Open the `+dfx.json+` configuration file in a text editor, then change the following settings:
++
+* Change the default `+hello+` source directory to `+calc+`.
+* Change the default `+main.mo+` program name to `+calc_main.mo+`.
+* Change the default `+canisters+` output directory to `+dist+`.
++
+For example:
++
+[source,bash,subs="quotes"]
+----
+{
+  "canisters": {
+    "calc": {
+      "main": "src/calc/*calc_main.mo*"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "*dist/*"
+    },
+    "start": {
+      "port": 8000,
+      "address": "127.0.0.1",
+      "serve_root": "src/*calc*/public/"
+    }
+  }
+}
+----
++
+For this tutorial, you are changing the name of the source file from `+main.mo+` to `+calc_main.mo+` to illustrate how the setting in the `+dfx.json+` file determines the source file to be compiled. 
+Similarly, this tutorial suggests changing the name of the output directory to `+dist+` to illustrate a simple customization that you can control through your `+dfx.json+` configuration file settings.
+
+== Modify the default template program
+
+You have already seen that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
+In this tutorial, you will create a new `+calc_main.mo+` file for the simple calculator program.
+
+To modify the default template source code:
+
+. Change to the source code directory for your project by running the following command:
++
+[source,bash]
+----
+cd src/calc
+----
+. Rename the template `+main.mo+` file to `+calc_main.mo+` by running the following command:
++
+[source,bash]
+----
+mv main.mo calc_main.mo
+----
+. Open the `+calc_main.mo+` file in a text editor and delete the existing content.
+. Copy and paste the following sample code into the `+calc_main.mo+` file:
++
+[source,motoko,subs="quotes"]
+----
+include::example$calc_main.mo[]
+----
++
+You might notice that this sample code uses integer (`+Int+`) data types, enabling you to use positive or negative numbers.
+If you wanted to restrict the functions in this calculator code to only use positive numbers, you could change the data type to only allow natural (`+Nat+`) data.
+
+== Build and deploy the program
+
+You now have a program that you can compile into an executable WebAssembly module that you can deploy—using the canister model—on your local client network.
+
+To build the program executable:
+
+. Change to the root directory for your project,
++ 
+For example, if your project directory is `+~/ic-projects+`, run the following command:
++
+[source,bash]
+----
+cd ~/ic-projects/calc
+----
+. Build the WebAssembly executable by running the following command:
++
+[source,bash]
+----
+dfx build --skip-frontend
+----
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
+. Deploy your `+calc+` project on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install calc 
+----
+
+== Verify calculator functions on the canister
+
+You now have a program deployed as a *canister* on your local client network and can test your program by using `+dfx canister call+` commands.
+
+To test the program you have deployed on the local client network:
+
+. Use the `+dfx canister call+` command to call the `+calc+` canister `+add+` function and pass it the input argument `+10+` of type `+number+` by running the following command:
++
+[source,bash]
+----
+dfx canister call calc add 10 --type number
+----
++
+Verify that the command returns the value expected for the `+add+` function.
+For example, the program displays output similar to the following:
++
+[source,bash,subs="quotes"]
+----
+   Application: P2P/IngressPool
+    Nov 12 08:19:39.125 INFO Insert an ingress message in Ingress pool
+   Application: Http Handler
+    Nov 12 08:19:39.128 INFO in handle read
+(*10*)
+----
+. Call the `+mul+` function and pass it the input argument `+3+` but let the interface description language (IDL) parse the argument type by running the following command:
++
+[source,bash]
+----
+dfx canister call calc mul '(3)'
+----
++
+Verify that the command returns the value expected for the `+mul+` function.
+For example, the program displays output similar to the following:
++
+[source,bash,subs="quotes"]
+----
+   Application: P2P/IngressPool
+    Nov 12 08:20:53.534 INFO Insert an ingress message in Ingress pool
+   Application: Http Handler
+    Nov 12 08:20:53.536 INFO in handle read
+(*30*)
+----
+. Call the `+sub+` function and pass it the input argument `+5+` of type `+number+` by running the following command:
++
+[source,bash]
+----
+dfx canister call calc sub 5 --type number
+----
++
+Verify that the command returns the value expected for the `+sub+` function.
+For example, the program displays output similar to the following:
++
+[source,bash,subs="quotes"]
+----
+   Application: P2P/IngressPool
+    Nov 12 08:22:52.661 INFO Insert an ingress message in Ingress pool
+   Application: Http Handler
+    Nov 12 08:22:52.664 INFO in handle read
+(*25*)
+----
+. Call the `+div+` function and pass it the input argument `+5+` but let the interface description language (IDL) parse the argument type by running the following command:
++
+[source,bash]
+----
+dfx canister call calc div '(5)'
+----
++
+Verify that the command returns the value expected for the `+div+` function.
+For example, the program displays output similar to the following:
++
+[source,bash,subs="quotes"]
+----
+   Application: P2P/IngressPool
+    Nov 12 08:26:28.856 INFO Insert an ingress message in Ingress pool
+   Application: Http Handler
+    Nov 12 08:26:28.858 INFO in handle read
+(*opt 5*)
+----
+. Call the `+clearall+` function and verify it resets the `+cell+` value to zero:
++
+[source,bash]
+----
+dfx canister call calc clearall
+----
++
+For example, the program displays output similar to the following:
++
+[source,bash,subs="quotes"]
+----
+   Application: P2P/IngressPool
+    Nov 12 08:31:49.564 INFO Insert an ingress message in Ingress pool
+   Application: Http Handler
+    Nov 12 08:31:49.567 INFO in handle read
+(*0*)
+----
+. Stop the {IC} processes running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----

@@ -1,0 +1,117 @@
+= Customizing projects
+December 2019 (Alpha)
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+
+You can modify some key settings for individual projects by modifying each project’s `+dfx.json+` configuration file. 
+You can use the `+dfx config+` command to change these settings programmatically or manually edit the `+dfx.json+` file directly.
+
+== How to change your source directory
+
+Before you compile source code for your project using the `+dfx build+` command, you might want to check the default location for storing your program. 
+The project `+canister_name+` you specify for the `+dfx build+`, `+dfx canister install+`, and `+dfx canister call+` commands should match the name you specify in the `+dfx.json+` configuration file.
+
+For example, if you want to build a canister for the `+counter+` program, you should specify `+counter+` in the `+canisters+` section of the configuration file:
+
+[source,bash]
+----
+  "canisters": {
+    "counter": {
+      "main": "src/counter/main.mo"
+----
+
+Note that the program can compile without changing the canister directory name or the location of your program, but you wouldn’t want all of your canisters and programs to be named `+hello+` or every program to use the same generic `+main.mo+` name.
+
+After making changes to the canister name and program directory, you can build the project by running a command similar to the following from within the project directory. 
+For example, if the project directory is `+~/ic-projects/my_counter+`:
+
+[source,bash]
+----
+~/ic-projects/my_counter$ dfx build
+  Done building canisters...
+  Done building frontend...
+⠁ Bundling frontend assets in the canister...
+----
+
+In this example, notice that the project name and the canister name can be different and that this command is explicitly building the `+counter+` canister. 
+If you have more than one canister name configured in the `+dfx.json+` configuration file, you can build all of the canister for the project by running the following command:
+[source,bash]
+----
+dfx build 
+----
+
+== How to change your output directory
+
+When you compile source code for your project using the `+dfx build+` command, the command automatically generates a WebAssembly executable and interface bindings in a default output folder. 
+You can customize the default output folder for a project by modifying the project’s local `+dfx.json+` configuration file. 
+You can change settings in the `+dfx.json+` configuration file manually by editing the file or programmatically by running the `+dfx config+` command.
+
+To see the default output folder you are currently using, run the following command:
+
+[source,bash]
+----
+dfx config defaults.build.output
+----
+
+The command returns the setting you have currently defined in the `+dfx.json+` configuration file. 
+For example:
+
+[source,bash]
+----
+"canisters/"
+----
+
+To change the default output folder, run the `+dfx config+` command and specify a new location. 
+For example, to change the default output directory from `+canisters+` to `+ready_for_release+`, run the following command:
+
+[source,bash]
+----
+dfx config defaults.build.output ready_for_release
+----
+
+This command changes the `+output+` setting in the `+dfx.json+` configuration file to `+ready_for_release+`.
+
+For example:
+
+[source,json]
+----
+  "defaults": {
+    "build": {
+      "output": "ready_for_release"
+----
+
+== How to change the main program file name
+
+Before you compile source code for your project using the `+dfx build+` command, you should verify the location and file name used for your program’s source code.
+
+For example, if you want to build a canister for the `+factorial+` program and the source code for the program is located in `+src/math/factorial.mo+`, you should be sure that you have the correct
+path specified for the `+main+` setting in the `+canisters+` section of the configuration file.
+
+For example:
+
+[source,bash]
+----
+  "canisters": {
+    "myFactorial": {
+      "main": "src/math/factorial.mo",
+----
+
+Keep in mind that changing the configuration setting for the program file name only affects where the `+dfx build+` command looks for the source code to compile. Making changes in the configuration file does not rename any files or directories on the file system. 
+If you change the path to the main program file or the name of the file itself, be sure to change the name and location within your project directory.
+
+== How to change the location for serving the application front-end
+
+You can change the default host name and port number for running the local {IC} client processes and serving the application front-end by modifying settings in the `+dfx.json+` configuration file.
+
+For example:
+
+[source,bash]
+----
+    "start": {
+      "port": 8000,
+      "address": "127.0.0.1",
+      "serve_root": "src/hello/public/"
+----

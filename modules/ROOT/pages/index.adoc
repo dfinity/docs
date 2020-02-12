@@ -1,4 +1,4 @@
-= DFINITY for Developers
+= {IC} for Developers
 :release: January 2020 (Alpha)
 :page-layout: home
 :page-home:

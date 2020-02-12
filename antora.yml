@@ -1,5 +1,5 @@
 name: docs
-title: DFINITY for Developers
+title: Developers Center
 version: 'master'
 start_page: ROOT:index.adoc
 nav:

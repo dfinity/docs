@@ -23,43 +23,32 @@ Select a topic to explore the {sdk-long-name}.
 ++++
 <div id="content-section">
   <div class="container">
-    <div class="three-columns">
-      <div class="box1"><a href="introduction-key-concepts.html">
-        <p class="center"><center class="center">
-        <img src="../_images/022-invention.svg" alt="Concepts"/></center></p>
-        <p class="service-name">Concepts</p>
-        <!--<p class="tagline">Download the full SDK to write code that runs directly on the internet.</p>--></a>
+    <div class="home-card"><a href="introduction-key-concepts.html">
+        <p class="service-name">Concepts</p></a>
       </div>
       <div class="box2"><a href="getting-started.html">
-        <p class="center"><center class="center">
-        <img src="../_images/038-space-ship.svg" alt="Get started"/></center></p>
-        <p class="service-name">Get started</p>
-        <!--<p class="tagline">Download Motoko programming language binaries independent of the SDK.</p>--></a>
+        <p class="center"></p>
+        <p class="service-name">Get started</p></a>
       </div>
       <div class="box3"><a href="tutorials-intro.html">
-        <p class="center"><center class="center">
-        <img src="../_images/090-cheked.svg" alt="Tutorials"/></center></p>
-        <p class="service-name">Tutorials</p>
-        <!--<p class="tagline">Access sample code, applications, and microservices written for the Internet Computer.</p>--></a>
+        <p class="center"></p>
+        <p class="service-name">Tutorials</p></a>
       </div>
     </div>
 
     <div class="three-columns">
       <div class="box1"><a href="customize-projects.html">
-        <p class="center"><center class="center">
-        <img src="../_images/072-hard-disc.svg" alt="Customize projects"/></center></p>
+        <p class="center"></p>
         <p class="service-name">Projects</p>
         <!--<p class="tagline">Customize your project using the configuration file.</p>--></a>
       </div>
       <div class="box2"><a href="basic-syntax-rules.html">
-        <p class="center"><center class="center">
-        <img src="../_images/020-laptop-computer-1.svg" alt="Basic Motoko"/></center></p>
+        <p class="center"></p>
         <p class="service-name">Basic Motoko</p>
         <!--<p class="tagline">Review the basic syntax requirements for writing Motoko code.</p>--></a>
       </div>
       <div class="box3"><a href="cli-reference.html">
-        <p class="center"><center class="center">
-        <img src="../_images/043-gears-2.svg" alt="CLI reference"/></center></p>
+        <p class="center"></p>
         <p class="service-name">CLI</p>
         <!--<p class="tagline">Go beyond basic usage information in the command-line reference.</p>--></a>
       </div>
@@ -67,22 +56,16 @@ Select a topic to explore the {sdk-long-name}.
 
     <div class="three-columns">
       <div class="box1"><a href="https://github.com/dfinity">
-        <p class="center"></p><center class="center">
-        <img src="../_images/018-races.svg" alt="Samples"/></center></p>
-        <p class="service-name">Samples</p>
-        <!--<p class="tagline">Explore, download, clone, or fork sample code, applications, and microservices</p>--></a>
+        <p class="center"></p>
+        <p class="service-name">Samples</p></a>
       </div>
       <div class="box2"><a href="https://dfinity.org/community">
-        <p class="center"><center class="center">
-        <img src="../_images/050-connected.svg" alt="Videos"/></center></p>
-        <p class="service-name">Videos</p>
-        <!--<p class="tagline">Join the conversation in our community forums and find out more about events, meetups, and other opportunities to connect.</p>--></a>
+        <p class="center"></p>
+        <p class="service-name">Videos</p></a>
       </div>
       <div class="box3"><a href="https://dfinity.org">
-        <p class="center"><center class="center">
-        <img src="../_images/009-text-lines.svg" alt="Sandbox"/></center></p>
-        <p class="service-name">Sandbox</p>
-        <!--<p class="tagline">Experiment on your own in the interactive development playground</p>--></a>
+        <p class="center"></p>
+        <p class="service-name">Sandbox</p></a>
       </div>
     </div>
   </div>

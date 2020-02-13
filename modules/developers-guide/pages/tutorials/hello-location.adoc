@@ -232,6 +232,7 @@ For example:
 ----
 cp -r src/hello_location src/favorite-cities
 ----
+. Open the `+src/favorite-cities/main.mo+` file in a text editor.
 . Copy and paste the following code sample to replace the `+location+` function with two new functions.
 +
 For example:

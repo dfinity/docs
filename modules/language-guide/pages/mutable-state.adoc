@@ -820,13 +820,13 @@ local module name to introduce, in this example `P` for
 the imported module:
 
 ....
-import P "mo:stdlib/prelude.mo";
+import P "mo:stdlib/prelude";
 P.printLn("hello world");
 ....
 
 In this case, we import {proglang} code (not some other module form)
 with the `mo:` prefix.  We specify the `stdlib/` path, followed by the
-module's file name `prelude.mo`.
+module's file name `prelude` without the `.mo` extension.
 
 === Accommodating incomplete code
 

@@ -1,9 +1,9 @@
 // Import standard libraries
-import Array "mo:stdlib/array.mo";
-import Nat "mo:stdlib/nat.mo";
+import Array "mo:stdlib/array";
+import Nat "mo:stdlib/nat";
 
 // Import type properties for the ToDo type definition
-import types "./types.mo";
+import types "./types";
 
 type ToDo = types.ToDo;
 

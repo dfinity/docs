@@ -1,7 +1,7 @@
 // Import standard library functions for lists
 
-import L "mo:stdlib/list.mo";
-import A "mo:stdlib/assocList.mo";
+import L "mo:stdlib/list";
+import A "mo:stdlib/assocList";
 
 // The PhoneBook actor.
 actor {

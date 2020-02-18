@@ -1,7 +1,6 @@
 = Using multiple actors
-December 2019 (Alpha)
+February 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:linkedcss:
 :toc:
 :toc: right
 :toc-title: TUTORIAL - MULTIPLE ACTORS
@@ -26,9 +25,7 @@ This project defines the following unrelated actors:
 +
 For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is included in link:../sample-apps{outfilesuffix}[Sample code, applications, and microservices].
 
-* The `+rock_paper_scissors+` actor provides a function for determining a winner in a hard-coded rock-paper-scissors contest.
-+
-This code sample illustrates the basic use of `+switch+` and `+case+` in a {proglang} program with hard-coded players and choices.
+* The `+factorial+` actor provides a function for determining the factorial for a specified number.
 
 * The `+daemon+` actor provides mock functions for starting and stopping a daemon.
 +
@@ -67,7 +64,7 @@ cd multiple_actors
 
 == Modify the default configuration
 
-You have already seen that creating a new project adds a default `dfx.json` configuration file to your project directory.
+You have already seen that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
 For this tutorial, you need to add sections to this file to specify the location of each program that defines an actor you want to build.
 
 To modify the default `+dfx.json+` configuration file:
@@ -78,25 +75,30 @@ For example:
 +
 [source,bash,subs="quotes"]
 ----
+{
   "canisters": {
     "*assistant*": {
+      "frontend": {
+        "entrypoint": "src/multiple_actors/public/index.js"
+      },
       "main": "src/*assistant*/main.mo"
     },
 ----
 +
-Because you are going to add settings to this `+canister+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file.
-. Add a new canister name and source file location for the `+rock_paper_scissors+` program and a new canister name and source file location for the `+daemon+` program files below the `+assistant+` source file location.
+Because you are going to add settings to this `+canisters+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file.
+. Add a new canister name and source file location for the `+factorial+` program and a new canister name and source file location for the `+daemon+` program files below the `+assistant+` source file location.
 +
 For example:
 +
 [source,bash,subs="quotes"]
 ----
-    *"rock_paper_scissors": {
-      "main": "src/rock_paper_scissors/main.mo"
+    "factorial": {
+      "main": "src/factorial/main.mo"
     },
     "daemon": {
       "main": "src/daemon/main.mo"
-	}*
+        }
+  },
 ----
 +
 You can leave the other sections as-is. 
@@ -104,13 +106,13 @@ You can leave the other sections as-is.
 +
 [source,bash]
 ----
-mv src/multiple_actors/ src/assistant/
+cp -r src/multiple_actors/ src/assistant/
 ----
-. Copy the `+assistant+` source file directory to create the main program file for the `+rock_paper_scissors+` actor by running the following command:
+. Copy the `+assistant+` source file directory to create the main program file for the `+factorial+` actor by running the following command:
 +
 [source,bash]
 ----
-cp -r src/assistant/ src/rock_paper_scissors/
+cp -r src/assistant/ src/factorial/
 ----
 . Copy the `+assistant+` source file directory to create the main program file for the `+daemon+` actor by running the following command:
 +
@@ -133,12 +135,12 @@ To modify the default template source code:
 ----
 include::example$multiple-actors/assistant/main.mo
 ----
-. Open the `+src/rock_paper_scissors/main.mo+` file in a text editor and delete the existing content.
+. Open the `+src/factorial/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
 [source,motoko]
 ----
-include::example$multiple-actors/rock_paper_scissors/main.mo
+include::example$multiple-actors/factorial/main.mo
 ----
 . Open the `+src/daemon/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
@@ -146,7 +148,6 @@ include::example$multiple-actors/rock_paper_scissors/main.mo
 [source,motoko]
 ----
 include::example$multiple-actors/daemon/main.mo
-
 ----
 
 == Build all of the canisters in the project
@@ -167,9 +168,9 @@ If the command is successful, it builds all of the canisters you have specified 
 +
 [source,bash]
 ----
-Building assistant...
-Building rock_paper_scissors...
-Building daemon...
+Building canister assistant
+Building canister factorial
+Building canister daemon
 ----
 
 == Deploy the canisters in the project
@@ -192,23 +193,11 @@ For example:
 ----
 cd ~/ic-projects/multiple_actors
 ----
-. Deploy your `+assistant+` canister on the local network by running the following command:
+. Deploy your canisters on the local network by running the following command:
 +
 [source,bash]
 ----
-dfx canister install assistant
-----
-. Deploy the `+rock_paper_scissors+` canister on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install rock_paper_scissors 
-----
-. Deploy the `+daemon+` canister on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install daemon 
+dfx canister install --all
 ----
 
 == Verify deployment by calling functions
@@ -238,19 +227,18 @@ The command returns output similar to the following:
 ___TO-DOs___
 (1) Schedule monthly demos
 ----
-. Use the `+dfx canister call+` command to call the canister `+rock_paper_scissors+` using the `+contest+` function by running the following command:
+. Use the `+dfx canister call+` command to call the canister `+factorial+` using the `+fac+` function by running the following command:
 +
 [source,bash,subs="quotes"]
 ----
-dfx canister call rock_paper_scissors contest
+dfx canister call factorial fac '(8)'
 ----
 +
-The command returns the result of the hard-coded contest similar to the following:
+The command returns the result of the function:
 +
 [source,bash]
 ----
-    Dec 11 08:48:16.508 INFO Created checkpoint @2206707 in 53.769593ms
-("Bob won")
+(40320)
 ----
 . Use the `+dfx canister call+` command to call the canister `+daemon+` using the `+launch+` function by running the following command:
 +

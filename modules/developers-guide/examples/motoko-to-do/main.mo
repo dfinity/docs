@@ -1,5 +1,5 @@
-import utils "utils.mo";
-import types "types.mo";
+import utils "utils";
+import types "types";
 
 type ToDo = types.ToDo;
 

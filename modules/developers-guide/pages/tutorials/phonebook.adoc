@@ -17,7 +17,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 In this tutorial, you are going to write a simple program that enables you to store and look up telephone numbers. 
 This tutorial illustrates how to import and use a few basic standard library functions.
 
-For this tutorial, the standard library functions are defined in the  `+list.mo+` and `+assocList.mo+` library files and enable you to work with lists as linked key-value pairs. 
+For this tutorial, the standard library functions are defined in the  `+list+` and `+assocList+` library files and enable you to work with lists as linked key-value pairs. 
 In this example, the *key* is a `+name+` and the *value* is the `+phone+` text string associated with that name. 
 
 This program supports the following types of function calls:

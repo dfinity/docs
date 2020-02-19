@@ -1,3 +1,5 @@
+import I "mo:stdlib/iter"; 
+
 actor rock_paper_scissors {
 
 	var alice_score: Nat = 0;
@@ -12,7 +14,7 @@ actor rock_paper_scissors {
 	};
 
     public func contest() : async Text {
-		for (i in range(0,99)) {
+		for (i in I.range(0,99)) {
 			battle_round();
 		};
         var winner = "The contest was a draw";
@@ -32,6 +34,9 @@ actor rock_paper_scissors {
 		case (#paper,#rock) bob_score +=1;
 		case (#scissors,#paper) alice_score +=1;
 		case (#scissors,#rock) bob_score +=1;
+        case (#rock,#rock) alice_score +=0;
+        case (#paper,#paper) bob_score +=0;
+        case (#scissors,#scissors) alice_score +=0;
 	  };
 
 	  alice_last := a;

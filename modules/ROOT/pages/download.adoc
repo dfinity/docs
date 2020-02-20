@@ -16,7 +16,7 @@ To download and install from a terminal shell:
 
 . Open a terminal shell on your local computer.
 
-. Running the following `+curl+` command:
+. Run the following `+curl+` command:
 +
 [source,bash]
 ----

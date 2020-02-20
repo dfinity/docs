@@ -1,5 +1,7 @@
 [[compiler-prelude-iter]]
-== type `Iter`
+== Iteration
+
+Use type `iter` to perform iteration over an object.
 
 [source]
 ----
@@ -7,7 +9,10 @@ type Iter<T_> = {next : () -> ?T_};
 ----
 
 [[compiler-prelude-abs]]
-== function `abs`
+== Absolute function
+
+Use the `abs` function to return the absolute value of a number. 
+The absolute value of a number is the number without its sign.
 
 [source,motoko]
 ----
@@ -24,6 +29,8 @@ func ignore(_ : Any) {};
 
 [[compiler-prelude-range]]
 == function `range`
+
+Sets a start and end values for a range.
 
 [source,motoko]
 ----

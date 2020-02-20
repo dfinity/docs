@@ -1,3 +1,4 @@
+= Hash module
 
 Hash values represent a string of _hash bits_, and support associated
 _bit string_ operations.

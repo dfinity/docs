@@ -1,3 +1,5 @@
+= AssocList module
+
 Association Lists, a la functional programming, in {proglang}.
 
 [source,motoko]

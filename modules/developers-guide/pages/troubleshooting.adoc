@@ -82,7 +82,7 @@ If you encounter an issue where you suspect or you receive a message that a proc
 
 [source,bash]
 ----
-pkill client nodemanager dfx
+pkill replica nodemanager dfx
 ----
 
 == Memory leak

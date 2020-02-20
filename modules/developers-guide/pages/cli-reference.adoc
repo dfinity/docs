@@ -735,7 +735,8 @@ You can use the following argument with the `+dfx canister install+` command.
 [cols="<,<",options="header",]
 |===
 |Argument |Description
-|`+canister_name+` |Specifies the name of the canister to deploy. The canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
+|`+canister_name+` |Specifies the name of the canister to deploy. 
+If you are not using the `+--all+` option, the canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
 |===
 
 === Examples

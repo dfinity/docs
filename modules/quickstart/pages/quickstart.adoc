@@ -224,6 +224,6 @@ This _Quick start_ touched on only a few key steps to introduce the basic workfl
 There are more detailed examples and tutorials for you to explore in the link:../developers-guide/dev-index{outfilesuffix}[_Developer’s Guide_] and in the link:../language-guide/index{outfilesuffix}[_{proglang} Programming Language Guide_].
 
 * Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].
-* Want to join the community? Visit our https://dfinity.org/community/[community forum].
+* Want to join the community? Visit our https://forum.dfinity.org/[community forum].
 * Want to stay informed about new features and updates? Sign up for https://dfinity.org/newsletter[Developer updates].
 

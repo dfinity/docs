@@ -691,7 +691,7 @@ Use the `+dfx canister install+` command to install compiled code as a canister 
 
 [source,bash,subs="quotes"]
 ----
-dfx canister install _canister_name_ [flag] 
+dfx canister install [flag] [option] [--all | _canister_name_]
 ----
 
 === Flags
@@ -701,7 +701,8 @@ You can use the following optional flags with the `+dfx canister install+` comma
 [width="100%",cols="<31%,<69%",options="header",]
 |===
 |Flag |Description
-|`+--all+` |Enables you to install multiple canisters at once if you have a project that includes multiple canisters.
+|`+--all+` |Enables you to install multiple canisters at once if you have a project `dfx.json` file that includes multiple canisters.
+Note that you must specify `--all` or an individual canister name.
 
 |`+--async+` |Enables you to continue without waiting for the result of the installation to be returned by polling the client.
 
@@ -717,8 +718,14 @@ You can use the following options with the `+dfx canister install+` command.
 [width="100%",cols="<31%,<69%",options="header",]
 |===
 |Option |Description
-|`+--client client_address+` |Specifies the client host name or IP address and port to connect to.
-This option enables you to override the client setting specified in the `+dfx.json+` configuration file. 
+|-c, --compute-allocation <compute-allocation> |Defines a compute allocation—essentially the equivalent of setting CPU allocation—for  canister execution. 
+You can define the allocation as a percentage in the range of 0 to 100 to indicate how often your canister is should be scheduled for execution. 
+For example, assume you set this option to 50% allocation and your canister has a stream of input messages to process.
+Over 100 execution cycles, the canister's messages will be scheduled for processing at least 50 times.
+The default value for this option is 0—indicating that no specific allocation or scheduling is in effect. 
+If all of your canisters use the default setting, processing occurs in a round-robin fashion.
+
+In a development environment, you might use this option for testing purposes if you have applications that require multiple canisters.
 |===
 
 === Arguments

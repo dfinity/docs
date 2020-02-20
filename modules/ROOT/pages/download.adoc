@@ -17,7 +17,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 ----
 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
-
+////
 == Download a packaged release
 
 [width="100%",cols=3*,"35%,30%,35%",options="header",]
@@ -42,3 +42,4 @@ npm install dfx
 ----
 brew install dfx
 ----
+////

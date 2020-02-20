@@ -7,7 +7,12 @@
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
+Currently, you can download the {sdk-long-name} directly from within a terminal shell on your local computer.
+With this installation option, you can be logged on as any user and no additional software is required.
+
 == Install directly from a terminal
+
+To download and install from a terminal shell:
 
 . Open a terminal shell on your local computer.
 

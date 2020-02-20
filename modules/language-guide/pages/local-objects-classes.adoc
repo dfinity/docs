@@ -2,370 +2,19 @@
 :proglang: Motoko
 :company-id: DFINITY
 
-[[chapter-state]]
-== Chapter: Mutable state
+In addition to (remote) actor objects, {proglang} provides local objects that are similar in their syntax, typing and evaluation to ordinary (local) objects from object-oriented programming.
 
-Each actor in {proglang} may use, but may _never directly share_, an
-internal mutable state.
+The <<chapter-state, prior chapter>> introduced declarations of private mutable state, in the form of `var`-bound variables and (mutable) array allocation.
+In this chapter, we use mutable state to implement simple objects, a la object-oriented programming.
 
-Later, we discuss <<chapter-sharing, sharing among actors>>, where
-actors send and receive _immutable_ data, and also handles to each
-others external entry points, which serve as _shareable functions_.
-Unlike those cases of shareable data, a key {proglang} design
-invariant is that _**mutable data** is kept internal (private) to the
-actor that allocates it, and **is never shared remotely**_.
+We illustrate this support via a running example, which continues in the <<chapter-actors,following chapter>>.
+The following example illustrates a general evolution path for {proglang} programs. 
+Each _object_, if important enough, has the potential to be refactored into an Internet _service_, by refactoring this _(local) object_ into an _actor object_.
 
-In this chapter, we continue using minimal
-examples to show how to introduce (private) actor state, and use
-mutation operations to change it over time.
+== Example: The `counter` object
 
-In <<chapter-local-objects, the next chapter>>, we introduce the
-syntax for local objects, and a minimal `counter` actor with a single
-mutable variable.  In the <<chapter-actors, following chapter>>, we
-show an actor with the same behavior, exposing the counter variable
-indirectly behind an associated service interface for using it
-remotely.
+Consider the following _object declaration_ of the object value `counter`:
 
-
-=== Immutable versus mutable variables
-
-The `var` syntax declares mutable variables in a declaration
-block:
-
-....
-let txt  : Text = "abc"
-let num  : Nat = 30
-
-var pair : (Text, Nat) = (txt, num)
-var txt2 : Text = txt
-....
-
-The declaration list above declares four variables.
-The first two variables (`txt` and `num`) are lexically-scoped, _immutable variables_.
-The final two variables (`pair` and `txt2`) are lexically-scoped, *_mutable_* variables.
-
-[[intro-assignment]]
-=== Assignment to mutable memory
-
-Mutable variables permit assignment, and immutable variables do not.
-
-If we try to assign new values to either `txt` or `num` above, we
-will get static type errors; these variables are immutable.
-
-However, we may freely update the value of mutable variables `pair`
-and `txt2` using the syntax for assignment, written as `:=`, as follows:
-
-....
-text2 := text2 # "xyz"
-pair := (text2, pair.1)
-....
-
-Above, we update each variable based on applying a simple "`update
-rule`" to their current values (for example, we _update_ `text2` by
-appending string constant `"xyz"` to its suffix).  Likewise, an actor
-processes some calls by performing _updates_ on its internal (private)
-mutable variables, using the same assignment syntax as above.
-
-==== Special assignment operations
-
-The assignment operation `:=` is general, and works for all types.
-
-{proglang} also includes special assignment operations that combine
-assignment with a binary operation.  The assigned value uses the
-binary operation on a given operand and the
-current contents of the assigned variable.
-
-For example, numbers permit a combination of assignment and addition:
-
-....
-var num2 = 2;
-num2 += 40;
-....
-
-After the second line, the variable `num2` holds `42`, as one would expect.
-
-{proglang} includes other combinations as well.  For example, we can rewrite the line above that updates `text2` more concisely as:
-
-....
-text2 #= "xyz"
-....
-
-As with `+=`, this combined form avoids repeating the assigned
-variable's name on the right hand side of the (special) assignment
-operator `#=`.
-
-The <<syntax-ops-assignment, full list of assignment operations>>
-lists numerical, logical, and textual operations over appropriate
-types (number, boolean and text values, respectively).
-
-=== Reading from mutable memory
-
-When we updated each variable, we also first _read_ from the mutable
-contents, with no special syntax.
-
-This illustrates a subtle point: Each use of a mutable variable _looks
-like_ the use of an immutable variable, but does not _act like_ one.
-In fact, its meaning is more complex.  As in many languages
-(JavaScript, Java, C#, etc.), but not all, the syntax of each use
-hides the _memory effect_ that accesses the memory cell identified by
-that variable, and gets its current value.  Other languages from
-functional traditions (SML, OCaml, Haskell, etc), generally expose
-these effects syntactically.
-
-Below, we explore this point in detail.
-
-=== Understanding `var`- versus `let`-bound variables
-
-Consider the following two variable declarations, which look similar:
-
-....
-let x : Nat = 0
-....
-
-and:
-
-....
-var x : Nat = 0
-....
-
-The only difference in their syntax is the use of keyword `let` versus
-`var` to define the variable `x`, which in each case the program
-initializes to `0`.
-
-However, these programs carry different meanings, and in the context
-of larger programs, the difference in meanings will impact the meaning
-of each occurrence of `x`.
-
-For the first program, which uses `let`, each such occurrence _means_
-`0`.  Replacing each occurrence with `0` will not change the meaning of
-the program.
-
-For the second program, which uses `var`, each occurrence _means_:
-"`read and produce the current value of the mutable memory cell named `x`.`"
-In this case, each occurrence's value is determined by dynamic state:
-the contents of the mutable memory cell named `x`.
-
-As one can see from the definitions above, there is a fundamental
-contrast between the meanings of `let`-bound and `var`-bound variables.
-
-In large programs, both kinds of variables can be useful, and neither kind
-serves as a good replacement for the other.
-
-However, `let`-bound variables _are_ more fundamental.
-
-To see why, consider encoding a `var`-bound variable using a
-one-element, mutable array, itself bound using a `let`-bound variable.
-
-For instance, instead of declaring `x` as a mutable variable initially
-holding `0`, we could instead use `y`, an immutable variable that
-denotes a mutable array with one entry, holding `0`:
-
-....
-var x : Nat       = 0 ;
-let y : [var Nat] = [var 0] ;
-....
-
-We explain mutable arrays in more detail <<mutable-arrays, below>>.
-
-Unfortunately, the read and write syntax required for this encoding
-reuses that of mutable arrays, which is not as readable as that of
-`var`-bound variables.  As such, the reads and writes of variable `x`
-will be easier to read than those of variable `y`.
-
-For this practical reason, and others, `var`-bound variables are a
-core aspect of the language design.
-
-[[immutable-arrays]]
-=== Immutable arrays
-
-Before discussing <<mutable-arrays, mutable arrays>>, we introduce
-immutable arrays, which share the same projection syntax, but do not
-permit mutable updates (assignments) after allocation.
-
-==== Allocate an immutable array of constants
-
-....
-let a : [Nat] = [1, 2, 3] ;
-....
-
-The array `a` above holds three natural numbers, and has type `[Nat]`.
-In general, the type of an immutable array is `[_]`, using square
-brackets around the type of the array's elements, which must share a
-single common type, in this case `Nat`.
-
-==== Project from (read from) an array index
-
-We can project from (_read from_) an array using the usual bracket
-syntax (`[` and `]`) around the index we want to access:
-
-....
-let x : Nat = a[2] + a[0] ;
-....
-
-Every array access in {proglang} is safe.  Accesses that are out of
-bounds will not access memory unsafely, but instead will cause the
-<<overview-traps, program to trap>>, as with an <<overview-traps,
-assertion failure>>.
-
-==== Allocate an immutable array with varying content
-
-Above, we showed a limited way of creating immutable arrays.
-
-In general, each new array allocated by a program will contain
-a varying number of varying elements.  Without mutation, we need a way
-to specify this family of elements "all at once", in the argument to
-allocation.
-
-To accommodate this need, the {proglang} language provides _the
-higher-order_ array-allocation primitive `Array_tabulate`, which
-allocates a new array by consulting a user-provided "generation
-function" `gen` for each element.
-
-....
-Array_tabulate<T>(len : Nat,  gen : Nat -> T) : [T]
-....
-
-Function `gen` specifies the array _as a function value_ of arrow
-type `Nat -> T`, where `T` is the final array element type.
-
-The function `gen` actually _functions_ as the array during
-its initialization: It receives the index of the array element, and it
-produces the element (of type `T`) that should reside at that index in
-the array.  The allocated output array populates itself based on this
-specification.
-
-For instance, we can first allocate `array1` consisting of some
-initial constants, and then functionally-update _some_ of the indices
-by "changing" them (in a pure, functional way), to produce `array2`, a
-second array that does not destroy the first.
-
-....
-let array1 : [Nat] = [1, 2, 3, 4, 6, 7, 8] ;
-
-let array2 : [Nat] = Array_tabulate<Nat>(7, func(i:Nat) : Nat {
-               if ( i == 2 or i == 5 ) { array1[i] * i } // change 3rd and 6th entries
-               else { array1[i] } // no change to other entries
-             }) ;
-....
-
-Even though we "changed" `array1` into `array2` in a functional sense,
-notice that both arrays and both variables are immutable.
-
-Next, we consider _mutable_ arrays, which are fundamentally distinct.
-
-=== Mutable arrays
-[[mutable-arrays]]
-
-Above, we introduced _immutable_ arrays, which share the same
-projection syntax as mutable arrays, but do not permit mutable updates
-(assignments) after allocation.  Unlike immutable arrays, each mutable
-array in {proglang} introduces (private) mutable actor state.
-
-Because {proglang}'s type system enforces that remote actors do not
-share their mutable state, the {proglang} type system introduces a
-firm distinction between mutable and immutable arrays that impacts
-typing, subtyping and the language abstractions for asynchronous
-communication.
-
-Locally, the mutable arrays can not be used in places that expect
-immutable ones, since <<intro-array-subtyping, {proglang}'s definition
-of subtyping for arrays>> (correctly) distinguishes those cases for
-the purposes of type soundness.  Additionally, in terms of
-<<chapter-sharing, actor communication>>, immutable arrays are safe to
-send and share, while mutable arrays can not be shared or otherwise
-sent in messages.  Unlike immutable arrays, mutable arrays have
-<<chapter-sharing, _non-shareable types_>>.
-
-
-==== Allocate a mutable array of constants
-
-To indicate allocation of _mutable_ arrays (in contrast to the forms
-above, for immutable ones), the mutable array syntax `[var _]` uses
-the `var` keyword, in both the expression and type forms:
-
-....
-let a : [var Nat] = [var 1, 2, 3] ;
-....
-
-As above, the array `a` above holds three natural numbers, but has
-type `[var Nat]`.
-
-==== Allocate a mutable array with dynamic size
-
-To allocate mutable arrays of non-constant size,
-use the `Array_init` primitive, and supply an initial value:
-
-....
-func Array_init<T>(len : Nat,  x : T) : [var T]
-....
-
-For example:
-
-....
-var size : Nat = 42 ;
-let x : [var Nat] = Array_init<Nat>(size, 3);
-....
-
-The variable `size` need not be constant here; the array will have
-`size` number of entries, each holding the initial value `3`.
-
-==== Mutable updates
-
-Mutable arrays, each with type form `[var _]`, permit mutable updates
-via assignment to an individual element, in this case element index
-`2` gets updated from holding `3` to instead hold value `42`:
-
-....
-let a : [var Nat] = [var 1, 2, 3] ;
-a[2] := 42 ;
-....
-
-[[intro-array-subtyping]]
-==== Subtyping does not permit _mutable_ to be used as _immutable_
-
-<<subtyping, subtyping in {proglang}>> does not permit us to use a
-mutable array of type `[var Nat]` in places that expect an immutable
-one of type `[Nat]`.
-
-There are two reasons for this.  First, as with all mutable state,
-mutable arrays require <<subtyping, different rules for sound
-subtyping>>.  In particular, mutable arrays have a less flexible
-subtyping definition, necessarily.  Second, {proglang} forbids uses of
-mutable arrays across <<chapter-actors,asynchronous communication>>,
-where mutable state is never shared.
-
-=== The `Array` module
-
-The {proglang} standard library provides <<stdlib-array, additional array operations>>.
-
-Many common operations for arrays reside in the standard library,
-since the the {proglang} language intentionally places features that
-can be written in {proglang} into this library, and not the set of
-compiler and language builtin features.
-
-[[chapter-local-objects]]
-== Chapter: Local objects and classes
-
-In addition to (remote) actor objects, {proglang} provides local
-objects that are similar in their syntax, typing and evaluation to
-ordinary (local) objects from object-oriented programming.
-
-The <<chapter-state, prior chapter>> introduced declarations of
-private mutable state, in the form of `var`-bound variables and
-(mutable) array allocation.  In this chapter, we use mutable state to
-implement simple objects, a la object-oriented programming.
-
-We illustrate this support via a running example, which continues in
-the <<chapter-actors,following chapter>>.  This example illustrates
-a general evolution path for {proglang} programs: Each
-_object_, if important enough, has the potential to be refactored into
-an Internet _service_, by refactoring this _(local) object_ into an _actor object_.
-
-
-=== Example: The `counter` object
-
-Consider the following _object declaration_
-of the object value `counter`:
 ....
 object counter = {
   var count = 0;
@@ -378,22 +27,16 @@ object counter = {
 };
 ....
 
-This declaration introduces a single object instance named `counter`,
-whose entire implementation is given above.
+This declaration introduces a single object instance named `counter`, whose entire implementation is given above.
 
-In this example, the developer exposes three _public_ functions `inc`,
-`read` and `bump` using keyword `public` to declare each in the object
-body.  The body of the object, like a <<intro-exp-block,block
-expression >>, consists of a list of declarations.
+In this example, the developer exposes three _public_ functions `inc`, `read` and `bump` using keyword `public` to declare each in the object body.
+The body of the object, like a <<intro-exp-block,block expression >>, consists of a list of declarations.
 
-In addition to these three functions, the object has one (private)
-mutable variable `count`, which holds the current count, initially
-zero.
+In addition to these three functions, the object has one (private) mutable variable `count`, which holds the current count, initially zero.
 
-=== Object types
+== Object types
 
-This object `counter` has the following _object type_ type, written as
-a list of field-type pairs, enclosed in braces (`{` and `}`):
+This object `counter` has the following _object type_ type, written as a list of field-type pairs, enclosed in braces (`{` and `}`):
 
 ....
 {
@@ -403,28 +46,19 @@ a list of field-type pairs, enclosed in braces (`{` and `}`):
 }
 ....
 
-Each field type consists of an identifier, a colon `:`, and a type for
-the field content.  Here, each field is a function, and thus has an
-_arrow_ type form (`_ -> _`).
+Each field type consists of an identifier, a colon `:`, and a type for the field content.  Here, each field is a function, and thus has an _arrow_ type form (`_ -> _`).
 
-In the declaration of `object`, the variable `count` was
-explicitly declared neither as `public` nor as `private`.
+In the declaration of `object`, the variable `count` was explicitly declared neither as `public` nor as `private`.
 
-By default, all declarations in an object block are `private`, as is
-`count` here.  Consequently, the type for `count` does not appear in
-the type of the object, _and_ its name and presence are both
-inaccessible from the outside.
+By default, all declarations in an object block are `private`, as is `count` here.
+Consequently, the type for `count` does not appear in the type of the object, _and_ its name and presence are both inaccessible from the outside.
 
-The inaccessibility of this field comes with a powerful benefit: By
-not exposing this implementation detail, the object has a _more
-general_ type (fewer fields), and as a result, is interchangeable with
-objects that implement the same counter object type differently,
-without using such a field.
+The inaccessibility of this field comes with a powerful benefit: 
+By not exposing this implementation detail, the object has a _more general_ type (fewer fields), and as a result, is interchangeable with objects that implement the same counter object type differently, without using such a field.
 
-=== Example: The `byte_counter` object
+== Example: The `byte_counter` object
 
-To illustrate the point just above, consider this variation of the
-`counter` declaration above, of `byte_counter`:
+To illustrate the point just above, consider this variation of the `counter` declaration above, of `byte_counter`:
 
 ....
 object byte_counter = {
@@ -435,9 +69,7 @@ object byte_counter = {
 };
 ....
 
-This object has the same type as the previous one, and thus from the
-standpoint of type checking, this object is interchangeable with the
-prior one:
+This object has the same type as the previous one, and thus from the standpoint of type checking, this object is interchangeable with the prior one:
 
 ....
 {
@@ -447,32 +79,20 @@ prior one:
 }
 ....
 
-Unlike the first version, however, this version does not use the same
-implementation of the counter field.  Rather than use an ordinary
-natural `Nat` that never overflows, but may also grow without bound,
-this version uses a byte-sized natural number (type `Nat8`) whose size
-is always eight bits.
+Unlike the first version, however, this version does not use the same implementation of the counter field.
+Rather than use an ordinary natural `Nat` that never overflows, but may also grow without bound, this version uses a byte-sized natural number (type `Nat8`) whose size is always eight bits.
 
-As such, the `inc` operation may fail with an overflow for this
-object, but never the prior one, which may instead (eventually) fill
-the program's memory, a different kind of application failure.
+As such, the `inc` operation may fail with an overflow for this object, but never the prior one, which may instead (eventually) fill the program's memory, a different kind of application failure.
 
-Neither implementation of a counter comes without some complexity, but
-in this case, they share a common type.
+Neither implementation of a counter comes without some complexity, but in this case, they share a common type.
 
-In general, a common type shared among two implementations (of an
-object or service) affords the potential for the internal
-implementation complexity to be factored away from the rest of the
-application that uses it.  Here, the common type abstracts over the
-simple choice of a number's representation.  In general, the
-implementation choices would each be more complex, and more
-interesting.
+In general, a common type shared among two implementations (of an object or service) affords the potential for the internal implementation complexity to be factored away from the rest of the application that uses it.
+Here, the common type abstracts over the simple choice of a number's representation.
+In general, the implementation choices would each be more complex, and more interesting.
 
-=== Object subtyping
+== Object subtyping
 
-To illustrate the role and use of object subtyping in {proglang},
-consider implementing a simpler counter with a more general type
-(fewer public operations):
+To illustrate the role and use of object subtyping in {proglang}, consider implementing a simpler counter with a more general type (fewer public operations):
 
 ....
 object bump_counter = {
@@ -480,19 +100,16 @@ object bump_counter = {
 };
 ....
 
-The object `bump_counter` has the following object type, exposing
-exactly one operation, `bump`:
+The object `bump_counter` has the following object type, exposing exactly one operation, `bump`:
 
 ....
 { bump : () -> Nat }
 ....
 
-This type exposes the most common operation, and one that only permits
-certain behavior.  For instance, the counter can only ever increase,
-and can never decrease or be set to an arbitrary value.
+This type exposes the most common operation, and one that only permits certain behavior.
+For instance, the counter can only ever increase, and can never decrease or be set to an arbitrary value.
 
-In other parts of a system, we may in fact implement and use a _less
-general_ version, with _more_ operations:
+In other parts of a system, we may in fact implement and use a _less general_ version, with _more_ operations:
 
 ....
 full_counter : {
@@ -503,10 +120,8 @@ full_counter : {
 }
 ....
 
-Here, we consider a counter named `full_counter` with a less general
-type than any given above.  In addition to `inc`, `read` and `bump`,
-it additionally includes `write`, which permits the caller
-to change the current count value to an arbitrary one, such as back to `0`.
+Here, we consider a counter named `full_counter` with a less general type than any given above.
+In addition to `inc`, `read` and `bump`, it additionally includes `write`, which permits the caller to change the current count value to an arbitrary one, such as back to `0`.
 
 **Object subtyping.** In {proglang}, objects have types that may
   relate by subtyping, as the various types of counters do above.  As
@@ -542,18 +157,12 @@ to change the current count value to an arbitrary one, such as back to `0`.
 }
 ....
 
-If a function expects to receive an object of the first type (`{ bump
-: () -> Nat }`), _any_ of the types given above will suffice, since
-they are each equal to, or a subtype of, this (most general) type.
+If a function expects to receive an object of the first type (`{ bump: () -> Nat }`), _any_ of the types given above will suffice, since they are each equal to, or a subtype of, this (most general) type.
 
-However, if a function expects to receive an object of the last,
-least general type, the other two will _not_ suffice, since they each
-lack the needed `write` operation, to which this function rightfully
-expects to have access.
+However, if a function expects to receive an object of the last, least general type, the other two will _not_ suffice, since they each lack the needed `write` operation, to which this function rightfully expects to have access.
 
 TIP: As aside for language theorists and advanced readers:
-Object subtyping in {proglang} uses _structural subtyping_,
-not _nominal subtyping_.  Recall that in nominal typing, the question of two types equality depends on choosing consistent, globally-unique type names (across projects and time).
+Object subtyping in {proglang} uses _structural subtyping_, not _nominal subtyping_.  Recall that in nominal typing, the question of two types equality depends on choosing consistent, globally-unique type names (across projects and time).
 In {proglang}, the question of two types' equality is based on their _structure_, not their names.
 
 **Subtyping in general.** Formally, <<subtyping, subtyping relationships in {proglang}>> extend
@@ -564,279 +173,6 @@ In {proglang}, the question of two types' equality is based on their _structure_
   <<exp-error, options>>, <<chapter-patterns, variants>> and
   <<subtyping, number type inter-relationships>>.
 
-
-=== Object classes
+== Object classes
 
 CAUTION: to do: examples and prose here
-
-
-[[chapter-actors]]
-== Chapter: Actors and `async` data
-
-Each {proglang} actor represents a service that one might want to
-deploy on the <<internet-computer, Internet Computer>>.
-
-The interface of each actor introduces `async` data whenever it
-returns information to its caller.  This programming abstraction
-serves a key role in {proglang}, as it coordinates with the
-transformations of the {proglang} compiler pipeline and eventual
-execution behavior of {proglang} actors on the Internet Computer.
-
-This abstraction represents a _promise_ from the system to the caller,
-on behalf of the callee:
-
- - Either the `async` value, when ``await``ed,
-will yield a value from the callee of the expected type,
-
- - or, an error --- system-level or callee-level --- will eventually arise.
-
-In general, the caller may not _immediately_ `await` each call.  But
-even in cases when they do, they use the same `async` and `await`
-abstractions, for the same reason: To maintain the illusion of
-call-return, direct-style control flow, as supported by the {proglang}
-compiler's transformations.
-
-*Technical aside.* In reality, the underlying message-passing of the
-system forces the program's logic into another form.  Specifically,
-control flow around each actor method call involves the program
-loosing control to a system-level message-processing loop, which
-forces the program's logic into a so-called
-_"continuation-passing-style"_ (CPS) to expose event-handling
-_"callback functions"_.  This program structure is complex for humans
-to read and maintain, and stands in stark contrast to the direct style
-most prefer for most program logic.
-
-We note that {proglang} programs may avoid callbacks for many cases,
-but not _all_ cases where they are used in other asynchronous,
-message-passing settings.  Notably, callbacks are still needed when
-they serve as a fundamental aspect of the service's interface, as with
-a <<example-notify,notification service>>, where users register with
-the service to get notified some times later, when some predetermined
-class of events, occur over time.
-
-'''
-
-To start, we consider the simplest stateful service: A counter with
-a single "current count" value.
-
-=== Example: a Counter service
-
-Consider the following actor object (a value form):
-
-....
-actor Counter {
-  var count : Nat = 0;
-
-  public func increment() : async () {
-    count += 1;
-  };
-
-  public query func get_current() : async Nat {
-    count
-  };
-
-  public func set_current(n: Nat) : async () {
-    count := n;
-  };
-}
-....
-
-CAUTION: todo: discuss counter example
-
-=== Using `async` values by ``await``-ing their answer values
-
-To get the underlying content of an `async` value, such as a return
-value from `get_current` above, the caller uses `await`:
-
-....
-let a : async Nat = counter.get_current()
-let c : Nat = await(counter.get_current())
-....
-
-The first line gets _a promise of the current value_ (the variable `a`),
-but does not wait for it, and thus cannot use it as a natural number.
-
-The second line immediately inspects this promise and gets the natural
-number, or waits until it is ready.
-
-NOTE: For now, the {proglang} compiler gives an error for calls that
-do not follow this second form, which is currently required to ensure
-that certain program resources will always be reclaimed.
-
-
-=== Actor classes generalize an actor's initial state
-
-An actor class defines a constructor function that produces objects of
-a predetermined type, with a predetermined interface and behavior.
-
-For example, we can generalize `Counter` given above to `CounterInit`
-below, by introducing a constructor parameter, variable `init` of type
-`Nat`:
-
-....
-actor class CounterInit(init: Nat) {
-  var count : Nat = init;
-
-  public func increment() : async () {
-    count += 1;
-  };
-
-  public query func get_current() : async Nat {
-    count
-  };
-
-  public func set_current(n: Nat) : async () {
-    count := n;
-  };
-}
-....
-
-To use this class, we can create several actors with different initial
-values:
-
-....
-let c1 = CounterInit(1);
-let c2 = CounterInit(2);
-....
-
-The two lines above _instantiate_ the actor class twice, once per
-line.  The first invocation uses the initial value `1`, where the
-second uses initial value `2`.  Their interface is common, and in
-terms of their types, they are compatible and can be used
-interchangeably.
-
-NOTE: For now, the {proglang} compiler gives an error when compiling
-programs that do not consist of a single actor.  The interpreter
-accommodates the examples above.
-
-
-[[exp-error]]
-== Chapter: Errors and optional results
-
-CAUTION: Not complete
-
-to do:
-
- - ground the concepts: Errors as return values versus errors via special, exceptional control flow
- - this chapter introduces special uses of `switch` and `try` constructs
- - `switch` supports general pattern-matching;
-   point to broader discussion of `switch` and <<chapter-patterns, pattern matching (next chapter)>>
- - handle errors as values with `switch` (not with `try`)
- - design question in an API: When to use which?
- - handle errors as exceptions with `try` --- in a way, these are less general for API design; may only appear in certain (`async`) contexts.  But they can recover from errors that would otherwise be fatal (such as system errors), so they are necessary.
- - discuss programming examples:
- - discuss use of <<stdlib-result,`Result` module>>, with examples
- - discuss use of <<stdlib-option,`Option` module>>, with examples
- - discuss use of <<error-type, `Error` type>>; exceptions versus traps (is there a difference?)
-
-
-[[chapter-patterns]]
-== Chapter: Pattern matching
-
-CAUTION: Not complete
-
-to do:
-
- - errors and optional results are special cases of pattern matching; this chapter covers all types; interested readers can jump ahead and back as needed.
-  - point: unhandled errors are a special case of non-exhaustive pattern match (for results and option types)
- - point: null-pointer errors are a special case of non-exhaustive pattern match
- - the {proglang} type checker statically enforces exhaustive pattern matches for all optional types (and variants); hence, null-pointer errors are ruled out statically, and are impossible dynamically.
-
-[[chapter-sharing]]
-== Chapter: Sharing among distinct actors
-
-CAUTION: Not complete
-
-=== Shared data
-
-=== Shared functions
-
-[[example-notify]]
-=== Example: Notification service
-
-CAUTION: Not complete (todo: simple example of a callback-using service)
-
-
-[[chapter-modules]]
-== Chapter: Modules and imports
-
-CAUTION: Not complete
-
-to do:
-
- - discuss use of `module` keyword
- - discuss use of `import` keyword
-
-
-[[chapter-imp]]
-== Chapter: Imperative control flow
-
-CAUTION: Not complete
-
-to do:
-
- - discuss `return`
- - discuss labels and labeled gotos
- - discuss use of `for` loops
- - discuss iterators; discuss examples of iterating an array and iterating a text value (`.keys`, `.vals`, `.chars`, `.len`, etc.)
- - discuss use of `while` loops
- - discuss use of `do` loops
-
-[[intro-range]]
-=== Using `range` with a `for` loop
-
-The `range` function produces an iterator (of type `Iter`) with the
-given lower and upper bound, inclusive.
-
-The following loop example prints the numbers `0` through `10` over
-its _eleven_ iterations:
-
-....
-var i = 0;
-for (j in range(0, 10)) {
- printNat(j);
- assert(j == i);
- i += 1;
-};
-assert(i == 11);
-....
-
-
-More generally, the function `range` is a `class` that constructs
-iterators over sequences of natural numbers.  Each such iterator has type `Iter<Nat>`.
-
-As a constructor function, `range` has a function type:
-
-....
-(lower:Nat, upper:Nat) -> Iter<Nat>
-....
-
-Where `Iter<Nat>` is an iterator object type with a `next` method that produces optional elements, each of type `?Nat`:
-
-....
-type Iter<Nat> = {next : () -> ?Nat};
-....
-
-For each invocation, `next` returns an optional element (of type
-`?Nat`).
-
-The value `null` indicates that the iteration sequence has terminated.
-
-Until reaching `null`, each non-`null` value,
-of the form ``?``__n__ for some number _n_,
-contains the next
-successive element in the iteration sequence.
-
-[[intro-revrange]]
-=== Using `revrange`
-
-Like `range`, the function `revrange` is a `class` that constructs
-iterators (each of type `Iter`).  As a constructor function, it has a
-function type:
-
-....
-(upper:Nat, lower:Nat) -> Iter
-....
-
-Unlike `range`, the `revrange` function _descends_ in its iteration
-sequence, from an initial _upper_ bound to a final _lower_ bound.

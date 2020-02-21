@@ -1,7 +1,6 @@
 = Command-line reference
-December 2019 (Alpha)
+February 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:linkedcss:
 :toc:
 :toc: right
 :toc-title: COMMAND REFERENCE
@@ -45,6 +44,8 @@ Use the following subcommands to specify the operation you want to perform or to
 [cols="<,<",options="header",]
 |===
 |Command |Description
+|`+bootstrap+` |Starts the bootstrap server you want to use to serve front-end assets for your project.
+
 |`+build+` |Builds canister output from the source code in your project.
 
 |`+cache+` |Manages the `+dfx+` cache on the local computer.
@@ -58,6 +59,8 @@ Use the following subcommands to specify the operation you want to perform or to
 |`+start+` |Starts the local network client.
 
 |`+stop+` |Stops the local network client.
+
+|`+upgrade+` |Upgrades the version of `+dfx+` installed on the local computer to the latest version available.
 |===
 
 === Examples
@@ -77,6 +80,84 @@ For example, to see usage information for `+dfx build+`, you can run the followi
 ----
 dfx build --help 
 ----
+
+== dfx bootstrap
+
+Use the `+dfx bootstrap+` command to start the bootstrap web server defined in the `+dfx.json+` configuration file or specified using command-line options. 
+
+The bootstrap web server you specify is used to serve the front-end static assets for your project.
+
+=== Basic usage
+
+[source,bash,subs="quotes"]
+----
+dfx bootstrap [option] 
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx bootstrap+` command.
+
+[cols="<,<",options="header",]
+|===
+|Flag |Description
+|`+-h+`, `+--help+` |Displays usage information.
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Options
+
+You can specify the following options for the `+dfx bootstrap+` command.
+
+[width="100%",cols="<36%,<64%",options="header",]
+|===
+|Option |Description
+|`+ip+` <ip_address> |Specifies the IP address that the bootstrap server listens on. 
+If you don’t specify an IP address, the `address` setting you have configured in the `+dfx.json+` configuration file is used.
+By default, the server address is 127.0.0.1.
+
+|--port <port> |Specifies the port number that the bootstrap server listens on.
+By default, port number 8081 is used.
+
+|--providers <providers> |Specifies the list of compute provider API endpoints. 
+By default, the endpoint `http://127.0.0.1:8080/api` is used.
+
+|--root <root> |Specifies the directory containing static assets served by the bootstrap server.
+By default, the path to static assets is:
+`$HOME/.cache/dfinity/versions/$DFX_VERSION/js-user-library/dist/bootstrap`
+
+|--timeout <timeout> | Specifies the maximum amount of time, in seconds, the bootstrap server will wait for upstream requests to complete. 
+By default, the bootstrap server waits for a maximum of 30 seconds.
+|===
+
+=== Examples
+
+You can use the `+dfx bootstrap+` command to start a web server for your application using custom settings, including a specific server address, port number, and static asset location.
+
+For example, to start the bootstrap server using a specific IP address and port number, you would run a command similar to the following:
+
+[source,bash]
+----
+dfx bootstrap --ip 192.168.47.1 --port 5353
+----
+
+The command displays output similar to the following:
++
+[source,bash]
+----
+binding to: V4(192.168.47.1:5353)
+client(s): http://127.0.0.1:8080/api 
+Webserver started...
+----
+
+To use the default server address and port number but specify a custom location for static assets and longer timeout period, you might run a command similar to the following:
+
+[source,bash]
+----
+dfx bootstrap --root $HOME/ic-projects/assets --timeout 60
+----
+
+You can use CTRL-C to stop the bootstrap server.
 
 == dfx build
 
@@ -146,6 +227,7 @@ To build the `+counter+` canister, you would then run the following command:
 dfx build counter
 ----
 ////
+
 == dfx cache
 
 Use the `+dfx cache+` command with flags and subcommands to manage the `+dfx+` version cache.
@@ -609,7 +691,7 @@ Use the `+dfx canister install+` command to install compiled code as a canister 
 
 [source,bash,subs="quotes"]
 ----
-dfx canister install _canister_name_ [flag] 
+dfx canister install [flag] [option] [--all | _canister_name_]
 ----
 
 === Flags
@@ -619,7 +701,8 @@ You can use the following optional flags with the `+dfx canister install+` comma
 [width="100%",cols="<31%,<69%",options="header",]
 |===
 |Flag |Description
-|`+--all+` |Enables you to install multiple canisters at once if you have a project that includes multiple canisters.
+|`+--all+` |Enables you to install multiple canisters at once if you have a project `dfx.json` file that includes multiple canisters.
+Note that you must specify `--all` or an individual canister name.
 
 |`+--async+` |Enables you to continue without waiting for the result of the installation to be returned by polling the client.
 
@@ -635,8 +718,14 @@ You can use the following options with the `+dfx canister install+` command.
 [width="100%",cols="<31%,<69%",options="header",]
 |===
 |Option |Description
-|`+--client client_address+` |Specifies the client host name or IP address and port to connect to.
-This option enables you to override the client setting specified in the `+dfx.json+` configuration file. 
+|-c, --compute-allocation <compute-allocation> |Defines a compute allocation—essentially the equivalent of setting CPU allocation—for  canister execution. 
+You can define the allocation as a percentage in the range of 0 to 100 to indicate how often your canister is should be scheduled for execution. 
+For example, assume you set this option to 50% allocation and your canister has a stream of input messages to process.
+Over 100 execution cycles, the canister's messages will be scheduled for processing at least 50 times.
+The default value for this option is 0—indicating that no specific allocation or scheduling is in effect. 
+If all of your canisters use the default setting, processing occurs in a round-robin fashion.
+
+In a development environment, you might use this option for testing purposes if you have applications that require multiple canisters.
 |===
 
 === Arguments
@@ -646,7 +735,8 @@ You can use the following argument with the `+dfx canister install+` command.
 [cols="<,<",options="header",]
 |===
 |Argument |Description
-|`+canister_name+` |Specifies the name of the canister to deploy. The canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
+|`+canister_name+` |Specifies the name of the canister to deploy. 
+If you are not using the `+--all+` option, the canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
 |===
 
 === Examples

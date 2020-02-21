@@ -1,23 +1,24 @@
+= Prelude module
+
+This prelude standard library module supplements the <<compiler-prelude, compiler prelude>> with additional features that do not require any additional compiler support.
+
 == `printLn`
 
-Print text followed by a newline.
+Prints text followed by a newline.
 
 [source,motoko]
 ----
-
 public func printLn(x : Text)
 ----
 
 == `nyi` (not yet implemented)
 
-Mark incomplete code with the `nyi` and `xxx` functions.
+Marks incomplete code with the `nyi` and `xxx` functions.
 
-Each have calls are well-typed in all typing contexts, which trap in all
-execution contexts.
+The `nyi` and `xxx` function calls are well-typed in all typing contexts and trap in all execution contexts.
 
 [source,motoko]
 ----
-
 public func nyi() : None
 
 public func xxx() : None
@@ -25,10 +26,9 @@ public func xxx() : None
 
 == `unreachable`
 
-Mark unreachable code with the `unreachable` function.
+Marks unreachable code with the `unreachable` function.
 
-Calls are well-typed in all typing contexts, and they trap in all
-execution contexts.
+Th `unreachable` function calls are well-typed in all typing contexts and trap in all execution contexts.
 
 [source,motoko]
 ----

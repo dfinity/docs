@@ -1,64 +1,98 @@
-Append two arrays:
+= Array module
+
+The design of {proglang} strives to minimize built-in operations, and
+whenever possible, to instead implement array operations as
+{proglang} functions in a standard library module dedicated to
+extending that type's suite of supported operations.
+
+== Append 
+
+Appends one array to a second array.
+
 [source,motoko]
 ----
 public func append<A>(xs : [A], ys : [A]) : [A] 
 ----
 
-Apply an array of functions to an array of arguments (of matching lengths):
+== Apply
+
+Applies an array of functions to an array of arguments. The arrays must be of equal length.
+
 [source,motoko]
 ----
 public func apply<A, B>(fs : [A -> B], xs : [A]) : [B]
 ----
 
-Apply a function to each array element, produce an array of (all) results:
+== Bind
+
+Applies a function to each array element to produce an array of all results.
+
 [source,motoko]
 ----
 public func bind<A, B>(xs : [A], f : A -> [B]) : [B]
 ----
 
-Fold over the array:
+== Folds
+
+Folds left over the array.
+
 [source,motoko]
 ----
 public func foldl<A, B>(f : (B, A) -> B, initial : B, xs : [A]) : B
 ----
 
-Fold over the array:
+Folds right over the array.
+
 [source,motoko]
 ----
 public func foldr<A, B>(f : (A, B) -> B, initial : B, xs : [A]) : B
 ----
 
-Find an element in the array:
+== Find
+
+Finds an element in the array.
+
 [source,motoko]
 ----
 public func find<A>(f : A -> Bool, xs : [A]) : ?A
 ----
 
-Convert a mutable array into an immutable one:
+== Freeze
+
+Converts a mutable array into an immutable one.
+
 [source,motoko]
 ----
 public func freeze<A>(xs : [var A]) : [A]
 ----
 
-Convert an array of arrays into a single (flattened) array:
+== Join
+
+Converts an array of arrays into a single (flattened) array.
+
 [source,motoko]
 ----
 public func join<A>(xs : [[A]]) : [A]
 ----
 
-Map each array element by the given mapping function:
+== Map
+Maps each array element by the given mapping function.
+
 [source,motoko]
 ----
 public func map<A, B>(f : A -> B, xs : [A]) : [B]
 ----
 
+== Pure
 // todo: comment here
 [source,motoko]
 ----
 public func pure<A>(x: A) : [A] ;
 ----
 
-Convert an immutable array into a mutable one:
+== Thaw
+Converts an immutable array into a mutable one.
+
 [source,motoko]
 ----
 public func thaw<A>(xs : [A]) : [var A]

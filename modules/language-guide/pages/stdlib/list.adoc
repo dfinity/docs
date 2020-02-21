@@ -1,3 +1,5 @@
+= List module
+
 Purely-functional, singly-linked lists.
 
 A singly-linked list consists of zero or more _cons cells_, wherein each

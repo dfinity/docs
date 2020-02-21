@@ -1,3 +1,5 @@
+= Result module
+
 The result of a computation that may contain errors, exceptions, etc.
 
 Similar to the same concept of the same name in Rust. We use the Rust

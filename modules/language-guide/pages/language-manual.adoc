@@ -838,9 +838,6 @@ A type `T` is _shared_ if it is
 * a shared function type, or
 * an `actor` type.
 
-NOTE: For now, the {proglang} compiler does not permit function types or actors as shared types and reports an error when compiling
-programs that require this.
-
 [[semantics]]
 == Static and dynamic semantics
 
@@ -1484,7 +1481,7 @@ where `x` is a fresh identifier.
 In particular, the `for` loops will trap if evaluation of `<exp1>` traps; as soon as some value of `x.next()` traps or the value of `x.next()` does not match pattern `<pat>`.
 
 
-_TBR: do we want this semantics? We could, instead, skip values that don't match `<pat>`?_
+// TBR: do we want this semantics? We could, instead, skip values that don't match `<pat>`?_
 
 [[exp-label]]
 === Label
@@ -1503,7 +1500,7 @@ If `<exp>` in `label <id> (: <typ>)? <exp>` is a looping construct:
 
 * `while (exp2) <exp1>`,
 * `loop <exp1> (while (<exp2>))?`, or
-* `for (<pat> in <exp2> <exp1>`
+* `for (<pat> in <exp2>) <exp1>`
 
 the body, `<exp1>`, of the loop is implicitly enclosed in `label <id_continue> (...)` allowing early continuation of the loop by the evaluation of expression `continue <id>`.
 
@@ -1515,7 +1512,7 @@ the body, `<exp1>`, of the loop is implicitly enclosed in `label <id_continue> (
 
 The expression `break <id>` is equivalent to `break <id> ()`.
 
-The expression `break <id> <exp>` has type `Any` provided:
+The expression `break <id> <exp>` has type `None` provided:
 
 * The label `<id>` is declared with type `label <id> : T`.
 * `<exp>` has type `T`.
@@ -1528,7 +1525,7 @@ If `r` is a value `v`, the evaluation abandons the current computation up to dyn
 === Continue
 
 The expression `continue <id>` is equivalent to `break <id_continue>`, where
- `<id_continue>` is implicitly declared around the bodies of `<id>`-labelled looping constructs (See Section Labeled Loops).
+ `<id_continue>` is implicitly declared around the bodies of `<id>`-labelled looping constructs (See Section <<exp-labeled-loops>>).
 
 [[exp-return]]
 === Return

@@ -11,7 +11,7 @@ December 2019 (Alpha 4)
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.5.0
+:release: 0.5.3
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 
@@ -37,34 +37,35 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- Module imports no longer require `+.mo+` file extensions.
+- Default web UI for all canisters based on the IDL (now called Candid) interface.
 +
-For example, `+import List "mo:stdlib/list.mo";+` now becomes `+import List "mo:stdlib/list";+`
-- All functionality required for LinkedUp to compile is included in this version.
-- What was previously referred to as the Internet Computer `+client+` is being renamed to `+replica+`.
+To access, with the default `+dfx.json+` setup, you can access `+127.0.0.1:8000/candid?canisterId=ic:your_canister_id+`. Note that if you are working on an existing project prior to V0.5.2, you may need to update `+webpack.config.js+` to make the UI build properly.
+- Support for nesting of option values.
 +
-Documentation is in the process of being updated to reflect this change.
-- New tutorials have been added to provide additional guidance to new developers and include more sample code.
+Option type in Javascript now expects a singleton array as its value. A `+none+` value is represented as `+[]+`; `+some value+` is represented as `+[value]+`.
+- You can use the `+dfx bootstrap+` command to start the bootstrap web server defined in the `+dfx.json+` configuration file or specified using command-line options.
+- You can use the `+-c+` or `+--compute-allocation+` flag for `+dfx canister install+` command to specify a canister's compute allocation as a percentage.
++
+This is essentially the equivalent of setting CPU allocation for canister execution. In a development environment, you might use this option for testing purposes if you have applications that require multiple canisters.
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
 The {release} release includes the following fixes to reported issues:
 
-- Main.js is no longer hardcoded
-- Improved error messages when using `+--client+` flag incorrectly
-- Improved syntax error messages for Motoko compiler
+- Nodemanager has been removed.
+- Bug fix for `+slebEncode+`
 
 == Known issues and limitations
 
 This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
-If there are workarounds to any of the issues described in this section, you can find them in the link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] section.
+If there are workarounds to any of the issues described in this section, you can find them in the xref:troubleshooting{outfilesuffix}[Troubleshooting] section.
 
 The {release} release includes the following known issues and limitations:
 
 - There is a breaking change to Motoko which removes definitions like `+debugPrint+`, `+abs+` and `+range+` from the default scope. You now have to import them through the Motoko standard library.
 +
-For help with importing from the standard library, check out link:../language-guide/stdlib/stdlib-intro{outfilesuffix}[Using the Motoko standard library] in the Motoko language reference and the link:../developers-guide/tutorials/phonebook{outfilesuffix}[Importing standard library functions] tutorial.
+For help with importing from the standard library, check out https://sdk.dfinity.org/language-guide/index.html#intro-stdlib[this section] of the Motoko language reference and also the https://sdk.dfinity.org/developers-guide/tutorials/phonebook.html[phonebook tutorial].
 
 - Float support in the {proglang} programming language that is compiled to WebAssembly.
 +
@@ -78,4 +79,4 @@ As an alternative, you can convert integers to Word32 using the standard library
 
 == Additional questions and feedback
 
-Check out link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] for additional technical support.
+Check out xref:troubleshooting{outfilesuffix}[Troubleshooting] for additional technical support.

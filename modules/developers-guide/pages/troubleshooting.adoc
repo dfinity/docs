@@ -30,7 +30,7 @@ In many cases, however, you can continue to work with projects from a previous r
 For example, if you have a project that was created with `+dfx+` version `+0.4.9+`, open the `+dfx.json+` file in a text editor and change the `+dfx+` setting to the latest version:
 [source,bash]
 ----
-    "dfx": "0.5.0",
+    "dfx": "0.5.2",
 ----
 
 == Reinstalling dfx

@@ -11,7 +11,7 @@ December 2019 (Alpha 4)
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.5.0
+:release: 0.5.2
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 

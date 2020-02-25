@@ -1147,7 +1147,7 @@ The binary compound assignment `<exp1> <binop> <exp2>` has type `T` provided:
 
 * `<exp1>` has type `T`, and
 * `<exp2>` has type `T`, and
-* The categor of `<binop>` is a category of `T`.
+* The category of `<binop>` is a category of `T`.
 
 The binary operator expression `<exp1> <binop> <exp2>` evaluates `exp1` to a result `r1`. If `r1` is `trap`, the expression results in `trap`.
 

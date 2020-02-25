@@ -28,7 +28,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 [width="100%",cols=3*,"35%,30%,35%",options="header",]
 |===
 |Version |Tag |Documentation and supported platforms
-|SDK 0.5.0 (February 2020) |sdk-0.5.0-RELEASE |Release notes / changelog
+|SDK 0.5.2 (February 2020) |sdk-0.5.2-RELEASE |Release notes / changelog
 +
 Supported platforms
 

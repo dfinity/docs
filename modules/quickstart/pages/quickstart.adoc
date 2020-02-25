@@ -90,7 +90,7 @@ The command displays version information for the developer command-line interfac
 +
 [source,bash]
 ----
-dfx 0.5.0
+dfx 0.5.2
 ----
 . Preview usage information for the other developer command-line interface sub-commands by running the following command:
 +

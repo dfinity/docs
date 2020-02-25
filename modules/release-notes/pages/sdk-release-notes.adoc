@@ -1,5 +1,4 @@
 = DFINITY Developer Release Notes
-December 2019 (Alpha 4)
 :toc:
 :toc: right
 :toc-title: QUICK LINKS
@@ -11,9 +10,8 @@ December 2019 (Alpha 4)
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.5.0
+:release: 0.5.2
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
 {proglang} is a new programming language optimized for creating tamper-proof software and open internet services that will be hosted on the Internet Computer.
@@ -37,23 +35,23 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- Module imports no longer require `+.mo+` file extensions.
+- Support for nesting of option values.
 +
-For example, `+import List "mo:stdlib/list.mo";+` now becomes `+import List "mo:stdlib/list";+`
-- All functionality required for LinkedUp to compile is included in this version.
-- What was previously referred to as the Internet Computer `+client+` is being renamed to `+replica+`.
+Option type in Javascript now expects a singleton array as value. A `+none+` value is represented as `+[]+`; `+some value+` is represented as `+[value]+`.
+
+- You can use the `+dfx bootstrap+` command to start the bootstrap web server defined in the `+dfx.json+` configuration file or specified using command-line options.
+
+- You can use the `+-c+` or `+--compute-allocation+` flag for `+dfx canister install+` command to specify a canister's compute allocation as a percentage.
 +
-Documentation is in the process of being updated to reflect this change.
-- New tutorials have been added to provide additional guidance to new developers and include more sample code.
+This is essentially the equivalent of setting CPU allocation—for canister execution. In a development environment, you might use this option for testing purposes if you have applications that require multiple canisters.
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
 The {release} release includes the following fixes to reported issues:
 
-- Main.js is no longer hardcoded
-- Improved error messages when using `+--client+` flag incorrectly
-- Improved syntax error messages for Motoko compiler
+- The `+nodemanager+` process has been removed.
+- Bug fix for `+slebEncode+`.
 
 == Known issues and limitations
 

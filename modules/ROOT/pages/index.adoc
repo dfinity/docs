@@ -39,7 +39,7 @@ You can get started right away by downloading the {sdk-long-name} and cloning an
             <p>Deploy your first code to the Internet Computer in minutes.</p>
         </a>
 
-        <a class="home-card" href="samples-nav.html">
+        <a class="home-card" href="developers-guide/sample-apps.html">
             <svg width="82" height="127" viewBox="0 0 82 127" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M28.1769 27.1182L28.8229 27.8815L16.274 38.4999L28.8229 49.1182L28.1769 49.8815L14.7258 38.4999L28.1769 27.1182Z" fill="#522785"/>
                 <path d="M51.6771 27.8815L52.3231 27.1182L65.7742 38.4999L52.3231 49.8815L51.6771 49.1182L64.226 38.4999L51.6771 27.8815Z" fill="#522785"/>

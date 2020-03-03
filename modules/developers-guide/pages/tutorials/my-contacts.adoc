@@ -1,5 +1,5 @@
 = Adding a stylesheet
-February 2020 (Alpha)
+March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -12,8 +12,8 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-Cascading stylesheets represent one of the most ways to customize the user experience for an application.
-This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
+Cascading stylesheets represent one of the most common ways to customize the user experience for an application.
+This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project.
 If you already know how to add cascading stylesheets (CSS) to a React-based project, you can skip this tutorial.
 
 NOTE: Currently, you can only use Javascript to implement the front-end for your canister. 
@@ -42,10 +42,11 @@ cd contacts
 ----
 . Install the React module and required loaders by running the following commands:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 npm install --save react react-dom
-npm install --save typescript ts-loader css-loader
+npm install --save typescript ts-loader 
+npm install --save style-loader css-loader
 ----
 +
 if you've never used React before, you might want to explore the link:https://reactjs.org/tutorial/tutorial.html[Intro to React] tutorial or the link:https://reactjs.org/[React website] before editing the front-end code.
@@ -91,13 +92,13 @@ You are now ready to create a new front-end for the default program.
 module: {
   rules: [
     { test: /\.(js|ts)x?$/, loader: "ts-loader" },
-    { test: /\.css$/, use: ['style-loader' 'css-loader'] }
+    { test: /\.css$/, use: ['style-loader','css-loader'] }
   ]
 },
 ----
 +
 These settings enable your program to use the `+ts-loader+` compiler and to import CSS files.
-. Save your changes and close the `+contacts.mo+` file to continue.
+. Save your changes and close the `+webpack.config.js+` file to continue.
 . Create a new file named `+tsconfig.json+`, open the file in a text editor, then copy and paste the following into the file:
 +
 [source,bash]
@@ -113,17 +114,34 @@ These settings enable your program to use the `+ts-loader+` compiler and to impo
 }
 ----
 . Save your changes and close the `+tsconfig.json+` file to continue.
+
+== Add a stylesheet to your project
+
+You are now ready to create a new cascading stylesheet and add it to your project.
+
+To add a stylesheet:
+. Create a new file named `+mycontacts.css+`, open the file in a text editor.
+. Define some style properties for the front-end.
++
+For example, copy and paste the following sample styles into the file:
++
+[source,bash]
+----
+include::example$mycontacts/mycontacts.css[]
+----
+
 . Change to the `+contacts/src/contacts/public+` directory.
+. 
 . Open the default `+index.js+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+index.js+` file:
 +
 [source,react]
 ....
-include::example$my-contacts/mod-index.jsx[]
+include::example$mycontacts/mod-index.jsx[]
 ....
 . Rename the modified `index.js` file as `index.jsx` by running the following command:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 mv index.js index.jsx
 ----
@@ -192,41 +210,39 @@ By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `
 In addition to the host and port, the URL you specify needs to include `+canisterId+` parameter to identify the canister that you want the web server to display. 
 To specify the canister, append the identifier using the following syntax:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 ?canisterId=ic:canister_identifier
 ----
 +
 For example, the full URL should look similar to the following but with the `+ic:_canister_identifier_+` that was returned by the `+dfx canister install+` command:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 http://localhost:8000/?canisterId=ic:81DDA04F69F40FEEAC
 ----
-. Verify that you are prompted to type a greeting.
++
+NOTE: You must use `+canisterId+` before the canister identifier. 
+This parameter is case-sensitive.
+. Verify that you are prompted with a My Contacts form.
 +
 For example:
 +
-image:react-greeting.png[Sample front-end]
-. Replace *Name* in the input field with the text you want to display, then click *Get Greeting* to see the result.
+image:mycontacts-form.png[Sample front-end]
+. Create one or more test records by entering text in the Name, Address, and Email input fields and a number in the Phone input field, then clicking *Add Contact*.
+. Clear the form fields and type a contact name in the Lookup name field, then click *Lookup* to see the stored contact information.
 +
-For example:
+Keep in mind that the *Lookup name* you type must be an exact match for the name of a contact you added.
+
+== Modify the stylesheet and test your changes
+
+After viewing the Contacts application, you might want to make some changes.
+
+To change stylesheet properties:
+
+. Open the `mycontacts.css` file in a text editor and modify its style settings.
 +
-image:greeting-response.png[Greeting result]
-
-== Revise the front-end and test your changes
-
-After viewing the front-end, you might want to make some changes.
-
-To modify the front-end:
-
-. Open the `index.jsx` file in a text editor and modify its style settings.
-For example, you might want to change the font family and use a placeholder for the input field by making changes similar to the following:
-+
-[source,react]
-....
-include::example$react-revised-index.jsx[]
-....
+For example, you might want to change the background color or style the input form.
 . Rebuild the project with your changes by running the following command.
 +
 [source,bash]
@@ -237,28 +253,21 @@ dfx build
 +
 [source,bash]
 ----
-dfx canister install custom_greeting
+dfx canister install --all
 ----
 . View the results in the browser by changing the URL to use the new canister identifier.
-+
-For example:
-+
-image:revised-greeting.png[Modified styles on your entry page]
-. Type a new message and see your new greeting.
-For example:
-+
-image:modified-result.png[Modified greeting result]
-+
-In the background, the {IC} process logs the message request and creates a new checkpoint.
-+
-[source,bash]
-----
-Feb 04 19:57:29.100 INFO Successfully inserted an ingress message into IngressPool, Application: P2P/ArtifactPool
-Feb 04 19:57:29.273 INFO Created checkpoint @246690 in 25.547581ms, StateManager: 1
-----
 . Stop the {IC} processes running on your local computer by running the following command:
 +
 [source,bash]
 ----
 dfx stop
 ----
+
+== Modify the front-end or back-end code
+
+If you want to explore further, you might want to experiment with modifying the front-end or back-end code for this tutorial.
+For example, you might want try modifying the tutorial to do the following:
+
+- Change the front-end code to clear the input fields after adding a new contact.
+- Change the Motoko program functions to do partial instead of exact string matching on the `+Name+` field.
+- Change the Motoko program to allow lookups based on a different field.

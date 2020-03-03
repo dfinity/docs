@@ -259,7 +259,7 @@ In this context, therefore, the `+[Text]+` indicates an array of a collection of
 +
 The code sample also uses the basic format of an `+apply+` operation for the array, which can be abstracted as:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
     var ys : [B] = [];

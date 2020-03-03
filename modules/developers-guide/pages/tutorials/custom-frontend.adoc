@@ -52,6 +52,13 @@ The `+dfx new custom_greeting+` command creates a new `+custom_greeting+` projec
 ----
 cd custom_greeting
 ----
+
+== Install the React framework
+
+If you've never used React before, you might want to explore the link:https://reactjs.org/tutorial/tutorial.html[Intro to React] tutorial or the link:https://reactjs.org/[React website] before editing the front-end code.
+
+To install required framework modules:
+  
 . Install the React module by running the following commands:
 +
 [source,bash,subs="quotes"]
@@ -60,7 +67,7 @@ npm install --save react react-dom
 npm install --save typescript ts-loader
 ----
 +
-if you've never used React before, you might want to explore the link:https://reactjs.org/tutorial/tutorial.html[Intro to React] tutorial or the link:https://reactjs.org/[React website] before editing the front-end code.
+
 . Open the `+dfx.json+` configuration file in a text editor to review the default `+frontend+`, `+main+`, and `+serve_root+` settings.
 +
 Note that the `frontend.entrypoint` setting specifies the path to a file—in this case, the `+index.js+` file—to use as your application entry point.

@@ -1,5 +1,6 @@
 = Adding a stylesheet
 March 2020 (Alpha)
+:source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -40,24 +41,39 @@ dfx new contacts
 ----
 cd contacts
 ----
-. Install the React module and required loaders by running the following commands:
+
+== Install the React framework
+
+if you've never used React before, you might want to explore the link:https://reactjs.org/tutorial/tutorial.html[Intro to React] tutorial or the link:https://reactjs.org/[React website] before editing the front-end code.
+
+To install required framework modules:
+
+. Install the React module by running the following command:
 +
 [source,bash]
 ----
 npm install --save react react-dom
+----
+. Install the required language compiler loaders by running the following command:
++
+[source,bash]
+----
 npm install --save typescript ts-loader 
+----
+. Install the required style loaders by running the following command:
++
+[source,bash]
+----
 npm install --save style-loader css-loader
 ----
-+
-if you've never used React before, you might want to explore the link:https://reactjs.org/tutorial/tutorial.html[Intro to React] tutorial or the link:https://reactjs.org/[React website] before editing the front-end code.
+
+== Modify the default configuration
+
+To modify settings in the default `+dfx.json+` configuration file:
+
 . Open the `+dfx.json+` configuration file in a text editor.
-+
-For this tutorial:
-+
-* Change the entry file name to `+index.jsx+` to enable adding HTML directly inside Javascript as a template.
-* Change the name of the main program file to `+contacts.mo+`.
-+
-You should also note that the `serve_root` setting specifies the path to a directory for static assets that will be included in your canister when you build your project.
+. Change the entry file name to `+index.jsx+` to enable adding HTML directly inside Javascript as a template.
+. Change the name of the main program file to `+contacts.mo+`.
 . Close the `+dfx.json+` file to continue.
 . Change to the `+src/contacts+` directory.
 +
@@ -120,6 +136,7 @@ These settings enable your program to use the `+ts-loader+` compiler and to impo
 You are now ready to create a new cascading stylesheet and add it to your project.
 
 To add a stylesheet:
+
 . Create a new file named `+mycontacts.css+`, open the file in a text editor.
 . Define some style properties for the front-end.
 +
@@ -129,9 +146,7 @@ For example, copy and paste the following sample styles into the file:
 ----
 include::example$mycontacts/mycontacts.css[]
 ----
-
 . Change to the `+contacts/src/contacts/public+` directory.
-. 
 . Open the default `+index.js+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+index.js+` file:
 +

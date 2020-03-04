@@ -10,6 +10,7 @@
 ** xref:tutorials/phonebook.adoc[Importing library functions]
 ** xref:tutorials/multiple-actors.adoc[Using multiple actors]
 ** xref:tutorials/custom-frontend.adoc[Customizing the front-end]
+** xref:tutorials/my-contacts.adoc[Adding a stylesheet]
 * xref:customize-projects.adoc[Customizing projects]
 * xref:basic-syntax-rules.adoc[Learning the basics of Motoko]
 * xref:lang-service-ide.adoc[Language server and development client support]

@@ -49,5 +49,9 @@ In this tutorial, you are going to create a single project that include multiple
 +
 This tutorial illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed. 
 If you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.
+* link:tutorials/my-contacts{outfilesuffix}[Adding a stylesheet]
++
+This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
+If you already know how to add stylesheets to React, you can skip this tutorial.
 
 Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:../language-guide/index{outfilesuffix}[_{proglang} Programming Language Reference_].

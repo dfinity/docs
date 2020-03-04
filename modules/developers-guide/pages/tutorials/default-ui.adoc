@@ -1,0 +1,113 @@
+= Testing methods with a generated web interface
+January 2020 (Alpha)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:toc:
+:toc: right
+:toc-title: TUTORIAL - TESTING METHODS
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common syntax for specifying input arguments and return values.
+The language performs automatic type mapping so you can use the same syntax to interact with the `+dfx+` command-line interface, JavaScript, {proglang}, and other supported languages or tools.
+
+The language can also automatically generate a default web interface that exposes your program's functions for testing and debugging.
+
+This tutorial illustrates how to view and use the default web interface that the canister interface language generates.
+
+NOTE: This tutorial provides step-by-step instructions independent of any other tutorials. 
+If you have already built and deployed a canister and know the current canister identifier, you can skip directly to <<Viewing the default web interface>>.
+
+== Before you begin
+
+* You have downloaded and installed the SDK as described in link:../getting-started{outfilesuffix}[Getting started].
+* You have stopped any network client processes running on the local computer.
+
+This tutorial takes approximately 10 minutes to complete.
+
+== Create a new project
+
+To create a new project for this tutorial:
+
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Change to the folder you are using for your {IC} sample projects.
+. Create a new project by running the following command:
++
+[source,bash]
+----
+dfx new default_web_ui
+----
+. Change to your new `+default_web_ui+` project directory.
++
+For this tutorial, you can leave the default `dfx.json` configuration file and `+main.mo+` program files unchanged.
+
+== Build and deploy the program
+
+To build the program executable:
+
+. Build the WebAssembly executable by running the following command:
++
+[source,bash]
+----
+dfx build
+----
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start
+----
+. Deploy your `+default_web_ui+` project on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install default_web_ui
+----
+. Copy the canister identifier that begins with the `+ic:+` prefix displayed.
+
+== Viewing the default web interface
+
+To view the web interface:
+
+. Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
++
+By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the hello_world program using `+127.0.0.1:8000+` for the URL.
+. Append the candid keyword the canister identifier after the host address and port number using the following syntax:
++
+[source,bash,subs="quotes"]
+----
+candid?canisterId=ic:canister_identifier
+----
++
+For example, the full URL should look similar to the following but with the `+ic:_canister_identifier_+` that was returned by the `+dfx canister install+` command:
++
+[source,bash,subs="quotes"]
+----
+http://localhost:8000/candid?canisterId=ic:81DDA04F69F40FEEAC
+----
+. Review the list of function calls defined in the program.
++
+For example, the default program includes one `+greet+` function:
++
+image:candid-ui.png[Sample front-end]
+
+
+. Replace *Name* in the input field with the text you want to display, then click *Get Greeting* to see the result.
++
+For example:
++
+image:greeting-response.png[Greeting result]
+
+== Revise the front-end and test your changes
+
+
+. Stop the {IC} processes running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----

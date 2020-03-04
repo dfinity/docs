@@ -1,5 +1,5 @@
 = Quick start
-February 2020 (Alpha)
+March 2020 (Alpha)
 :toc:
 :toc: right
 :toc-title: QUICK START
@@ -11,8 +11,6 @@ February 2020 (Alpha)
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-
-//:icons: font
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
@@ -32,10 +30,7 @@ If you are ready to start developing applications that run on the {platform}, it
 Before you download and install this release of the SDK, verify the following:
 
 * You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
-* You should have `+node.js+` installed if you want your project to include the default template files for front-end development in your project.
-* You should have Developer Command Line Tools installed if you want to create a Git repository for your project and your development environment is on a macOS computer.
-You can check whether you have the developer tools installed by running `+xcode-select -p+`.
-You can install the developer tools by running `+xcode-select --install+`.
+* You should have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 
 [[download-and-install]]
 == Download and install
@@ -90,7 +85,7 @@ The command displays version information for the developer command-line interfac
 +
 [source,bash]
 ----
-dfx 0.5.2
+dfx 0.5.3
 ----
 . Preview usage information for the other developer command-line interface sub-commands by running the following command:
 +
@@ -119,7 +114,6 @@ dfx new hello
 The `+dfx new hello+` command creates a new `+hello+` project with a default project directory, some template files, and a new Git repository for your project.
 +
 If you have `+node.js+` installed locally, creating a new project also adds some template front-end code and dependencies.
-[arabic]
 . Change to your project directory by running the following command:
 +
 [source,bash]
@@ -134,7 +128,6 @@ Your new `+hello+` project includes a simple default program in the `+src/hello+
 
 To build the program executable:
 
-[arabic]
 . View the contents of the source directory for your project directory by running the following command:
 +
 [source,bash]
@@ -156,9 +149,9 @@ For example, if you have `+node.js+` installed you should see output similar to 
 +
 [source,bash]
 ----
-  Done building canisters...
-  Done building frontend...
-⠁ Bundling frontend assets in the canister...
+Building canister hello
+Building frontend
+Bundling frontend assets in the canister
 ----
 
 [[start-the-local-network-and-deploy]]
@@ -190,8 +183,11 @@ You should see an installation confirmation message for your canister similar to
 [source,bash]
 ----
 Installing code for canister hello, with canister_id ic:795EA5F537665EED24
-Jan 28 18:33:26.850 INFO Successfully inserted an ingress message into IngressPool, Application: P2P/ArtifactPool
-Jan 28 18:33:27.262 INFO Created checkpoint @488 in 2.976797ms, StateManager: 1
+Mar 04 15:35:16.710 INFO Successfully inserted an
+ingress message into IngressPool, Application:
+ArtifactPool
+Mar 04 15:35:17.968 INFO Created checkpoint @168961 
+in 76.82103ms, StateManager: 1
 ----
 . Call the predefined `+greet+` method in the program by running the following command:
 +
@@ -207,8 +203,12 @@ For example:
 +
 [source,bash, subs="quotes"]
 ----
-Jan 28 18:34:25.832 INFO Successfully inserted an ingress message into IngressPool, Application: P2P/ArtifactPool
-("Hello, there!")
+Mar 04 15:43:51.826 INFO Successfully inserted an
+ingress message into IngressPool, Application:
+ArtifactPool
+Mar 04 15:43:52.779 INFO Created checkpoint @169984 
+in 68.44148ms, StateManager: 1
+(*"Hello, there!"*)
 ----
 . Stop the {IC} client processes running on your local computer by running the following command:
 +
@@ -226,4 +226,3 @@ There are more detailed examples and tutorials for you to explore in the link:..
 * Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].
 * Want to join the community? Visit our https://forum.dfinity.org/[community forum].
 * Want to stay informed about new features and updates? Sign up for https://dfinity.org/newsletter[Developer updates].
-

@@ -74,7 +74,7 @@ To modify settings in the default `+dfx.json+` configuration file:
 . Open the `+dfx.json+` configuration file in a text editor.
 . Change the entry file name to `+index.jsx+` to enable adding HTML directly inside Javascript as a template.
 . Change the name of the main program file to `+contacts.mo+`.
-. Close the `+dfx.json+` file to continue.
+. Save your changes and close the `+dfx.json+` file to continue.
 . Change to the `+src/contacts+` directory.
 +
 [source,bash]
@@ -137,7 +137,13 @@ You are now ready to create a new cascading stylesheet and add it to your projec
 
 To add a stylesheet:
 
-. Create a new file named `+mycontacts.css+`, open the file in a text editor.
+. Change to the `+src/contacts/public+` directory.
++
+[source,bash]
+----
+cd src/contacts/public
+----
+. Create a new file named `+mycontacts.css+` and open the file in a text editor.
 . Define some style properties for the front-end.
 +
 For example, copy and paste the following sample styles into the file:
@@ -146,7 +152,7 @@ For example, copy and paste the following sample styles into the file:
 ----
 include::example$mycontacts/mycontacts.css[]
 ----
-. Change to the `+contacts/src/contacts/public+` directory.
+. Save your changes and close the `+mycontacts.css+` file to continue.
 . Open the default `+index.js+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+index.js+` file:
 +

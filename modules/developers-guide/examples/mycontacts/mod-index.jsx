@@ -1,8 +1,8 @@
-import contact from 'ic:canisters/contacts_march3';
+import contact from 'ic:canisters/contacts';
 import * as React from 'react';
 import { render } from 'react-dom';
 
-import './mycontacts.css';
+import './mycontacts.css'; // Import custom styles
 
 class Contact extends React.Component {
   constructor(props) {

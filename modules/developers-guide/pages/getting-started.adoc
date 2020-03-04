@@ -1,5 +1,5 @@
 = Getting started
-January 2020 (Alpha)
+March 2020 (Alpha)
 :toc:
 :toc: right
 :toc-title: GETTING STARTED
@@ -29,11 +29,7 @@ image:dev-work-flow-1.png[Development work flow]
 Before you download and install this release of the SDK, verify the following:
 
 * You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
-* You should have `+node.js+` installed if you want your project to include the default template files for front-end development in your project.
-* You should have Developer Command Line Tools installed if you want to create a Git repository for your project and your development environment is on a macOS computer. 
-+
-You can check whether you have the developer tools installed by running `+xcode-select -p+`. 
-You can install the developer tools by running `+xcode-select --install+`.
+* You should have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 
 == Download and install
 
@@ -59,7 +55,7 @@ For example, if you want to test against a previous version, you can modify the 
 +
 [source,bash]
 ----
-DFX_VERSION=0.4.11 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.5.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 +
 This command prompts you to read and accept the license agreement before installing the `+dfx+` command-line interface executable and its dependencies on your local computer.
@@ -90,7 +86,7 @@ For example:
 +
 [source,bash]
 ----
-info: Version found: 0.5.2
+info: Version found: 0.5.3
 info: Creating uninstall script in ~/.cache/dfinity
 info: uninstall path=/Users/pubs/.cache/dfinity/uninstall.sh
 info: Checking for latest release...
@@ -104,7 +100,6 @@ If the installation script runs without any errors, everything you need to start
 
 To verify the SDK is ready to use:
 
-[arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
 . Check that you have the SDK developer command-line interface installed and the executable is available in your PATH by running the following command:
 +
@@ -117,7 +112,7 @@ The command displays version information for the developer command-line interfac
 +
 [source,bash]
 ----
-dfx 0.5.2
+dfx 0.5.3
 ----
 . Preview usage information for the other developer command-line interface subcommands by running the following command:
 +
@@ -135,7 +130,6 @@ You are now ready to create a new project for your first sample application.
 
 To create a new project directory for your first application:
 
-[arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
 . Create a folder for your {IC} sample projects by running the following command in your home directory or current working folder:
 +
@@ -193,12 +187,12 @@ Depending on whether you have `+node.js+` installed, your project directory migh
 [source,bash]
 ----
 hello_world/
-├── README.md          # default project documentation
-├── dfx.json           # project configuration file
-├── node_modules       # libraries for front-end development
+├── README.md      # default project documentation
+├── dfx.json       # project configuration file
+├── node_modules   # libraries for front-end development
 ├── package-lock.json
 ├── package.json
-├── src                # source files directory
+├── src            # source files directory
 |   └── hello_world
 │       ├── main.mo
 │       └── public
@@ -226,7 +220,6 @@ To try it out, you can use the default template files to create a simple program
 
 To review the template files for your program:
 
-[arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
 . Change to your project directory by running the following command:
 +
@@ -259,7 +252,7 @@ For example:
       "serve_root": "canisters/hello_world/assets"
     }
   },
-  "dfx": "0.5.2",
+  "dfx": "0.5.3",
   "version": 1
 }
 ----
@@ -319,15 +312,15 @@ Note that this step is required because you must run the `+dfx build+` command f
 dfx build
 ----
 +
-The command displays output  indicating that the build is successful.
+The command displays output indicating that the build is successful.
 +
 For example, if you have `+node.js+` installed you should see output similar to the following:
 +
 [source,bash]
 ----
-  Done building canisters...
-  Done building frontend...
-  Bundling frontend assets in the canister...
+Building canisters hello_world
+Building frontend
+Bundling frontend assets in the canister
 ----
 . Verify that the `+canisters/hello_world+` directory created by the `+build+` command contains the WebAssembly and related application files by running the following command.
 +
@@ -371,37 +364,19 @@ To deploy the program on your local network:
 +
 [source,bash]
 ----
-dfx start --background
+dfx start
 ----
 +
 Depending on your platform and local security settings, you might see a warning displayed. 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 +
-The `+--background+` option starts {IC} client processes then runs them in the background so that you can continue to the next step without opening another terminal shell on your local computer.
+You can use the `+--background+` option to start the {IC} replica processes then run them in the background. If you use the `+--background+` option, you can continue to the next step without opening another terminal shell on your local computer.
 +
-The command returns output similar to the following:
-+
-[source,bash]
-----
-⠁ Starting up the client...
-binding to: V4(127.0.0.1:8000)
-client: "http://localhost:8080/api"
-⠙ Pinging the Internet Computer client...
-Jan 28 21:38:09.732 INFO Dfinity Client Started
-Jan 28 21:38:09.733 INFO Existing node ID: 17221185754080377412
-Jan 28 21:38:09.740 INFO Using path '/var/folders/bc/ncxkdzp51m31_q5sx6jr2sz4000⠂ 
-Pinging the Internet Computer client...
-Jan 28 21:38:09.971 INFO Recovered checkpoint @1057 in 230.204252ms, StateManager: 1
-Jan 28 21:38:09.975 ERRO ConnManager: node_id = 0 not found in the registry,
-Application: TransportConnectionMgr
-Jan 28 21:38:09.977 INFO ConnManager: node_id = 0, 
-node_ip = "127.0.0.1", Applic  
-Internet Computer client started...
-----
-+
-NOTE: If you don't specify the `+--background+` option, you need to open a new terminal shell. 
+If you don't specify the `+--background+` option, you must open a new terminal shell. 
 For example, if you are in the Terminal application on macOS, click Shell, then click *New Window*.
 You can then navigate to your `+hello_world+` project directory in the new terminal shell before continuing to the next step.
++
+After you start the local network, you should see the `Internet Computer client started` message and details about your current network configuration.
 . Deploy your `+hello_world+` project on the local network by running the `+dfx canister install+` command and specifying a `+canister_name+` that matches the canister name specified in the `+dfx.json+` configuration file.
 +
 For this tutorial, the canister name is `+hello_world+` and the path to the compiled code for the canister you want to deploy is `+canisters/hello_world/main.wasm+`, so you can deploy the canister by running the following command:
@@ -416,8 +391,6 @@ The command output displays output similar to the following:
 [source,bash]
 ----
 Installing code for canister hello_world, with canister_id ic:81DDA04F69F40FEEAC
-Jan 28 21:40:21.349 INFO Successfully inserted an ingress message into IngressPool, Application: P2P/ArtifactPool
-Jan 28 21:40:21.762 INFO Created checkpoint @2328 in 4.644042ms, StateManager: 1
 ----
 . Call the predefined `+greet+` method in the program by running the following command:
 +
@@ -433,10 +406,6 @@ For example:
 +
 [source,bash,subs="quotes"]
 ----
-Jan 28 21:41:26.095 INFO Successfully inserted an ingress message 
-into IngressPool, Application: P2P/ArtifactPool
-Jan 28 21:41:26.213 INFO Created checkpoint @2952 in 7.036858ms,
-StateManager: 1
 ("*Hello, there!*")
 ----
 . Stop the {IC} client processes running on your local computer by running the following command:
@@ -452,7 +421,6 @@ If you have `+node.js+` installed in your development environment, your project 
 
 To explore the default front-end template:
 
-[arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open, and navigate to your `+hello_world+` project directory.
 . Open the `+src/hello_world/public/index.js+` file in a text editor and review the code in the template script:
 +
@@ -490,7 +458,7 @@ These files were generated automatically by the `+dfx build+` command using node
 +
 [source,bash]
 ----
-dfx start --background
+dfx start
 ----
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
 +

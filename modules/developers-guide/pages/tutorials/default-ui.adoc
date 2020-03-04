@@ -89,22 +89,21 @@ For example, the full URL should look similar to the following but with the `+ic
 ----
 http://localhost:8000/candid?canisterId=ic:81DDA04F69F40FEEAC
 ----
-. Review the list of function calls defined in the program.
+. Review the list of function calls and types defined in the program.
 +
-For example, the default program includes one `+greet+` function:
+For example, the default program includes one `+greet+` function that takes a text argument:
 +
-image:candid-ui.png[Sample front-end]
+image:candid-ui.png[Viewing functions calls]
 
+== Testing function calls
 
-. Replace *Name* in the input field with the text you want to display, then click *Get Greeting* to see the result.
+To test the functions defined in your program:
+
+. Type a value of the appropriate type, then click *Call* to see the result.
 +
 For example:
 +
-image:greeting-response.png[Greeting result]
-
-== Revise the front-end and test your changes
-
-
+image:candid-ui-return.png[Greeting result]
 . Stop the {IC} processes running on your local computer by running the following command:
 +
 [source,bash]

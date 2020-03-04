@@ -200,13 +200,12 @@ You now have a program that can be deployed on your local client network.
 
 To deploy the program on your local network:
 
-[arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open, and navigate to your `+contacts+` project directory.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
 ----
-dfx start --background
+dfx start
 ----
 . Deploy your `+contacts+` project on the local network by running the following command:
 +
@@ -243,8 +242,7 @@ For example, the full URL should look similar to the following but with the `+ic
 http://localhost:8000/?canisterId=ic:81DDA04F69F40FEEAC
 ----
 +
-NOTE: You must use `+canisterId+` before the canister identifier. 
-This parameter is case-sensitive.
+NOTE: You must use the case-sensitive `+canisterId+` parameter before the canister identifier.
 . Verify that you are prompted with a My Contacts form.
 +
 For example:

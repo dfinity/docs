@@ -40,21 +40,20 @@ The {release} release includes the following new features and capabilities:
 - Default web UI for all canisters based on the IDL (now called Candid) interface.
 +
 To access, with the default `+dfx.json+` setup, you can access `+127.0.0.1:8000/candid?canisterId=ic:your_canister_id+`. Note that if you are working on an existing project prior to V0.5.2, you may need to update `+webpack.config.js+` to make the UI build properly.
-- Support for nesting of option values.
+- Use dynamic import to evaluate the JavaScript and show error messages.
 +
-Option type in Javascript now expects a singleton array as its value. A `+none+` value is represented as `+[]+`; `+some value+` is represented as `+[value]+`.
-- You can use the `+dfx bootstrap+` command to start the bootstrap web server defined in the `+dfx.json+` configuration file or specified using command-line options.
-- You can use the `+-c+` or `+--compute-allocation+` flag for `+dfx canister install+` command to specify a canister's compute allocation as a percentage.
+This results in better error messages and frontend code debugging. Note that this is still experimental.
+- The `+replica+` will now use a random port.
 +
-This is essentially the equivalent of setting CPU allocation for canister execution. In a development environment, you might use this option for testing purposes if you have applications that require multiple canisters.
+Previously, you could set the port of the web server but not the `+replica+`. The `+replica+` is now set to a random port so that you can run two `+dfx start+` in separate projects without a clash. 
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
 The {release} release includes the following fixes to reported issues:
 
-- Nodemanager has been removed.
-- Bug fix for `+slebEncode+`
+- Single return value on query function.
+- The canister list when running `+dfx build+` will no longer be randomized.
 
 == Known issues and limitations
 

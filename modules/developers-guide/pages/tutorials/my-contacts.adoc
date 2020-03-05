@@ -1,0 +1,292 @@
+= Adding a stylesheet
+March 2020 (Alpha)
+:source-highlighter: coderay
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:toc:
+:toc: right
+:toc-title: TUTORIAL - STYLESHEET
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+Cascading stylesheets represent one of the most common ways to customize the user experience for an application.
+This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project.
+If you already know how to add cascading stylesheets (CSS) to a React-based project, you can skip this tutorial.
+
+NOTE: Currently, you can only use Javascript to implement the front-end for your canister. 
+This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
+Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see link:https://reactjs.org/docs/getting-started.html[Getting started] on the https://reactjs.org/[React website].
+
+== Create a new project
+
+To create a new project directory for your custom front-end application:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Change to the folder you are using for your {IC} sample projects.
+. Verify that you have `+node.js+` installed locally, if necessary.
+. Create a new project by running the following command:
++
+[source,bash]
+----
+dfx new contacts
+----
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd contacts
+----
+
+== Install the React framework
+
+if you've never used React before, you might want to explore the link:https://reactjs.org/tutorial/tutorial.html[Intro to React] tutorial or the link:https://reactjs.org/[React website] before editing the front-end code.
+
+To install required framework modules:
+
+. Install the React module by running the following command:
++
+[source,bash]
+----
+npm install --save react react-dom
+----
+. Install the required language compiler loaders by running the following command:
++
+[source,bash]
+----
+npm install --save typescript ts-loader 
+----
+. Install the required style loaders by running the following command:
++
+[source,bash]
+----
+npm install --save style-loader css-loader
+----
+
+== Modify the default configuration
+
+To modify settings in the default `+dfx.json+` configuration file:
+
+. Open the `+dfx.json+` configuration file in a text editor.
+. Change the entry file name to `+index.jsx+` to enable adding HTML directly inside Javascript as a template.
+. Change the name of the main program file to `+contacts.mo+`.
+. Save your changes and close the `+dfx.json+` file to continue.
+. Change to the `+src/contacts+` directory.
++
+[source,bash]
+----
+cd src/contacts
+----
+. Rename the `+main.mo+` file as `+contacts.mo+` by running the following command:
++
+[source,bash]
+----
+mv main.mo contacts.mo
+----
+. Open the `+contacts.mo+` file in a text editor and delete the existing content.
+. Copy and paste the following sample code into the file:
++
+[source,motoko]
+----
+include::example$mycontacts/contacts.mo[]
+----
+. Save your changes and close the `+contacts.mo+` file to continue.
+
+== Modify the front-end files
+
+You are now ready to create a new front-end for the default program.
+
+. Navigate back to the root of your project directory.
+. Open the webpack configuration file (`webpack.config.js`) in a text editor to add the following `+module+` key above the `+plugins+` section:
++
+[source,bash]
+----
+module: {
+  rules: [
+    { test: /\.(js|ts)x?$/, loader: "ts-loader" },
+    { test: /\.css$/, use: ['style-loader','css-loader'] }
+  ]
+},
+----
++
+These settings enable your program to use the `+ts-loader+` compiler and to import CSS files.
+. Save your changes and close the `+webpack.config.js+` file to continue.
+. Create a new file named `+tsconfig.json+`, open the file in a text editor, then copy and paste the following into the file:
++
+[source,bash]
+----
+{
+    "compilerOptions": {
+      "target": "es2018",        /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+      "module": "commonjs",      /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+      "lib": ["ES2018", "DOM"],  /* Specify library files to be included in the compilation. */
+      "allowJs": true,           /* Allow javascript files to be compiled. */
+      "jsx": "react",            /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+    }
+}
+----
+. Save your changes and close the `+tsconfig.json+` file to continue.
+
+== Add a stylesheet to your project
+
+You are now ready to create a new cascading stylesheet and add it to your project.
+
+To add a stylesheet:
+
+. Change to the `+src/contacts/public+` directory.
++
+[source,bash]
+----
+cd src/contacts/public
+----
+. Create a new file named `+mycontacts.css+` and open the file in a text editor.
+. Define some style properties for the front-end.
++
+For example, copy and paste the following sample styles into the file:
++
+[source,bash]
+----
+include::example$mycontacts/mycontacts.css[]
+----
+. Save your changes and close the `+mycontacts.css+` file to continue.
+. Open the default `+index.js+` file in a text editor and delete the existing content.
+. Copy and paste the following sample code into the `+index.js+` file:
++
+[source,react]
+....
+include::example$mycontacts/mod-index.jsx[]
+....
+. Rename the modified `index.js` file as `index.jsx` by running the following command:
++
+[source,bash]
+----
+mv index.js index.jsx
+----
+
+== Build the program
+
+You are now ready to compile the program with the new front-end as part of the WebAssembly module.
+
+To build the program with the new front-end:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Navigate to the root of your `+contacts+` project folder.
++
+Note that this step is required because you must run the `+dfx build+` command from within the project directory structure.
+. Build the executable canister by running the following command:
++
+[source,bash]
+----
+dfx build
+----
++
+The command displays output indicating that the build is successful.
++
+[source,bash]
+----
+Building canister contacts
+Building frontend
+Bundling frontend assets in the canister
+----
+
+== Start the local network and deploy
+
+You now have a program that can be deployed on your local client network.
+
+To deploy the program on your local network:
+
+. Open a terminal shell on your local computer, if you don’t already have one open, and navigate to your `+contacts+` project directory.
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start
+----
+. Deploy your `+contacts+` project on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install --all
+----
++
+The command output displays output similar to the following:
++
+[source,bash]
+----
+Installing code for canister contacts, with canister_id ic:19F69036D7308B0DEE
+----
+
+== Viewing the front-end
+
+. Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
++
+By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the hello_world program using `+127.0.0.1:8000+` for the URL.
++
+In addition to the host and port, the URL you specify needs to include `+canisterId+` parameter to identify the canister that you want the web server to display. 
+To specify the canister, append the identifier using the following syntax:
++
+[source,bash]
+----
+?canisterId=ic:canister_identifier
+----
++
+For example, the full URL should look similar to the following but with the `+ic:_canister_identifier_+` that was returned by the `+dfx canister install+` command:
++
+[source,bash]
+----
+http://localhost:8000/?canisterId=ic:81DDA04F69F40FEEAC
+----
++
+NOTE: You must use the case-sensitive `+canisterId+` parameter before the canister identifier.
+. Verify that you are prompted with a My Contacts form.
++
+For example:
++
+image:mycontacts-form.png[Sample front-end]
+. Create one or more test records by entering text in the Name, Address, and Email input fields and a number in the Phone input field, then clicking *Add Contact*.
+. Clear the form fields and type a contact name in the Lookup name field, then click *Lookup* to see the stored contact information.
++
+Keep in mind that the *Lookup name* you type must be an exact match for the name of a contact you added.
+
+== Modify the stylesheet and test your changes
+
+After viewing the Contacts application, you might want to make some changes.
+
+To change stylesheet properties:
+
+. Open the `mycontacts.css` file in a text editor and modify its style settings.
++
+For example, you might want to change the background color or style the input form.
+. Rebuild the project with your changes by running the following command.
++
+[source,bash]
+----
+dfx build
+----
+. Deploy your project changes and note your new canister identifier.
++
+[source,bash]
+----
+dfx canister install --all
+----
+. View the results in the browser by changing the URL to use the new canister identifier.
+. Stop the {IC} processes running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
+
+== Modify the front-end or back-end code
+
+If you want to explore further, you might want to experiment with modifying the front-end or back-end code for this tutorial.
+For example, you might want try modifying the tutorial to do the following:
+
+- Change the front-end code to clear the input fields after adding a new contact.
+- Change the Motoko program functions to do partial instead of exact string matching on the `+Name+` field.
+- Change the Motoko program to allow lookups based on a different field.

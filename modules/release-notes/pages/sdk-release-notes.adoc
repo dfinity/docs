@@ -42,7 +42,7 @@ The {release} release includes the following new features and capabilities:
 To access, with the default `+dfx.json+` setup, you can access `+127.0.0.1:8000/candid?canisterId=ic:your_canister_id+`. Note that if you are working on an existing project prior to V0.5.2, you may need to update `+webpack.config.js+` to make the UI build properly.
 - Use dynamic import to evaluate the JavaScript and show error messages.
 +
-This results in better error messages and frontend code debugging. Note that this is still experimental.
+This provides better error messages and frontend code debugging. Note that this is still experimental.
 - The `+replica+` will now use a random port.
 +
 Previously, you could set the port of the web server but not the `+replica+`. The `+replica+` is now set to a random port so that you can run two `+dfx start+` in separate projects without a clash. 

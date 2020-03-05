@@ -50,7 +50,7 @@ Previously, you could set the port of the web server but not the `+replica+`. Th
 This section covers the issues fixed in this release.
 The {release} release includes the following fixes to reported issues:
 
-- Single return value on query function.
+- Fix the single return value type on query function in Javascript userlib.
 - The canister list when running `+dfx build+` will no longer be randomized.
 
 == Known issues and limitations

@@ -1,5 +1,5 @@
-= Testing methods with a generated web interface
-January 2020 (Alpha)
+= Testing function calls using a generated web interface
+March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -12,15 +12,15 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common syntax for specifying input arguments and return values.
-The language performs automatic type mapping so you can use the same syntax to interact with the `+dfx+` command-line interface, JavaScript, {proglang}, and other supported languages or tools.
+The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common language for specifying the signature of a canister service.
+The language provides a unified way of interacting with canisters in various languages and tools, such as the `+dfx+` command-line interface, JavaScript, and {proglang}.
 
-The language can also automatically generate a default web interface that exposes your program's functions for testing and debugging.
+Based on the type signature of the actor, Candid provides a web interface that allows you to call canister functions for testing and debugging.
 
-This tutorial illustrates how to view and use the default web interface that the canister interface language generates.
+This tutorial illustrates how to view and use the Candid web interface.
 
 NOTE: This tutorial provides step-by-step instructions independent of any other tutorials. 
-If you have already built and deployed a canister and know the current canister identifier, you can skip directly to <<Viewing the default web interface>>.
+If you have already built and deployed a canister and know the current canister identifier, you can skip directly to <<Viewing functions in a browser>>.
 
 == Before you begin
 
@@ -69,23 +69,18 @@ dfx canister install default_web_ui
 ----
 . Copy the canister identifier that begins with the `+ic:+` prefix displayed.
 
-== Viewing the default web interface
+== Viewing functions in a browser
 
-To view the web interface:
+To view functions using the Candid web interface:
 
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
 +
-By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the hello_world program using `+127.0.0.1:8000+` for the URL.
-. Append the candid keyword the canister identifier after the host address and port number using the following syntax:
-+
-[source,bash,subs="quotes"]
-----
-candid?canisterId=ic:canister_identifier
-----
+By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`.
+. Add the `+candid+` endpoint to access the Candid web interface followed by the required `canisterId` parameter and canister identifier.
 +
 For example, the full URL should look similar to the following but with the `+ic:_canister_identifier_+` that was returned by the `+dfx canister install+` command:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 http://localhost:8000/candid?canisterId=ic:81DDA04F69F40FEEAC
 ----
@@ -99,11 +94,14 @@ image:candid-ui.png[Viewing functions calls]
 
 To test the functions defined in your program:
 
-. Type a value of the appropriate type, then click *Call* to see the result.
+. Type a value of the appropriate type for a function, then click *Call* or *Query* to see the result.
 +
 For example:
 +
-image:candid-ui-return.png[Greeting result]
+image:candid-ui-return.png[Function call result]
+
+== Stop the local network
+
 . Stop the {IC} processes running on your local computer by running the following command:
 +
 [source,bash]

@@ -38,7 +38,7 @@ The {release} release includes the following new features and capabilities:
 - Web interface for testing canisters.
 +
 To access, with the default `+dfx.json+` setup, you can access `+127.0.0.1:8000/candid?canisterId=ic:your_canister_id+`.
-- Use of dynamic import to evaluate the JavaScript and show error messages.
+- Bootstrap server shows error messages with non-existed canister id.
 +
 This provides better error messages and frontend code debugging. Note that this is still experimental.
 - The `+replica+` will now use a random port.

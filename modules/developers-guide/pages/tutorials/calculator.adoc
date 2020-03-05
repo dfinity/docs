@@ -68,11 +68,7 @@ In this tutorial, you will modify several of the default settings to illustrate 
 
 To modify the default `+dfx.json+` configuration file:
 
-. Open the `+dfx.json+` configuration file in a text editor, then change the following settings:
-+
-* Change the default `+hello+` source directory to `+calc+`.
-* Change the default `+main.mo+` program name to `+calc_main.mo+`.
-* Change the default `+canisters+` output directory to `+dist+`.
+. Open the `+dfx.json+` configuration file in a text editor, then change the  default `+main.mo+` program name to `+calc_main.mo+`.
 +
 For example:
 +
@@ -81,24 +77,14 @@ For example:
 {
   "canisters": {
     "calc": {
+      "frontend": {
+        "entrypoint": "src/calc/public/index.js"
+      },
       "main": "src/calc/*calc_main.mo*"
     }
-  },
-  "defaults": {
-    "build": {
-      "output": "*dist/*"
-    },
-    "start": {
-      "port": 8000,
-      "address": "127.0.0.1",
-      "serve_root": "src/*calc*/public/"
-    }
-  }
-}
 ----
 +
 For this tutorial, you are changing the name of the source file from `+main.mo+` to `+calc_main.mo+` to illustrate how the setting in the `+dfx.json+` file determines the source file to be compiled. 
-Similarly, this tutorial suggests changing the name of the output directory to `+dist+` to illustrate a simple customization that you can control through your `+dfx.json+` configuration file settings.
 
 == Modify the default template program
 
@@ -122,7 +108,7 @@ mv main.mo calc_main.mo
 . Open the `+calc_main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+calc_main.mo+` file:
 +
-[source,motoko,subs="quotes"]
+[source,motoko]
 ----
 include::example$calc_main.mo[]
 ----
@@ -181,10 +167,6 @@ For example, the program displays output similar to the following:
 +
 [source,bash,subs="quotes"]
 ----
-   Application: P2P/IngressPool
-    Nov 12 08:19:39.125 INFO Insert an ingress message in Ingress pool
-   Application: Http Handler
-    Nov 12 08:19:39.128 INFO in handle read
 (*10*)
 ----
 . Call the `+mul+` function and pass it the input argument `+3+` but let the interface description language (IDL) parse the argument type by running the following command:
@@ -199,10 +181,6 @@ For example, the program displays output similar to the following:
 +
 [source,bash,subs="quotes"]
 ----
-   Application: P2P/IngressPool
-    Nov 12 08:20:53.534 INFO Insert an ingress message in Ingress pool
-   Application: Http Handler
-    Nov 12 08:20:53.536 INFO in handle read
 (*30*)
 ----
 . Call the `+sub+` function and pass it the input argument `+5+` of type `+number+` by running the following command:
@@ -217,10 +195,6 @@ For example, the program displays output similar to the following:
 +
 [source,bash,subs="quotes"]
 ----
-   Application: P2P/IngressPool
-    Nov 12 08:22:52.661 INFO Insert an ingress message in Ingress pool
-   Application: Http Handler
-    Nov 12 08:22:52.664 INFO in handle read
 (*25*)
 ----
 . Call the `+div+` function and pass it the input argument `+5+` but let the interface description language (IDL) parse the argument type by running the following command:
@@ -235,10 +209,6 @@ For example, the program displays output similar to the following:
 +
 [source,bash,subs="quotes"]
 ----
-   Application: P2P/IngressPool
-    Nov 12 08:26:28.856 INFO Insert an ingress message in Ingress pool
-   Application: Http Handler
-    Nov 12 08:26:28.858 INFO in handle read
 (*opt 5*)
 ----
 . Call the `+clearall+` function and verify it resets the `+cell+` value to zero:
@@ -252,10 +222,6 @@ For example, the program displays output similar to the following:
 +
 [source,bash,subs="quotes"]
 ----
-   Application: P2P/IngressPool
-    Nov 12 08:31:49.564 INFO Insert an ingress message in Ingress pool
-   Application: Http Handler
-    Nov 12 08:31:49.567 INFO in handle read
 (*0*)
 ----
 . Stop the {IC} processes running on your local computer by running the following command:

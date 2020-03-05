@@ -224,6 +224,13 @@ For example, the program displays output similar to the following:
 ----
 (*0*)
 ----
+
+include::example$candid-ui.adoc[]
++
+image:candid-calc.png[Calculator functions]
+
+== Stop the local network
+
 . Stop the {IC} processes running on your local computer by running the following command:
 +
 [source,bash]

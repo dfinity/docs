@@ -35,7 +35,7 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- Default web UI for all canisters based on the IDL (now called Candid) interface.
+- Web interface for testing canisters.
 +
 To access, with the default `+dfx.json+` setup, you can access `+127.0.0.1:8000/candid?canisterId=ic:your_canister_id+`. Note that if you are working on an existing project prior to V0.5.2, you may need to update `+webpack.config.js+` to make the UI build properly.
 - Use of dynamic import to evaluate the JavaScript and show error messages.

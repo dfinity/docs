@@ -207,6 +207,11 @@ For example:
 ----
 (opt "01 408 395 7276")
 ----
+
+include::example$candid-ui.adoc[]
+
+== Stop the local network
+
 . Stop the {IC} processes running on your local computer by running the following command:
 +
 [source,bash]

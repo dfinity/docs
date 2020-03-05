@@ -1,0 +1,23 @@
+== Testing functions in a browser
+
+The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common language for specifying the signature of a canister service.
+The language provides a unified way of interacting with canisters in various languages and tools, such as the `+dfx+` command-line interface, JavaScript, and {proglang}.
+
+Based on the type signature of the actor, Candid provides a web interface that allows you to call canister functions for testing and debugging.
+
+To use the Candid web interface to test canister functions:
+
+. Deploy your project using the `+dfx canister install+` command and copy the canister identifier that begins with the `+ic:+` prefix.
+. Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
++
+By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`.
+. Add the `+candid+` endpoint to access the Candid web interface followed by the required `canisterId` parameter and canister identifier.
++
+For example, the full URL should look similar to the following but with the `+ic:_canister_identifier_+` that was returned by the `+dfx canister install+` command:
++
+[source,bash]
+----
+http://localhost:8000/candid?canisterId=ic:81DDA04F69F40FEEAC
+----
+. Review the list of function calls and types defined in the program.
+. Type a value of the appropriate type for a function, then click *Call* or *Query* to see the result.

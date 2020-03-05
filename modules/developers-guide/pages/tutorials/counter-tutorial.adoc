@@ -1,7 +1,5 @@
 = Incrementing a value to illustrate persistence
-December 2019 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:linkedcss:
 :toc:
 :toc: right
 :toc-title: TUTORIAL - SIMPLE PERSISTENCE
@@ -37,7 +35,7 @@ Like the other sample programs, this tutorial demonstrates a simple, but realist
 
 The following diagram provides a simplified overview of the workflow passing from the developer’s command-line environment to the internet computer network client deployed locally:
 
-image:../dev-work-flow-2.png[Overview of the developer work flow]
+image:dev-work-flow-2.png[Overview of the developer work flow]
 
 As the diagram suggests, the network infrastructure and the development environment co-exist on the same computer in this tutorial.
 
@@ -282,6 +280,11 @@ dfx canister call my_counter get
 ----
 +
 Returns the incremented value of 988.
+
+include::example$candid-ui.adoc[]
+
+== Stop the local network
+
 . Stop the {IC} processes running on your local computer by running the following command:
 +
 [source,bash]

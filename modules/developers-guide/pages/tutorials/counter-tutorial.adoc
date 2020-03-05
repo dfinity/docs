@@ -282,6 +282,8 @@ dfx canister call my_counter get
 Returns the incremented value of 988.
 
 include::example$candid-ui.adoc[]
++
+image:candid-counter.png[Counter functions]
 
 == Stop the local network
 

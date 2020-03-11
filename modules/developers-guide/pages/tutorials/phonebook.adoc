@@ -107,7 +107,7 @@ To modify the default template source code:
 +
 [source,motoko]
 ----
-include::example$phonebook.mo
+include::example$phonebook.mo[]
 ----
 
 == Build and deploy the program

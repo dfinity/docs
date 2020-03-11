@@ -75,7 +75,7 @@ To verify settings in the default `+dfx.json+` configuration file:
       "port": 8000,
       "serve_root": "canisters/*hello_location*/assets"
     }
-  },
+  }
 }
 ----
 . Close the file to continue.

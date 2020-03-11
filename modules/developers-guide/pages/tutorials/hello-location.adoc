@@ -55,15 +55,15 @@ To verify settings in the default `+dfx.json+` configuration file:
 . Open the `+dfx.json+` configuration file in a text editor.
 . Check the default settings for the `+hello_location+` project.
 +
-[source,json,subs="quotes"]
+[source,json]
 ----
 {
   "canisters": {
-    "*hello_location*": {
+    "hello_location": {
       "frontend": {
-        "entrypoint": "src/*hello_location*/public/index.js"
+        "entrypoint": "src/hello_location/public/index.js"
       },
-      "main": "src/*hello_location*/main.mo"
+      "main": "src/hello_location/main.mo"
     }
   },
   "defaults": {
@@ -73,7 +73,7 @@ To verify settings in the default `+dfx.json+` configuration file:
     "start": {
       "address": "127.0.0.1",
       "port": 8000,
-      "serve_root": "canisters/*hello_location*/assets"
+      "serve_root": "canisters/hello_location/assets"
     }
   }
 }
@@ -91,11 +91,11 @@ To modify the default template source code:
 +
 For example:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 actor {
-    public func *location(city* : Text) : async Text {
-        return "Hello, " # *city* # "!";
+    public func location(city : Text) : async Text {
+        return "Hello, " # city # "!";
     };
 };
 ----
@@ -141,9 +141,9 @@ To test the program you have deployed on the local client network:
 
 . Call the `+location+` method in the program and pass your `+city+` argument of type `+string+` by running the following command:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
-dfx canister call hello_location location *"San Francisco"* --type string
+dfx canister call hello_location location "San Francisco" --type string
 ----
 +
 In this example, you are explicitly identifying your argument data type as a string.
@@ -205,15 +205,15 @@ To experiment with modifying the source code for this tutorial:
 . Open the `+dfx.json+` configuration file in a text editor and change the default `+hello_location+` settings to `+favorite-cities+`.
 For example:
 +
-[source,json,subs="quotes"]
+[source,json]
 ----
 {
   "canisters": {
-    "*favorite-cities*": {
+    "favorite-cities": {
       "frontend": {
-        "entrypoint": "src/*favorite-cities*/public/index.js"
+        "entrypoint": "src/favorite-cities/public/index.js"
       },
-      "main": "src/*favorite-cities*/main.mo"
+      "main": "src/favorite-cities/main.mo"
     }
   },
   "defaults": {
@@ -223,8 +223,10 @@ For example:
     "start": {
       "address": "127.0.0.1",
       "port": 8000,
-      "serve_root": "canisters/*favorite-cities*/assets"
+      "serve_root": "canisters/favorite-cities/assets"
     }
+  }
+}
 ----
 . Copy the `hello_location` source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command
 +

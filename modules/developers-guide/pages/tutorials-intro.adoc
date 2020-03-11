@@ -54,4 +54,4 @@ If you already know how to use CSS, HTML, JavaScript, and React or other framewo
 This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
 If you already know how to add stylesheets to React, you can skip this tutorial.
 
-Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:../language-guide/index{outfilesuffix}[_{proglang} Programming Language Reference_].
+Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Reference_].

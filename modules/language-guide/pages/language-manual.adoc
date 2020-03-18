@@ -94,18 +94,21 @@ The syntax of a _declaration_ is as follows:
   let <pat> = <exp>                                                        immutable
   var <id> (: <typ>)? = <exp>                                              mutable
   <sort> <id>? =? { <dec-field>;* }                                        object
-  <shared>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>             function
+  <shared-pat>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>         function
   type <id> <typ-params>? = <typ>                                          type
   <sort>? class <id> <typ-params>? <pat> (: <typ>)? =? { <exp-field>;* }   class
 
-<shared> ::=
-  shared query?
+```bnf
+<shared-pat> ::=
+  shared query? <pat>?
 ```
 
 ```bnf
 <dec-field> ::=                                object declaration fields
   (public|private)? <dec>                        field
 ```
+
+For `<shared-pat>`, an absent `<pat>?` is shorthand for the wildcard pattern `_`.
 
 [[syntax-ids]]
 === Identifiers
@@ -141,7 +144,7 @@ The syntax of an _expression_ is as follows:
   <exp> <binop>= <exp>                           binary update
   [ var? <exp>,* ]                               array
   <exp> [ <exp> ]                                array indexing
-  <shared>? func <func_exp>                      function expression
+  <shared-pat>? func <func_exp>                  function expression
   <exp> <typ-args>? <exp>                        function call
   { <dec>;* }                                    block
   not <exp>                                      negation
@@ -427,6 +430,9 @@ Type expressions are used to specify the types of arguments, constraints (a.k.a 
   ( type )                                      parenthesized type
 
 <sort> ::= (actor | module | object)
+
+<shared> ::=
+  shared query?
 
 <path> ::=                                   paths
   <id>                                         type identifier
@@ -1088,12 +1094,12 @@ If `<id>?` is present, the declaration binds `<id>` to `v`. Otherwise, it produc
 [[decl-func]]
 === Function Declaration
 
-The function declaration  `<shared>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>` is syntactic sugar for
+The function declaration  `<shared-pat>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>` is syntactic sugar for
 a `let` declaration of a function expression. That is:
 
 ```bnf
-<shared>? func <id> <typ-params>? <pat> (: <typ>)? =? <exp> :=
-  let <id> = <shared>? func <id> <typ-params>? <pat> (: <typ>)? =? <exp>
+<shared-pat>? func <id> <typ-params>? <pat> (: <typ>)? =? <exp> :=
+  let <id> = <shared-pat>? func <id> <typ-params>? <pat> (: <typ>)? =? <exp>
 ```
 
 where `<pat>` is `<id>` when `<id>?` is present and `<pat>` is `_` otherwise.
@@ -1315,25 +1321,31 @@ The call expression `<exp1> <T0,...,Tn>? <exp2>` evaluates `exp1` to a result `r
 
 Otherwise, `exp2` is evaluated to a result `r2`. If `r2` is `trap`, the expression results in `trap`.
 
-Otherwise, `r1` is a function value, `<shared>? func <X0 <: V0, ..., n <: Vn> pat { exp }` (for some implicit environment), and `r2` is a value `v2`.
-Evaluation continues by matching `v1` against `pat`.
-If matching succeeds with some bindings, evaluation proceeds with `exp` using the environment of the function value (not shown) extended with those bindings.
-Otherwise, the pattern match has failed and the call results in `trap`.
+Otherwise, `r1` is a function value, `<shared-pat>? func <X0 <: V0, ..., n <: Vn> <pat1> { <exp> }` (for some implicit environment), and `r2` is a value `v2`.
+If `<shared-pat>` is present and of the form `shared query? <pat>` then evaluation continues by matching the record value `{caller = p}` against `<pat>`, where `p`
+is the `Principal` invoking the function (typically a user or canister).
+Matching continues by matching `v1` against `<pat1>`.
+If pattern matching succeeds with some bindings, then evaluation returns the result of `exp` in the environment of the function value (not shown) extended with those bindings.
+Otherwise, some pattern match has failed and the call results in `trap`.
+
 
 [[exp-func]]
 === Functions
 
-The function expression `<shared>? func < X0 <: T1, ..., Xn <: Tn > <pat> (: T2)? =?  <exp>` has type `<shared>? < X0 <: T0, ..., Xn <: Tn > T1-> T2` if, under the
+The function expression `<shared-pat>? func < X0 <: T0, ..., Xn <: Tn > <pat1> (: U2)? =?  <exp>` has type `<shared>? < X0 <: T0, ..., Xn <: Tn > U1-> U2` if, under the
 assumption that `X0 <: T1, ..., Xn <: Tn`:
 
-* all the types in `T1, ..., Tn` and `T` are well-formed and well-constrained.
-* pattern `pat` has type `T1`;
-* expression `<exp>` has type return type `T2` under the assumption that `pat` has type `T1`.
+* If `<shared-pat>?` is of the form `shared query? <pat>` then `<shared>?` is `shared query?`;
+* all the types in `T0, ..., Tn` and `U2` are well-formed and well-constrained;
+* pattern `<pat>` has record type `{ caller : Principal }`;
+* pattern `<pat1>` has type `U1`;
+* if the function is `shared` then `<pat>` and `<pat1>` must be exhaustive;
+* expression `<exp>` has type return type `U2` under the assumption that `pat1` has type `U1`.
 
 `<shared>? func <typ-params>? <pat> (: <typ>)? =? <exp>` evaluates to a function
 value (a.k.a. closure), denoted `<shared>? func <typ-params>? <pat> = <exp>`, that stores the code of the function together with the bindings from the current evaluation environment (not shown) needed to evaluate calls to the function value.
 
-Note that a `<shared>` function may be itself be `shared` or `shared query`:
+Note that a `<shared-pat>` function may itself be `shared <pat>?` or `shared query <pat>?`:
 * A `shared` function may be invoked from a remote caller. Unless causing a trap, the effects on the callee persist beyond completion of the call.
 * A `shared query` function may be also be invoked from a remote caller, but the effects on the callee are transient and discarded once the call has completed with a result (whether a value or error).
 

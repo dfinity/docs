@@ -1095,14 +1095,15 @@ If `<id>?` is present, the declaration binds `<id>` to `v`. Otherwise, it produc
 === Function Declaration
 
 The function declaration  `<shared-pat>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>` is syntactic sugar for
-a `let` declaration of a function expression. That is:
+a named `let` or anonymous declaration of a function expression. That is:
 
 ```bnf
-<shared-pat>? func <id> <typ-params>? <pat> (: <typ>)? =? <exp> :=
-  let <id> = <shared-pat>? func <id> <typ-params>? <pat> (: <typ>)? =? <exp>
+<shared-pat>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp> :=
+  let <id> = <shared-pat>? func <typ-params>? <pat> (: <typ>)? =? <exp>    (when <id>? present)
+
+  <shared-pat>? func <typ-params>? <pat> (: <typ>)? =? <exp>               (when <id>? absent)  
 ```
 
-where `<pat>` is `<id>` when `<id>?` is present and `<pat>` is `_` otherwise.
 
 Named function definitions are recursive.
 
@@ -1333,7 +1334,7 @@ Otherwise, some pattern match has failed and the call results in `trap`.
 === Functions
 
 The function expression `<shared-pat>? func < X0 <: T0, ..., Xn <: Tn > <pat1> (: U2)? =?  <exp>` has type `<shared>? < X0 <: T0, ..., Xn <: Tn > U1-> U2` if, under the
-assumption that `X0 <: T1, ..., Xn <: Tn`:
+assumption that `X0 <: T0, ..., Xn <: Tn`:
 
 * If `<shared-pat>?` is of the form `shared query? <pat>` then `<shared>?` is `shared query?`;
 * all the types in `T0, ..., Tn` and `U2` are well-formed and well-constrained;

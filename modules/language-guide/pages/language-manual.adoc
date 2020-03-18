@@ -879,7 +879,7 @@ An identifier bound by a `private` declaration is excluded form the type of the 
 === Sequence of Declarations
 
 A sequence of declarations `<dec>;*` occurring in a block, a program or the `exp-field;*` sequence of an object declaration has type `T`
-provided
+provided:
 
 * `<dec>;*` is empty and `T == ()`; or
 * `<dec>;*` is non-empty and:
@@ -1312,9 +1312,10 @@ Otherwise,
 [[exp-call]]
 === Function Calls
 
-The function call expression `<exp1> <T0,...,Tn>? <exp2>` has type `T` provided
+The function call expression `<exp1> <T0,...,Tn>? <exp2>` has type `T` provided:
 
 * the function `<exp1>` has function type `<shared>? < X0 <: V0, ..., Xn <: Vn > U1-> U2`; and
+* if `<T0,...,Tn>?` is absent but n > 0 then there exists minimal `T0, ..., Tn` (inferred by the compiler) such that:
 * each type argument satisfies the corresponding type parameter's bounds:
   for each `1 \<= i \<= n`, `Ti <: [T0/X0, ..., Tn/Xn]Vi`; and
 * the argument `<exp2>` has type `[T0/X0, ..., Tn/Xn]U1`, and

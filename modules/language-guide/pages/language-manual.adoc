@@ -77,8 +77,8 @@ type var while
 === Programs
 
 ```bnf
-<prog> ::=
- <dec>;*
+<prog> ::=  programs
+  <dec>;*
 
 ```
 
@@ -99,16 +99,18 @@ The syntax of a _declaration_ is as follows:
   <sort>? class <id> <typ-params>? <pat> (: <typ>)? =? { <exp-field>;* }   class
 
 ```bnf
-<shared-pat> ::=
+<shared-pat> ::=        function sort and caller pattern
   shared query? <pat>?
 ```
+
+For `<shared-pat>`, an absent `<pat>?` is shorthand for the wildcard pattern `_`.
+
 
 ```bnf
 <dec-field> ::=                                object declaration fields
   (public|private)? <dec>                        field
 ```
 
-For `<shared-pat>`, an absent `<pat>?` is shorthand for the wildcard pattern `_`.
 
 [[syntax-ids]]
 === Identifiers

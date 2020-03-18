@@ -1346,7 +1346,8 @@ assumption that `X0 <: T0, ..., Xn <: Tn`:
 `<shared>? func <typ-params>? <pat> (: <typ>)? =? <exp>` evaluates to a function
 value (a.k.a. closure), denoted `<shared>? func <typ-params>? <pat> = <exp>`, that stores the code of the function together with the bindings from the current evaluation environment (not shown) needed to evaluate calls to the function value.
 
-Note that a `<shared-pat>` function may itself be `shared <pat>?` or `shared query <pat>?`:
+Note that a `<shared-pat>` function may itself be `shared <pat>` or `shared query <pat>`:
+
 * A `shared` function may be invoked from a remote caller. Unless causing a trap, the effects on the callee persist beyond completion of the call.
 * A `shared query` function may be also be invoked from a remote caller, but the effects on the callee are transient and discarded once the call has completed with a result (whether a value or error).
 

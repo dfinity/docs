@@ -1336,12 +1336,12 @@ Otherwise, some pattern match has failed and the call results in `trap`.
 The function expression `<shared-pat>? func < X0 <: T0, ..., Xn <: Tn > <pat1> (: U2)? =?  <exp>` has type `<shared>? < X0 <: T0, ..., Xn <: Tn > U1-> U2` if, under the
 assumption that `X0 <: T0, ..., Xn <: Tn`:
 
-* If `<shared-pat>?` is of the form `shared query? <pat>` then `<shared>?` is `shared query?`;
+* `<shared-pat>?` is of the form `shared query? <pat>` if and only if `<shared>?` is `shared query?`;
 * all the types in `T0, ..., Tn` and `U2` are well-formed and well-constrained;
 * pattern `<pat>` has record type `{ caller : Principal }`;
 * pattern `<pat1>` has type `U1`;
 * if the function is `shared` then `<pat>` and `<pat1>` must be exhaustive;
-* expression `<exp>` has type return type `U2` under the assumption that `pat1` has type `U1`.
+* expression `<exp>` has type return type `U2` under the assumption that `<pat1>` has type `U1`.
 
 `<shared>? func <typ-params>? <pat> (: <typ>)? =? <exp>` evaluates to a function
 value (a.k.a. closure), denoted `<shared>? func <typ-params>? <pat> = <exp>`, that stores the code of the function together with the bindings from the current evaluation environment (not shown) needed to evaluate calls to the function value.

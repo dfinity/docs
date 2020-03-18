@@ -658,6 +658,8 @@ Promise types typically appear as the result type of a `shared` function that pr
 
 The optional identifier `<id>`, naming its components, is for documentation purposes only and cannot be used for component access. In particular, tuple types that differ only in the names of components are equivalent.
 
+The empty tuple type `()` is called the *unit type*.
+
 [[any-type]]
 === Any type
 
@@ -936,6 +938,8 @@ For integer literals only, the optional `<unop>` determines the sign of the valu
 The tuple pattern `( <pat>,* )` matches a n-tuple value against an n-tuple of patterns (both the tuple and pattern must have the same number of items).
 The set of identifiers bound by each component of the tuple pattern must be distinct.
 
+The empty tuple pattern `()` is called the *unit pattern*.
+
 Pattern matching fails if one of the patterns fails to match the corresponding item of the tuple value.
 Pattern matching succeeds if every pattern matches the corresponding component of the tuple value.
 The binding returned by a successful match is the disjoint union of the bindings returned by the component matches.
@@ -956,7 +960,7 @@ The `<sort>` of the matched object type must be determined by an enclosing type 
 [[pat-variant]]
 === Variant pattern
 
-The variant pattern `# <id> <pat>?` matches a variant value (of the form `# <id'> v`) against a variant pattern. An absent `<pat>?` is shorthand for the unit pattern `()`.
+The variant pattern `# <id> <pat>?` matches a variant value (of the form `# <id'> v`) against a variant pattern. An absent `<pat>?` is shorthand for the unit pattern (`()`).
 Pattern matching fails if the tag `<id'>` of the value is distinct from the `<id>` of the pattern (i.e. `<id>` <> `<id'>`); or the tags are equal but the value `v` does not match the pattern `<pat>?`.
 Pattern matching succeeds if the tag of the value is `<id>` (i.e. `<id'>` = `<id>`) and the value `v` matches the pattern `<pat>?`.
 The binding returned by a successful match is just the binding returned by the match of `v` against `<pat>?`.
@@ -1147,7 +1151,7 @@ The unary operator `<unop> <exp>` has type `T` provided:
 * The category of `<unop>` is a category of `T`.
 
 The unary operator expression `<unop> <exp>` evaluates `exp` to a result. If the result is a value `v`, it returns the result of `<unop> v`.
-If the result is a trap, it, too, traps.
+If the result is `trap`, the entire expression results in `trap`.
 
 [[binary-operators]]
 === Binary operators
@@ -1181,7 +1185,7 @@ Otherwise, `exp2` is evaluated to a result `r2`. If `r2` is `trap`, the expressi
 Otherwise, `r1`  and `r2` are values `v1` and `v2` and the expression returns
 the Boolean result of `v1 <relop> v2`.
 
-[[tuples]]
+[[exp-tuple]]
 === Tuples
 
 Tuple expression `(<exp1>, ..., <expn>)` has tuple type `(T1, ..., Tn)`, provided
@@ -1193,6 +1197,8 @@ The tuple projection `<exp> . <nat>` has type `Ti` provided `<exp>` has tuple ty
 `(T1, ..., Ti, ..., Tn)`, `<nat>` == `i` and `1 \<= i \<= n`.
 
 The projection `<exp> . <nat>` evaluates `exp` to a result `r`. If `r` is `trap`, then  the result is `trap`. Otherwise, `r` must be a tuple  `(v1,...,vi,...,vn)` and the result of the projection is the value `vi`.
+
+The empty tuple expression `()` is called the *unit value*.
 
 [[exp-option]]
 === Option expressions
@@ -1332,6 +1338,7 @@ Matching continues by matching `v1` against `<pat1>`.
 If pattern matching succeeds with some bindings, then evaluation returns the result of `exp` in the environment of the function value (not shown) extended with those bindings.
 Otherwise, some pattern match has failed and the call results in `trap`.
 
+(NB: the exhaustiveness side condition on `shared` function expressions ensures that argument pattern matching cannot fail (see <<exp-func>>).)
 
 [[exp-func]]
 === Functions
@@ -1346,8 +1353,9 @@ assumption that `X0 <: T0, ..., Xn <: Tn`:
 * if the function is `shared` then `<pat>` and `<pat1>` must be exhaustive;
 * expression `<exp>` has type return type `U2` under the assumption that `<pat1>` has type `U1`.
 
-`<shared>? func <typ-params>? <pat> (: <typ>)? =? <exp>` evaluates to a function
-value (a.k.a. closure), denoted `<shared>? func <typ-params>? <pat> = <exp>`, that stores the code of the function together with the bindings from the current evaluation environment (not shown) needed to evaluate calls to the function value.
+`<shared-pat>? func <typ-params>? <pat1> (: <typ>)? =? <exp>` evaluates to a function
+value (a.k.a. closure), denoted `<shared-pat>? func <typ-params>? <pat1> = <exp>`, that stores the code of the function
+together with the bindings from the current evaluation environment (not shown) needed to evaluate calls to the function value.
 
 Note that a `<shared-pat>` function may itself be `shared <pat>` or `shared query <pat>`:
 
@@ -1651,7 +1659,7 @@ The debug expression `debug <exp>` has type `()` provided the expression `<exp>`
 
 When the program is compiled or interpreted with (default) flag `--debug`, evaluating the expression `debug <exp>` proceeds by evaluating `<exp>`, returning the result of `<exp>`.
 
-When the program is compiled or interpreted with flag `--release`, evaluating the expression `debug <exp>` immediately returns the unit value '()'.
+When the program is compiled or interpreted with flag `--release`, evaluating the expression `debug <exp>` immediately returns the unit value `()`.
 The code for `<exp>` is never executed, nor is its code included in the compiled binary.
 
 [[exp-paren]]

@@ -1,6 +1,7 @@
 = Language manual
 ////
-* [X] Categorize primitives and operations as arithmetic (A), logical (L), bitwise (B) and relational (R) and use these categories to concisely present categorized operators (unop, binop, relop, a(ssigning)op) etc.
+* targetting release 0.5.4
+* [X] Categorise primitives and operations as arithmetic (A), logical (L), bitwise (B) and relational (R) and use these categories to concisely present categorized operators (unop, binop, relop, a(ssigning)op) etc.
 * [ ] Various inline TBCs and TBRs and TODOs
 * [ ] Typing of patterns
 * [X] Variants
@@ -17,12 +18,12 @@
 * [ ] Platform changes: remove async expressions (and perhaps types); restrict await to shared calls.
 * [X] Queries
 * [X] Remove Shared type
-* [ ] Explain dot keys, dot vals and iterators
+* [X] Explain dot keys, dot vals and iterators
 * [X] Debug expressions
 * [ ] Document punning in type record patterns: https://github.com/dfinity-lab/motoko/pull/964
 ////
 
-This section serves as a technical reference for the previous chapters and has specific technical information for readers with specific interests. 
+This section serves as a technical reference for the previous chapters and has specific technical information for readers with specific interests.
 For example, this section provides technical details of interest to the following audiences:
 
   - Authors providing the higher-level documentation about the {proglang} programming language.
@@ -77,8 +78,8 @@ type var while
 === Programs
 
 ```bnf
-<prog> ::=
- <dec>;*
+<prog> ::=  programs
+  <dec>;*
 
 ```
 
@@ -94,18 +95,24 @@ The syntax of a _declaration_ is as follows:
   let <pat> = <exp>                                                        immutable
   var <id> (: <typ>)? = <exp>                                              mutable
   <sort> <id>? =? { <dec-field>;* }                                        object
-  <shared>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>             function
+  <shared-pat>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>         function
   type <id> <typ-params>? = <typ>                                          type
   <sort>? class <id> <typ-params>? <pat> (: <typ>)? =? { <exp-field>;* }   class
-
-<shared> ::=
-  shared query?
 ```
+
+```bnf
+<shared-pat> ::=                  shared function qualifer with call-context pattern
+  shared query? <pat>?
+```
+
+For `<shared-pat>`, an absent `<pat>?` is shorthand for the wildcard pattern `_`.
+
 
 ```bnf
 <dec-field> ::=                                object declaration fields
   (public|private)? <dec>                        field
 ```
+
 
 [[syntax-ids]]
 === Identifiers
@@ -135,13 +142,13 @@ The syntax of an _expression_ is as follows:
   ? <exp>                                        option injection
   { <exp-field>;* }                              object
   # id <exp>?                                    variant injection
-  <exp> . <id>                                   object projection
+  <exp> . <id>                                   object projection/member access
   <exp> := <exp>                                 assignment
   <unop>= <exp>                                  unary update
   <exp> <binop>= <exp>                           binary update
   [ var? <exp>,* ]                               array
   <exp> [ <exp> ]                                array indexing
-  <shared>? func <func_exp>                      function expression
+  <shared-pat>? func <func_exp>                  function expression
   <exp> <typ-args>? <exp>                        function call
   { <dec>;* }                                    block
   not <exp>                                      negation
@@ -428,6 +435,9 @@ Type expressions are used to specify the types of arguments, constraints (a.k.a 
 
 <sort> ::= (actor | module | object)
 
+<shared> ::=                                 shared function type qualifier
+  shared query?
+
 <path> ::=                                   paths
   <id>                                         type identifier
   <path> . <id>                                projection
@@ -446,7 +456,9 @@ The category of a type determines the operators (unary, binary, relational and i
 |===
 | Identifier | Category | Description
 
-| `Bool` | L, R | boolean values `true` and `false` and logical operators
+| `Bool` | L, R | Boolean values `true` and `false` and logical operators
+| `Char` | R | Unicode characters
+| `Text` | T, R | Unicode strings of characters with concatenation `_ # _` and iteration
 | `Int`  | A, R | signed integer values with arithmetic (unbounded)
 | `Int8`  | A, R | signed 8-bit integer values with checked arithmetic
 | `Int16`  | A, R | signed 16-bit integer values with checked arithmetic
@@ -461,8 +473,8 @@ The category of a type determines the operators (unary, binary, relational and i
 | `Word16` | A, B, R | unsigned 16-bit integers with bitwise operations
 | `Word32` | A, B, R | unsigned 32-bit integers with bitwise operations
 | `Word64` | A, B, R | unsigned 64-bit integers with bitwise operations
-| `Char` | R | Unicode characters
-| `Text` | T, R | Unicode strings of characters with concatenation `_ # _`
+| `Blob` | R | Binary blobs with iteration
+| `Principal` | R | Principals
 | `Error` | | (opaque) error values
 |===
 
@@ -486,10 +498,11 @@ converted into a text of length 1.
 === Type `Text`
 
 The type `Text` of categories T and R (Text, Relational) represents sequences of Unicode characters (i.e. strings).
-Operations on text values include concatenation (`_ # _`) and sequential iteration over characters via `for (c in _) ... c ...`.
-The `textLength` function returns the number of characters in a `Text` value.
+Function `t.len` returns the number of characters in `Text` value `t`.
+Operations on text values include concatenation (`_ # _`) and sequential iteration over characters via `t.chars` as in `for (c : Char in t.chars()) { ... c ... }`.
 
 // Comparison TODO.
+
 
 [[types-int-and-nat]]
 === Type `Int` and `Nat`
@@ -547,6 +560,23 @@ other arithmetic types, and their literals need type annotation, e.g.
 `(-42 : Word16)`. For negative literals the two's-complement
 representation is applied.
 
+[[type-Blob]]
+=== Type `Blob`
+
+The type `Blob` of category R (Relational) represents binary blobs or sequences of bytes.
+Function `b.size` returns the number of characters in `Blob` value `b`.
+Operations on blob values include sequential iteration over bytes via function `b.bytes` as in
+`for (w : Word8 in b.bytes()) { ... w ... }`.
+
+[[type-Principal]]
+=== Type `Principal`
+
+The type `Principal` of category R (Relational) represents opaque
+principals such as canisters and users that can, for example, be used to identify callers of
+shared functions and used for simple authentication. Although opaque, principals may be converted to binary `Blob`s for more efficient hashing and other applications (see module `PrincipalId` from the standard library).
+
+// TODO: update PrincipalId to Principal for >= 0.5.5
+
 [[error-type]]
 === Error type
 
@@ -578,7 +608,7 @@ This prevents programmatic forgery of system errors.
 === Constructed types
 
 `<path> <typ-args>?` is the application of a type identifier or path, either built-in (i.e. `Int`) or user defined, to zero or more type *arguments*.
-The type arguments must satisfy the bounds, if any, expected by the type constructor's type parameters (see below).
+The type arguments must satisfy the bounds, if any, expected by the type constructor's type parameters (see <<wf-types>>).
 
 Though typically a type identifier, more generally,
 `<path>` may be a `.`-separated sequence of actor, object or module identifiers ending in an identifier accessing a type component
@@ -632,7 +662,7 @@ Both `<typ1>` and `<typ2>` may reference type parameters declared in `<typ-param
 
 If `<typ1>` or `<typ2>` (or both) is a tuple type, then the length of that tuple type determines the argument or result arity of the function type.
 
-The optional `<shared>` qualifier specifies whether the function value is shared, which further constrains the form of `<typ-params>`, `<typ1>` and `<typ2>` (see *Sharability* below).
+The optional `<shared>` qualifier specifies whether the function value is shared, which further constrains the form of `<typ-params>`, `<typ1>` and `<typ2>` (see <<sharability>> below).
 
 (Note that a `<shared>` function may be itself be `shared` or `shared query`, determining the persistence of its state changes.)
 
@@ -649,6 +679,8 @@ Promise types typically appear as the result type of a `shared` function that pr
 `( ((<id> :)? <typ>),* )` specifies the type of a tuple with zero or more ordered components.
 
 The optional identifier `<id>`, naming its components, is for documentation purposes only and cannot be used for component access. In particular, tuple types that differ only in the names of components are equivalent.
+
+The empty tuple type `()` is called the *unit type*.
 
 [[any-type]]
 === Any type
@@ -743,7 +775,11 @@ All type parameters declared in a vector are in scope within its bounds.
 ```
 Type constructors and functions may take type arguments.
 
-The number of type arguments must agree with the number of declared type parameters of the function.
+The number of type arguments must agree with the number of declared type parameters of the type constructor.
+
+For a function, the number of type arguments, when provided,
+must agree with the number of declared type parameters of the function's type.
+Note that type arguments in function applications can typically be omitted and inferred by the compiler.
 
 Given a vector of type arguments instantiating a vector of type parameters,
 each type argument must satisfy the instantiated bounds of the corresponding
@@ -871,7 +907,7 @@ An identifier bound by a `private` declaration is excluded form the type of the 
 === Sequence of Declarations
 
 A sequence of declarations `<dec>;*` occurring in a block, a program or the `exp-field;*` sequence of an object declaration has type `T`
-provided
+provided:
 
 * `<dec>;*` is empty and `T == ()`; or
 * `<dec>;*` is non-empty and:
@@ -928,6 +964,8 @@ For integer literals only, the optional `<unop>` determines the sign of the valu
 The tuple pattern `( <pat>,* )` matches a n-tuple value against an n-tuple of patterns (both the tuple and pattern must have the same number of items).
 The set of identifiers bound by each component of the tuple pattern must be distinct.
 
+The empty tuple pattern `()` is called the *unit pattern*.
+
 Pattern matching fails if one of the patterns fails to match the corresponding item of the tuple value.
 Pattern matching succeeds if every pattern matches the corresponding component of the tuple value.
 The binding returned by a successful match is the disjoint union of the bindings returned by the component matches.
@@ -948,7 +986,7 @@ The `<sort>` of the matched object type must be determined by an enclosing type 
 [[pat-variant]]
 === Variant pattern
 
-The variant pattern `# <id> <pat>?` matches a variant value (of the form `# <id'> v`) against a variant pattern. An absent `<pat>?` is shorthand for the unit pattern `()`.
+The variant pattern `# <id> <pat>?` matches a variant value (of the form `# <id'> v`) against a variant pattern. An absent `<pat>?` is shorthand for the unit pattern (`()`).
 Pattern matching fails if the tag `<id'>` of the value is distinct from the `<id>` of the pattern (i.e. `<id>` <> `<id'>`); or the tags are equal but the value `v` does not match the pattern `<pat>?`.
 Pattern matching succeeds if the tag of the value is `<id>` (i.e. `<id'>` = `<id>`) and the value `v` matches the pattern `<pat>?`.
 The binding returned by a successful match is just the binding returned by the match of `v` against `<pat>?`.
@@ -1029,7 +1067,7 @@ The declaration `var <id>` has type `()` provided:
 * `<exp>` has type `T`; and
 * If the annotation `(:<typ>)?` is present, then `T == <typ>`.
 
-Within the scope of the declaration, `<id>` has type `var T` (see Assignment).
+Within the scope of the declaration, `<id>` has type `var T` (see <<exp-assn>>).
 
 Evaluation of `var <id> (: <typ>)? = <exp>` proceeds by evaluating `<exp>` to a result `r`. If `r` is `trap`, the declaration evaluates to `trap`. Otherwise, the
 `r` is some value `v` that determines the initial value of mutable variable `<id>`.
@@ -1088,15 +1126,16 @@ If `<id>?` is present, the declaration binds `<id>` to `v`. Otherwise, it produc
 [[decl-func]]
 === Function Declaration
 
-The function declaration  `<shared>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>` is syntactic sugar for
-a `let` declaration of a function expression. That is:
+The function declaration  `<shared-pat>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>` is syntactic sugar for
+a named `let` or anonymous declaration of a function expression. That is:
 
 ```bnf
-<shared>? func <id> <typ-params>? <pat> (: <typ>)? =? <exp> :=
-  let <id> = <shared>? func <id> <typ-params>? <pat> (: <typ>)? =? <exp>
+<shared-pat>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp> :=
+  let <id> = <shared-pat>? func <typ-params>? <pat> (: <typ>)? =? <exp>    (when <id>? present)
+
+  <shared-pat>? func <typ-params>? <pat> (: <typ>)? =? <exp>               (when <id>? absent)  
 ```
 
-where `<pat>` is `<id>` when `<id>?` is present and `<pat>` is `_` otherwise.
 
 Named function definitions are recursive.
 
@@ -1138,7 +1177,7 @@ The unary operator `<unop> <exp>` has type `T` provided:
 * The category of `<unop>` is a category of `T`.
 
 The unary operator expression `<unop> <exp>` evaluates `exp` to a result. If the result is a value `v`, it returns the result of `<unop> v`.
-If the result is a trap, it, too, traps.
+If the result is `trap`, the entire expression results in `trap`.
 
 [[binary-operators]]
 === Binary operators
@@ -1172,7 +1211,7 @@ Otherwise, `exp2` is evaluated to a result `r2`. If `r2` is `trap`, the expressi
 Otherwise, `r1`  and `r2` are values `v1` and `v2` and the expression returns
 the Boolean result of `v1 <relop> v2`.
 
-[[tuples]]
+[[exp-tuple]]
 === Tuples
 
 Tuple expression `(<exp1>, ..., <expn>)` has tuple type `(T1, ..., Tn)`, provided
@@ -1184,6 +1223,8 @@ The tuple projection `<exp> . <nat>` has type `Ti` provided `<exp>` has tuple ty
 `(T1, ..., Ti, ..., Tn)`, `<nat>` == `i` and `1 \<= i \<= n`.
 
 The projection `<exp> . <nat>` evaluates `exp` to a result `r`. If `r` is `trap`, then  the result is `trap`. Otherwise, `r` must be a tuple  `(v1,...,vi,...,vn)` and the result of the projection is the value `vi`.
+
+The empty tuple expression `()` is called the *unit value*.
 
 [[exp-option]]
 === Option expressions
@@ -1221,9 +1262,8 @@ Such an object literal is equivalent to the object declaration `object { <dec-fi
 The object projection `<exp> . <id>` has type `var? T` provided `<exp>` has object type
 `sort { var1? <id1> : T1, ..., var? <id> : T, ..., var? <idn> : Tn }` for some sort `sort`.
 
-The object projection `<exp> . <id>` evaluates `exp` to a result `r`. If `r` is `trap`,then the result is `trap`. Otherwise, `r` must be an o
-bject value  `{ <id1> = v1,..., id = v, ..., <idn> = vn }` and the result of the projection is the value `v` of field `id`.
-
+The object projection `<exp> . <id>` evaluates `exp` to a result `r`. If `r` is `trap`, then the result is `trap`. Otherwise, `r` must be an
+object value  `{ <id1> = v1,..., id = v, ..., <idn> = vn }` and the result of the projection is the value `v` of field `id`.
 
 If `var` is absent from `var? T` then the value `v` is the constant value of immutable field `<id>`, otherwise:
 
@@ -1231,6 +1271,35 @@ If `var` is absent from `var? T` then the value `v` is the constant value of imm
   `v` is the mutable location of the field `<id>`.
 * otherwise,
   `v` (of type `T`) is the value currently stored in mutable field `<id>`.
+
+[[exp-dot]]
+=== Special Member access
+
+The iterator access `<exp> . <id>` has type `T` provided `<exp>` has type
+`U`, and `U`,`<id>` and `T` are related by a row of the following table:
+
+|===
+| U | <id> | T  | Description
+| `Text` | `len` | `Nat` | length in characters
+| `Text` | `chars` | `{ next: () -> Char? }` | character iterator, first to last
+| | | |
+| `Blob` | `size` | `Nat` | size in bytes
+| `Blob` | `bytes` | `{ next: () -> Word8? }` | byte iterator, first to last
+| | | |
+| `[var? T]` | `get` | `Nat -> T` | indexed read function
+| `[var? T]` | `keys` | `{ next: () -> Nat? }` | index iterator, by ascending index
+| `[var? T]` | `vals` | `{ next: () -> T? }` | value iterator, by ascending index
+| `[var T]` | `set` | `(Nat, T) -> ()` | indexed write function (mutable arrays only)
+|===
+
+The projection `<exp> . <id>` evaluates `exp` to a result `r`.
+If `r` is `trap`, then the result is `trap`.
+Otherwise, `r` must be a value of type `U` and the result of the projection is a value of type `T`
+whose semantics is given by the Description column of the previous table.
+
+Note: the `chars`, `bytes`, `keys` and `vals` members
+produce stateful *iterator objects* than can be
+consumed by `for` expressions (see <<exp-for>>).
 
 [[exp-assn]]
 === Assignment
@@ -1303,9 +1372,10 @@ Otherwise,
 [[exp-call]]
 === Function Calls
 
-The function call expression `<exp1> <T0,...,Tn>? <exp2>` has type `T` provided
+The function call expression `<exp1> <T0,...,Tn>? <exp2>` has type `T` provided:
 
 * the function `<exp1>` has function type `<shared>? < X0 <: V0, ..., Xn <: Vn > U1-> U2`; and
+* if `<T0,...,Tn>?` is absent but n > 0 then there exists minimal `T0, ..., Tn` (inferred by the compiler) such that:
 * each type argument satisfies the corresponding type parameter's bounds:
   for each `1 \<= i \<= n`, `Ti <: [T0/X0, ..., Tn/Xn]Vi`; and
 * the argument `<exp2>` has type `[T0/X0, ..., Tn/Xn]U1`, and
@@ -1315,27 +1385,41 @@ The call expression `<exp1> <T0,...,Tn>? <exp2>` evaluates `exp1` to a result `r
 
 Otherwise, `exp2` is evaluated to a result `r2`. If `r2` is `trap`, the expression results in `trap`.
 
-Otherwise, `r1` is a function value, `<shared>? func <X0 <: V0, ..., n <: Vn> pat { exp }` (for some implicit environment), and `r2` is a value `v2`.
-Evaluation continues by matching `v1` against `pat`.
-If matching succeeds with some bindings, evaluation proceeds with `exp` using the environment of the function value (not shown) extended with those bindings.
-Otherwise, the pattern match has failed and the call results in `trap`.
+Otherwise, `r1` is a function value, `<shared-pat>? func <X0 <: V0, ..., n <: Vn> <pat1> { <exp> }` (for some implicit environment), and `r2` is a value `v2`.
+If `<shared-pat>` is present and of the form `shared query? <pat>` then evaluation continues by matching the record value `{caller = p}` against `<pat>`, where `p`
+is the `Principal` invoking the function (typically a user or canister).
+Matching continues by matching `v1` against `<pat1>`.
+If pattern matching succeeds with some bindings, then evaluation returns the result of `exp` in the environment of the function value (not shown) extended with those bindings.
+Otherwise, some pattern match has failed and the call results in `trap`.
+
+Note: the exhaustiveness side condition on `shared` function expressions ensures that argument pattern matching cannot fail (see <<exp-func>>).
 
 [[exp-func]]
 === Functions
 
-The function expression `<shared>? func < X0 <: T1, ..., Xn <: Tn > <pat> (: T2)? =?  <exp>` has type `<shared>? < X0 <: T0, ..., Xn <: Tn > T1-> T2` if, under the
-assumption that `X0 <: T1, ..., Xn <: Tn`:
+The function expression `<shared-pat>? func < X0 <: T0, ..., Xn <: Tn > <pat1> (: U2)? =?  <exp>` has type `<shared>? < X0 <: T0, ..., Xn <: Tn > U1-> U2` if, under the
+assumption that `X0 <: T0, ..., Xn <: Tn`:
 
-* all the types in `T1, ..., Tn` and `T` are well-formed and well-constrained.
-* pattern `pat` has type `T1`;
-* expression `<exp>` has type return type `T2` under the assumption that `pat` has type `T1`.
+* `<shared-pat>?` is of the form `shared query? <pat>` if and only if `<shared>?` is `shared query?`;
+* all the types in `T0, ..., Tn` and `U2` are well-formed and well-constrained;
+* pattern `<pat>` has *context type* `{ caller : Principal }`;
+* pattern `<pat1>` has type `U1`;
+* if the function is `shared` then `<pat>` and `<pat1>` must be exhaustive;
+* expression `<exp>` has type return type `U2` under the assumption that `<pat1>` has type `U1`.
 
-`<shared>? func <typ-params>? <pat> (: <typ>)? =? <exp>` evaluates to a function
-value (a.k.a. closure), denoted `<shared>? func <typ-params>? <pat> = <exp>`, that stores the code of the function together with the bindings from the current evaluation environment (not shown) needed to evaluate calls to the function value.
+`<shared-pat>? func <typ-params>? <pat1> (: <typ>)? =? <exp>` evaluates to a function
+value (a.k.a. closure), denoted `<shared-pat>? func <typ-params>? <pat1> = <exp>`, that stores the code of the function
+together with the bindings from the current evaluation environment (not shown) needed to evaluate calls to the function value.
 
-Note that a `<shared>` function may be itself be `shared` or `shared query`:
-* A `shared` function may be invoked from a remote caller. Unless causing a trap, the effects on the callee persist beyond completion of the call.
-* A `shared query` function may be also be invoked from a remote caller, but the effects on the callee are transient and discarded once the call has completed with a result (whether a value or error).
+Note that a `<shared-pat>` function may itself be `shared <pat>` or `shared query <pat>`:
+
+* A `shared <pat>` function may be invoked from a remote caller. Unless causing a trap, the effects on the callee persist beyond completion of the call.
+* A `shared query <pat>` function may be also be invoked from a remote caller, but the effects on the callee are transient and discarded once the call has completed with a result (whether a value or error).
+
+In either case, `<pat>` provides access to a context value identifying the *caller* of the shared (query) function.
+
+Note: the context type is a record to allow extension with further fields in future releases.
+
 
 [[exp-block]]
 === Blocks
@@ -1348,7 +1432,7 @@ The type `T` must be well-formed in the enclosing environment of the block. In p
 
 The type system ensures that a value identifier cannot be evaluated before its declaration has been evaluated, precluding run-time errors at the cost of rejection some well-behaved programs.
 
-Identifiers whose types cannot be inferred from their declaration, but are used in a forward reference, may require an additional type annotation (see Annotated patterns) to satisfy the type checker.
+Identifiers whose types cannot be inferred from their declaration, but are used in a forward reference, may require an additional type annotation (see <<pat-anno>>) to satisfy the type checker.
 
 The block expression `{ <dec>;* }` evaluates each declaration in `<dec>;*` in sequence (program order). The first declaration in `<dec>;*` that results in a trap cause the block to result in `trap`, without evaluating subsequent declarations.
 
@@ -1454,9 +1538,9 @@ Otherwise, `r2` is false and the result is `()`.
 [[exp-for]]
 === For
 
-The for expression `for ( <pat> in <exp1> ) <exp2>` has type `()` provided:
+The iterator expression `for ( <pat> in <exp1> ) <exp2>` has type `()` provided:
 
-* `<exp1>` has type `{ next : () -> ?T; }`;
+* `<exp1>` has type `{ next : () -> ?T }`;
 * pattern `<pat>` has type `T`; and,
 * expression `<exp2>` has type `()` (in the environment extended with `<pat>`'s bindings).
 
@@ -1479,8 +1563,7 @@ where `x` is a fresh identifier.
 
 In particular, the `for` loops will trap if evaluation of `<exp1>` traps; as soon as some value of `x.next()` traps or the value of `x.next()` does not match pattern `<pat>`.
 
-
-// TBR: do we want this semantics? We could, instead, skip values that don't match `<pat>`?_
+Note: although general purpose, for expressions may, in particular, be used to iterate over iterator objects produced by special member access (see <<exp-dot>>).
 
 [[exp-label]]
 === Label
@@ -1524,7 +1607,7 @@ If `r` is a value `v`, the evaluation abandons the current computation up to dyn
 === Continue
 
 The expression `continue <id>` is equivalent to `break <id_continue>`, where
- `<id_continue>` is implicitly declared around the bodies of `<id>`-labelled looping constructs (see Section <<exp-labeled-loops>>).
+ `<id_continue>` is implicitly declared around the bodies of `<id>`-labelled looping constructs (see <<exp-labeled-loops>>).
 
 [[exp-return]]
 === Return
@@ -1600,12 +1683,12 @@ Note: because the `Error` type is opaque, the pattern match cannot fail (typing 
 
 The assert expression `assert <exp>` has type `()` provided `exp` has type `Bool`.
 
-Expression `assert <exp>` evaluates `<exp>` to a result `r`. If `r` is `trap` evaluation returns `trap`. Otherwise `r` is a boolean value `v`. The result of `assert <exp>` is:
+Expression `assert <exp>` evaluates `<exp>` to a result `r`. If `r` is `trap` evaluation returns `trap`. Otherwise `r` is a Boolean value `v`. The result of `assert <exp>` is:
 
 * the value `()`, when `v` is `true`; or
 * `trap`, when `v` is `false`.
 
-[[type-anno]]
+[[exp-anno]]
 === Type Annotation
 
 The type annotation expression `<exp> : <typ>` has type `T` provided:
@@ -1634,7 +1717,7 @@ The debug expression `debug <exp>` has type `()` provided the expression `<exp>`
 
 When the program is compiled or interpreted with (default) flag `--debug`, evaluating the expression `debug <exp>` proceeds by evaluating `<exp>`, returning the result of `<exp>`.
 
-When the program is compiled or interpreted with flag `--release`, evaluating the expression `debug <exp>` immediately returns the unit value '()'.
+When the program is compiled or interpreted with flag `--release`, evaluating the expression `debug <exp>` immediately returns the unit value `()`.
 The code for `<exp>` is never executed, nor is its code included in the compiled binary.
 
 [[exp-paren]]

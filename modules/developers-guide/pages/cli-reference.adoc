@@ -440,7 +440,7 @@ This command displays the path to the cache used by the `+dfx+` version you are 
 
 [source,bash]
 ----
-/Users/pubs/.cache/dfinity/versions/0.5.4x
+/Users/pubs/.cache/dfinity/versions/0.5.4
 ----
 
 == dfx canister

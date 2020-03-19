@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 Currently, you can download the {sdk-long-name} directly from within a terminal shell on your local computer.
 With this installation option, you can be logged on as any user and no additional software is required.
 
-== Install directly from a terminal
+== Install the latest directly from a terminal
 
 To download and install from a terminal shell:
 
@@ -22,6 +22,26 @@ To download and install from a terminal shell:
 ----
 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
+
+== Install a specific version from a terminal
+
+If you want to install a specific version, for example, to test against a previous version, you can modify the installation command to include a version.
+
+To download and install a specific version from a terminal shell:
+
+. Open a terminal shell on your local computer.
+
+. Run the following `+curl+` command:
++
+[source,bash]
+----
+DFX_VERSION=0.5.2 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
+
+== Next steps
+
+For information about the next steps to take, see link:../developers-guide/getting-started{outfilesuffix}[Getting started]in the link:../developers-guide/dev-index{outfilesuffix}[_Developer’s Guide_].
+
 ////
 == Download a packaged release
 

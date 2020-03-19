@@ -37,10 +37,9 @@ The {release} release includes the following new features and capabilities:
 
 - The Candid web interface now has a "Lucky" button that can generate random values when the input field is empty.
 - Various updates to JS userlib, including:
-+
--- Unit is renamed to Null
--- Support Principal type
--- Support service and function references
+* Unit is renamed to Null
+* Support Principal type
+* Support service and function references
 - Motoko now supports type argument inference for automatic instantiation of type-parametric functions.
 - Native support for Principal type in Candid (IDL).
 - Improvements to language server support.

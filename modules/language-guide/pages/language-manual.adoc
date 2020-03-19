@@ -17,7 +17,7 @@
 * [ ] Platform changes: remove async expressions (and perhaps types); restrict await to shared calls.
 * [X] Queries
 * [X] Remove Shared type
-* [ ] Explain dot keys, dot vals and iterators
+* [X] Explain dot keys, dot vals and iterators
 * [X] Debug expressions
 * [ ] Document punning in type record patterns: https://github.com/dfinity-lab/motoko/pull/964
 ////
@@ -140,7 +140,7 @@ The syntax of an _expression_ is as follows:
   ? <exp>                                        option injection
   { <exp-field>;* }                              object
   # id <exp>?                                    variant injection
-  <exp> . <id>                                   object projection
+  <exp> . <id>                                   object projection/member access
   <exp> := <exp>                                 assignment
   <unop>= <exp>                                  unary update
   <exp> <binop>= <exp>                           binary update
@@ -1236,7 +1236,7 @@ Such an object literal is equivalent to the object declaration `object { <dec-fi
 The object projection `<exp> . <id>` has type `var? T` provided `<exp>` has object type
 `sort { var1? <id1> : T1, ..., var? <id> : T, ..., var? <idn> : Tn }` for some sort `sort`.
 
-The object projection `<exp> . <id>` evaluates `exp` to a result `r`. If `r` is `trap`,then the result is `trap`. Otherwise, `r` must be an
+The object projection `<exp> . <id>` evaluates `exp` to a result `r`. If `r` is `trap`, then the result is `trap`. Otherwise, `r` must be an
 object value  `{ <id1> = v1,..., id = v, ..., <idn> = vn }` and the result of the projection is the value `v` of field `id`.
 
 If `var` is absent from `var? T` then the value `v` is the constant value of immutable field `<id>`, otherwise:
@@ -1245,6 +1245,33 @@ If `var` is absent from `var? T` then the value `v` is the constant value of imm
   `v` is the mutable location of the field `<id>`.
 * otherwise,
   `v` (of type `T`) is the value currently stored in mutable field `<id>`.
+
+[[exp-dot]]
+=== Special Member access
+
+The iterator access `<exp> . <id>` has type `T` provided `<exp>` has type
+`U`, and `U`,`<id>` and `T` are related by a row of the following table:
+
+|===
+| U | <id> | T  | Description
+| `Text` | `len` | `Nat` | length in characters
+| `Text` | `chars` | `{ next: () -> Char? }` | character iterator, first to last
+| | | |
+| `Blob` | `size` | `Nat` | length in bytes
+| `Blob` | `bytes` | `{ next: () -> Word8? }` | byte iterator, first to last
+| | | |
+| `[var? T]` | `get` | `Nat -> [mut? T]` | indexed read
+| `[var T]` | `set` | `(Nat, T) -> ()` | indexed write
+| `[var? T]` | `keys` | `{ next: () -> Nat? }` | index iterator, in ascending order on Nat
+| `[var? T]` | `vals` | `{ next: () -> T? }` | value iterator, in ascending index order.
+|===
+
+The projection `<exp> . <id>` evaluates `exp` to a result `r`. If `r` is `trap`, then the result is `trap`. Otherwise, `r` must be an
+a value of type `U` and the result of the projection is a value of type `T`
+whose semantics is given by the description in the table.
+
+(NB: The `chars`, `bytes, `keys` and `vals` produce stateful *iterator objects* than can be
+consumed by `for` expressions (see <<exp-for>>).
 
 [[exp-assn]]
 === Assignment
@@ -1478,9 +1505,9 @@ Otherwise, `r2` is false and the result is `()`.
 [[exp-for]]
 === For
 
-The for expression `for ( <pat> in <exp1> ) <exp2>` has type `()` provided:
+The iterator expression `for ( <pat> in <exp1> ) <exp2>` has type `()` provided:
 
-* `<exp1>` has type `{ next : () -> ?T; }`;
+* `<exp1>` has type `{ next : () -> ?T }`;
 * pattern `<pat>` has type `T`; and,
 * expression `<exp2>` has type `()` (in the environment extended with `<pat>`'s bindings).
 
@@ -1503,8 +1530,7 @@ where `x` is a fresh identifier.
 
 In particular, the `for` loops will trap if evaluation of `<exp1>` traps; as soon as some value of `x.next()` traps or the value of `x.next()` does not match pattern `<pat>`.
 
-
-// TBR: do we want this semantics? We could, instead, skip values that don't match `<pat>`?_
+(NB: Although general purpose, for expressions may, in particular, be used to iterate over iterator objects produced by special member access (see <<exp-dot>>).
 
 [[exp-label]]
 === Label

@@ -1,6 +1,6 @@
 = Language manual
 ////
-* [X] Categorize primitives and operations as arithmetic (A), logical (L), bitwise (B) and relational (R) and use these categories to concisely present categorized operators (unop, binop, relop, a(ssigning)op) etc.
+* [X] Categorise primitives and operations as arithmetic (A), logical (L), bitwise (B) and relational (R) and use these categories to concisely present categorized operators (unop, binop, relop, a(ssigning)op) etc.
 * [ ] Various inline TBCs and TBRs and TODOs
 * [ ] Typing of patterns
 * [X] Variants
@@ -100,7 +100,7 @@ The syntax of a _declaration_ is as follows:
 ```
 
 ```bnf
-<shared-pat> ::=        function sort and caller pattern
+<shared-pat> ::=                  shared function qualifer with call-context pattern
   shared query? <pat>?
 ```
 
@@ -434,7 +434,7 @@ Type expressions are used to specify the types of arguments, constraints (a.k.a 
 
 <sort> ::= (actor | module | object)
 
-<shared> ::=
+<shared> ::=                                 shared function type qualifier
   shared query?
 
 <path> ::=                                   paths
@@ -455,7 +455,7 @@ The category of a type determines the operators (unary, binary, relational and i
 |===
 | Identifier | Category | Description
 
-| `Bool` | L, R | boolean values `true` and `false` and logical operators
+| `Bool` | L, R | Boolean values `true` and `false` and logical operators
 | `Char` | R | Unicode characters
 | `Text` | T, R | Unicode strings of characters with concatenation `_ # _` and iteration
 | `Int`  | A, R | signed integer values with arithmetic (unbounded)
@@ -498,7 +498,7 @@ converted into a text of length 1.
 
 The type `Text` of categories T and R (Text, Relational) represents sequences of Unicode characters (i.e. strings).
 Function `t.len` returns the number of characters in `Text` value `t`.
-Operations on text values include concatenation (`_ # _`) and sequential iteration over characters via `t.chars` as in `for (c in t.chars()) { ... c ... }`.
+Operations on text values include concatenation (`_ # _`) and sequential iteration over characters via `t.chars` as in `for (c : Char in t.chars()) { ... c ... }`.
 
 // Comparison TODO.
 
@@ -565,7 +565,7 @@ representation is applied.
 The type `Blob` of category R (Relational) represents binary blobs or sequences of bytes.
 Function `b.size` returns the number of characters in `Blob` value `b`.
 Operations on blob values include sequential iteration over bytes via function `b.bytes` as in
-`for (w in b.bytes()) { ... w ... }`.
+`for (w : Word8 in b.bytes()) { ... w ... }`.
 
 [[type-Principal]]
 === Type `Principal`
@@ -659,7 +659,7 @@ Both `<typ1>` and `<typ2>` may reference type parameters declared in `<typ-param
 
 If `<typ1>` or `<typ2>` (or both) is a tuple type, then the length of that tuple type determines the argument or result arity of the function type.
 
-The optional `<shared>` qualifier specifies whether the function value is shared, which further constrains the form of `<typ-params>`, `<typ1>` and `<typ2>` (see *Sharability* below).
+The optional `<shared>` qualifier specifies whether the function value is shared, which further constrains the form of `<typ-params>`, `<typ1>` and `<typ2>` (see <<sharability>> below).
 
 (Note that a `<shared>` function may be itself be `shared` or `shared query`, determining the persistence of its state changes.)
 
@@ -772,7 +772,11 @@ All type parameters declared in a vector are in scope within its bounds.
 ```
 Type constructors and functions may take type arguments.
 
-The number of type arguments must agree with the number of declared type parameters of the function.
+The number of type arguments must agree with the number of declared type parameters of the type constructor.
+
+For a function, the number of type arguments, when provided,
+must agree with the number of declared type parameters of the function's type.
+Note that type arguments in function applications can typically be omitted and inferred by the compiler.
 
 Given a vector of type arguments instantiating a vector of type parameters,
 each type argument must satisfy the instantiated bounds of the corresponding
@@ -1395,7 +1399,7 @@ assumption that `X0 <: T0, ..., Xn <: Tn`:
 
 * `<shared-pat>?` is of the form `shared query? <pat>` if and only if `<shared>?` is `shared query?`;
 * all the types in `T0, ..., Tn` and `U2` are well-formed and well-constrained;
-* pattern `<pat>` has record type `{ caller : Principal }`;
+* pattern `<pat>` has *context type* `{ caller : Principal }`;
 * pattern `<pat1>` has type `U1`;
 * if the function is `shared` then `<pat>` and `<pat1>` must be exhaustive;
 * expression `<exp>` has type return type `U2` under the assumption that `<pat1>` has type `U1`.
@@ -1406,8 +1410,13 @@ together with the bindings from the current evaluation environment (not shown) n
 
 Note that a `<shared-pat>` function may itself be `shared <pat>` or `shared query <pat>`:
 
-* A `shared` function may be invoked from a remote caller. Unless causing a trap, the effects on the callee persist beyond completion of the call.
-* A `shared query` function may be also be invoked from a remote caller, but the effects on the callee are transient and discarded once the call has completed with a result (whether a value or error).
+* A `shared <pat>` function may be invoked from a remote caller. Unless causing a trap, the effects on the callee persist beyond completion of the call.
+* A `shared query <pat>` function may be also be invoked from a remote caller, but the effects on the callee are transient and discarded once the call has completed with a result (whether a value or error).
+
+In either case, `<pat>` provides access to a context value identifying the *caller* of the shared (query) function.
+
+Note: the context type is a record to allow extension with further fields in future releases.
+
 
 [[exp-block]]
 === Blocks
@@ -1671,7 +1680,7 @@ Note: because the `Error` type is opaque, the pattern match cannot fail (typing 
 
 The assert expression `assert <exp>` has type `()` provided `exp` has type `Bool`.
 
-Expression `assert <exp>` evaluates `<exp>` to a result `r`. If `r` is `trap` evaluation returns `trap`. Otherwise `r` is a boolean value `v`. The result of `assert <exp>` is:
+Expression `assert <exp>` evaluates `<exp>` to a result `r`. If `r` is `trap` evaluation returns `trap`. Otherwise `r` is a Boolean value `v`. The result of `assert <exp>` is:
 
 * the value `()`, when `v` is `true`; or
 * `trap`, when `v` is `false`.

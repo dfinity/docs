@@ -605,7 +605,7 @@ This prevents programmatic forgery of system errors.
 === Constructed types
 
 `<path> <typ-args>?` is the application of a type identifier or path, either built-in (i.e. `Int`) or user defined, to zero or more type *arguments*.
-The type arguments must satisfy the bounds, if any, expected by the type constructor's type parameters (see below).
+The type arguments must satisfy the bounds, if any, expected by the type constructor's type parameters (see <<wf-types>>).
 
 Though typically a type identifier, more generally,
 `<path>` may be a `.`-separated sequence of actor, object or module identifiers ending in an identifier accessing a type component
@@ -1064,7 +1064,7 @@ The declaration `var <id>` has type `()` provided:
 * `<exp>` has type `T`; and
 * If the annotation `(:<typ>)?` is present, then `T == <typ>`.
 
-Within the scope of the declaration, `<id>` has type `var T` (see Assignment).
+Within the scope of the declaration, `<id>` has type `var T` (see <<exp-assn>>).
 
 Evaluation of `var <id> (: <typ>)? = <exp>` proceeds by evaluating `<exp>` to a result `r`. If `r` is `trap`, the declaration evaluates to `trap`. Otherwise, the
 `r` is some value `v` that determines the initial value of mutable variable `<id>`.
@@ -1429,7 +1429,7 @@ The type `T` must be well-formed in the enclosing environment of the block. In p
 
 The type system ensures that a value identifier cannot be evaluated before its declaration has been evaluated, precluding run-time errors at the cost of rejection some well-behaved programs.
 
-Identifiers whose types cannot be inferred from their declaration, but are used in a forward reference, may require an additional type annotation (see Annotated patterns) to satisfy the type checker.
+Identifiers whose types cannot be inferred from their declaration, but are used in a forward reference, may require an additional type annotation (see <<pat-anno>>) to satisfy the type checker.
 
 The block expression `{ <dec>;* }` evaluates each declaration in `<dec>;*` in sequence (program order). The first declaration in `<dec>;*` that results in a trap cause the block to result in `trap`, without evaluating subsequent declarations.
 
@@ -1604,7 +1604,7 @@ If `r` is a value `v`, the evaluation abandons the current computation up to dyn
 === Continue
 
 The expression `continue <id>` is equivalent to `break <id_continue>`, where
- `<id_continue>` is implicitly declared around the bodies of `<id>`-labelled looping constructs (see Section <<exp-labeled-loops>>).
+ `<id_continue>` is implicitly declared around the bodies of `<id>`-labelled looping constructs (see <<exp-labeled-loops>>).
 
 [[exp-return]]
 === Return
@@ -1685,7 +1685,7 @@ Expression `assert <exp>` evaluates `<exp>` to a result `r`. If `r` is `trap` ev
 * the value `()`, when `v` is `true`; or
 * `trap`, when `v` is `false`.
 
-[[type-anno]]
+[[exp-anno]]
 === Type Annotation
 
 The type annotation expression `<exp> : <typ>` has type `T` provided:

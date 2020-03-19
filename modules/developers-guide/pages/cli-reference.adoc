@@ -1,5 +1,5 @@
 = Command-line reference
-February 2020 (Alpha)
+March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -30,10 +30,12 @@ dfx [subcommand] [flag]
 
 You can use the following optional flags with the `+dfx+` parent command or with any of the `+dfx+` subcommands.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
+|`+-q+``, `+--quiet+` |Suppresses informational messages.
+|`+-v+`, `+--verbose+` |Displays detailed information about operations.
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
@@ -56,9 +58,13 @@ Use the following subcommands to specify the operation you want to perform or to
 
 |`+help+` |Displays usage information for a specified subcommand.
 
-|`+start+` |Starts the local network client.
+|`+new+` |Creates a new project.
 
-|`+stop+` |Stops the local network client.
+|`+replica+` |Starts a local network replica process.
+
+|`+start+` |Starts the local network replica and a web server for the current project.
+
+|`+stop+` |Stops the local network replica.
 
 |`+upgrade+` |Upgrades the version of `+dfx+` installed on the local computer to the latest version available.
 |===
@@ -89,7 +95,7 @@ The bootstrap web server you specify is used to serve the front-end static asset
 
 === Basic usage
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx bootstrap [option] 
 ----
@@ -98,7 +104,7 @@ dfx bootstrap [option]
 
 You can use the following optional flags with the `+dfx bootstrap+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -109,7 +115,7 @@ You can use the following optional flags with the `+dfx bootstrap+` command.
 
 You can specify the following options for the `+dfx bootstrap+` command.
 
-[width="100%",cols="<36%,<64%",options="header",]
+[width="100%",cols="<36%,<64%",options="header"]
 |===
 |Option |Description
 |`+ip+` <ip_address> |Specifies the IP address that the bootstrap server listens on. 
@@ -170,7 +176,7 @@ The `+dfx build+` command looks for the source code to compile into a canister i
 
 === Basic usage
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx build [flag] 
 ----
@@ -179,7 +185,7 @@ dfx build [flag]
 
 You can use the following optional flags with the `+dfx build+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -205,11 +211,15 @@ If you specify a specific canister name, the name should match the setting you h
 You can use the `+dfx build+` command to build a canister from the source code in a specific directory. 
 For example, to build a canister named `+myCounter+` using the source code in the `+src/myCounter/main.mo+`, you would check that your source directory and file name matches the one specified in the `+dfx.json+` configuration file:
 
-[source,bash]
+[source,json]
 ----
-    canisters": {
-      "counter": {
-        "main": "src/counter/main.mo"
+{
+  "canisters": {
+    "myCounter": {
+      "main": "src/myCounter/main.mo"
+    }
+  }
+}
 ----
 
 To build a canister without front-end code, you would run the following command:
@@ -243,7 +253,7 @@ dfx cache [subcommand] [flag]
 
 You can use the following optional flags with the `+dfx cache+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -254,7 +264,7 @@ You can use the following optional flags with the `+dfx cache+` command.
 
 Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Command |Description
 |`+delete+` |Deletes the specified version of `+dfx+` from the local cache.
@@ -294,7 +304,7 @@ dfx cache delete [version] [flag]
 
 You can use the following optional flags with the `+dfx cache delete+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -305,7 +315,7 @@ You can use the following optional flags with the `+dfx cache delete+` command.
 
 You can specify the following argument for the `+dfx cache delete+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Command |Description
 |`+version+` |Specifies the version of `+dfx+` you to delete from the local cache.
@@ -314,11 +324,11 @@ You can specify the following argument for the `+dfx cache delete+` command.
 === Examples
 
 You can use the `+dfx cache delete+` command to permanently delete versions of `+dfx+`  that you no longer want to use. 
-For example, you can run the following command to delete `+dfx+` version `+0.4.7+`:
+For example, you can run the following command to delete `+dfx+` version `+0.5.2+`:
 
 [source,bash]
 ----
-dfx cache delete 0.4.7
+dfx cache delete 0.5.2
 ----
 
 == dfx cache install
@@ -336,7 +346,7 @@ dfx cache install [flag]
 
 You can use the following optional flags with the `+dfx cache install+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -347,7 +357,7 @@ You can use the following optional flags with the `+dfx cache install+` command.
 
 You can use the `+dfx cache install+` command to force the installation of `+dfx+` from the version in the cache.
 For example, you can run the following command to install `+dfx+`:
-
++
 [source,bash]
 ----
 dfx cache install
@@ -370,7 +380,7 @@ dfx cache list [flag]
 
 You can use the following optional flags with the `+dfx cache list+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -410,7 +420,7 @@ dfx cache show [flag]
 
 You can use the following optional flags with the `+dfx cache show+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -430,7 +440,7 @@ This command displays the path to the cache used by the `+dfx+` version you are 
 
 [source,bash]
 ----
-"/Users/pubs/.cache/dfinity/versions/0.5.2"
+/Users/pubs/.cache/dfinity/versions/0.5.4
 ----
 
 == dfx canister
@@ -448,7 +458,7 @@ dfx canister [subcommand] [flag]
 
 You can use the following optional flags with the `+dfx canister+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -459,7 +469,7 @@ You can use the following optional flags with the `+dfx canister+` command.
 
 Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Command |Description
 |`+call+` |Calls a specified method on a deployed canister.
@@ -488,7 +498,7 @@ Use the `+dfx canister call+` command to call a specified method on a deployed c
 
 === Basic usage
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call [option] _canister_name_ _method_name_ [argument] [flag] 
 ----
@@ -497,7 +507,7 @@ dfx canister call [option] _canister_name_ _method_name_ [argument] [flag]
 
 You can use the following optional flags with the `+dfx canister call+` command.
 
-[width="100%",cols="<31%,<69%",options="header",]
+[width="100%",cols="<31%,<69%",options="header"]
 |===
 |Flag |Description
 |`+–async+` |Enables you to continue without waiting for the result of the call to be returned by polling the client.
@@ -518,7 +528,7 @@ By default, canister calls use the update method.
 
 You can use the following options with the `+dfx canister call+` command.
 
-[width="100%",cols="<31%,<69%",options="header",]
+[width="100%",cols="<31%,<69%",options="header"]
 |===
 |Option |Description
 |`+--client client_address+` |Specifies the client host name or IP address and port to connect to.
@@ -608,31 +618,31 @@ The returned result will be displayed as the IDL textual format.
 
 You can explicitly specify that you are passing arguments using the IDL syntax by running commands similar to the following for a Text data type:
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
-dfx canister call hello greet *--type idl '("Lisa")'*
+dfx canister call hello greet --type idl '("Lisa")'
 ("Hello, Lisa!")
 
-dfx canister call hello greet *'("Lisa")' --type idl*
+dfx canister call hello greet '("Lisa")' --type idl
 ("Hello, Lisa!")
 ----
 
 You can also implicitly use the IDL by running a command similar to the following:
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
-dfx canister call hello greet *'("Lisa")'*
+dfx canister call hello greet '("Lisa")'
 ("Hello, Lisa!")
 ----
 
 To specify multiple arguments using the IDL syntax, use commas between the arguments.
 For example:
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call contacts insert '("Amy Lu","01 916-335-2042")'
 
-dfx canister call hotel guestroom '("Deluxe Suite",42,true)`
+dfx canister call hotel guestroom '("Deluxe Suite",42,true)'
 ----
 
 ==== Passing arguments using specified data types
@@ -641,21 +651,21 @@ If you are not using the IDL to parse data types, you can explicitly specify the
 
 For example, you can pass a string argument by running a command similar to the following:
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call hello greet --type string "San Francisco"
 ----
 
 You can pass a number argument by running a command similar to the following:
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call hotel counter --type number 1201
 ----
 
 You can pass raw data in bytes by running a command similar to the following:
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call hello greet --type raw '4449444c00017103e29883'
 ----
@@ -669,14 +679,14 @@ If you want to send a call to a specific client address and port number without 
 For example, you can specify the client address by running a command similar to the following:
 
 ////
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call --client http://192.168.3.1:5678 counter get
 ----
 
 Note that you must specify the client URL after the canister operation (`+call+`), and before the canister name (`+counter+`) and function (`+get+`).
 ////
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister --client http://192.168.3.1:5678 call counter get
 ----
@@ -689,7 +699,7 @@ Use the `+dfx canister install+` command to install compiled code as a canister 
 
 === Basic usage
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister install [flag] [option] [--all | _canister_name_]
 ----
@@ -698,7 +708,7 @@ dfx canister install [flag] [option] [--all | _canister_name_]
 
 You can use the following optional flags with the `+dfx canister install+` command.
 
-[width="100%",cols="<31%,<69%",options="header",]
+[width="100%",cols="<31%,<69%",options="header"]
 |===
 |Flag |Description
 |`+--all+` |Enables you to install multiple canisters at once if you have a project `dfx.json` file that includes multiple canisters.
@@ -715,7 +725,7 @@ Note that you must specify `--all` or an individual canister name.
 
 You can use the following options with the `+dfx canister install+` command.
 
-[width="100%",cols="<31%,<69%",options="header",]
+[width="100%",cols="<31%,<69%",options="header"]
 |===
 |Option |Description
 |-c, --compute-allocation <compute-allocation> |Defines a compute allocation—essentially the equivalent of setting CPU allocation—for  canister execution. 
@@ -732,7 +742,7 @@ In a development environment, you might use this option for testing purposes if 
 
 You can use the following argument with the `+dfx canister install+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Argument |Description
 |`+canister_name+` |Specifies the name of the canister to deploy. 
@@ -771,7 +781,7 @@ If you want to install a canister using a specific client address and port numbe
 
 For example, you can specify the client address by running a command similar to the following:
 ////
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister install --client http://192.168.3.1:5678 --all
 ----
@@ -779,7 +789,7 @@ dfx canister install --client http://192.168.3.1:5678 --all
 Note that you must specify the client URL after the canister operation (`+install+`) and before the canister name or `+--all+` flag.
 ////
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister --client http://192.168.3.1:5678 install --all
 ----
@@ -803,7 +813,7 @@ dfx canister request-status _request_id_
 
 You can use the following optional flags with the `+dfx canister request-status+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -814,7 +824,7 @@ You can use the following optional flags with the `+dfx canister request-status+
 
 You can specify the following argument for the `+dfx canister request-status+` command.
 
-[width="100%",cols="<31%,<69%",options="header",]
+[width="100%",cols="<31%,<69%",options="header"]
 |===
 |Argument |Description
 |`+request_id+` |Specifies the hexadecimal string returned in response to a `+dfx canister call+` or `+dfx canister install+` command. 
@@ -840,7 +850,7 @@ For example, if your project name is `+hello_world+`, your current working direc
 
 === Basic usage
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx config [_config_path_] [value] [flag] 
 ----
@@ -849,7 +859,7 @@ dfx config [_config_path_] [value] [flag]
 
 You can use the following optional flags with the `+dfx config+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -860,7 +870,7 @@ You can use the following optional flags with the `+dfx config+` command.
 
 You can use the following option with the `+dfx config+` command.
 
-[width="100%",cols="<32%,<68%",options="header",]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Option |Description
 |`+--format+` |Specifies the format of the configuration file output. 
@@ -872,7 +882,7 @@ The valid values are `+json+` and `+text+`.
 
 You can specify the following arguments for the `+dfx config+` command.
 
-[width="100%",cols="<34%,<66%",options="header",]
+[width="100%",cols="<34%,<66%",options="header"]
 |===
 |Argument |Description
 |`+config_path+` |Specifies the name of the configuration option that you want to set or read. 
@@ -934,7 +944,7 @@ dfx help [subcommand]
 
 You can specify any `+dfx+` subcommand as an argument to view usage information for that subcommand using the `+dfx help+` command.
 
-[width="100%",cols="<34%,<66%",options="header",]
+[width="100%",cols="<34%,<66%",options="header"]
 |===
 |Argument |Description
 |`+subcommand+` |Specifies the subcommand usage information you want to display.
@@ -966,7 +976,7 @@ You can use the `+--dry-run+` option to preview the directories and files to be 
 
 === Basic usage
 
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx new _project_name_ [flag]
 ----
@@ -975,7 +985,7 @@ dfx new _project_name_ [flag]
 
 You can use the following optional flags with the `+dfx new+` command:
 
-[width="100%",cols="<32%,<68%",options="header",]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+--dry-run+` |Generates a preview the directories and files to be created for a new project without adding them to the file system.
@@ -993,7 +1003,7 @@ If `+node.js+` is not currently installed, you can set this flag to `+true+` to 
 
 You can specify the following argument for the `+dfx new+` command.
 
-[cols="<,<",options="header",]
+[cols="<,<",options="header"]
 |===
 |Argument |Description
 |`+project_name+` |Specifies the name of the project to create.
@@ -1017,11 +1027,72 @@ If you want to preview the directories and files to be created without adding th
 ----
 dfx new my_social_network --dry-run
 ----
+////
+== dfx replica
+
+Use the `+dfx replica+` command to start a {IC} replica process (without a web server) locally. 
+This command enables you to deploy canisters locally to simulate network deployment and to test your programs during development.
+
+Note that you can only run this command from within the project directory structure. 
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx replica [option] [flag] 
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx replica+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Options
+
+You can use the following option with the `+dfx replica+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Option |Description
+|`+--message-gas-limit maximum-gas-limit+` |Specifies the maximum resources that a single message can consume. Computational resources such as CPU, memory, and storage are measured in tokens that are converted in "gas" available to be consumed by applications.
+
+|`+--port port+` |Specifies the port the local replica should listen to.
+
+|`+--round-gas-limit round-gas-limit+` |Specifies the maximum resources that a single round of messages can consume in the "gas" available to be consumed by applications.
+|===
+
+=== Examples
+
+You can start the {IC} replica by running the following command:
+
+[source,bash]
+----
+dfx replica
+----
+
+If you want to set an upper limit on the resources a single message can consume, you might run a command similar to the following:
+
+[source,bash]
+----
+dfx replica --maximum-gas-limit 1000
+----
+////
 
 == dfx start
 
-Use the `+dfx start+` command to start a local {IC} client in the background. 
-You can deploy canisters to the local network node to test your programs during development.
+Use the `+dfx start+` command to start a local {IC} replica process and web server for the current project. 
+This command enables you to deploy canisters to the local network node to test your programs during development.
+
+Note that you can only run this command from within the project directory structure. 
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
 === Basic usage
 
@@ -1034,10 +1105,13 @@ dfx start [option] [flag]
 
 You can use the following optional flags with the `+dfx start+` command.
 
-[width="100%",cols="<32%,<68%",options="header",]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
-|`+--background+` |Starts the network client in the background and waits for the client to reply before returning to the shell.
+|`+--background+` |Starts the replica and web server in the background and waits for the process to reply before returning to the shell.
+
+|`+--clean+` |Starts the replica and web server in a clean state by removing checkpoints from your project cache.
+You can use this flag to set your project cache to a new state when troubleshooting or debugging.
 
 |`+-h+`, `+--help+` |Displays usage information.
 
@@ -1056,22 +1130,22 @@ You can use the following option with the `+dfx start+` command.
 
 === Examples
 
-You can start the {IC} client processes in the current shell by running the following command:
+You can start the {IC} replica and web server in the current shell by running the following command:
 
 [source,bash]
 ----
 dfx start
 ----
 
-If you start the processes in the current shell, you need to open a new terminal shell to run additional commands. 
-Alternatively, you can start the processes and have them run in the background by running the following command:
+If you start the replica in the current shell, you need to open a new terminal shell to run additional commands. 
+Alternatively, you can start the replica in the background by running the following command:
 
 [source,bash]
 ----
 dfx start --background
 ----
 
-If you run the processes in the background, however, be sure tp stop them before uninstalling or reinstalling the `+dfx+` execution environment by running the following command:
+If you run the replica in the background, however, be sure tp stop them before uninstalling or reinstalling the `+dfx+` execution environment by running the following command:
 
 [source,bash]
 ----
@@ -1086,9 +1160,9 @@ more .dfx/pid
 
 == dfx stop
 
-Use the `+dfx stop+` command to stop the {IC} client processes running on your local computer. 
-In most cases, you run the {IC} client processes locally so that you can deploy canisters and test your programs during development.
-To simulate an external {IC} client node, these processes run continuously either in a terminal shell where you started them or the in the background until you stop or kill them.
+Use the `+dfx stop+` command to stop the {IC} local processes running on your local computer. 
+In most cases, you run the {IC} replica locally so that you can deploy canisters and test your programs during development.
+To simulate an external {IC} replica node, these processes run continuously either in a terminal shell where you started them or the in the background until you stop or kill them.
 
 Note that you can only run this command from within the project directory structure. For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
  
@@ -1113,14 +1187,14 @@ You can use the following optional flags with the `+dfx stop+` command.
 
 === Examples
 
-You can stop the {IC} client processes that are running in the background by changing to a project directory then running the following command:
+You can stop the {IC} replica processes that are running in the background by changing to a project directory then running the following command:
 
 [source,bash]
 ----
 dfx stop
 ----
 
-If the {IC} client processes are running in a current shell rather than in the background, open a new terminal shell, change to a project directory, then run the `+dfx stop+` command.
+If the local {IC} replica is running in a current shell rather than in the background, open a new terminal shell, change to a project directory, then run the `+dfx stop+` command.
 
 The current process identifier (`+pid+`) for the {IC} process started by `+dfx+` is recorded in the `+.dfx/pid+` file. 
 You can view the process identifier before running the `+dfx stop+` command by running the following command:

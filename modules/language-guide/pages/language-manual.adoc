@@ -455,6 +455,8 @@ The category of a type determines the operators (unary, binary, relational and i
 | Identifier | Category | Description
 
 | `Bool` | L, R | boolean values `true` and `false` and logical operators
+| `Char` | R | Unicode characters
+| `Text` | T, R | Unicode strings of characters with concatenation `_ # _` and iteration
 | `Int`  | A, R | signed integer values with arithmetic (unbounded)
 | `Int8`  | A, R | signed 8-bit integer values with checked arithmetic
 | `Int16`  | A, R | signed 16-bit integer values with checked arithmetic
@@ -469,9 +471,8 @@ The category of a type determines the operators (unary, binary, relational and i
 | `Word16` | A, B, R | unsigned 16-bit integers with bitwise operations
 | `Word32` | A, B, R | unsigned 32-bit integers with bitwise operations
 | `Word64` | A, B, R | unsigned 64-bit integers with bitwise operations
-| `Char` | R | Unicode characters
-| `Text` | T, R | Unicode strings of characters with concatenation `_ # _` and iteration
 | `Blob` | R | Binary blobs with iteration
+| `Principal` | R | Principals
 | `Error` | | (opaque) error values
 |===
 
@@ -500,13 +501,6 @@ Operations on text values include concatenation (`_ # _`) and sequential iterati
 
 // Comparison TODO.
 
-[[type-Blob]]
-=== Type `Blob`
-
-The type `Blob` of category R (Relational) represents binary blobs or sequences of bytes.
-Function `b.size` returns the number of characters in `Blob` value `b`.
-Operations on blob values include sequential iteration over characters via function `b.bytes` as in
-`for (b in t.bytes()) { ... b ... }`.
 
 [[types-int-and-nat]]
 === Type `Int` and `Nat`
@@ -563,6 +557,21 @@ Word types are not in subtype relationship with each other or with
 other arithmetic types, and their literals need type annotation, e.g.
 `(-42 : Word16)`. For negative literals the two's-complement
 representation is applied.
+
+[[type-Blob]]
+=== Type `Blob`
+
+The type `Blob` of category R (Relational) represents binary blobs or sequences of bytes.
+Function `b.size` returns the number of characters in `Blob` value `b`.
+Operations on blob values include sequential iteration over bytes via function `b.bytes` as in
+`for (w in b.bytes()) { ... w ... }`.
+
+[[type-Principal]]
+=== Type `Principal`
+
+The type `Principal` of category R (Relational) represents opaque
+principals such as canisters and users that can, for example, be used to identify callers of
+shared functions and used for simple authentication. Although opaque, principals may be converted to binary `Blob`s for more efficient hashing and other applications.
 
 [[error-type]]
 === Error type

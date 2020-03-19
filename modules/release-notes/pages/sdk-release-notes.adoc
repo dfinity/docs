@@ -10,7 +10,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.5.3
+:release: 0.5.4
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -35,21 +35,27 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- Web interface for testing canisters.
+- The Candid web interface now has a "Lucky" button that can generate random values when the input field is empty.
+- Various updates to JS userlib, including:
 +
-To access, with the default `+dfx.json+` setup, you can access `+127.0.0.1:8000/candid?canisterId=ic:your_canister_id+`.
-- Bootstrap server shows error messages for a non-existent canister ID.
-- The `+replica+` will now use a random port.
+-- Unit is renamed to Null
+-- Support Principal type
+-- Support service and function references
+- Motoko now supports type argument inference for automatic instantiation of type-parametric functions.
+- Native support for Principal type in Candid (IDL).
+- Improvements to language server support.
+- Subcommand `+--clean+` of `+dfx start+` can be used to clean the state of current project.
 +
-Previously, you could set the port of the web server with a fixed port for `+replica+`. The `+replica+` is now set to a random port so that you can run two `+dfx start+` in separate projects without a clash. 
+This clears checkpoints in your project and is helpful for starting your project from scratch or debugging.
+- Flags `+--v, --verbose+` and `+--q, --quiet+` for `+dfx+` can be used to toggle warnings, progress bars, and errors on-and-off, as desired.
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
 The {release} release includes the following fixes to reported issues:
 
-- Fix the single return value type on query function in Javascript userlib.
-- The canister list when running `+dfx build+` will no longer be randomized.
+- Bug fix in stdlib and runtime system.
+- Bug fix for bootstrap load JS of non-latin encoding.
 
 == Known issues and limitations
 

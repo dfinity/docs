@@ -40,7 +40,11 @@ The {release} release includes the following new features and capabilities:
 * Unit is renamed to Null
 * Support Principal type
 * Support service and function references
-- Motoko now supports type argument inference for automatic instantiation of type-parametric functions.
+- Motoko now:
+* supports type argument inference for automatic instantiation of type-parametric functions;
+* adds primitive Principal and supporting (binary) Blob types
+* documents its support for caller identification (using principals) by selective parameterization of  shared functions.
+* includes actor references and shared function types as shareable types that can be transmitted across canisters
 - Native support for Principal type in Candid (IDL).
 - Improvements to language server support.
 - Subcommand `+--clean+` of `+dfx start+` can be used to clean the state of current project.

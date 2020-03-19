@@ -1027,7 +1027,7 @@ If you want to preview the directories and files to be created without adding th
 ----
 dfx new my_social_network --dry-run
 ----
-
+////
 == dfx replica
 
 Use the `+dfx replica+` command to start a {IC} replica process (without a web server) locally. 
@@ -1084,6 +1084,7 @@ If you want to set an upper limit on the resources a single message can consume,
 ----
 dfx replica --maximum-gas-limit 1000
 ----
+////
 
 == dfx start
 

@@ -1366,7 +1366,7 @@ Matching continues by matching `v1` against `<pat1>`.
 If pattern matching succeeds with some bindings, then evaluation returns the result of `exp` in the environment of the function value (not shown) extended with those bindings.
 Otherwise, some pattern match has failed and the call results in `trap`.
 
-(NB: the exhaustiveness side condition on `shared` function expressions ensures that argument pattern matching cannot fail (see <<exp-func>>).)
+Note: the exhaustiveness side condition on `shared` function expressions ensures that argument pattern matching cannot fail (see <<exp-func>>).
 
 [[exp-func]]
 === Functions
@@ -1532,7 +1532,7 @@ where `x` is a fresh identifier.
 
 In particular, the `for` loops will trap if evaluation of `<exp1>` traps; as soon as some value of `x.next()` traps or the value of `x.next()` does not match pattern `<pat>`.
 
-(NB: Although general purpose, for expressions may, in particular, be used to iterate over iterator objects produced by special member access (see <<exp-dot>>).
+Note: Although general purpose, for expressions may, in particular, be used to iterate over iterator objects produced by special member access (see <<exp-dot>>).
 
 [[exp-label]]
 === Label

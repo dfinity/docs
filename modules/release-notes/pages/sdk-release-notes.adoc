@@ -46,7 +46,9 @@ The {release} release includes the following new features and capabilities:
 - Subcommand `+--clean+` of `+dfx start+` can be used to clean the state of current project.
 +
 This clears checkpoints in your project and is helpful for starting your project from scratch or debugging.
-- Flags `+--v, --verbose+` and `+--q, --quiet+` for `+dfx+` can be used to toggle warnings, progress bars, and errors on-and-off, as desired.
+- Flags `+--v, --verbose+` and `+--q, --quiet+` for `+dfx+` can be used to toggle across various levels of information provided by messages, as desired.
++
+These flags affect messages only and not the output or return code of the process. Using the verbose flag twice, for example, will provide `+DEBUG+` and `+TRACE+` messages, the highest level of verbosity.
 
 == Issues fixed in this release
 

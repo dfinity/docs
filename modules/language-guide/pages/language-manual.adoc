@@ -97,6 +97,7 @@ The syntax of a _declaration_ is as follows:
   <shared-pat>? func <id>? <typ-params>? <pat> (: <typ>)? =? <exp>         function
   type <id> <typ-params>? = <typ>                                          type
   <sort>? class <id> <typ-params>? <pat> (: <typ>)? =? { <exp-field>;* }   class
+```
 
 ```bnf
 <shared-pat> ::=        function sort and caller pattern

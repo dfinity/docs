@@ -1107,7 +1107,10 @@ You can use the following optional flags with the `+dfx start+` command.
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
-|`+--background+` |Starts the network replica and web server in the background and waits for the process to reply before returning to the shell.
+|`+--background+` |Starts the replica and web server in the background and waits for the process to reply before returning to the shell.
+
+|`+--clean+` |Starts the replica and web server in a clean state by removing checkpoints from your project cache.
+You can use this flag to set your project cache to a new state when troubleshooting or debugging.
 
 |`+-h+`, `+--help+` |Displays usage information.
 

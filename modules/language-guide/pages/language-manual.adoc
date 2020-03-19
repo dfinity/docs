@@ -1,5 +1,6 @@
 = Language manual
 ////
+* targetting release 0.5.4
 * [X] Categorise primitives and operations as arithmetic (A), logical (L), bitwise (B) and relational (R) and use these categories to concisely present categorized operators (unop, binop, relop, a(ssigning)op) etc.
 * [ ] Various inline TBCs and TBRs and TODOs
 * [ ] Typing of patterns
@@ -22,7 +23,7 @@
 * [ ] Document punning in type record patterns: https://github.com/dfinity-lab/motoko/pull/964
 ////
 
-This section serves as a technical reference for the previous chapters and has specific technical information for readers with specific interests. 
+This section serves as a technical reference for the previous chapters and has specific technical information for readers with specific interests.
 For example, this section provides technical details of interest to the following audiences:
 
   - Authors providing the higher-level documentation about the {proglang} programming language.
@@ -572,7 +573,9 @@ Operations on blob values include sequential iteration over bytes via function `
 
 The type `Principal` of category R (Relational) represents opaque
 principals such as canisters and users that can, for example, be used to identify callers of
-shared functions and used for simple authentication. Although opaque, principals may be converted to binary `Blob`s for more efficient hashing and other applications, see module `Principal` from the standard library.
+shared functions and used for simple authentication. Although opaque, principals may be converted to binary `Blob`s for more efficient hashing and other applications (see module `PrincipalId` from the standard library).
+
+// TODO: update PrincipalId to Principal for >= 0.5.5
 
 [[error-type]]
 === Error type

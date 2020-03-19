@@ -470,7 +470,8 @@ The category of a type determines the operators (unary, binary, relational and i
 | `Word32` | A, B, R | unsigned 32-bit integers with bitwise operations
 | `Word64` | A, B, R | unsigned 64-bit integers with bitwise operations
 | `Char` | R | Unicode characters
-| `Text` | T, R | Unicode strings of characters with concatenation `_ # _`
+| `Text` | T, R | Unicode strings of characters with concatenation `_ # _` and iteration
+| `Blob` | R | Binary blobs with iteration
 | `Error` | | (opaque) error values
 |===
 
@@ -494,10 +495,18 @@ converted into a text of length 1.
 === Type `Text`
 
 The type `Text` of categories T and R (Text, Relational) represents sequences of Unicode characters (i.e. strings).
-Operations on text values include concatenation (`_ # _`) and sequential iteration over characters via `for (c in _) ... c ...`.
-The `textLength` function returns the number of characters in a `Text` value.
+Function `t.len` returns the number of characters in `Text` value `t`.
+Operations on text values include concatenation (`_ # _`) and sequential iteration over characters via `t.chars` as in `for (c in t.chars()) { ... c ... }`.
 
 // Comparison TODO.
+
+[[type-Blob]]
+=== Type `Blob`
+
+The type `Blob` of category R (Relational) represents binary blobs or sequences of bytes.
+Function `b.size` returns the number of characters in `Blob` value `b`.
+Operations on blob values include sequential iteration over characters via function `b.bytes` as in
+`for (b in t.bytes()) { ... b ... }`.
 
 [[types-int-and-nat]]
 === Type `Int` and `Nat`

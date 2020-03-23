@@ -52,7 +52,7 @@ For information about the next steps to take, see link:../developers-guide/getti
 +
 Supported platforms
 
-|SDK 0.4.13 (January 2020) |sdk-0.4.13-RELEASE |Release notes / changelog
+|SDK 0.5.4 (March 2020) |sdk-0.5.4-RELEASE |Release notes / changelog
 + Supported platforms
 |===
 

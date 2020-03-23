@@ -85,7 +85,7 @@ The command displays version information for the developer command-line interfac
 +
 [source,bash]
 ----
-dfx 0.5.3
+dfx 0.5.4
 ----
 . Preview usage information for the other developer command-line interface sub-commands by running the following command:
 +

@@ -40,7 +40,7 @@ DFX_VERSION=0.5.2 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 == Next steps
 
-For information about the next steps to take, see link:../developers-guide/getting-started{outfilesuffix}[Getting started]in the link:../developers-guide/introduction-key-concepts{outfilesuffix}[_Developer’s Guide_].
+For information about the next steps to take, see link:developers-guide/getting-started{outfilesuffix}[Getting started] in the link:developers-guide/introduction-key-concepts{outfilesuffix}[_Developer’s Guide_].
 
 ////
 == Download a packaged release

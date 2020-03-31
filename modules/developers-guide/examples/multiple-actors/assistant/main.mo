@@ -1,5 +1,5 @@
-import Array "mo:stdlib/array";
-import Nat "mo:stdlib/nat";
+import Array "mo:stdlib/Array";
+import Nat "mo:stdlib/Nat";
 
 // Define to-do item properties
 type ToDo = {

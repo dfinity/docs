@@ -1,4 +1,4 @@
-= DFINITY Developer Release Notes
+= Developer Release Notes
 :toc:
 :toc: right
 :toc-title: QUICK LINKS
@@ -10,7 +10,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.5.4
+:release: 0.5.5
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -35,43 +35,21 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- The Candid web interface now has a "Lucky" button that can generate random values when the input field is empty.
-- Various updates to JS userlib, including:
-* Unit is renamed to Null
-* Support Principal type
-* Support service and function references
-- Motoko now:
-* supports type argument inference for automatic instantiation of type-parametric functions;
-* adds primitive Principal and supporting (binary) Blob types
-* documents its support for caller identification (using principals) by selective parameterization of  shared functions.
-* includes actor references and shared function types as shareable types that can be transmitted across canisters
-- Native support for Principal type in Candid (IDL).
-- Improvements to language server support.
-- Subcommand `+--clean+` of `+dfx start+` can be used to clean the state of current project.
-+
-This clears checkpoints in your project and is helpful for starting your project from scratch or debugging.
-- Flags `+--v, --verbose+` and `+--q, --quiet+` for `+dfx+` can be used to toggle across various levels of information provided by messages, as desired.
-+
-These flags affect messages only and not the output or return code of the process. Using the verbose flag twice, for example, will provide `+DEBUG+` and `+TRACE+` messages, the highest level of verbosity.
+- Internal updates that are not yet user-visible to support future features.
+- New logging capability that supports logging informational, warning, error, debug, and trace messages to a file in addition to standard error and standard output.
+- Specifying the `--verbose` option generates logs that include debug and trace messages.
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
-The {release} release includes the following fixes to reported issues:
-
-- Bug fix in stdlib and runtime system.
-- Bug fix for bootstrap load JS of non-latin encoding.
+The {release} release includes internal fixes and improvements to the Candid user interface, the interface description library, and `dfx replica` command.
 
 == Known issues and limitations
 
 This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
-If there are workarounds to any of the issues described in this section, you can find them in the xref:troubleshooting{outfilesuffix}[Troubleshooting] section.
+If there are workarounds to any of the issues described in this section, you can find them in the link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] section.
 
 The {release} release includes the following known issues and limitations:
-
-- There is a breaking change to Motoko which removes definitions like `+debugPrint+`, `+abs+` and `+range+` from the default scope. You now have to import them through the Motoko standard library.
-+
-For help with importing from the standard library, check out https://sdk.dfinity.org/language-guide/index.html#intro-stdlib[this section] of the Motoko language reference and also the https://sdk.dfinity.org/developers-guide/tutorials/phonebook.html[phonebook tutorial].
 
 - Float support in the {proglang} programming language that is compiled to WebAssembly.
 +
@@ -85,4 +63,4 @@ As an alternative, you can convert integers to Word32 using the standard library
 
 == Additional questions and feedback
 
-Check out xref:troubleshooting{outfilesuffix}[Troubleshooting] for additional technical support.
+Check out link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] for additional technical support.

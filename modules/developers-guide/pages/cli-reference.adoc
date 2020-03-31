@@ -1084,14 +1084,14 @@ You can use the following option with the `+dfx replica+` command.
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Option |Description
+|`+--port port+` |Specifies the port the local replica should listen to.
+|===
+
+
 ////
 |`+--message-gas-limit maximum-gas-limit+` |Specifies the maximum resources that a single message can consume. Computational resources such as CPU, memory, and storage are measured in tokens that are converted in "gas" available to be consumed by applications.
-////
-|`+--port port+` |Specifies the port the local replica should listen to.
-////
 |`+--round-gas-limit round-gas-limit+` |Specifies the maximum resources that a single round of messages can consume in the "gas" available to be consumed by applications.
 ////
-|===
 
 === Examples
 

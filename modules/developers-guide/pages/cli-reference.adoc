@@ -108,6 +108,21 @@ For example, to see usage information for `+dfx build+`, you can run the followi
 dfx build --help 
 ----
 
+You can use the `+--verbose+` and `+--quiet+` flags to increment or decrement the logging level.
+If you don't specify any logging level, CRITICAL, ERROR, WARNING, and INFO messages are logged by default.
+Specifying one verbose flag (`+-v+`) increases the log level to include DEBUG messages. 
+Specifying two verbose flags (`+-vv+`)increases the logging level to include both DEBUG and TRACE messages.
+
+Adding a `+--quiet+` flag decreases the logging level.
+For example, to remove all messages, you can run a command similar the following:
+
+[source,bash]
+----
+dfx build -qqqq 
+----
+
+Keep in mind that using TRACE level logging (`+--vv+`) generates a lot of log messages that can affect performance and should only be used when required for troubleshooting or analysis.
+
 == dfx bootstrap
 
 Use the `+dfx bootstrap+` command to start the bootstrap web server defined in the `+dfx.json+` configuration file or specified using command-line options. 

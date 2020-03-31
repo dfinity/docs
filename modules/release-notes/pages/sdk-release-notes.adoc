@@ -35,9 +35,9 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- Internal updates that are not yet user-visible to support future features.
 - New logging capability that supports logging informational, warning, error, debug, and trace messages to a file in addition to standard error and standard output.
 - Specifying the `--verbose` option generates logs that include debug and trace messages.
+- Internal updates that are not yet user-visible to support future features.
 
 == Issues fixed in this release
 

@@ -23,14 +23,14 @@ Use the `+dfx+` parent command with flags and subcommands to specify the operati
 
 [source,bash]
 ----
-dfx [subcommand] [flag]
+dfx [subcommand] [flag] [option]
 ----
 
 === Flags
 
 You can use the following optional flags with the `+dfx+` parent command or with any of the `+dfx+` subcommands.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -39,11 +39,32 @@ You can use the following optional flags with the `+dfx+` parent command or with
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
+=== Options
+
+You can use the following options with the `+dfx+` command.
+
+[width="100%",cols="<32%,<68%",options="header",]
+|===
+|Option |Description
+|`+--logfile <logfile>+` |Writes log file messages to the specified log file name if you use the `+--log file+` logging option.
+|`+--log <logmode>+` |Specifies the logging mode to use.
++
+You can set the log mode to one of the following:
+ 
+- `+stderr+` to log messages to the standard error facility.
+
+- `+tee+` to write messages to both standard output and to a specifies file name.
+
+- `+file+` to write messages to a specified file name.
+
+The default logging mode is `+stderr+`.
+|===
+
 === Subcommands
 
 Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
 
-[cols="<,<",options="header",]
+[width="100%",cols="<32%,<68%",options="header",]
 |===
 |Command |Description
 |`+bootstrap+` |Starts the bootstrap server you want to use to serve front-end assets for your project.
@@ -104,7 +125,7 @@ dfx bootstrap [option]
 
 You can use the following optional flags with the `+dfx bootstrap+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -185,7 +206,7 @@ dfx build [flag]
 
 You can use the following optional flags with the `+dfx build+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -253,7 +274,7 @@ dfx cache [subcommand] [flag]
 
 You can use the following optional flags with the `+dfx cache+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -264,7 +285,7 @@ You can use the following optional flags with the `+dfx cache+` command.
 
 Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Command |Description
 |`+delete+` |Deletes the specified version of `+dfx+` from the local cache.
@@ -304,7 +325,7 @@ dfx cache delete [version] [flag]
 
 You can use the following optional flags with the `+dfx cache delete+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -315,7 +336,7 @@ You can use the following optional flags with the `+dfx cache delete+` command.
 
 You can specify the following argument for the `+dfx cache delete+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Command |Description
 |`+version+` |Specifies the version of `+dfx+` you to delete from the local cache.
@@ -346,7 +367,7 @@ dfx cache install [flag]
 
 You can use the following optional flags with the `+dfx cache install+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -380,7 +401,7 @@ dfx cache list [flag]
 
 You can use the following optional flags with the `+dfx cache list+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -421,7 +442,7 @@ dfx cache show [flag]
 
 You can use the following optional flags with the `+dfx cache show+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -459,7 +480,7 @@ dfx canister [subcommand] [flag]
 
 You can use the following optional flags with the `+dfx canister+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -470,7 +491,7 @@ You can use the following optional flags with the `+dfx canister+` command.
 
 Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Command |Description
 |`+call+` |Calls a specified method on a deployed canister.
@@ -743,7 +764,7 @@ In a development environment, you might use this option for testing purposes if 
 
 You can use the following argument with the `+dfx canister install+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<31%,<69%",options="header"]
 |===
 |Argument |Description
 |`+canister_name+` |Specifies the name of the canister to deploy. 
@@ -814,7 +835,7 @@ dfx canister request-status _request_id_
 
 You can use the following optional flags with the `+dfx canister request-status+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -825,7 +846,7 @@ You can use the following optional flags with the `+dfx canister request-status+
 
 You can specify the following argument for the `+dfx canister request-status+` command.
 
-[width="100%",cols="<31%,<69%",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Argument |Description
 |`+request_id+` |Specifies the hexadecimal string returned in response to a `+dfx canister call+` or `+dfx canister install+` command. 
@@ -860,7 +881,7 @@ dfx config [_config_path_] [value] [flag]
 
 You can use the following optional flags with the `+dfx config+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
@@ -1004,7 +1025,7 @@ If `+node.js+` is not currently installed, you can set this flag to `+true+` to 
 
 You can specify the following argument for the `+dfx new+` command.
 
-[cols="<,<",options="header"]
+[width="100%",cols="<32%,<68%",options="header"]
 |===
 |Argument |Description
 |`+project_name+` |Specifies the name of the project to create.
@@ -1028,7 +1049,7 @@ If you want to preview the directories and files to be created without adding th
 ----
 dfx new my_social_network --dry-run
 ----
-////
+
 == dfx replica
 
 Use the `+dfx replica+` command to start a {IC} replica process (without a web server) locally. 
@@ -1063,11 +1084,13 @@ You can use the following option with the `+dfx replica+` command.
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Option |Description
+////
 |`+--message-gas-limit maximum-gas-limit+` |Specifies the maximum resources that a single message can consume. Computational resources such as CPU, memory, and storage are measured in tokens that are converted in "gas" available to be consumed by applications.
-
+////
 |`+--port port+` |Specifies the port the local replica should listen to.
-
+////
 |`+--round-gas-limit round-gas-limit+` |Specifies the maximum resources that a single round of messages can consume in the "gas" available to be consumed by applications.
+////
 |===
 
 === Examples
@@ -1078,7 +1101,7 @@ You can start the {IC} replica by running the following command:
 ----
 dfx replica
 ----
-
+////
 If you want to set an upper limit on the resources a single message can consume, you might run a command similar to the following:
 
 [source,bash]
@@ -1247,7 +1270,7 @@ If a newer version of `+dfx+` is available, the command automatically downloads 
 
 [source,bash]
 ----
-Current version: 0.5.4
+Current version: 0.5.5
 Fetching manifest https://sdk.dfinity.org/manifest.json
 Already up to date
 ----

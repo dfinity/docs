@@ -81,9 +81,9 @@ For programmers and software developers, the {platform} provides unique capabili
 A key part of this framework is a new, general purpose programming language, {proglang}. 
 {proglang} is a programming language that has been specifically designed to take full advantage of the unique features that the {IC} provides, including:
 
-* The ability to define program directly using `+actor+` objects and classes.
+* The ability to define programs directly using `+actor+` objects and classes.
 * The use of `+async+` and `+await+` syntax to enable programming asynchronous messaging as if it was synchronous processing.
-* Automatic support for message serialization and de-serialization.
+* Automatic support for message serialization and deserialization.
 * The ability to leverage orthogonal persistence and not require maintaining or managing external databases or storage volumes.
 
 As a modern, high-level programming language, {proglang} provides some key features of its own, including:
@@ -92,7 +92,7 @@ As a modern, high-level programming language, {proglang} provides some key featu
 * A sound type system that statically checks each program to ensure it can execute without type errors on all possible inputs.
 * Support for function abstractions, user-defined type definitions, and user-defined actors.
 
-For more detailed information about the {proglang} programming language itself, including syntactical conventions and supported features, see the _Language Reference Guide_.
+For more detailed information about the {proglang} programming language itself, including syntactical conventions and supported features, see the link:../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
 
 The following diagram provides a simplified drill-down view of the development environment as part of the {IC} ecosystem.
 
@@ -120,7 +120,7 @@ The {proglang} language offers many of the features that are common to other hig
 But, in addition, {proglang} provides built-in support for defining messaging services using actors in a way that is especially well-suited to the {platform} and is easy to learn whether you are a new or experienced programmer.
 
 This guide provides an introduction to the basic features of the {proglang} programming language in the context of writing programs using the SDK. 
-For more detailed information about the {proglang} programming language itself, see the _Language Reference Guide_.
+For more detailed information about the {proglang} programming language itself, see the link:../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
 
 [[canister-state]]
 === Canisters include both program and state
@@ -137,9 +137,6 @@ This concept of a canister consisting of both program and state is an important 
 
 Query calls can be made to any node that holds the canister and can return an immediate response. 
 Update calls, however can take time to change the state of the canister and, therefore, use the actor-based programming model (with state isolation) to allow concurrent and asynchronous processing.
-
-For update calls, when the state change is complete, a response message is written to a rotating log. Users can query the status of their updates by contacting any node hosting the canister to read from the log. 
-Response messages are limited in size and are only stored for a limited time.
 
 As a developer, it is important to recognize this relationship between the actor object and the calls that change the canister state that you define in your program. 
 Each actor object executes operations in an isolated state for a canister deployed on the network where the asynchronous processing takes place.
@@ -160,5 +157,5 @@ As part of its message handling, the {platform} validates that all requests come
 
 As a developer, you don’t need to know anything about the underlying security architecture (blockchain or cryptography) to take advantage of the {IC} security features. If you need those details—for
 example, to prove compliance or address regulatory requirements—you can download documentation in the form of technical papers from the
-https://dfinity.org/faq[DFINITY website] or contact
-https://dfinity.org/support/[DFINITY Support].
+https://dfinity.org/[DFINITY website] or contact
+mailto:support@dfinity.org[DFINITY Support].

@@ -23,7 +23,7 @@ Use the `+dfx+` parent command with flags and subcommands to specify the operati
 
 [source,bash]
 ----
-dfx [subcommand] [flag] [option]
+dfx [option] [subcommand] [flag]
 ----
 
 === Flags
@@ -118,7 +118,7 @@ For example, to remove all messages, you can run a command similar the following
 
 [source,bash]
 ----
-dfx build -qqqq 
+dfx -qqqq build 
 ----
 
 Keep in mind that using TRACE level logging (`+--vv+`) generates a lot of log messages that can affect performance and should only be used when required for troubleshooting or analysis.

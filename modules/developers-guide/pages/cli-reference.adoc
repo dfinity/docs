@@ -53,7 +53,7 @@ You can set the log mode to one of the following:
  
 - `+stderr+` to log messages to the standard error facility.
 
-- `+tee+` to write messages to both standard output and to a specifies file name.
+- `+tee+` to write messages to both standard output and to a specified file name.
 
 - `+file+` to write messages to a specified file name.
 
@@ -122,6 +122,13 @@ dfx -qqqq build
 ----
 
 Keep in mind that using TRACE level logging (`+--vv+`) generates a lot of log messages that can affect performance and should only be used when required for troubleshooting or analysis.
+
+To output log messages to a file named `newlog.txt` and display the messages on your terminal when creating a new project, you can run a command similar to the following:
+
+[source,bash]
+----
+dfx --log tee --logfile newlog.txt new hello_world
+----
 
 == dfx bootstrap
 

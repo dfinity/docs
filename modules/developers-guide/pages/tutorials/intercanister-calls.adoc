@@ -1,5 +1,5 @@
 = Calling shared functions
-March 2020 (Alpha)
+April 2020 (Alpha)
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
@@ -22,28 +22,40 @@ Each of these applications might have a social component that enables users to i
 To address this social component, you might want to create a single canister for storing user relationships then write your professional networking, community organizing, or fundraising application to import and call functions that are defined in the canister for social connections.
 You could then build additional applications to use the social connections canister or extend the features provided by the social connections canister to make it useful to an even broader community of other developers.
 
-The Motoko-based LinkedUp sample application provides a simple implementation of an open professional network that demonstrates how to use inter-canister calls.
+The Motoko-based LinkedUp sample application provides a simple implementation of an open professional network that demonstrates how to use inter-canister calls within a project.
 
 In the LinkedUp sample application, there are two canisters:
 
-* The `linkedup` canister stores basic profile information for a user.
-* The `connectd` canister stores connections that a user has a established.
+* The `linkedup` canister stores basic profile information for a user, including work experience and educational background.
+* The `connectd` canister stores connections that a user has established.
 
 == Download the demo
 
 To experiment with inter-canister calls using the LinkedUp sample application:
 
-1. Clone the `linkedup` repository.
-
-1. Change to the local working directory for the `linkedup` repository.
-
-1. Install node modules by running the following commands:
+. Open a terminal shell and change to the folder you are using for your {IC} sample projects.
+. Clone the `linkedup` repository.
++
+[source,bash]
+----
+git clone git@github.com:dfinity-lab/linkedup.git
+----
+. Change to the local working directory for the `linkedup` repository.
++
+[source,bash]
+----
+cd linkedup
+----
+. Install node modules by running the following command:
 +
 [source,bash]
 ----
 npm install
-npm audit fix
 ----
+
+== Build and deploy the demo project
+
+To build and deploy a new demo, take the following steps:
 
 . Build the canisters by running the following command:
 +
@@ -57,12 +69,77 @@ dfx build
 ----
 dfx start
 ----
+. Open a new terminal and change to the `linkedup` repository directory.
 . Deploy the project on the local network by running the following command:
 +
 [source,bash]
 ----
 dfx canister install --all
 ----
++
+You should see canister identifiers for both the `connectd` canister and the `linkedup` canister with a message similar to the following:
++
+[source,bash]
+----
+Installing code for canister connectd, with canister_id ic:321B70FF148808B210
+Installing code for canister linkedup, with canister_id ic:FC4106BF7A7A63D1CE
+----
+. Copy the `linkedup` canister identifier returned by the `dfx canister install` command.
+
+== Create a profile and connections
+
+To run through a demonstration of the LinkedUp sample app, take the following steps:
+
+. Open a new browser tab or window
+. Type the web server host name, port, and the `canisterId` keyword, then paste the `linkedup` canister identifier as the URL to display.
++
+[source,bash]
+----
+localhost:8000/?canisterId=<ic-identifier-for-linkedup>
+----
+. Click *Login*.
++
+A public-private key pair is automatically generated to establish your identity for accessing the canister, so there's no need to provide a user name and password or register an account to use the service.
+. Click *Edit*, type profile information, copy and paste the image address for an avatar photo, then click *Submit*.
++
++While you are interacting with the sample application, you might notice records similar to the following capture your activity and are displayed in the terminal running the `replica` process:
++
+[source,bash]
+----
+Apr 14 20:34:57.614 INFO Successfully inserted an ingress message into IngressPool, Application: ArtifactPool
+Apr 14 20:34:58.564 INFO Created checkpoint @6921 in 33.579754ms, StateManager: 1
+----
++
+You now have a profile with some work history that can be viewed.
++
+For example:
+image:linkedup-profile-1.png[]
+
+=== Adding a new profile
+
+At this point, there are no other profiles to search for or to add as connections.
+To try out the Search and Connect features, you can:
++
+- Run a script that populates the sample applications with some additional profiles.
+- Create new profiles manually by opening a new private window.
++
+For this tutorial, you will create another profile manually.
+
+To add a new user profile with a different identity:
+
+. At the top right of the browser window, click the appropriate icon to display the browser's menu options.
++
+For example, if you are using Google Chrome, click the vertical ellipse to display the More menu.
+. Click *New Incognito Window* or *New Private Window* to enable you to navigate to the canister without the user identity generated in your initial browser connection to the canister.
+. Copy and paste the URL from your first browser session into the private browsing window, then click *Login*.
++
+Notice that there’s no profile in the private browsing window but your original profile is still visible in your initial browser tab.
+. Click *Edit*, type profile information, copy and paste the image address for an avatar photo, then click *Submit*.
+. Type the first name or last name from the first profile you create—for example, if you created a profile for Maya Garcia, type Maya—then click *Search*.
++
+image:linkedup-search.png[]
+. Select the contact from the search results, wait for the Connect button to be displayed, then click *Connect*.
+
 
 == Review the configuration file
 

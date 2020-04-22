@@ -20,4 +20,4 @@ For example, the full URL should look similar to the following but with the `+ic
 http://localhost:8000/candid?canisterId=ic:81DDA04F69F40FEEAC
 ----
 . Review the list of function calls and types defined in the program.
-. Type a value of the appropriate type for a function, then click *Call* or *Query* to see the result.
+. Type a value of the appropriate type for a function or click *Lucky* to generate a value, then click *Call* or *Query* to see the result.

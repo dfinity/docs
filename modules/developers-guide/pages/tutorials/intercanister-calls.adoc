@@ -120,8 +120,8 @@ image:linkedup-profile-1.png[]
 At this point, there are no other profiles to search for or to add as connections.
 To try out the Search and Connect features, you can:
 +
-- Run a script that populates the sample applications with some additional profiles.
-- Create new profiles manually by opening a new private window.
+- Run a script that populates the sample application with some additional profiles.
+- Create a new profile manually by opening a new private window.
 +
 For this tutorial, you will create another profile manually.
 
@@ -135,11 +135,17 @@ For example, if you are using Google Chrome, click the vertical ellipse to displ
 +
 Notice that there’s no profile in the private browsing window but your original profile is still visible in your initial browser tab.
 . Click *Edit*, type profile information, copy and paste the image address for an avatar photo, then click *Submit*.
-. Type the first name or last name from the first profile you create—for example, if you created a profile for Maya Garcia, type Maya—then click *Search*.
+. Type the first name or last name from the first profile you created—for example, if you created a profile for Maya Garcia, type Maya—then click *Search*.
 +
 image:linkedup-search.png[]
+
 . Select the contact from the search results, wait for the Connect button to be displayed, then click *Connect*.
 
+image:linkedup-connect.png[]
+
+Return to the browser tab with your original profile to create a connection between that profile and the profile you created in the private browsing window by following the same search, select, and connect steps.
+
+image:linkedup-connected.png[]
 
 == Review the configuration file
 

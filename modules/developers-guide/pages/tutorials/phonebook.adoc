@@ -209,6 +209,8 @@ For example:
 ----
 
 include::example$candid-ui.adoc[]
++
+image:candid-phonebook.png[Phonebook functions]
 
 == Stop the local network
 
@@ -226,7 +228,7 @@ To extend what you have learned in this tutorial, you might want to try modifyin
 For example, you might want to change the source code so that instead of a program that inserts and looks up a current key-value (name-phone) pair to create a program that stores contact information similar to a database "record" in which a primary key is associated with multiple fields.
 In this example, your program might enable users or another program to add information—such as a home phone number, a cell phone number, an email address, and a street address—and selectively return all or specific field values.
 
-//// 
+////
 To experiment with modifying the source code for this tutorial:
 - Insert list of potential changes
 - Insert new sample code for a more advanced example

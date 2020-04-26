@@ -53,7 +53,7 @@ If you already know how to use CSS, HTML, JavaScript, and React or other framewo
 +
 This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
 If you already know how to add stylesheets to React, you can skip this tutorial.
-* ** link:tutorials/intercanister-calls.adoc[Calling shared functions]
+* link:tutorials/intercanister-calls{outfilesuffix}[Calling shared functions]
 +
 This tutorial illustrates how to call shared functions in one canister from a program in another canister.
 

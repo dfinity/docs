@@ -7,10 +7,10 @@
  * Stability   : Experimental
  */
 
-import List "mo:stdlib/list";
-import Option "mo:stdlib/option";
-import Prelude "mo:stdlib/prelude";
-import Result "mo:stdlib/result";
+import List "mo:stdlib/List";
+import Option "mo:stdlib/Option";
+import Prelude "mo:stdlib/Prelude";
+import Result "mo:stdlib/Result";
 
 type List<T> = List.List<T>;
 type Result<Ok, Err> = Result.Result<Ok, Err>;

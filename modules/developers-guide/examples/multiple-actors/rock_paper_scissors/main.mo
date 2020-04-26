@@ -1,4 +1,4 @@
-import I "mo:stdlib/iter"; 
+import I "mo:stdlib/Iter"; 
 
 actor rock_paper_scissors {
 

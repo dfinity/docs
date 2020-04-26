@@ -1,21 +1,16 @@
-# DFINITY Canister Software Development Kit (SDK)
+# Write code for the Internet Computer
 
-This repository hosts the documentation source for DFINITY Canister Software Development Kit (SDK).
+You can get started right away by downloading the DFINITY Canister Software Development Kit (SDK) and cloning an existing sample project or by exploring the documentation. Check out the tiles below to begin building open services and software to run on the Internet Computer.
 
-## Contributing
-Check out our contributor guidelines to learn how to:
+- [*Get the SDK*](https://sdk.dfinity.org/docs/download.html) Download the full SDK to write code that runs directly on the internet.
+- [*Quick Start*](https://sdk.dfinity.org/docs/quickstart/quickstart.html) Deploy your first code to the Internet Computer in minutes.
+- [*Get Samples*](https://sdk.dfinity.org/docs/developers-guide/sample-apps.html) Access sample code, applications, and microservices.
+- [*Developer Tools*](https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html) Take a deeper dive into how you can use the SDK to create applications.
+- [*Language Guide*](https://sdk.dfinity.org/docs/language-guide/motoko.html) Explore Motoko, the  programming language for the Internet Computer.
+- [*Basic Tutorials*](https://sdk.dfinity.org/docs/developers-guide/tutorials-intro.html) Learn the basics with simple examples and step-by-step instructions for first-timers.
 
-- Submit a bug or feedback issue
-- Set up your documentation workspace
-- Build the documentation
-- Submit a pull request
+# Contributing to the documentation
 
-Docs Component Configuration
-This repository contains an Antora docs component. Keep in mind these key repository features:
+The Internet Computer is a new technology stack that is unhackable, fast, scales to billions of users around the world, and supports a new kind of autonomous software that promises to reverse Big Tech’s monopolization of the internet. It allows developers to take on the monopolization of the internet, and return the internet back to its free and open roots. We're committed to connecting those who believe the same through our events, content, and discussions.
 
-Component name, version, and start page are configured in each branch’s antora.yml file.
-
-The navigation for all documentation components, including those in other repositories, is stored in the `nav.adoc` file under the `ROOT` module.
-
-The `dfinity-docs-playbook.yml` file provides the configuration details for the repositories and branches used to build the documentation website using Antora.
-
+See our [CONTRIBUTING](.github/CONTRIBUTING.md) and [CODE OF CONDUCT](.github/CODE_OF_CONDUCT.md) to get started.

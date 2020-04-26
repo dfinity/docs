@@ -20,7 +20,7 @@ Give a local module name to introduce, in this example `P` for
 the imported module:
 
 ....
-import P "mo:stdlib/prelude";
+import P "mo:stdlib/Prelude";
 P.printLn("hello world");
 ....
 

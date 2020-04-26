@@ -320,7 +320,7 @@ The command displays output similar to the following:
 
 include::example$candid-ui.adoc[]
 +
-image:candid-locations.png[Favorite cities functions]
+image:candid-location.png[Favorite cities functions]
 
 == Stop the local network
 

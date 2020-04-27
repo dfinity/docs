@@ -19,6 +19,6 @@ In much the same way that the adoption of the transport control protocol (TCP) a
 
 At a high-level, the platform architecture replicates your application on a secure subnet to automatically provide load balancing, fault tolerance, and resilency.
 
-image:subnet-overview.svg[Platform overview]
+image:subnet-overview.png[Platform overview]
 
 For a closer look at this architecture and how to build applications that run on it, see link:./introduction-key-concepts{outfilesuffix}[Introduction and key concepts].

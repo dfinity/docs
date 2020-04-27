@@ -85,6 +85,9 @@ Installing code for canister connectd, with canister_id ic:321B70FF148808B210
 Installing code for canister linkedup, with canister_id ic:FC4106BF7A7A63D1CE
 ----
 . Copy the `linkedup` canister identifier returned by the `dfx canister install` command.
++
+In this sample application, only the `linkedup` canister includes the front-end assets used to access the application's features. 
+To open the application in a browser, therefore, you need to specify the `linkedup` canister identifier. 
 
 == Create a profile and connections
 

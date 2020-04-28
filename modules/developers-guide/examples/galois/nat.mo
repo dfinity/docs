@@ -6,7 +6,7 @@
  * Stability   : Experimental
  */
 
-import List "mo:stdlib/List";
+import List "mo:base/List";
 
 type List<T> = List.List<T>;
 

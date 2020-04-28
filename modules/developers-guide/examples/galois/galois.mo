@@ -6,10 +6,10 @@
  * Stability   : Experimental
  */
 
-import Array "mo:stdlib/Array";
-import List "mo:stdlib/List";
+import Array "mo:base/Array";
+import List "mo:base/List";
 import Nat "../src/Nat";
-import Prelude "mo:stdlib/Prelude";
+import Prelude "mo:base/Prelude";
 
 type List<T> = List.List<T>;
 

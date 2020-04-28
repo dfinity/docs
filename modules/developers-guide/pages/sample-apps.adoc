@@ -208,7 +208,7 @@ The project includes the following `+main.mo+` source code.
  * Stability   : Experimental
  */
 
-import Prelude "mo:stdlib/Prelude";
+import Prelude "mo:base/Prelude";
 import QR "../src/qr";
 
 let qrEncode = QR.QR.qrEncode;

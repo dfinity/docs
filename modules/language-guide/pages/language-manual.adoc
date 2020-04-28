@@ -575,7 +575,7 @@ The type `Principal` of category R (Relational) represents opaque
 principals such as canisters and users that can, for example, be used to identify callers of
 shared functions and used for simple authentication. Although opaque, principals may be converted to binary `Blob`s for more efficient hashing and other applications (see module `PrincipalId` from the standard library).
 
-// TODO: update PrincipalId to Principal for >= 0.5.5
+// TODO: update PrincipalId to Principal for >= 0.5.6
 
 [[error-type]]
 === Error type

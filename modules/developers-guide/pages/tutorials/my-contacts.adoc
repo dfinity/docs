@@ -205,7 +205,7 @@ To deploy the program on your local network:
 +
 [source,bash]
 ----
-dfx start
+dfx start --background
 ----
 . Deploy your `+contacts+` project on the local network by running the following command:
 +

@@ -210,7 +210,7 @@ For example, the window that displays the Maya profile.
 For example, rename the `dfinity-ic-user-identity` to `maya-dfinity-ic-user-identity`.
 . Add a `dfinity-ic-user-identity` key and paste the value from the incognito user to save the incognito user’s identity in the browser.
 . Refresh or close and reopen the browser window, then click *Login* to log in using the profile you created in the incognito window.
-. Open another incognito window, type Maya in the Search field, then click *Search* to see that the Maya’s profile and connections are persisted.
+. Open another incognito window, type Maya in the Search field, then click *Search* to see that Maya’s profile and connections are persisted.
 +
 You can create another new profile or close the incognito window.
 

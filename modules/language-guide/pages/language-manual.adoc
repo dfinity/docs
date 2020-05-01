@@ -664,7 +664,7 @@ If `<typ1>` or `<typ2>` (or both) is a tuple type, then the length of that tuple
 
 The optional `<shared>` qualifier specifies whether the function value is shared, which further constrains the form of `<typ-params>`, `<typ1>` and `<typ2>` (see <<sharability>> below).
 
-(Note that a `<shared>` function may be itself be `shared` or `shared query`, determining the persistence of its state changes.)
+(Note that a `<shared>` function may itself be `shared` or `shared query`, determining the persistence of its state changes.)
 
 [[async-types]]
 === Async types

@@ -1,5 +1,6 @@
 = Language manual
 ////
+* test PR
 * targetting release 0.5.4
 * [X] Categorise primitives and operations as arithmetic (A), logical (L), bitwise (B) and relational (R) and use these categories to concisely present categorized operators (unop, binop, relop, a(ssigning)op) etc.
 * [ ] Various inline TBCs and TBRs and TODOs

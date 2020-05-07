@@ -773,7 +773,7 @@ You can use the following options with the `+dfx canister install+` command.
 |===
 |Option |Description
 |-c, --compute-allocation <compute-allocation> |Defines a compute allocation—essentially the equivalent of setting CPU allocation—for  canister execution. 
-You can define the allocation as a percentage in the range of 0 to 100 to indicate how often your canister is should be scheduled for execution. 
+You can define the allocation as a percentage in the range of 0 to 100 to indicate how often your canister should be scheduled for execution. 
 For example, assume you set this option to 50% allocation and your canister has a stream of input messages to process.
 Over 100 execution cycles, the canister's messages will be scheduled for processing at least 50 times.
 The default value for this option is 0—indicating that no specific allocation or scheduling is in effect. 

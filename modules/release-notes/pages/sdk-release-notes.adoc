@@ -10,7 +10,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.5.7
+:release: 0.5.5
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -35,45 +35,14 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- {proglang}, the Candid interface description language, and the Candid UI now support floating point numbers (float64).
-- When using the Candid UI, you can view return values in the following formats:
-+
-    - using the interface description language syntax
-    - as values displayed in fields using a browser
-    - as JSON fields.
-+
-You can switch between the formats for representing values by clicking the results bar.
+- New logging capability that supports logging informational, warning, error, debug, and trace messages to a file in addition to standard error and standard output.
+- Specifying the `--verbose` option generates logs that include debug and trace messages.
 - Internal updates that are not yet user-visible to support future features.
-
-== Breaking change
-The {release} release includes the following changes that might require updates to existing programs:
-
-- The name of the library recognized by the {proglang} compiler has changed from `stdlib` to `base`.
-+
-If you have programs that rely on modules `base` library, you must change the `import` statement to use the new library name.
-For example, you might have previously imported the Array module using the following statement:
-+
-[source,motoko]
-----
-import Array "mo:stdlib/Array";
-----
-+
-With this release, you would change the statement like this:
-+
-[source,motoko]
-----
-import Array "mo:base/Array";
-----
-- The modules in the Motoko base library are case-sensitive.
-With this release, all of the module names have been modified to start with an uppercase letter.
-If you have programs that refer to modules in the `base` library using lowercase names, you must change the program to use the new naming convention.
-+
-For example, if you previously referred to the `array` module, you would change the program to ref to the `Array` modules.
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
-The {release} release includes internal fixes and improvements to the Candid user interface, the interface description library, and some refactoring of `dfx` commands.
+The {release} release includes internal fixes and improvements to the Candid user interface, the interface description library, and `dfx replica` command.
 
 == Known issues and limitations
 

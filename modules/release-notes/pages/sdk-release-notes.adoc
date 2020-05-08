@@ -35,12 +35,8 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- {proglang}, the Candid interface description language, and the Candid UI now support floating point numbers (float64).
-- When using the Candid UI, you can view return values in the following formats:
-+
-    - using the interface description language syntax
-    - as values displayed in fields using a browser
-    - as JSON fields.
+- {proglang} and the JavaScript library now support floating point numbers (Float).
+- When using the Candid UI, you can view return values in text, UI, and JSON formats.
 +
 You can switch between the formats for representing values by clicking the results bar.
 - Internal updates that are not yet user-visible to support future features.
@@ -48,14 +44,16 @@ You can switch between the formats for representing values by clicking the resul
 == Breaking change
 The {release} release includes the following changes that might require updates to existing programs:
 
-- The name of the library recognized by the {proglang} compiler has changed from `stdlib` to `base`.
+- The name of the built-in {proglang} library has changed from `stdlib` to `base`.
+- All of the module names in the `base` library start with an upper case letter.
+- The `principalId` module has been changed to `Principal`.
 +
-If you have programs that rely on modules `base` library, you must change the `import` statement to use the new library name.
+If you have programs that rely on modules in the `stdlib` library, you must change the `import` statement to use the new `base` library name.
 For example, you might have previously imported the Array module using the following statement:
 +
 [source,motoko]
 ----
-import Array "mo:stdlib/Array";
+import Array "mo:stdlib/array";
 ----
 +
 With this release, you would change the statement like this:
@@ -64,11 +62,12 @@ With this release, you would change the statement like this:
 ----
 import Array "mo:base/Array";
 ----
-- The modules in the Motoko base library are case-sensitive.
-With this release, all of the module names have been modified to start with an uppercase letter.
-If you have programs that refer to modules in the `base` library using lowercase names, you must change the program to use the new naming convention.
 +
-For example, if you previously referred to the `array` module, you would change the program to ref to the `Array` modules.
+If your local development environment runs on macOS, keep in mind that the macOS file system is case-insensitive by default. 
+Therefore, you might be able to build your {proglang} program using a lower case module name. 
+However, the same code will not compile in Linux. 
+The recommended best practice is to always capitalize module names.
+For example, use `import Array "mo:base/Array"`, not `import Array "mo:base/array"`.
 
 == Issues fixed in this release
 

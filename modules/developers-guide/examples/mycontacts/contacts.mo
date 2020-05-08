@@ -1,5 +1,5 @@
-import List "mo:stdlib/List";
-import AssocList "mo:stdlib/AssocList";
+import List "mo:base/List";
+import AssocList "mo:base/AssocList";
 
 type Name = Text;
 type Phone = Nat;

@@ -411,7 +411,7 @@ P.printLn("hello world");
 ....
 
 In this case, we import {proglang} code (not some other module form) with the `mo:` prefix.
-We specify the `stdlib/` path, followed by the module's file name `prelude.mo` minus its extension.
+We specify the `base/` path, followed by the module's file name `prelude.mo` minus its extension.
 
 === Accommodating incomplete code
 

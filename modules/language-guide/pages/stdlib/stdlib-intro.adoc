@@ -24,7 +24,7 @@ import P "mo:base/Prelude";
 P.printLn("hello world");
 ....
 
-This example illustrates how to import {proglang} code—indicated by using the `mo:` prefix—using the `stdlib/` standard library path and the module name `prelude`.
+This example illustrates how to import {proglang} code—indicated by using the `mo:` prefix—using the `base/` standard library path and the module name `prelude`.
 You can also import {proglang} code and other modules using relative paths.
 For example, if you have created a {proglang} program named types.mo in the same folder as your main program, you could include it with an import declaration like this:
 

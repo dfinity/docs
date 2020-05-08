@@ -53,7 +53,7 @@ For example, you might include a line similar to the following to import list fu
 
 [source,bash]
 ----
-import List "../../motoko/stdlib/list";
+import List "../../motoko/base/list";
 ----
 
 == Basic language features

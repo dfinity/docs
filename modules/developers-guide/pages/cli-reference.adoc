@@ -1292,7 +1292,7 @@ If a newer version of `+dfx+` is available, the command automatically downloads 
 
 [source,bash]
 ----
-Current version: 0.5.6
+Current version: 0.5.7
 Fetching manifest https://sdk.dfinity.org/manifest.json
 Already up to date
 ----

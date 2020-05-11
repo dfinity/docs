@@ -10,10 +10,10 @@ type ToDo = types.ToDo;
 // Add to-do item utility
 func add(todos : [ToDo], desc : Text, nextId : Nat) : [ToDo] {
 	let todo : ToDo = {
-		id = nextId; 
-		description = desc; 
-		completed = false; 
-	};
+	id = nextId; 
+	description = desc; 
+	completed = false; 
+};
 	Array.append<ToDo>(todos, [todo])
 };
 

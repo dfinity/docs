@@ -47,7 +47,7 @@ For projects that use the {proglang} programming language, see link:https://gith
 // link:[To-do checklist]
 
 
-== Additional sample application
+== Additional sample applications
 
 This section includes sample code from projects that are not currently available in the public repository.
 
@@ -55,28 +55,32 @@ This section includes sample code from projects that are not currently available
 
 The `+motoko-to-do+` project illustrates how to create a simple to-do checklist application using the {proglang} programming language.
 
-This project is implemented using the following {proglang} source code files. 
+==== Source code
 
-==== utils.mo
+This project is implemented using the following {proglang} source code files:
 
-The `+utils.mo+` file contains the core functions for adding, completing, and removing to-do items. 
+- The xref:utils[utils.mo] file contains the core functions for adding, completing, and removing to-do items. 
+- The xref:types[types.mo] file defines the properties for `+ToDo+` items as a custom data type definition.
+- The xref:main[main.mo] file contains the actor definition and public functions that the compiled canister exposes.
+
+[[utils]]
+===== utils.mo
 
 [source,motoko]
 ----
 include::example$motoko-to-do/utils.mo[]
 ----
 
-==== types.mo
-The `+types.mo+` file defines the properties for `+ToDo+` items as a custom data type definition.
+[[types]]
+===== types.mo
 
 [source,motoko]
 ----
 include::example$motoko-to-do/types.mo[]
 ----
 
-==== main.mo
-
-The `+main.mo+` file contains the actor definition and public functions that the compiled canister exposes.
+[[main]]
+===== main.mo
 
 [source,motoko]
 ----
@@ -87,10 +91,12 @@ include::example$motoko-to-do/main.mo[]
 
 The `+mo-hex+` project implements hexadecimal encoding and decoding routines for the {proglang} programming language.
 
-=== Source code
+==== Source code
 
-The project includes the following `+hex.mo+` source code.
+The project includes the following xref:hex[hex.mo] source code.
 
+[[hex]]
+===== hex.mo
 [source,motoko]
 ----
 include::example$hex/hex.mo[]
@@ -100,20 +106,23 @@ include::example$hex/hex.mo[]
 
 This program performs polynomial long division for a Galois field GF(256) element.
 
-=== Source code
+==== Source code
 
-In addition to standard libraries, this project uses two main {proglang} source code files. 
-- The `+galois.mo+` file contains the core programming logic. 
-- The `+nat.mo+` file contains additional functions that are imported for use in the `+galois.mo+` file.
+In addition to standard libraries, this project uses two main {proglang} source code files.
 
-==== galois.mo
+- The xref:galois[galois.mo] file contains the core programming logic. 
+- The xref:nat[nat.mo] file contains additional functions that are imported for use in the `+galois.mo+` file.
+
+[[galois]]
+===== galois.mo
 
 [source,motoko]
 ----
 include::example$galois/galois.mo[]
 ----
 
-==== nat.mo
+[[nat]]
+===== nat.mo
 
 [source,motoko]
 ----

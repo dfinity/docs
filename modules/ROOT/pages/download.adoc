@@ -35,7 +35,7 @@ To download and install a specific version from a terminal shell:
 +
 [source,bash]
 ----
-DFX_VERSION=0.5.2 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.5.5 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
 == Next steps

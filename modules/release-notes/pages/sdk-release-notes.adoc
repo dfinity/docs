@@ -47,26 +47,29 @@ The {release} release includes the following changes that might require updates 
 - The name of the built-in {proglang} library has changed from `stdlib` to `base`.
 - All of the module names in the `base` library start with an upper case letter.
 - The `principalId` module has been changed to `Principal`.
-+
+
+=== Modifying existing programs
+
 If you have programs that rely on modules in the `stdlib` library, you must change the `import` statement to use the new `base` library name.
 For example, you might have previously imported the Array module using the following statement:
-+
+
 [source,motoko]
 ----
 import Array "mo:stdlib/array";
 ----
-+
+
 With this release, you would change the statement like this:
-+
+
 [source,motoko]
 ----
 import Array "mo:base/Array";
 ----
-+
-If your local development environment runs on macOS, keep in mind that the macOS file system is case-insensitive by default. 
-Therefore, you might be able to build your {proglang} program using a lower case module name. 
-However, the same code will not compile in Linux. 
-The recommended best practice is to always capitalize module names.
+=== Addressing case-sensitivity
+
+If your local development environment runs on macOS, you might be able to build your {proglang} program using a lower case module name because the macOS file system is not case-sensitive by default. 
+ 
+If you use lower case module names, however, the same code will not compile on Linux computers. 
+Therefore, the recommended best practice is to always capitalize module names.
 For example, use `import Array "mo:base/Array"`, not `import Array "mo:base/array"`.
 
 == Issues fixed in this release
@@ -80,11 +83,6 @@ This section covers any known issues or limitations that might affect how you wo
 If there are workarounds to any of the issues described in this section, you can find them in the link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] section.
 
 The {release} release includes the following known issues and limitations:
-
-- Float support in the {proglang} programming language that is compiled to WebAssembly.
-+
-Although {proglang} recognizes floating point numbers, there are some limitations related to the deterministic requirements of the {IC} that can create issues when compiling {proglang} source code that includes floating point data types into WebAssembly for deployment.
-To simplify the development of test and demonstration programs that run on the current {release} release, you should avoid using Float data types for now.
 
 - Using fixed-length Word data type arguments when running `+dfx+` commands.
 +

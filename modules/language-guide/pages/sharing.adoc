@@ -3,19 +3,21 @@
 Recall that in {proglang}, mutable state is always private to an actor.
 
 However, two actors can share message data, and those messages can
-refer to actors (including themselves and one another), and to their
-individual functions, if those functions are `shared`.
+refer to actors, including themselves and one another.  Additionally,
+messages may refer to individual functions, if those functions are `shared`.
 
-Through each mechanism, two actors can coordinate their behavior
-through asynchronous message-passing and private (unshared) state.
+Through these mechanisms, two actors can coordinate their behavior
+through asynchronous message passing.
 
-To give a simple example, we focus on variations of the publisher-subscriber
-pattern, wherein a publisher actor records a list of subscribers to
+== Publisher-subscriber pattern with actors
+
+To give a simple example, we focus on variations of the link:https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern["publisher-subscriber" pattern],
+wherein a "publisher" actor records a list of "subscriber" actors to
 notify when something notable occurs in the publisher's state (e.g., a
 new "publication" is available).
 
-We use two actors in {proglang} to build a publisher-subscriber
-relationship between two actors.
+Below, we use two actors in {proglang} to build variations of the
+publisher-subscriber relationship between the actors.
 
 For a complete working project,
 see the link:https://github.com/dfinity/examples/tree/master/motoko/pubsub[pubsub example].
@@ -23,14 +25,11 @@ see the link:https://github.com/dfinity/examples/tree/master/motoko/pubsub[pubsu
 Below, we introduce the ideas gradually, showing the most salient pieces in code below.
 See the link:https://github.com/dfinity/examples[`examples` repository] for working code.
 
-== Publisher-subscriber pattern with actors
+=== A basic version
 
-We begin by defining a type of `Subscriber` actor type, which gives a
-common interface for the two actors.  The publisher uses this type to
-define a data structure to store its subscribers.  Each `Subscriber`
-actor exposes an update function `notify`, as in the `Subscriber`
-actor type signature.  Recall that subtyping permits the subscriber
-actor to have additional methods not listed in this type:
+We begin the most basic version of the pattern by defining a type of
+`Subscriber` actor type, which gives a common interface for the two
+actors:
 
 [source,motoko]
 ----
@@ -39,11 +38,18 @@ public type Subscriber = actor {
 };
 ----
 
-We assume a very simple type for `notify`.  In general,
-this `notify` function would accept relevant notification data
-and perhaps return some new status of
-the subscriber to the publisher, e.g., changing its subscription
-settings based on the notification data.
+1. The `Publisher` uses this type to define a data structure to store its
+subscribers as data.
+2. Each `Subscriber` actor exposes an update function
+`notify`, as in the `Subscriber` actor type signature above.  Recall that
+subtyping permits the subscriber actor to also have additional methods not
+listed in this type.
+
+For simplicity, we assume a very simple type for `notify` above.  In
+general, this `notify` function would accept relevant notification
+data and perhaps return some new status of the subscriber to the
+publisher, e.g., changing its subscription settings based on the
+notification data.
 
 For simplicity here, we do not consider such data, and let the
 subscriber perform further queries of the publisher, if need be
@@ -79,11 +85,10 @@ type given above.
 
 === Subscriber side
 
-In the simplest case, the subscriber side has three methods: a way to
-query the accumulated state, in this case just a counter (`get`), a
-way to subscribe to notifications from the publisher (`init`), and a
-way for the publisher to notify the actor (`notify`, as in the type
-given above):
+In the simplest case, the subscriber side has three methods:
+1. query the accumulated state, in this case just a counter (`get`),
+2. subscribe to notifications from the publisher (`init`), and
+3. notify the subscribed actors (calling `notify`, as in the `Subscriber` type given above):
 
 [source,motoko]
 ----

@@ -1,12 +1,126 @@
-= Sharing among distinct actors
+= Sharing data and behavior
 
-CAUTION: Not complete
+Recall that in {proglang}, mutable state is always private to an actor.
 
-== Shared data
+However, two actors can share message data, and those messages can
+refer to actors (including themselves and one another), and to their
+individual functions, if those functions are `shared`.
 
-== Shared functions
+Through each mechanism, two actors can coordinate their behavior
+through asynchronous message-passing and private (unshared) state.
 
-[[example-notify]]
-== Example: Notification service
+To give a simple example, we focus on variations of the publisher-subscriber
+pattern, wherein a publisher actor records a list of subscribers to
+notify when something notable occurs in the publisher's state (e.g., a
+new "publication" is available).
 
-CAUTION: Not complete (todo: simple example of a callback-using service)
+We use two actors in {proglang} to build a publisher-subscriber
+relationship between two actors.
+
+For a complete working project,
+see the link:https://github.com/dfinity/examples/tree/master/motoko/pubsub[pubsub example].
+
+Below, we introduce the ideas gradually, showing the most salient pieces in code below.
+See the link:https://github.com/dfinity/examples[`examples` repository] for working code.
+
+== Publisher-subscriber pattern with actors
+
+We begin by defining a type of `Subscriber` actor type, which gives a
+common interface for the two actors.  The publisher uses this type to
+define a data structure to store its subscribers.  Each `Subscriber`
+actor exposes an update function `notify`, as in the `Subscriber`
+actor type signature.  Recall that subtyping permits the subscriber
+actor to have additional methods not listed in this type:
+
+[source,motoko]
+----
+public type Subscriber = actor {
+  notify : () -> ()
+};
+----
+
+We assume a very simple type for `notify`.  In general,
+this `notify` function would accept relevant notification data
+and perhaps return some new status of
+the subscriber to the publisher, e.g., changing its subscription
+settings based on the notification data.
+
+For simplicity here, we do not consider such data, and let the
+subscriber perform further queries of the publisher, if need be
+(perhaps less efficient than a more custom protocol).
+
+
+=== Publisher side
+
+The publisher side of the code stores an array of subscribers, where
+we assume (for simplicity) that each subscriber only subscribes
+themselves once, via `subscribe`.
+
+[source,motoko]
+----
+actor Publisher {
+    var subscribers: [Subscriber] = [];
+
+    public func subscribe(subscriber: Subscriber) {
+        subscribers := Array.append<Subscriber>(subscribers, [subscriber]);
+    };
+
+    public func publish(counter: Counter) {
+        for (subscriber in subscribers.vals()) {
+          subscriber.notify();
+        };
+    };
+};
+----
+
+Later, when some unspecified external agent invokes `publish`, all of
+the subscreibers receive the `notify` message, as in the `Subscriber`
+type given above.
+
+=== Subscriber side
+
+In the simplest case, the subscriber side has three methods: a way to
+query the accumulated state, in this case just a counter (`get`), a
+way to subscribe to notifications from the publisher (`init`), and a
+way for the publisher to notify the actor (`notify`, as in the type
+given above):
+
+[source,motoko]
+----
+import Publisher "canister:pub";
+
+actor Subscriber {
+    var count: Nat = 0;
+    public func get() : async Nat {
+        count
+    };
+    public func notify() {
+        count += 1;
+    };
+    public func init() {
+        Publisher.subscribe(Subscriber);
+    };
+}
+----
+
+We assume, but do not enforce, that the `init` function is only ever
+called once.  With more care, the actor could enforce this.
+Alternatively, a more advanced publisher actor could check for
+duplicates and ignore them.
+
+== Sharing functions among actors
+
+In {proglang}, a `shared` actor function can be sent in a message to
+another actor, and then later called by that actor, or another one.
+
+The code shown above has been simplified for illustrative purposes.
+The full version offers additional features to the
+publisher-subscriber relationship, and uses shared functions to make
+this relationship more flexible.
+
+See the link:https://github.com/dfinity/examples/tree/master/motoko/pubsub[the full example]
+for details.
+
+=== The keyword `shared`
+
+To do... explain some snippets from the full version, and the use of the keyword.

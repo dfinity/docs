@@ -1,5 +1,5 @@
 .Motoko Base Library
-* xref:stdlib-intro.adoc[Using base library functions]
+* xref:stdlib-intro.adoc[Using the base library]
 * xref:./Array.adoc[Arrays]
 * xref:./AssocList.adoc[Association lists]
 * xref:./Blob.adoc[Blob]

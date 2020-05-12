@@ -80,15 +80,17 @@ actor Publisher {
 ----
 
 Later, when some unspecified external agent invokes `publish`, all of
-the subscreibers receive the `notify` message, as in the `Subscriber`
+the subscribers receive the `notify` message, as in the `Subscriber`
 type given above.
 
 === Subscriber side
 
 In the simplest case, the subscriber side has three methods:
-1. query the accumulated state, in this case just a counter (`get`),
-2. subscribe to notifications from the publisher (`init`), and
-3. notify the subscribed actors (calling `notify`, as in the `Subscriber` type given above):
+1. initially, subscribe to notifications from the publisher (`init`),
+2. be notified as one of the subscribed actors (`notify`, as in the `Subscriber` type given above), and
+1. permit queries to the accumulated state, in this case just a counter of notifications (`get`).
+
+The code below implements each of these:
 
 [source,motoko]
 ----
@@ -96,22 +98,27 @@ import Publisher "canister:pub";
 
 actor Subscriber {
     var count: Nat = 0;
-    public func get() : async Nat {
-        count
+    public func init() {
+        Publisher.subscribe(Subscriber);
     };
     public func notify() {
         count += 1;
     };
-    public func init() {
-        Publisher.subscribe(Subscriber);
+    public func get() : async Nat {
+        count
     };
 }
 ----
 
-We assume, but do not enforce, that the `init` function is only ever
-called once.  With more care, the actor could enforce this.
-Alternatively, a more advanced publisher actor could check for
-duplicates and ignore them.
+The actor assumes, but does not enforce, that its `init` function is
+only ever called once.
+
+If called more than once, the actor will subscribe itself multiple
+times, and will receive multiple (duplicate) notifications from the
+publisher.  This fragility is the consequence of the basic
+publiisher-subscriber design we show above.  With more care, a more
+advanced publisher actor could check for duplicate subscriber actors
+and ignore them, for instance.
 
 == Sharing functions among actors
 
@@ -123,9 +130,101 @@ The full version offers additional features to the
 publisher-subscriber relationship, and uses shared functions to make
 this relationship more flexible.
 
+For instance, the notification function is _always_ designated as
+`notify`.  A more flexible design would only fix the type of `notify`,
+and permit the subscriber to choose any of its `shared` functions,
+specified in a `subscribe` message in place of (just) the actor that
+is subscribing.
+
 See the link:https://github.com/dfinity/examples/tree/master/motoko/pubsub[the full example]
 for details.
 
+In particular, suppose that the subscriber wants to
+avoid being locked into a certain naming scheme for its interface.
+What really matters is that the publisher can call _some_ function
+that the subscriber chooses.
+
 === The keyword `shared`
 
-To do... explain some snippets from the full version, and the use of the keyword.
+To permit this flexibility, an actor needs to share a single
+_function_ that permits remote invocation from another actor, not
+merely a reference to itself.
+
+The ability to share a function requires that it be pre-designated as
+`shared`, and the type system enforces that these functions follow
+certain rules around the types of data that these functions accept,
+return and over which their closures close.
+
+We omit this keyword for actor methods since implicitly, _all public
+functions of every actor are `shared`_, whether marked explicitly
+or not.
+
+More generally, a `shared` function is one that is _either_ part of
+the public interface of an actor, _or_ it is not mentioned in the
+public interface, but it does not close over the actor's mutable
+state, and it adheres to the same argument and return-type typing
+restrictions as a public actor function (e.g., no mutable data in
+the arguments or results).
+
+Using the `shared` type, we can extend the example above to be more
+flexible:
+
+[source,motoko]
+----
+type SubscribeMessage = { callback: shared () -> (); };
+----
+
+This type differs from the original, in that it describes _a message_
+record type with a single field called `callback`, and the original type
+first shown above describes _an actor_ type with a single method called
+`notify`:
+
+[source,motoko]
+----
+type Subscriber = actor { notify : () -> () };
+-----
+
+Notably, the `actor` keyword means that this latter type is not an
+ordinary record with fields, but rather, an actor with at least one
+method, which _must_ be called `notify`.
+
+By using the `SubscribeMessage` type instead, the `Subscriber` actor
+can choose another name for their `notify` method:
+
+[source,motoko]
+----
+actor Subscriber {
+    var count: Nat = 0;
+    public func init() {
+        Publisher.subscribe({callback = incr;});
+    };
+    public func incr() {
+        count += 1;
+    };
+    public query func get(): async Nat {
+        count
+    };
+};
+----
+
+Compared to the original version, the only (two) lines that change are
+those that rename `notify` to `incr`, and form the new
+`subscribe` message payload, via the expression `{callback = incr}`.
+
+Likewise, we can update the publisher to have a matching interface:
+
+[source,motoko]
+----
+type SubscribeMessage = { callback: shared () -> (); };
+actor Publisher {
+    var subs: [SubscribeMessage] = [];
+    public func subscribe(sub: SubscribeMessage) {
+         subs := Array.append<SubscribeMessage>(subs, [sub]);
+    };
+    public func publish() {
+        for (sub in subs.vals()) {
+            subscriber.callback();
+         };
+    };
+};
+----

@@ -61,15 +61,15 @@ themselves once, via `subscribe`.
 [source,motoko]
 ----
 actor Publisher {
-    var subscribers: [Subscriber] = [];
+    var subs: [Subscriber] = [];
 
-    public func subscribe(subscriber: Subscriber) {
-        subscribers := Array.append<Subscriber>(subscribers, [subscriber]);
+    public func subscribe(sub: Subscriber) {
+        subs := Array.append<Subscriber>(subs, [sub]);
     };
 
-    public func publish(counter: Counter) {
-        for (subscriber in subscribers.vals()) {
-          subscriber.notify();
+    public func publish() {
+        for (sub in subs.vals()) {
+          sub.notify();
         };
     };
 };
@@ -107,7 +107,9 @@ actor Subscriber {
 ----
 
 The actor assumes, but does not enforce, that its `init` function is
-only ever called once.
+only ever called once.  In it, the `Subscriber` actor passes a
+reference to itself, of type `actor { notify : () -> () };` (locally
+called `Subscriber` above).
 
 If called more than once, the actor will subscribe itself multiple
 times, and will receive multiple (duplicate) notifications from the

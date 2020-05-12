@@ -11,7 +11,7 @@ through asynchronous message passing.
 
 == Publisher-subscriber pattern with actors
 
-To give a simple example, we focus on variations of the link:https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern["publisher-subscriber" pattern],
+We show how actors share their functions by focusing on variations of the link:https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern["publisher-subscriber" pattern],
 wherein a "publisher" actor records a list of "subscriber" actors to
 notify when something notable occurs in the publisher's state (e.g., a
 new "publication" is available).
@@ -27,9 +27,9 @@ See the link:https://github.com/dfinity/examples[`examples` repository] for work
 
 === A basic version
 
-We begin the most basic version of the pattern by defining a type of
-`Subscriber` actor type, which gives a common interface for the two
-actors:
+Consider the following `Subscriber` actor type, which gives a possible
+interface for the subscriber actor and publisher actor to expose and
+to call, respectively:
 
 [source,motoko]
 ----
@@ -50,10 +50,6 @@ general, this `notify` function would accept relevant notification
 data and perhaps return some new status of the subscriber to the
 publisher, e.g., changing its subscription settings based on the
 notification data.
-
-For simplicity here, we do not consider such data, and let the
-subscriber perform further queries of the publisher, if need be
-(perhaps less efficient than a more custom protocol).
 
 
 === Publisher side

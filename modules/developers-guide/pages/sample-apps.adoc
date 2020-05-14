@@ -51,42 +51,6 @@ For projects that use the {proglang} programming language, see link:https://gith
 
 This section includes sample code from projects that are not currently available in the public repository.
 
-=== To-do checklist
-
-The `+motoko-to-do+` project illustrates how to create a simple to-do checklist application using the {proglang} programming language.
-
-==== Source code
-
-This project is implemented using the following {proglang} source code files:
-
-- The xref:utils[utils.mo] file contains the core functions for adding, completing, and removing to-do items. 
-- The xref:types[types.mo] file defines the properties for `+ToDo+` items as a custom data type definition.
-- The xref:main[main.mo] file contains the actor definition and public functions that the compiled canister exposes.
-
-[[utils]]
-===== utils.mo
-
-[source,motoko]
-----
-include::example$motoko-to-do/utils.mo[]
-----
-
-[[types]]
-===== types.mo
-
-[source,motoko]
-----
-include::example$motoko-to-do/types.mo[]
-----
-
-[[main]]
-===== main.mo
-
-[source,motoko]
-----
-include::example$motoko-to-do/main.mo[]
-----
-
 === Hex encoding and decoding
 
 The `+mo-hex+` project implements hexadecimal encoding and decoding routines for the {proglang} programming language.

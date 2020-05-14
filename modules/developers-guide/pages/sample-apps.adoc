@@ -44,7 +44,7 @@ For projects that use the {proglang} programming language, see link:https://gith
 //* link:[Hex encoding and decoding]
 * link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[Phone book]
 * link:https://github.com/dfinity/examples/tree/master/motoko/pubsub[Publish/subscribe]
-// link:[To-do checklist]
+* link:https://github.com/dfinity/examples/tree/master/motoko/simple_to_do[Simple To-do checklist]
 
 
 == Additional sample applications

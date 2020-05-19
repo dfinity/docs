@@ -19,7 +19,7 @@ The {sdk-long-name} enables developers to develop applications for the {IC} usin
 The {sdk-short-name} provides everything you need to perform the following key tasks:
 
 - Author canisters in {proglang} and compile them to WebAssembly.
-- Run {IC} client processes locally on your development computer.
+- Run {IC} replica processes locally on your development computer.
 - Deploy compiled programs as standalone canisters and interact with the canisters using a command-line interface.
 
 This {release} version of the {sdk-long-name} is an interim update of the Alpha release recently shared with the development community and made available to the public for preliminary testing, demonstration, and exploration.

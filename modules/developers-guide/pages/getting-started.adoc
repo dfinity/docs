@@ -11,7 +11,7 @@ March 2020 (Alpha)
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-The {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a locally-deployed {IC} client node.
+The {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a locally-deployed {IC} replica node.
 (You won’t be able to install your programs on an externally-managed Developer Network just yet, but that capability is coming soon.)
 
 By developing programs that run on the {platform}, you can deploy secure, tamper-proof applications and provide web-based services without the restrictions or expense of a proprietary infrastructure, the complexities of database management and maintenance, or the investment in hardware required to run enterprise-scale software.
@@ -354,7 +354,7 @@ In addition to these files, the `+dfx build+` command creates an `+idl_` directo
 
 == Start the local network and deploy
 
-You now have a program that can be deployed on your local client network.
+You now have a program that can be deployed on your local replica network.
 
 To deploy the program on your local network:
 
@@ -376,7 +376,7 @@ If you don't specify the `+--background+` option, you must open a new terminal s
 For example, if you are in the Terminal application on macOS, click Shell, then click *New Window*.
 You can then navigate to your `+hello_world+` project directory in the new terminal shell before continuing to the next step.
 +
-After you start the local network, you should see the `Internet Computer client started` message and details about your current network configuration.
+After you start the local network, you should see the `Internet Computer replica started` message and details about your current network configuration.
 . Deploy your `+hello_world+` project on the local network by running the `+dfx canister install+` command and specifying a `+canister_name+` that matches the canister name specified in the `+dfx.json+` configuration file.
 +
 For this tutorial, the canister name is `+hello_world+` and the path to the compiled code for the canister you want to deploy is `+canisters/hello_world/main.wasm+`, so you can deploy the canister by running the following command:
@@ -408,7 +408,7 @@ For example:
 ----
 ("*Hello, there!*")
 ----
-. Stop the {IC} client processes running on your local computer by running the following command:
+. Stop the {IC} replica processes running on your local computer by running the following command:
 +
 [source,bash]
 ----

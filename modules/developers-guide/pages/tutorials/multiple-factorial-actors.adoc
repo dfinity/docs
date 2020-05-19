@@ -37,7 +37,7 @@ Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the SDK as described in
 link:../getting-started{outfilesuffix}[Getting started].
-* You have stopped any network client processes running on the local
+* You have stopped any network replica processes running on the local
 computer.
 
 This tutorial takes approximately 20 minutes to complete.
@@ -152,7 +152,7 @@ include::example$multiple-actors/daemon/main.mo
 
 == Build all of the canisters in the project
 
-You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local client network.
+You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local replica network.
 
 To build the executable for each actor in the project:
 
@@ -202,9 +202,9 @@ dfx canister install --all
 
 == Verify deployment by calling functions
 
-You now have three programs deployed as a *canisters* on your local client network and can test each program by using `+dfx canister call+` commands.
+You now have three programs deployed as a *canisters* on your local replica network and can test each program by using `+dfx canister call+` commands.
 
-To test the programs you have deployed on the local client network:
+To test the programs you have deployed on the local replica network:
 
 . Use the `+dfx canister call+` command to call the canister `+assistant+` using the `+addTodo+` function and pass it the task you want to add by running the following command:
 +

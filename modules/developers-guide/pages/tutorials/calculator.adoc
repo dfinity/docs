@@ -35,7 +35,7 @@ Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the SDK as described in
 link:../getting-started{outfilesuffix}[Getting started].
-* You have stopped any network client processes running on the local
+* You have stopped any network replica processes running on the local
 computer.
 
 This tutorial takes approximately 20 minutes to complete.
@@ -118,7 +118,7 @@ If you wanted to restrict the functions in this calculator code to only use posi
 
 == Build and deploy the program
 
-You now have a program that you can compile into an executable WebAssembly module that you can deploy—using the canister model—on your local client network.
+You now have a program that you can compile into an executable WebAssembly module that you can deploy—using the canister model—on your local replica network.
 
 To build the program executable:
 
@@ -151,9 +151,9 @@ dfx canister install calc
 
 == Verify calculator functions on the canister
 
-You now have a program deployed as a *canister* on your local client network and can test your program by using `+dfx canister call+` commands.
+You now have a program deployed as a *canister* on your local replica network and can test your program by using `+dfx canister call+` commands.
 
-To test the program you have deployed on the local client network:
+To test the program you have deployed on the local replica network:
 
 . Use the `+dfx canister call+` command to call the `+calc+` canister `+add+` function and pass it the input argument `+10+` of type `+number+` by running the following command:
 +

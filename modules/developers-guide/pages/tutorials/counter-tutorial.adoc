@@ -30,10 +30,10 @@ Like the other sample programs, this tutorial demonstrates a simple, but realist
 * Create a new project.
 * Write a program that uses {proglang} code.
 * Compile the code into a WebAssembly module that you deploy.
-* Deploy the canister on the local network client.
+* Deploy the canister on the local network replica.
 * Invoke the canister methods to increment then read the value of a counter.
 
-The following diagram provides a simplified overview of the workflow passing from the developer’s command-line environment to the internet computer network client deployed locally:
+The following diagram provides a simplified overview of the workflow passing from the developer’s command-line environment to the internet computer network replica deployed locally:
 
 image:dev-work-flow-2.png[Overview of the developer work flow]
 
@@ -44,7 +44,7 @@ As the diagram suggests, the network infrastructure and the development environm
 Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the SDK as described in link:../getting-started{outfilesuffix}[Getting started].
-* You have stopped any network client processes running on the local computer.
+* You have stopped any network replica processes running on the local computer.
 
 This tutorial takes approximately 20 minutes to complete.
 
@@ -159,7 +159,7 @@ include::example$counter.mo[]
 
 == Build and deploy the program
 
-You now have a Counter program that you can compile into an executable WebAssembly module and deploy on your local client network.
+You now have a Counter program that you can compile into an executable WebAssembly module and deploy on your local replica network.
 
 To build and deploy the program:
 
@@ -194,7 +194,7 @@ After running the `+dfx build+` command, your program is encapsulated in a uniqu
 ----
 ls -l canisters/my_counter
 ----
-. Start the {IC} network client processes by running the following command:
+. Start the {IC} network replica processes by running the following command:
 +
 [source,bash]
 ----
@@ -228,7 +228,7 @@ the current value of the `+currentValue+` variable on the deployed canister:
 dfx canister call my_counter get
 ----
 +
-Note that you could use the `+--async+` option with this command to indicate that you want to poll the client for the result with a separate `+request-status+` call. 
+Note that you could use the `+--async+` option with this command to indicate that you want to poll the replica for the result with a separate `+request-status+` call.
 By default, the `+dfx canister call+` command waits for the result rather than requiring you to make a separate `+request-status+` call. 
 +
 The command returns the current value of the `+currentValue+` variable as zero:

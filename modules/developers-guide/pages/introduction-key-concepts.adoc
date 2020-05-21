@@ -11,6 +11,7 @@ However, learning a few key concepts will help you get the most out of the uniqu
 Knowing a little about the design and architecture of the {platform} can make it easier for you to realize the benefits that align with your goals and inform the types of applications you develop. 
 If you want to get right to developing code, though, you can skip this introductory material—key concepts and terminology—and look them up later when you need them either in this section or in the link:glossary{outfilesuffix}[glossary] provided at the end of this guide.
 
+[[ic-overview]]
 == What is the {IC}?
 
 The *{IC}* is a computing infrastructure that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof software programs.

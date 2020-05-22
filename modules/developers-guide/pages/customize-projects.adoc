@@ -104,7 +104,7 @@ If you change the path to the main program file or the name of the file itself, 
 
 == How to change the location for serving the application front-end
 
-You can change the default host name and port number for running the local {IC} client processes and serving the application front-end by modifying settings in the `+dfx.json+` configuration file.
+You can change the default host name and port number for running the local {IC} replica processes and serving the application front-end by modifying settings in the `+dfx.json+` configuration file.
 
 For example:
 

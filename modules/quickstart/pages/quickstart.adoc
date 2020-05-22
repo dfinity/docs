@@ -14,7 +14,7 @@ March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-This {sdk-long-name} is an Alpha release that provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} client node.
+This {sdk-long-name} is an Alpha release that provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} replica node.
 
 IMPORTANT: For this *Alpha* release, only *macOS* and *Linux* platforms are supported. In addition, you won’t be able to install your programs on an externally-managed Developer Network just yet, but that capability is coming soon.
 
@@ -157,7 +157,7 @@ Bundling frontend assets in the canister
 [[start-the-local-network-and-deploy]]
 == Start the local network and deploy
 
-You now have a program that can be deployed on your local client network.
+You now have a program that can be deployed on your local replica network.
 
 [arabic]
 . Start the {IC} network on your local computer by running the following command:
@@ -170,7 +170,7 @@ dfx start --background
 Depending on your platform and local security settings, you might see a warning displayed. 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 +
-The `+--background+` option starts {IC} client processes then runs them in the background so that you can continue to the next step without opening another terminal shell on your local computer.
+The `+--background+` option starts {IC} replica processes then runs them in the background so that you can continue to the next step without opening another terminal shell on your local computer.
 . Deploy the default program on the local network by running the following command:
 +
 [source,bash]
@@ -210,7 +210,7 @@ Mar 04 15:43:52.779 INFO Created checkpoint @169984
 in 68.44148ms, StateManager: 1
 (*"Hello, there!"*)
 ----
-. Stop the {IC} client processes running on your local computer by running the following command:
+. Stop the {IC} replica processes running on your local computer by running the following command:
 +
 [source,bash]
 ----

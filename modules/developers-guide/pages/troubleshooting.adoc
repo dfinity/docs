@@ -88,7 +88,7 @@ Fixing memory leaks is an ongoing process. If you encounter any error messages r
 . Run `+dfx stop+` to stop currently running processes.
 . Uninstal `+dfx+` to prevent further degradation.
 . Re-install `+dfx+`
-. Run `+dfx start+` to restart client processes.
+. Run `+dfx start+` to restart replica processes.
 
 Alternatively, you can remove the `+.cache/dfinity+` directory and re-install the latest `+dfx+` binary.
 For example:

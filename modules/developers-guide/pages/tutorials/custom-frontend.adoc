@@ -166,7 +166,7 @@ The command displays output indicating that the build is successful.
 
 == Start the local network and deploy
 
-You now have a program that can be deployed on your local client network.
+You now have a program that can be deployed on your local replica network.
 
 To deploy the program on your local network:
 

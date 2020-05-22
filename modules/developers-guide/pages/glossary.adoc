@@ -15,8 +15,8 @@ replica::
   In the context of the {platform}, a replica refers to the {IC} processes (for example, the `+replica+`, `+nodemanager+`, and other lower-level {IC} protocol processes) running on a physical computer node in the network.
   For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop the `+replica+` process locally to provide a local network for development.
 node::
-  A physical computer that is a registered member of the {platform} network and running the {IC} replica processes.
+  A physical computer that is a registered member of the {platform} network and running the {IC} client processes.
 WebAssembly::
   https://webassembly.org/[WebAssembly] (`+Wasm+`) is a low-level computer instruction format. 
   Because WebAssembly defines a portable,open-standard, binary format that abstracts cleanly over most modern computer hardware, it is broadly supported for programs that run on the internet. 
-  Programs written in {proglang} are compiled to WebAssembly code for execution on {IC} replicas.
+  Programs written in {proglang} are compiled to WebAssembly code for execution on {IC} clients.

@@ -575,8 +575,8 @@ You can use the following options with the `+dfx canister call+` command.
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Option |Description
-|`+--replica replica_address+` |Specifies the replica host name or IP address and port to connect to.
-This option enables you to override the replica setting specified in the `+dfx.json+` configuration file.
+|`+--provider compute_provider_location+` |Specifies the compute provider host name or IP address and port to connect to.
+This option enables you to override the address and port settings specified in the `+dfx.json+` configuration file.
 
 |`+--type type+` |Specifies the data type for the argument when making the call using an argument. 
 The valid values are `+string+`, `+number+`, `+idl+`, and `+raw+`.
@@ -716,26 +716,18 @@ dfx canister call hello greet --type raw '4449444c00017103e29883'
 
 This example uses the raw data type to pass a hexadecimal to the `+greet+` function of the `+hello+` canister. 
 
-==== Overriding the default replica address
+==== Overriding the default compute provider
 
-If you want to send a call to a specific replica address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the replica using the `+--replica` option.
+If you want to send a call to a specific compute provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the compute provider using the `+--provider` option.
 
-For example, you can specify the replica address by running a command similar to the following:
+For example, you can specify the compute provider by running a command similar to the following:
 
-////
 [source,bash]
 ----
-dfx canister call --replica http://192.168.3.1:5678 counter get
+dfx canister --provider http://192.168.3.1:5678 call counter get
 ----
 
-Note that you must specify the replica URL after the canister operation (`+call+`), and before the canister name (`+counter+`) and function (`+get+`).
-////
-[source,bash]
-----
-dfx canister --replica http://192.168.3.1:5678 call counter get
-----
-
-Note that you must specify the replica URL before the canister operation (`+call+`), canister name (`+counter+`), and function (`+get+`).
+Note that you must specify the provider parameter before the canister operation (`+call+`), canister name (`+counter+`), and function (`+get+`).
 
 == dfx canister install
 
@@ -819,26 +811,18 @@ This command submits a request to install the canister and returns a request ide
 
 You can then use the request identifier to check the status of the request at a later time, much like a tracking number if you were shipping a package.
 
-==== Overriding the default replica address
+==== Overriding the default compute provider
 
-If you want to install a canister using a specific replica address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the replica using the `+--replica` option.
+If you want to install a canister using a specific compute provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the compute provider using the `+--provider` option.
 
-For example, you can specify the replica address by running a command similar to the following:
-////
-[source,bash]
-----
-dfx canister install --replica http://192.168.3.1:5678 --all
-----
-
-Note that you must specify the replica URL after the canister operation (`+install+`) and before the canister name or `+--all+` flag.
-////
+For example, you can specify the compute provider by running a command similar to the following:
 
 [source,bash]
 ----
-dfx canister --replica http://192.168.3.1:5678 install --all
+dfx canister --provider http://192.168.3.1:5678 install --all
 ----
 
-Note that you must specify the replica URL before the canister operation (`+install+`) and before the canister name or `+--all+` flag.
+Note that you must specify the provider parameter before the canister operation (`+install+`) and before the canister name or `+--all+` flag.
 
 == dfx canister request-status
 

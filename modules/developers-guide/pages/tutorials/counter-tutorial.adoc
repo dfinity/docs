@@ -149,12 +149,23 @@ To modify the default template source code:
 cd src/increment_counter
 ----
 . Open the template `+main.mo+` file in a text editor and delete the existing content.
-. Copy and paste the following sample code into the `+main.mo+` file:
+. Click the link to the programming language you want to use, then copy and paste the sample code into the main program file:
 +
-[source,motoko]
+[tabs]
+====
+Motoko::
++
+[source,motoko,indent=0]
 ----
 include::example$counter.mo[]
 ----
+Rust::
++
+[source,rust]
+----
+include::example$lib.rs[]
+----
+====
 . Save your changes and close the file to continue.
 
 == Build and deploy the program

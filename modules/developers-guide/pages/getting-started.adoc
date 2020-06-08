@@ -123,6 +123,8 @@ dfx --help
 +
 The command displays usage information for the `+dfx+` parent command and its subcommands.
 
+include::example$vscode-plugin.adoc[]
+
 [[create-a-new-project]]
 == Create a new project
 

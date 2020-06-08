@@ -90,7 +90,6 @@ To modify the default template source code:
 ----
 cd src/actor_hello
 ----
-
 . Open the template `+main.mo+` file in a text editor and delete the existing content.
 +
 The next step is to write a program that prints a statement like the traditional "Hello, World!" sample program. 
@@ -119,7 +118,8 @@ To compile the program for the {IC}, however, your program must include an `+act
 include::example$actor_hello.mo[]
 ----
 +
-This code sample uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister or perform any operations that would update the data you are accessing.
+This code sample imports a `+Debug+` module to provide the `+print+` functionality.
+The program uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister or perform any operations that would update the data you are accessing.
 +
 For more information about using a query call, see link:../introduction-key-concepts{outfilesuffix}#query-calls[query calls] in link:../introduction-key-concepts{outfilesuffix}#canister-state[Canisters include both program and state].
 
@@ -139,8 +139,9 @@ dfx build --skip-frontend
 +
 [source,bash]
 ----
-dfx start --background
+dfx start
 ----
+. Open a new terminal and navigate to your project directory.
 . Deploy your `+actor_hello+` project on the local network by running the following command:
 +
 [source,bash]
@@ -152,21 +153,22 @@ dfx canister install actor_hello
 
 You now have a program deployed as a *canister* on your local replica network and can test your program by using the `+dfx canister call+` commands.
 
-To test the program you have deployed on the local replica network:
+To test the program you have deployed on the local network:
 
 . Use `+dfx canister call+` to call the `+hello+` function by running the following command:
 +
 [source,bash]
 ----
-dfx canister call actor_hello hello
+dfx canister call --query actor_hello hello
 ----
-. Verify that the command returns the text specified for the `+hello+` function.
+. Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local network process.
 +
 For example, the program displays "Hello, World! from DFINITY" in output similar to the following:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
-debug.print: *Hello, World! from DFINITY*
+Jun 08 20:45:45.284 INFO Created checkpoint @611 in 5.143003ms, StateManager: 1
+debug.print: Hello, World from DFINITY 
 ----
 . Stop the {IC} processes running on your local computer by running the following command:
 +

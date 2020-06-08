@@ -279,7 +279,7 @@ This separation simplifies the code in each canister and illustrates how you can
 
 To make the public functions defined in one canister available in the another canister:
 
-. Add an `Import` statement in the calling canister.
+. Add an `import` statement in the calling canister.
 +
 In this example, the public functions are defined in the `connectd` canister and are called by the `linkedup` canister.
 +

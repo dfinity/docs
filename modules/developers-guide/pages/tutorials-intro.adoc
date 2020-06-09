@@ -14,7 +14,7 @@ December 2019 (Alpha)
 //:icons: font
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The link:quickstart:quickstart{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
+The link:../quickstart/quickstart{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
 Next, we’ll explore writing a few simple programs using the {proglang} language to give you hands-on experience working with the code. 
 
@@ -28,28 +28,18 @@ The following tutorials introduce the basics for working with {proglang}:
 
 * link:tutorials/counter-tutorial{outfilesuffix}[Incrementing a value to illustrate persistence] guides you through the process of writing a program that creates an actor with functions to increment and return the value of a counter.
 
-* link:tutorials/calculator{outfilesuffix}[Exploring calculator functions]
-+
-In this tutorial, you are going to write a simple calculator program for more practice working with {proglang} and to learn more about how you can customize your project environment.
+* link:tutorials/calculator{outfilesuffix}[Exploring calculator functions] shows you how to write a simple calculator program for more practice working with {proglang} and to learn more about how you can customize your project environment.
 
-* link:tutorials/phonebook{outfilesuffix}[Importing standard library functions]
-+
-In this tutorial, you are going to write a simple program that illustrates how to import and use a few basic standard library functions for working with key-value pairs in a list using {proglang}.
+* link:tutorials/phonebook{outfilesuffix}[Importing standard library functions] illustrates how to import and use a few basic standard library functions for working with key-value pairs in a list using {proglang}.
 
-* link:tutorials/multiple-actors{outfilesuffix}[Using multiple actors]
-+
-In this tutorial, you are going to create a single project that include multiple unrelated actors to illustrate how you can compile multiple canisters for the same project.
+* link:tutorials/multiple-actors{outfilesuffix}[Using multiple actors] describes how to include multiple unrelated actors in a single project to illustrate how you can compile multiple canisters for the same project.
 
-* link:tutorials/custom-frontend{outfilesuffix}[Customizing the front-end]
-+
-This tutorial illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed. 
+* link:tutorials/custom-frontend{outfilesuffix}[Customizing the front-end] illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed. 
 If you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.
-* link:tutorials/my-contacts{outfilesuffix}[Adding a stylesheet]
-+
-This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
-If you already know how to add stylesheets to React, you can skip this tutorial.
-* link:tutorials/intercanister-calls{outfilesuffix}[Calling shared functions]
-+
-This tutorial illustrates how to call shared functions in one canister from a program in another canister.
 
-Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Reference_].
+* link:tutorials/my-contacts{outfilesuffix}[Adding a stylesheet] illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
+If you already know how to add stylesheets to React, you can skip this tutorial.
+
+* link:tutorials/intercanister-calls{outfilesuffix}[Calling shared functions] illustrates how to call shared functions in one canister from a program in another canister.
+
+Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:https://github.com/dfinity/examples[examples] repository and link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].

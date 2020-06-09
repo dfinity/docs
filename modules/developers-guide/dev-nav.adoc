@@ -1,7 +1,7 @@
 * xref:sdk-guide.adoc[SDK Developer Tools]
 ** xref:introduction-key-concepts.adoc[Introduction and key concepts]
 ** xref:tutorials-intro.adoc[Tutorials]
-*** xref:explore-templates.adoc[Exploring the default project]
+*** xref:tutorials/explore-templates.adoc[Exploring the default project]
 *** xref:tutorials/actor-hello-world.adoc[Using an actor]
 *** xref:tutorials/hello-location.adoc[Passing arguments]
 *** xref:tutorials/counter-tutorial.adoc[Incrementing a counter]

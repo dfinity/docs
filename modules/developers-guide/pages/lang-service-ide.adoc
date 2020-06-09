@@ -20,14 +20,15 @@ Using the Language Server Protocol, a language server enables standardized inter
 
 Because the Language Server Protocol (LSP) standardizes the protocol for how language-specific servers and development tools communicate, a single language server can be re-used in multiple development tools with minimal effort.
 
+== Adding a language server for {proglang}
+
 With the {sdk-short-name}, you can add a language server for {proglang} to your editor or development environment client by invoking the `+dfx _language-service+` programmatically when you open {proglang} programs in an editor or development environment configured to recognize the language server.
 You can use any editor or integrated development environment that supports the Language Server Protocol to invoke the `+dfx _language-service+` programmatically. Once invoked, the language server ensures that your development environment reports {proglang} compiler errors and provides code completion and refactoring tools.
 
 For example, if you use Visual Studio Code (VSCode) or Emacs as your development environment, you can install a plugin extension that enables those editors to automatically invoke the {proglang} language server.
 
 NOTE: Only the Visual Studio Code (VSCode) plugin extension is currently available for {proglang}.
-
-include::example$vscode-plugin.adoc[]
+For information about installing the plugin, see link:../quickstart/quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in].
 
 == Invoking the language service manually
 

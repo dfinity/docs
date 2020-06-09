@@ -1,8 +1,8 @@
-= Getting started
-March 2020 (Alpha)
+= Exploring the default project
+June 2020 (Alpha)
 :toc:
 :toc: right
-:toc-title: GETTING STARTED
+:toc-title: EXPLORE FILES AND FOLDERS
 :toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
@@ -26,23 +26,11 @@ image:dev-workflow-overview-getstarted.png[Development work flow]
 
 == Before you begin
 
-Before you download and install this release of the SDK, verify the following:
+Before you start using the {sdk-long-name}, verify the following:
 
 * You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
-* You should have `+node.js+` installed if you want to include the default template files for front-end development in your project.
-
-== Download and install
-
-The most straightforward option for accessing the {sdk-short-name} is to download the SDK package from within a terminal shell on your local computer.
-With this installation option, you can be logged on as any user and no additional software is required.
-
-To download and install from a terminal shell:
-
-[arabic]
-. Open a terminal shell on your local computer.
-+
-For example, on macOS open the Applications folder, then open Utilities and double-click *Terminal*.
-. Download and install the SDK package by running the following command:
+* You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
+* You have downloaded and installed the {sdk-short-name} package as described in link:quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
 +
 [source,bash]
 ----

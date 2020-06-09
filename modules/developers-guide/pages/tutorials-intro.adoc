@@ -20,19 +20,13 @@ Next, we’ll explore writing a few simple programs using the {proglang} languag
 
 The following tutorials introduce the basics for working with {proglang}:
 
-* link:explore-templates{outfilesuffix}[Exploring the default project] illustrates the basic work flow for creating projects and deploying sample code to run on an {IC} node using the default sample project.
+* link:tutorials/explore-templates{outfilesuffix}[Exploring the default project] takes a closer look at the work flow for creating projects and the default files and folders that make up the project structure using the default sample project.
 
-* link:tutorials/actor-hello-world{outfilesuffix}[Using an actor in Hello, World!]
-+
-In the first tutorial, you are going to replace the typical `+print+` function usually defined in a "Hello, World!" program by defining an actor (object) with a `+hello+` function.
+* link:tutorials/actor-hello-world{outfilesuffix}[Using an actor in Hello, World!] highlights how to replace the typical `+print+` function usually defined in a "Hello, World!" program by defining an actor (object) with a `+hello+` function.
 
-* link:tutorials/hello-location{outfilesuffix}[Passing arguments in a terminal]
-+
-In the second tutorial, you are going to see the different ways you can pass string arguments to a function on a deployed canister using the command-line in a terminal shell.
+* link:tutorials/hello-location{outfilesuffix}[Passing arguments in a terminal] introduces different ways you can pass arguments to a function using the command-line in a terminal shell.
 
-* link:tutorials/counter-tutorial{outfilesuffix}[Incrementing a value to illustrate persistence]
-+
-In this tutorial, you are going to write a program that creates an actor and provides a few basic functions to increment and return the value of a counter.
+* link:tutorials/counter-tutorial{outfilesuffix}[Incrementing a value to illustrate persistence] guides you through the process of writing a program that creates an actor with functions to increment and return the value of a counter.
 
 * link:tutorials/calculator{outfilesuffix}[Exploring calculator functions]
 +

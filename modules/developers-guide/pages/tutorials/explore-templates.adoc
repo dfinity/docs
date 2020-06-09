@@ -11,14 +11,7 @@ June 2020 (Alpha)
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-The {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a locally-deployed {IC} replica node.
-(You won’t be able to install your programs on an externally-managed Developer Network just yet, but that capability is coming soon.)
-
-By developing programs that run on the {platform}, you can deploy secure, tamper-proof applications and provide web-based services without the restrictions or expense of a proprietary infrastructure, the complexities of database management and maintenance, or the investment in hardware required to run enterprise-scale software.
-
-If you want to learn more about the {platform} and how it can transform distributed computing and the application landscape, check out link:https://dfinity.org/faq[Frequently Asked Questions] or the videos posted on the https://www.youtube.com/channel/UCOyguKlTxoDK3HRzmGbLyAg[DFINITY Official Youtube Channel].
-
-If you are ready to start developing applications to run on the {platform}, it only takes a few minutes to get up and running.
+The {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a local {IC} network provider.
 
 As a preview of the steps, the following diagram illustrates the basic work flow.
 

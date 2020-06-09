@@ -14,12 +14,13 @@ December 2019 (Alpha)
 //:icons: font
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The default sample program in link:getting-started{outfilesuffix}[Getting started] illustrated the basic work flow for creating projects and deploying sample code to run on an {IC} node.
+The link:quickstart:quickstart{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
 Next, we’ll explore writing a few simple programs using the {proglang} language to give you hands-on experience working with the code. 
-One of the keys for writing programs in {proglang} is that it is optimized for handling asynchronous messaging while maintaining type soundness and an approachable interface with language conventions that look familiar to most developers.
 
 The following tutorials introduce the basics for working with {proglang}:
+
+* link:explore-templates{outfilesuffix}[Exploring the default project] illustrates the basic work flow for creating projects and deploying sample code to run on an {IC} node using the default sample project.
 
 * link:tutorials/actor-hello-world{outfilesuffix}[Using an actor in Hello, World!]
 +

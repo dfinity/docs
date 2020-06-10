@@ -1,17 +1,4 @@
 = Tutorials
-December 2019 (Alpha)
-:toc:
-:toc: right
-:toc-title: TUTORIALS
-:toclevels: 3
-:proglang: Motoko
-:platform: Internet Computer platform
-:IC: Internet Computer
-:ext: .mo
-:company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-//:icons: font
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The link:../quickstart/quickstart{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.

@@ -24,6 +24,8 @@ Before you start using the {sdk-long-name}, verify the following:
 * You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
 * You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have stopped any {IC} network processes running on the local
+computer.
 
 [[create-a-new-project]]
 == Create a new project

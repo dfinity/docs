@@ -1,4 +1,4 @@
-= Tutorials: Writing actor-based programs
+= Tutorials
 December 2019 (Alpha)
 :toc:
 :toc: right
@@ -16,9 +16,9 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The link:../quickstart/quickstart{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
-Next, we’ll explore writing a few simple programs using the {proglang} language to give you hands-on experience working with the code. 
+Next, we’ll explore writing a few simple programs using the {proglang} programming language to give you hands-on experience working with programs that run on the {IC}. 
 
-The following tutorials introduce the basics for working with {proglang}:
+The following tutorials introduce the basics for writing programs that run on the {IC}:
 
 * link:tutorials/explore-templates{outfilesuffix}[Exploring the default project] takes a closer look at the work flow for creating projects and the default files and folders that make up the project structure using the default sample project.
 

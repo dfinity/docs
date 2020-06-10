@@ -85,7 +85,7 @@ The command displays version information for the developer command-line interfac
 +
 [source,bash]
 ----
-dfx 0.5.4
+dfx 0.5.8
 ----
 . Preview usage information for the other developer command-line interface sub-commands by running the following command:
 +
@@ -223,7 +223,7 @@ dfx stop
 == Next steps
 
 This _Quick start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
-There are more detailed examples and tutorials for you to explore in the link:../developers-guide/introduction-key-concepts{outfilesuffix}[_Developer’s Guide_] and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
+There are more detailed examples and tutorials for you to explore in the link:../developers-guide/introduction-key-concepts{outfilesuffix}[_SDK Developer Tools_] and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
 
 * Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].
 * Want to join the community? Visit our https://forum.dfinity.org/[community forum].

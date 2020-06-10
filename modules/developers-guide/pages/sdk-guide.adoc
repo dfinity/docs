@@ -15,7 +15,9 @@ The {platform} is poised to help you start a revolution with a new way to design
 
 Conceptually, the Internet Computer is an extension of the existing internet that enables a global network of computers to provide the computing power for running application software.
 
-In much the same way that the adoption of the transport control protocol (TCP) and Internet protocol (IP) provided rules for transferring data between endpoints that helped to establish the “network of networks” that we know as the internet of today, the {IC} relies on a decentralization protocol called the {IC} protocol to define the software components that enable a global network of computers to combine their resources to read, replicate, modify, and return application state. 
+In much the same way that the adoption of the transport control protocol (TCP) and Internet protocol (IP) provided rules for transferring data between endpoints that helped to establish the “network of networks” that we know as the internet of today, the {IC} relies on a decentralization protocol called the {IC} protocol to define the software components that enable a global network of computers to combine their resources to read, replicate, modify, and return application state.
+
+== Architecture at-a-glance
 
 At a high-level, the platform architecture replicates your application on a secure subnet to automatically provide load balancing, fault tolerance, and resiliency.
 

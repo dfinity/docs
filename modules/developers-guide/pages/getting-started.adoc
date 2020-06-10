@@ -22,7 +22,7 @@ If you are ready to start developing applications to run on the {platform}, it o
 
 As a preview of the steps, the following diagram illustrates the basic work flow.
 
-image:dev-work-flow-1.png[Development work flow]
+image:dev-workflow-overview-getstarted.png[Development work flow]
 
 == Before you begin
 
@@ -122,6 +122,8 @@ dfx --help
 ----
 +
 The command displays usage information for the `+dfx+` parent command and its subcommands.
+
+include::example$vscode-plugin.adoc[]
 
 [[create-a-new-project]]
 == Create a new project

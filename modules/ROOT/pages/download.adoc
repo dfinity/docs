@@ -40,7 +40,11 @@ DFX_VERSION=0.5.5 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 == Next steps
 
-For information about the next steps to take, see link:developers-guide/getting-started{outfilesuffix}[Getting started] in the link:developers-guide/introduction-key-concepts{outfilesuffix}[_Developer’s Guide_].
+For information about the next steps to take, see link:developers-guide/tutorials-intro{outfilesuffix}[Tutorials] in the link:developers-guide/sdk-guide{outfilesuffix}[_SDK Developer Tools_].
+
+To learn more about writing programs for the {IC} before you start experimenting with code, see link:developers-guide/introduction-key-concepts{outfilesuffix}[Introduction and key concepts] in the link:developers-guide/sdk-guide{outfilesuffix}[_SDK Developer Tools_].
+
+For information about writing programs for the {IC} using {proglang}, see the link:language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
 
 ////
 == Download a packaged release

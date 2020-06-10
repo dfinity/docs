@@ -3,7 +3,10 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The link:../quickstart/quickstart{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
-Next, we’ll explore writing a few simple programs using the {proglang} programming language to give you hands-on experience working with programs that run on the {IC}. 
+Next, we’ll explore writing a few simple programs to give you hands-on experience creating programs that run on the {IC}.
+
+NOTE: Most of these tutorials illustrate how to write programs using the {proglang} programming language.
+For additional examples of programs written in other languages, see the {company} https://github.com/dfinity/examples[examples] repository.
 
 The following tutorials introduce the basics for writing programs that run on the {IC}:
 

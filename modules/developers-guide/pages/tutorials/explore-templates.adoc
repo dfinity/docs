@@ -12,7 +12,6 @@ June 2020 (Alpha)
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 The {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a local {IC} network provider.
-
 As a preview of the steps, the following diagram illustrates the basic work flow.
 
 image:dev-workflow-overview-getstarted.png[Development work flow]
@@ -308,11 +307,11 @@ This example uses the `+dfx canister call+` command to pass "there" as an argume
 +
 For example:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
-("*Hello, there!*")
+("Hello, there!")
 ----
-. Stop the {IC} replica processes running on your local computer by running the following command:
+. Stop the local {IC} network on your local computer by running the following command:
 +
 [source,bash]
 ----
@@ -367,9 +366,11 @@ dfx start
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
 +
 By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the hello_world program using `+127.0.0.1:8000+` for the URL.
++
 In addition to the host and port, the URL you specify needs to include `+canisterId+` parameter to identify the canister that you want the web server to display. 
 To specify the canister, append the identifier using the following syntax:
-[source,bash,subs="quotes"]
++
+[source,bash]
 ----
 ?canisterId=ic:_canister_identifier_
 ----
@@ -390,32 +391,3 @@ image:hello-world-prompt.png[Hello world prompt window]
 For example:
 +
 image:hello-world-return.png[Hello world return string]
-
-== Updating the SDK
-
-If a new version of the SDK is available for download after your initial installation, you should install the updated version at your earliest convenience to get the latest fixes and enhancements as soon as possible.
-You can use the `+dfx upgrade+` command to compare the version you have currently installed against the latest version available for download. 
-If a newer version of `+dfx+` is available, the `+dfx upgrade+` command automatically downloads and installs the latest version. 
-
-Note that you don't need to uninstall the software before installing the new version.
-However, if you want to perform a clean installation rather than an upgrade, you can first uninstall the software as described in <<Uninstalling the SDK>>, then re-run the download and installation command.
-
-For information about the features and fixes in the latest release, see the link:sdk-release-notes{outfilesuffix}[Release notes].
-
-== Uninstalling the SDK
-
-When you install the SDK, the installation script puts the required binary files in a local directory and creates a cache.
-You can remove the SDK binaries and cache from your local computer by running the `+uninstall+` script located in the `.cache` folder.
-
-For example:
-[source,bash]
-----
-~/.cache/dfinity/uninstall.sh
-----
-
-If you are uninstalling because you want to immediately reinstall a clean version of `dfx`, you can run the following command:
-
-[source,bash]
-----
-~/.cache/dfinity/uninstall.sh && sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"
-----

@@ -6,7 +6,7 @@ The link:../quickstart/quickstart{outfilesuffix}[Quick start] provided a simplif
 Next, we’ll explore writing a few simple programs to give you hands-on experience creating programs that run on the {IC}.
 
 NOTE: Most of these tutorials illustrate how to write programs using the {proglang} programming language.
-For additional examples of programs written in other languages, see the {company} https://github.com/dfinity/examples[examples] repository.
+For additional examples of programs written in other languages, see the {company-id} https://github.com/dfinity/examples[examples] repository.
 
 The following tutorials introduce the basics for writing programs that run on the {IC}:
 

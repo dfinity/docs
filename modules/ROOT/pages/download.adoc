@@ -10,19 +10,24 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 Currently, you can download the {sdk-long-name} directly from within a terminal shell on your local computer.
 With this installation option, you can be logged on as any user and no additional software is required.
 
+# tag::install[] 
+[[install-latest]]
 == Install the latest directly from a terminal
 
 To download and install from a terminal shell:
 
 . Open a terminal shell on your local computer.
++
+For example, on macOS open the Applications folder, then open Utilities and double-click *Terminal*.
 
-. Run the following `+curl+` command:
+. Download and install the SDK package by running the following `curl` command:
 +
 [source,bash]
 ----
 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
+[[install-version]]
 == Install a specific version from a terminal
 
 If you want to install a specific version, for example, to test against a previous version, you can modify the installation command to include a version.
@@ -31,12 +36,15 @@ To download and install a specific version from a terminal shell:
 
 . Open a terminal shell on your local computer.
 
-. Run the following `+curl+` command:
+. Set the `DFX_VERSION` environment variable to the version of the {sdk-short-name} package you want to install as a prefix to `+curl+` command.
++
+For example, to install version 0.5.7, you would run the following command:
 +
 [source,bash]
 ----
-DFX_VERSION=0.5.8 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.5.7 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
+# end::install[]   
 
 == Next steps
 

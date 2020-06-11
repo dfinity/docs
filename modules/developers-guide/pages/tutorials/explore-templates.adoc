@@ -395,7 +395,7 @@ To specify the canister, append the identifier using the following syntax:
 +
 [source,bash]
 ----
-?canisterId=ic:_canister_identifier_
+?canisterId=ic:<YOUR-CANISTER-IDENTIFIER>
 ----
 +
 For example, the full URL should look similar to the following:

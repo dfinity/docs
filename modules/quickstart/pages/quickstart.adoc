@@ -30,7 +30,7 @@ If you are ready to start developing applications that run on the {platform}, it
 Before you download and install this release of the SDK, verify the following:
 
 * You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
-* You should have `+node.js+` installed if you want to include the default template files for front-end development in your project.
+* You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 
 [[download-and-install]]
 == Download and install
@@ -59,7 +59,8 @@ This command prompts you to read and accept the license agreement before install
 ----
 Do you agree and wish to install the DFINITY ALPHA SDK [y/N]?
 ----
-+ The default response is No.
++ 
+The default response is No.
 You must type `+y+` and press Enter to continue.
 +
 The command displays information about the components being installed on the local computer.
@@ -159,20 +160,19 @@ Bundling frontend assets in the canister
 [[start-the-local-network-and-deploy]]
 == Start the local network and deploy
 
-You now have a program that can be deployed on your local replica network.
+You now have a program that can be deployed on your local {IC} network.
 
 [arabic]
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
 ----
-dfx start --background
+dfx start
 ----
 +
 Depending on your platform and local security settings, you might see a warning displayed. 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
-+
-The `+--background+` option starts {IC} replica processes then runs them in the background so that you can continue to the next step without opening another terminal shell on your local computer.
+. Open a new terminal shell window or tab and navigate to your project directory.
 . Deploy the default program on the local network by running the following command:
 +
 [source,bash]
@@ -185,11 +185,6 @@ You should see an installation confirmation message for your canister similar to
 [source,bash]
 ----
 Installing code for canister hello, with canister_id ic:795EA5F537665EED24
-Mar 04 15:35:16.710 INFO Successfully inserted an
-ingress message into IngressPool, Application:
-ArtifactPool
-Mar 04 15:35:17.968 INFO Created checkpoint @168961 
-in 76.82103ms, StateManager: 1
 ----
 . Call the predefined `+greet+` method in the program by running the following command:
 +
@@ -203,16 +198,11 @@ This example uses the `+dfx canister call+` command to pass "there" as an argume
 +
 For example:
 +
-[source,bash, subs="quotes"]
+[source,bash]
 ----
-Mar 04 15:43:51.826 INFO Successfully inserted an
-ingress message into IngressPool, Application:
-ArtifactPool
-Mar 04 15:43:52.779 INFO Created checkpoint @169984 
-in 68.44148ms, StateManager: 1
-(*"Hello, there!"*)
+("Hello, there!")
 ----
-. Stop the {IC} replica processes running on your local computer by running the following command:
+. Stop the local {IC} network running on your local computer by running the following command:
 +
 [source,bash]
 ----
@@ -223,7 +213,7 @@ dfx stop
 == Next steps
 
 This _Quick start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
-There are more detailed examples and tutorials for you to explore in the link:../developers-guide/introduction-key-concepts{outfilesuffix}[_SDK Developer Tools_] and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
+There are more detailed examples and tutorials for you to explore in the link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] section of the _SDK Developer Tools_ and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
 
 * Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].
 * Want to join the community? Visit our https://forum.dfinity.org/[community forum].

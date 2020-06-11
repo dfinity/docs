@@ -19,8 +19,9 @@ This {sdk-long-name} is an Alpha release that provides tools, sample code, and d
 IMPORTANT: For this *Alpha* release, only *macOS* and *Linux* platforms are supported. In addition, you won’t be able to install your programs on an externally-managed Developer Network just yet, but that capability is coming soon.
 
 By developing programs that run on the {platform}, you can deploy secure, tamper-proof applications and provide web-based services without the restrictions or expense of a proprietary infrastructure, the complexities of database management and maintenance, or the investment in hardware required to run enterprise-scale software.
-
+////
 If you want to learn more about the {platform} and how it can transform distributed computing and the application landscape, check out link:https://dfinity.org/faq[Frequently Asked Questions] or the videos posted on the https://www.youtube.com/channel/UCOyguKlTxoDK3HRzmGbLyAg[DFINITY Official Youtube Channel].
+////
 
 If you are ready to start developing applications that run on the {platform}, it only takes a few minutes to get up and running.
 
@@ -102,21 +103,22 @@ include::example$vscode-plugin.adoc[]
 [[create-a-new-project]]
 == Create a new project
 
-You are now ready to create a new project for your first sample application.
+Applications for the {IC} start as **projects**.
+You create projects using the {company-id} execution command-line interface (CLI) with the command-line operations you access through the `+dfx+` executable.
+Creating a new project with `+dfx+` adds a default project directory structure to your development workspace with template files to get you started.
 
-To create a new project directory for your first application:
+To create a new project for your first application:
 
 [arabic]
-. Create a new project directory for your first application by running the following commands:
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Create a new project named `+hello+` by running the following command:
 +
 [source,bash]
 ----
 dfx new hello
 ----
 +
-The `+dfx new hello+` command creates a new `+hello+` project with a default project directory, some template files, and a new Git repository for your project.
-+
-If you have `+node.js+` installed locally, creating a new project also adds some template front-end code and dependencies.
+The `+dfx new hello+` command creates a new `+hello+` project directory, template files, and a new `+hello+` Git repository for your project.
 . Change to your project directory by running the following command:
 +
 [source,bash]
@@ -161,9 +163,13 @@ Bundling frontend assets in the canister
 == Start the local network and deploy
 
 You now have a program that can be deployed on your local {IC} network.
+As a best practice, you should have two terminal shells open, so that you can start and see network operation in one terminal and manage your project in another.
+
+To start the network and deploy the `+hello+` project:
 
 [arabic]
-. Start the {IC} network on your local computer by running the following command:
+. Open a new terminal shell window or tab, then navigate to your project directory.
+. Start the {IC} network on your local computer by running the following command in this terminal:
 +
 [source,bash]
 ----
@@ -172,21 +178,20 @@ dfx start
 +
 Depending on your platform and local security settings, you might see a warning displayed. 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
-. Open a new terminal shell window or tab and navigate to your project directory.
-. Deploy the default program on the local network by running the following command:
+. Deploy the default program on the local network by running the following command in the second terminal:
 +
 [source,bash]
 ----
 dfx canister install hello
 ----
 +
-You should see an installation confirmation message for your canister similar to the following:
+You should see an installation confirmation message similar to the following:
 +
 [source,bash]
 ----
 Installing code for canister hello, with canister_id ic:795EA5F537665EED24
 ----
-. Call the predefined `+greet+` method in the program by running the following command:
+. Call the predefined `+greet+` function in the program by running the following command:
 +
 [source,bash]
 ----
@@ -194,7 +199,7 @@ dfx canister call hello greet "there" --type string
 ----
 +
 This example uses the `+dfx canister call+` command to pass "there" as an argument of type `+string+` to the `+greet+` function.
-. Verify the command displays the return value of the `+greet+` function (Hello, there!).
+. Verify the command displays the return value of the `+greet+` function.
 +
 For example:
 +

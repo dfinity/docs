@@ -1,7 +1,5 @@
 = Defining an actor
-December 2019 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:linkedcss:
 :toc:
 :toc: right
 :toc-title: TUTORIAL - HELLO, WORLD
@@ -14,7 +12,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-In the link:../../quickstart/quickstart{outfilesuffix}[Quick start], you had your first look at a simple program for the {platform} involving an actor object and asynchronous messaging. 
+In the link:../../quickstart/quickstart{outfilesuffix}[Quick start], you had your first look at a simple program for the {IC} involving an actor object and asynchronous messaging. 
 As the next step in learning to write programs that take advantage of actor-based messaging, this tutorial illustrates how to modify a traditional `+Hello, World!+` program to define an actor, then deploy and test your program on a local network.
 
 == Before you begin
@@ -58,12 +56,12 @@ To modify the `+dfx.json+` configuration file:
 . Check the default settings for the `+actor_hello+` project.
 . Notice that the names and paths to source and output files all use the `+actor_hello+` project name.
 +
-For example, the default canister name is `+actor_hello+` and the default path to the main program files is `+src/actor_hello/main.mo+`.
+For example, the default canister name is `+actor_hello+` and the default path to the main program file is `+src/actor_hello/main.mo+`.
 +
 You can rename any of these files or directories. 
 If you make any changes, however, be sure that the names you use for your files and directories match the names you specify in the `+dfx.json+` configuration file.
 If you plan to use the default directory and file names, no changes are necessary.
-. Remove all pf the `+actor_hello_assets+` configuration settings from the file.
+. Remove all of the `+actor_hello_assets+` configuration settings from the file.
 +
 The sample program for this tutorial doesn't use any front-end assets, so you need to remove those settings from the configuration file.
 +
@@ -166,9 +164,11 @@ Building canisters...
 
 == Deploy the project
 
-Before you can deploy this project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access and generate a unique canister identifier to replace your locally-defined identifier.
+Before you can deploy this project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+You must also generate a unique canister identifier to replace your locally-defined identifier.
 
 To deploy this project locally:
+
 . Open a new terminal window or tab on your local computer and navigate to your project directory.
 +
 For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
@@ -194,7 +194,14 @@ With this option, you can continue to the next step without opening another term
 dfx canister create actor_hello
 ----
 +
-This command create a `+canister_manifest.json+` file in the canister directory.
+You should see output similar to the following:
++
+[source,bash]
+----
+Jun 12 22:24:18.254 INFO s:0/n:100/ic_execution_environment/canister_manager Successfully created canister, canister_id: ic:0100000000000000000000000000000000012D, subnet_id: 0
+----
++
+The `+dfx canister create+` command also creates a `+canister_manifest.json+` file in the `+canisters+` directory.
 +
 For example:
 +
@@ -243,7 +250,6 @@ For example, the program displays "Hello, World! from DFINITY" in output similar
 +
 [source,bash]
 ----
-Jun 08 20:45:45.284 INFO Created checkpoint @611 in 5.143003ms, StateManager: 1
 debug.print: Hello, World from DFINITY 
 ----
 . Stop the {IC} processes running on your local computer by running the following command:

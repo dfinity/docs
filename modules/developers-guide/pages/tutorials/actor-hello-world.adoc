@@ -210,10 +210,10 @@ For example:
 {
   "canisters": {
     "actor_hello": {
-      "candid_path": "/Users/pubs/IC-Examples/actor_hello/canisters/actor_hello/actor_hello.did",
+      "candid_path": "/Users/pubs/ic-projects/actor_hello/canisters/actor_hello/actor_hello.did",
       "canister_id": "ic:03000000000000000000000000000000000179",
       "timestamp": "Fri, 12 Jun 2020 21:39:17 +0000",
-      "wasm_path": "/Users/pubs/IC-Examples/actor_hello/canisters/actor_hello/actor_hello.wasm"
+      "wasm_path": "/Users/pubs/ic-projects/actor_hello/canisters/actor_hello/actor_hello.wasm"
     }
   }
 }

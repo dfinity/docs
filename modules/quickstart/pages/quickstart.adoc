@@ -1,5 +1,8 @@
 = Quick start
 March 2020 (Alpha)
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
 :toc:
 :toc: right
 :toc-title: QUICK START
@@ -14,9 +17,11 @@ March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-This {sdk-long-name} is an Alpha release that provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} replica node.
+This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} network.
+This _Quick start_ assumes that you are installing the {sdk-short-name} for the first time. 
 
-IMPORTANT: For this *Alpha* release, only *macOS* and *Linux* platforms are supported. In addition, you won’t be able to install your programs on an externally-managed Developer Network just yet, but that capability is coming soon.
+IMPORTANT: For this release, only *macOS* and *Linux* platforms are supported. 
+In addition, you won’t be able to install your programs on an externally-managed {IC} sub-network just yet, but that capability is coming soon.
 
 By developing programs that run on the {platform}, you can deploy secure, tamper-proof applications and provide web-based services without the restrictions or expense of a proprietary infrastructure, the complexities of database management and maintenance, or the investment in hardware required to run enterprise-scale software.
 ////
@@ -28,68 +33,163 @@ If you are ready to start developing applications that run on the {platform}, it
 [[before-you-begin]]
 == Before you begin
 
-Before you download and install this release of the SDK, verify the following:
+Before you download and install this release of the {sdk-short-name}, verify the following:
 
 * You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
+
 * You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
+
+If you aren’t sure how to open a new terminal shall on your local computer or how to install `node.js`, see <<Preliminary steps for newcomers>>. 
+If you are comfortable meeting the prerequisites without instructions, continue to <<Download and install>>.
+
+[[newcomers]]
+=== Preliminary steps for newcomers
+
+If this is the first time you are installing developer tools on your computer, you might need to take a few extra steps to prepare your environment.
+
+NOTE: The instructions here assume that you are using a macOS computer.
+
+Before you install the {sdk-short-name}, you need to know:
+
+* How to open and run commands in a terminal
+* How to check for and install packages and dependencies
+* How to create and navigate to new directories
+
+The steps in this section describe how to prepare a basic development environment.
+
+==== Open a terminal
+
+To open the Terminal application on macOS:
+
+. Open the Finder. 
+. Click *Applications*, open *Utilities*, then double-click *Terminal*.
++
+Alternatively, you can press the kbd:[{commandkey} + spacebar] keyboard keys to open Search, then type `terminal`.
++
+The terminal is where you are going to execute command-line instructions. 
+To execute a command, you type or copy and paste an instruction, then press kbd:[Return].
+. Check your current path by running the print working directory–`pwd`—command, then pressing kbd:[Return].
++
+[source,bash]
+----
+pwd
+----
++
+This command displays your current directory with a path like `/Users/<your-user-name>`.
++
+After you open the Terminal application, you can open new terminal shell at any time by clicking *Shell*, then selecting *New Window* or *New Tab*.
++
+By default, a new terminal shell always opens in your home directory with a path like `/Users/<your-user-name>`.
+
+==== Check for packages
+
+The Homebrew application is a package manager for macOS that makes it easy to install and update packages—that is, external programs—that you need to have available in a local development environment.
+
+The `node.js` package provides a JavaScript runtime environment and modules for front-end user interface development. 
+The `node.js` package is not required to build programs, but you'll probably need it if you want to add a graphical user interface to your program.
+
+To check and install packages:
+
+. Check whether you have the Homebrew package manager installed by running the following command:
++
+[source,bash]
+----
+brew --version
+----
++
+If the command returns version information, continue to the next step.
+If Homebrew isn't installed, copy and paste the following command in your terminal:
++
+[source,bash]
+----
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+----
+. Check whether you have the `node.js` package manager installed by running the following command:
++
+[source,bash]
+----
+node --version
+----
++
+If the command returns version information, continue to the next step.
+If `node.js` isn't installed, copy and paste the following command in your terminal:
++
+[source,bash]
+----
+brew install node
+----
+
+NOTE: If your development environment is Linux, you might use a package manager of your choice instead of Homebrew to install packages and manage dependencies. 
+
+==== Create a working folder
+
+By default, a new terminal shell always opens in your home directory with a path like `/Users/<your-user-name>`.
+To keep your workspace tidy, you can create a separate folder for your {IC} projects.
+
+To create a new working folder:
+
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Create a new folder called `ic-projects` in your home directory by running the following command:
++
+[source,bash]
+----
+mkdir ic-projects
+----
+. Change to the new working folder by running the following command:
++
+[source,bash]
+----
+cd ic-projects
+----
+
+Now you're ready to install the {sdk-short-name} and get coding!
 
 [[download-and-install]]
 == Download and install
 
-The most straightforward option for accessing the {sdk-long-name} is to download the SDK package from within a terminal shell on your local computer.
-With this installation option, you can be logged on as any user and no additional software is required.
+You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer.
 
-To download and install from a terminal shell:
+To download and install:
 
 [arabic]
 . Open a terminal shell on your local computer.
 +
-For example, on macOS open the Applications folder, then open Utilities
-and double-click *Terminal*.
-. Download and install the SDK package by running the following command:
+For example, open Applications, Utilities, then double-click *Terminal* or press kbd:[{commandkey} + spacebar] to open Search, then type `terminal`.
+. Download and install the {sdk-short-name} package by running the following command:
 +
 [source,bash]
 ----
 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 +
-This command prompts you to read and accept the license agreement before installing the `+dfx+` command-line interface executable and its dependencies on your local computer.
-. Review the license agreement, then type `+y+` and press Enter if you want to continue with the installation.
-+
-[source,bash]
-----
-Do you agree and wish to install the DFINITY ALPHA SDK [y/N]?
-----
-+ 
-The default response is No.
-You must type `+y+` and press Enter to continue.
+This command prompts you to read and accept the license agreement before installing the {company-id} execution command-line interface (CLI) and its dependencies on your local computer.
+. Type `+y+` and press kbd:[Return] to continue with the installation.
 +
 The command displays information about the components being installed on the local computer.
 
 [[verify-the-sdk-is-ready-to-use]]
 == Verify the SDK is ready to use
 
-If the installation script runs without any errors, everything you need to start developing programs that run on the {platform}  will be available on your local computer.
+If the installation script runs without any errors, everything you need to start developing programs that run on the {platform} will be available on your local computer.
 
 To verify the SDK is ready to use:
 
 [arabic]
-. Open a terminal shell on your local computer, if you don’t already
-have one open.
-. Check that you have the SDK developer command-line interface installed and the executable is available in your PATH by running the following command:
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Check that you have the {company-id} execution command-line interface (CLI) installed and the `+dfx+` executable is available in your PATH by running the following command:
 +
 [source,bash]
 ----
 dfx --version
 ----
 +
-The command displays version information for the developer command-line interface similar to the following:
+The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 [source,bash]
 ----
-dfx 0.5.8
+dfx 0.5.9
 ----
-. Preview usage information for the other developer command-line interface sub-commands by running the following command:
+. Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
 [source,bash]
 ----
@@ -104,7 +204,7 @@ include::example$vscode-plugin.adoc[]
 == Create a new project
 
 Applications for the {IC} start as **projects**.
-You create projects using the {company-id} execution command-line interface (CLI) with the command-line operations you access through the `+dfx+` executable.
+You create projects using the `+dfx+` parent command and its subcommands.
 Creating a new project with `+dfx+` adds a default project directory structure to your development workspace with template files to get you started.
 
 To create a new project for your first application:
@@ -126,50 +226,36 @@ The `+dfx new hello+` command creates a new `+hello+` project directory, templat
 cd hello
 ----
 
-[[build-the-project]]
-== Build the program
+[[start-the-local-network]]
+== Start the local network
 
-Your new `+hello+` project includes a simple default program in the `+src/hello+` directory that you can compile.
+Before you can build your first project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
 
-To build the program executable:
+As a best practice, this step requires you to have two terminal shells open, so that you can start and see network operations in one terminal and manage your project in another.
 
-. View the contents of the source directory for your project directory by running the following command:
-+
-[source,bash]
-----
-ls -l src/hello
-----
-+
-Note that the `src/hello` directory includes a default `+main.mo+` program for your project and a `+public+` directory.
-For this _Quick start_, you only need to use the `+main.mo+` program.
-. Build the executable from the default `+main.mo+` file by running the following command:
-+
-[source,bash]
-----
-dfx build
-----
-. Verify the command displays output indicating that the build is successful.
-+
-For example, if you have `+node.js+` installed you should see output similar to the following:
-+
-[source,bash]
-----
-Building canister hello
-Building frontend
-Bundling frontend assets in the canister
-----
-
-[[start-the-local-network-and-deploy]]
-== Start the local network and deploy
-
-You now have a program that can be deployed on your local {IC} network.
-As a best practice, you should have two terminal shells open, so that you can start and see network operation in one terminal and manage your project in another.
-
-To start the network and deploy the `+hello+` project:
+To start the network locally:
 
 [arabic]
-. Open a new terminal shell window or tab, then navigate to your project directory.
-. Start the {IC} network on your local computer by running the following command in this terminal:
+. Open a new terminal window or tab on your local computer and navigate to your project directory.
++
+For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
++
+[source,bash]
+----
+cd ~/ic-projects/hello
+----
++
+You should now have two terminal windows open with your project directory as your current working directory.
++
+You can check that you are in your project directory by running the `+pwd+` command in both windows, if needed.
++
+You should see a path similar to the following:
++
+[source,bash]
+----
+/Users/<your-user-name>/ic-projects/hello
+----
+. Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
 ----
@@ -178,18 +264,61 @@ dfx start
 +
 Depending on your platform and local security settings, you might see a warning displayed. 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
-. Deploy the default program on the local network by running the following command in the second terminal:
+. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
+
+[[build-the-project]]
+== Build the program
+
+Your new `+hello+` project includes a simple default program in the `+src/hello+` directory that you can compile.
+
+To build the program executable:
+
+. Check that you are still in your project directory, if needed.
+. View the contents of the source directory for your project directory by running the following command:
++
+[source,bash]
+----
+ls -l src/hello
+----
++
+Note that the `src/hello` directory includes a default `+main.mo+` program for your project.
+. Build the executable from the default `+main.mo+` file by running the following command:
++
+[source,bash]
+----
+dfx build
+----
+. Verify the command displays output indicating that the build is successful.
++
+You should see output similar to the following:
++
+[source,bash]
+----
+Building canisters...
+Building frontend...
+----
+
+[[deploy]]
+== Deploy your program locally
+
+The `+dfx build+` command created several artifacts in a `canisters` directory for your project. 
+You now have a compiled program that can be deployed on your local {IC} network.
+
+To deploy locally:
+
+. Check that you are still in your project directory, if needed.
+. Deploy the default program on the local network by running the following command:
 +
 [source,bash]
 ----
 dfx canister install hello
 ----
 +
-You should see an installation confirmation message similar to the following:
+You should see an installation confirmation message for your canister similar to the following:
 +
 [source,bash]
 ----
-Installing code for canister hello, with canister_id ic:795EA5F537665EED24
+Installing code for canister hello, with canister_id ic:0100000000000000000000000000000000012D
 ----
 . Call the predefined `+greet+` function in the program by running the following command:
 +

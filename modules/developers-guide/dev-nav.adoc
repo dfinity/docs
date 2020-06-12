@@ -3,7 +3,7 @@
 ** xref:install-upgrade-remove.adoc[Install, upgrade, or remove the software]
 ** xref:tutorials-intro.adoc[Tutorials]
 *** xref:tutorials/explore-templates.adoc[Exploring the default project]
-*** xref:tutorials/actor-hello-world.adoc[Using an actor]
+*** xref:tutorials/actor-hello-world.adoc[Defining an actor]
 *** xref:tutorials/hello-location.adoc[Passing arguments]
 *** xref:tutorials/counter-tutorial.adoc[Incrementing a counter]
 *** xref:tutorials/calculator.adoc[Exploring calculator functions]

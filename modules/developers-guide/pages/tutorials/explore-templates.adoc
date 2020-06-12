@@ -312,7 +312,7 @@ For this tutorial, the canister name is `+hello_world+`, so you can deploy the c
 dfx canister install hello_world
 ----
 +
-The command output displays output similar to the following:
+The command displays output similar to the following:
 +
 [source,bash]
 ----

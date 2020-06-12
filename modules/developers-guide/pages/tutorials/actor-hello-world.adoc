@@ -1,4 +1,4 @@
-= Using an actor in the Hello, World! program
+= Defining an actor
 December 2019 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :linkedcss:
@@ -22,8 +22,7 @@ As the next step in learning to write programs that take advantage of actor-base
 Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any {IC} network processes running on the local
-computer.
+* You have stopped any {IC} network processes running on the local computer.
 
 This tutorial takes approximately 20 minutes to complete.
 
@@ -48,38 +47,58 @@ dfx new actor_hello
 cd actor_hello
 ----
 
-== Verify the default configuration
+== Modify the default configuration
 
-You have already seen that creating a new project adds a default `dfx.json` configuration file to your project directory.
-In this tutorial, you only need to verify that the default settings reflect your new project name.
+In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project adds a default `dfx.json` configuration file to your project directory.
+In this tutorial, you need to modify a few of the default settings to reflect your project.
 
-To check the default `+dfx.json+` configuration file:
+To modify the `+dfx.json+` configuration file:
 
 . Open the `+dfx.json+` configuration file in a text editor.
 . Check the default settings for the `+actor_hello+` project.
+. Notice that the names and paths to source and output files all use the `+actor_hello+` project name.
 +
-For example:
+For example, the default canister name is `+actor_hello+` and the default path to the main program files is `+src/actor_hello/main.mo+`.
 +
-[source,bash,subs="quotes"]
+You can rename any of these files or directories. 
+If you make any changes, however, be sure that the names you use for your files and directories match the names you specify in the `+dfx.json+` configuration file.
+If you plan to use the default directory and file names, no changes are necessary.
+. Remove all pf the `+actor_hello_assets+` configuration settings from the file.
++
+The sample program for this tutorial doesn't use any front-end assets, so you need to remove those settings from the configuration file.
++
+For example, the configuration file looks like this after you remove the `+actor_hello_assets+` section:
++
+[source,json]
 ----
+{
   "canisters": {
-    "*actor_hello*": {
-      "frontend": {
-        "entrypoint": "src/*actor_hello*/public/index.js"
-      },
-      "main": "src/*actor_hello*/main.mo"
+    "actor_hello": {
+      "main": "src/actor_hello/main.mo",
+      "type": "motoko"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/",
+      "packtool": ""
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "serve_root": "canisters/actor_hello_assets/assets"
+    }
+  },
+  "dfx": "0.5.8",
+  "version": 1
+}
 ----
-+
-You can rename any of the files or directories specified in the `+dfx.json+` configuration file. 
-If you make any changes, however, be sure that the names you use for your files and directories match the names specified in the `+dfx.json+` configuration file.
-+
-If you plan to use the default directory and file names, no changes are necessary. 
-. Close the file to continue.
+. Save your changes and close the file to continue.
 
 == Modify the default template program
 
-You have already seen that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
-In this tutorial, you modify the template code to create a simple "Hello, World!" program.
+In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
+In this tutorial, you modify the template code to create a simple "Hello, World!" program that uses an actor.
 
 To modify the default template source code:
 
@@ -92,17 +111,7 @@ cd src/actor_hello
 . Open the template `+main.mo+` file in a text editor and delete the existing content.
 +
 The next step is to write a program that prints a statement like the traditional "Hello, World!" sample program. 
-If you were writing this program to run on a platform other than the {IC}, the {proglang} code might look similar to the following:
-+
-[source,bash]
-----
-func main() {
-   print "Hello, World! from DFINITY\n"
-   };
-main()
-----
-+
-You could also write the program in {proglang} without the `main` function at all, like this:
+If you were writing this program to run on a platform other than the {IC}, you could write the program in {proglang} without an actor or a `main` function like this:
 +
 [source,bash]
 ----
@@ -117,35 +126,103 @@ To compile the program for the {IC}, however, your program must include an `+act
 include::example$actor_hello.mo[]
 ----
 +
-This code sample imports a `+Debug+` module to provide the `+print+` functionality.
-The program uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister or perform any operations that would update the data you are accessing.
+Let's take a closer look at this simple program:
++
+--
+* The program imports a `+Debug+` module to provide the `+print+` functionality.
+* The program uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister or perform any operations that would update the data you are accessing.
 +
 For more information about using a query call, see link:../introduction-key-concepts{outfilesuffix}#query-calls[query calls] in link:../introduction-key-concepts{outfilesuffix}#canister-state[Canisters include both program and state].
+--
+. Save your changes and close the `+main.mo+` file.
 
-== Build and deploy the program
+== Build the program using a locally-defined identifier
 
-You now have a program that you can compile into an executable WebAssembly module that you can deploy—using the canister model—on your local replica network.
+You are probably only going to use this simple program for some locally testing.
+Therefore, there's no need to reserve a unique canister identifier on the {IC} network to hold the compiled output for the program. 
+
+In this scenario, you can compile the program without connecting to an {IC} network at all.
+Instead, the `+dfx build+` command creates a local, hard-coded canister identifier for you to use.
+
+You can use this local identifier while you are testing your program or any time you want to compile your program without starting the {IC} replica process locally or connecting to a replica on a remote sub-network.
 
 To build the program executable:
 
-. Build the WebAssembly executable by running the following command:
+. Open a new terminal and navigate to your project directory.
+. Build the program with a locally-defined identifier by running the following command:
 +
 [source,bash]
 ----
-dfx build --skip-frontend
+dfx build --skip-manifest
+----
++
+You should see output similar to the following:
++
+[source,bash]
+----
+Skipping the build manifest. Canister IDs might be hard coded.
+Building canisters...
+----
+
+== Deploy the project
+
+Before you can deploy this project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access and generate a unique canister identifier to replace your locally-defined identifier.
+
+To deploy this project locally:
+. Open a new terminal window or tab on your local computer and navigate to your project directory.
++
+For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
++
+[source,bash]
+----
+cd ~/ic-projects/actor_hello
 ----
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
 ----
-dfx start
+dfx start --background
 ----
-. Open a new terminal and navigate to your project directory.
++
+You can use the --background option to start the Internet Computer network processes then run them in the background. 
++
+With this option, you can continue to the next step without opening another terminal shell on your local computer.
+. Generate a new canister identifier for your project on the local {IC} network by running the following command:
++
+[source,bash]
+----
+dfx canister create actor_hello
+----
++
+This command create a `+canister_manifest.json+` file in the canister directory.
++
+For example:
++
+[source,json]
+----
+{
+  "canisters": {
+    "actor_hello": {
+      "candid_path": "/Users/lisagunn/IC-Examples/actor_hello/canisters/actor_hello/actor_hello.did",
+      "canister_id": "ic:03000000000000000000000000000000000179",
+      "timestamp": "Fri, 12 Jun 2020 21:39:17 +0000",
+      "wasm_path": "/Users/lisagunn/IC-Examples/actor_hello/canisters/actor_hello/actor_hello.wasm"
+    }
+  }
+}
+----
 . Deploy your `+actor_hello+` project on the local network by running the following command:
 +
 [source,bash]
 ----
 dfx canister install actor_hello
+----
++
+The command displays output similar to the following:
++
+[source,bash]
+----
+Installing code for canister actor_hello, with canister_id ic:03000000000000000000000000000000000179
 ----
 
 == Query the canister

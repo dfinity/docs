@@ -128,7 +128,7 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-Installing code for canister hello_location, with canister_id ic:E75C3765B661880C3E
+Installing code for canister hello_location, with canister_id ic:0100000000000000000000000000000000012D
 ----
 
 == Pass a string argument
@@ -159,38 +159,28 @@ dfx canister call hello_location location '("Paris")'
 ----
 The command displays output similar to the following:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
-(*"Hello, Paris!"*)
+("Hello, Paris!")
 ----
 . Rerun the `+dfx canister call+` command using San Francisco as the `+city+` argument without specifying a type to have the interface description language infer the type automatically by running the following command:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call hello_location location '("San Francisco")'
 ----
-The command displays output similar to the following:
-+
-[source,bash,subs="quotes"]
-----
-(*"Hello, San Francisco!"*)
-----
+The command displays the same `+("Hello, San Francisco!")+` output as when you explicitly set the `+--type+` argument.
 + 
 Because your program only accepts a single string argument, specifying multiple strings only returns the first argument.
 +
 For example, if you run the following command:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call hello_location location '("San Francisco","Paris","Rome")'
 ----
 +
-Only the first argument is returned:
-+
-[source,bash,subs="quotes"]
-----
-(*"Hello, San Francisco!"*)
-----
+Only the first argument—`+("Hello, San Francisco!")+`—is returned.
 
 == Revise the source code in your program
 
@@ -199,45 +189,26 @@ For example, you might want to modify the `+location+` function to return multip
 
 To experiment with modifying the source code for this tutorial:
 
-[arabic]
-. Open the `+dfx.json+` configuration file in a text editor and change the default `+hello_location+` settings to `+favorite-cities+`.
-For example:
-+
-[source,json]
+. Open the `+dfx.json+` configuration file in a text editor and change the default `+hello_location+` settings to `+favorite_cities+`.
 ----
-{
-  "canisters": {
-    "favorite-cities": {
-      "frontend": {
-        "entrypoint": "src/favorite-cities/public/index.js"
-      },
-      "main": "src/favorite-cities/main.mo"
-    }
-  },
-  "defaults": {
-    "build": {
-      "output": "canisters/"
-    },
-    "start": {
-      "address": "127.0.0.1",
-      "port": 8000,
-      "serve_root": "canisters/favorite-cities/assets"
-    }
-  }
-}
-----
-. Copy the `hello_location` source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command
+. Save your changes and close the `+dfx.json+` file to continue.
+. Copy the `+hello_location+` source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
 +
 [source,bash]
 ----
-cp -r src/hello_location src/favorite-cities
+cp -r src/hello_location src/favorite_cities
 ----
-. Open the `+src/favorite-cities/main.mo+` file in a text editor.
+. Copy the `hello_location_assets` directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
+[source,bash]
+----
+cp -r src/hello_location_assets src/favorite_cities_assets
+----
+. Open the `+src/favorite_cities/main.mo+` file in a text editor.
 . Copy and paste the following code sample to replace the `+location+` function with two new functions.
 +
 For example:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 actor {
     public func location(cities : [Text]) : async Text {
@@ -270,8 +241,8 @@ public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
 };
 ----
 +
-For information about the functions that perform operations on arrays, see the description of the standard library `+array.mo+` in the _{proglang} Programming Language Reference_.
-. Build the WebAssembly executable by running the following command:
+For information about the functions that perform operations on arrays, see the description of the Array modules in the {proglang} base library or the _{proglang} Programming Language Reference_.
+. Build the program by running the following command:
 +
 [source,bash]
 ----
@@ -279,18 +250,18 @@ dfx build --skip-frontend
 ----
 +
 For this tutorial, you can build using the `--skip-frontend` because you aren't changing the default front-end for the new program.
-If you also wanted to update the front-end, you would open the default `+src/favorite-cities/public/index.js+` file to change the canister name and make other changes. 
-. Deploy your `+favorite-cities+` program on the local network by running the following command:
+If you also wanted to update the front-end, you would open the default `+src/favorite_cities/public/index.js+` file to change the canister name and make other changes. 
+. Deploy your `+favorite_-_cities+` program on the local network by running the following command:
 +
 [source,bash]
 ----
-dfx canister install favorite-cities
+dfx canister install favorite_cities
 ----
 . Call the `+location+` method in the program and pass your `+city+` argument using the interface description syntax by running the following command:
 +
 [source,bash]
 ----
-dfx canister call favorite-cities location '(vec {"San Francisco";"Paris";"Rome"})'
+dfx canister call favorite_cities location '(vec {"San Francisco";"Paris";"Rome"})'
 ----
 +
 The command uses the interface description syntax `+(vec { val1; val2; val3; })+` to return vector of values.
@@ -306,7 +277,7 @@ This command displays output similar to the following:
 +
 [source,bash]
 ----
-dfx canister call favorite-cities location_pretty '(vec {"San Francisco";"Paris";"Rome"})'
+dfx canister call favorite_cities location_pretty '(vec {"San Francisco";"Paris";"Rome"})'
 ----
 +
 The command displays output similar to the following:

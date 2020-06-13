@@ -1,60 +1,35 @@
-= Tutorials: Writing actor-based programs
-December 2019 (Alpha)
-:toc:
-:toc: right
-:toc-title: TUTORIALS
-:toclevels: 3
-:proglang: Motoko
-:platform: Internet Computer platform
-:IC: Internet Computer
-:ext: .mo
-:company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-//:icons: font
+= Tutorials
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The default sample program in link:getting-started{outfilesuffix}[Getting started] illustrated the basic work flow for creating projects and deploying sample code to run on an {IC} node.
+The link:../quickstart/quickstart{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
-Next, we’ll explore writing a few simple programs using the {proglang} language to give you hands-on experience working with the code. 
-One of the keys for writing programs in {proglang} is that it is optimized for handling asynchronous messaging while maintaining type soundness and an approachable interface with language conventions that look familiar to most developers.
+Next, we’ll explore writing a few simple programs to give you hands-on experience creating programs that run on the {IC}.
 
-The following tutorials introduce the basics for working with {proglang}:
+NOTE: Most of these tutorials illustrate how to write programs using the {proglang} programming language.
+For additional examples of programs written in other languages, see the {company-id} https://github.com/dfinity/examples[examples] repository.
 
-* link:tutorials/actor-hello-world{outfilesuffix}[Using an actor in Hello, World!]
-+
-In the first tutorial, you are going to replace the typical `+print+` function usually defined in a "Hello, World!" program by defining an actor (object) with a `+hello+` function.
+The following tutorials introduce the basics for writing programs that run on the {IC}:
 
-* link:tutorials/hello-location{outfilesuffix}[Passing arguments in a terminal]
-+
-In the second tutorial, you are going to see the different ways you can pass string arguments to a function on a deployed canister using the command-line in a terminal shell.
+* link:tutorials/explore-templates{outfilesuffix}[Exploring the default project] takes a closer look at the work flow for creating projects by exploring the default files and folders that are added to your workspace when you create a new project.
 
-* link:tutorials/counter-tutorial{outfilesuffix}[Incrementing a value to illustrate persistence]
-+
-In this tutorial, you are going to write a program that creates an actor and provides a few basic functions to increment and return the value of a counter.
+* link:tutorials/actor-hello-world{outfilesuffix}[Using an actor in Hello, World!] highlights how to replace the typical `+print+` function usually defined in a "Hello, World!" program by defining an actor (object) with a `+hello+` function.
 
-* link:tutorials/calculator{outfilesuffix}[Exploring calculator functions]
-+
-In this tutorial, you are going to write a simple calculator program for more practice working with {proglang} and to learn more about how you can customize your project environment.
+* link:tutorials/hello-location{outfilesuffix}[Passing arguments in a terminal] introduces different ways you can pass arguments to a function using the command-line in a terminal shell.
 
-* link:tutorials/phonebook{outfilesuffix}[Importing standard library functions]
-+
-In this tutorial, you are going to write a simple program that illustrates how to import and use a few basic standard library functions for working with key-value pairs in a list using {proglang}.
+* link:tutorials/counter-tutorial{outfilesuffix}[Incrementing a value to illustrate persistence] guides you through the process of writing a program that creates an actor with functions to increment and return the value of a counter.
 
-* link:tutorials/multiple-actors{outfilesuffix}[Using multiple actors]
-+
-In this tutorial, you are going to create a single project that include multiple unrelated actors to illustrate how you can compile multiple canisters for the same project.
+* link:tutorials/calculator{outfilesuffix}[Exploring calculator functions] shows you how to write a simple calculator program for more practice working with {proglang} and to learn more about how you can customize your project environment.
 
-* link:tutorials/custom-frontend{outfilesuffix}[Customizing the front-end]
-+
-This tutorial illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed. 
+* link:tutorials/phonebook{outfilesuffix}[Importing standard library functions] illustrates how to import and use a few basic standard library functions for working with key-value pairs in a list using {proglang}.
+
+* link:tutorials/multiple-actors{outfilesuffix}[Using multiple actors] describes how to include multiple unrelated actors in a single project to illustrate how you can compile multiple canisters for the same project.
+
+* link:tutorials/custom-frontend{outfilesuffix}[Customizing the front-end] illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed. 
 If you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.
-* link:tutorials/my-contacts{outfilesuffix}[Adding a stylesheet]
-+
-This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
-If you already know how to add stylesheets to React, you can skip this tutorial.
-* link:tutorials/intercanister-calls{outfilesuffix}[Calling shared functions]
-+
-This tutorial illustrates how to call shared functions in one canister from a program in another canister.
 
-Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Reference_].
+* link:tutorials/my-contacts{outfilesuffix}[Adding a stylesheet] illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
+If you already know how to add stylesheets to React, you can skip this tutorial.
+
+* link:tutorials/intercanister-calls{outfilesuffix}[Calling shared functions] illustrates how to call shared functions in one canister from a program in another canister.
+
+Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:https://github.com/dfinity/examples[examples] repository and link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].

@@ -1,0 +1,22 @@
+{
+  "canisters": {
+    "hello_world": {
+      "frontend": {
+        "entrypoint": "src/hello_world/public/index.js"
+      },
+      "main": "src/hello_world/main.mo"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/"
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "serve_root": "canisters/hello_world/assets"
+    }
+  },
+  "dfx": "0.5.7",
+  "version": 1
+}

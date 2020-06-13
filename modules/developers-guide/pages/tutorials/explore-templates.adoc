@@ -1,0 +1,450 @@
+= Exploring the default project
+June 2020 (Alpha)
+:toc:
+:toc: right
+:toc-title: EXPLORE DEFAULT PROJECT
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+The {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a local {IC} network provider.
+As a preview of the steps, the following diagram illustrates the basic work flow.
+
+image:dev-workflow-overview-getstarted.png[Development work flow]
+
+== Before you begin
+
+Before you start using the {sdk-long-name}, verify the following:
+
+* You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
+
+* You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
+
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+
+* You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
+
+* You have stopped any {IC} network processes running on the local
+computer.
+
+[[create-a-new-project]]
+== Create a new project
+
+As discussed in the link:../../quickstart/quickstart{outfilesuffix}[Quick start], applications for the {IC} start as **projects** that you create projects using the `+dfx+` executable command-line interface (CLI).
+.
+To take a closer look at the files and folders that are included in a  project by default, let's create a new project to work with.
+
+To create a new project:
+
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Create a folder for your {IC} sample projects in your home directory by running the following command:
++
+[source,bash]
+----
+mkdir ~/ic-projects
+----
+. Change to your sample projects folder.
+For example:
++
+[source,bash]
+----
+cd ~/ic-projects
+----
+. Create a new project by running the following command:
++
+[source,bash]
+----
+dfx new hello_world
+----
++
+The `+dfx new hello_world+` command creates a new `+hello_world+`
+project, including a default project directory structure under the new
+project name and a new Git repository for your project.
+If you have `+node.js+` installed locally, creating a new project also adds some template front-end code and dependencies.
++
+To ensure that project names are valid when used in JavaScript, Motoko, and other contexts, you should only use alphanumeric characters and underscores.
+You cannot include dashes or any special characters.
++
+The command displays output similar to the following excerpt:
++
+[source,bash]
+----
+Fetching manifest https://sdk.dfinity.org/manifest.json
+Creating new project "hello_world"...
+CREATE       hello_world/src/hello_world/main.mo (107B)...
+CREATE       hello_world/dfx.json (320B)...
+CREATE       hello_world/.gitignore (189B)...
+CREATE       hello_world/README.md (1.01KB)...
+CREATE       hello_world/src/hello_world/public/index.js (155B)...
+CREATE       hello_world/package.json (263B)...
+CREATE       hello_world/webpack.config.js (1.76KB)...
+----
+. View the default directory structure by running the following command:
++
+[source,bash]
+----
+ls -l hello_world
+----
++
+By default, the project directory structure includes at least one source subdirectory, a template `+README.md+` file, and a default `+dfx.json+` configuration file.
++
+Depending on whether you have `+node.js+` installed, your project directory might include some or all of the following files:
++
+[source,bash]
+----
+hello_world/
+├── README.md      # default project documentation
+├── dfx.json       # project configuration file
+├── node_modules   # libraries for front-end development
+├── package-lock.json
+├── package.json
+├── src            # source files directory
+|   └── hello_world
+│       ├── main.mo
+│       └── public
+│           └── index.js
+└── webpack.config.js
+----
++
+At a minimum, the default project directory includes the following folders and files:
++
+--
+* A default `README` file for documenting your project in the repository.
+* A default `+dfx.json+` configuration file to set configurable options for your project.
+* A default `+src+` directory for all of the source files required by your application.
+--
++
+The default `+src+` directory includes a template `+main.mo+` file that you can modify or replace to include your core programming logic.
++
+Because this tutorial focuses on the basics of getting started, you are only going to use the `+main.mo+` file. 
+If you have `+node.js+` installed, your project directory includes additional files and directories that you can use to define the front-end interface for your application.
+Front-end development and the template files in the `+public+` folder are discussed a little later.
+
+== Review the default configuration
+
+By default, creating a new project adds some template files to your project directory.
+You can edit these template files to customize the configuration settings for your project and to include your own code to speed up the development cycle. 
+
+To review the default configuration file for your project:
+
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd hello_world
+----
+. Open the `+dfx.json+` configuration file in a text editor to review the default settings.
++
+For example:
++
+[source,json]
+----
+include::example$sample-dfx.json[]
+----
++
+Let's take a look at a few of the default settings.
++
+--
+* The `+canisters+` section specifies the name of the WebAssembly module for your `+hello_world+` project is `+hello_world+`.
+* The `+canisters+` section specifies that the main program to be complied is located in the path specified by the `+main+` setting, in this case, `+src/hello_world/main.mo+`.
+* The `+defaults+` section specifies the location for `+output+` generated by the `+build+` command—in this case, the `+canisters+` directory—and the default host `+address+` and `+port+` for accessing the compiled output.
+* The `+dfx+` and `+version+` settings are used to identify the version of the software used to create the project.
+--
++
+You can leave the default settings as they are. 
+. Close the `+dfx.json+` file to continue.
+
+== Review the default program code
+
+New projects always include a template `main.mo` source code file.
+You can edit this file to include your own code to speed up the development cycle.
+
+Let's take a look at the sample program in the default `main.mo` template file as a starting point for creating simple program using the {proglang} programming language.
+
+To review the default sample program for your project:
+
+. Check that you are still in your project directory by running the following command:
++
+[source,bash]
+----
+pwd
+----
+. Change to the `+src/hello_world+` directory.
++
+[source,bash]
+----
+cd src/hello_world
+----
+. Open the `+main.mo+` file in a text editor and review the code in the template:
++
+[source,bash]
+----
+actor {
+    public func greet(name : Text) : async Text {
+        return "Hello, " # name # "!";
+    };
+};
+----
++
+Let's take a look at a few key elements of this program:
++
+--
+* You might notice that this sample code defines an `+actor+` instead of a `+main+` function, which some programming languages require. 
+For {proglang}, the `+main+` function is implicit in the file itself.
+
+* Although the traditional "Hello, World!" program illustrates how you can print a string using a `+print+` or `+println+` function, that traditional program would not represent a typical use case for {proglang} programs that run on the {IC}.
+
+* Instead of a print function, this sample program defines an `+actor+` with a public `+greet+` function that takes a `+name+` argument with a type of `+Text+`.
+
+* The program then uses the `+async+` keyword to indicate that the program returns an asynchronous message consisting of a concatenated text string constructed using `+"Hello, "+`, the `+#+` operator, the `+name+` argument, and `+"!"+`.
+--
+We’ll explore code that uses `+actor+` objects and asynchronous message handling more a little later. 
+For now, you can continue to the next section to build the program from the default `+main.mo+` file.
+. Close the `+main.mo+` file to continue.
+
+[[start-the-local-network]]
+== Start the local network
+
+Before you can build the default project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+
+As a best practice, this step requires you to have two terminal shells open, so that you can start and see network operations in one terminal and manage your project in another.
+
+To start the network locally:
+
+[arabic]
+. Open a new terminal window or tab on your local computer and navigate to your project directory.
++
+For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
++
+[source,bash]
+----
+cd ~/ic-projects/hello
+----
++
+You should now have two terminal windows open with your project directory as your current working directory.
++
+You can check that you are in your project directory by running the `+pwd+` command in both windows, if needed.
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start
+----
++
+Depending on your platform and local security settings, you might see a warning displayed. 
+If you are prompted to allow or deny incoming network connections, click *Allow*.
++
+After you start the local network, this terminal displays messages about network operations.
+. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
+
+== Build the program
+
+Now that you have explored the default configuration settings and program code and started the {IC} network, let's compile the default program into an executable WebAssembly module.
+
+To build the program executable:
+
+[arabic]
+. In the terminal shell on your local computer, navigate to your `+hello_world+` project directory.
++
+You must run the `+dfx build+` command from within the project directory structure.
+. Build the executable canister by running the following command:
++
+[source,bash]
+----
+dfx build
+----
++
+You should see output similar to the following:
++
+[source,bash]
+----
+Building canisters...
+Building frontend...
+----
++
+If your computer can connect to the {IC} network, running the `+dfx canister build+` command creates several artifacts in your project's `+canisters+` directory, including directories that contain the WebAssembly modules for your main program and project assets and a `+canister_manifest.json+` file with configuration information.
++
+For example:
++
+[source,json]
+----
+{
+  "canisters": {
+    "hello_world": {
+      "candid_path": "/Users/pubs/ic-projects/hello_world/canisters/hello_world/hello_world.did",
+      "canister_id": "ic:05000000000000000000000000000000000185",
+      "timestamp": "Sat, 13 Jun 2020 00:04:13 +0000",
+      "wasm_path": "/Users/pubs/ic-projects/hello_world/canisters/hello_world/hello_world.wasm"
+    },
+    "hello_world_assets": {
+      "candid_path": "/Users/pubs/ic-projects/hello_world/canisters/hello_world_assets/hello_world_assets.did",
+      "canister_id": "ic:060000000000000000000000000000000001FB",
+      "timestamp": "Sat, 13 Jun 2020 00:04:14 +0000",
+      "wasm_path": "/Users/pubs/ic-projects/hello_world/canisters/hello_world_assets/hello_world_assets.wasm"
+    }
+  }
+}
+----
+. Verify that the `+canisters/hello_world+` directory created by the `+build+` command contains the WebAssembly and related application files by running the following command.
++
+[source,bash]
+----
+ls -l canisters/hello_world/
+----
++
+For example, the command returns output similar to the following:
++
+[source,bash]
+----
+total 456
+-rw-rw-rw-  1 pubs  staff     43 Jun 12 17:05 hello_world.did
+-rw-r--r--  1 pubs  staff    103 Jun 12 17:05 hello_world.did.js
+-rw-r--r--  1 pubs  staff    175 Jun 12 17:05 hello_world.js
+-rw-rw-rw-  1 pubs  staff  85525 Jun 12 17:05 hello_world.wasm
+-rw-r--r--  1 pubs  staff     43 Jun 12 17:05 main.did
+-rw-r--r--  1 pubs  staff  85525 Jun 12 17:05 main.wasm
+----
++
+The `canisters/hello_world` directory contains the following key files:
++
+--
+* The `+hello_world.did+` file contains an interface description for your program.
+
+* The `+hello_world.did.js+` file contains a JavaScript representation of the canister interface for the assets in your program. 
+
+* The `+hello_world.js+` file contains a JavaScript representation of the canister interface for your program. 
+
+* The `+hello_world.wasm+` file contains the compiled WebAssembly for the assets used in your project.
+
+* The `+main.did+` file contains an interface description for your main program.
+
+* The `+main.wasm+` file contains the compiled WebAssembly for your main program.
+--
++
+In addition to the files in the `canisters/hello_world` directory, the `+dfx build+` command creates an `+idl_+` directory.
+
+== Deploy the project locally
+
+You've seen that the `+dfx build+` command creates several artifacts in a `canisters` directory for your project. 
+The WebAssembly modules and the `+canister_manifest.json+` file are required for your program to be deployed on the {IC} network.
+
+To deploy locally:
+
+[arabic]
+. In a terminal shell on your local computer, navigate to your `+hello_world+` project directory.
+. Deploy your `+hello_world+` project on the local network by running the `+dfx canister install+` command and specifying a `+canister_name+` that matches the canister name specified in the `+dfx.json+` configuration file.
++
+For this tutorial, the canister name is `+hello_world+`, so you can deploy the canister by running the following command:
++
+[source,bash]
+----
+dfx canister install hello_world
+----
++
+The command displays output similar to the following:
++
+[source,bash]
+----
+Installing code for canister hello_world, with canister_id ic:05000000000000000000000000000000000185
+----
+. Call the predefined `+greet+` function in the program by running the following command:
++
+[source,bash]
+----
+dfx canister call hello_world greet "everyone" --type string
+----
++
+This example uses the `+dfx canister call+` command to pass "everyone" as an argument of type `+string+` to the `+greet+` function.
+. Verify the command displays the return value of the `+greet+` function.
++
+For example:
++
+[source,bash]
+----
+("Hello, everyone!")
+----
+
+== View the default front-end
+
+If you have `+node.js+` installed in your development environment, your project includes a simple front-end example that uses a template `+index.js+` JavaScript file and a sample `+index.html+` file for accessing the `+hello_world+` program in a browser.
+
+To explore the default front-end template:
+
+. Open a terminal shell on your local computer, if you don’t already have one open, and navigate to your `+hello_world+` project directory.
+. Open the `+src/hello_world_assets/public/index.js+` file in a text editor and review the code in the template script:
++
+[source,bash]
+----
+import hello_world from 'ic:canisters/hello_world';
+
+hello_world.greet(window.prompt("Enter your name:")).then(greeting => {
+  window.alert(greeting);
+});
+----
++
+The template `+index.js+` file uses the Document Object Model (DOM) to describe the structure and content of a document on the web.
++
+This sample file imports the canister you created and calls the `+greet+` function in a prompt window.
+. Close the `+index.js+` file to continue.
+. View the static assets created in the `canisters` directory by running following command:
++
+[source,bash]
+----
+ls -l canisters/hello_world_assets/
+----
++
+The command displays output similar to the following:
++
+[source,bash]
+----
+total 496
+drwxr-xr-x  5 pubs  staff     160 Jun 12 17:05 assets
+-r--r--r--  1 pubs  staff     131 Dec 31  1969 assetstorage.did
+-r--r--r--  1 pubs  staff  115443 Dec 31  1969 assetstorage.wasm
+-rw-rw-rw-  1 pubs  staff     131 Dec 31  1969 hello_world_assets.did
+-rw-r--r--  1 pubs  staff     206 Jun 12 17:05 hello_world_assets.did.js
+-rw-r--r--  1 pubs  staff     182 Jun 12 17:05 hello_world_assets.js
+-rw-rw-rw-  1 pubs  staff  115443 Dec 31  1969 hello_world_assets.wasm
+
+----
++
+These files were generated automatically by the `+dfx build+` command using node modules and the template `+index.js+` file.
+. Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
++
+By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the hello_world program using `+127.0.0.1:8000+` for the URL.
++
+In addition to the host and port, the URL you specify needs to include `+canisterId+` parameter to identify the canister that you want the web server to display. 
+To specify the canister, append the identifier using the following syntax:
++
+[source,bash]
+----
+?canisterId=ic:<YOUR-CANISTER-IDENTIFIER>
+----
++
+For example, the full URL should look similar to the following:
++
+[source,bash,subs="quotes"]
+----
+http://localhost:8000/?canisterId=ic:81DDA04F69F40FEEAC
+----
+. Verify that you are prompted to type a greeting.
++
+For example:
++
+image:hello-world-prompt.png[Hello world prompt window]
+. Type a greeting, then click *OK* to return the greeting.
++
+For example:
++
+image:hello-world-return.png[Hello world return string]
+. Return to the terminal shell and stop the local {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----

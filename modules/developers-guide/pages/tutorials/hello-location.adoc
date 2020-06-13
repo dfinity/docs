@@ -169,10 +169,10 @@ The command displays output similar to the following:
 ----
 dfx canister call hello_location location '("San Francisco")'
 ----
++
 The command displays the same `+("Hello, San Francisco!")+` output as when you explicitly set the `+--type+` argument.
 + 
 Because your program only accepts a single string argument, specifying multiple strings only returns the first argument.
-+
 For example, if you run the following command:
 +
 [source,bash]
@@ -190,7 +190,6 @@ For example, you might want to modify the `+location+` function to return multip
 To experiment with modifying the source code for this tutorial:
 
 . Open the `+dfx.json+` configuration file in a text editor and change the default `+hello_location+` settings to `+favorite_cities+`.
-----
 . Save your changes and close the `+dfx.json+` file to continue.
 . Copy the `+hello_location+` source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
 +
@@ -199,6 +198,7 @@ To experiment with modifying the source code for this tutorial:
 cp -r src/hello_location src/favorite_cities
 ----
 . Copy the `hello_location_assets` directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
++
 [source,bash]
 ----
 cp -r src/hello_location_assets src/favorite_cities_assets
@@ -226,7 +226,7 @@ actor {
 +
 You might notice that `+Text+` in this code example is enclosed by square (`+[ ]+`) brackets. By itself, `+Text+` represents a collection of UTF-8 characters. 
 The square brackets around a type indicate that it is an *array* of that type.
-In this context, therefore, the `+[Text]+` indicates an array of a collection of UTF-8 characters, enabling the program to accept and return multiple text strings.
+In this context, therefore, `+[Text]+` indicates an array of a collection of UTF-8 characters, enabling the program to accept and return multiple text strings.
 +
 The code sample also uses the basic format of an `+apply+` operation for the array, which can be abstracted as:
 +
@@ -249,9 +249,10 @@ For information about the functions that perform operations on arrays, see the d
 dfx build --skip-frontend
 ----
 +
-For this tutorial, you can build using the `--skip-frontend` because you aren't changing the default front-end for the new program.
-If you also wanted to update the front-end, you would open the default `+src/favorite_cities/public/index.js+` file to change the canister name and make other changes. 
-. Deploy your `+favorite_-_cities+` program on the local network by running the following command:
+For this tutorial, you can build using the `+--skip-frontend+` argument because you are not changing the default front-end for the new program.
++
+If you also wanted to update the front-end, you would open the default `+src/favorite_cities_assets/public/index.js+` file to change the canister name and make other changes.
+. Deploy your `+favorite_cities+` program on the local network by running the following command:
 +
 [source,bash]
 ----

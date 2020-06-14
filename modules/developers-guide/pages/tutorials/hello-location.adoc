@@ -45,12 +45,13 @@ dfx new hello_location
 cd hello_location
 ----
 
-== Verify the default configuration
+== Modify the default configuration
 
 In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project adds a default `dfx.json` configuration file to your project directory.
-Review the default settings in the file to verify the file and directory names reflect the names you want to use.
+You should always review the default settings in the file to verify the information accurately reflects the project settings you want to use.
+For this tutorial, you'll modify the default configuration to remove settings that aren't used.
 
-To verify settings in the `+dfx.json+` configuration file:
+To modify settings in the `+dfx.json+` configuration file:
 
 . Open the `+dfx.json+` configuration file in a text editor.
 . Check the default settings for the `+hello_location+` project.
@@ -58,7 +59,7 @@ To verify settings in the `+dfx.json+` configuration file:
 Because this tutorial does not involve creating any front-end assets, you can remove all of the `+hello_location_assets+` configuration settings from the file.
 . Close the file to continue.
 
-== Modify the default template program
+== Modify the default program
 
 In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
 

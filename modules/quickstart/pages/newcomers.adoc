@@ -44,6 +44,8 @@ The Homebrew application is a package manager for macOS that makes it easy to in
 The `node.js` package provides a JavaScript runtime environment and modules for front-end user interface development. 
 The `node.js` package is not required to build programs, but you'll probably need it if you want to add a graphical user interface to your program.
 
+NOTE: If your development environment is Linux, you can use a package manager of your choice instead of Homebrew to install packages and manage dependencies. 
+
 To check and install packages:
 
 . Check whether you have the Homebrew package manager installed by running the following command:
@@ -67,15 +69,13 @@ If Homebrew isn't installed, copy and paste the following command in your termin
 node --version
 ----
 +
-If the command returns version information, continue to the next step.
+If the command returns version information, continue to <<Create a working folder>>.
 If `node.js` isn't installed, copy and paste the following command in your terminal:
 +
 [source,bash]
 ----
 brew install node
 ----
-
-NOTE: If your development environment is Linux, you might use a package manager of your choice instead of Homebrew to install packages and manage dependencies. 
 
 == Create a working folder
 

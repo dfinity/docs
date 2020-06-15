@@ -1,6 +1,6 @@
 // Create a simple Counter actor.
 actor Counter {
-    var currentValue : Nat = 0;
+    stable var currentValue : Nat = 0;
 
     // Increment the counter with the increment function.
     public func increment() : async () {

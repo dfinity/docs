@@ -12,7 +12,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-In this tutorial, you are going to write a program that creates a single actor (object) and provides a few basic functions.
+In this tutorial, you are going to write a program that creates a single actor and provides a few basic functions.
 
 For this tutorial, the actor is named `+Counter+`. 
 The program uses the `+currentValue+` variable to contain a natural number that represents the current value of the counter. 
@@ -30,12 +30,12 @@ Like the other sample programs, this tutorial demonstrates a simple, but realist
 * Create a new project.
 * Write a program that uses {proglang} code.
 * Compile the code into a WebAssembly module that you deploy.
-* Deploy the canister on the local network replica.
+* Deploy the canister on the local {IC} network.
 * Invoke the canister methods to increment then read the value of a counter.
 
-The following diagram provides a simplified overview of the workflow passing from the developer’s command-line environment to the internet computer network replica deployed locally:
+The following diagram provides a simplified overview of the workflow passing from the developer’s command-line environment to the {IC} network deployed locally:
 
-image:dev-work-flow-2.png[Overview of the developer work flow]
+image:dev-work-flow-2.png[Overview of the developer workflow]
 
 As the diagram suggests, the network infrastructure and the development environment co-exist on the same computer in this tutorial.
 
@@ -63,7 +63,7 @@ To create a new project directory for this tutorial:
 dfx new my_counter
 ----
 +
-The command creates a new project, including a default project directory structure under the `+my_counter+` project name and a Git repository for your project.
+The command creates a new `+my_counter+` project and Git repository for your project.
 . Change to your project directory by running the following command:
 +
 [source,bash]
@@ -95,51 +95,32 @@ drwxr-xr-x    3 pubs  staff      96 Dec 17 13:43 src
 == Modify the default configuration
 
 You have already seen that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
-In this tutorial, you will modify the default settings to use a different name for your program directories within your project.
+In this tutorial, you will modify the default settings to use a different name for the main program in your project.
 
 To modify the default `+dfx.json+` configuration file:
 
-. Open the `+dfx.json+` configuration file in a text editor and change the default `+my_counter+` settings to  `+increment_counter+`.
+. Open the `+dfx.json+` configuration file in a text editor and change the default `+main+` setting from `+main.mo+` to `+increment_counter.mo+`.
 +
 For example:
 +
-[source,json,subs="quotes"]
+[source,json]
 ----
-{
-  "canisters": {
-    "my_counter": {
-      "frontend": {
-        "entrypoint": "src/*increment_counter*/public/index.js"
-      },
-      "main": "src/*increment_counter*/main.mo"
-    }
-  },
-  "defaults": {
-    "build": {
-      "output": "canisters/"
-    },
-    "start": {
-      "address": "127.0.0.1",
-      "port": 8000,
-      "serve_root": "canisters/*increment_counter*/assets"
-    }
-  }
-}
+"main": "src/my_counter/increment_counter.mo",
 ----
 +
 You can leave the rest of the default settings as they are.
 . Save your change and close the `+dfx.json+` file to continue.
-. Change the name of the source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command
+. Change the name of the main program file in the source code directory to match the name specified in the `+dfx.json+` configuration file by running the following command
 +
 [source,bash]
 ----
-mv src/my_counter/ src/increment_counter/
+mv src/my_counter/main.mo src/my_counter/increment_counter.mo
 ----
 
-== Modify the default template program
+== Modify the default program
 
-You have already seen that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
-In this tutorial, you modify the template code to create the Counter program.
+So far, you have only changed the name of the main program for your project. 
+The next step is to modify the code in the `+src/my_counter/increment_counter.mo+` file to define an actor named `+Counter+` and implement the `+increment+`, `+get+`, and `+set+` functions. 
 
 To modify the default template source code:
 
@@ -147,31 +128,55 @@ To modify the default template source code:
 +
 [source,bash]
 ----
-cd src/increment_counter
+cd src/my_counter
 ----
-. Open the template `+main.mo+` file in a text editor and delete the existing content.
+. Open the `+increment_counter.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+main.mo+` file:
 +
 [source,motoko]
 ----
 include::example$counter.mo[]
 ----
++
+Note that the variable declaration in this example includes the `+stable+` keyword to indicate the state—the value that can be set, incremented, and retrieved—persists.
+For more information about stable and flexible variables, see the _{proglang} Programming Language Guide_.
 . Save your changes and close the file to continue.
 
-== Build and deploy the program
+== Start the local network
 
-You now have a Counter program that you can compile into an executable WebAssembly module and deploy on your local replica network.
+Before you can build the `+my_counter+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
 
-To build and deploy the program:
+To start the network locally:
 
-. Navigate to the root of your `+my_counter+` project directory.
+[arabic]
+. Open a new terminal window or tab on your local computer and navigate to your project directory.
 +
-For example, if you have created `+my_counter+` as your project directory in the `+~/ic-projects+` folder, change to that directory by running the following command:
+For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
 +
 [source,bash]
 ----
 cd ~/ic-projects/my_counter
 ----
++
+You should now have two terminal windows open with your project directory as your current working directory.
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start
+----
++
+After you start the local network, this terminal displays messages about network operations.
+. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
+
+[[build-counter]]
+== Build and deploy the program
+
+Now that you have a main program with an actor that increments a value and a connection to the {IC} network, you are ready to compile the program into an executable WebAssembly module that can be deployed on your local network.
+
+To build and deploy the program:
+
+. Check that you are still in your project directory by running the `+pwd+` command, if necessary.
 . Build the WebAssembly executable by running the following command:
 +
 [source,bash]
@@ -183,8 +188,8 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-Building my_counter...
-Building frontend code...
+Building canisters...
+Building frontend...
 ----
 +
 After running the `+dfx build+` command, your program is encapsulated in a unique object—the canister—that can be deployed.
@@ -195,23 +200,14 @@ After running the `+dfx build+` command, your program is encapsulated in a uniqu
 ----
 ls -l canisters/my_counter
 ----
-. Start the {IC} network replica processes by running the following command:
-+
-[source,bash]
-----
-dfx start --background
-----
 . Deploy the canister you created by running a `+dfx canister install+` command and specifying the _canister_name_.
 +
-For this tutorial, the canister name is `+my_counter+`. 
-By substituting `+my_counter+` for the _canister_name_ variable, you can deploy by running the following command:
+For this tutorial, you can deploy by running the following command:
 +
 [source,bash]
 ----
 dfx canister install my_counter
 ----
-+
-If no error is returned, your canister has been successfully deployed on the local network.
 
 == Invoke methods on the deployed canister
 
@@ -229,24 +225,21 @@ the current value of the `+currentValue+` variable on the deployed canister:
 dfx canister call my_counter get
 ----
 +
-Note that you could use the `+--async+` option with this command to indicate that you want to poll the replica for the result with a separate `+request-status+` call.
-By default, the `+dfx canister call+` command waits for the result rather than requiring you to make a separate `+request-status+` call. 
-+
 The command returns the current value of the `+currentValue+` variable as zero:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
-(*0*)
+(0)
 ----
 [arabic]
 . Run the following command to invoke the `+increment+` function to increment the value of the `+currentValue+` variable on the deployed canister by one:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call my_counter increment
 ----
 +
-This command increments the value of the variable.
+This command increments the value of the variable—changing its state—but does not return the result.
 [arabic]
 . Rerun the following command to get the current value of the `+currentValue+` variable on the deployed canister:
 +
@@ -255,11 +248,11 @@ This command increments the value of the variable.
 dfx canister call my_counter get 
 ----
 +
-The command returns the current value of the `+currentValue+` variable as one:
+The command returns the updated value of the `+currentValue+` variable as one:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
-(*1*)
+(1)
 ----
 [arabic]
 . Run additional commands to experiment with invoking other methods and using different values.
@@ -268,7 +261,7 @@ For example, try commands similar to the following:
 +
 [source,bash]
 ----
-dfx canister call my_counter set --type number 987 
+dfx canister call my_counter set '(987)' 
 dfx canister call my_counter get
 ----
 +

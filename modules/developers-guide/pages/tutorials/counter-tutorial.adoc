@@ -137,6 +137,9 @@ cd src/my_counter
 ----
 include::example$counter.mo[]
 ----
++
+Note that the variable declaration in this example includes the `+stable+` keyword to indicate the state—the value that can be set, incremented, and retrieved—persists.
+For more information about stable and flexible variables, see the _{proglang} Programming Language Guide_.
 . Save your changes and close the file to continue.
 
 == Start the local network
@@ -186,7 +189,7 @@ The command displays output similar to the following:
 [source,bash]
 ----
 Building canisters...
-Building frontend code...
+Building frontend...
 ----
 +
 After running the `+dfx build+` command, your program is encapsulated in a unique object—the canister—that can be deployed.

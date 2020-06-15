@@ -82,7 +82,6 @@ npm install --save react react-dom
 +
 [source,bash]
 ----
-npm install --save react react-dom
 npm install --save typescript ts-loader
 ----
 
@@ -118,16 +117,22 @@ To modify the default `+dfx.json+` configuration file:
 ----
 +
 Let's take a look at the settings in this section.
-==
++
+--
 * Front-end assets for your project are compiled into their own canister, in this case, a canister named `+custom_greeting_assets+`. 
+
 * The assets canister has a default dependency on the main canister for the project. 
+
 * The `+frontend.entrypoint+` setting specifies the path to a file—in this case, the `+index.js+` file—to use as your application entry point.
 If you had a different starting point—for example, a custom `index.html` file—you would modify this setting.
+
 * The `+source+` setting specifies the path to a directory for static assets that will be included in your assets canister when you build your project.
 If you had custom cascading stylesheet (CSS) or JavaScript files, you would include them in this source folder.
 After building the project, these assets are served from the directory specified by the `+frontend.output+` setting. 
+
 * The `+type+` setting specifies that the `+custom_greeting_assets+` is an asset canister rather than a program canister.
-==
+--
++
 For this tutorial, change the `+entrypoint+` file name to `+index.jsx+` to enable adding HTML directly inside Javascript as a template.
 . Close the `+dfx.json+` file to continue.
 
@@ -255,7 +260,7 @@ The command output displays output similar to the following:
 Installing code for canister custom_greeting, with canister_id ic:100000000000000000000000000000000001A9
 Installing code for canister custom_greeting_assets, with canister_id ic:11000000000000000000000000000000000183
 ----
-. Copy the canister identifier for the custom_greeting_assets canister to the clipboard or a notepad application.
+. Copy the canister identifier for the `+custom_greeting_assets+` canister to the clipboard or a notepad application.
 
 == View the new front-end
 
@@ -329,7 +334,13 @@ image:modified-result.png[Modified greeting result]
 
 == Stop the local network
 
-. Stop the {IC} network running on your local computer by running the following command:
+After you finish experimenting with the front-end for your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+
+To stop the local network:
+
+. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+
+. Stop the {IC} network by running the following command:
 +
 [source,bash]
 ----

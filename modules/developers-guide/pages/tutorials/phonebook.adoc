@@ -1,7 +1,5 @@
 = Importing base library functions
-December 2019 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:linkedcss:
 :toc:
 :toc: right
 :toc-title: TUTORIAL - BASE LIBRARY
@@ -15,12 +13,12 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 In this tutorial, you are going to write a simple program that enables you to store and look up telephone numbers. 
-This tutorial illustrates how to import and use a few basic standard library functions.
+This tutorial illustrates how to import and use a few basic {proglang} library functions.
 
-For this tutorial, the standard library functions are defined in the  `+list+` and `+assocList+` library files and enable you to work with lists as linked key-value pairs. 
+For this tutorial, the {proglang} base library functions are defined in the  `+List+` and `+AssocList+` modules and enable you to work with lists as linked key-value pairs. 
 In this example, the *key* is a `+name+` and the *value* is the `+phone+` text string associated with that name. 
 
-This program supports the following types of function calls:
+This program supports the following function calls:
 
 * The `+insert+` function call accepts the `+name+` and `+phone+` key-value pair as input stored in the `+book+` variable.
 * The `+lookup+` function is a query that uses the specified the `+name+` as input to find the associated phone number.
@@ -56,50 +54,11 @@ dfx new phonebook
 cd phonebook
 ----
 
-////
-== Modify the default configuration
+== Modify the default program
 
-You have already seen that creating a new project adds a default `dfx.json` configuration file to your project directory.
-In this tutorial, you will modify the default setting for the program name to illustrate how you can customize your project environment.
+For this tutorial, let's create a new `+main.mo+` file for the simple phone number lookup program.
 
-To modify the default `+dfx.json+` configuration file:
-
-. Open the `+dfx.json+` configuration file in a text editor, then change  the default `+main.mo+` program name to `+phonebook.mo+`.
-+
-For example:
-+
-[source,bash,subs="quotes"]
-----
-{
-  "canisters": {
-    "phonebook": {
-      "frontend": {
-        "entrypoint": "src/phonebook/public/index.js"
-      },
-      "main": "src/phonebook/*phonebook.mo*"
-    }
-  },
-  "defaults": {
-    "build": {
-      "output": "canisters/"
-    },
-    "start": {
-      "address": "127.0.0.1",
-      "port": 8000,
-      "serve_root": "canisters/phonebook/assets"
-    }
-  },
-}
-----
-. Save your changes and close the file to continue.
-////
-
-== Modify the default template program
-
-You have already seen that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
-In this tutorial, you will create a new `+main.mo+` file for the simple phone number lookup program.
-
-To modify the default template source code:
+To modify the default template:
 
 . Open the `+src/phonebook/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+main.mo+` file:
@@ -109,26 +68,23 @@ To modify the default template source code:
 include::example$phonebook.mo[]
 ----
 
-== Build and deploy the program
+== Start the local network
 
-You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local replica network.
+Before you can build the `+phonebook+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
 
-To build the program executable:
+To start the network locally:
 
-. Change to the root directory for your project, if necessary.
-+ 
-For example, if your project root directory is `+~/ic-projects/phonebook+`, run the following command:
+[arabic]
+. Open a new terminal window or tab on your local computer and navigate to your project directory.
++
+For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
 +
 [source,bash]
 ----
 cd ~/ic-projects/phonebook
 ----
-. Build the WebAssembly executable by running the following command:
 +
-[source,bash]
-----
-dfx build --skip-frontend
-----
+You should now have two terminal windows open with your project directory as your current working directory.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
@@ -136,15 +92,23 @@ dfx build --skip-frontend
 dfx start
 ----
 +
-When you run the `+dfx start+` command without the `+--background+` option, the processes start in the current terminal so you need to open a new terminal shell to continue.
-. Open a new terminal shell, then change the root directory for your project.
-+
-For example:
+After you start the local network, this terminal displays messages about network operations.
+. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
+
+== Build and deploy the program
+
+You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local {IC} network.
+
+To build and deploy the program:
+
+. Check that you are still in your project directory by running the `+pwd+` command, if necessary.
+. Build the WebAssembly executable by running the following command:
 +
 [source,bash]
 ----
-cd ~/ic-projects/phonebook
+dfx build --skip-frontend
 ----
+For this tutorial, you can build your project using the `+--skip-frontend+` option because the project is a simple terminal-based applications that doesn't include any front-end assets.
 . Deploy your `+phonebook+` project on the local network by running the following command:
 +
 [source,bash]
@@ -172,7 +136,7 @@ dfx canister call phonebook insert '("Maya Garcia", "01 408 395 7276")'
 ----
 . Verify that the command returns the number associated with "Chris Lynn" using the `+lookup+` function by running the following command:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call phonebook lookup '("Chris Lynn")'
 ----
@@ -191,7 +155,7 @@ The command returns output similar to the following:
 dfx canister call phonebook lookup '("01 408 395 7276")'
 ----
 +
-Note that, in this case, the command returns (none) because the phone number is not a key associated with the "Maya Garcia" name entry.
+Note that, in this case, the command returns (null) because the phone number is not a key associated with the "Maya Garcia" name entry.
 . Try to call the `+lookup+` function again to return the phone numbers for both "Maya Garcia" and "Chris Lynn" by running the following command:
 +
 [source,bash]
@@ -199,13 +163,7 @@ Note that, in this case, the command returns (none) because the phone number is 
 dfx canister call phonebook lookup '("Maya Garcia","Chris Lynn")'
 ----
 +
-Because the program is written to return one value for one key, the command only returns the phone number associated with the first key—the "Maya Garcia" name entry.
-For example:
-+
-[source,bash,subs="quotes"]
-----
-(opt "01 408 395 7276")
-----
+Because the program is written to return one value for one key, the command returns a `+mismatch+` error.
 
 include::example$candid-ui.adoc[]
 +

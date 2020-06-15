@@ -134,7 +134,7 @@ For more information about using a query call, see link:../introduction-key-conc
 --
 . Save your changes and close the `+main.mo+` file.
 
-== Build the program using a locally-defined identifier
+== Build the program with a local identifier
 
 You are probably only going to use this simple program for some locally testing.
 Therefore, there's no need to reserve a unique canister identifier on the {IC} network to hold the compiled output for the program. 
@@ -184,7 +184,7 @@ cd ~/ic-projects/actor_hello
 dfx start --background
 ----
 +
-You can use the --background option to start the Internet Computer network processes then run them in the background. 
+You can use the `+--background+` option to start the Internet Computer network processes then run them in the background. 
 +
 With this option, you can continue to the next step without opening another terminal shell on your local computer.
 . Generate a new canister identifier for your project on the local {IC} network by running the following command:

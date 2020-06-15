@@ -369,6 +369,7 @@ For example:
 ("Hello, everyone!")
 ----
 
+[[default-frontend]]
 == View the default front-end
 
 If you have `+node.js+` installed in your development environment, your project includes a simple front-end example that uses a template `+index.js+` JavaScript file and a sample `+index.html+` file for accessing the `+hello_world+` program in a browser.

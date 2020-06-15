@@ -170,6 +170,7 @@ include::example$multiple-actors/rock_paper_scissors/main.mo[]
 ----
 include::example$multiple-actors/daemon/main.mo[]
 ----
+
 == Start the local network
 
 Before you can build the `+multiple_actors+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.

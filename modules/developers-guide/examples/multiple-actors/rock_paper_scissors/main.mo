@@ -2,10 +2,10 @@ import I "mo:base/Iter";
 
 actor rock_paper_scissors {
 
-	var alice_score: Nat = 0;
-    var bob_score: Nat = 0;
-    var alice_last: Choice = { #scissors };
-    var bob_last: Choice = { #rock };
+	stable var alice_score: Nat = 0;
+    stable var bob_score: Nat = 0;
+    stable var alice_last: Choice = { #scissors };
+    stable var bob_last: Choice = { #rock };
 
 	type Choice = {
 		#rock;

@@ -1,5 +1,4 @@
 = Using multiple actors
-February 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -23,7 +22,7 @@ This project defines the following unrelated actors:
 
 * The `+assistant+` actor provides functions to add and show tasks in a to-do list.
 +
-For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is included in link:../sample-apps{outfilesuffix}[Sample code, applications, and microservices].
+For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is available in the link:https://github.com/dfinity/examples/[examples] repository as link:https://github.com/dfinity/examples/tree/master/motoko/simple_to_do[Simple to-do checklists].
 
 * The `+rock_paper_scissors+` actor provides a function for determining a winner in a hard-coded rock-paper-scissors contest.
 +
@@ -74,31 +73,53 @@ To modify the default `+dfx.json+` configuration file:
 +
 For example:
 +
-[source,bash,subs="quotes"]
+[source,json]
 ----
 {
   "canisters": {
-    "*assistant*": {
-      "frontend": {
-        "entrypoint": "src/multiple_actors/public/index.js"
-      },
-      "main": "src/*assistant*/main.mo"
+    "assistant": {
+      "main": "src/assistant/main.mo",
+      "type": "motoko"
     },
+  }
+}
 ----
 +
 Because you are going to add settings to this `+canisters+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file.
-. Add a new canister name and source file location for the `+rock_paper_scissors+` program and a new canister name and source file location for the `+daemon+` program files below the `+assistant+` source file location.
+. Remove the `+multiple_actors_assets+` section from the file.
+. Add a new canister name and source code location for the `+rock_paper_scissors+` program and a new canister name and source code location for the `+daemon+` program files below the `+assistant+` source file location.
 +
-For example:
+After making the changes, the `+canisters+` section of the `+dfx.json+` file should look similar to this:
 +
-[source,bash,subs="quotes"]
+[source,json]
 ----
+{
+  "canisters": {
+    "assistant": {
+      "main": "src/assistant/main.mo",
+      "type": "motoko"
+    },
     "rock_paper_scissors": {
       "main": "src/rock_paper_scissors/main.mo"
     },
     "daemon": {
       "main": "src/daemon/main.mo"
-	}
+	  }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/",
+      "packtool": ""
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "serve_root": "canisters/multiple_actors_assets/assets"
+    }
+  },
+  "dfx": "0.5.8",
+  "version": 1
+}
 ----
 +
 You can leave the other sections as-is. 
@@ -121,12 +142,12 @@ cp -r src/assistant/ src/rock_paper_scissors/
 cp -r src/assistant/ src/daemon/
 ----
 
-== Modify the default template programs
+== Modify the default programs
 
 You now have three separate directories in the `+src+` directory, each with a template `+main.mo+` file.
 For this tutorial, you will replace the content in each template `+main.mo+` file with a different actor.
 
-To modify the default template source code:
+To modify the default source code:
 
 . Open the `+src/assistant/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
@@ -149,14 +170,40 @@ include::example$multiple-actors/rock_paper_scissors/main.mo[]
 ----
 include::example$multiple-actors/daemon/main.mo[]
 ----
+== Start the local network
 
-== Build all of the canisters in the project
+Before you can build the `+multiple_actors+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
 
-You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local replica network.
+To start the network locally:
 
-To build the executable for each actor in the project:
+[arabic]
+. Open a new terminal window or tab on your local computer and navigate to your project directory.
++
+For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
++
+[source,bash]
+----
+cd ~/ic-projects/multiple_actors
+----
++
+You should now have two terminal windows open with your project directory as your current working directory.
+. Start the {IC} network on your local computer by running the following command:
++
+[source,bash]
+----
+dfx start
+----
++
+After you start the local network, this terminal displays messages about network operations.
+. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
-. Change to the `+~/ic-projects/multiple_actors+` root directory for your project, if needed.
+== Build and deploy multiple canisters
+
+You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local {IC} network.
+
+To build and deploy the programs for each actor in the project:
+
+. Check that you are still in your project directory by running the `+pwd+` command, if necessary.
 . Build the WebAssembly executable for each program by running the following command:
 +
 [source,bash]
@@ -168,30 +215,7 @@ If the command is successful, it builds all of the canisters you have specified 
 +
 [source,bash]
 ----
-Building canister assistant
-Building canister rock_paper_scissors
-Building canister daemon
-----
-
-== Deploy the canisters in the project
-
-You now have three separate compiled programs—one for each actor—ready for deployment.
-
-To deploy the canisters:
-
-. Start the {IC} network on your local computer by running the following command:
-+
-[source,bash]
-----
-dfx start
-----
-. Open a new terminal shell, then change the `+~/ic-projects/multiple_actors+` root directory for your project.
-+
-For example:
-+
-[source,bash]
-----
-cd ~/ic-projects/multiple_actors
+Building canisters...
 ----
 . Deploy your canisters on the local network by running the following command:
 +
@@ -204,16 +228,16 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-Installing code for canister assistant, with canister_id ic:5C594B7580D80AA71C
-Installing code for canister rock_paper_scissors, with canister_id ic:3A130CE593455AC697
-Installing code for canister daemon, with canister_id ic:3A8E1ED1A2F0B12F4B
+Installing code for canister assistant, with canister_id ic:0E0000000000000000000000000000000001AC
+Installing code for canister daemon, with canister_id ic:0B00000000000000000000000000000000012E
+Installing code for canister rock_paper_scissors, with canister_id ic:0D0000000000000000000000000000000001D2
 ----
 
 == Verify deployment by calling functions
 
 You now have three programs deployed as a *canisters* on your local replica network and can test each program by using `+dfx canister call+` commands.
 
-To test the programs you have deployed on the local replica network:
+To test the programs you have deployed:
 
 . Use the `+dfx canister call+` command to call the canister `+assistant+` using the `+addTodo+` function and pass it the task you want to add by running the following command:
 +
@@ -223,7 +247,7 @@ dfx canister call assistant addTodo '("Schedule monthly demos")'
 ----
 . Verify that the command returns the to-do list item using the `+showTodos+` function by running the following command:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call assistant showTodos
 ----
@@ -234,11 +258,11 @@ The command returns output similar to the following:
 ----
 ("
 ___TO-DOs___
-(1) Schedule monthly demos
+(1) Schedule monthly demos")
 ----
 . Use the `+dfx canister call+` command to call the canister `+rock_paper_scissors+` using the `+contest+` function by running the following command:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
 dfx canister call rock_paper_scissors contest
 ----

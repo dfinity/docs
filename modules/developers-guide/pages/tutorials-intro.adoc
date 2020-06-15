@@ -12,7 +12,7 @@ The following tutorials introduce the basics for writing programs that run on th
 
 * link:tutorials/explore-templates{outfilesuffix}[Exploring the default project] takes a closer look at the work flow for creating projects by exploring the default files and folders that are added to your workspace when you create a new project.
 
-* link:tutorials/actor-hello-world{outfilesuffix}[Using an actor in Hello, World!] highlights how to replace the typical `+print+` function usually defined in a "Hello, World!" program by defining an actor (object) with a `+hello+` function.
+* link:tutorials/actor-hello-world{outfilesuffix}[Defining an actor] highlights how to replace the typical `+print+` function usually defined in a "Hello, World!" program by defining an actor (object) with a `+hello+` function.
 
 * link:tutorials/hello-location{outfilesuffix}[Passing arguments in a terminal] introduces different ways you can pass arguments to a function using the command-line in a terminal shell.
 

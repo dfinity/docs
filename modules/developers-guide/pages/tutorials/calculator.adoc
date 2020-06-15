@@ -134,9 +134,9 @@ After you start the local network, this terminal displays messages about network
 
 == Build and deploy the program
 
-You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local replica network.
+You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local {IC} network.
 
-To build the program executable:
+To build and deploy the program:
 
 . Check that you are still in your project directory by running the `+pwd+` command, if necessary.
 . Build the WebAssembly executable by running the following command:
@@ -225,7 +225,7 @@ The program makes the result optional to enable the `+div+` function to return `
 +
 Because the cell variable in this program is an integer, you cam also call its functions and specifying negatives input values.
 For example, you might run the following command:
-
++
 [source,bash]
 ----
 dfx canister call calculator mul '(-4)'

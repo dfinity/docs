@@ -169,21 +169,27 @@ include::example$candid-ui.adoc[]
 +
 image:candid-phonebook.png[Phonebook functions]
 
-== Stop the local network
-
-. Stop the {IC} processes running on your local computer by running the following command:
-+
-[source,bash]
-----
-dfx stop
-----
-
 == Revise the source code in your program
 
 To extend what you have learned in this tutorial, you might want to try modifying the source code to return different results.
 
 For example, you might want to change the source code so that instead of a program that inserts and looks up a current key-value (name-phone) pair to create a program that stores contact information similar to a database "record" in which a primary key is associated with multiple fields.
 In this example, your program might enable users or another program to add information—such as a home phone number, a cell phone number, an email address, and a street address—and selectively return all or specific field values.
+
+== Stop the local network
+
+After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+
+To stop the local network:
+
+. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+
+. Stop the {IC} network by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
 
 ////
 To experiment with modifying the source code for this tutorial:

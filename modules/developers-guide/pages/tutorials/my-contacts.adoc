@@ -103,7 +103,7 @@ You are now ready to create a new front-end for the default program.
 . Navigate back to the root of your project directory.
 . Open the webpack configuration file (`webpack.config.js`) in a text editor to add the following `+module+` key above the `+plugins+` section:
 +
-[source,bash]
+[source,js]
 ----
 module: {
   rules: [
@@ -117,7 +117,7 @@ These settings enable your program to use the `+ts-loader+` compiler and to impo
 . Save your changes and close the `+webpack.config.js+` file to continue.
 . Create a new file named `+tsconfig.json+`, open the file in a text editor, then copy and paste the following into the file:
 +
-[source,bash]
+[source,json]
 ----
 {
     "compilerOptions": {
@@ -157,9 +157,9 @@ include::example$mycontacts/mycontacts.css[]
 . Copy and paste the following sample code into the `+index.js+` file:
 +
 [source,react]
-....
+----
 include::example$mycontacts/mod-index.jsx[]
-....
+----
 . Rename the modified `index.js` file as `index.jsx` by running the following command:
 +
 [source,bash]
@@ -248,6 +248,7 @@ NOTE: You must use the case-sensitive `+canisterId+` parameter before the canist
 For example:
 +
 image:mycontacts-form.png[Sample front-end]
+
 . Create one or more test records by entering text in the Name, Address, and Email input fields and a number in the Phone input field, then clicking *Add Contact*.
 . Clear the form fields and type a contact name in the Lookup name field, then click *Lookup* to see the stored contact information.
 +
@@ -275,12 +276,6 @@ dfx build
 dfx canister install --all
 ----
 . View the results in the browser by changing the URL to use the new canister identifier.
-. Stop the {IC} processes running on your local computer by running the following command:
-+
-[source,bash]
-----
-dfx stop
-----
 
 == Modify the front-end or back-end code
 
@@ -290,3 +285,18 @@ For example, you might want try modifying the tutorial to do the following:
 - Change the front-end code to clear the input fields after adding a new contact.
 - Change the Motoko program functions to do partial instead of exact string matching on the `+Name+` field.
 - Change the Motoko program to allow lookups based on a different field.
+
+== Stop the local network
+
+After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+
+To stop the local network:
+
+. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+
+. Stop the {IC} network by running the following command:
++
+[source,bash]
+----
+dfx stop
+----

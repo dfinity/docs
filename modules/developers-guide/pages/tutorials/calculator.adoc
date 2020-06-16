@@ -257,7 +257,13 @@ image:candid-calc.png[Calculator functions]
 
 == Stop the local network
 
-. Stop the {IC} processes running on your local computer by running the following command:
+After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+
+To stop the local network:
+
+. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+
+. Stop the {IC} network by running the following command:
 +
 [source,bash]
 ----

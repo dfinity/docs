@@ -152,7 +152,7 @@ cd src/custom_greeting
 . Open the `+main.mo+` file to review the default code.
 +
 The default program consists of one actor, one `+greet+` function, and one `+name+` argument.
-As you saw in link:default-frontend[Viewing the default front-end], the default front-end for this program uses a few lines of raw JavaScript to place the `+greet+` function and returned `+name+` argument a simple alert window.
+As you saw in link:explore-templates{outfilesuffix}#default-frontend[Viewing the default front-end], the default front-end for this program uses a few lines of raw JavaScript to place the `+greet+` function and returned `+name+` argument a simple alert window.
 . Close the `+main.mo+` file to continue.
 
 == Modify the front-end files

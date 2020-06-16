@@ -11,7 +11,7 @@ actor {
     public type Phone = Text;
 
     // The actor maps names to phone numbers.
-    var book: A.AssocList<Name, Phone> = L.nil<(Name, Phone)>();
+    flexible var book: A.AssocList<Name, Phone> = L.nil<(Name, Phone)>();
 
     // An auxiliary function checks whether two names are equal.
     func nameEq(l: Name, r: Name): Bool {

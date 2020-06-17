@@ -15,7 +15,7 @@ type Entry = {
 type ContactsMap = AssocList.AssocList<Name, Entry>;
 
 actor {
-    var contact: ContactsMap = List.nil<(Name, Entry)>();
+    flexible var contact: ContactsMap = List.nil<(Name, Entry)>();
 
     func nameEq(lhs: Name, rhs: Name): Bool {
         return lhs == rhs;

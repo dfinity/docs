@@ -78,7 +78,7 @@ To install required framework modules:
 ----
 npm install --save react react-dom
 ----
-. Install the Typescript loader module by running the following command:
+. Install the required TypeScript language compiler loader by running the following command:
 +
 [source,bash]
 ----
@@ -141,7 +141,7 @@ For this tutorial, change the `+entrypoint+` file name to `+index.jsx+` to enabl
 For this tutorial, you are going to use the default `+main.mo+` file.
 Later, you can return to this file and make changes to see how you can use the front-end to reflect changes in your program code.
 
-To review the default program"
+To review the default program:
 
 . Change to the `+src/custom_greeting+` directory.
 +
@@ -178,7 +178,7 @@ This setting enables the program to use the `+ts-loader+` compiler for the `+ind
 +
 [source,json]
 ----
-include::example$custom-frontend-tsconfig.json[]
+include::example$sample-tsconfig.json[]
 ----
 . Save your changes and close the `+tsconfig.json+` file to continue.
 . Change to the `+src/custom_greeting_assets/public+` directory.
@@ -270,10 +270,10 @@ To view the custom front-end:
 
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
 +
-By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the custom_greeting program using `+127.0.0.1:8000+` for the URL.
+By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the `+custom_greeting+` program using `+127.0.0.1:8000+` for the URL.
 +
-In addition to the host and port, the URL you specify needs to include `+canisterId+` parameter to identify the canister that you want the web server to display. 
-To specify the canister, append the identifier using the following syntax:
+In addition to the host and port, the URL you specify needs to include the `+canisterId+` parameter to identify the canister that you want the web server to display. 
+To specify the canister, append the identifier for the `+custom_greeting_assets+` canister using the following syntax:
 +
 [source,bash]
 ----

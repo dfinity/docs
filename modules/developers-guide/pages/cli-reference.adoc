@@ -666,22 +666,6 @@ However, the string label is only present for better readability.
 Behind the scenes, the string label is converted into a natural number using a fixed hash function. 
 If the canister method returns a `+record+` or `+variant+` type, the field labels will always be natural numbers.
 
-==== Limitations for arguments
-
-For this release, the following limitations apply for IDL arguments:
-
-* No support for type annotations.
-* No support for Bignum.
-
-==== Limitations for return values
-
-For this release, the following limitations apply for displaying method return values:
-
-* No support for Bignum.
-* All other IDL values are fully supported, including unicode text.
-
-==== Detailed specification
-
 For a more detailed discussion of the interface description language, see the link:../candid-spec:IDL{outfilesuffix}[Candid specification] and link:https://docs.rs/candid/[Candid Rust crate] documentation.
 
 === Examples

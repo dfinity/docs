@@ -169,7 +169,7 @@ By default, the server address is 127.0.0.1.
 By default, port number 8081 is used.
 
 |--providers <providers> |Specifies the list of compute provider API endpoints. 
-By default, the endpoint `http://127.0.0.1:8080/api` is used.
+By default, the endpoint \http://127.0.0.1:8080/api is used.
 
 |--root <root> |Specifies the directory containing static assets served by the bootstrap server.
 By default, the path to static assets is:
@@ -191,11 +191,11 @@ dfx bootstrap --ip 192.168.47.1 --port 5353
 ----
 
 The command displays output similar to the following:
-+
+
 [source,bash]
 ----
 binding to: V4(192.168.47.1:5353)
-replica(s): http://127.0.0.1:8080/api
+replica(s): \http://127.0.0.1:8080/api
 Webserver started...
 ----
 
@@ -210,7 +210,10 @@ You can use CTRL-C to stop the bootstrap server.
 
 == dfx build
 
-Use the `+dfx build+` command to build a canister for a specific source code directory or canisters for all of the source code directories included in a project.
+Use the `+dfx build+` command to compile your program into a WebAssembly module that can be deployed on the {IC}.
+You can use this command to compile all of the programs that are defined for a project in the project's `+dfx.json+` configuration file.
+
+If you are connected to the {IC} running locally or on a sub-network, this command registers canister identifiers for all of the programs in your project and generates a `+canister_manifest.json+` file that stores details about the compiled program canisters it registered on the network.
 
 Note that you can only run this command from within the project directory structure. 
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
@@ -221,7 +224,7 @@ The `+dfx build+` command looks for the source code to compile into a canister i
 
 [source,bash]
 ----
-dfx build [flag] 
+dfx build [flag] [option] 
 ----
 
 === Flags
@@ -232,38 +235,38 @@ You can use the following optional flags with the `+dfx build+` command.
 |===
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
+
 |`+--skip-frontend+` |Skips building the canister frontend. Use this option when creating terminal-based programs or for testing functionality before creating front-end code.
+
+|`+--skip-manifest+` |Skips connecting to the {IC} network and building the `+canister_manifest.json+` file. You can use this option when you want to generate a hard-coded, locally-defined canister identifier for testing that your program compiles without deploying the program to a local or remote {IC} network.
+
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-////
-=== Arguments
+=== Options
 
-You can specify the following arguments for the `+dfx build+` command.
+You can specify the following option for the `+dfx build+` command.
 
-[width="100%",cols="<36%,<64%",options="header",]
+[width="100%",cols="<36%,<64%",options="header"]
 |===
-|Argument |Description
-|`+canister_name+` |Specifies the name of the project canister to build.
-If you don’t specify this argument, all of the canisters in the current project are built. 
-If you specify a specific canister name, the name should match the setting you have configured using the `+canisters+` section in the `+dfx.json+` configuration file.
+
+|Option |Description
+
+|`+--provider <provider>+` |Overrides the default {IC} network provider host address and port number specified in the `+dfx.json+` configuration file.
+
 |===
-////
+
 === Examples
 
-You can use the `+dfx build+` command to build a canister from the source code in a specific directory. 
-For example, to build a canister named `+myCounter+` using the source code in the `+src/myCounter/main.mo+`, you would check that your source directory and file name matches the one specified in the `+dfx.json+` configuration file:
+You can use the `+dfx build+` command to build one or more WebAssembly modules from the programs specified in the `+dfx.json+` configuration file under the `+canisters+` key. 
+For example, if your `+dfx.json+` configuration file defines one `+hello_world+` canister and one `+hello_world_assets+` canister, then running `+dfx build+` compiles two WebAssembly modules:
 
 [source,json]
 ----
-{
-  "canisters": {
-    "myCounter": {
-      "main": "src/myCounter/main.mo"
-    }
-  }
-}
+include::example$sample-dfx.json[]
 ----
+
+Note that the file name and path to the programs on your file system must match the information specified in the `+dfx.json+` configuration file.
 
 To build a canister without front-end code, you would run the following command:
 
@@ -271,15 +274,6 @@ To build a canister without front-end code, you would run the following command:
 ----
 dfx build --skip-frontend
 ----
-
-////
-To build the `+counter+` canister, you would then run the following command:
-
-[source,bash]
-----
-dfx build counter
-----
-////
 
 == dfx cache
 
@@ -504,9 +498,26 @@ You can use the following optional flags with the `+dfx canister+` command.
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
+
 |Flag |Description
+
 |`+-h+`, `+--help+` |Displays usage information.
+
 |`+-V+`, `+--version+` |Displays version information.
+
+|===
+
+=== Options
+
+You can specify the following option for the `+dfx canister+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+
+|Option |Description
+
+|`+--provider <provider>+` |Overrides the default {IC} network provider host address and port number specified in the `+dfx.json+` configuration file.
+
 |===
 
 === Subcommands
@@ -518,7 +529,11 @@ Use the following subcommands to specify the operation you want to perform or to
 |Command |Description
 |`+call+` |Calls a specified method on a deployed canister.
 
+|`+create+` |Creates a new "empty" canister by registering a canister identifier on an {IC} network.
+
 |`+help+` |Displays usage information message for a specified subcommand.
+
+|`+id+` |Displays the identifier for a canister.
 
 |`+install+` |Installs compiled code as a canister on the replica.
 
@@ -527,14 +542,37 @@ Use the following subcommands to specify the operation you want to perform or to
 
 === Examples
 
-You can use the `+dfx canister+` command to display usage information for its subcommands. 
-To view usage information for a specific subcommand, specify the subcommand and the `+--help+` flag. 
+In most cases, you use `+dfx canister+` subcommands after you compile a program to manage the canister lifecycle and perform key tasks such as calling program functions.
+ 
+To view usage information for a specific `+dfx canister+` subcommand, specify the subcommand and the `+--help+` flag. 
 For example, to see usage information for `+dfx canister call+`, you can run the following command:
 
 [source,bash]
 ----
 dfx canister call --help
 ----
+
+==== Registering a canister identifier
+
+To register unique canister identifiers for a project, you can run the following command:
+
+[source,bash]
+----
+dfx canister create --all
+----
+
+==== Overriding the default network provider
+
+If you want to send a `+dfx canister+` subcommand to a specific network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the network provider using the `+--provider+` option.
+
+For example, you can specify a remote {IC} network provider by running a command similar to the following:
+
+[source,bash]
+----
+dfx canister --provider \http://192.168.3.1:5678 call counter get
+----
+
+Note that you must specify the provider parameter before the canister operation (`+call+`), canister name (`+counter+`), and function (`+get+`).
 
 == dfx canister call
 
@@ -544,7 +582,7 @@ Use the `+dfx canister call+` command to call a specified method on a deployed c
 
 [source,bash]
 ----
-dfx canister call [option] _canister_name_ _method_name_ [argument] [flag] 
+dfx canister call [option] canister_name method_name [argument] [flag] 
 ----
 
 === Flags
@@ -575,11 +613,8 @@ You can use the following options with the `+dfx canister call+` command.
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Option |Description
-|`+--provider compute_provider_location+` |Specifies the compute provider host name or IP address and port to connect to.
-This option enables you to override the address and port settings specified in the `+dfx.json+` configuration file.
-
 |`+--type type+` |Specifies the data type for the argument when making the call using an argument. 
-The valid values are `+string+`, `+number+`, `+idl+`, and `+raw+`.
+The valid values are `+string+`, `+idl+`, and `+raw+`.
 |===
 
 === Arguments
@@ -631,17 +666,7 @@ However, the string label is only present for better readability.
 Behind the scenes, the string label is converted into a natural number using a fixed hash function. 
 If the canister method returns a `+record+` or `+variant+` type, the field labels will always be natural numbers.
 
-IMPORTANT: For this Alpha release, some features of the interface descriptions language are not yet supported.
-
-The following limitations apply for IDL arguments:
-
-* No support for type annotations.
-* No support for Bignum.
-
-The following limitations apply for displaying method return values:
-
-* No support for Bignum.
-* All other IDL values are fully supported, including unicode text.
+For a more detailed discussion of the interface description language, see the link:../candid-spec:IDL{outfilesuffix}[Candid specification] and link:https://docs.rs/candid/[Candid Rust crate] documentation.
 
 === Examples
 
@@ -700,13 +725,6 @@ For example, you can pass a string argument by running a command similar to the 
 dfx canister call hello greet --type string "San Francisco"
 ----
 
-You can pass a number argument by running a command similar to the following:
-
-[source,bash]
-----
-dfx canister call hotel counter --type number 1201
-----
-
 You can pass raw data in bytes by running a command similar to the following:
 
 [source,bash]
@@ -716,28 +734,123 @@ dfx canister call hello greet --type raw '4449444c00017103e29883'
 
 This example uses the raw data type to pass a hexadecimal to the `+greet+` function of the `+hello+` canister. 
 
-==== Overriding the default compute provider
+== dfx canister create
 
-If you want to send a call to a specific compute provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the compute provider using the `+--provider` option.
+Use the `+dfx canister create+` command to register one or more canister identifiers without compiled code on the {IC} network.
+You must be connected to an {IC} network running locally or on a sub-network that you can access to run this command.
 
-For example, you can specify the compute provider by running a command similar to the following:
-
-[source,bash]
-----
-dfx canister --provider http://192.168.3.1:5678 call counter get
-----
-
-Note that you must specify the provider parameter before the canister operation (`+call+`), canister name (`+counter+`), and function (`+get+`).
-
-== dfx canister install
-
-Use the `+dfx canister install+` command to install compiled code as a canister on the network replica.
+Note that you can only run this command from within the project directory structure. 
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
 === Basic usage
 
 [source,bash]
 ----
-dfx canister install [flag] [option] [--all | _canister_name_]
+dfx canister create [flag] [--all | canister_name]
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx canister create+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Arguments
+
+You can use the following argument with the `+dfx canister create+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Argument |Description
+|`+--all+` |Enables you to create multiple canister identifiers at once if you have a project `+dfx.json+` file that defines multiple canisters.
+Note that you must specify `+--all+` or an individual canister name.
+|`+canister_name+` |Specifies the name of the canister for which you want to register an identifier. 
+If you are not using the `+--all+` option, the canister name is a required argument and should match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.
+|===
+
+=== Examples
+
+You can use the `+dfx canister create+` command to register canister identifiers without first compiling any code. 
+For example, if you want to create the canister identifier for the project `+my_counter+` before writing the program, you can run the following command:
+
+[source,bash]
+----
+dfx canister create my_counter
+----
+
+== dfx canister id
+
+Use the `+dfx canister id+` command to output the canister identifier for a specific canister name.
+
+Note that you can only run this command from within the project directory structure. 
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx canister id [flag] canister_name
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx canister id+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Arguments
+
+You can use the following argument with the `+dfx canister id+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Argument |Description
+
+|`+canister_name+` |Specifies the name of the canister for which you want to display an identifier. 
+
+|===
+
+=== Examples
+
+You can use the `+dfx canister id+` command to display the canister identifier for a specific canister name.
+
+To display the canister identifier for the `+hello_world+` canister, you can run the following command:
+
+[source,bash]
+----
+dfx canister id hello_world
+----
+
+The command displays output similar to the following:
+
+[source,bash]
+----
+ic:05000000000000000000000000000000000185
+----
+
+== dfx canister install
+
+Use the `+dfx canister install+` command to install compiled code as a canister on the {IC} network running locally or on a sub-network that you can access.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx canister install [flag] [option] [--all | canister_name]
 ----
 
 === Flags
@@ -747,8 +860,6 @@ You can use the following optional flags with the `+dfx canister install+` comma
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Flag |Description
-|`+--all+` |Enables you to install multiple canisters at once if you have a project `dfx.json` file that includes multiple canisters.
-Note that you must specify `--all` or an individual canister name.
 
 |`+--async+` |Enables you to continue without waiting for the result of the installation to be returned by polling the replica.
 
@@ -764,40 +875,51 @@ You can use the following options with the `+dfx canister install+` command.
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Option |Description
-|-c, --compute-allocation <compute-allocation> |Defines a compute allocation—essentially the equivalent of setting CPU allocation—for  canister execution. 
-You can define the allocation as a percentage in the range of 0 to 100 to indicate how often your canister should be scheduled for execution. 
-For example, assume you set this option to 50% allocation and your canister has a stream of input messages to process.
-Over 100 execution cycles, the canister's messages will be scheduled for processing at least 50 times.
-The default value for this option is 0—indicating that no specific allocation or scheduling is in effect. 
-If all of your canisters use the default setting, processing occurs in a round-robin fashion.
+|`+-c+`, `+--compute-allocation <compute-allocation>+` |Defines a compute allocation—essentially the equivalent of setting CPU allocation—for  canister execution.
 
-In a development environment, you might use this option for testing purposes if you have applications that require multiple canisters.
+|`+-m+`, `+--mode <mode>+` |Specifies whether you want to `+install+`, `+reinstall+`, or `+upgrade+` canisters. 
+For more information about installation modes and canister management, see link:working-with-canisters{outfilesuffix}[Managing canisters].
+
 |===
 
 === Arguments
 
-You can use the following argument with the `+dfx canister install+` command.
+You can use the following arguments with the `+dfx canister install+` command.
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Argument |Description
+
+|`+--all+` |Enables you to install multiple canisters at once if you have a project `dfx.json` file that includes multiple canisters.
+Note that you must specify `--all` or an individual canister name.
+
 |`+canister_name+` |Specifies the name of the canister to deploy. 
 If you are not using the `+--all+` option, the canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
 |===
 
 === Examples
 
-You can use the `+dfx canister install+` command to deploy WebAssembly you have compiled using the `+dfx build+` command as a canister on the network. 
-For example, if the canister name is `+hello_world+`, you can deploy the canister by running the following command:
+You can use the `+dfx canister install+` command to deploy WebAssembly you have compiled using the `+dfx build+` command as a canister on the network.
+The most common use case is to install all of the canisters by running the following command:
+
+[source,bash]
+----
+dfx canister install --all
+----
+
+==== Installing a specific canister
+
+You can also use the dfx canister install command to deploy a specific canister instead of all of the canisters in your project.
+For example, if you have a project with a `+hello_world+` canister and a `+hello_world_assets+` canister but only want to deploy the `+hello_world+` canister, you can deploy just that the canister by running the following command:
 
 [source,bash]
 ----
 dfx canister install hello_world
 ----
 
-This command submits a request to install the canister and waits for the result. 
+==== Sending an asynchronous request
 
-If you want to submit a request to install the canister and return a request identifier to check on the status of your request later, you can run a command similar to the following:
+If you want to submit a request to install the canister and return a request identifier to check on the status of your request later instead of waiting for the command to complete, you can run a command similar to the following:
 [source,bash]
 ----
 dfx canister install hello_world --async
@@ -811,18 +933,37 @@ This command submits a request to install the canister and returns a request ide
 
 You can then use the request identifier to check the status of the request at a later time, much like a tracking number if you were shipping a package.
 
-==== Overriding the default compute provider
+==== Overriding the default network provider
 
-If you want to install a canister using a specific compute provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the compute provider using the `+--provider` option.
+If you want to install a canister using a specific {IC} network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the compute provider using the `+--provider` option.
 
 For example, you can specify the compute provider by running a command similar to the following:
 
 [source,bash]
 ----
-dfx canister --provider http://192.168.3.1:5678 install --all
+dfx canister --provider \http://192.168.3.1:5678 install --all
 ----
 
 Note that you must specify the provider parameter before the canister operation (`+install+`) and before the canister name or `+--all+` flag.
+
+==== Allocating message processing
+
+The `+--compute-allocation+` options allows you to allocate computing resources as a percentage in the range of 0 to 100 to indicate how often your canister should be scheduled for execution.
+
+For example, assume you run the following command:
+
+[source,bash]
+----
+dfx canister install --all --compute-allocation 50
+----
+
+With this setting, all of the canisters in the current projects are assigned a 50% allocation. When canisters in the project receive input messages to process, the messages are scheduled for execution.
+Over 100 execution cycles, each canister's messages will be scheduled for processing at least 50 times.
+
+The default value for this option is 0—indicating that no specific allocation or scheduling is in effect. 
+If all of your canisters use the default setting, processing occurs in a round-robin fashion.
+
+In a development environment, you might use this option for testing purposes if you have applications that require multiple canisters.
 
 == dfx canister request-status
 
@@ -880,7 +1021,7 @@ For example, if your project name is `+hello_world+`, your current working direc
 
 [source,bash]
 ----
-dfx config [_config_path_] [value] [flag] 
+dfx config [config_path] [value] [flag] 
 ----
 
 === Flags
@@ -1277,6 +1418,6 @@ If a newer version of `+dfx+` is available, the command automatically downloads 
 [source,bash]
 ----
 Current version: 0.5.7
-Fetching manifest https://sdk.dfinity.org/manifest.json
+Fetching manifest \https://sdk.dfinity.org/manifest.json
 Already up to date
 ----

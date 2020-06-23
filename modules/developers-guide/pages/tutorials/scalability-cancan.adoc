@@ -1,0 +1,23 @@
+= Creating scalable apps
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:toc:
+:toc: right
+:toc-title: TUTORIAL - SCALABILITY
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+The CanCan sample application is a simplified video sharing service that demonstrates several features that you can use as models for your own applications.
+For example, here are a few things you can learn by exploring the CanCan sample application:
+
+* How to build a scalable application by splitting content into
+
+* How to implement a basic access control model for end-users
+
+* How to configure interoperability for an application that uses canisters written in different backend languages.
+
+* How to build a more sophisticated front-end to support mobile apps.

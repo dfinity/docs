@@ -35,7 +35,7 @@ Like the other sample programs, this tutorial demonstrates a simple, but realist
 
 The following diagram provides a simplified overview of the workflow passing from the developer’s command-line environment to the {IC} network deployed locally:
 
-image:dev-work-flow-2.png[Overview of the developer workflow]
+image:dev-work-flow-2.svg[Overview of the developer workflow]
 
 As the diagram suggests, the network infrastructure and the development environment co-exist on the same computer in this tutorial.
 

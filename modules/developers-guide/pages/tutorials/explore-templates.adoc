@@ -14,7 +14,7 @@ June 2020 (Alpha)
 The {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a local {IC} network provider.
 As a preview of the steps, the following diagram illustrates the basic work flow.
 
-image:dev-workflow-overview-getstarted.png[Development work flow]
+image:dev-workflow-overview-getstarted.svg[Development work flow]
 
 == Before you begin
 

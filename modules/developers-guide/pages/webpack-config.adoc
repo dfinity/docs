@@ -1,0 +1,58 @@
+= Front-end development
+
+The tutorials introduced a few basic approaches to building a front-end user interface for your projects.
+For example, the tutorials demonstrated:
+
+* Using Candid as a bare-bones interface to expose and test the functions in a canister.
+* Using raw JavaScript to display a simple pop-up alert window.
+* Using React and compiled JavaScript to embed HTML attributes and elements directly in a page.
+* Using Reach and TypeSscript to import CSS properties from an external file.
+
+This section takes a closer look at the default front-end template, front-end configuration options, and using other frameworks to build the user interface for your projects.
+
+== How the default template is used
+
+As you might hae noticed in the tutorials, projects include a template `+webpack.config.js+` file by default.
+Because webpack is a popular and highly-configurable module bundler for JavaScript-based applications, the default `+webpack.config.js+` file makes it easy to add the specific modules—such as `react` and `markdown`—that you want to use.
+
+By default, the template `+webpack.config.js+` file also creates canister aliases based on the entries in the project's `+dfx.son+` file.
+If you review the code in the template `+webpack.config.js+` file, you see that it performs this alias creation task using the following code block:
+
+[source,js]
+----
+// List of all aliases for canisters. This creates the module alias for
+// the `import ... from "ic:canisters/xyz"` where xyz is the name of a
+// canister.
+const aliases = Object.entries(dfxJson.canisters)
+    .filter(([name,value]) => value.main)
+    .reduce((acc, [name,value]) => {
+  const outputRoot = path.join(__dirname, dfxJson.defaults.build.output, name);
+  const filename = path.basename(value.main, ".mo");
+  return {
+    ...acc,
+    ["ic:canisters/" + name]: path.join(outputRoot, filename + ".js"),
+    ["ic:idl/" + name]: path.join(outputRoot, filename + ".did.js"),
+  };
+}, {});
+----
+
+=== Entry and output configuration
+
+After creating canister aliases, the template `+webpack.config.js+` file generates a webpack configuration that adds the canister aliases automatically as imported modules in the default front-end entry point defined in the project's `+dfx.json+` file.
+For example, using the default settings an import similar to the following is added to the `+src/CANISTER_assets/public/index.js+` file:
+
+[source,js]
+----
+import CANISTER-ALIAS from 'ic:canisters/CANISTER-ALIAS';
+----
+
+// tag::node[] 
+[[troubleshoot-node]]
+=== Ensuring node is available in a project
+
+Because projects rely on webpack to provide the framework for the default front-end, you must have `+node.js+` installed in your development environment and accessible in the project directory.
+If you want to develop your project without using the default webpack configuration and canister aliases, you can build your project using the `+--skip-frontend+` command-line option.
+
+If you are using the default webpack configuration and running `+dfx build+` fails, you should try running `+npm install+` in the project directory then re-running `+dfx build+`.
+If running `+npm install+` in the project directory doesn't fix the issue, you should check the configuration of the `+webpack.config.js+` file for syntax errors.
+// end::node[]   

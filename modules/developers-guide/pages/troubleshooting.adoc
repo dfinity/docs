@@ -16,9 +16,8 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 This section is meant to address some of the known issues and bugs we've encountered with the DFINITY Canister SDK alpha. Please know that we are working continuously to address these and updating our documentation.
 
-Please also note that this is an alpha release, and we will be furiously working on improvements to the SDK in the coming weeks and months. We really appreciate your feedback, and we'll make an effort to address your questions and recommendations in the next version.
+include::developers-guide:page$webpack-config.adoc[leveloffset=-1,tag=node]
 
-We would like to be fully transparent that we may not be very responsive as we'll be primarily focused on the development of the next revisions; however, should you have specific technical questions or issues beyond those listed below, please reach out to support@dfinity.org.
 
 == Migrating an existing project
 

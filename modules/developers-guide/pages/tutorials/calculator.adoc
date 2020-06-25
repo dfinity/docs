@@ -71,7 +71,7 @@ For example:
 +
 [source,bash]
 ----
-"main": "src/calculator/calc_main.mo",
+"main": "src/calc/calc_main.mo",
 ----
 +
 For this tutorial, you are changing the name of the source file from `+main.mo+` to `+calc_main.mo+` to illustrate how this setting in the `+dfx.json+` file determines the source file to be compiled. 
@@ -223,12 +223,12 @@ For example, the program displays output similar to the following:
 You might notice that the `+div+` function returns an optional result.
 The program makes the result optional to enable the `+div+` function to return `+null+` in the case of a division-by-zero error.
 +
-Because the cell variable in this program is an integer, you cam also call its functions and specifying negatives input values.
+Because the cell variable in this program is an integer, you can also call its functions and specify negative input values.
 For example, you might run the following command:
 +
 [source,bash]
 ----
-dfx canister call calculator mul '(-4)'
+dfx canister call calc mul '(-4)'
 ----
 +
 which returns:

@@ -71,21 +71,17 @@ To modify the default `+dfx.json+` configuration file:
 
 . Open the `+dfx.json+` configuration file in a text editor, then change the default `+multiple_actors+` canister name and source directory to `+assistant+`.
 +
-For example:
+For example, under the `canisters` key:
 +
 [source,json]
 ----
-{
-  "canisters": {
     "assistant": {
       "main": "src/assistant/main.mo",
       "type": "motoko"
     },
-  }
-}
 ----
 +
-Because you are going to add settings to this `+canisters+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file.
+Because you are going to add settings to this `+canisters+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file and the canister type.
 . Remove the `+multiple_actors_assets+` section from the file.
 . Add a new canister name and source code location for the `+rock_paper_scissors+` program and a new canister name and source code location for the `+daemon+` program files below the `+assistant+` source file location.
 +

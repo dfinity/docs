@@ -1,4 +1,5 @@
-== Testing functions in a browser
+[[candid-ui]]
+== Test functions in a browser
 
 The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common language for specifying the signature of a canister service.
 The language provides a unified way of interacting with canisters in various languages and tools, such as the `+dfx+` command-line interface, JavaScript, and {proglang}.

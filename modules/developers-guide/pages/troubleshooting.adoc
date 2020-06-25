@@ -14,10 +14,14 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-This section is meant to address some of the known issues and bugs we've encountered with the DFINITY Canister SDK alpha. Please know that we are working continuously to address these and updating our documentation.
+This section provides information to help you troubleshoot and resolve or work around common issues that are related to the following tasks:
+
+* downloading and installing the {sdk-short-name}
+* creating, building, or deploying canisters
+* using the `+dfx+` command-line interface
+* running the {IC} network locally in a development environment
 
 include::developers-guide:page$webpack-config.adoc[leveloffset=-1,tag=node]
-
 
 == Migrating an existing project
 

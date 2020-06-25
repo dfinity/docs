@@ -59,3 +59,44 @@ Because projects rely on webpack to provide the framework for the default front-
 * If running `+npm install+` in the project directory doesn't fix the issue, you should check the configuration of the `+webpack.config.js+` file for syntax errors.
 // end::node[]   
 
+== Using other modules with the React framework
+
+Several tutorials and sample projects in the link:https://github.com/dfinity/examples[examples] repository illustrate how to add React modules using the `+npm install+` command.
+You can use these modules to construct the user interface components you want to use in your project.
+For example, you might run the following command to install the `+react-router+` module:
+
+[source,bash]
+----
+npm install --save react react-router-dom
+----
+
+You could then use the module to construct a navigation component similar to the following:
+
+[source,react]
+----
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+const Navigation = () => {
+  return (
+    <nav className="main-nav">
+      <ul>
+        <li><NavLink to="/myphotos">Remember</NavLink></li>
+        <li><NavLink to="/myvids">Watch</NavLink></li>
+        <li><NavLink to="/audio">Listen</NavLink></li>
+        <li><NavLink to="/articles">Read</NavLink></li>
+        <li><NavLink to="/contribute">Write</NavLink></li>
+      </ul>
+    </nav>
+  );
+}
+
+export default Navigation;
+----
+
+////
+== Using other frameworks
+
+== Using Bootstrap
+
+////

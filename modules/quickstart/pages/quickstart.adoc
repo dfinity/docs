@@ -172,6 +172,15 @@ Your new `+hello+` project includes a simple default program in the `+src/hello+
 To build the program executable:
 
 . Check that you are still in your project directory, if needed.
+. Ensure that `+node+` modules are available in your project directory, if needed, by running the following command:
++
+[source,bash]
+----
+npm install
+----
++
+For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
+////
 . View the contents of the source directory for your project directory by running the following command:
 +
 [source,bash]
@@ -180,6 +189,7 @@ ls -l src/hello
 ----
 +
 Note that the `src/hello` directory includes a default `+main.mo+` program for your project.
+////
 . Build the executable from the default `+main.mo+` file by running the following command:
 +
 [source,bash]

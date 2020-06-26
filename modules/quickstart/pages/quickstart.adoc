@@ -1,5 +1,4 @@
 = Quick start
-March 2020 (Alpha)
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
@@ -10,7 +9,6 @@ March 2020 (Alpha)
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
@@ -20,9 +18,9 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} network.
 This _Quick start_ assumes that you are installing the {sdk-short-name} for the first time. 
 
+////
 IMPORTANT: For this release, only *macOS* and *Linux* platforms are supported.
 
-////
 By developing programs that run on the {platform}, you can deploy secure, tamper-proof applications and provide web-based services without the restrictions or expense of a proprietary infrastructure, the complexities of database management and maintenance, or the investment in hardware required to run enterprise-scale software.
 
 If you want to learn more about the {platform} and how it can transform distributed computing and the application landscape, check out link:https://dfinity.org/faq[Frequently Asked Questions] or the videos posted on the https://www.youtube.com/channel/UCOyguKlTxoDK3HRzmGbLyAg[DFINITY Official Youtube Channel].

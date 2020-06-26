@@ -26,7 +26,7 @@ By developing programs that run on the {platform}, you can deploy secure, tamper
 If you want to learn more about the {platform} and how it can transform distributed computing and the application landscape, check out link:https://dfinity.org/faq[Frequently Asked Questions] or the videos posted on the https://www.youtube.com/channel/UCOyguKlTxoDK3HRzmGbLyAg[DFINITY Official Youtube Channel].
 ////
 
-To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to _Hello, everyone!_ in a terminal if you run the application using the command-line or in a pop-up window if you access the application in a browser.
+To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in a pop-up window if you access the application in a browser.
 
 [[before-you-begin]]
 == Before you begin
@@ -142,9 +142,7 @@ cd ~/ic-projects/hello
 ----
 +
 You should now have **two terminal windows** open with your **project directory** as your **current working directory**.
-+
 You can check that you are in your project directory by running the `+pwd+` command in both windows, if needed.
-+
 You should see a path similar to the following in both terminals:
 +
 [source,bash]
@@ -180,16 +178,6 @@ npm install
 ----
 +
 For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
-////
-. View the contents of the source directory for your project directory by running the following command:
-+
-[source,bash]
-----
-ls -l src/hello
-----
-+
-Note that the `src/hello` directory includes a default `+main.mo+` program for your project.
-////
 . Build the executable from the default main program file by running the following command:
 +
 [source,bash]
@@ -219,30 +207,31 @@ To deploy locally:
 +
 [source,bash]
 ----
-dfx canister install hello
+dfx canister install --all
 ----
 +
 You should see an installation confirmation message for your canister similar to the following:
 +
 [source,bash]
 ----
-Installing code for canister hello, with canister_id ic:0100000000000000000000000000000000012D
+Installing code for canister hello, with canister_id ic:03000000000000000000000000000000000179
+Installing code for canister hello_assets, with canister_id ic:040000000000000000000000000000000001AF
 ----
 . Call the predefined `+greet+` function in the program by running the following command:
 +
 [source,bash]
 ----
-dfx canister call hello greet "there" --type string
+dfx canister call hello greet everyone
 ----
 +
-This example uses the `+dfx canister call+` command to pass "there" as an argument of type `+string+` to the `+greet+` function.
+This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
 . Verify the command displays the return value of the `+greet+` function.
 +
 For example:
 +
 [source,bash]
 ----
-("Hello, there!")
+("Hello, everyone!")
 ----
 . Stop the local {IC} network running on your local computer by running the following command:
 +

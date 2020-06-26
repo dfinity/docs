@@ -190,7 +190,7 @@ ls -l src/hello
 +
 Note that the `src/hello` directory includes a default `+main.mo+` program for your project.
 ////
-. Build the executable from the default `+main.mo+` file by running the following command:
+. Build the executable from the default main program file by running the following command:
 +
 [source,bash]
 ----

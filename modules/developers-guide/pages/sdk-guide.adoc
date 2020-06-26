@@ -23,9 +23,9 @@ At a high-level, there are three possible workflows for building applications th
 
 image:three-path-workflow.svg[Development paths]
 
-The first path is the most common: you connect to the Internet Computer running locally or on a remote network, then write, compile, and deploy in an iterative cycles. 
+The first path is the most common: you connect to the Internet Computer running locally or on a remote network, then write, compile, and deploy in an iterative cycle. 
 
 If you prefer to do all of your development work disconnected from the network, you can follow the second path and only connect to the network when you are ready to compile and deploy.
 
 In the third path, you connect to the Internet Computer running locally or on a remote network, then register for a unique identifier before you have a program ready to compile. 
-With this option, you can pre-register with the network to receive a unique identifier, then compile and deploy using a known identifier when you are ready to move your application ontp the network.
+With this option, you can preregister with the network to receive a unique identifier, then compile and deploy using a known identifier when you are ready to move your application to the network.

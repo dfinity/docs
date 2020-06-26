@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "assistant": {
+      "main": "src/assistant/main.mo",
+      "type": "motoko"
+    },
+    "rock_paper_scissors": {
+      "main": "src/rock_paper_scissors/main.mo"
+    },
+    "daemon": {
+      "main": "src/daemon/main.mo"
+	  }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/",
+      "packtool": ""
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "serve_root": "canisters/multiple_actors_assets/assets"
+    }
+  },
+  "dfx": "0.5.8",
+  "version": 1
+}

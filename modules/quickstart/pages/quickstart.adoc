@@ -26,12 +26,7 @@ By developing programs that run on the {platform}, you can deploy secure, tamper
 If you want to learn more about the {platform} and how it can transform distributed computing and the application landscape, check out link:https://dfinity.org/faq[Frequently Asked Questions] or the videos posted on the https://www.youtube.com/channel/UCOyguKlTxoDK3HRzmGbLyAg[DFINITY Official Youtube Channel].
 ////
 
-To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to this:
-
-[source,bash]
-----
-Hello, everyone!
-----
+To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to _Hello, everyone!_ in a terminal if you run the application using the command-line or in a pop-up window if you access the application in a browser.
 
 [[before-you-begin]]
 == Before you begin

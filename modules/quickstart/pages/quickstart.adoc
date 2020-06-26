@@ -134,7 +134,7 @@ As a best practice, this step requires you to have two terminal shells open, so 
 To start the network locally:
 
 [arabic]
-. Open a new terminal window or tab on your local computer and navigate to your project directory.
+. Open a new second terminal window or tab on your local computer and navigate to your project directory.
 +
 For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
 +
@@ -147,13 +147,13 @@ You should now have two terminal windows open with your project directory as you
 +
 You can check that you are in your project directory by running the `+pwd+` command in both windows, if needed.
 +
-You should see a path similar to the following:
+You should see a path similar to the following in both terminals:
 +
 [source,bash]
 ----
 /Users/<your-user-name>/ic-projects/hello
 ----
-. Start the {IC} network on your local computer by running the following command:
+. Start the {IC} network on your local computer in your second terminal by running the following command:
 +
 [source,bash]
 ----
@@ -162,7 +162,7 @@ dfx start
 +
 Depending on your platform and local security settings, you might see a warning displayed. 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
-. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
+. Leave the terminal window that displays network operations open and switch your focus to the first terminal window where you created your new project.
 
 [[build-the-project]]
 == Build the program

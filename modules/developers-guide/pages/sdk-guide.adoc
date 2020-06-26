@@ -17,10 +17,15 @@ Conceptually, the Internet Computer is an extension of the existing internet tha
 
 In much the same way that the adoption of the transport control protocol (TCP) and Internet protocol (IP) provided rules for transferring data between endpoints that helped to establish the “network of networks” that we know as the internet of today, the {IC} relies on a decentralization protocol called the {IC} protocol to define the software components that enable a global network of computers to combine their resources to read, replicate, modify, and return application state.
 
-== Architecture at-a-glance
+== Developer workflow at-a-glance
 
-At a high-level, the platform architecture replicates your application on a secure subnet to automatically provide load balancing, fault tolerance, and resiliency.
+At a high-level, there are three possible workflows for building applications that run on the {IC}.
 
-image:subnet-overview.png[Platform overview]
+image:three-path-workflow.svg[Development paths]
 
-For a closer look at this architecture and how to build applications that run on it, see link:./introduction-key-concepts{outfilesuffix}[Introduction and key concepts].
+The first path is the most common: you connect to the Internet Computer running locally or on a remote network, then write, compile, and deploy in an iterative cycles. 
+
+If you prefer to do all of your development work disconnected from the network, you can follow the second path and only connect to the network when you are ready to compile and deploy.
+
+In the third path, you connect to the Internet Computer running locally or on a remote network, then register for a unique identifier before you have a program ready to compile. 
+With this option, you can pre-register with the network to receive a unique identifier, then compile and deploy using a known identifier when you are ready to move your application ontp the network.

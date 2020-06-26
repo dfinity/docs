@@ -1,13 +1,13 @@
 # Write code for the Internet Computer
 
-You can get started right away by downloading the DFINITY Canister Software Development Kit (SDK) and cloning an existing sample project or by exploring the documentation. Check out the tiles below to begin building open services and software to run on the Internet Computer.
+You can get started right away by downloading the DFINITY Canister Software Development Kit (SDK) and cloning an existing sample project or by exploring the documentation. Check out the links below to begin building open services and software to run on the Internet Computer.
 
-- [*Get the SDK*](https://sdk.dfinity.org/docs/download.html) Download the full SDK to write code that runs directly on the internet.
-- [*Quick Start*](https://sdk.dfinity.org/docs/quickstart/quickstart.html) Deploy your first code to the Internet Computer in minutes.
-- [*Get Samples*](https://sdk.dfinity.org/docs/developers-guide/sample-apps.html) Access sample code, applications, and microservices.
-- [*Developer Tools*](https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html) Take a deeper dive into how you can use the SDK to create applications.
-- [*Language Guide*](https://sdk.dfinity.org/docs/language-guide/motoko.html) Explore Motoko, the  programming language for the Internet Computer.
-- [*Basic Tutorials*](https://sdk.dfinity.org/docs/developers-guide/tutorials-intro.html) Learn the basics with simple examples and step-by-step instructions for first-timers.
+- [*Get the SDK*](https://sdk.dfinity.org/docs/download.html) Download the SDK for the Internet Computer.
+- [*Quick Start*](https://sdk.dfinity.org/docs/quickstart/quickstart.html) Deploy your first app on the Internet Computer.
+- [*Get Samples*](https://sdk.dfinity.org/docs/developers-guide/sample-apps.html) Access sample projects in he public repository.
+- [*SDK Developer Tools*](https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html) Learn more about using the SDK to create applications.
+- [*Language Guide*](https://sdk.dfinity.org/docs/language-guide/motoko.html) Explore the Motoko programming language.
+- [*Basic Tutorials*](https://sdk.dfinity.org/docs/developers-guide/tutorials-intro.html) Get step-by-step instructions for building apps.
 
 # Contributing to the documentation
 

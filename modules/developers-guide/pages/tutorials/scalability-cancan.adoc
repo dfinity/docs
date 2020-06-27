@@ -14,10 +14,25 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 The CanCan sample application is a simplified video sharing service that demonstrates several features that you can use as models for your own applications.
 For example, here are a few things you can learn by exploring the CanCan sample application:
 
-* How to build a scalable application by splitting content into
+* How to build a scalable application by splitting content into fragments for upload and storage then use queries to retrieve and reassemble the fragments for efficient streaming.
 
-* How to implement a basic access control model for end-users
+* How to implement a basic access control model for authenticating which videos are owned by which end-users.
 
 * How to configure interoperability for an application that uses canisters written in different backend languages.
 
-* How to build a more sophisticated front-end to support mobile apps.
+* How to build a more sophisticated front-end to support more user interface features for desktop or mobile apps.
+
+== Data model overview
+
+== Splitting uploaded content into multiple canisters
+
+Distributed hash table
+BigMap written in Rust
+BigMap written in Motoko
+
+== Access control model
+
+== Configuring interoperability
+
+== Implementing front-end features
+

@@ -254,6 +254,14 @@ For example:
 
 image:quickstart-greeting.png[Hello, everyone! greeting]
 
+== Stop the local network
+
+After testing the application in the browser, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+
+To stop the local network:
+
+. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+
 . Stop the local {IC} network running on your local computer by running the following command:
 +
 [source,bash]

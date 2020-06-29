@@ -251,7 +251,7 @@ http://localhost:8000/?canisterId=ic:02000000000000000000000000000000000153
 . Type a greeting, then click *OK* to return the greeting.
 +
 For example:
-
++
 image:quickstart-greeting.png[Hello, everyone! greeting]
 
 == Stop the local network

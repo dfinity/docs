@@ -18,17 +18,33 @@ For example, here are a few things you can learn by exploring the CanCan sample 
 
 * How to implement a basic access control model for authenticating which videos are owned by which end-users.
 
-* How to configure interoperability for an application that uses canisters written in different backend languages.
+* How to configure interoperability for an application that uses canisters written in different back-end languages.
 
-* How to build a more sophisticated front-end to support more user interface features for desktop or mobile apps.
-
-== Data model overview
+* How to build a front-end that implements more sophisticated user interface features for desktop or mobile apps.
 
 == Splitting uploaded content into multiple canisters
 
-Distributed hash table
-BigMap written in Rust
+Because canisters are compiled WebAssembly modules, they have certain known limitations. 
+For example, Web Assembly modules have a maximum of 4GB for memory and an upper limit on the number of object calls allowed.
+
+For a video-sharing sample applications like CanCan, these limitations mean that multiple canisters are required and that data must be broken into smaller chunks for storage and retrieval.
+
+The initial attempt to build a scalable video sharing service for the {IC} used a distributed hash table as a back-end service with simple get and put functions that distributed data—chunks of the video to be uploaded or streamed—into a predefined set of canisters.
+In the early phases of the project, this approach was sufficient for a proof-of-concept and verifying that the video data could be properly transcoded for storage and retrieval.
+However, the scalability of the application was limited because the distributed hash table (DHT) relied on a specific number of canisters that it could populate with data for storage and retrieve data from for viewing.
+
+To achieve scalability, the distributed hash table (DHT) back-end service was replaced with a more robust back-end service called BigMap.
+The BigMap service is written in the Rust programming language.
+
+BigMap provides a simple, plug-in library for building scalable applications using key-value storage on the Internet Computer.
+By using the BigMap library as a back-end service, the CanCan sample application can dynamically chunk, serialize, and distribute data to multiple canisters.
+
+The library offers building blocks for application-specific, in-memory data abstractions that scale using any number of canisters.
+Each canister has limited capacity, but the application instantiates the canisters it needs and keeps track of the fragments that make up the full video content for each user's videos.
+
+////
 BigMap written in Motoko
+////
 
 == Access control model
 
@@ -36,3 +52,43 @@ BigMap written in Motoko
 
 == Implementing front-end features
 
+== Data model overview
+
+The application stores information about users and information about videos.
+
+=== User profiles
+
+User profiles are stored as `profiles/${username}` and are defined using the following data model:
+
+[source,motoko]
+----
+export interface Profile {
+  username: string;    // enzo
+  following: string[]; // []`profiles/alice` `profiles/bob]`
+  followers: string[]; // ['profiles/alice']
+  uploadedVideos: string[]; // ['profiles/enzo/videos/cool-movie_out.m3u8']
+  likedVideos: string[];  // ['profiles/bob/videos/cool-movie2_out.m3u8']
+  avatar?: string; // ?ImageData
+}
+----
+
+=== Videos
+
+A video manifest (.m3u8) stored at profiles/{username}/videos/${movieName}.m3u8
+above path is also stored in public/videos
+metadata stored at profiles/{username}/videos/${videoName}
+ts fragments stored at profiles/{username}/videos/${fragmentName}Videos are stored as `profiles/${username}` and are defined using the following data model:
+
+[source,motoko]
+----
+export interface Video {
+  src: string; // 'profiles/enzo/videos/cool-movie.m3u8'
+  userId: string; // 'profiles/enzo'
+  createdAt: string; // Date.now()
+  caption: string; // 'cool movie, punk'
+  tags: string[]; // ['outside']
+  likes: string[] // ['profiles/bob', 'profiles/carmen']
+  viewCount: number; // 100
+  name: string;
+}
+----

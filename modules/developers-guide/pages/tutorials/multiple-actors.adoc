@@ -71,21 +71,17 @@ To modify the default `+dfx.json+` configuration file:
 
 . Open the `+dfx.json+` configuration file in a text editor, then change the default `+multiple_actors+` canister name and source directory to `+assistant+`.
 +
-For example:
+For example, under the `canisters` key:
 +
 [source,json]
 ----
-{
-  "canisters": {
     "assistant": {
       "main": "src/assistant/main.mo",
       "type": "motoko"
     },
-  }
-}
 ----
 +
-Because you are going to add settings to this `+canisters+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file.
+Because you are going to add settings to this `+canisters+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file and the canister type.
 . Remove the `+multiple_actors_assets+` section from the file.
 . Add a new canister name and source code location for the `+rock_paper_scissors+` program and a new canister name and source code location for the `+daemon+` program files below the `+assistant+` source file location.
 +
@@ -93,33 +89,7 @@ After making the changes, the `+canisters+` section of the `+dfx.json+` file sho
 +
 [source,json]
 ----
-{
-  "canisters": {
-    "assistant": {
-      "main": "src/assistant/main.mo",
-      "type": "motoko"
-    },
-    "rock_paper_scissors": {
-      "main": "src/rock_paper_scissors/main.mo"
-    },
-    "daemon": {
-      "main": "src/daemon/main.mo"
-	  }
-  },
-  "defaults": {
-    "build": {
-      "output": "canisters/",
-      "packtool": ""
-    },
-    "start": {
-      "address": "127.0.0.1",
-      "port": 8000,
-      "serve_root": "canisters/multiple_actors_assets/assets"
-    }
-  },
-  "dfx": "0.5.8",
-  "version": 1
-}
+include::example$multiple-actors/dfx.json[]
 ----
 +
 You can leave the other sections as-is. 

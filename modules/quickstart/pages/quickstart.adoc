@@ -37,7 +37,7 @@ Before you download and install this release of the {sdk-short-name}, verify the
 
 * You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 
-If you aren’t sure how to open a new terminal shall on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers]. 
+If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers]. 
 If you are comfortable meeting the prerequisites without instructions, continue to <<Download and install>>.
 
 [[download-and-install]]

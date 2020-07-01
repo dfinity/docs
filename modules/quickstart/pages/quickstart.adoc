@@ -221,10 +221,10 @@ Installing code for canister hello_assets, with canister_id ic:04000000000000000
 +
 [source,bash]
 ----
-dfx canister call hello greet everyone
+dfx canister call hello greet --type string everyone
 ----
 +
-This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
+This example uses the `+dfx canister call+` command to pass "everyone" as a string argument to the `+greet+` function.
 . Verify the command displays the return value of the `+greet+` function.
 +
 For example:

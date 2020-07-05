@@ -15,7 +15,7 @@ This section takes a closer look at the default front-end template, front-end co
 As you might hae noticed in the tutorials, projects include a template `+webpack.config.js+` file by default.
 Because webpack is a popular and highly-configurable module bundler for JavaScript-based applications, the default `+webpack.config.js+` file makes it easy to add the specific modules—such as `react` and `markdown`—that you want to use.
 
-By default, the template `+webpack.config.js+` file also creates canister aliases based on the entries in the project's `+dfx.son+` file.
+By default, the template `+webpack.config.js+` file also creates canister aliases based on the entries in the project's `+dfx.json+` file.
 If you review the code in the template `+webpack.config.js+` file, you see that it performs this alias creation task using the following code block:
 
 [source,js]

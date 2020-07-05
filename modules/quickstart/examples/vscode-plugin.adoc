@@ -5,7 +5,7 @@ The {proglang} plug-in provides syntax highlighting, type information, and auto-
 
 To install the plug-in:
 
-. Download and install link:https://code.visualstudio.com/download[Visual Studio], if it not already installed on your local computer.
+. Download and install link:https://code.visualstudio.com/download[Visual Studio Code], if it not already installed on your local computer.
 . Click View, then select **Extensions**.
 . Type `motoko` in the Search field.
 . Select the **Motoko language support** published by DFINITY Foundation, then click **Install**.

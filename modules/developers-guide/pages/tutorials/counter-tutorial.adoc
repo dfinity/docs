@@ -131,7 +131,7 @@ To modify the default template source code:
 cd src/my_counter
 ----
 . Open the `+increment_counter.mo+` file in a text editor and delete the existing content.
-. Copy and paste the following sample code into the `+main.mo+` file:
+. Copy and paste the following sample code into the `+increment_counter.mo+` file:
 +
 [source,motoko]
 ----

@@ -63,32 +63,12 @@ If you make any changes, however, be sure that the names you use for your files 
 If you plan to use the default directory and file names, no changes are necessary.
 . Remove all of the `+actor_hello_assets+` configuration settings from the file.
 +
-The sample program for this tutorial doesn't use any front-end assets, so you should remove those settings from the configuration file.
+The sample program for this tutorial doesn't use any front-end assets, so you can remove those settings from the configuration file.
 +
 For example, the configuration file looks like this after you remove the `+actor_hello_assets+` section:
 +
 ....
-{
-  "canisters": {
-    "actor_hello": {
-      "main": "src/actor_hello/main.mo",
-      "type": "motoko"
-    }
-  },
-  "defaults": {
-    "build": {
-      "output": "canisters/",
-      "packtool": ""
-    },
-    "start": {
-      "address": "127.0.0.1",
-      "port": 8000,
-      "serve_root": "canisters/actor_hello_assets/assets"
-    }
-  },
-  "dfx": "0.5.8",
-  "version": 1
-}
+include::example$define-actor-dfx.json[]
 ....
 . Save your changes and close the file to continue.
 
@@ -236,7 +216,7 @@ To test the program you have deployed on the local network:
 +
 [source,bash]
 ----
-dfx canister call --query actor_hello hello
+dfx canister call actor_hello hello
 ----
 . Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local network process.
 +

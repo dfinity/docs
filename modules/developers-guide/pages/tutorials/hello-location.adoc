@@ -88,7 +88,7 @@ To start the local network:
 [arabic]
 . Open a new terminal window or tab on your local computer and navigate to your project directory.
 +
-For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
+For example, click *Shell*, select *New Window*, then run the following command in the new terminal if your `+hello_location+` project is in the `+ic-projects+` working folder:
 +
 [source,bash]
 ----
@@ -145,31 +145,43 @@ To test the program you have deployed locally:
 dfx canister call hello_location location "San Francisco"
 ----
 +
+Because the argument in this case includes a space between `+San+` and `+Francisco+`, you need to enclose the argument in quotes. 
 The command displays output similar to the following:
 ....
 ("Hello, San Francisco!")
 ....
-. Call the `+location+` method in the program and pass your `+city+` argument using the Candid interface description language syntax for text arguments:
++
+If the argument did not contain a space that required enclosing the text inside of quotation marks, you could allow the Candid interface description language to infer the data type like this:
++
 +
 [source,bash]
 ----
-dfx canister call hello_location location '("Paris")'
+dfx canister call hello_location location Paris
+----
+. Call the `+location+` method in the program and pass your `+city+` argument explicitly using the Candid interface description language syntax for Text arguments:
++
+[source,bash]
+----
+dfx canister call hello_location location '("San Francisco and Paris")'
 ----
 The command displays output similar to the following:
 +
 ....
-("Hello, Paris!")
+("Hello, San Francisco and Paris!")
 ....
 + 
-Because your program only accepts a single string argument, specifying multiple strings returns a `+mismatch+` error:
+Because your program only accepts a single string argument, specifying multiple strings returns a `+mismatch+` error.
++
+For example, if you try this command:
 +
 [source,bash]
 ----
 dfx canister call hello_location location '("San Francisco","Paris","Rome")'
 ----
 +
+You'll see an error similar to the following:
 ....
-
+Invalid data: Unable to serialize Candid values: length mismatch for types and values
 ....
 
 == Revise the source code in your program
@@ -213,15 +225,16 @@ public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
 };
 ....
 +
-For information about the functions that perform operations on arrays, see the description of the Array modules in the {proglang} base library or the _{proglang} Programming Language Reference_.
+For information about the functions that perform operations on arrays, see the description of the Array module in the {proglang} base library or the _{proglang} Programming Language Reference_.
 . Build the program by running the following command:
 +
 [source,bash]
 ----
-dfx build --skip-frontend
+dfx build
 ----
 +
-For this tutorial, you can build using the `+--skip-frontend+` argument because you are not changing the default front-end for the new program.
+For this tutorial, you have already removed the front-end assets canister, so running `+dfx build+` only compiles the `+favorite_cities+` canister. 
+You can also build projects using the optional `+--skip-frontend+` argument if you are only interested in compiling back-end code for a project.
 . Deploy your `+favorite_cities+` program on the local network by running the following command:
 +
 [source,bash]
@@ -235,8 +248,8 @@ dfx canister install favorite_cities
 dfx canister call favorite_cities location '(vec {"San Francisco";"Paris";"Rome"})'
 ----
 +
-The command uses the interface description syntax `+(vec { val1; val2; val3; })+` to return vector of values.
-For more information about the interface description syntax, see link:../cli-reference{outfilesuffix}#idl-syntax[Interface description syntax for arguments].
+The command uses the Candid interface description syntax `+(vec { val1; val2; val3; })+` to return a vector of values.
+For more information about the Candid interface description syntax, see link:../cli-reference{outfilesuffix}#idl-syntax[Interface description syntax for arguments].
 +
 This command displays output similar to the following:
 +

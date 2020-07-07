@@ -7,7 +7,6 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
@@ -173,10 +172,9 @@ When you pass an argument enclosed by the single quotation marks and parentheses
 Verify that the command returns the value expected for the `+add+` function.
 For example, the program displays output similar to the following:
 +
-[source,bash]
-----
+....
 (10)
-----
+....
 . Call the `+mul+` function and pass it the input argument `+3+` by running the following command:
 +
 [source,bash]
@@ -187,10 +185,9 @@ dfx canister call calc mul '(3)'
 Verify that the command returns the value expected for the `+mul+` function.
 For example, the program displays output similar to the following:
 +
-[source,bash]
-----
+....
 (30)
-----
+....
 . Call the `+sub+` function and pass it the input argument `+5+` of type `+number+` by running the following command:
 +
 [source,bash]
@@ -201,10 +198,9 @@ dfx canister call calc sub '(5)'
 Verify that the command returns the value expected for the `+sub+` function.
 For example, the program displays output similar to the following:
 +
-[source,bash]
-----
+....
 (25)
-----
+....
 . Call the `+div+` function and pass it the input argument `+5+` by running the following command:
 +
 [source,bash]
@@ -215,10 +211,9 @@ dfx canister call calc div '(5)'
 Verify that the command returns the value expected for the `+div+` function.
 For example, the program displays output similar to the following:
 +
-[source,bash]
-----
+....
 (opt 5)
-----
+....
 +
 You might notice that the `+div+` function returns an optional result.
 The program makes the result optional to enable the `+div+` function to return `+null+` in the case of a division-by-zero error.
@@ -233,10 +228,9 @@ dfx canister call calc mul '(-4)'
 +
 which returns:
 +
-[source,bash]
-----
+....
 (-20)
-----
+....
 . Call the `+clearall+` function and verify it resets the `+cell+` value to zero:
 +
 [source,bash]
@@ -246,10 +240,9 @@ dfx canister call calc clearall
 +
 For example, the program displays output similar to the following:
 +
-[source,bash]
-----
+....
 (0)
-----
+....
 
 include::example$candid-ui.adoc[]
 +

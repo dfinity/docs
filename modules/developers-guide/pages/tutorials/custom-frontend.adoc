@@ -94,8 +94,7 @@ To modify the default `+dfx.json+` configuration file:
 . Open the `+dfx.json+` configuration file in a text editor.
 . Notice that the `+canisters+` key includes settings for a `custom_greeting_assets` canister.
 +
-[source,json]
-----
+....
 {
   "canisters": {
     
@@ -114,7 +113,7 @@ To modify the default `+dfx.json+` configuration file:
     }
   }
 }
-----
+....
 +
 Let's take a look at the settings in this section.
 +
@@ -241,11 +240,10 @@ dfx build
 +
 The command displays output indicating that the build is successful.
 +
-[source,bash]
-----
+....
 Building canisters...
 Building frontend...
-----
+....
 . Deploy your `+custom_greeting+` project on the local network by running the following command:
 +
 [source,bash]
@@ -255,11 +253,10 @@ dfx canister install --all
 +
 The command output displays output similar to the following:
 +
-[source,bash]
-----
+....
 Installing code for canister custom_greeting, with canister_id ic:100000000000000000000000000000000001A9
 Installing code for canister custom_greeting_assets, with canister_id ic:11000000000000000000000000000000000183
-----
+....
 . Copy the canister identifier for the `+custom_greeting_assets+` canister to the clipboard or a notepad application.
 
 == View the new front-end
@@ -275,17 +272,15 @@ By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `
 In addition to the host and port, the URL you specify needs to include the `+canisterId+` parameter to identify the canister that you want the web server to display. 
 To specify the canister, append the identifier for the `+custom_greeting_assets+` canister using the following syntax:
 +
-[source,bash]
-----
+....
 ?canisterId=ic:canister_identifier
-----
+....
 +
 For example, the full URL should look similar to the following but with the `+ic:_canister_identifier_+` that was returned for the `+custom_greeting_assets+` canister when you ran the `+dfx canister install+` command:
 +
-[source,bash]
-----
+....
 http://localhost:8000/?canisterId=ic:11000000000000000000000000000000000183
-----
+....
 . Verify that you are prompted to type a greeting.
 +
 For example:

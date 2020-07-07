@@ -81,10 +81,9 @@ dfx --version
 +
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
-[source,bash]
-----
-dfx 0.5.9
-----
+....
+dfx 0.5.10
+....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
 [source,bash]
@@ -145,10 +144,9 @@ You should now have **two terminal windows** open with your **project directory*
 You can check that you are in your project directory by running the `+pwd+` command in both windows, if needed.
 You should see a path similar to the following in both terminals:
 +
-[source,bash]
-----
+....
 /Users/<your-user-name>/ic-projects/hello
-----
+....
 . Start the {IC} network on your local computer in your second terminal by running the following command:
 +
 [source,bash]
@@ -188,11 +186,10 @@ dfx build
 +
 You should see output similar to the following:
 +
-[source,bash]
-----
+....
 Building canisters...
 Building frontend...
-----
+....
 
 [[deploy]]
 == Deploy your program locally
@@ -212,11 +209,10 @@ dfx canister install --all
 +
 You should see an installation confirmation message for your canister similar to the following:
 +
-[source,bash]
-----
+....
 Installing code for canister hello, with canister_id ic:03000000000000000000000000000000000179
 Installing code for canister hello_assets, with canister_id ic:040000000000000000000000000000000001AF
-----
+....
 . Call the predefined `+greet+` function in the program by running the following command:
 +
 [source,bash]
@@ -229,10 +225,9 @@ This example uses the `+dfx canister call+` command to pass "everyone" as an arg
 +
 For example:
 +
-[source,bash]
-----
+....
 ("Hello, everyone!")
-----
+....
 
 [[quickstart-frontend]]
 == Test the application front-end
@@ -244,10 +239,9 @@ Now that you have verified that your application has been deployed and tested it
 +
 For example, the full URL should look similar to the following:
 +
-[source,bash]
-----
+....
 http://localhost:8000/?canisterId=ic:02000000000000000000000000000000000153
-----
+....
 . Type a greeting, then click *OK* to return the greeting.
 +
 For example:

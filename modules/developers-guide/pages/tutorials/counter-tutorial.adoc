@@ -7,7 +7,6 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
@@ -80,8 +79,7 @@ ls -l
 +
 The command displays output similar to the following if you have `+node.js+` installed in your development environment:
 +
-[source,bash]
-----
+....
 total 976
 -rw-r--r--    1 pubs  staff    1031 Dec 17 13:43 README.md
 -rw-r--r--    1 pubs  staff     400 Dec 17 13:43 dfx.json
@@ -90,7 +88,7 @@ drwxr-xr-x  818 pubs  staff   26176 Dec 17 13:44 node_modules
 -rw-r--r--    1 pubs  staff     262 Dec 17 13:43 package.json
 drwxr-xr-x    3 pubs  staff      96 Dec 17 13:43 src
 -rw-r--r--    1 pubs  staff    1803 Dec 17 13:43 webpack.config.js
-----
+....
 
 == Modify the default configuration
 
@@ -186,11 +184,10 @@ dfx build
 +
 The command displays output similar to the following:
 +
-[source,bash]
-----
+....
 Building canisters...
 Building frontend...
-----
+....
 +
 After running the `+dfx build+` command, your program is encapsulated in a unique object—the canister—that can be deployed.
 [arabic]
@@ -217,8 +214,7 @@ For this tutorial, you invoke a `+get+` method to query the value of a counter, 
 To test invoking methods on the deployed canister:
 
 [arabic]
-. Run the following command to invoke the `+get+` function, which reads
-the current value of the `+currentValue+` variable on the deployed canister:
+. Run the following command to invoke the `+get+` function, which reads the current value of the `+currentValue+` variable on the deployed canister:
 +
 [source,bash]
 ----
@@ -227,10 +223,9 @@ dfx canister call my_counter get
 +
 The command returns the current value of the `+currentValue+` variable as zero:
 +
-[source,bash]
-----
+....
 (0)
-----
+....
 [arabic]
 . Run the following command to invoke the `+increment+` function to increment the value of the `+currentValue+` variable on the deployed canister by one:
 +
@@ -250,14 +245,13 @@ dfx canister call my_counter get
 +
 The command returns the updated value of the `+currentValue+` variable as one:
 +
-[source,bash]
-----
+....
 (1)
-----
+....
 [arabic]
 . Run additional commands to experiment with invoking other methods and using different values.
 +
-For example, try commands similar to the following:
+For example, try commands similar to the following to set and return the counter value:
 +
 [source,bash]
 ----

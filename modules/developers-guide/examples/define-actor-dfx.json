@@ -1,0 +1,30 @@
+{
+  "canisters": {
+    "actor_hello": {
+      "main": "src/actor_hello/main.mo",
+      "type": "motoko"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/",
+      "packtool": ""
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000
+    }
+  },
+  "dfx": "0.5.10",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000"
+    },
+    "tungsten": {
+      "providers": [
+        "https://gateway.dfinity.systems"
+      ]
+    }
+  },
+  "version": 1
+}

@@ -71,8 +71,7 @@ You cannot include dashes or any special characters.
 +
 The command displays output similar to the following excerpt:
 +
-[source,bash]
-----
+....
 Fetching manifest https://sdk.dfinity.org/manifest.json
 Creating new project "hello_world"...
 CREATE       hello_world/src/hello_world/main.mo (107B)...
@@ -82,7 +81,7 @@ CREATE       hello_world/README.md (1.01KB)...
 CREATE       hello_world/src/hello_world/public/index.js (155B)...
 CREATE       hello_world/package.json (263B)...
 CREATE       hello_world/webpack.config.js (1.76KB)...
-----
+....
 . View the default directory structure by running the following command:
 +
 [source,bash]
@@ -94,8 +93,7 @@ By default, the project directory structure includes at least one source subdire
 +
 Depending on whether you have `+node.js+` installed, your project directory might include some or all of the following files:
 +
-[source,bash]
-----
+....
 hello_world/
 ├── README.md      # default project documentation
 ├── dfx.json       # project configuration file
@@ -108,7 +106,7 @@ hello_world/
 │       └── public
 │           └── index.js
 └── webpack.config.js
-----
+....
 +
 At a minimum, the default project directory includes the following folders and files:
 +
@@ -142,10 +140,9 @@ cd hello_world
 +
 For example:
 +
-[source,json]
-----
+....
 include::example$sample-dfx.json[]
-----
+....
 +
 Let's take a look at a few of the default settings.
 +
@@ -182,14 +179,13 @@ cd src/hello_world
 ----
 . Open the `+main.mo+` file in a text editor and review the code in the template:
 +
-[source,bash]
-----
+....
 actor {
     public func greet(name : Text) : async Text {
         return "Hello, " # name # "!";
     };
 };
-----
+....
 +
 Let's take a look at a few key elements of this program:
 +
@@ -261,18 +257,16 @@ dfx build
 +
 You should see output similar to the following:
 +
-[source,bash]
-----
+....
 Building canisters...
 Building frontend...
-----
+....
 +
 If your computer can connect to the {IC} network, running the `+dfx canister build+` command creates several artifacts in your project's `+canisters+` directory, including directories that contain the WebAssembly modules for your main program and project assets and a `+canister_manifest.json+` file with configuration information.
 +
 For example:
 +
-[source,json]
-----
+....
 {
   "canisters": {
     "hello_world": {
@@ -289,7 +283,7 @@ For example:
     }
   }
 }
-----
+....
 . Verify that the `+canisters/hello_world+` directory created by the `+build+` command contains the WebAssembly and related application files by running the following command.
 +
 [source,bash]
@@ -299,8 +293,7 @@ ls -l canisters/hello_world/
 +
 For example, the command returns output similar to the following:
 +
-[source,bash]
-----
+....
 total 456
 -rw-rw-rw-  1 pubs  staff     43 Jun 12 17:05 hello_world.did
 -rw-r--r--  1 pubs  staff    103 Jun 12 17:05 hello_world.did.js
@@ -308,7 +301,7 @@ total 456
 -rw-rw-rw-  1 pubs  staff  85525 Jun 12 17:05 hello_world.wasm
 -rw-r--r--  1 pubs  staff     43 Jun 12 17:05 main.did
 -rw-r--r--  1 pubs  staff  85525 Jun 12 17:05 main.wasm
-----
+....
 +
 The `canisters/hello_world` directory contains the following key files:
 +
@@ -348,10 +341,9 @@ dfx canister install hello_world
 +
 The command displays output similar to the following:
 +
-[source,bash]
-----
+....
 Installing code for canister hello_world, with canister_id ic:05000000000000000000000000000000000185
-----
+....
 . Call the predefined `+greet+` function in the program by running the following command:
 +
 [source,bash]
@@ -364,10 +356,9 @@ This example uses the `+dfx canister call+` command to pass "everyone" as an arg
 +
 For example:
 +
-[source,bash]
-----
+....
 ("Hello, everyone!")
-----
+....
 
 [[default-frontend]]
 == View the default front-end
@@ -379,14 +370,13 @@ To explore the default front-end template:
 . Open a terminal shell on your local computer, if you don’t already have one open, and navigate to your `+hello_world+` project directory.
 . Open the `+src/hello_world_assets/public/index.js+` file in a text editor and review the code in the template script:
 +
-[source,bash]
-----
+....
 import hello_world from 'ic:canisters/hello_world';
 
 hello_world.greet(window.prompt("Enter your name:")).then(greeting => {
   window.alert(greeting);
 });
-----
+....
 +
 The template `+index.js+` file uses the Document Object Model (DOM) to describe the structure and content of a document on the web.
 +
@@ -401,8 +391,7 @@ ls -l canisters/hello_world_assets/
 +
 The command displays output similar to the following:
 +
-[source,bash]
-----
+....
 total 496
 drwxr-xr-x  5 pubs  staff     160 Jun 12 17:05 assets
 -r--r--r--  1 pubs  staff     131 Dec 31  1969 assetstorage.did
@@ -412,7 +401,7 @@ drwxr-xr-x  5 pubs  staff     160 Jun 12 17:05 assets
 -rw-r--r--  1 pubs  staff     182 Jun 12 17:05 hello_world_assets.js
 -rw-rw-rw-  1 pubs  staff  115443 Dec 31  1969 hello_world_assets.wasm
 
-----
+....
 +
 These files were generated automatically by the `+dfx build+` command using node modules and the template `+index.js+` file.
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
@@ -422,17 +411,15 @@ By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `
 In addition to the host and port, the URL you specify needs to include `+canisterId+` parameter to identify the canister that you want the web server to display. 
 To specify the canister, append the identifier using the following syntax:
 +
-[source,bash]
-----
+....
 ?canisterId=ic:<YOUR-CANISTER-IDENTIFIER>
-----
+....
 +
 For example, the full URL should look similar to the following:
 +
-[source,bash,subs="quotes"]
-----
+....
 http://localhost:8000/?canisterId=ic:81DDA04F69F40FEEAC
-----
+....
 . Verify that you are prompted to type a greeting.
 +
 For example:

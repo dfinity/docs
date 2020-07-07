@@ -81,7 +81,7 @@ Use the following subcommands to specify the operation you want to perform or to
 
 |`+new+` |Creates a new project.
 
-|`+ping+` |Sends a response request to a specified {IC} network target to determine network connectivity.
+|`+ping+` |Sends a response request to a specified {IC} network provider to determine network connectivity.
 If the connection is successful, the {IC} replies with its status. 
 
 |`+replica+` |Starts a local network replica process.

@@ -63,12 +63,11 @@ If you make any changes, however, be sure that the names you use for your files 
 If you plan to use the default directory and file names, no changes are necessary.
 . Remove all of the `+actor_hello_assets+` configuration settings from the file.
 +
-The sample program for this tutorial doesn't use any front-end assets, so you need to remove those settings from the configuration file.
+The sample program for this tutorial doesn't use any front-end assets, so you should remove those settings from the configuration file.
 +
 For example, the configuration file looks like this after you remove the `+actor_hello_assets+` section:
 +
-[source,json]
-----
+....
 {
   "canisters": {
     "actor_hello": {
@@ -90,7 +89,7 @@ For example, the configuration file looks like this after you remove the `+actor
   "dfx": "0.5.8",
   "version": 1
 }
-----
+....
 . Save your changes and close the file to continue.
 
 == Modify the default program
@@ -111,10 +110,9 @@ cd src/actor_hello
 The next step is to write a program that prints a statement like the traditional "Hello, World!" sample program. 
 If you were writing this program to run on a platform other than the {IC}, you could write the program in {proglang} without an actor or a `main` function like this:
 +
-[source,bash]
-----
+....
 print "Hello, World! from DFINITY\n"
-----
+....
 +
 To compile the program for the {IC}, however, your program must include an `+actor+` object with a `+public+` function.
 . Copy and paste the following sample code into the `+main.mo+` file:
@@ -156,11 +154,10 @@ dfx build --skip-manifest
 +
 You should see output similar to the following:
 +
-[source,bash]
-----
+....
 Skipping the build manifest. Canister IDs might be hard coded.
 Building canisters...
-----
+....
 
 == Deploy the project
 
@@ -196,17 +193,15 @@ dfx canister create actor_hello
 +
 You should see output similar to the following:
 +
-[source,bash]
-----
+....
 Jun 12 22:24:18.254 INFO s:0/n:100/ic_execution_environment/canister_manager Successfully created canister, canister_id: ic:0100000000000000000000000000000000012D, subnet_id: 0
-----
+....
 +
 The `+dfx canister create+` command also creates a `+canister_manifest.json+` file in the `+canisters+` directory.
 +
 For example:
 +
-[source,json]
-----
+....
 {
   "canisters": {
     "actor_hello": {
@@ -217,7 +212,7 @@ For example:
     }
   }
 }
-----
+....
 . Deploy your `+actor_hello+` project on the local network by running the following command:
 +
 [source,bash]
@@ -227,10 +222,9 @@ dfx canister install actor_hello
 +
 The command displays output similar to the following:
 +
-[source,bash]
-----
+....
 Installing code for canister actor_hello, with canister_id ic:03000000000000000000000000000000000179
-----
+....
 
 == Query the canister
 
@@ -248,10 +242,11 @@ dfx canister call --query actor_hello hello
 +
 For example, the program displays "Hello, World! from DFINITY" in output similar to the following:
 +
-[source,bash]
-----
+....
 debug.print: Hello, World from DFINITY 
-----
+....
++
+Note that if you are running the Internet Computer network in a separate terminal instead of in the background, the "Hello, World! from DFINITY" message is displayed in the terminal that displays network activity. 
 
 == Stop the local network
 

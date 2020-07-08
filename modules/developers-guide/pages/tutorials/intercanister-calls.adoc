@@ -101,12 +101,11 @@ dfx canister install --all
 +
 You should see canister identifiers for the `+connectd+`, `+linkedup+` and `+linkedup_assets+` canisters with a message similar to the following:
 +
-[source,bash]
-----
+....
 Installing code for canister connectd, with canister_id ic:180000000000000000000000000000000001FE
 Installing code for canister linkedup, with canister_id ic:190000000000000000000000000000000001D4
 Installing code for canister linkedup_assets, with canister_id ic:1A0000000000000000000000000000000001AA
-----
+....
 . Copy the `linkedup_assets` canister identifier returned by the `dfx canister install` command.
 +
 In this sample application, only the `linkedup_assets` canister includes the front-end assets used to access the application's features. 
@@ -119,10 +118,9 @@ To run through a demonstration of the LinkedUp sample application, take the foll
 . Open a browser tab or window.
 . Type the web server host name, port, and the `canisterId` keyword, then paste the `linkedup_assets` canister identifier as the URL to display.
 +
-[source,bash]
-----
+....
 localhost:8000/?canisterId=<ic-identifier-for-linkedup-assets>
-----
+....
 +
 The browser displays an introductory page.
 +
@@ -139,11 +137,10 @@ image:linkedup-edit-maya.png[]
 +
 While you are interacting with the sample application, you might notice records similar to the following capture your activity and are displayed in the terminal you used to start the `replica` process:
 +
-[source,bash]
-----
+....
 Apr 14 20:34:57.614 INFO Successfully inserted an ingress message into IngressPool, Application: ArtifactPool
 Apr 14 20:34:58.564 INFO Created checkpoint @6921 in 33.579754ms, StateManager: 1
-----
+....
 +
 After you click *Submit*, you have a profile with some work history that can be viewed.
 +
@@ -243,37 +240,37 @@ Now that you have explored the basic features of the sample application, you hav
 
 To explore the configuration file:
 
-. Change to the `linkedup` directory, then open the project’s `dfx.json` file.
-. Note that there are two main canisters defined—`connectd` and `linkedup`—each with a `main.mo` source file.
-. Note that the `linkedup_assets` canister specifies a frontend entry point of `main.js` and assets in the form of CSS and HTML files.
+. Change to the `+linkedup+` directory, then open the project’s `+dfx.json+` file.
+. Note that there are two main canisters defined—`+connectd+` and `+linkedup+`—each with a `+main.mo+` source file.
+. Note that the `+linkedup_assets+` canister specifies a frontend entry point of `+main.js+` and assets in the form of CSS and HTML files.
 . Note that the application uses the default server IP address and port number.
 
 == Explore the connectd source code
 
-The source code for the social connections canister, `connectd`, is organized into the following files:
+The source code for the social connections canister, `+connectd+`, is organized into the following files:
 
-* The `digraph.mo` file provides the functions to create a directed graph of vertices and edges to describe a user's connections. 
-* The `main.mo` contains the actor and key functions for defining the connections associated with a user profile that can be called by the LinkedUp sample application. 
-* The `types.mo` file defines the custom type that maps a vertex to a user identity for use in the `digraph` and `main` program files.
+* The `+digraph.mo+` file provides the functions to create a directed graph of vertices and edges to describe a user's connections. 
+* The `+main.mo+` contains the actor and key functions for defining the connections associated with a user profile that can be called by the LinkedUp sample application. 
+* The `+types.mo+` file defines the custom type that maps a vertex to a user identity for use in the `+digraph+` and `+main+` program files.
 
 == Explore the linkedup source code
 
 The source code for the professional profile with work history and educational background is organized into the following files:
 
-* The `main.mo` file contains the actor and key functions for the LinkedUp sample application. 
-* The `types.mo` file defines the custom types that describe the user identity and profile fields that are imported and used in the `main` program file for the `linkedup` canister.
-* The `utils.mo` file provides helper functions.
+* The `+main.mo+` file contains the actor and key functions for the LinkedUp sample application. 
+* The `+types.mo+` file defines the custom types that describe the user identity and profile fields that are imported and used in the `+main+` program file for the `linkedup` canister.
+* The `+utils.mo+` file provides helper functions.
 
 === Query and update operations
 
 In working with the LinkedUp sample application, you might notice that some operations—such as viewing a profile or performing a search—returned results almost immediately.
 Other operations—such as creating a profile or adding a connection—took a little longer.  
 
-These differences in performance illustrate the difference between using query and update calls in the `linkedup` canister.
+These differences in performance illustrate the difference between using query and update calls in the `+linkedup+` canister.
 
-For example, in the `src/linkedup/main.mo` file, the `create` and `update` functions are update calls that change the state of the canister, but the program uses query calls for the `get` and `search` functions to view or search for a profile:
+For example, in the `+src/linkedup/main.mo+` file, the `+create+` and `+update+` functions are update calls that change the state of the canister, but the program uses query calls for the `+get+` and `+search+` functions to view or search for a profile:
 
-----
+....
   // Profiles
 
   public shared(msg) func create(profile: NewProfile): async () {
@@ -293,7 +290,7 @@ For example, in the `src/linkedup/main.mo` file, the `create` and `update` funct
   public query func search(term: Text): async [Profile] {
     directory.findBy(term)
   };
-----
+....
 
 === Interaction between the canisters
 
@@ -302,24 +299,24 @@ This separation simplifies the code in each canister and illustrates how you can
 
 To make the public functions defined in one canister available in the another canister:
 
-. Add an `import` statement in the calling canister.
+. Add an `+import+` statement in the calling canister.
 +
-In this example, the public functions are defined in the `connectd` canister and are called by the `linkedup` canister.
+In this example, the public functions are defined in the `+connectd+` canister and are called by the `+linkedup+` canister.
 +
-Therefore, the `src/linkedup/main.mo` includes the following code:
+Therefore, the `+src/linkedup/main.mo+` includes the following code:
 +
 [source,motoko]
 ----
 // Make the Connectd app's public methods available locally
 import Connectd "canister:connectd";
 ----
-. Use the `canister.function` syntax to call public methods in the imported canister.
+. Use the `+canister.function+` syntax to call public methods in the imported canister.
 +
-In this example, the `linkedup` canister calls the `connect` and `getConnections` function in the imported `connectd` canister.
+In this example, the `+linkedup+` canister calls the `+connect+` and `+getConnections+` function in the imported `+connectd+` canister.
 
-You can see the code that enables interaction between the `linkedup` canister and the `connectd` canister in the `main.mo` source files.
+You can see the code that enables interaction between the `+linkedup+` canister and the `+connectd+` canister in the `+main.mo+` source files.
 
-For example, the `src/connectd/main.mo` defines the following functions: 
+For example, the `+src/connectd/main.mo+` defines the following functions: 
 +
 [source,motoko]
 ----
@@ -339,7 +336,7 @@ actor Connectd {
 };
 ----
 
-Because of the `Import` statement, the `connectd` functions are available to the `linkedup` canister and the `src/linkedup/main.mo` includes the following code:
+Because of the `+Import+` statement, the `+connectd+` functions are available to the `+linkedup+` canister and the `+src/linkedup/main.mo+` includes the following code:
 
 [source,motoko]
 ----

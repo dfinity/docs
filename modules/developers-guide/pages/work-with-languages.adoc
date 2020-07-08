@@ -1,0 +1,12 @@
+= Working with different languages
+
+Most of the examples in this guide use {proglang}—the programming language specifically designed to work with the {IC}. 
+Potentially, however, you can write programs in any language that compiles to WebAssembly to deploy applications that run on the {IC}.
+This section provides some high-level guidance for writing programs in different languages for deployment on the {IC}.
+
+== Using Rust
+
+
+== Using C
+
+You can find some examples of programs written in C++ in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository.

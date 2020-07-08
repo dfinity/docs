@@ -86,6 +86,12 @@ After you start the local network, this terminal displays messages about network
 To build and deploy the LinkUp sample application, take the following steps:
 
 . Check that you are still in your project directory by running the `+pwd+` command, if necessary.
+. Register canister identifiers for the LinkedUp project by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
 . Build the LinkedUp canisters by running the following command:
 +
 [source,bash]
@@ -217,18 +223,18 @@ To illustrate saving the incognito user identity, take the following steps:
 +
 image:local-storage.png[]
 
-. Copy the Value of the `dfinity-ic-user-identity` key.
+. Copy the Value of the `+dfinity-ic-user-identity+` key.
 +
-The `dfinity-ic-user-identity` key value stores the public and private keys for the user. 
+The `+dfinity-ic-user-identity+` key value stores the public and private keys for the user. 
 . Return to the standard browser window.
 +
 For example, the window that displays the Maya profile.
 . Click the vertical ellipse to display the More menu, click *More Tools*, then select *Developer Tools* to display the developer tools explorer.
 . Click *Application*, expand *Local storage*, then select the host name and port running the LinkedUp application.
-. Rename the `dfinity-ic-user-identity` key to preserve the existing public-private key.
+. Rename the `+dfinity-ic-user-identity+` key to preserve the existing public-private key.
 +
-For example, rename the `dfinity-ic-user-identity` to `maya-dfinity-ic-user-identity`.
-. Add a `dfinity-ic-user-identity` key and paste the value from the incognito user to save the incognito user’s identity in the browser.
+For example, rename the `+dfinity-ic-user-identity+` to `+maya-dfinity-ic-user-identity+`.
+. Add a `+dfinity-ic-user-identity+` key and paste the value from the incognito user to save the incognito user’s identity in the browser.
 . Refresh or close and reopen the browser window, then click *Login* to log in using the profile you created in the incognito window.
 . Open another incognito window, type Maya in the Search field, then click *Search* to see that Maya’s profile and connections are persisted.
 +

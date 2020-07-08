@@ -81,6 +81,9 @@ Use the following subcommands to specify the operation you want to perform or to
 
 |`+new+` |Creates a new project.
 
+|`+ping+` |Sends a response request to a specified {IC} network provider to determine network connectivity.
+If the connection is successful, the {IC} replies with its status. 
+
 |`+replica+` |Starts a local network replica process.
 
 |`+start+` |Starts the local network replica and a web server for the current project.
@@ -1196,6 +1199,61 @@ If you want to preview the directories and files to be created without adding th
 ----
 dfx new my_social_network --dry-run
 ----
+
+== dfx ping
+
+Use the `+dfx ping+` command to check connectivity between a local computer and an {IC} network provider. 
+This command enables you to verify that you can connect to a specific {IC} network and that the remote network services are running.
+
+Note that you can only run this command from within the project directory structure. 
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx ping [provider] [flag] 
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx ping+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Arguments
+
+You can specify the following argument for the `+dfx ping+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Argument |Description
+
+|provider |Specifies the network provider URL that you want to use.
+|===
+
+=== Examples
+
+You can use the dfx ping command to check whether the {IC} is currently available at a specific network address by running a command similar to the following:
+
+[source,bash]
+----
+dfx ping https://testgw.dfinity.network
+----
+
+If the {IC} is running on the specified provider address, the command returns output similar to the following:
+
+....
+{
+  "ic_api_version": "0.8"
+}
+....
 
 == dfx replica
 

@@ -5,23 +5,30 @@
       "type": "motoko"
     },
     "rock_paper_scissors": {
-      "main": "src/rock_paper_scissors/main.mo"
+      "main": "src/rock_paper_scissors/main.mo",
+      "type": "motoko"
     },
     "daemon": {
-      "main": "src/daemon/main.mo"
-	  }
+      "main": "src/daemon/main.mo",
+      "type": "motoko"
+    }
   },
   "defaults": {
     "build": {
       "output": "canisters/",
       "packtool": ""
-    },
-    "start": {
-      "address": "127.0.0.1",
-      "port": 8000,
-      "serve_root": "canisters/multiple_actors_assets/assets"
     }
   },
-  "dfx": "0.5.8",
+  "dfx": "0.5.11",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000"
+    },
+    "tungsten": {
+      "providers": [
+        "https://gw.dfinity.network"
+      ]
+    }
+  },
   "version": 1
 }

@@ -84,7 +84,7 @@ Because you are going to add settings to this `+canisters+` section of the confi
 . Remove the `+multiple_actors_assets+` section from the file.
 . Add a new canister name, source code location, and canister type for the `+rock_paper_scissors+` program and a new canister name, source code location, and canister type for the `+daemon+` program files below the `+assistant+` canister definition.
 +
-After making the changes, the `+dfx.json+` file should look similar to this:
+After making the changes, the `+canisters+` section of the `+dfx.json+` file should look similar to this:
 +
 [source,json]
 ----

@@ -19,8 +19,8 @@ In this example, the *key* is a `+name+` and the *value* is the `+phone+` text s
 
 This program supports the following function calls:
 
-* The `+insert+` function call accepts the `+name+` and `+phone+` key-value pair as input stored in the `+book+` variable.
-* The `+lookup+` function is a query that uses the specified the `+name+` as input to find the associated phone number.
+* The `+insert+` function accepts the `+name+` and `+phone+` key-value pair as input stored in the `+book+` variable.
+* The `+lookup+` function is a query that uses the specified `+name+` key as input to find the associated phone number.
 
 == Before you begin
 
@@ -32,7 +32,7 @@ computer.
 
 This tutorial takes approximately 10 minutes to complete.
 
-== Create a new project
+== Creating a new project
 
 To create a new project for this tutorial:
 
@@ -40,7 +40,7 @@ To create a new project for this tutorial:
 . Open a terminal shell on your local computer, if you don’t already
 have one open.
 . Change to the folder you are using for your {IC} sample projects.
-. Create a new project by running the following command:
+. Creating a new project by running the following command:
 +
 [source,bash]
 ----
@@ -66,6 +66,18 @@ To modify the default template:
 ----
 include::example$phonebook.mo[]
 ----
++
+In looking at this sample program, you might notice the following key elements:
+--
+
+* The code defines `+Name+` and `+Phone+` as custom Text types.
+Creating user-defined types improves the readability of the code.
+
+* The `+insert+` function is an update call and the `+lookup+` function is a query call.
+
+* The `+Phone+` type is identified as an optional value by using the `+?Phone+` syntax.
+
+-- 
 
 == Start the local network
 
@@ -132,10 +144,10 @@ To build and deploy the program:
 ----
 dfx build --skip-frontend
 ----
-The dfx.json file provides default settings for creating an application front-end entry point and `+assets+` canister. 
-For this tutorial, however, you can build your project using the `+--skip-frontend+` option because the project is a simple terminal-based applications that doesn't include any front-end assets.
+The `+dfx.json+` file provides default settings for creating an application front-end entry point and `+assets+` canister. 
+For this tutorial, however, you can build your project using the `+--skip-frontend+` option because the project is a terminal-based application that doesn't include any front-end assets.
 +
-Although this tutorial illustrates how to skip compiling a front-end canister, you can add a simple front-end user interface to this application later by cloning the link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] project in the link:https://github.com/dfinity/examples[examples] repository.
+Although this tutorial illustrates how to skip compiling a front-end canister, you can add a simple user interface to this application later by exploring the link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] project in the link:https://github.com/dfinity/examples[examples] repository.
 . Deploy your `+phonebook+` project on the local network by running the following command:
 +
 [source,bash]

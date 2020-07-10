@@ -106,9 +106,9 @@ Let's take a closer look at this simple program:
 --
 * The program imports a `+Debug+` module to provide the `+print+` functionality.
 * The program uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister or perform any operations that would update the data you are accessing.
+--
 +
 For more information about using a query call, see link:../introduction-key-concepts{outfilesuffix}#query-calls[query calls] in link:../introduction-key-concepts{outfilesuffix}#canister-state[Canisters include both program and state].
---
 . Save your changes and close the `+main.mo+` file.
 
 == Build the program with a local identifier
@@ -132,12 +132,14 @@ dfx build --check
 ----
 +
 The `+--check+` option enables you to build a project locally to verify that it compiles and to inspect the files produced. 
-Because the `+dfx build --check+` command only generates a temporary identifier, ou should see output similar to the following:
+Because the `+dfx build --check+` command only generates a temporary identifier, you should see output similar to the following:
 +
 ....
 Skipping the build manifest. Canister IDs might be hard coded.
 Building canisters...
 ....
++
+If the program compiles successfully, you can inspect the output in the default `+canisters+` directory.
 
 == Deploy the project
 
@@ -148,8 +150,10 @@ If you wanted to deploy this project, you would need to do the following:
 * Register a network-specific canister identifier.
 * Deploy the canister.
 
-Before you can deploy this project, you must connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
-After you connect to a local or remote network, you must also generate a unique, network-specific canister identifier to replace your locally-defined identifier.
+Let's consider these steps in a bit more detail. 
+Before you can deploy this project, you must connect to the {IC} network either running *locally* in your development environment or running *remotely* on a sub-network that you can access.
+After you connect to a local or remote network, you must also generate a unique, *network-specific* canister identifier to replace your locally-defined identifier.
+To see the steps involved for yourself, let's deploy the project locally.
 
 To deploy this project locally:
 
@@ -181,7 +185,7 @@ The `+dfx canister create+` command also stores the network-specific canister id
 For example:
 +
 ....
-
+insert canister id file content
 ....
 . Deploy your `+actor_hello+` project on the local network by running the following command:
 +

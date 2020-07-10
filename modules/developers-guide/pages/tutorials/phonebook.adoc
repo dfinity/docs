@@ -7,7 +7,6 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
@@ -77,14 +76,15 @@ To start the network locally:
 [arabic]
 . Open a new terminal window or tab on your local computer and navigate to your project directory.
 +
-For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
+For example, you can do either of the following if running Terminal on macOS:
 +
-[source,bash]
-----
-cd ~/ic-projects/phonebook
-----
+--
+* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
+
+* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/phonebook+` in the new terminal if your project is in the `+ic-projects+` working folder.
+--
 +
-You should now have two terminal windows open with your project directory as your current working directory.
+You should now have two terminals open with your project directory as your current working directory.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
@@ -95,9 +95,33 @@ dfx start
 After you start the local network, this terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
+== Register canister identifiers
+
+After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
+
+To register canister identifiers for the local network:
+
+. Check that you are still in your project directory, if needed.
+. Register unique canister identifiers for the project by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
++
+The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
++
+....
+"phonebook" canister created with canister id: "ic:0100000000000000000000000000000000012D"
+"phonebook_assets" canister created with canister id: "ic:02000000000000000000000000000000000153"
+....
++
+Keep in mind that because you are running the {ic} locally, these identifiers are only valid on the local network.
+To deploy canisters on a remote network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
+
 == Build and deploy the program
 
-You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local {IC} network.
+Now that you have registered with the network, you are ready to compile your program into an executable WebAssembly module that you can then deploy on your local {IC} network.
 
 To build and deploy the program:
 
@@ -108,7 +132,10 @@ To build and deploy the program:
 ----
 dfx build --skip-frontend
 ----
-For this tutorial, you can build your project using the `+--skip-frontend+` option because the project is a simple terminal-based applications that doesn't include any front-end assets.
+The dfx.json file provides default settings for creating an application front-end entry point and `+assets+` canister. 
+For this tutorial, however, you can build your project using the `+--skip-frontend+` option because the project is a simple terminal-based applications that doesn't include any front-end assets.
++
+Although this tutorial illustrates how to skip compiling a front-end canister, you can add a simple front-end user interface to this application later by cloning the link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] project in the link:https://github.com/dfinity/examples[examples] repository.
 . Deploy your `+phonebook+` project on the local network by running the following command:
 +
 [source,bash]
@@ -143,10 +170,9 @@ dfx canister call phonebook lookup '("Chris Lynn")'
 +
 The command returns output similar to the following:
 +
-[source,bash]
-----
+....
 (opt "01 415 792 1333")
-----
+....
 +
 . Try to call the `+lookup+` function with the number associated with "Maya Garcia" by running the following command:
 +
@@ -155,7 +181,7 @@ The command returns output similar to the following:
 dfx canister call phonebook lookup '("01 408 395 7276")'
 ----
 +
-Note that, in this case, the command returns (null) because the phone number is not a key associated with the "Maya Garcia" name entry.
+Note that, in this case, the command returns `+(null)+` because the phone number is not a key associated with the "Maya Garcia" name entry.
 . Try to call the `+lookup+` function again to return the phone numbers for both "Maya Garcia" and "Chris Lynn" by running the following command:
 +
 [source,bash]

@@ -433,12 +433,13 @@ http://127.0.0.1:8000/?canisterId=ic:05000000000000000000000000000000000185
 +
 For example:
 +
-image:hello-world-prompt.png[Hello world prompt window]
+image:prompt-window.png[Hello world prompt window]
 . Type a greeting, then click *OK* to return the greeting.
 +
 For example:
 +
-image:hello-world-return.png[Hello world return string]
+image:alert-window.png[Hello world return string]
+. Click *OK* to close the pop-up alert window.
 
 == Stop the local network
 

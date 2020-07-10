@@ -68,6 +68,7 @@ include::example$phonebook.mo[]
 ----
 +
 In looking at this sample program, you might notice the following key elements:
++
 --
 
 * The code defines `+Name+` and `+Phone+` as custom Text types.
@@ -76,7 +77,6 @@ Creating user-defined types improves the readability of the code.
 * The `+insert+` function is an update call and the `+lookup+` function is a query call.
 
 * The `+Phone+` type is identified as an optional value by using the `+?Phone+` syntax.
-
 -- 
 
 == Start the local network
@@ -202,6 +202,10 @@ dfx canister call phonebook lookup '("Maya Garcia","Chris Lynn")'
 ----
 +
 Because the program is written to return one value for one key, the command returns a `+mismatch+` error.
++
+....
+Invalid data: Unable to serialize Candid values: length mismatch for types and values
+....
 
 include::example$candid-ui.adoc[]
 +

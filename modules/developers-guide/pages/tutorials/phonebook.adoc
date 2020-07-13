@@ -128,7 +128,7 @@ The command displays the network-specific canister identifiers for the canisters
 "phonebook_assets" canister created with canister id: "ic:02000000000000000000000000000000000153"
 ....
 +
-Keep in mind that because you are running the {ic} locally, these identifiers are only valid on the local network.
+Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
 To deploy canisters on a remote network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
 
 == Build and deploy the program

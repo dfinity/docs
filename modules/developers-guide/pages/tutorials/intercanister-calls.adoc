@@ -30,6 +30,10 @@ The LinkedUp sample application is implemented using the following canisters:
 * The `connectd` canister creates and stores a user's connections.
 * The `linkedup_assets` canister stores the front-end assets—including the JavaScript, HTML, and CSS files—that define the user interface
 
+NOTE: The LinkedUp sample application is only compatible with specific versions of the {sdk-short-name}. 
+Before downloading the application, run the `+dfx --version+` command to verify the version of `+dfx+` you have currently installed.
+If necessary, use the `+DFX_VERSION+` environment variable set to 0.5.7 to install a compatible version. For more information about installing a specific version, see link:../../download{outfilesuffix}#install-version[Install a specific version from a terminal].
+
 == Download the demo
 
 To experiment with inter-canister calls using the LinkedUp sample application:

@@ -32,4 +32,4 @@ In the third path, you connect to the Internet Computer running on a remote netw
 With this option, you can preregister with the network to receive a unique identifier, then compile and deploy using a known identifier when you are ready to move your application to the network.
 
 Regardless of the development workflow you choose, keep in mind that you must connect to the {IC} network running locally or on a remote subnet to register your canister and that registering your canister creates a unique, network-specific identifier for the canister.
-For example, if you do all of your initial development work locally using a local canister identifier and later want to deploy your application on an {IC} network running remotely, you will need to connect to the remote network and register an identifier on that network before you can deploy the application.  
+For example, if you do all of your initial development work locally using a local canister identifier and later want to deploy your application on an {IC} network running remotely, you will need to connect to the remote network and register an identifier on that network before you can deploy the application.

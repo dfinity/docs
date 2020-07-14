@@ -175,13 +175,7 @@ To review the default sample program for your project:
 ----
 pwd
 ----
-. Change to the `+src/explore_hello+` directory.
-+
-[source,bash]
-----
-cd src/explore_hello
-----
-. Open the `+main.mo+` file in a text editor and review the code in the template:
+. Open the `+src/explore_hello/main.mo+` file in a text editor and review the code in the template:
 +
 ....
 actor {

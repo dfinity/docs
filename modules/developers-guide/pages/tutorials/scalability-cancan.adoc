@@ -11,14 +11,14 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-The CanCan sample application is a simplified video sharing service that demonstrates several features that you can use as models for your own applications.
+The CanCan sample application is a simplified video-sharing service that demonstrates several features that you can use as models for your own applications.
 For example, here are a few things you can learn by exploring the CanCan sample application:
 
-* How to build a scalable application by splitting content into fragments for upload and storage then use queries to retrieve and reassemble the fragments for efficient streaming.
-
-* How to implement a basic access control model for authenticating which videos are owned by which end-users.
+* How to build a scalable application by splitting content into fragments for upload and storage then using queries to retrieve and reassemble the fragments for efficient streaming.
 
 * How to configure interoperability for an application that uses canisters written in different back-end languages.
+
+* How to implement a basic access control model for authenticating which videos are owned by which end-users.
 
 * How to build a front-end that implements more sophisticated user interface features for desktop or mobile apps.
 
@@ -29,7 +29,7 @@ For example, Web Assembly modules have a maximum of 4GB for memory and an upper 
 
 For a video-sharing sample applications like CanCan, these limitations mean that multiple canisters are required and that data must be broken into smaller chunks for storage and retrieval.
 
-The initial attempt to build a scalable video sharing service for the {IC} used a distributed hash table as a back-end service with simple get and put functions that distributed data—chunks of the video to be uploaded or streamed—into a predefined set of canisters.
+The initial attempt to build a scalable video-sharing service for the {IC} used a distributed hash table as a back-end service with simple get and put functions that distributed data—chunks of the video to be uploaded or streamed—into a predefined set of canisters.
 In the early phases of the project, this approach was sufficient for a proof-of-concept and verifying that the video data could be properly transcoded for storage and retrieval.
 However, the scalability of the application was limited because the distributed hash table (DHT) relied on a specific number of canisters that it could populate with data for storage and retrieve data from for viewing.
 
@@ -40,15 +40,23 @@ BigMap provides a simple, plug-in library for building scalable applications usi
 By using the BigMap library as a back-end service, the CanCan sample application can dynamically chunk, serialize, and distribute data to multiple canisters.
 
 The library offers building blocks for application-specific, in-memory data abstractions that scale using any number of canisters.
-Each canister has limited capacity, but the application instantiates the canisters it needs and keeps track of the fragments that make up the full video content for each user's videos.
+Each canister still has limited capacity, but the application instantiates the canisters it needs and keeps track of the fragments that make up the full video content for each user's videos in an index file called the `+manifest+`.
 
+The code required for the `+BigMap+` service is much simpler than a traditional distributed hash table because the {IC} as a platform provides scalability, replication, failover, and fault tolerance.
 ////
 BigMap written in Motoko
 ////
+== Configuring interoperability
+
+The CanCan sample application also demonstrates interoperability between canisters written in different languages.
+
+In this case, the `+BigMap+` functionality is implemented using the Rust programming language and other services—such as encoding and decoding of video content and the management of user principals for authentication—are implemented using {proglang}.
+
+By deploying different parts of the sample application as canisters, the interaction between them provides a seamless user experience.
 
 == Access control model
 
-== Configuring interoperability
+
 
 == Implementing front-end features
 

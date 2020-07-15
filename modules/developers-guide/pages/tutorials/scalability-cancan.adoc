@@ -56,9 +56,11 @@ By deploying different parts of the sample application as canisters, the interac
 
 == Access control model
 
-
+Much like the LinkedUp sample application, the CanCan sample application uses the public-private key pair, browser-based local storage, and the `+Principal+` data type to authenticate users.
 
 == Implementing front-end features
+
+The CanCan sample application uses the React framework and TypeScript to implement front-end user interface.
 
 == Data model overview
 
@@ -66,37 +68,36 @@ The application stores information about users and information about videos.
 
 === User profiles
 
-User profiles are stored as `profiles/${username}` and are defined using the following data model:
+User profiles are stored as `+profiles/${username}+` and are defined using the following data model:
 
-[source,motoko]
-----
+....
 export interface Profile {
-  username: string;    // enzo
-  following: string[]; // []`profiles/alice` `profiles/bob]`
-  followers: string[]; // ['profiles/alice']
-  uploadedVideos: string[]; // ['profiles/enzo/videos/cool-movie_out.m3u8']
-  likedVideos: string[];  // ['profiles/bob/videos/cool-movie2_out.m3u8']
-  avatar?: string; // ?ImageData
+  username: string;         // maya
+  following: string[];      // []`profiles/alice` `profiles/bob]`
+  followers: string[];      // ['profiles/alice']
+  uploadedVideos: string[]; // ['profiles/maya/videos/cool-movie_out.m3u8']
+  likedVideos: string[];    // ['profiles/bob/videos/cool-movie2_out.m3u8']
+  avatar?: string;          // ?ImageData
 }
-----
+....
 
 === Videos
 
-A video manifest (.m3u8) stored at profiles/{username}/videos/${movieName}.m3u8
-above path is also stored in public/videos
-metadata stored at profiles/{username}/videos/${videoName}
-ts fragments stored at profiles/{username}/videos/${fragmentName}Videos are stored as `profiles/${username}` and are defined using the following data model:
+Uploaed videos are identified by a manifest (`+.m3u8+`) stored at `+profiles/{username}/videos/${movieName}.m3u8+` and in `+public/videos+`.
+Metadata for videos is stored at `+profiles/{username}/videos/${videoName}+`
+Individual video fragments following a `+${videoName}.ts+` file naming convention and are stored at `+profiles/{username}/videos/${fragmentName}+`.
 
-[source,motoko]
-----
+Videos are stored as `+profiles/${username}+` and are defined using the following data model:
+
+....
 export interface Video {
-  src: string; // 'profiles/enzo/videos/cool-movie.m3u8'
-  userId: string; // 'profiles/enzo'
+  src: string;       // 'profiles/maya/videos/cool-movie.m3u8'
+  userId: string;    // 'profiles/maya'
   createdAt: string; // Date.now()
-  caption: string; // 'cool movie, punk'
-  tags: string[]; // ['outside']
-  likes: string[] // ['profiles/bob', 'profiles/carmen']
+  caption: string;   // 'cool movie, punk'
+  tags: string[];    // ['outside']
+  likes: string[]    // ['profiles/bob', 'profiles/carmen']
   viewCount: number; // 100
   name: string;
 }
-----
+....

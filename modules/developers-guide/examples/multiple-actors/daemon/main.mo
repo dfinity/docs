@@ -1,5 +1,5 @@
 actor daemon {
-    var running = false;
+    stable var running = false;
 
     public func launch(): async Text {
         running :=  true;

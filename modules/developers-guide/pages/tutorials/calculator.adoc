@@ -1,7 +1,5 @@
 = Exploring calculator functions
-December 2019 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:linkedcss:
 :toc:
 :toc: right
 :toc-title: TUTORIAL - CALCULATOR
@@ -9,7 +7,6 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
@@ -19,7 +16,7 @@ In this tutorial, you are going to write a simple calculator program that create
 For this tutorial, the actor is named `+Calc+`. 
 The program uses the `+cell+` variable to contain an integer number that represents the current result of a calculator operation. 
 
-This program supports the following types of function calls:
+This program supports the following function calls:
 
 * The `+add+` function call accepts input and performs addition.
 * The `+sub+` function call accepts input and performs subtraction.
@@ -33,9 +30,8 @@ The `+div+` function also includes code to prevent the program from attempting t
 
 Before starting the tutorial, verify the following:
 
-* You have downloaded and installed the SDK as described in
-link:../getting-started{outfilesuffix}[Getting started].
-* You have stopped any network replica processes running on the local
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have stopped any {IC} network processes running on the local
 computer.
 
 This tutorial takes approximately 20 minutes to complete.
@@ -63,49 +59,37 @@ cd calc
 
 == Modify the default configuration
 
-You have already seen that creating a new project adds a default `dfx.json` configuration file to your project directory.
-In this tutorial, you will modify several of the default settings to illustrate ways you can customize your project environment.
+For this tutorial, let's modify the default `dfx.json` configuration file to use a more specific name for its main program.
 
 To modify the default `+dfx.json+` configuration file:
 
-. Open the `+dfx.json+` configuration file in a text editor, then change the  default `+main.mo+` program name to `+calc_main.mo+`.
+. Open the `+dfx.json+` configuration file in a text editor.
+. Change the `+main+` key setting from the default `+main.mo+` program name to `+calc_main.mo+`.
 +
 For example:
 +
-[source,bash,subs="quotes"]
+[source,bash]
 ----
-{
-  "canisters": {
-    "calc": {
-      "frontend": {
-        "entrypoint": "src/calc/public/index.js"
-      },
-      "main": "src/calc/*calc_main.mo*"
-    }
+"main": "src/calc/calc_main.mo",
 ----
 +
-For this tutorial, you are changing the name of the source file from `+main.mo+` to `+calc_main.mo+` to illustrate how the setting in the `+dfx.json+` file determines the source file to be compiled. 
+For this tutorial, you are changing the name of the source file from `+main.mo+` to `+calc_main.mo+` to illustrate how this setting in the `+dfx.json+` file determines the source file to be compiled.
+. Save your changes and close the file to continue.
 
-== Modify the default template program
+== Modify the default program
 
-You have already seen that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
-In this tutorial, you will create a new `+calc_main.mo+` file for the simple calculator program.
+For this tutorial, you need to replace the default program with a program that performs basic arithmetic operations.
 
-To modify the default template source code:
+To replace the default program:
 
-. Change to the source code directory for your project by running the following command:
+. Check that you are still in your project directory, if needed.
+. Copy the template `+main.mo+` file to create a new file named `+calc_main.mo+` by running the following command:
 +
 [source,bash]
 ----
-cd src/calc
+cp src/calc/main.mo src/calc/calc_main.mo
 ----
-. Rename the template `+main.mo+` file to `+calc_main.mo+` by running the following command:
-+
-[source,bash]
-----
-mv main.mo calc_main.mo
-----
-. Open the `+calc_main.mo+` file in a text editor and delete the existing content.
+. Open the `+src/calc/calc_main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+calc_main.mo+` file:
 +
 [source,motoko]
@@ -115,33 +99,72 @@ include::example$calc_main.mo[]
 +
 You might notice that this sample code uses integer (`+Int+`) data types, enabling you to use positive or negative numbers.
 If you wanted to restrict the functions in this calculator code to only use positive numbers, you could change the data type to only allow natural (`+Nat+`) data.
+. Save your changes and close the file to continue.
 
-== Build and deploy the program
 
-You now have a program that you can compile into an executable WebAssembly module that you can deploy—using the canister model—on your local replica network.
+== Start the local network
 
-To build the program executable:
+Before you can build the `+calc+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
 
-. Change to the root directory for your project,
-+ 
-For example, if your project directory is `+~/ic-projects+`, run the following command:
+To start the network locally:
+
+[arabic]
+. Open a new terminal window or tab on your local computer and navigate to your project directory.
++
+For example, you can do either of the following if running Terminal on macOS:
++
+--
+* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
+* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/calc+` in the new terminal if your `+calc+` project is in the `+ic-projects+` working folder.
+--
++
+You should now have two terminals open with your project directory as your current working directory.
+. Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
 ----
-cd ~/ic-projects/calc
+dfx start
 ----
++
+After you start the local network, the terminal displays messages about network operations.
+. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
+
+== Register canister identifiers
+
+After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique, network-specific *canister identifiers* for your project.
+
+To register canister identifiers for the local network:
+
+. Check that you are still in your project directory, if needed.
+. Register unique canister identifiers for the canisters in the project by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
++
+The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
++
+....
+"calc" canister created with canister id: "ic:0100000000000000000000000000000000012D"
+"calc_assets" canister created with canister id: "ic:02000000000000000000000000000000000153"
+....
+
+== Build and deploy the program
+
+You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local {IC} network.
+
+To build and deploy the program:
+
+. Check that you are still in your project directory by running the `+pwd+` command, if necessary.
 . Build the WebAssembly executable by running the following command:
 +
 [source,bash]
 ----
 dfx build --skip-frontend
 ----
-. Start the {IC} network on your local computer by running the following command:
 +
-[source,bash]
-----
-dfx start --background
-----
+For this tutorial, you can build your project using the `+--skip-frontend+` option because the project is a simple terminal-based applications that doesn't include any front-end assets.
 . Deploy your `+calc+` project on the local network by running the following command:
 +
 [source,bash]
@@ -151,25 +174,27 @@ dfx canister install calc
 
 == Verify calculator functions on the canister
 
-You now have a program deployed as a *canister* on your local replica network and can test your program by using `+dfx canister call+` commands.
+You now have a program deployed as a *canister* on your local {IC} network.
+You can test the program by using `+dfx canister call+` commands.
 
-To test the program you have deployed on the local replica network:
+To test the program you have deployed:
 
-. Use the `+dfx canister call+` command to call the `+calc+` canister `+add+` function and pass it the input argument `+10+` of type `+number+` by running the following command:
+. Use the `+dfx canister call+` command to call the `+calc+` canister `+add+` function and pass it the input argument `+10+` by running the following command:
 +
 [source,bash]
 ----
-dfx canister call calc add 10 --type number
+dfx canister call calc add '(10)'
 ----
++
+When you pass an argument enclosed by the single quotation marks and parentheses,the interface description language (IDL) parses the argument type, so you don't need to specify the argument type manually.
 +
 Verify that the command returns the value expected for the `+add+` function.
 For example, the program displays output similar to the following:
 +
-[source,bash,subs="quotes"]
-----
-(*10*)
-----
-. Call the `+mul+` function and pass it the input argument `+3+` but let the interface description language (IDL) parse the argument type by running the following command:
+....
+(10)
+....
+. Call the `+mul+` function and pass it the input argument `+3+` by running the following command:
 +
 [source,bash]
 ----
@@ -179,25 +204,23 @@ dfx canister call calc mul '(3)'
 Verify that the command returns the value expected for the `+mul+` function.
 For example, the program displays output similar to the following:
 +
-[source,bash,subs="quotes"]
-----
-(*30*)
-----
+....
+(30)
+....
 . Call the `+sub+` function and pass it the input argument `+5+` of type `+number+` by running the following command:
 +
 [source,bash]
 ----
-dfx canister call calc sub 5 --type number
+dfx canister call calc sub '(5)'
 ----
 +
 Verify that the command returns the value expected for the `+sub+` function.
 For example, the program displays output similar to the following:
 +
-[source,bash,subs="quotes"]
-----
-(*25*)
-----
-. Call the `+div+` function and pass it the input argument `+5+` but let the interface description language (IDL) parse the argument type by running the following command:
+....
+(25)
+....
+. Call the `+div+` function and pass it the input argument `+5+` by running the following command:
 +
 [source,bash]
 ----
@@ -207,10 +230,26 @@ dfx canister call calc div '(5)'
 Verify that the command returns the value expected for the `+div+` function.
 For example, the program displays output similar to the following:
 +
-[source,bash,subs="quotes"]
+....
+(opt 5)
+....
++
+You might notice that the `+div+` function returns an optional result.
+The program makes the result optional to enable the `+div+` function to return `+null+` in the case of a division-by-zero error.
++
+Because the cell variable in this program is an integer, you can also call its functions and specify negative input values.
+For example, you might run the following command:
++
+[source,bash]
 ----
-(*opt 5*)
+dfx canister call calc mul '(-4)'
 ----
++
+which returns:
++
+....
+(-20)
+....
 . Call the `+clearall+` function and verify it resets the `+cell+` value to zero:
 +
 [source,bash]
@@ -220,10 +259,9 @@ dfx canister call calc clearall
 +
 For example, the program displays output similar to the following:
 +
-[source,bash,subs="quotes"]
-----
-(*0*)
-----
+....
+(0)
+....
 
 include::example$candid-ui.adoc[]
 +
@@ -231,7 +269,13 @@ image:candid-calc.png[Calculator functions]
 
 == Stop the local network
 
-. Stop the {IC} processes running on your local computer by running the following command:
+After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+
+To stop the local network:
+
+. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+
+. Stop the {IC} network by running the following command:
 +
 [source,bash]
 ----

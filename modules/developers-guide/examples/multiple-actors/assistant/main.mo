@@ -31,8 +31,8 @@ func show(todos : [ToDo]) : Text {
 // Define the actor
 actor Assistant {
 
-	var todos : [ToDo] = [];
-	var nextId : Nat = 1;
+	stable var todos : [ToDo] = [];
+	stable var nextId : Nat = 1;
 
 	public func addTodo (description : Text) : async () {
 		todos := add(todos, description, nextId);

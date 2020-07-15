@@ -3,7 +3,7 @@
 
 // Create a simple Calc actor.
 actor Calc {
-  var cell : Int = 0;
+  flexible var cell : Int = 0;
 
   // Define functions to add, subtract, multiply, and divide
   public func add(n:Int) : async Int { cell += n; cell };

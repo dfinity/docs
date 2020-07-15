@@ -1,0 +1,34 @@
+{
+  "canisters": {
+    "hello_world": {
+      "main": "src/hello_world/main.mo",
+      "type": "motoko"
+    },
+    "hello_world_assets": {
+      "dependencies": [
+        "hello_world"
+      ],
+      "frontend": {
+        "entrypoint": "src/hello_world_assets/public/index.js",
+        "output": "canisters/hello_world_assets/assets"
+      },
+      "source": [
+        "src/hello_world_assets/assets"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/",
+      "packtool": ""
+    },
+    "start": {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "serve_root": "canisters/hello_world_assets/assets"
+    }
+  },
+  "dfx": "0.5.8",
+  "version": 1
+}

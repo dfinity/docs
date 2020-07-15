@@ -29,6 +29,10 @@ In the LinkedUp sample application, there are two canisters:
 * The `linkedup` canister creates and stores basic profile information for a user, including work experience and educational background.
 * The `connectd` canister creates and stores a user's connections.
 
+NOTE: The LinkedUp sample application is only compatible with specific versions of the {sdk-short-name}. 
+Before downloading the application, run the `+dfx --version+` command to verify the version of `+dfx+` you have currently installed.
+If necessary, use the `+DFX_VERSION+` environment variable set to 0.5.7 to install a compatible version. For more information about installing a specific version, see link:../../download{outfilesuffix}#install-version[Install a specific version from a terminal].
+
 == Download the demo
 
 To experiment with inter-canister calls using the LinkedUp sample application:
@@ -285,6 +289,7 @@ In this example, the public functions are defined in the `connectd` canister and
 +
 Therefore, the `src/linkedup/main.mo` includes the following code:
 +
+[source,motoko]
 ----
 // Make the Connectd app's public methods available locally
 import Connectd "canister:connectd";
@@ -296,6 +301,8 @@ In this example, the `linkedup` canister calls the `connect` and `getConnections
 You can see the code that enables interaction between the `linkedup` canister and the `connectd` canister in the `main.mo` source files.
 
 For example, the `src/connectd/main.mo` defines the following functions: 
++
+[source,motoko]
 ----
 actor Connectd {
   var graph: Digraph.Digraph = Digraph.Digraph();
@@ -315,6 +322,7 @@ actor Connectd {
 
 Because of the `Import` statement, the `connectd` functions are available to the `linkedup` canister and the `src/linkedup/main.mo` includes the following code:
 
+[source,motoko]
 ----
   // Connections
 
@@ -340,3 +348,17 @@ Because of the `Import` statement, the `connectd` functions are available to the
 };
 ----
 
+== Stop the local network
+
+After you finish experimenting with the `+linkedup+` program, you can stop the local {IC} network so that it doesn’t continue running in the background.
+
+To stop the local network:
+
+. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+
+. Stop the {IC} network by running the following command:
++
+[source,bash]
+----
+dfx stop
+----

@@ -1,0 +1,112 @@
+= Install, upgrade, or remove software
+:experimental:
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+As described in the link:../quickstart/quickstart{outfilesuffix}[Quick start], you can download and install the latest version of the {sdk-short-name} package by running a command in a terminal shell.
+The topics in this section provide additional information about installing, upgrading, and removing the {sdk-short-name}.
+
+include::ROOT:page$download.adoc[leveloffset=0,tag=install]
+
+== Reviewing the license agreement
+
+The installation script prompts you to read and accept the link:https://sdk.dfinity.org/sdk-license-agreement[DFINITY Canister SDK License Agreement] before installing the `+dfx+` command-line interface executable and its dependencies on your local computer.
+You must type `+y+` and press kbd:[Enter] to continue with the installation.
+
+After you accept the license agreement, the installation script displays information about the components being installed on the local computer.
+
+== What gets installed
+
+The {sdk-short-name} installation script installs several components in default locations on your local computer.
+The following table describes the development environment components that the installation script installs:
+
+[cols="20,55,25",options="header"]
+|===
+|Component
+|Description
+|Default location
+
+|dfx
+|{company-id} execution command-line interface (CLI)
+|`+/usr/local/bin/dfx+`
+
+|moc
+|{proglang} runtime compiler
+|`~/.cache/dfinity/versions/<VERSION>/moc`
+
+|replica
+|{IC} local network binary
+|`~/.cache/dfinity/versions/<VERSION>/replica`
+
+|uninstall.sh
+|Script to remove the {sdk-short-name} and all of its components
+|`~/.cache/dfinity`
+
+|versions
+|Cache directory that contains a subdirectory for each version of the {sdk-short-name} you install.  
+|`~/.cache/dfinity/versions`
+
+|===
+
+=== Core components in a versioned directory
+
+The `~/.cache/dfinity/versions` directory stores one or more versioned subdirectories of the {sdk-short-name}. 
+Each versioned subdirectory contains the all of the directories and files required for a specific version of the {sdk-short-name}.
+For example, if you list the contents of the `~/.cache/dfinity/versions/0.5.7` directory you would see the following core components:
+
+[source,bash]
+----
+total 220456
+drwxr-xr-x  25 pubs  staff       800 May 11 11:24 base
+-r-x------   1 pubs  staff  62102180 May 11 11:24 dfx
+-r-x------   1 pubs  staff   3516592 Dec 31  1969 didc
+drwxr-xr-x   8 pubs  staff       256 May 11 11:24 js-user-library
+-r-x------   1 pubs  staff   8258424 Dec 31  1969 mo-ide
+-r-x------   1 pubs  staff     70399 Dec 31  1969 mo-rts.wasm
+-r-x------   1 pubs  staff   7864712 Dec 31  1969 moc
+-r-x------   1 pubs  staff  31045112 Dec 31  1969 replica
+----
+
+=== {proglang} base directory
+
+The `base` directory in the versioned subdirectory of the {sdk-short-name} contains the {proglang} base library modules that are compatible with that version of the {sdk-short-name}. 
+Because the {proglang} base library is evolving rapidly, you should only use the base modules that are packaged with the version of the {sdk-short-name} that you have installed.
+
+=== JavaScript agent library
+
+The `js-user-library` directory in the versioned subdirectory of the {sdk-short-name} provides files to support writing front-end code that uses JavaScript to communicate with the {IC}.
+In most cases, you should only use the JavaScript agent library files that are packaged with the version of the {sdk-short-name} that you have installed.
+
+== Upgrading to the latest version
+
+If a new version of the {sdk-short-name} is available for download after your initial installation, you should install the updated version at your earliest convenience to get the latest fixes and enhancements as soon as possible.
+You can use the `+dfx upgrade+` command to compare the version you have currently installed against the latest version available for download. 
+If a newer version of `+dfx+` is available, the `+dfx upgrade+` command automatically downloads and installs the latest version. 
+
+Note that you don't need to uninstall the software before installing the new version.
+However, if you want to perform a clean installation rather than an upgrade, you can first uninstall the software as described in xref:remove[Removing the software], then re-run the download and installation command.
+
+For information about the features and fixes in the latest release, see the link:sdk-release-notes{outfilesuffix}[Release notes].
+
+[[remove]]
+== Removing the software
+
+When you install the {sdk-short-name}, the installation script puts the required binary files in a local directory and creates a cache.
+You can remove the SDK binaries and cache from your local computer by running the `+uninstall+` script located in the `.cache` folder.
+
+For example:
+[source,bash]
+----
+~/.cache/dfinity/uninstall.sh
+----
+
+If you are uninstalling because you want to immediately reinstall a clean version of `dfx`, you can run the following command:
+
+[source,bash]
+----
+~/.cache/dfinity/uninstall.sh && sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"
+----

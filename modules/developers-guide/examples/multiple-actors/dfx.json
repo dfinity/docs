@@ -1,0 +1,14 @@
+  "canisters": {
+    "assistant": {
+      "main": "src/assistant/main.mo",
+      "type": "motoko"
+    },
+    "rock_paper_scissors": {
+      "main": "src/rock_paper_scissors/main.mo",
+      "type": "motoko"
+    },
+    "daemon": {
+      "main": "src/daemon/main.mo",
+      "type": "motoko"
+    }
+  },

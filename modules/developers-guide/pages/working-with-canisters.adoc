@@ -1,1 +1,174 @@
+= Managing canisters
+March 2020 (Alpha)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:toc:
+:toc: right
+:toc-title: COMMAND REFERENCE
+:toclevels: 1
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:ext: .mo
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
+If you have experimented with using the {sdk-long-name} by following the tutorials in the link:tutorials-intro{outfilesuffix}[Tutorials] section or by cloning examples from the link:https://github.com/dfinity/examples[examples] repository, you are already familiar with how to build and deploy programs as **canisters**.
+This section provides additional information about the canister lifecycle and how to manage canisters.
+
+== Register a canister identifier
+
+Depending on your preferred development workflow, you can register a unique canister identifier before or after you have a program ready to compile.
+For example, if you want to reserve a unique identifier for your program on a sub-network before you have written any code, you can do so by running the `+dfx canister create+` command.
+This command essentially creates an empty canister placeholder into which you can later install your code.
+
+To register a unique identifier for a canister:
+
+. Open a new terminal window or tab on your local computer.
+. Create a new project for the canister you plan to create by running a command similar to the following:
++
+[source,bash]
+----
+dfx new YOUR-PROJECT-NAME
+----
++
+Note that the name you use for the project is also used as the canister name by default. 
+. Change to your new project directory.
+. Open the `+dfx.json+` configuration file and set the host and port for the {IC} network provider you want to use.
++
+If you are using the local host as the {IC} network provider, you can skip this step.
++
+You can also optionally change the names of your canisters or add canister settings to the configuration file if you want to create identifiers for any additional canisters you think you will need before compiling code.
+. Start the {IC} network, if necessary, by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
++
+In most cases, this step is only necessary if you are using the local host as the {IC} network provider and have stopped the network locally.
+. Register unique identifiers for the canisters defined in the `+dfx.json+` by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
++
+The command creates the `+canisters+` directory and adds the `+canister_manifest.json+` file to that directory for the project.
+
+== Build a canister
+
+After you have written source code for your project, you need to compile it into a WebAssembly module before deploying it to the network as  canister.
+
+For this step you can either generate a hard-coded temporary canister identifier to use while testing and debugging your program or connect to the {IC} network to create a unique canister identifier that can be used to deploy your program locally or on a sub-network.
+
+=== Generate a hard-coded local identifier
+
+If you are only compiling your project for local debugging, you can generate a locally-defined identifier for your project.
+
+To generate a locally-defined identifier:
+
+. Create a project with the configuration settings and program logic to suit your needs.
+. Start the {IC} network, if necessary.
++
+In most cases, this step is only necessary if you are using the local host as the {IC} network provider and have stopped the network locally.
+. Generate hard-coded local identifiers for the canisters defined in the `+dfx.json+` by running the following command:
++
+[source,bash]
+----
+dfx build --skip-manifest
+----
++
+The command creates the `+canisters+` directory but does not create the `+canister_manifest.json+` file for the project.
++
+Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the {IC} network.
+
+=== Register a unique network-wide identifier
+
+In the most common development workflow, you are assigned network-wide canister identifiers as part of the build process rather than before you have code ready to compile. 
+
+Because this scenario is the most common, it is also the simplest. 
+
+To register canister identifiers as part of the build process:
+
+. Start the {IC} network, if necessary.
++
+In most cases, this step is only necessary if you are using the local host as the {IC} network provider and have stopped the network locally.
+. Build the WebAssembly executable by running the following command:
++
+[source,bash]
+----
+dfx build
+----
+////
+== Generate interface bindings for a canister
+////
+
+== Deploy canisters on the {IC} network
+
+After you have compiled a program, you can install the compiled code on the {IC} network running locally in your development or on a remote network provider.
+
+The canister identifier that was created in advance or during the build process determines where your code is installed during deployment.
+
+To deploy on the {IC} network for the first time:
+
+. Check that you can connect to the {IC} network.
+. Verify you have a `+canister_manifest.json+` with identifiers for all of the canisters you want to deploy.
+. Deploy all of the canisters by running the following command:
++
+[source,bash]
+----
+dfx canister install --all
+----
+
+== Reinstall a canister
+
+During the development cycle, you might want to install, then replace your program as you debug and improve it.
+
+In this scenario, you might want to keep the canister identifier you have registered but without preserving any of the canister state.
+For example, your canister might only have test data that you don't want to keep or you might have decided to change the program altogether but want to reinstall under a canister identifier you used to install a previous program. 
+
+To reinstall on the {IC} network:
+
+. Check that you can connect to the {IC} network.
+. Verify you have a `+canister_manifest.json+` with identifiers for all of the canisters you want to re-deploy.
+. Re-deploy all of the canisters by running the following command:
++
+[source,bash]
+----
+dfx canister install --all --mode reinstall
+----
+
+== Upgrade a canister
+
+Unlike a canister replacement that preserves the canister identifier but no state, a canister upgrade enables you to preserve the state of a deployed canister, and change the code.
+ 
+For example, assume you have an application that manages professional profiles and social connections. 
+If you want to add a new feature to the application, you need to be able to update the canister code without losing any of the previously stored data.
+A canister upgrade enables you to update existing canister identifiers with program changes without losing the program state.
+
+To upgrade a canister on the {IC} network:
+
+. Check that you can connect to the {IC} network.
+. Verify you have a `+canister_manifest.json+` with identifiers for all of the canisters you want to upgrade.
++
+Note that your program must identify the variables for which to maintain state by using the `+stable+` keyword in the variable declaration.
++
+For more information about declaring stable variables, see the _{proglang} Programming Language Guide_.
+. Upgrade all of the canisters by running the following command:
++
+[source,bash]
+----
+dfx canister install --all --mode upgrade
+----
+
+////
+== Delete a canister
+<TBD - not in this release>
+
+== Fork a canister
+<TBD - not in this release>
+
+== Set the controller for a canister
+<TBD - not in this release>
+////

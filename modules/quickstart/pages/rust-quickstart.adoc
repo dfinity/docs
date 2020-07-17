@@ -136,7 +136,7 @@ For example:
 +
 The sample program for this tutorial doesn't use any front-end assets, so you can remove those settings from the configuration file.
 +
-For example, the configuration file looks like this after you remove the `+actor_hello_assets+` section:
+For example, the configuration file looks like this after you remove the `+rust_hello_assets+` section:
 +
 ....
 include::example$rust-dfx.json[]
@@ -160,6 +160,7 @@ members = [
     "src/rust_hello",
 ]
 ----
+. Save your changes and close the file to continue.
 . Change to the source code directory for your program.
 +
 For example:
@@ -170,16 +171,22 @@ cd  src/rust_hello
 . Create a second file named `+Cargo.toml+` and open it in a text editor.
 . Configure settings for your project.
 +
-At a minimum, you need to configure `+[package]+`, `+[lib]+`, and `+[dependencies]+` settings with basic information about the package name, location of the main program to compile, and the location of the {cdk-short-name} libraries.
+At a minimum, you need to configure the following sections with basic information about the package name, location of the main program to compile, and the location of the {cdk-short-name} libraries
 +
-For example, you should have a Cargo.toml file with settings similar to the following for this tutorial:
+--
+* `+[package]+`
+* `+[lib]+`
+* `+[dependencies]+` settings
+--
++
+For example, you should have a `+Cargo.toml+` file with settings similar to the following for this tutorial:
 +
 [source,toml]
 ----
 [package]
 name = "rust_hello"
 version = "0.1.0"
-authors = ["You Name <your-email@example.com>"]
+authors = ["Your Name <your-email@example.com>"]
 edition = "2018"
 
 [lib]
@@ -193,6 +200,7 @@ candid = "0.2.4"
 candid_derive = "0.2.1"
 serde = "1.0.111"
 ----
+. Save your changes and close the file to continue.
 
 == Replace the default program
 
@@ -224,11 +232,33 @@ fn print() {
 
 == Add an interface description file
 
+Candid is an interface description language (IDL) for interacting with canisters running on the Internet Computer.
+Candid files provide a language-independent description of  a canister's interfaces including the names, parameters, and result formats and data types for each function a canister defines.
+
+By adding Candid files to your project, you can ensure that data is properly converted from its definition in Rust to run safely on the {IC}.
+
+To see details about the Candid interface description language syntax, see the link:../candid-spec/IDL{outfilesuffix}[Candid Specification] or the https://docs.rs/candid/[Candid crate documentation].
+
+To add a Candid file for this tutorial:
+
+. Check that you are still in the source code directory, if needed.
+. Create a new file named `+rust_hello.did+`.
+. Open the file in a text editor, then copy and paste the following `+service+` definition for the `+print+` function:
++
+[source,did]
+----
+service : {
+    "print": () -> () query;
+}
+----
++
+This definition specifies that the data passed to the `+print+` function is returned unchanged as a `+query+` result.
+. Save your changes and close the file to continue.
 
 [[start-the-local-network]]
 == Start the local network
 
-Before you can build your first project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build your project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
 
 As a best practice, this step requires you to have **two terminal shells** open, so that you can start and see network operations in one terminal and manage your project in another.
 
@@ -273,6 +303,12 @@ To register canister identifiers for the local network:
 ----
 dfx canister create --all
 ----
++
+The command returns output similar to the following:
++
+....
+"rust_hello" canister created with canister id: "ic:0100000000000000000000000000000000012D"
+....
 
 [[build-the-project]]
 == Build the program
@@ -282,14 +318,6 @@ Your new `+hello+` project includes a simple default program in the `+src/hello+
 To build the program executable:
 
 . Check that you are still in your project directory, if needed.
-. Ensure that `+node+` modules are available in your project directory, if needed, by running the following command:
-+
-[source,bash]
-----
-npm install
-----
-+
-For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
 . Build the executable from the default main program file by running the following command:
 +
 [source,bash]
@@ -298,12 +326,7 @@ dfx build
 ----
 . Verify the command displays output indicating that the build is successful.
 +
-You should see output similar to the following:
-+
-....
-Building canisters...
-Building frontend...
-....
+You should see output similar indicating the packages compiled.
 
 [[deploy]]
 == Deploy your program locally
@@ -324,48 +347,27 @@ dfx canister install --all
 You should see an installation confirmation message for your canister similar to the following:
 +
 ....
-Installing code for canister hello, with canister_id ic:03000000000000000000000000000000000179
-Installing code for canister hello_assets, with canister_id ic:040000000000000000000000000000000001AF
+Installing code for canister rust_hello, with canister_id ic:0100000000000000000000000000000000012D
 ....
-. Call the predefined `+greet+` function in the program by running the following command:
+. Call the `+print+` function in the program by running the following command:
 +
 [source,bash]
 ----
-dfx canister call hello greet everyone
+dfx canister call rust_hello print
 ----
-+
-This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
 . Verify the command displays the return value of the `+greet+` function.
 +
 For example:
 +
 ....
-("Hello, everyone!")
+debug.print: Hello World from DFINITY!
 ....
-
-[[quickstart-frontend]]
-== Test the application front-end
-
-Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end pop-up window using your web browser.
-
-. Open a browser.
-. Navigate to the default address and port number `+127.0.0.1:8000+`, then append `+/?canisterId=+` and the identifier for the `+hello_assets+` canister to the URL:
 +
-For example, the full URL should look similar to the following:
-+
-....
-http://127.0.0.1:8000/?canisterId=ic:02000000000000000000000000000000000153
-....
-. Type a greeting, then click *OK* to return the greeting.
-+
-For example:
-+
-image:quickstart-greeting.png[Hello, everyone! greeting]
-. Click *OK* to close the pop-up alert window.
+Note that because you are running the Internet Computer network in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays network activity.
 
 == Stop the local network
 
-After testing the application in the browser, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After testing the application, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
 
 To stop the local network:
 
@@ -377,10 +379,3 @@ To stop the local network:
 ----
 dfx stop
 ----
-
-[[next-steps]]
-== Next steps
-
-This _Quick start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
-There are more detailed examples and tutorials for you to explore in the link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] section of the _SDK Developer Tools_ and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
-

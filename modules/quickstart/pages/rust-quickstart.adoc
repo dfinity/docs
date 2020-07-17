@@ -164,6 +164,7 @@ members = [
 . Change to the source code directory for your program.
 +
 For example:
++
 [source,bash]
 ----
 cd  src/rust_hello
@@ -176,7 +177,7 @@ At a minimum, you need to configure the following sections with basic informatio
 --
 * `+[package]+`
 * `+[lib]+`
-* `+[dependencies]+` settings
+* `+[dependencies]+`
 --
 +
 For example, you should have a `+Cargo.toml+` file with settings similar to the following for this tutorial:

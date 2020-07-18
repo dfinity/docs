@@ -3,7 +3,7 @@
 
 Most of the examples in this guide use {proglang}—the programming language specifically designed to work with the {IC}. 
 Potentially, however, you can write programs in any language that compiles to WebAssembly to deploy applications that run on the {IC}.
-This section provides some high-level guidance for writing programs in different languages for deployment on the {IC}.
+This section provides some high-level guidance for writing programs in different languages and how to deploy them on the {IC}.
 
 == Using Rust
 
@@ -65,7 +65,7 @@ To compile to WebAssembly on macOS:
 clang --target=wasm32 -c -O3 reverse.c
 ----
 . Run the linker to create the WebAssembly module by running the following `+wasm-ld+` command:
-
++
 [source,bash]
 ----
 wasm-ld --no-entry --export-dynamic --allow-undefined reverse.o -o reverse.wasm
@@ -77,7 +77,7 @@ Next, you need to prepare a simple configuration file that identifies the `+reve
 
 To prepare a configuration file and build directory:
 
-. Create a dfx.json file with a canisters key by running the following command:
+. Create a `+dfx.json+` file with a canisters key by running the following command:
 +
 [source,bash]
 ----
@@ -109,6 +109,7 @@ In a standard development workflow, running the `+dfx build+` command creates se
 For details about the syntax to use for different data types, see the link:../candid-spec/IDL{outfilesuffix}[Candid specification].
 
 To create a Candid interface description file for this program:
+
 . Open a terminal in the `+build+` directory you created for the `+reverse.c+` program source
 . Create a new text file named `+reverse.did+`.
 . Add a description of the `+go+` function.

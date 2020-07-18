@@ -7,6 +7,48 @@ This section provides some high-level guidance for writing programs in different
 
 == Using Rust
 
+At a high-level, you can create Rust projects to run on the {IC} using Cargo.
+The Rust CDK provides some shortcuts to make it easier to write functions as query and update calls, but you can develop applications for the {IC} without using the Rust CDK.
+
+=== Create a project
+
+=== Compile the program into WebAssembly
+
+=== Create a minimal configuration file
+
+=== Create a minimal interface description file
+
+=== Connect to a network and deploy
+
+Before you can deploy and test your program, you need to do the following:
+
+* Connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+* Register a network-specific identifier for the application.
+
+To deploy and test the application locally:
+
+. Open a new terminal window or tab on your local computer.
++
+For example, if running Terminal on macOS,click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
+. Start the {IC} network on your local computer in your second terminal by running the following command:
++
+[source,bash]
+----
+dfx start
+----
+. Register a unique canister identifier for the application by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
+. Deploy the default program on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install --all
+----
+. Test functions in the program from the command-line of in a browser.
 
 == Using C
 
@@ -15,7 +57,7 @@ Because the {IC} supports applications compiled to standard WebAssembly modules,
 To illustrate how to migrate programs written in C to run on the {IC}, let’s look at the simple `+reverse.c+` program in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository. 
 The `+reverse.c+` program contains one function—named `+go+`—that reverses a string in place.
 
-== Set up the development environment
+=== Set up the development environment
 
 To compile the `+reverse.c+` program into WebAssembly, you need to have the `+clang+` compiler and standard libraries installed. 
 You can check whether you have `+clang+` installed on your local computer by running the following command:
@@ -51,7 +93,7 @@ For example, if `+clang+` is not installed, run the following command:
 brew install llvm
 ----
 
-== Compile the program into WebAssembly
+=== Compile the program into WebAssembly
 
 You can compile a C program to run as a WebAssembly module by first compiling using `+clang+`, then linking using `+wasm-ld+`. 
 Depending on the operating system and version of `+clang+` you are using, you might use a different version of the WebAssembly linker, such as `+wasm-ld+` on macOS or `+wasm-ld-8+` on Debian. 
@@ -71,7 +113,7 @@ clang --target=wasm32 -c -O3 reverse.c
 wasm-ld --no-entry --export-dynamic --allow-undefined reverse.o -o reverse.wasm
 ----
 
-== Create a minimal configuration file
+=== Create a minimal configuration file
 
 Next, you need to prepare a simple configuration file that identifies the `+reverse+` program binary as a package that can be installed on the {IC} and a `+build+` directory so that you can use the `+dfx+` command-line interface to install and run the package as a canister.
 
@@ -102,7 +144,7 @@ mkdir build/reverse
 cp reverse.wasm build/reverse/
 ----
 
-== Create a minimal interface description file
+=== Create a minimal interface description file
 
 In a standard development workflow, running the `+dfx build+` command creates several files in the `+canisters+` output directory, including one or more Candid interface description (`+.did+`) files that handle type matching for the data types associated with a program’s functions.
 
@@ -124,7 +166,7 @@ service : {
 ----
 . Save your changes and close the file to continue.
 
-== Deploy and test the program
+=== Deploy and test the program
 
 Before you can deploy and test your program, you need to do the following:
 

@@ -18,6 +18,7 @@
 //** xref:basic-syntax-rules.adoc[Learning the basics of Motoko]
 ** xref:lang-service-ide.adoc[Language server and development client support]
 ** xref:cli-reference.adoc[Command-line reference]
+** xref:work-with-languages.adoc[Working with different languages]
 ** xref:glossary.adoc[Glossary]
 ** xref:troubleshooting.adoc[Troubleshooting and tips]
 ** xref:sample-apps.adoc[Sample code, applications, and microservices]

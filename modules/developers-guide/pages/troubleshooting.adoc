@@ -32,6 +32,28 @@ In many cases, however, you can continue to work with projects from a previous r
 
 For example, if you have a project that was created with `+dfx+` version `+0.4.9+`, open the `+dfx.json+` file in a text editor and change the `+dfx+` setting to the latest version or remove the section entirely.
 
+== Restarting the local {IC} network
+
+In some cases, starting the {IC} network locally fails because of replicated state errors. 
+If you encounter issues when running `+dfx start+` to start the local {IC} network:
+
+. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+
+. Stop the {IC} network by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
+. Restart the {IC} in a clean state by running the following command:
++
+[source,bash]
+----
+dfx start --clean
+----
++
+The `+--clean+` option removes checkpoints and stale state information from your project's cache so that you can starts the {IC} replica and web server processes in a clean state.
+
 == Reinstalling dfx
 
 Many of the bugs you might encounter can be addressed by uninstalling and reinstalling the `+dfx+` command-line interface.

@@ -1246,7 +1246,7 @@ You can use the `+dfx ping+` command to check whether the {IC} is currently avai
 dfx ping https://testgw.dfinity.network
 ----
 
-If the {IC} is running on the specified provider address, the command returns output similar to the following:
+If the {IC} is running on the specified network provider address, the command returns output similar to the following:
 
 ....
 {

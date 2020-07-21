@@ -1,0 +1,207 @@
+= Working with different languages
+:cpp: C++
+
+Most of the examples in this guide use {proglang}—the programming language specifically designed to work with the {IC}. 
+Potentially, however, you can write programs in any language that compiles to WebAssembly to deploy applications that run on the {IC}.
+This section provides some high-level guidance for writing programs in different languages and how to deploy them on the {IC}.
+
+== Using Rust
+
+At a high-level, you can create Rust projects to run on the {IC} using Cargo.
+The Rust CDK provides some shortcuts to make it easier to write functions as query and update calls, but you can develop applications for the {IC} without using the Rust CDK.
+
+=== Create a project
+
+=== Compile the program into WebAssembly
+
+=== Create a minimal configuration file
+
+=== Create a minimal interface description file
+
+=== Connect to a network and deploy
+
+Before you can deploy and test your program, you need to do the following:
+
+* Connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+* Register a network-specific identifier for the application.
+
+To deploy and test the application locally:
+
+. Open a new terminal window or tab on your local computer.
++
+For example, if running Terminal on macOS,click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
+. Start the {IC} network on your local computer in your second terminal by running the following command:
++
+[source,bash]
+----
+dfx start
+----
+. Register a unique canister identifier for the application by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
+. Deploy the default program on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install --all
+----
+. Test functions in the program from the command-line of in a browser.
+
+== Using C
+
+Because the {IC} supports applications compiled to standard WebAssembly modules, you can use standard compilers and toolchains to build applications in languages such as  C, {cpp}, Objective-C, and Objective-{cpp} programming languages and the `+Clang+` compiler.
+
+To illustrate how to migrate programs written in C to run on the {IC}, let’s look at the simple `+reverse.c+` program in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository. 
+The `+reverse.c+` program contains one function—named `+go+`—that reverses a string in place.
+
+=== Set up the development environment
+
+To compile the `+reverse.c+` program into WebAssembly, you need to have the `+clang+` compiler and standard libraries installed. 
+You can check whether you have `+clang+` installed on your local computer by running the following command:
+
+[source,bash]
+----
+clang --version
+----
+
+If `+clang+` is installed, the command displays information similar to the following:
+
+....
+clang version 10.0.0 
+Target: x86_64-apple-darwin19.5.0
+Thread model: posix
+InstalledDir: /usr/local/opt/llvm/bin
+....
+
+If the command doesn’t return version information, install `+clang+` before continuing. 
+The steps to install `+clang+` vary depending on the operating system you are using.
+On Debian Linux, for example, run the following command:
+
+[source,bash]
+----
+sudo apt-get install clang lld gcc-multilib
+----
+
+On macOS, you can install `+clang+` by installing the Developer Command-Line Tools or by installing LLVM using Homebrew. 
+For example, if `+clang+` is not installed, run the following command:
+
+[source,bash]
+----
+brew install llvm
+----
+
+=== Compile the program into WebAssembly
+
+You can compile a C program to run as a WebAssembly module by first compiling using `+clang+`, then linking using `+wasm-ld+`. 
+Depending on the operating system and version of `+clang+` you are using, you might use a different version of the WebAssembly linker, such as `+wasm-ld+` on macOS or `+wasm-ld-8+` on Debian. 
+ 
+To compile to WebAssembly on macOS:
+ 
+. Compile the program by running the following clang command:
++
+[source,bash]
+----
+clang --target=wasm32 -c -O3 reverse.c
+----
+. Run the linker to create the WebAssembly module by running the following `+wasm-ld+` command:
++
+[source,bash]
+----
+wasm-ld --no-entry --export-dynamic --allow-undefined reverse.o -o reverse.wasm
+----
+
+=== Create a minimal configuration file
+
+Next, you need to prepare a simple configuration file that identifies the `+reverse+` program binary as a package that can be installed on the {IC} and a `+build+` directory so that you can use the `+dfx+` command-line interface to install and run the package as a canister.
+
+To prepare a configuration file and build directory:
+
+. Create a `+dfx.json+` file with a canisters key by running the following command:
++
+[source,bash]
+----
+echo '{"canisters":{"reverse":{"main":"reverse"}}}' > dfx.json
+----
+. Create a `+build+` directory for the program by running the following command:
++
+[source,bash]
+----
+mkdir build
+----
+. Create a `+reverse+` directory for the program by running the following command:
++
+[source,bash]
+----
+mkdir build/reverse
+----
+. Copy the WebAssembly modules to the new `+build/reverse+` directory by running the following command:
++
+[source,bash]
+----
+cp reverse.wasm build/reverse/
+----
+
+=== Create a minimal interface description file
+
+In a standard development workflow, running the `+dfx build+` command creates several files in the `+canisters+` output directory, including one or more Candid interface description (`+.did+`) files that handle type matching for the data types associated with a program’s functions.
+
+For details about the syntax to use for different data types, see the link:../candid-spec/IDL{outfilesuffix}[Candid specification].
+
+To create a Candid interface description file for this program:
+
+. Open a terminal in the `+build+` directory you created for the `+reverse.c+` program source
+. Create a new text file named `+reverse.did+`.
+. Add a description of the `+go+` function.
++
+For example:
++
+[source.bash]
+----
+service : {
+  "go": (text) -> (text);
+}
+----
+. Save your changes and close the file to continue.
+
+=== Deploy and test the program
+
+Before you can deploy and test your program, you need to do the following:
+
+* Connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+* Register a network-specific identifier for the application.
+
+To deploy and test the application locally:
+
+. Open a new terminal window or tab on your local computer.
++
+For example, if running Terminal on macOS,click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
+. Start the {IC} network on your local computer in your second terminal by running the following command:
++
+[source,bash]
+----
+dfx start
+----
+. Register a unique canister identifier for the `+reverse+` application by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
+. Deploy the default program on the local network by running the following command:
++
+[source,bash]
+----
+dfx canister install --all
+----
+. Call the `+go+` function in the program by running the following command:
++
+[source,bash]
+----
+dfx canister call reverse go repaid
+("diaper")
+----
+
+You can find additional examples of C programs in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository.

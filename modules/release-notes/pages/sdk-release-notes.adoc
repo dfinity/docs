@@ -64,7 +64,7 @@ The {release} release includes the following changes that might require updates 
 
 - The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format. 
 - You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
-- `string` and `number` are no longer supported as arguments to the `--type` flag for `dfx canister call` commands.
+- `dfx canister call` will consult the candid file for method types. There is no need to use `--type string/number` anymore. The arguments are therefore deprecated.
 - Methods starting with `__` will break, as those are not implemented anymore.
 - When creating an actor, you need to pass in the canister ID.
 

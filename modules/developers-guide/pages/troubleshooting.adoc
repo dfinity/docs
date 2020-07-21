@@ -65,6 +65,17 @@ dfx build
 dfx canister install --all
 ----
 
+== Removing the canisters directory
+
+If you run into problems building or deploying canisters after successfully conecting to the {IC} and registering canister identifiers, you should remove the `+canisters+` directory before attempting to rebuild or redeploy the canisters. 
+
+You can remove the canisters directory for a project by running the following command in the project's root directory:
+
+[source,bash]
+----
+rm -rf ./.dfx/* canisters/*
+----
+
 == Reinstalling dfx
 
 Many of the bugs you might encounter can be addressed by uninstalling and reinstalling the `+dfx+` command-line interface.

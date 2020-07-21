@@ -52,7 +52,18 @@ dfx stop
 dfx start --clean
 ----
 +
-The `+--clean+` option removes checkpoints and stale state information from your project's cache so that you can starts the {IC} replica and web server processes in a clean state.
+The `+--clean+` option removes checkpoints and stale state information from your project's cache so that you can restart the {IC} replica and web server processes in a clean state.
+
+Keep in mind, however, that if you reset the state information by running `+dfx start --clean+`, your existing canisters are also removed. 
+
+After running +dfx start --clean+`, recreate your canisters by running the following commands:
+
+[source,bash]
+----
+dfx canister create --all
+dfx build
+dfx canister install --all
+----
 
 == Reinstalling dfx
 

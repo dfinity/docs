@@ -11,7 +11,7 @@ To use the Candid web interface to test canister functions:
 . Deploy your project using the `+dfx canister install+` command and copy the canister identifier that begins with the `+ic:+` prefix.
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
 +
-By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`.
+By default, the URL uses the `+localhost+` address (`+127.0.0.1+`) and port number `+8000+`.
 . Add the `+candid+` endpoint to access the Candid web interface followed by the required `canisterId` parameter and canister identifier.
 +
 For example, the full URL should look similar to the following but with the `+ic:canister_identifier+` that was returned by the `+dfx canister install+` command:

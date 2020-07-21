@@ -254,10 +254,26 @@ The command displays the network-specific canister identifiers for the canisters
 "explore_hello" canister created with canister id: "ic:02000000000000000000000000000000000153"
 "explore_hello_assets" canister created with canister id: "ic:03000000000000000000000000000000000179"
 ....
++
+Because you are connected to the {IC} network running locally, these canister identifiers are only valid locally and are stored for the project in the `+.dfx/local/canister_ids.json+` file.
++
+For example:
++
+....
+{
+  "explore_hello": {
+    "local": "ic:0100000000000000000000000000000000012D"
+  },
+  "explore_hello_assets": {
+    "local": "ic:02000000000000000000000000000000000153"
+  }
+}
+....
+
 
 == Build the program
 
-Now that you have explored the default configuration settings and program code and started the {IC} network, let's compile the default program into an executable WebAssembly module.
+Now that you have explored the default configuration settings and program code and have started the {IC} network, let's compile the default program into an executable WebAssembly module.
 
 To build the program executable:
 
@@ -279,49 +295,43 @@ Building canisters...
 Building frontend...
 ....
 +
-If your computer can connect to the {IC} network, running the `+dfx canister build+` command creates several artifacts in your project's `+canisters+` directory, including directories that contain the WebAssembly modules for your main program and project assets and a `+canister_manifest.json+` file with configuration information.
+If your computer can connect to the {IC} network, running the `+dfx canister build+` command creates several artifacts in your project's `+canisters+` directory, including directories that contain the WebAssembly modules for your main program and project assets.
 +
+Because you are connected to the {IC} network running locally, the `+dfx build+` command adds the `+canisters+` directory under the `+.dfx/local/+` directory for the project.
 For example:
 +
-....
-replace with canister identifiers file example
-....
-. Verify that the `+canisters/explore_hello+` directory created by the `+build+` command contains the WebAssembly and related application files by running the following command.
+. Verify that the `+canisters/explore_hello+` directory created by the `+dfx build+` command contains the WebAssembly and related application files by running the following command.
 +
 [source,bash]
 ----
-ls -l canisters/explore_hello/
+ls -l .dfx/local/canisters/explore_hello/
 ----
 +
 For example, the command returns output similar to the following:
 +
 ....
-total 456
--rw-rw-rw-  1 pubs  staff     43 Jun 12 17:05 explore_hello.did
--rw-r--r--  1 pubs  staff    103 Jun 12 17:05 explore_hello.did.js
--rw-r--r--  1 pubs  staff    175 Jun 12 17:05 explore_hello.js
--rw-rw-rw-  1 pubs  staff  85525 Jun 12 17:05 explore_hello.wasm
--rw-r--r--  1 pubs  staff     43 Jun 12 17:05 main.did
--rw-r--r--  1 pubs  staff  85525 Jun 12 17:05 main.wasm
+-rw-r--r--  1 pubs  staff     43 Jul 21 12:18 explore_hello.did
+-rw-r--r--  1 pubs  staff    103 Jul 21 12:18 explore_hello.did.js
+-rw-r--r--  1 pubs  staff    174 Jul 21 12:18 explore_hello.js
+-rw-r--r--  1 pubs  staff  95905 Jul 21 12:18 explore_hello.wasm
 ....
 +
 The `canisters/explore_hello` directory contains the following key files:
 +
 --
-* The `+explore_hello.did+` file contains an interface description for your program.
+* The `+explore_hello.did+` file contains an interface description for your main program.
 
-* The `+explore_hello.did.js+` file contains a JavaScript representation of the canister interface for the assets in your program. 
+* The `+explore_hello.did.js+` file contains a JavaScript representation of the canister interface for the functions in your program. 
 
 * The `+explore_hello.js+` file contains a JavaScript representation of the canister interface for your program. 
 
 * The `+explore_hello.wasm+` file contains the compiled WebAssembly for the assets used in your project.
 
-* The `+main.did+` file contains an interface description for your main program.
-
-* The `+main.wasm+` file contains the compiled WebAssembly for your main program.
 --
 +
-In addition to the files in the `canisters/explore_hello` directory, the `+dfx build+` command creates an `+idl_+` directory.
+The `+canisters/explore_hello_assets+` directory contains similar files to describe the front-end assets associated with your project.
++
+In addition to the files in the `+canisters/explore_hello+` and the `+canisters/explore_hello_assets+` directories, the `+dfx build+` command creates an `+idl+` directory.
 
 == Deploy the project locally
 
@@ -386,30 +396,30 @@ The template `+index.js+` file uses the Document Object Model (DOM) to describe 
 +
 This sample file imports the canister you created and calls the `+greet+` function in a prompt window.
 . Close the `+index.js+` file to continue.
-. View the static assets created in the `canisters` directory by running following command:
+. View the static assets created in the `+canisters+` directory by running following command:
 +
 [source,bash]
 ----
-ls -l canisters/explore_hello_assets/
+ls -l .dfx/local/canisters/explore_hello_assets/
 ----
 +
 The command displays output similar to the following:
 +
 ....
-total 496
-drwxr-xr-x  5 pubs  staff     160 Jul 10 15:01 assets
+total 576
+drwxr-xr-x  5 pubs  staff     160 Jul 21 12:18 assets
 -r--r--r--  1 pubs  staff     131 Dec 31  1969 assetstorage.did
--r--r--r--  1 pubs  staff  116653 Dec 31  1969 assetstorage.wasm
+-r--r--r--  1 pubs  staff  135497 Dec 31  1969 assetstorage.wasm
 -rw-rw-rw-  1 pubs  staff     131 Dec 31  1969 explore_hello_assets.did
--rw-r--r--  1 pubs  staff     215 Jul 10 15:01 explore_hello_assets.did.js
--rw-r--r--  1 pubs  staff     181 Jul 10 15:01 explore_hello_assets.js
--rw-rw-rw-  1 pubs  staff  116653 Dec 31  1969 explore_hello_assets.wasm
+-rw-r--r--  1 pubs  staff     215 Jul 21 12:18 explore_hello_assets.did.js
+-rw-r--r--  1 pubs  staff     181 Jul 21 12:18 explore_hello_assets.js
+-rw-rw-rw-  1 pubs  staff  135497 Dec 31  1969 explore_hello_assets.wasm
 ....
 +
 These files were generated automatically by the `+dfx build+` command using node modules and the template `+index.js+` file.
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
 +
-By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the explore_hello program using `+127.0.0.1:8000+` for the URL.
+By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the explore_hello program using `+127.0.0.1:8000/+` for the URL.
 +
 In addition to the host and port, the URL you specify needs to include `+canisterId+` parameter to identify the canister that you want the web server to display. 
 To specify the canister, append the identifier for the `+explore_hello_assets+` canister using the following syntax:

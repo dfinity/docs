@@ -26,7 +26,7 @@ By developing programs that run on the {platform}, you can deploy secure, tamper
 If you want to learn more about the {platform} and how it can transform distributed computing and the application landscape, check out link:https://dfinity.org/faq[Frequently Asked Questions] or the videos posted on the https://www.youtube.com/channel/UCOyguKlTxoDK3HRzmGbLyAg[DFINITY Official Youtube Channel].
 ////
 
-To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in a pop-up alert window if you access the application in a browser.
+To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
 
 [[before-you-begin]]
 == Before you begin
@@ -82,7 +82,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.5.11
+dfx 0.6.0
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -251,12 +251,17 @@ For example, the full URL should look similar to the following:
 ....
 http://127.0.0.1:8000/?canisterId=ic:02000000000000000000000000000000000153
 ....
+Navigating to this URL displays the prompt pop-up window.
+For example:
++
+image:quickstart-prompt.png[Prompt pop-up window]
+
 . Type a greeting, then click *OK* to return the greeting.
 +
 For example:
 +
-image:quickstart-greeting.png[Hello, everyone! greeting]
-. Click *OK* to close the pop-up alert window.
+image:quickstart-return.png[Hello, everyone! greeting]
+. Click *OK* to close the alert pop-up window.
 
 == Stop the local network
 

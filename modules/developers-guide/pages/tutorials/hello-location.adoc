@@ -191,7 +191,7 @@ The command displays output similar to the following:
 ("Hello, San Francisco and Paris!")
 ....
 + 
-Because your program only accepts a single string argument, specifying multiple strings returns a `+mismatch+` error.
+Because your program only accepts a single string argument, specifying multiple strings returns only the first argument or a `+mismatch+` error.
 +
 For example, if you try this command:
 +
@@ -200,7 +200,7 @@ For example, if you try this command:
 dfx canister call location_hello location '("San Francisco","Paris","Rome")'
 ----
 +
-You'll see an error similar to the following:
+Only the first argument—`+("Hello, San Francisco!")+`—is returned or you'll see an error similar to the following:
 +
 ....
 Invalid data: Unable to serialize Candid values: length mismatch for types and values

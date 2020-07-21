@@ -123,7 +123,7 @@ You can use this local identifier while you are testing your program or any time
 
 To build the program executable:
 
-. Open a new terminal and navigate to your project directory.
+. Navigate back to the root of your project directory.
 . Build the program with a locally-defined identifier by running the following command:
 +
 [source,bash]
@@ -139,7 +139,7 @@ Skipping the build manifest. Canister IDs might be hard coded.
 Building canisters...
 ....
 +
-If the program compiles successfully, you can inspect the output in the default `+canisters+` directory.
+If the program compiles successfully, you can inspect the output in the default `+.dfx/local/canisters+` directory.
 
 == Deploy the project
 
@@ -180,12 +180,16 @@ You should see output similar to the following:
 "actor_hello" canister created with canister id: "ic:0100000000000000000000000000000000012D"
 ....
 +
-The `+dfx canister create+` command also stores the network-specific canister identifier in a file in the `+canisters+` directory.
+The `+dfx canister create+` command also stores the network-specific canister identifier in a file in the `+.dfx/local+` directory.
 +
 For example:
 +
 ....
-insert canister id file content
+{
+  "actor_hello": {
+    "local": "ic:0100000000000000000000000000000000012D"
+  }
+}
 ....
 . Deploy your `+actor_hello+` project on the local network by running the following command:
 +

@@ -24,12 +24,12 @@ class Contact extends React.Component {
   async lookup() {
     let name = document.getElementById("lookupName").value;
     contact.lookup(name).then(opt_entry => {
-      let [entry] = opt_entry;
+      let entry;
 
-      if (entry.length == 0) {
+      if (opt_entry.length == 0) {
         entry = { name: "", description: "", phone: ""};
       } else {
-        entry = entry[0]
+        entry = opt_entry[0]
       }      
 
       document.getElementById("newEntryName").value = entry.name;

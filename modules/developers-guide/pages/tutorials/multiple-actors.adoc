@@ -7,7 +7,6 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
@@ -22,7 +21,7 @@ This project defines the following unrelated actors:
 
 * The `+assistant+` actor provides functions to add and show tasks in a to-do list.
 +
-For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is available in the link:https://github.com/dfinity/examples/[examples] repository as link:https://github.com/dfinity/examples/tree/master/motoko/simple_to_do[Simple to-do checklists].
+For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is available in the link:https://github.com/dfinity/examples/[examples] repository as link:https://github.com/dfinity/examples/tree/master/motoko/simple_to_do[Simple to-do checklist].
 
 * The `+rock_paper_scissors+` actor provides a function for determining a winner in a hard-coded rock-paper-scissors contest.
 +
@@ -83,7 +82,7 @@ For example, under the `canisters` key:
 +
 Because you are going to add settings to this `+canisters+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file and the canister type.
 . Remove the `+multiple_actors_assets+` section from the file.
-. Add a new canister name and source code location for the `+rock_paper_scissors+` program and a new canister name and source code location for the `+daemon+` program files below the `+assistant+` source file location.
+. Add a new canister name, source code location, and canister type for the `+rock_paper_scissors+` program and a new canister name, source code location, and canister type for the `+daemon+` program files below the `+assistant+` canister definition.
 +
 After making the changes, the `+canisters+` section of the `+dfx.json+` file should look similar to this:
 +
@@ -150,14 +149,15 @@ To start the network locally:
 [arabic]
 . Open a new terminal window or tab on your local computer and navigate to your project directory.
 +
-For example, click *Shell*, select *New Window*, then run the following command in the new terminal:
+For example, you can do either of the following if running Terminal on macOS:
 +
-[source,bash]
-----
-cd ~/ic-projects/multiple_actors
-----
+--
+* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
+
+* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/multiple_actors+` in the new terminal if your project is in the `+ic-projects+` working folder.
+--
 +
-You should now have two terminal windows open with your project directory as your current working directory.
+You should now have two terminals open with your project directory as your current working directory.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
@@ -168,9 +168,31 @@ dfx start
 After you start the local network, this terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
+== Register canister identifiers
+
+After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
+
+To register canister identifiers for the local network:
+
+. Check that you are still in your project directory, if needed.
+. Register unique canister identifiers for all of the canisters in the project by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
++
+The command displays the network-specific canister identifiers for the three canisters defined in the `+dfx.json+` configuration file.
++
+....
+"assistant" canister created with canister id: "ic:040000000000000000000000000000000001AF"
+"daemon" canister created with canister id: "ic:05000000000000000000000000000000000185"
+"rock_paper_scissors" canister created with canister id: "ic:060000000000000000000000000000000001FB"
+....
+
 == Build and deploy multiple canisters
 
-You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local {IC} network.
+Now that you have registered with the network, you are ready to compile your program into an executable WebAssembly module that you can then deploy on your local {IC} network.
 
 To build and deploy the programs for each actor in the project:
 
@@ -179,15 +201,14 @@ To build and deploy the programs for each actor in the project:
 +
 [source,bash]
 ----
-dfx build --skip-frontend
+dfx build
 ----
 +
 If the command is successful, it builds all of the canisters you have specified in the `+dfx.json+` file.
 +
-[source,bash]
-----
+....
 Building canisters...
-----
+....
 . Deploy your canisters on the local network by running the following command:
 +
 [source,bash]
@@ -197,12 +218,11 @@ dfx canister install --all
 +
 The command displays output similar to the following:
 +
-[source,bash]
-----
-Installing code for canister assistant, with canister_id ic:0E0000000000000000000000000000000001AC
-Installing code for canister daemon, with canister_id ic:0B00000000000000000000000000000000012E
-Installing code for canister rock_paper_scissors, with canister_id ic:0D0000000000000000000000000000000001D2
-----
+....
+Installing code for canister assistant, with canister_id ic:040000000000000000000000000000000001AF
+Installing code for canister daemon, with canister_id ic:05000000000000000000000000000000000185
+Installing code for canister rock_paper_scissors, with canister_id ic:060000000000000000000000000000000001FB
+....
 
 == Verify deployment by calling functions
 
@@ -225,12 +245,11 @@ dfx canister call assistant showTodos
 +
 The command returns output similar to the following:
 +
-[source,bash]
-----
+....
 ("
 ___TO-DOs___
 (1) Schedule monthly demos")
-----
+....
 . Use the `+dfx canister call+` command to call the canister `+rock_paper_scissors+` using the `+contest+` function by running the following command:
 +
 [source,bash]
@@ -240,10 +259,9 @@ dfx canister call rock_paper_scissors contest
 +
 The command returns the result of the hard-coded contest similar to the following:
 +
-[source,bash]
-----
+....
 ("Bob won")
-----
+....
 . Use the `+dfx canister call+` command to call the canister `+daemon+` using the `+launch+` function by running the following command:
 +
 [source,bash]
@@ -252,10 +270,9 @@ dfx canister call daemon launch
 ----
 . Verify the mock `+launch+` function returns "The daemon process is running" message":
 +
-[source,bash]
-----
+....
 (""The daemon process is running"")
-----
+....
 
 == Stop the local network
 

@@ -1,4 +1,4 @@
-= Incrementing a value to illustrate persistence
+= Incrementing a counter
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -11,7 +11,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-In this tutorial, you are going to write a program that creates a single actor and provides a few basic functions.
+In this tutorial, you are going to write a program that creates a single actor and provides a few basic functions to increment a counter and illustrate persistence of a value.
 
 For this tutorial, the actor is named `+Counter+`. 
 The program uses the `+currentValue+` variable to contain a natural number that represents the current value of the counter. 

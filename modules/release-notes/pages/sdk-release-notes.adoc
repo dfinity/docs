@@ -41,6 +41,7 @@ The {release} release includes the following new features and capabilities:
 - The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister.
 - Both canister name and identifiers are printed upon canister creation.
 - Canister manifest now stores multiple canister IDs associated with local and remote networks as well as network mapping.
+- Asset canisters include `.did.js`.
 - Local network defaults to `127.0.0.1:8000`.
 
 === Tungsten (Developer Network)

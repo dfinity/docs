@@ -41,6 +41,7 @@ The {release} release includes the following new features and capabilities:
 - The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister.
 - Both canister name and identifiers are printed upon canister creation.
 - Canister manifest now stores multiple canister IDs associated with local and remote networks as well as network mapping.
+- Local network defaults to `127.0.0.1:8000`.
 
 === Tungsten (Developer Network)
 
@@ -74,7 +75,7 @@ The {release} release includes internal fixes and improvements to the Candid use
 - Allow lowercase hex in Canister ID.
 - Canister name now used for WASM and DID output.
 - Allow installation without sudo when possible.
-- Install script issue resolved for Ubuntu.
+- Install script issues resolved for Ubuntu and Mac.
 - Check added to forbid starting webserver with a forwarded port.
 
 == Known issues and limitations

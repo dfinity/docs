@@ -71,12 +71,12 @@ This section covers the issues fixed in this release.
 The {release} release includes internal fixes and improvements to the Candid user interface, the interface description library, and some refactoring of `dfx` commands.
 
 - `dfx stop` now finds and kills all `dfx start` and `dfx replica` processes.
-- Various references changed from `client` to `replica`.
 - Allow lowercase hex in Canister ID.
 - Canister name now used for WASM and DID output.
 - Allow installation without sudo when possible.
 - Install script issues resolved for Ubuntu and Mac.
 - Check added to forbid starting webserver with a forwarded port.
+- Cache directory management and error messages.
 
 == Known issues and limitations
 

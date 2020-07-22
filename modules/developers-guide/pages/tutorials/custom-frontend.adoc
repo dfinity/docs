@@ -97,17 +97,18 @@ To modify the default `+dfx.json+` configuration file:
 ....
 {
   "canisters": {
-    
+    ...
+
     "custom_greeting_assets": {
       "dependencies": [
         "custom_greeting"
       ],
       "frontend": {
-        "entrypoint": "src/custom_greeting_assets/public/index.js",
-        "output": "canisters/custom_greeting_assets/assets"
+        "entrypoint": "src/custom_greeting_assets/public/index.js"
       },
       "source": [
-        "src/custom_greeting_assets/assets"
+        "src/custom_greeting_assets/assets",
+        "dist/custom_greeting_assets/"
       ],
       "type": "assets"
     }

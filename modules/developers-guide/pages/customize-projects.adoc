@@ -1,9 +1,7 @@
 = Customizing projects
-December 2019 (Alpha)
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 
 You can modify some key settings for individual projects by modifying each project’s `+dfx.json+` configuration file. 
@@ -11,38 +9,38 @@ You can use the `+dfx config+` command to change these settings programmatically
 
 == How to change your source directory
 
-Before you compile source code for your project using the `+dfx build+` command, you might want to check the default location for storing your program. 
-The project `+canister_name+` you specify for the `+dfx build+`, `+dfx canister install+`, and `+dfx canister call+` commands should match the name you specify in the `+dfx.json+` configuration file.
+Before you compile source code for your project using the `+dfx build+` command, you might want to check the default location for storing the source code for your program.
+By default, the name you use to create a new project is the name used for one data canister (`+canister_name+`) and one assets canister (`+canister_name_assets+`), and program source code is expected to be in the `+src/canister_name+` directory. 
 
-For example, if you want to build a canister for the `+counter+` program, you should specify `+counter+` in the `+canisters+` section of the configuration file:
+Depending on your application's complexity and architecture, however, you might want to modify the default location for the source code. 
 
-[source,bash]
+For example, for a simple program, you might want to eliminate one directory level and place the source code in the `+src+` directory:
+
+[source,text]
 ----
-  "canisters": {
-    "counter": {
-      "main": "src/counter/main.mo"
-----
-
-Note that the program can compile without changing the canister directory name or the location of your program, but you wouldn’t want all of your canisters and programs to be named `+hello+` or every program to use the same generic `+main.mo+` name.
-
-After making changes to the canister name and program directory, you can build the project by running a command similar to the following from within the project directory. 
-For example, if the project directory is `+~/ic-projects/my_counter+`:
-
-[source,bash]
-----
-~/ic-projects/my_counter$ dfx build
-  Done building canisters...
-  Done building frontend...
-⠁ Bundling frontend assets in the canister...
+  "main": "src/main.mo",
 ----
 
-In this example, notice that the project name and the canister name can be different and that this command is explicitly building the `+counter+` canister. 
-If you have more than one canister name configured in the `+dfx.json+` configuration file, you can build all of the canister for the project by running the following command:
-[source,bash]
+For more complex applications, you might want to use a multi-tiered directory structure:
+
+[source,text]
 ----
-dfx build 
+"canisters": {
+  "profiles": {
+    "main": "src/profiles/utils/main.mo"
+  },
+  "events": {
+    "main": "src/events/calendar/main.mo"
+  },
+  "media": {
+    "main": "src/events/reports/main.mo"
+  }
+}
 ----
 
+NOTE: If you modify the default settings for a source code directory, be sure that the settings in the `+dfx.json+` configuration file match the directory location on the file system.
+
+////
 == How to change your output directory
 
 When you compile source code for your project using the `+dfx build+` command, the command automatically generates a WebAssembly executable and interface bindings in a default output folder. 
@@ -82,6 +80,7 @@ For example:
     "build": {
       "output": "ready_for_release"
 ----
+////
 
 == How to change the main program file name
 

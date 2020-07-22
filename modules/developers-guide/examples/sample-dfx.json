@@ -23,6 +23,7 @@
       "packtool": ""
     }
   },
+
   "dfx": "0.6.0",
   "networks": {
     "local": {

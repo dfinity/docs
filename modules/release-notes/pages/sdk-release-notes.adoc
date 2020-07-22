@@ -52,12 +52,10 @@ The {release} release includes the following new features and capabilities:
 
 === Motoko
 
+- The `motoko-base` repository is now open. We encourage developers to use Vessel package manager to download the latest `base` from `master`.
+- Major breaking changes and updates as detailed here: dfinity/motoko-base#37
+- Motoko style guide published to sdk.dfinity.org
 - Stable variable support
-- Improved type checking of literals as payload for variant tags. The following will now type-check:
-`func () : { #tag : Nat8 } = #tag 42;`
-- Warning when the read file has a different name from the requested file.
-- `debug_show` implemented for `Principal`
-- Type hash implementation
 
 == Breaking changes
 The {release} release includes the following changes that might require updates to existing programs:
@@ -65,8 +63,6 @@ The {release} release includes the following changes that might require updates 
 - The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format. 
 - You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
 - `dfx canister call` will consult the candid file for method types. There is no need to use `--type string/number` anymore. The arguments are therefore deprecated.
-- Methods starting with `__` will break, as those are not implemented anymore.
-- When creating an actor, you need to pass in the canister ID.
 
 == Issues fixed in this release
 

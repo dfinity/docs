@@ -9,26 +9,32 @@
         "hello_world"
       ],
       "frontend": {
-        "entrypoint": "src/hello_world_assets/public/index.js",
-        "output": "canisters/hello_world_assets/assets"
+        "entrypoint": "src/hello_world_assets/public/index.js"
       },
       "source": [
-        "src/hello_world_assets/assets"
+        "src/hello_world_assets/assets",
+        "dist/hello_world_assets/"
       ],
       "type": "assets"
     }
   },
   "defaults": {
     "build": {
-      "output": "canisters/",
       "packtool": ""
-    },
-    "start": {
-      "address": "127.0.0.1",
-      "port": 8000,
-      "serve_root": "canisters/hello_world_assets/assets"
     }
   },
-  "dfx": "0.5.8",
+  "dfx": "0.6.0",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    },
+    "tungsten": {
+      "providers": [
+        "https://gw.dfinity.network"
+      ],
+      "type": "persistent"
+    }
+  },
   "version": 1
 }

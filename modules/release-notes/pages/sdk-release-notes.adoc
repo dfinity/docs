@@ -87,8 +87,6 @@ The {release} release includes internal fixes and improvements to the Candid use
 This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
 If there are workarounds to any of the issues described in this section, you can find them in the link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] section.
 
-The {release} release includes the following known issues and limitations:
-
 == Additional questions and feedback
 
 Check out link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] for additional technical support.

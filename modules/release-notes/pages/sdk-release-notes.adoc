@@ -37,19 +37,19 @@ The {release} release includes the following new features and capabilities:
 
 === SDK
 
-- You can now look up a canister identifier using the command `dfx canister id <canister_name>`.
-- The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister.
-- Both canister name and identifiers are printed upon canister creation.
-- Canister manifest now stores multiple canister IDs associated with local and remote networks as well as network mapping.
-- Local network defaults to `127.0.0.1:8000`.
+- You can now look up a canister identifier using the command `dfx canister id <canister_name>`
+- The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister
+- Both canister name and identifiers are printed upon canister creation
+- Canister manifest now stores multiple canister IDs associated with local and remote networks as well as network mapping
+- Local network defaults to `127.0.0.1:8000`
 
 === Tungsten (Developer Network)
 
-- HTTP authorization and credentials management for onboarded Tungsten users.
-- `Tungsten` added as a provider in `dfx.json`
-- You can use the `dfx ping` command to access and toggle between local and Tungsten networks.
-- The `--network <network>` flag can be used to build and install canisters to the specified provider.
-- Canister ID formatting for accessing Tungsten-deployed apps in the browser.
+- HTTP authorization and credentials management for onboarded Tungsten users
+- `Tungsten` added as a provider in `dfx.json
+- You can use the `dfx ping` command to access and toggle between local and Tungsten networks
+- The `--network <network>` flag can be used to build and install canisters to the specified provider
+- Canister ID formatting for accessing Tungsten-deployed apps in the browser
 
 === Motoko
 
@@ -59,27 +59,29 @@ The {release} release includes the following new features and capabilities:
 - Released `mo-doc` for generating documentation from Motoko comments
 - Better support for `Char` and `Text` module
 - `Error` module for rejecting messages
-- `Buf` module renamed to `Buffer`.
+- `Buf` module renamed to `Buffer`
 
 == Breaking changes
 The {release} release includes the following changes that might require updates to existing programs:
 
 - Major breaking changes and updates to Motoko as detailed here: dfinity/motoko-base#37
-- The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format. 
+- The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format.
 - You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
-- `dfx canister call` will consult the candid file for method types. There is no need to use `--type string/number` anymore. The arguments are therefore deprecated.
+- `dfx canister call` will consult the Candid file for method types. You no longer need to use `--type string/number`. The arguments are therefore deprecated.
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
 The {release} release includes internal fixes and improvements to the Candid user interface, the interface description library, and some refactoring of `dfx` commands.
 
+- Certification validation error fixed on Linux and NixOS
 - `dfx stop` now finds and kills all `dfx start` and `dfx replica` processes.
 - Allow lowercase hex in Canister ID.
 - Allow installation without sudo when possible.
 - Install script issues resolved for Ubuntu and Mac.
 - Check added to forbid starting webserver with a forwarded port.
 - Cache directory management and error messages.
+- Improved error messages for HTTP server error.
 
 == Known issues and limitations
 

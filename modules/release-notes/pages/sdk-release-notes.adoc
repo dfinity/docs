@@ -37,11 +37,15 @@ The {release} release includes the following new features and capabilities:
 
 === SDK
 
-- You can now look up a canister identifier using the command `dfx canister id <canister_name>`
-- The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister
-- Both canister name and identifiers are printed upon canister creation
-- Canister manifest now stores multiple canister IDs associated with local and remote networks as well as network mapping
-- Local network defaults to `127.0.0.1:8000`
+- You can now look up a canister identifier using the command `dfx canister id <canister_name>`.
+- The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister.
+- Both canister name and identifiers are printed upon canister creation.
+- Various updates to `dfx.json`:
++
+-- Field added to support for the Vessel package manager (defaults/build/packtool)
+-- Canister types added in dfx.json to allow different builders for canisters - `motoko`, `assets`, and `custom`. `Motoko` uses the motoko compiler to build a canister, `assets` uses (optionally) `npm run build` to build files and uploads them to an asset canister, and `custom` uses a custom builder that should output WASM and DID files.
+-- Network mapping for `local` and `Tungsten`
+-- Local network defaults to `127.0.0.1:8000`.
 
 === Tungsten (Developer Network)
 

@@ -41,7 +41,6 @@ The {release} release includes the following new features and capabilities:
 - The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister.
 - Both canister name and identifiers are printed upon canister creation.
 - Canister manifest now stores multiple canister IDs associated with local and remote networks as well as network mapping.
-- Asset canisters include `.did.js`.
 - Local network defaults to `127.0.0.1:8000`.
 
 === Tungsten (Developer Network)
@@ -55,16 +54,17 @@ The {release} release includes the following new features and capabilities:
 === Motoko
 
 - The `motoko-base` repository is now open. We encourage developers to use Vessel package manager to download the latest `base` from `master`.
-- Major breaking changes and updates as detailed here: dfinity/motoko-base#37
 - Motoko style guide published to sdk.dfinity.org
 - Stable variable support
 - Released `mo-doc` for generating documentation from Motoko comments
 - Better support for `Char` and `Text` module
 - `Error` module for rejecting messages
-- `Buf` module renamed to `Buffer`
+- `Buf` module renamed to `Buffer`.
+
 == Breaking changes
 The {release} release includes the following changes that might require updates to existing programs:
 
+- Major breaking changes and updates to Motoko as detailed here: dfinity/motoko-base#37
 - The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format. 
 - You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
 - `dfx canister call` will consult the candid file for method types. There is no need to use `--type string/number` anymore. The arguments are therefore deprecated.
@@ -76,7 +76,6 @@ The {release} release includes internal fixes and improvements to the Candid use
 
 - `dfx stop` now finds and kills all `dfx start` and `dfx replica` processes.
 - Allow lowercase hex in Canister ID.
-- Canister name now used for WASM and DID output.
 - Allow installation without sudo when possible.
 - Install script issues resolved for Ubuntu and Mac.
 - Check added to forbid starting webserver with a forwarded port.

@@ -58,7 +58,10 @@ The {release} release includes the following new features and capabilities:
 - Major breaking changes and updates as detailed here: dfinity/motoko-base#37
 - Motoko style guide published to sdk.dfinity.org
 - Stable variable support
-
+- Released `mo-doc` for generating documentation from Motoko comments
+- Better support for `Char` and `Text` module
+- `Error` module for rejecting messages
+- `Buf` module renamed to `Buffer`
 == Breaking changes
 The {release} release includes the following changes that might require updates to existing programs:
 

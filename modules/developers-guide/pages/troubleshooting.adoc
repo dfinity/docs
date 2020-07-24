@@ -56,7 +56,7 @@ The `+--clean+` option removes checkpoints and stale state information from your
 
 Keep in mind, however, that if you reset the state information by running `+dfx start --clean+`, your existing canisters are also removed. 
 
-After running +dfx start --clean+`, recreate your canisters by running the following commands:
+After running `+dfx start --clean+`, recreate your canisters by running the following commands:
 
 [source,bash]
 ----
@@ -67,9 +67,9 @@ dfx canister install --all
 
 == Removing the canisters directory
 
-If you run into problems building or deploying canisters after successfully conecting to the {IC} and registering canister identifiers, you should remove the `+canisters+` directory before attempting to rebuild or redeploy the canisters. 
+If you run into problems building or deploying canisters after successfully connecting to the {IC} and registering canister identifiers, you should remove the `+canisters+` directory before attempting to rebuild or redeploy the canisters. 
 
-You can remove the canisters directory for a project by running the following command in the project's root directory:
+You can remove the `+canisters+` directory for a project by running the following command in the project's root directory:
 
 [source,bash]
 ----
@@ -79,12 +79,16 @@ rm -rf ./.dfx/* canisters/*
 == Reinstalling dfx
 
 Many of the bugs you might encounter can be addressed by uninstalling and reinstalling the `+dfx+` command-line interface.
-Here are a few ways to reinstall `+dfx+`:
+Here are a few ways to reinstall `+dfx+`.
+
+If you only have one version of `+dfx+` installed in your development environment, you can usually run the following command to uninstall and reinstall the latest version of `+dfx+`:
 
 [source,bash]
 ----
 ~/.cache/dfinity/uninstall.sh && sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"
 ----
+
+If you have modified the location of the `+dfx+` binary, you might want run the following command to uninstall the version of `+dfx+` that is in your PATH, then reinstall the latest version of `+dfx+`:
 
 [source,bash]
 ----

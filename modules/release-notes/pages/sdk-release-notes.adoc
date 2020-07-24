@@ -68,7 +68,7 @@ The {release} release includes the following new features and capabilities:
 == Breaking changes
 The {release} release includes the following changes that might require updates to existing programs:
 
-- Major breaking changes and updates to Motoko as detailed here: dfinity/motoko-base#37
+- Major breaking changes and updates to Motoko as detailed here: https://github.com/dfinity/motoko-base/issues/37
 - The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format.
 - You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
 - `dfx canister call` will consult the Candid file for method types. You no longer need to use `--type string/number`. The arguments are therefore deprecated.

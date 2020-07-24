@@ -141,7 +141,7 @@ These are the minimum settings required.
 As you build more complex programs, you might need to include additional configuration details in the `+Cargo.toml+` file, the `+dfx.json+` file, or both files.
 . Save your changes and close the file to continue.
 
-== Create a Candid interface description file
+=== Create a Candid interface description file
 
 In addition to the `+dfx.json+` configuration file, you need to have a Candid interface description file—for example, `+my_rust_program.did+`—to map your program's input parameters and return value formats to their language-agnostic representation in Candid.
 
@@ -163,7 +163,7 @@ service : {
 ----
 . Save your changes and close the file to continue.
 
-== Modify the default program
+=== Modify the default program
 
 When you create a new project, your project `+src+` directory includes a template `+main.rs+` file with the "Hello, World!" program.
 

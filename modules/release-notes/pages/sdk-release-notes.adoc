@@ -10,7 +10,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.5.7
+:release: 0.6.0
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -35,59 +35,62 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- {proglang} and the JavaScript library now support floating point numbers (Float).
-- When using the Candid UI, you can view return values in text, UI, and JSON formats.
-+
-You can switch between the formats for representing values by clicking the results bar.
-- Internal updates that are not yet user-visible to support future features.
+=== SDK
 
-== Breaking change
+- You can now look up a canister identifier using the command `dfx canister id <canister_name>`
+- The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister
+- Both canister name and identifiers are printed upon canister creation
+- Various updates to `dfx.json`:
++
+-- Field added to support for the Vessel package manager (defaults/build/packtool)
+-- Canister types added in dfx.json to allow different builders for canisters - `motoko`, `assets`, and `custom`. `Motoko` uses the motoko compiler to build a canister, `assets` uses (optionally) `npm run build` to build files and uploads them to an asset canister, and `custom` uses a custom builder that should output WASM and DID files.
+-- Network mapping for `local` and `Tungsten`
+-- Local network defaults to `127.0.0.1:8000`
+
+=== Tungsten (Developer Network)
+
+- HTTP authorization and credentials management for onboarded Tungsten users
+- `Tungsten` added as a provider in `dfx.json
+- You can use the `dfx ping` command to ping an Internet Computer and request its status
+- The `--network <network>` flag can be used to build and install canisters to the specified provider
+- Canister ID formatting for accessing Tungsten-deployed apps in the browser
+
+=== Motoko
+
+- The `motoko-base` repository is now open. We encourage developers to use Vessel package manager to download the latest `base` from `master`.
+- Motoko style guide published to sdk.dfinity.org
+- Stable variable support
+- Released `mo-doc` for generating documentation from Motoko comments
+- Better support for `Char` and `Text` module
+- `Error` module for rejecting messages
+- `Buf` module renamed to `Buffer`
+
+== Breaking changes
 The {release} release includes the following changes that might require updates to existing programs:
 
-- The name of the built-in {proglang} library has changed from `stdlib` to `base`.
-- All of the module names in the `base` library start with an upper case letter.
-- The `principalId` module has been changed to `Principal`.
-
-=== Modifying existing programs
-
-If you have programs that rely on modules in the `stdlib` library, you must change the `import` statement to use the new `base` library name.
-For example, you might have previously imported the Array module using the following statement:
-
-[source,motoko]
-----
-import Array "mo:stdlib/array";
-----
-
-With this release, you would change the statement like this:
-
-[source,motoko]
-----
-import Array "mo:base/Array";
-----
-=== Addressing case-sensitivity
-
-If your local development environment runs on macOS, you might be able to build your {proglang} program using a lower case module name because the macOS file system is not case-sensitive by default. 
- 
-If you use lower case module names, however, the same code will not compile on Linux computers. 
-Therefore, the recommended best practice is to always capitalize module names.
-For example, use `import Array "mo:base/Array"`, not `import Array "mo:base/array"`.
+- Major breaking changes and updates to Motoko as detailed here: https://github.com/dfinity/motoko-base/issues/37
+- The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format.
+- You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
+- `dfx canister call` will consult the Candid file for method types. You no longer need to use `--type string/number`. The arguments are therefore deprecated.
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
 The {release} release includes internal fixes and improvements to the Candid user interface, the interface description library, and some refactoring of `dfx` commands.
 
+- Certification validation error fixed on Linux and NixOS
+- `dfx stop` now finds and kills all `dfx start` and `dfx replica` processes
+- Allow lowercase hex in Canister ID
+- Allow installation without sudo when possible
+- Install script issues resolved for Ubuntu and Mac
+- Check added to forbid starting webserver with a forwarded port
+- Cache directory management and error messages
+- Improved error messages for HTTP server error
+
 == Known issues and limitations
 
 This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
 If there are workarounds to any of the issues described in this section, you can find them in the link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] section.
-
-The {release} release includes the following known issues and limitations:
-
-- Using fixed-length Word data type arguments when running `+dfx+` commands.
-+
-Fixed-length Word32 data types are not yet supported in the `+dfx+` command-line interface.
-As an alternative, you can convert integers to Word32 using the standard library function `+int32ToWord32(intToInt32(value))+`` until the support for fixed-length Word32 and Nat32 data types is added.
 
 == Additional questions and feedback
 

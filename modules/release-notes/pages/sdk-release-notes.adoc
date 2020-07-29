@@ -5,7 +5,6 @@
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
@@ -35,7 +34,7 @@ This {release} version of the software and programming language should not be us
 
 The {release} release only includes the following user-facing changes:
 
-- An update to the `+dfx ping+` command enables you to specify `+network+` and a network name to check the status of a network connection.
+- An update to the `+dfx ping+` command enables you to specify a network name to check the status of a network connection.
 - An update to authentication supports enables `+dfx+` to use the browser's `+localStorage+` for the user's public and private keys if cookies are not enabled.
 - Motoko programming guidelines are now available as part of the programming language guide on the link:sdk.dfinity.org[SDK website].
 

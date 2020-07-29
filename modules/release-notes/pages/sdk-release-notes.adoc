@@ -10,7 +10,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.6.0
+:release: 0.6.1
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -33,7 +33,13 @@ This {release} version of the software and programming language should not be us
 
 == Highlights of what's new in {release}
 
-The {release} release includes the following new features and capabilities:
+The {release} release only includes the following user-facing changes:
+
+- An update to the `+dfx ping+` command enables you to specify `+network+` and a network name to check the status of a network connection.
+- An update to authentication supports enables `+dfx+` to use the browser's `+localStorage+` for the user's public and private keys if cookies are not enabled.
+- Motoko programming guidelines are now available as part of the programming language guide on the link:sdk.dfinity.org[SDK website].
+
+All other new features and enhancements were included in the 0.6.0 release.
 
 === SDK
 
@@ -61,7 +67,6 @@ The {release} release includes the following new features and capabilities:
 === Motoko
 
 - The `motoko-base` repository is now open. We encourage developers to use Vessel package manager to download the latest `base` from `master`.
-- Motoko style guide published to sdk.dfinity.org
 - Stable variable support
 - Released `mo-doc` for generating documentation from Motoko comments
 - Better support for `Char` and `Text` module

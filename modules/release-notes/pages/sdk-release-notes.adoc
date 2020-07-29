@@ -35,7 +35,7 @@ This {release} version of the software and programming language should not be us
 The {release} release only includes the following user-facing changes:
 
 - An update to the `+dfx ping+` command enables you to specify a network name to check the status of a network connection.
-- An update to authentication supports enables `+dfx+` to use the browser's `+localStorage+` for the user's public and private keys if cookies are not enabled.
+- An update to the user authentication method enables `+dfx+` to use the browser's `+localStorage+` for the user's public and private keys if cookies are not enabled.
 - Motoko programming guidelines are now available as part of the programming language guide on the link:sdk.dfinity.org[SDK website].
 
 All other new features and enhancements were included in the 0.6.0 release.

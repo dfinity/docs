@@ -1,5 +1,4 @@
 = Command-line reference
-March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -8,7 +7,6 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
@@ -81,7 +79,7 @@ Use the following subcommands to specify the operation you want to perform or to
 
 |`+new+` |Creates a new project.
 
-|`+ping+` |Sends a response request to a specified {IC} network provider to determine network connectivity.
+|`+ping+` |Sends a response request to a specified {IC} network to determine network connectivity.
 If the connection is successful, the {IC} replies with its status. 
 
 |`+replica+` |Starts a local network replica process.
@@ -168,15 +166,14 @@ You can specify the following options for the `+dfx bootstrap+` command.
 If you don’t specify an IP address, the `address` setting you have configured in the `+dfx.json+` configuration file is used.
 By default, the server address is 127.0.0.1.
 
+|--network <network> |Specifies the network to connect to if you want to override the default local network endpoint (`+http://127.0.0.1:8080/api+`).
+
 |--port <port> |Specifies the port number that the bootstrap server listens on.
 By default, port number 8081 is used.
 
-|--providers <providers> |Specifies the list of compute provider API endpoints. 
-By default, the endpoint \http://127.0.0.1:8080/api is used.
-
 |--root <root> |Specifies the directory containing static assets served by the bootstrap server.
 By default, the path to static assets is:
-`$HOME/.cache/dfinity/versions/$DFX_VERSION/js-user-library/dist/bootstrap`
+`+$HOME/.cache/dfinity/versions/$DFX_VERSION/js-user-library/dist/bootstrap+`.
 
 |--timeout <timeout> | Specifies the maximum amount of time, in seconds, the bootstrap server will wait for upstream requests to complete. 
 By default, the bootstrap server waits for a maximum of 30 seconds.
@@ -237,11 +234,12 @@ You can use the following optional flags with the `+dfx build+` command.
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
+
+|`+--check+` |Builds canisters using a temporary, hard-coded, locally-defined canister identifier for testing that your program compiles without connecting to the {IC} network.
+
 |`+-h+`, `+--help+` |Displays usage information.
 
 |`+--skip-frontend+` |Skips building the canister frontend. Use this option when creating terminal-based programs or for testing functionality before creating front-end code.
-
-|`+--skip-manifest+` |Skips connecting to the {IC} network and building the `+canister_manifest.json+` file. You can use this option when you want to generate a hard-coded, locally-defined canister identifier for testing that your program compiles without deploying the program to a local or remote {IC} network.
 
 |`+-V+`, `+--version+` |Displays version information.
 |===
@@ -255,7 +253,7 @@ You can specify the following option for the `+dfx build+` command.
 
 |Option |Description
 
-|`+--provider <provider>+` |Overrides the default {IC} network provider host address and port number specified in the `+dfx.json+` configuration file.
+|`+--network <network>+` |Specifies the {IC} network you want to connect to. You can use this option to override the network specified in the `+dfx.json+` configuration file.
 
 |===
 
@@ -276,6 +274,13 @@ To build a canister without front-end code, you would run the following command:
 [source,bash]
 ----
 dfx build --skip-frontend
+----
+
+To test whether a canister compiles without connecting to any {IC} network, you would run the following command:
+
+[source,bash]
+----
+dfx build --check
 ----
 
 == dfx cache
@@ -519,7 +524,8 @@ You can specify the following option for the `+dfx canister+` command.
 
 |Option |Description
 
-|`+--provider <provider>+` |Overrides the default {IC} network provider host address and port number specified in the `+dfx.json+` configuration file.
+|`+--network <network>+` |Specifies the {IC} network you want to connect to. 
+You can use this option to override the network specified in the `+dfx.json+` configuration file.
 
 |===
 
@@ -564,18 +570,18 @@ To register unique canister identifiers for a project, you can run the following
 dfx canister create --all
 ----
 
-==== Overriding the default network provider
+==== Overriding the default network
 
-If you want to send a `+dfx canister+` subcommand to a specific network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the network provider using the `+--provider+` option.
+If you want to send a `+dfx canister+` subcommand to a specific network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the network using the `+--network+` option.
 
-For example, you can specify a remote {IC} network provider by running a command similar to the following:
+For example, you can specify a remote {IC} network by running a command similar to the following:
 
 [source,bash]
 ----
-dfx canister --provider \http://192.168.3.1:5678 call counter get
+dfx canister --network \http://192.168.3.1:5678 call counter get
 ----
 
-Note that you must specify the provider parameter before the canister operation (`+call+`), canister name (`+counter+`), and function (`+get+`).
+Note that you must specify the network parameter before the canister operation (`+call+`), canister name (`+counter+`), and function (`+get+`).
 
 == dfx canister call
 
@@ -616,8 +622,12 @@ You can use the following options with the `+dfx canister call+` command.
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Option |Description
-|`+--type type+` |Specifies the data type for the argument when making the call using an argument. 
-The valid values are `+string+`, `+idl+`, and `+raw+`.
+
+|`+--output <output>+` |Specifies the output format to use when displaying a method's return result. 
+The valid values are `+idl+` and `+raw+`.
+
+|`+--type <type>+` |Specifies the data type for the argument when making the call using an argument. 
+The valid values are `+idl+` and `+raw+`.
 |===
 
 === Arguments
@@ -643,10 +653,10 @@ You can use `+raw+` as the argument type if you want to pass raw bytes to a cani
 
 The `+--type idl+` option specifies a special syntax, which is different from {proglang}, for representing argument values. 
 The syntax provides a language-agnostic way to communicate with canisters using different languages and tools. 
-Specifically, the interface description language (IDL) enables you to use the same syntax to specify input argument values and display return values from canister methods, regardless of whether you are using the `+dfx+` command-line interface, JavaScript, {proglang}, or another supported language or tool.
+Specifically, the Candid interface description language (IDL) enables you to use the same syntax to specify input argument values and display return values from canister methods, regardless of whether you are using the `+dfx+` command-line interface, JavaScript, {proglang}, or another supported language or tool.
 
 The IDL format accepts multiple argument values separated by commas (`+,+`) and wrapped inside parentheses.  
-For example, specifying `+(42, true)+` represents two argument values, where the first argument is the number `42` and the second argument is a boolean value of `+true+`.
+For example, specifying `+(42, true)+` represents two argument values, where the first argument is the number `+42+` and the second argument is a boolean value of `+true+`.
 
 The IDL supports the following value forms:
 
@@ -717,17 +727,6 @@ dfx canister call contacts insert '("Amy Lu","01 916-335-2042")'
 dfx canister call hotel guestroom '("Deluxe Suite",42,true)'
 ----
 
-==== Passing arguments using specified data types
-
-If you are not using the IDL to parse data types, you can explicitly specify the data type for an argument using the `+--type_` option.
-
-For example, you can pass a string argument by running a command similar to the following:
-
-[source,bash]
-----
-dfx canister call hello greet --type string "San Francisco"
-----
-
 You can pass raw data in bytes by running a command similar to the following:
 
 [source,bash]
@@ -775,7 +774,7 @@ You can use the following argument with the `+dfx canister create+` command.
 |`+--all+` |Enables you to create multiple canister identifiers at once if you have a project `+dfx.json+` file that defines multiple canisters.
 Note that you must specify `+--all+` or an individual canister name.
 |`+canister_name+` |Specifies the name of the canister for which you want to register an identifier. 
-If you are not using the `+--all+` option, the canister name is a required argument and should match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.
+If you are not using the `+--all+` option, the canister name is a required argument and must match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.
 |===
 
 === Examples
@@ -938,16 +937,16 @@ You can then use the request identifier to check the status of the request at a 
 
 ==== Overriding the default network provider
 
-If you want to install a canister using a specific {IC} network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the compute provider using the `+--provider` option.
+If you want to deploy a canister on a specific {IC} network without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the network you want to connect to by using the `+--network` option.
 
-For example, you can specify the compute provider by running a command similar to the following:
+For example, you can specify a remote network by running a command similar to the following:
 
 [source,bash]
 ----
-dfx canister --provider \http://192.168.3.1:5678 install --all
+dfx canister --network \http://192.168.3.1:5678 install --all
 ----
 
-Note that you must specify the provider parameter before the canister operation (`+install+`) and before the canister name or `+--all+` flag.
+Note that you must specify the network parameter before the canister operation (`+install+`) and before the canister name or `+--all+` flag.
 
 ==== Allocating message processing
 
@@ -1096,7 +1095,7 @@ Similarly, you can change the name of the main source file or the port number fo
 [source,bash]
 ----
 dfx config canisters.hello.main "src/hello_world/hello-main.mo"
-dfx config start.port 5050
+dfx config networks.local.bind 127.0.0.1:5050
 ----
 
 You can also verify your configuration changes by viewing the `+dfx.json+` configuration file after running the `+dfx config+` command.
@@ -1240,14 +1239,14 @@ You can specify the following argument for the `+dfx ping+` command.
 
 === Examples
 
-You can use the dfx ping command to check whether the {IC} is currently available at a specific network address by running a command similar to the following:
+You can use the `+dfx ping+` command to check whether the {IC} is currently available at a specific network address by running a command similar to the following:
 
 [source,bash]
 ----
 dfx ping https://testgw.dfinity.network
 ----
 
-If the {IC} is running on the specified provider address, the command returns output similar to the following:
+If the {IC} is running on the specified network provider address, the command returns output similar to the following:
 
 ....
 {
@@ -1292,7 +1291,6 @@ You can use the following option with the `+dfx replica+` command.
 |`+--port port+` |Specifies the port the local replica should listen to.
 |===
 
-
 ////
 |`+--message-gas-limit maximum-gas-limit+` |Specifies the maximum resources that a single message can consume. Computational resources such as CPU, memory, and storage are measured in tokens that are converted in "gas" available to be consumed by applications.
 |`+--round-gas-limit round-gas-limit+` |Specifies the maximum resources that a single round of messages can consume in the "gas" available to be consumed by applications.
@@ -1317,8 +1315,8 @@ dfx replica --maximum-gas-limit 1000
 
 == dfx start
 
-Use the `+dfx start+` command to start a local {IC} replica process and web server for the current project. 
-This command enables you to deploy canisters to the local network node to test your programs during development.
+Use the `+dfx start+` command to start a local {IC} replica process and web server processes for the current project. 
+This command enables you to deploy canisters to the local {IC} network to test your programs during development.
 
 Note that you can only run this command from within the project directory structure. 
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
@@ -1337,9 +1335,9 @@ You can use the following optional flags with the `+dfx start+` command.
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
-|`+--background+` |Starts the replica and web server in the background and waits for the process to reply before returning to the shell.
+|`+--background+` |Starts the {IC} replica and web server processes in the background and waits for a reply before returning to the shell.
 
-|`+--clean+` |Starts the replica and web server in a clean state by removing checkpoints from your project cache.
+|`+--clean+` |Starts the {IC} replica and web server processes in a clean state by removing checkpoints from your project cache.
 You can use this flag to set your project cache to a new state when troubleshooting or debugging.
 
 |`+-h+`, `+--help+` |Displays usage information.
@@ -1359,22 +1357,22 @@ You can use the following option with the `+dfx start+` command.
 
 === Examples
 
-You can start the {IC} replica and web server in the current shell by running the following command:
+You can start the {IC} replica and web server processes in the current shell by running the following command:
 
 [source,bash]
 ----
 dfx start
 ----
 
-If you start the replica in the current shell, you need to open a new terminal shell to run additional commands. 
-Alternatively, you can start the replica in the background by running the following command:
+If you start the {IC} in the current shell, you need to open a new terminal shell to run additional commands. 
+Alternatively, you can start the {IC} in the background by running the following command:
 
 [source,bash]
 ----
 dfx start --background
 ----
 
-If you run the replica in the background, however, be sure tp stop them before uninstalling or reinstalling the `+dfx+` execution environment by running the following command:
+If you run the {IC} in the background, however, be sure to stop the network before uninstalling or reinstalling the `+dfx+` execution environment by running the following command:
 
 [source,bash]
 ----
@@ -1389,11 +1387,12 @@ more .dfx/pid
 
 == dfx stop
 
-Use the `+dfx stop+` command to stop the {IC} local processes running on your local computer. 
-In most cases, you run the {IC} replica locally so that you can deploy canisters and test your programs during development.
-To simulate an external {IC} replica node, these processes run continuously either in a terminal shell where you started them or the in the background until you stop or kill them.
+Use the `+dfx stop+` command to stop the {IC} processes that you currently have running on your local computer. 
+In most cases, you run the {IC} locally so that you can deploy canisters and test your programs during development.
+To simulate an external {IC} connection, these processes run continuously either in a terminal shell where you started them or the in the background until you stop or kill them.
 
-Note that you can only run this command from within the project directory structure. For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+Note that you can only run this command from within the project directory structure. 
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
  
 === Basic usage
 
@@ -1416,14 +1415,14 @@ You can use the following optional flags with the `+dfx stop+` command.
 
 === Examples
 
-You can stop the {IC} replica processes that are running in the background by changing to a project directory then running the following command:
+You can stop the {IC} network processes that are running in the background by changing to a project directory then running the following command:
 
 [source,bash]
 ----
 dfx stop
 ----
 
-If the local {IC} replica is running in a current shell rather than in the background, open a new terminal shell, change to a project directory, then run the `+dfx stop+` command.
+If the local {IC} network is running in a current shell rather than in the background, open a new terminal shell, change to a project directory, then run the `+dfx stop+` command.
 
 The current process identifier (`+pid+`) for the {IC} process started by `+dfx+` is recorded in the `+.dfx/pid+` file. 
 You can view the process identifier before running the `+dfx stop+` command by running the following command:

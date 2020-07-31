@@ -29,9 +29,13 @@ The LinkedUp sample application is implemented using the following canisters:
 * The `connectd` canister creates and stores a user's connections.
 * The `linkedup_assets` canister stores the front-end assets—including the JavaScript, HTML, and CSS files—that define the user interface
 
-NOTE: The LinkedUp sample application is only compatible with specific versions of the {sdk-short-name}. 
-Before downloading the application, run the `+dfx --version+` command to verify the version of `+dfx+` you have currently installed.
-If necessary, use the `+DFX_VERSION+` environment variable set to 0.5.7 to install a compatible version. For more information about installing a specific version, see link:../../download{outfilesuffix}#install-version[Install a specific version from a terminal].
+== Before you begin
+
+Before building the sample application, verify the following:
+
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have stopped any {IC} network processes running on the local
+computer.
 
 == Download the demo
 
@@ -56,6 +60,14 @@ cd linkedup
 ----
 npm install
 ----
++
+If necessary, fix any vulnerabilities found by running the following command:
++
+[source,bash]
+----
+npm audit fix
+----
+. Open the `+dfx.json+` file in a text editor and verify the `+dfx+` setting has same the version number as the `+dfx+` executable you have installed.
 
 == Start the local network
 
@@ -137,6 +149,13 @@ Installing code for canister linkedup_assets, with canister_id ic:1A000000000000
 +
 In this sample application, only the `linkedup_assets` canister includes the front-end assets used to access the application's features. 
 To open the application in a browser, therefore, you need to specify the `linkedup_assets` canister identifier. 
+. Open the `linkedup_assets` canister in your web browser.
++
+For example, if using the default localhost address and port number, the URL looks similar to this:
++
+....
+http://localhost:8000/?canisterId=ic:03000000000000000000000000000000000179
+....
 
 == Create a profile and connections
 

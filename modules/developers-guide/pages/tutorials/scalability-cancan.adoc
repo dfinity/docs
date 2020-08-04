@@ -60,7 +60,7 @@ In this case, the `+BigMap+` functionality is implemented using the Rust program
 
 By deploying different parts of the sample application as canisters, the interaction between them provides a seamless user experience.
 
-Although the `+BigMap+` service you see in the CanCan repository is written in Rust, the service was actually implemented in both Rust and {proglan} programming languages to demonstrate the following:
+Although the `+BigMap+` service you see in the CanCan repository is written in Rust, the service was actually implemented in both Rust and {proglang} programming languages to demonstrate the following:
 
 * You can run both Motoko code and Rust code deployed as canisters on the {IC}.
 * You can switch between back-end languages without affecting the operation of the CanCan sample application.

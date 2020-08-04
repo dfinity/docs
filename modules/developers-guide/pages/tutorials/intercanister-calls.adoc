@@ -1,5 +1,4 @@
 = Calling shared functions
-April 2020 (Alpha)
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
@@ -24,14 +23,19 @@ You could then build additional applications to use the social connections canis
 
 The Motoko-based LinkedUp sample application provides a simple implementation of an open professional network that demonstrates how to use inter-canister calls within a project.
 
-In the LinkedUp sample application, there are two canisters:
+The LinkedUp sample application is implemented using the following canisters:
 
 * The `linkedup` canister creates and stores basic profile information for a user, including work experience and educational background.
 * The `connectd` canister creates and stores a user's connections.
+* The `linkedup_assets` canister stores the front-end assets—including the JavaScript, HTML, and CSS files—that define the user interface
 
-NOTE: The LinkedUp sample application is only compatible with specific versions of the {sdk-short-name}. 
-Before downloading the application, run the `+dfx --version+` command to verify the version of `+dfx+` you have currently installed.
-If necessary, use the `+DFX_VERSION+` environment variable set to 0.5.7 to install a compatible version. For more information about installing a specific version, see link:../../download{outfilesuffix}#install-version[Install a specific version from a terminal].
+== Before you begin
+
+Before building the sample application, verify the following:
+
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have stopped any {IC} network processes running on the local
+computer.
 
 == Download the demo
 
@@ -56,24 +60,77 @@ cd linkedup
 ----
 npm install
 ----
-
-== Build and deploy the demo project
-
-To build and deploy the LinkUp sample application, take the following steps:
-
-. Build the canisters by running the following command:
++
+If necessary, fix any vulnerabilities found by running the following command:
 +
 [source,bash]
 ----
-dfx build
+npm audit fix
 ----
-. Start the {IC} network `replica` by running the following command:
+. Open the `+dfx.json+` file in a text editor and verify the `+dfx+` setting has same the version number as the `+dfx+` executable you have installed.
+
+== Start the local network
+
+Before you can build the `+linkedup+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+
+To start the network locally:
+
+[arabic]
+. Open a new terminal window or tab on your local computer and navigate to your project directory.
++
+For example, you can do either of the following if running Terminal on macOS:
++
+--
+* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
+* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/linkedup+` in the new terminal if your `+linkedup+` project is in the `+ic-projects+` working folder.
+--
++
+You should now have two terminals open with your project directory as your current working directory.
+. Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
 ----
 dfx start
 ----
-. Open a terminal and change to the `linkedup` repository directory.
++
+After you start the local network, the terminal displays messages about network operations.
+. Leave the terminal that displays network operations open and switch your focus to the terminal where you cloned the `+linkedup+` repository.
+
+== Register canister identifiers
+
+After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
+
+To register canister identifiers for the local network:
+
+. Check that you are still in your project directory, if needed.
+. Register unique canister identifiers for the project by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
++
+The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
++
+....
+"connectd" canister created with canister id: "ic:0100000000000000000000000000000000012D"
+"linkedup" canister created with canister id: "ic:02000000000000000000000000000000000153"
+....
++
+Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
+To deploy canisters on a remote network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
+
+== Build and deploy the demo project
+
+To build and deploy the LinkUp sample application, take the following steps:
+
+. Check that you are still in your project directory by running the `+pwd+` command, if necessary.
+. Build the LinkedUp canisters by running the following command:
++
+[source,bash]
+----
+dfx build
+----
 . Deploy the project on the local network by running the following command:
 +
 [source,bash]
@@ -81,29 +138,35 @@ dfx start
 dfx canister install --all
 ----
 +
-You should see canister identifiers for both the `connectd` canister and the `linkedup` canister with a message similar to the following:
+You should see canister identifiers for the `+connectd+`, `+linkedup+` and `+linkedup_assets+` canisters with a message similar to the following:
 +
-[source,bash]
-----
-Installing code for canister connectd, with canister_id ic:321B70FF148808B210
-Installing code for canister linkedup, with canister_id ic:FC4106BF7A7A63D1CE
-----
-. Copy the `linkedup` canister identifier returned by the `dfx canister install` command.
+....
+Installing code for canister connectd, with canister_id ic:180000000000000000000000000000000001FE
+Installing code for canister linkedup, with canister_id ic:190000000000000000000000000000000001D4
+Installing code for canister linkedup_assets, with canister_id ic:1A0000000000000000000000000000000001AA
+....
+. Copy the `linkedup_assets` canister identifier returned by the `dfx canister install` command.
 +
-In this sample application, only the `linkedup` canister includes the front-end assets used to access the application's features. 
-To open the application in a browser, therefore, you need to specify the `linkedup` canister identifier. 
+In this sample application, only the `linkedup_assets` canister includes the front-end assets used to access the application's features. 
+To open the application in a browser, therefore, you need to specify the `linkedup_assets` canister identifier. 
+. Open the `linkedup_assets` canister in your web browser.
++
+For example, if using the default localhost address and port number, the URL looks similar to this:
++
+....
+http://localhost:8000/?canisterId=ic:03000000000000000000000000000000000179
+....
 
 == Create a profile and connections
 
 To run through a demonstration of the LinkedUp sample application, take the following steps:
 
 . Open a browser tab or window.
-. Type the web server host name, port, and the `canisterId` keyword, then paste the `linkedup` canister identifier as the URL to display.
+. Type the web server host name, port, and the `canisterId` keyword, then paste the `linkedup_assets` canister identifier as the URL to display.
 +
-[source,bash]
-----
-localhost:8000/?canisterId=<ic-identifier-for-linkedup>
-----
+....
+localhost:8000/?canisterId=<ic-identifier-for-linkedup-assets>
+....
 +
 The browser displays an introductory page.
 +
@@ -120,11 +183,10 @@ image:linkedup-edit-maya.png[]
 +
 While you are interacting with the sample application, you might notice records similar to the following capture your activity and are displayed in the terminal you used to start the `replica` process:
 +
-[source,bash]
-----
+....
 Apr 14 20:34:57.614 INFO Successfully inserted an ingress message into IngressPool, Application: ArtifactPool
 Apr 14 20:34:58.564 INFO Created checkpoint @6921 in 33.579754ms, StateManager: 1
-----
+....
 +
 After you click *Submit*, you have a profile with some work history that can be viewed.
 +
@@ -201,18 +263,18 @@ To illustrate saving the incognito user identity, take the following steps:
 +
 image:local-storage.png[]
 
-. Copy the Value of the `dfinity-ic-user-identity` key.
+. Copy the Value of the `+dfinity-ic-user-identity+` key.
 +
-The `dfinity-ic-user-identity` key value stores the public and private keys for the user. 
+The `+dfinity-ic-user-identity+` key value stores the public and private keys for the user. 
 . Return to the standard browser window.
 +
 For example, the window that displays the Maya profile.
 . Click the vertical ellipse to display the More menu, click *More Tools*, then select *Developer Tools* to display the developer tools explorer.
 . Click *Application*, expand *Local storage*, then select the host name and port running the LinkedUp application.
-. Rename the `dfinity-ic-user-identity` key to preserve the existing public-private key.
+. Rename the `+dfinity-ic-user-identity+` key to preserve the existing public-private key.
 +
-For example, rename the `dfinity-ic-user-identity` to `maya-dfinity-ic-user-identity`.
-. Add a `dfinity-ic-user-identity` key and paste the value from the incognito user to save the incognito user’s identity in the browser.
+For example, rename the `+dfinity-ic-user-identity+` to `+maya-dfinity-ic-user-identity+`.
+. Add a `+dfinity-ic-user-identity+` key and paste the value from the incognito user to save the incognito user’s identity in the browser.
 . Refresh or close and reopen the browser window, then click *Login* to log in using the profile you created in the incognito window.
 . Open another incognito window, type Maya in the Search field, then click *Search* to see that Maya’s profile and connections are persisted.
 +
@@ -224,37 +286,37 @@ Now that you have explored the basic features of the sample application, you hav
 
 To explore the configuration file:
 
-. Change to the `linkedup` directory, then open the project’s `dfx.json` file.
-. Note that there are two canisters defined—`connectd` and `linkedup`—each with a `main.mo` source file.
-. Note that the `linkedup` canister specifies a frontend entry point of `main.js` and assets in the form of CSS and HTML files.
+. Change to the `+linkedup+` directory, then open the project’s `+dfx.json+` file.
+. Note that there are two main canisters defined—`+connectd+` and `+linkedup+`—each with a `+main.mo+` source file.
+. Note that the `+linkedup_assets+` canister specifies a frontend entry point of `+main.js+` and assets in the form of CSS and HTML files.
 . Note that the application uses the default server IP address and port number.
 
 == Explore the connectd source code
 
-The source code for the social connections canister, `connectd`, is organized into the following files:
+The source code for the social connections canister, `+connectd+`, is organized into the following files:
 
-* The `digraph.mo` file provides the functions to create a directed graph of vertices and edges to describe a user's connections. 
-* The `main.mo` contains the actor and key functions for defining the connections associated with a user profile that can be called by the LinkedUp sample application. 
-* The `types.mo` file defines the custom type that maps a vertex to a user identity for use in the `digraph` and `main` program files.
+* The `+digraph.mo+` file provides the functions to create a directed graph of vertices and edges to describe a user's connections. 
+* The `+main.mo+` contains the actor and key functions for defining the connections associated with a user profile that can be called by the LinkedUp sample application. 
+* The `+types.mo+` file defines the custom type that maps a vertex to a user identity for use in the `+digraph+` and `+main+` program files.
 
 == Explore the linkedup source code
 
 The source code for the professional profile with work history and educational background is organized into the following files:
 
-* The `main.mo` file contains the actor and key functions for the LinkedUp sample application. 
-* The `types.mo` file defines the custom types that describe the user identity and profile fields that are imported and used in the `main` program file for the `linkedup` canister.
-* The `utils.mo` file provides helper functions.
+* The `+main.mo+` file contains the actor and key functions for the LinkedUp sample application. 
+* The `+types.mo+` file defines the custom types that describe the user identity and profile fields that are imported and used in the `+main+` program file for the `linkedup` canister.
+* The `+utils.mo+` file provides helper functions.
 
 === Query and update operations
 
 In working with the LinkedUp sample application, you might notice that some operations—such as viewing a profile or performing a search—returned results almost immediately.
 Other operations—such as creating a profile or adding a connection—took a little longer.  
 
-These differences in performance illustrate the difference between using query and update calls in the `linkedup` canister.
+These differences in performance illustrate the difference between using query and update calls in the `+linkedup+` canister.
 
-For example, in the `src/linkedup/main.mo` file, the `create` and `update` functions are update calls that change the state of the canister, but the program uses query calls for the `get` and `search` functions to view or search for a profile:
+For example, in the `+src/linkedup/main.mo+` file, the `+create+` and `+update+` functions are update calls that change the state of the canister, but the program uses query calls for the `+get+` and `+search+` functions to view or search for a profile:
 
-----
+....
   // Profiles
 
   public shared(msg) func create(profile: NewProfile): async () {
@@ -274,7 +336,7 @@ For example, in the `src/linkedup/main.mo` file, the `create` and `update` funct
   public query func search(term: Text): async [Profile] {
     directory.findBy(term)
   };
-----
+....
 
 === Interaction between the canisters
 
@@ -283,29 +345,29 @@ This separation simplifies the code in each canister and illustrates how you can
 
 To make the public functions defined in one canister available in the another canister:
 
-. Add an `import` statement in the calling canister.
+. Add an `+import+` statement in the calling canister.
 +
-In this example, the public functions are defined in the `connectd` canister and are called by the `linkedup` canister.
+In this example, the public functions are defined in the `+connectd+` canister and are called by the `+linkedup+` canister.
 +
-Therefore, the `src/linkedup/main.mo` includes the following code:
+Therefore, the `+src/linkedup/main.mo+` includes the following code:
 +
 [source,motoko]
 ----
 // Make the Connectd app's public methods available locally
 import Connectd "canister:connectd";
 ----
-. Use the `canister.function` syntax to call public methods in the imported canister.
+. Use the `+canister.function+` syntax to call public methods in the imported canister.
 +
-In this example, the `linkedup` canister calls the `connect` and `getConnections` function in the imported `connectd` canister.
+In this example, the `+linkedup+` canister calls the `+connect+` and `+getConnections+` function in the imported `+connectd+` canister.
 
-You can see the code that enables interaction between the `linkedup` canister and the `connectd` canister in the `main.mo` source files.
+You can see the code that enables interaction between the `+linkedup+` canister and the `+connectd+` canister in the `+main.mo+` source files.
 
-For example, the `src/connectd/main.mo` defines the following functions: 
+For example, the `+src/connectd/main.mo+` defines the following functions: 
 +
 [source,motoko]
 ----
 actor Connectd {
-  var graph: Digraph.Digraph = Digraph.Digraph();
+  flexible var graph: Digraph.Digraph = Digraph.Digraph();
 
   public func healthcheck(): async Bool { true };
 
@@ -320,7 +382,7 @@ actor Connectd {
 };
 ----
 
-Because of the `Import` statement, the `connectd` functions are available to the `linkedup` canister and the `src/linkedup/main.mo` includes the following code:
+Because of the `+Import+` statement, the `+connectd+` functions are available to the `+linkedup+` canister and the `+src/linkedup/main.mo+` includes the following code:
 
 [source,motoko]
 ----

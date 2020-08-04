@@ -378,8 +378,8 @@ dfx canister install --all
 +
 [source,bash]
 ----
-dfx canister call reverse go repaid
-("diaper")
+dfx canister call reverse go reward
+("drawer")
 ----
 
 You can find additional examples of C programs in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository.

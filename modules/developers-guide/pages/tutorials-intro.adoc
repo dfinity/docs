@@ -32,4 +32,6 @@ If you already know how to add stylesheets to React, you can skip this tutorial.
 
 * link:tutorials/intercanister-calls{outfilesuffix}[Calling shared functions] illustrates how to call shared functions in one canister from a program in another canister.
 
+* link:tutorials/scalability-cancan{outfilesuffix}[Creating scalable apps] describes using multiple canisters to create applications that scale.
+
 Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:https://github.com/dfinity/examples[examples] repository and link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].

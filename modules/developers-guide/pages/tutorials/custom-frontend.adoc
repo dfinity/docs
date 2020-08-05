@@ -293,21 +293,20 @@ You can now access the new front-end for the default program by entering the can
 
 To view the custom front-end:
 
-. Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
+. Open a browser and navigate to the `+local+` network address and port number specified in the `+dfx.json+` configuration file.
 +
-By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the `+custom_greeting+` program using `+127.0.0.1:8000+` for the URL.
+For example, if you are using the default binding for the local network, navigate to `+127.0.0.1:8000/+`.
 +
-In addition to the host and port, the URL you specify needs to include the `+canisterId+` parameter to identify the canister that you want the web server to display.
-To specify the canister, append the identifier for the `+custom_greeting_assets+` canister using the following syntax:
+To specify the canister you want the web server to display, add the `+canisterId+` parameter and the  `+custom_greeting_assets+` canister identifier to the URL using the following syntax:
 +
 ....
-?canisterId=canister_identifier
+?canisterId=<YOUR-CANISTER-IDENTIFIER>
 ....
 +
 For example, the full URL should look similar to the following but with the `+_canister_identifier_+` that was returned for the `+custom_greeting_assets+` canister when you ran the `+dfx canister install+` command:
 +
 ....
-http://localhost:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+http://127.0.0.1:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 . Verify that you are prompted to type a greeting.
 +

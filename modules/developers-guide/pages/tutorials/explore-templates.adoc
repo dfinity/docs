@@ -425,6 +425,9 @@ For example, the full URL should look similar to the following:
 ....
 http://127.0.0.1:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
++
+NOTE: You must use the case-sensitive `+canisterId+` parameter before the canister identifier.
+
 . Verify that you are prompted to type a greeting.
 +
 For example:

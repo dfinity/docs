@@ -20,7 +20,7 @@ The following tutorials introduce the basics for writing programs that run on th
 
 * link:tutorials/calculator{outfilesuffix}[Exploring calculator functions] shows you how to write a simple calculator program for more practice working with {proglang} and to learn more about how you can customize your project environment.
 
-* link:tutorials/phonebook{outfilesuffix}[Importing standard library functions] illustrates how to import and use a few basic standard library functions for working with key-value pairs in a list using {proglang}.
+* link:tutorials/phonebook{outfilesuffix}[Importing base library functions] illustrates how to import and use a few basic standard library functions for working with key-value pairs in a list using {proglang}.
 
 * link:tutorials/multiple-actors{outfilesuffix}[Using multiple actors] describes how to include multiple unrelated actors in a single project to illustrate how you can compile multiple canisters for the same project.
 

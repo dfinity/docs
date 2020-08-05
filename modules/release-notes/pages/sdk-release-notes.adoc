@@ -36,7 +36,7 @@ The {release} release only includes the following user-facing change which is al
 
 - In this release, all canister identifiers are generated using a text-based representation.
 +
-To work with this release, you should delete any existing canisters, then regenerate new canister identifiers using the `+dfx canister create+` command and redeploy with the `+dfx canister install+` command to begin using the new text-based identifiers.
+To work with this release, you should delete any existing canisters, then regenerate new canister identifiers using the `+dfx canister create+` command and redeploy the updated canisters with the `+dfx canister install+` command to begin using the new text-based identifiers.
 
 The 0.6.1 release only included the following user-facing changes:
 

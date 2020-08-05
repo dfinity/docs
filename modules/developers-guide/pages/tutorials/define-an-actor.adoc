@@ -11,7 +11,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-In the link:../../quickstart/quickstart{outfilesuffix}[Quick start], you had your first look at a simple program for the {IC} involving an actor object and asynchronous messaging. 
+In the link:../../quickstart/quickstart{outfilesuffix}[Quick start], you had your first look at a simple program for the {IC} involving an actor object and asynchronous messaging.
 As the next step in learning to write programs that take advantage of actor-based messaging, this tutorial illustrates how to modify a traditional `+Hello, World!+` program to define an actor, then deploy and test your program on a local network.
 
 == Before you begin
@@ -57,7 +57,7 @@ To modify the `+dfx.json+` configuration file:
 +
 For example, the default canister name is `+actor_hello+` and the default path to the main program file is `+src/actor_hello/main.mo+`.
 +
-You can rename any of these files or directories. 
+You can rename any of these files or directories.
 If you make any changes, however, be sure that the names you use for your files and directories on the file system match the names you specify in the `+dfx.json+` configuration file.
 If you plan to use the default directory and file names, no changes are necessary.
 . Remove all of the `+actor_hello_assets+` configuration settings from the file.
@@ -86,7 +86,7 @@ cd src/actor_hello
 ----
 . Open the template `+main.mo+` file in a text editor and delete the existing content.
 +
-The next step is to write a program that prints a statement like the traditional "Hello, World!" sample program. 
+The next step is to write a program that prints a statement like the traditional "Hello, World!" sample program.
 If you were writing this program to run on a platform other than the {IC}, you could write the program in {proglang} without an actor or a `main` function like this:
 +
 ....
@@ -114,7 +114,7 @@ For more information about using a query call, see link:../introduction-key-conc
 == Build the program with a local identifier
 
 You are probably only going to use this simple program for some locally testing.
-Therefore, there's no need to reserve a unique canister identifier on the {IC} network to hold the compiled output for the program. 
+Therefore, there's no need to reserve a unique canister identifier on the {IC} network to hold the compiled output for the program.
 
 In this scenario, you can compile the program without connecting to an {IC} network at all.
 Instead, the `+dfx build+` command creates a local, hard-coded canister identifier for you to use.
@@ -131,7 +131,7 @@ To build the program executable:
 dfx build --check
 ----
 +
-The `+--check+` option enables you to build a project locally to verify that it compiles and to inspect the files produced. 
+The `+--check+` option enables you to build a project locally to verify that it compiles and to inspect the files produced.
 Because the `+dfx build --check+` command only generates a temporary identifier, you should see output similar to the following:
 +
 ....
@@ -143,14 +143,14 @@ If the program compiles successfully, you can inspect the output in the default 
 
 == Deploy the project
 
-You cannot deploy the output from the `+dfx build --check+` command to any {IC} network. 
+You cannot deploy the output from the `+dfx build --check+` command to any {IC} network.
 If you wanted to deploy this project, you would need to do the following:
 
 * Connect to the {IC} network.
 * Register a network-specific canister identifier.
 * Deploy the canister.
 
-Let's consider these steps in a bit more detail. 
+Let's consider these steps in a bit more detail.
 Before you can deploy this project, you must connect to the {IC} network either running *locally* in your development environment or running *remotely* on a sub-network that you can access.
 After you connect to a local or remote network, you must also generate a unique, *network-specific* canister identifier to replace your locally-defined identifier.
 To see the steps involved for yourself, let's deploy the project locally.
@@ -221,10 +221,10 @@ dfx canister call actor_hello hello
 For example, the program displays "Hello, World from DFINITY" in output similar to the following:
 +
 ....
-debug.print: Hello, World from DFINITY 
+debug.print: Hello, World from DFINITY
 ....
 +
-Note that if you are running the Internet Computer network in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays network activity. 
+Note that if you are running the Internet Computer network in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays network activity.
 
 == Stop the local network
 

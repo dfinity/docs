@@ -17,7 +17,7 @@ Cascading stylesheets represent one of the most common ways to customize the use
 This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project.
 If you already know how to add cascading stylesheets (CSS) to a React-based project, you can skip this tutorial.
 
-NOTE: Currently, you can only use Javascript to implement the front-end for your canister. 
+NOTE: Currently, you can only use Javascript to implement the front-end for your canister.
 This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
 Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see link:https://reactjs.org/docs/getting-started.html[Getting started] on the https://reactjs.org/[React website].
 
@@ -72,7 +72,7 @@ npm install --save react react-dom
 +
 [source,bash]
 ----
-npm install --save typescript ts-loader 
+npm install --save typescript ts-loader
 ----
 . Install the required style loaders by running the following command:
 +
@@ -229,8 +229,8 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"contacts" canister created with canister id: "ic:0100000000000000000000000000000000012D"
-"contacts_assets" canister created with canister id: "ic:02000000000000000000000000000000000153"
+"contacts" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"contacts_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 +
 Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
@@ -269,8 +269,8 @@ The command output displays output similar to the following:
 +
 [source,bash]
 ----
-Installing code for canister contacts, with canister_id ic:120000000000000000000000000000000001FD
-Installing code for canister contacts_assets, with canister_id ic:130000000000000000000000000000000001D7
+Installing code for canister contacts, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister contacts_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ----
 . Copy the canister identifier for the `+contacts_assets+` canister to the clipboard or a notepad application.
 
@@ -284,7 +284,7 @@ To view the front-end:
 +
 By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the `+contacts+` program using `+127.0.0.1:8000+` for the URL.
 +
-In addition to the host and port, the URL you specify needs to include the `+canisterId+` parameter to identify the canister that you want the web server to display. 
+In addition to the host and port, the URL you specify needs to include the `+canisterId+` parameter to identify the canister that you want the web server to display.
 To specify the canister, append the identifier for the `+contacts_assets+` canister using the following syntax:
 +
 [source,bash]
@@ -292,11 +292,11 @@ To specify the canister, append the identifier for the `+contacts_assets+` canis
 ?canisterId=ic:canister_identifier
 ----
 +
-For example, the full URL should look similar to the following but with the `+ic:_canister_identifier_+` that was returned by the `+dfx canister install+` command:
+For example, the full URL should look similar to the following but with the `+_canister_identifier_+` that was returned by the `+dfx canister install+` command:
 +
 [source,bash]
 ----
-http://localhost:8000/?canisterId=ic:130000000000000000000000000000000001D7
+http://localhost:8000/?canisterId=75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ----
 +
 NOTE: You must use the case-sensitive `+canisterId+` parameter before the canister identifier.

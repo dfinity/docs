@@ -16,7 +16,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
 This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} network.
-This _Quick start_ assumes that you are installing the {sdk-short-name} for the first time. 
+This _Quick start_ assumes that you are installing the {sdk-short-name} for the first time.
 
 ////
 IMPORTANT: For this release, only *macOS* and *Linux* platforms are supported.
@@ -37,7 +37,7 @@ Before you download and install this release of the {sdk-short-name}, verify the
 
 * You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 
-If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers]. 
+If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
 If you are comfortable meeting the prerequisites without instructions, continue to <<Download and install>>.
 
 [[download-and-install]]
@@ -148,7 +148,7 @@ You should now have **two terminals** open with your **project directory** as yo
 dfx start
 ----
 +
-Depending on your platform and local security settings, you might see a warning displayed. 
+Depending on your platform and local security settings, you might see a warning displayed.
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal window that displays network operations open and switch your focus to the first terminal window where you created your new project.
 +
@@ -203,7 +203,7 @@ Building frontend...
 [[deploy]]
 == Deploy your program locally
 
-The `+dfx build+` command created several artifacts in a `canisters` directory for your project. 
+The `+dfx build+` command created several artifacts in a `canisters` directory for your project.
 You now have a compiled program that can be deployed on your local {IC} network.
 
 To deploy locally:

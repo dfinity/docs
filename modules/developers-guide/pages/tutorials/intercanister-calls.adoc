@@ -12,7 +12,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-One of the most important features of the {IC} for developers is the ability to build, deploy, and call shared functions in one canister from a program in another canister. 
+One of the most important features of the {IC} for developers is the ability to build, deploy, and call shared functions in one canister from a program in another canister.
 This capability to make calls between canisters—also sometimes referred to as **inter-canister calls**—enables you to reuse and share functionality in multiple applications.
 
 For example, you might want to create an application for professional networking, organizing community events, or hosting fundraising activities.
@@ -113,8 +113,8 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"connectd" canister created with canister id: "ic:0100000000000000000000000000000000012D"
-"linkedup" canister created with canister id: "ic:02000000000000000000000000000000000153"
+"connectd" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"linkedup" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 +
 Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
@@ -147,8 +147,8 @@ Installing code for canister linkedup_assets, with canister_id ic:1A000000000000
 ....
 . Copy the `linkedup_assets` canister identifier returned by the `dfx canister install` command.
 +
-In this sample application, only the `linkedup_assets` canister includes the front-end assets used to access the application's features. 
-To open the application in a browser, therefore, you need to specify the `linkedup_assets` canister identifier. 
+In this sample application, only the `linkedup_assets` canister includes the front-end assets used to access the application's features.
+To open the application in a browser, therefore, you need to specify the `linkedup_assets` canister identifier.
 . Open the `linkedup_assets` canister in your web browser.
 +
 For example, if using the default localhost address and port number, the URL looks similar to this:
@@ -247,12 +247,12 @@ If you want to create a connection between the original profile and the profile 
 
 == Save identity information for the incognito profile
 
-Currently, user identities get generated when a user connects to a canister using a device such as a browser running on a laptop. 
-You used an incognito browser window to create a second LinkedUp profile. 
+Currently, user identities get generated when a user connects to a canister using a device such as a browser running on a laptop.
+You used an incognito browser window to create a second LinkedUp profile.
 If you close that private browsing window, the incognito user identity will no longer be available.
 
 NOTE: This section demonstrates how user identities are currently associated with a canister and stored by the browser.
-You might find the information useful for testing programs that involve more than one user. 
+You might find the information useful for testing programs that involve more than one user.
 Keep in mind, however, that this specific approach is only a temporary solution for handling authentication and user identities.
 
 To illustrate saving the incognito user identity, take the following steps:
@@ -265,7 +265,7 @@ image:local-storage.png[]
 
 . Copy the Value of the `+dfinity-ic-user-identity+` key.
 +
-The `+dfinity-ic-user-identity+` key value stores the public and private keys for the user. 
+The `+dfinity-ic-user-identity+` key value stores the public and private keys for the user.
 . Return to the standard browser window.
 +
 For example, the window that displays the Maya profile.
@@ -295,22 +295,22 @@ To explore the configuration file:
 
 The source code for the social connections canister, `+connectd+`, is organized into the following files:
 
-* The `+digraph.mo+` file provides the functions to create a directed graph of vertices and edges to describe a user's connections. 
-* The `+main.mo+` contains the actor and key functions for defining the connections associated with a user profile that can be called by the LinkedUp sample application. 
+* The `+digraph.mo+` file provides the functions to create a directed graph of vertices and edges to describe a user's connections.
+* The `+main.mo+` contains the actor and key functions for defining the connections associated with a user profile that can be called by the LinkedUp sample application.
 * The `+types.mo+` file defines the custom type that maps a vertex to a user identity for use in the `+digraph+` and `+main+` program files.
 
 == Explore the linkedup source code
 
 The source code for the professional profile with work history and educational background is organized into the following files:
 
-* The `+main.mo+` file contains the actor and key functions for the LinkedUp sample application. 
+* The `+main.mo+` file contains the actor and key functions for the LinkedUp sample application.
 * The `+types.mo+` file defines the custom types that describe the user identity and profile fields that are imported and used in the `+main+` program file for the `linkedup` canister.
 * The `+utils.mo+` file provides helper functions.
 
 === Query and update operations
 
 In working with the LinkedUp sample application, you might notice that some operations—such as viewing a profile or performing a search—returned results almost immediately.
-Other operations—such as creating a profile or adding a connection—took a little longer.  
+Other operations—such as creating a profile or adding a connection—took a little longer.
 
 These differences in performance illustrate the difference between using query and update calls in the `+linkedup+` canister.
 
@@ -340,7 +340,7 @@ For example, in the `+src/linkedup/main.mo+` file, the `+create+` and `+update+`
 
 === Interaction between the canisters
 
-In this sample application, the `linkedup` canister leverages functions defined in the `connectd` canister. 
+In this sample application, the `linkedup` canister leverages functions defined in the `connectd` canister.
 This separation simplifies the code in each canister and illustrates how you can extend a project by calling common functions defined in one canister from one or more other canisters.
 
 To make the public functions defined in one canister available in the another canister:
@@ -362,7 +362,7 @@ In this example, the `+linkedup+` canister calls the `+connect+` and `+getConnec
 
 You can see the code that enables interaction between the `+linkedup+` canister and the `+connectd+` canister in the `+main.mo+` source files.
 
-For example, the `+src/connectd/main.mo+` defines the following functions: 
+For example, the `+src/connectd/main.mo+` defines the following functions:
 +
 [source,motoko]
 ----

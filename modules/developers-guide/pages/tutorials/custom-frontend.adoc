@@ -13,10 +13,10 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 Now that you have a basic understanding of how to create, build, and deploy a simple program and are familiar with the default project files and sample front-end, you might want to start experimenting with different ways to customize the front-end user experience for your project.
 
-This tutorial illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed. 
+This tutorial illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed.
 Later tutorials expand on the techniques introduced here, but if you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.
 
-NOTE: Currently, you can only use Javascript to implement the front-end for your canister. 
+NOTE: Currently, you can only use Javascript to implement the front-end for your canister.
 This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
 Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see link:https://reactjs.org/docs/getting-started.html[Getting started] on the https://reactjs.org/[React website].
 
@@ -71,7 +71,7 @@ cd custom_greeting
 If you've never used React before, you might want to explore the link:https://reactjs.org/tutorial/tutorial.html[Intro to React] tutorial or the link:https://reactjs.org/[React website] before editing the front-end code.
 
 To install required framework modules:
-  
+
 . Install the React module by running the following command:
 +
 [source,bash]
@@ -119,16 +119,16 @@ To modify the default `+dfx.json+` configuration file:
 Let's take a look at the settings in this section.
 +
 --
-* Front-end assets for your project are compiled into their own canister, in this case, a canister named `+custom_greeting_assets+`. 
+* Front-end assets for your project are compiled into their own canister, in this case, a canister named `+custom_greeting_assets+`.
 
-* The assets canister has a default dependency on the main canister for the project. 
+* The assets canister has a default dependency on the main canister for the project.
 
 * The `+frontend.entrypoint+` setting specifies the path to a file—in this case, the `+index.js+` file—to use as your application entry point.
 If you had a different starting point—for example, a custom `index.html` file—you would modify this setting.
 
 * The `+source+` setting specifies the path to a directory for static assets that will be included in your assets canister when you build your project.
 If you had custom cascading stylesheet (CSS) or JavaScript files, you would include them in this source folder.
-After building the project, these assets are served from the directory specified by the `+frontend.output+` setting. 
+After building the project, these assets are served from the directory specified by the `+frontend.output+` setting.
 
 * The `+type+` setting specifies that the `+custom_greeting_assets+` is an asset canister rather than a program canister.
 --
@@ -246,8 +246,8 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"custom_greeting" canister created with canister id: "ic:0100000000000000000000000000000000012D"
-"custom_greeting_assets" canister created with canister id: "ic:02000000000000000000000000000000000153"
+"custom_greeting" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"custom_greeting_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 
 == Build and deploy the program
@@ -282,8 +282,8 @@ dfx canister install --all
 The command output displays output similar to the following:
 +
 ....
-Installing code for canister custom_greeting, with canister_id ic:100000000000000000000000000000000001A9
-Installing code for canister custom_greeting_assets, with canister_id ic:11000000000000000000000000000000000183
+Installing code for canister custom_greeting, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister custom_greeting_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 . Copy the canister identifier for the `+custom_greeting_assets+` canister to the clipboard or a notepad application.
 
@@ -297,17 +297,17 @@ To view the custom front-end:
 +
 By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the `+custom_greeting+` program using `+127.0.0.1:8000+` for the URL.
 +
-In addition to the host and port, the URL you specify needs to include the `+canisterId+` parameter to identify the canister that you want the web server to display. 
+In addition to the host and port, the URL you specify needs to include the `+canisterId+` parameter to identify the canister that you want the web server to display.
 To specify the canister, append the identifier for the `+custom_greeting_assets+` canister using the following syntax:
 +
 ....
-?canisterId=ic:canister_identifier
+?canisterId=canister_identifier
 ....
 +
-For example, the full URL should look similar to the following but with the `+ic:_canister_identifier_+` that was returned for the `+custom_greeting_assets+` canister when you ran the `+dfx canister install+` command:
+For example, the full URL should look similar to the following but with the `+_canister_identifier_+` that was returned for the `+custom_greeting_assets+` canister when you ran the `+dfx canister install+` command:
 +
 ....
-http://localhost:8000/?canisterId=ic:11000000000000000000000000000000000183
+http://localhost:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 . Verify that you are prompted to type a greeting.
 +

@@ -13,15 +13,15 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 In this tutorial, you are going to write a program that creates a single actor and provides a few basic functions to increment a counter and illustrate persistence of a value.
 
-For this tutorial, the actor is named `+Counter+`. 
-The program uses the `+currentValue+` variable to contain a natural number that represents the current value of the counter. 
+For this tutorial, the actor is named `+Counter+`.
+The program uses the `+currentValue+` variable to contain a natural number that represents the current value of the counter.
 This program supports the following function calls:
 
 * The `+increment+` function call updates the current value, incrementing by 1 (no return value).
 * The `+get+` function call queries and returns the current value.
 * The `+set+` function call updates the current value to an arbitrary numeric value you specify as an argument.
 
-This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister. 
+This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister.
 By calling the function to increment a value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.
 
 Like the other sample programs, this tutorial demonstrates a simple, but realistic, workflow in which you perform the following steps:
@@ -117,8 +117,8 @@ mv src/my_counter/main.mo src/my_counter/increment_counter.mo
 
 == Modify the default program
 
-So far, you have only changed the name of the main program for your project. 
-The next step is to modify the code in the `+src/my_counter/increment_counter.mo+` file to define an actor named `+Counter+` and implement the `+increment+`, `+get+`, and `+set+` functions. 
+So far, you have only changed the name of the main program for your project.
+The next step is to modify the code in the `+src/my_counter/increment_counter.mo+` file to define an actor named `+Counter+` and implement the `+increment+`, `+get+`, and `+set+` functions.
 
 To modify the default template source code:
 
@@ -179,8 +179,8 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"my_counter" canister created with canister id: "ic:0100000000000000000000000000000000012D"
-"my_counter_assets" canister created with canister id: "ic:02000000000000000000000000000000000153"
+"my_counter" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"my_counter_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 
 [[build-counter]]
@@ -205,13 +205,12 @@ Building canisters...
 Building frontend...
 ....
 +
-After running the `+dfx build+` command, your program is encapsulated in a unique object—the canister—that can be deployed.
-[arabic]
-. Verify that the `+canisters/my_counter+` directory created by the `+build+` command contains the WebAssembly and related application files by running the following command.
+Because you are running the {IC} network locally, the WebAssembly modules created by the `+dfx build+` command for your program are stored in the `+.dfx/local/canisters+` directory.
+. Verify that the `+.dfx/local/canisters/my_counter+` directory contains the WebAssembly and interface description files by running the following command:
 +
 [source,bash]
 ----
-ls -l canisters/my_counter
+ls -l .dfx/local/canisters/my_counter
 ----
 . Deploy the canister you created by running a `+dfx canister install+` command and specifying the _canister_name_.
 +
@@ -224,7 +223,7 @@ dfx canister install my_counter
 
 == Invoke methods on the deployed canister
 
-After successfully deploying the canister, you can simulate an end-user invoking the methods provided by the canister. 
+After successfully deploying the canister, you can simulate an end-user invoking the methods provided by the canister.
 For this tutorial, you invoke a `+get+` method to query the value of a counter, an `+increment+` method that increments the counter each time it is called, and a `+set+` method to pass an argument to update the counter to an arbitrary value you specify.
 
 To test invoking methods on the deployed canister:
@@ -256,7 +255,7 @@ This command increments the value of the variable—changing its state—but doe
 +
 [source,bash]
 ----
-dfx canister call my_counter get 
+dfx canister call my_counter get
 ----
 +
 The command returns the updated value of the `+currentValue+` variable as one:
@@ -271,7 +270,7 @@ For example, try commands similar to the following to set and return the counter
 +
 [source,bash]
 ----
-dfx canister call my_counter set '(987)' 
+dfx canister call my_counter set '(987)'
 dfx canister call my_counter get
 ----
 +
@@ -279,7 +278,7 @@ Returns the current value of 987.
 +
 [source,bash]
 ----
-dfx canister call my_counter increment 
+dfx canister call my_counter increment
 dfx canister call my_counter get
 ----
 +

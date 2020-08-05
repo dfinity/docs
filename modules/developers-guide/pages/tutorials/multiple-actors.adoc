@@ -185,9 +185,9 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the three canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"assistant" canister created with canister id: "ic:040000000000000000000000000000000001AF"
-"daemon" canister created with canister id: "ic:05000000000000000000000000000000000185"
-"rock_paper_scissors" canister created with canister id: "ic:060000000000000000000000000000000001FB"
+"assistant" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"daemon" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"rock_paper_scissors" canister created with canister id: "7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 
 == Build and deploy multiple canisters
@@ -219,9 +219,9 @@ dfx canister install --all
 The command displays output similar to the following:
 +
 ....
-Installing code for canister assistant, with canister_id ic:040000000000000000000000000000000001AF
-Installing code for canister daemon, with canister_id ic:05000000000000000000000000000000000185
-Installing code for canister rock_paper_scissors, with canister_id ic:060000000000000000000000000000000001FB
+Installing code for canister assistant, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister daemon, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister rock_paper_scissors, with canister_id 7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 
 == Verify deployment by calling functions

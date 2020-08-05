@@ -205,13 +205,12 @@ Building canisters...
 Building frontend...
 ....
 +
-After running the `+dfx build+` command, your program is encapsulated in a unique object—the canister—that can be deployed.
-[arabic]
-. Verify that the `+canisters/my_counter+` directory created by the `+build+` command contains the WebAssembly and related application files by running the following command.
+Because you are running the {IC} network locally, the WebAssembly modules created by the `+dfx build+` command for your program are stored in the `+.dfx/local/canisters+` directory.
+. Verify that the `+.dfx/local/canisters/my_counter+` directory contains the WebAssembly and interface description files by running the following command:
 +
 [source,bash]
 ----
-ls -l canisters/my_counter
+ls -l .dfx/local/canisters/my_counter
 ----
 . Deploy the canister you created by running a `+dfx canister install+` command and specifying the _canister_name_.
 +

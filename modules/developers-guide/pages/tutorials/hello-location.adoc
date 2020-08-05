@@ -125,7 +125,7 @@ dfx canister create --all
 The command displays the network-specific canister identifier for the canister defined in the `+dfx.json+` configuration file.
 +
 ....
-  "location_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"location_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 
 == Build and deploy the program
@@ -305,7 +305,9 @@ The command displays output similar to the following:
 
 include::example$candid-ui.adoc[]
 +
-image:candid-location.png[Favorite cities functions]
+In this example, each function accepts an array of text strings. Therefore, you first select the length of the array, then set values for each item before clicking **Call**.
++
+image:candid-favorite-cities-result.png[Specifying an array]
 
 == Stop the local network
 

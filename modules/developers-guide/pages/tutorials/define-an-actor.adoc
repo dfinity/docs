@@ -135,7 +135,7 @@ The `+--check+` option enables you to build a project locally to verify that it 
 Because the `+dfx build --check+` command only generates a temporary identifier, you should see output similar to the following:
 +
 ....
-Skipping the build manifest. Canister IDs might be hard coded.
+Building canisters to check they build ok. Canister IDs might be hard coded.
 Building canisters...
 ....
 +
@@ -177,7 +177,7 @@ dfx canister create actor_hello
 You should see output similar to the following:
 +
 ....
-"actor_hello" canister created with canister id: "ic:0100000000000000000000000000000000012D"
+"actor_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 +
 The `+dfx canister create+` command also stores the network-specific canister identifier in a file in the `+.dfx/local+` directory.
@@ -187,7 +187,7 @@ For example:
 ....
 {
   "actor_hello": {
-    "local": "ic:0100000000000000000000000000000000012D"
+    "local": "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
   }
 }
 ....
@@ -201,7 +201,7 @@ dfx canister install actor_hello
 The command displays output similar to the following:
 +
 ....
-Installing code for canister actor_hello, with canister_id ic:0100000000000000000000000000000000012D
+Installing code for canister actor_hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 
 == Query the canister

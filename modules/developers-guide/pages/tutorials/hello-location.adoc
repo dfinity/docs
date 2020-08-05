@@ -125,7 +125,7 @@ dfx canister create --all
 The command displays the network-specific canister identifier for the canister defined in the `+dfx.json+` configuration file.
 +
 ....
-  "location_hello" canister created with canister id: "ic:0100000000000000000000000000000000012D"
+"location_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 
 == Build and deploy the program
@@ -150,7 +150,7 @@ dfx canister install location_hello
 The command displays output similar to the following:
 +
 ....
-Installing code for canister location_hello, with canister_id ic:0100000000000000000000000000000000012D
+Installing code for canister location_hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 
 == Pass a string argument
@@ -258,7 +258,7 @@ dfx canister create favorite_cities
 The command returns output similar to the following:
 +
 ....
-"favorite_cities" canister created with canister id: "ic:02000000000000000000000000000000000153"
+"favorite_cities" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 . Build the program by running the following command:
 +
@@ -305,7 +305,9 @@ The command displays output similar to the following:
 
 include::example$candid-ui.adoc[]
 +
-image:candid-location.png[Favorite cities functions]
+In this example, each function accepts an array of text strings. Therefore, you first select the length of the array, then set values for each item before clicking **Call**.
++
+image:candid-favorite-cities-result.png[Specifying an array]
 
 == Stop the local network
 

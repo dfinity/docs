@@ -115,6 +115,7 @@ The command displays the network-specific canister identifiers for the canisters
 ....
 "connectd" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 "linkedup" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"linkedup_assets" canister created with canister id: "7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 +
 Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
@@ -141,9 +142,9 @@ dfx canister install --all
 You should see canister identifiers for the `+connectd+`, `+linkedup+` and `+linkedup_assets+` canisters with a message similar to the following:
 +
 ....
-Installing code for canister connectd, with canister_id ic:180000000000000000000000000000000001FE
-Installing code for canister linkedup, with canister_id ic:190000000000000000000000000000000001D4
-Installing code for canister linkedup_assets, with canister_id ic:1A0000000000000000000000000000000001AA
+Installing code for canister connectd, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister linkedup, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister linkedup_assets, with canister_id 7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 . Copy the `linkedup_assets` canister identifier returned by the `dfx canister install` command.
 +
@@ -151,10 +152,10 @@ In this sample application, only the `linkedup_assets` canister includes the fro
 To open the application in a browser, therefore, you need to specify the `linkedup_assets` canister identifier.
 . Open the `linkedup_assets` canister in your web browser.
 +
-For example, if using the default localhost address and port number, the URL looks similar to this:
+For example, if binding to the default localhost address and port number, the URL looks similar to this:
 +
 ....
-http://localhost:8000/?canisterId=ic:03000000000000000000000000000000000179
+http://127.0.0.1:8000/?canisterId=7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 
 == Create a profile and connections
@@ -165,7 +166,7 @@ To run through a demonstration of the LinkedUp sample application, take the foll
 . Type the web server host name, port, and the `canisterId` keyword, then paste the `linkedup_assets` canister identifier as the URL to display.
 +
 ....
-localhost:8000/?canisterId=<ic-identifier-for-linkedup-assets>
+127.0.0.1:8000/?canisterId=<ic-identifier-for-linkedup-assets>
 ....
 +
 The browser displays an introductory page.
@@ -180,13 +181,6 @@ image:linkedup-empty-maya.png[]
 . Click *Edit*, type profile information, copy and paste the image address for an avatar photo, then click *Submit*.
 +
 image:linkedup-edit-maya.png[]
-+
-While you are interacting with the sample application, you might notice records similar to the following capture your activity and are displayed in the terminal you used to start the `replica` process:
-+
-....
-Apr 14 20:34:57.614 INFO Successfully inserted an ingress message into IngressPool, Application: ArtifactPool
-Apr 14 20:34:58.564 INFO Created checkpoint @6921 in 33.579754ms, StateManager: 1
-....
 +
 After you click *Submit*, you have a profile with some work history that can be viewed.
 +

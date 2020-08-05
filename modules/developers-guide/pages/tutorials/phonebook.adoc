@@ -201,11 +201,7 @@ Note that, in this case, the command returns `+(null)+` because the phone number
 dfx canister call phonebook lookup '("Maya Garcia","Chris Lynn")'
 ----
 +
-Because the program is written to return one value for one key, the command returns a `+mismatch+` error.
-+
-....
-Invalid data: Unable to serialize Candid values: length mismatch for types and values
-....
+Because the program is written to return one value for one key, the command only returns information associated with the first key, in this example the phone number for `+Maya Garcia+`.
 
 include::example$candid-ui.adoc[]
 +

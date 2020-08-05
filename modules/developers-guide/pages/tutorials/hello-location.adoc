@@ -104,7 +104,7 @@ You should now have **two terminals** open with your **project directory** as yo
 dfx start
 ----
 +
-Depending on your platform and local security settings, you might see a warning displayed. 
+Depending on your platform and local security settings, you might see a warning displayed.
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
 
@@ -125,7 +125,7 @@ dfx canister create --all
 The command displays the network-specific canister identifier for the canister defined in the `+dfx.json+` configuration file.
 +
 ....
-  "location_hello" canister created with canister id: "ic:0100000000000000000000000000000000012D"
+  "location_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 
 == Build and deploy the program
@@ -150,7 +150,7 @@ dfx canister install location_hello
 The command displays output similar to the following:
 +
 ....
-Installing code for canister location_hello, with canister_id ic:0100000000000000000000000000000000012D
+Installing code for canister location_hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 
 == Pass a string argument
@@ -166,7 +166,7 @@ To test the program you have deployed locally:
 dfx canister call location_hello location "San Francisco"
 ----
 +
-Because the argument in this case includes a space between `+San+` and `+Francisco+`, you need to enclose the argument in quotes. 
+Because the argument in this case includes a space between `+San+` and `+Francisco+`, you need to enclose the argument in quotes.
 The command displays output similar to the following:
 +
 ....
@@ -190,7 +190,7 @@ The command displays output similar to the following:
 ....
 ("Hello, San Francisco and Paris!")
 ....
-+ 
++
 Because your program only accepts a single string argument, specifying multiple strings returns only the first argument or a `+mismatch+` error.
 +
 For example, if you try this command:
@@ -231,7 +231,7 @@ For example:
 include::example$favorite_cities.mo[]
 ----
 +
-You might notice that `+Text+` in this code example is enclosed by square (`+[ ]+`) brackets. By itself, `+Text+` represents a collection of UTF-8 characters. 
+You might notice that `+Text+` in this code example is enclosed by square (`+[ ]+`) brackets. By itself, `+Text+` represents a collection of UTF-8 characters.
 The square brackets around a type indicate that it is an *array* of that type.
 In this context, therefore, `+[Text]+` indicates an array of a collection of UTF-8 characters, enabling the program to accept and return multiple text strings.
 +
@@ -258,7 +258,7 @@ dfx canister create favorite_cities
 The command returns output similar to the following:
 +
 ....
-"favorite_cities" canister created with canister id: "ic:02000000000000000000000000000000000153"
+"favorite_cities" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 . Build the program by running the following command:
 +
@@ -267,7 +267,7 @@ The command returns output similar to the following:
 dfx build
 ----
 +
-For this tutorial, you have already removed the front-end assets canister, so running `+dfx build+` only compiles the `+favorite_cities+` canister. 
+For this tutorial, you have already removed the front-end assets canister, so running `+dfx build+` only compiles the `+favorite_cities+` canister.
 You can also build projects using the optional `+--skip-frontend+` argument if you are only interested in compiling back-end code for a project.
 . Deploy your `+favorite_cities+` program on the local network by running the following command:
 +

@@ -48,7 +48,7 @@ You can use the following options with the `+dfx+` command.
 |`+--log <logmode>+` |Specifies the logging mode to use.
 +
 You can set the log mode to one of the following:
- 
+
 - `+stderr+` to log messages to the standard error facility.
 
 - `+tee+` to write messages to both standard output and to a specified file name.
@@ -80,7 +80,7 @@ Use the following subcommands to specify the operation you want to perform or to
 |`+new+` |Creates a new project.
 
 |`+ping+` |Sends a response request to a specified {IC} network to determine network connectivity.
-If the connection is successful, the {IC} replies with its status. 
+If the connection is successful, the {IC} replies with its status.
 
 |`+replica+` |Starts a local network replica process.
 
@@ -93,7 +93,7 @@ If the connection is successful, the {IC} replies with its status.
 
 === Examples
 
-You can use the `+dfx+` parent command to display usage information or version information. 
+You can use the `+dfx+` parent command to display usage information or version information.
 For example, to display information about the version of `+dfx+` you currently have installed, you can run the following command:
 
 [source,bash]
@@ -101,17 +101,17 @@ For example, to display information about the version of `+dfx+` you currently h
 dfx --version
 ----
 
-To view usage information for a specific subcommand, specify the subcommand and the `+--help+` flag. 
+To view usage information for a specific subcommand, specify the subcommand and the `+--help+` flag.
 For example, to see usage information for `+dfx build+`, you can run the following command:
 
 [source,bash]
 ----
-dfx build --help 
+dfx build --help
 ----
 
 You can use the `+--verbose+` and `+--quiet+` flags to increment or decrement the logging level.
 If you don't specify any logging level, CRITICAL, ERROR, WARNING, and INFO messages are logged by default.
-Specifying one verbose flag (`+-v+`) increases the log level to include DEBUG messages. 
+Specifying one verbose flag (`+-v+`) increases the log level to include DEBUG messages.
 Specifying two verbose flags (`+-vv+`)increases the logging level to include both DEBUG and TRACE messages.
 
 Adding a `+--quiet+` flag decreases the logging level.
@@ -119,7 +119,7 @@ For example, to remove all messages, you can run a command similar the following
 
 [source,bash]
 ----
-dfx -qqqq build 
+dfx -qqqq build
 ----
 
 Keep in mind that using TRACE level logging (`+--vv+`) generates a lot of log messages that can affect performance and should only be used when required for troubleshooting or analysis.
@@ -133,7 +133,7 @@ dfx --log tee --logfile newlog.txt new hello_world
 
 == dfx bootstrap
 
-Use the `+dfx bootstrap+` command to start the bootstrap web server defined in the `+dfx.json+` configuration file or specified using command-line options. 
+Use the `+dfx bootstrap+` command to start the bootstrap web server defined in the `+dfx.json+` configuration file or specified using command-line options.
 
 The bootstrap web server you specify is used to serve the front-end static assets for your project.
 
@@ -141,7 +141,7 @@ The bootstrap web server you specify is used to serve the front-end static asset
 
 [source,bash]
 ----
-dfx bootstrap [option] 
+dfx bootstrap [option]
 ----
 
 === Flags
@@ -162,7 +162,7 @@ You can specify the following options for the `+dfx bootstrap+` command.
 [width="100%",cols="<36%,<64%",options="header"]
 |===
 |Option |Description
-|`+ip+` <ip_address> |Specifies the IP address that the bootstrap server listens on. 
+|`+ip+` <ip_address> |Specifies the IP address that the bootstrap server listens on.
 If you don’t specify an IP address, the `address` setting you have configured in the `+dfx.json+` configuration file is used.
 By default, the server address is 127.0.0.1.
 
@@ -175,7 +175,7 @@ By default, port number 8081 is used.
 By default, the path to static assets is:
 `+$HOME/.cache/dfinity/versions/$DFX_VERSION/js-user-library/dist/bootstrap+`.
 
-|--timeout <timeout> | Specifies the maximum amount of time, in seconds, the bootstrap server will wait for upstream requests to complete. 
+|--timeout <timeout> | Specifies the maximum amount of time, in seconds, the bootstrap server will wait for upstream requests to complete.
 By default, the bootstrap server waits for a maximum of 30 seconds.
 |===
 
@@ -215,7 +215,7 @@ You can use this command to compile all of the programs that are defined for a p
 
 If you are connected to the {IC} running locally or on a sub-network, this command registers canister identifiers for all of the programs in your project and generates a `+canister_manifest.json+` file that stores details about the compiled program canisters it registered on the network.
 
-Note that you can only run this command from within the project directory structure. 
+Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
 The `+dfx build+` command looks for the source code to compile into a canister in the directory you have configured using the `+canisters+` section in the `+dfx.json+` configuration file.
@@ -224,7 +224,7 @@ The `+dfx build+` command looks for the source code to compile into a canister i
 
 [source,bash]
 ----
-dfx build [flag] [option] 
+dfx build [flag] [option]
 ----
 
 === Flags
@@ -259,7 +259,7 @@ You can specify the following option for the `+dfx build+` command.
 
 === Examples
 
-You can use the `+dfx build+` command to build one or more WebAssembly modules from the programs specified in the `+dfx.json+` configuration file under the `+canisters+` key. 
+You can use the `+dfx build+` command to build one or more WebAssembly modules from the programs specified in the `+dfx.json+` configuration file under the `+canisters+` key.
 For example, if your `+dfx.json+` configuration file defines one `+hello_world+` canister and one `+hello_world_assets+` canister, then running `+dfx build+` compiles two WebAssembly modules:
 
 [source,json]
@@ -325,8 +325,8 @@ Use the following subcommands to specify the operation you want to perform or to
 
 === Examples
 
-You can use the `+dfx cache+` command to display usage information for its subcommands. 
-To view usage information for a specific subcommand, specify the subcommand and the `+--help+` flag. 
+You can use the `+dfx cache+` command to display usage information for its subcommands.
+To view usage information for a specific subcommand, specify the subcommand and the `+--help+` flag.
 For example, to see usage information for `+dfx cache delete+`, you can run the following command:
 
 [source,bash]
@@ -368,7 +368,7 @@ You can specify the following argument for the `+dfx cache delete+` command.
 
 === Examples
 
-You can use the `+dfx cache delete+` command to permanently delete versions of `+dfx+`  that you no longer want to use. 
+You can use the `+dfx cache delete+` command to permanently delete versions of `+dfx+`  that you no longer want to use.
 For example, you can run the following command to delete `+dfx+` version `+0.5.2+`:
 
 [source,bash]
@@ -524,7 +524,7 @@ You can specify the following option for the `+dfx canister+` command.
 
 |Option |Description
 
-|`+--network <network>+` |Specifies the {IC} network you want to connect to. 
+|`+--network <network>+` |Specifies the {IC} network you want to connect to.
 You can use this option to override the network specified in the `+dfx.json+` configuration file.
 
 |===
@@ -552,8 +552,8 @@ Use the following subcommands to specify the operation you want to perform or to
 === Examples
 
 In most cases, you use `+dfx canister+` subcommands after you compile a program to manage the canister lifecycle and perform key tasks such as calling program functions.
- 
-To view usage information for a specific `+dfx canister+` subcommand, specify the subcommand and the `+--help+` flag. 
+
+To view usage information for a specific `+dfx canister+` subcommand, specify the subcommand and the `+--help+` flag.
 For example, to see usage information for `+dfx canister call+`, you can run the following command:
 
 [source,bash]
@@ -591,7 +591,7 @@ Use the `+dfx canister call+` command to call a specified method on a deployed c
 
 [source,bash]
 ----
-dfx canister call [option] canister_name method_name [argument] [flag] 
+dfx canister call [option] canister_name method_name [argument] [flag]
 ----
 
 === Flags
@@ -609,7 +609,7 @@ You can use the following optional flags with the `+dfx canister call+` command.
 For best performance and network efficiency, you should use this flag when you explicitly want to use the query method to retrieve information.
 For information about the difference between query and update calls, see link:introduction-key-concepts{outfilesuffix}#query-calls[Canisters include both program and state].
 
-|`+–update+` |Enables you to send an update request to a deployed canister. 
+|`+–update+` |Enables you to send an update request to a deployed canister.
 By default, canister calls use the update method.
 
 |`+-V+`, `+–version+` |Displays version information.
@@ -623,10 +623,10 @@ You can use the following options with the `+dfx canister call+` command.
 |===
 |Option |Description
 
-|`+--output <output>+` |Specifies the output format to use when displaying a method's return result. 
+|`+--output <output>+` |Specifies the output format to use when displaying a method's return result.
 The valid values are `+idl+` and `+raw+`.
 
-|`+--type <type>+` |Specifies the data type for the argument when making the call using an argument. 
+|`+--type <type>+` |Specifies the data type for the argument when making the call using an argument.
 The valid values are `+idl+` and `+raw+`.
 |===
 
@@ -639,11 +639,11 @@ You can specify the following arguments for the `+dfx canister call+` command.
 |Argument |Description
 |`+canister_name+` |Specifies the name of the canister to call. The canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
 
-|`+method_name+` |Specifies the method name to call on the canister. 
+|`+method_name+` |Specifies the method name to call on the canister.
 The canister method is a required argument.
 
-|`+argument+` |Specifies the argument to pass to the method. 
-Depending on your program logic, the argument can be a required or optional argument. 
+|`+argument+` |Specifies the argument to pass to the method.
+Depending on your program logic, the argument can be a required or optional argument.
 You can specify a type using the `+--type+` option if you pass an argument to the canister.
 The default type is `+idl+`. For information about the interface description types that you can use for arguments, see <<Interface description syntax for arguments>>.
 You can use `+raw+` as the argument type if you want to pass raw bytes to a canister.
@@ -651,11 +651,11 @@ You can use `+raw+` as the argument type if you want to pass raw bytes to a cani
 
 === Interface description syntax for arguments [[idl-syntax]]
 
-The `+--type idl+` option specifies a special syntax, which is different from {proglang}, for representing argument values. 
-The syntax provides a language-agnostic way to communicate with canisters using different languages and tools. 
+The `+--type idl+` option specifies a special syntax, which is different from {proglang}, for representing argument values.
+The syntax provides a language-agnostic way to communicate with canisters using different languages and tools.
 Specifically, the Candid interface description language (IDL) enables you to use the same syntax to specify input argument values and display return values from canister methods, regardless of whether you are using the `+dfx+` command-line interface, JavaScript, {proglang}, or another supported language or tool.
 
-The IDL format accepts multiple argument values separated by commas (`+,+`) and wrapped inside parentheses.  
+The IDL format accepts multiple argument values separated by commas (`+,+`) and wrapped inside parentheses.
 For example, specifying `+(42, true)+` represents two argument values, where the first argument is the number `+42+` and the second argument is a boolean value of `+true+`.
 
 The IDL supports the following value forms:
@@ -674,9 +674,9 @@ The IDL supports the following value forms:
 The IDL interprets numbers with plus signs—for example. `+42`—as integers and numbers without plus signs—for example, `42`—as natural numbers.
 However, since `Nat` is a subtype of `Int` in {proglang}, you can always write `42` without the plus sign for functions that expect integers.
 
-For compound types, such as `+record+` and `+variant+`, labels can be either natural numbers or strings. 
-However, the string label is only present for better readability. 
-Behind the scenes, the string label is converted into a natural number using a fixed hash function. 
+For compound types, such as `+record+` and `+variant+`, labels can be either natural numbers or strings.
+However, the string label is only present for better readability.
+Behind the scenes, the string label is converted into a natural number using a fixed hash function.
 If the canister method returns a `+record+` or `+variant+` type, the field labels will always be natural numbers.
 
 For a more detailed discussion of the interface description language, see the link:../candid-spec:IDL{outfilesuffix}[Candid specification] and link:https://docs.rs/candid/[Candid Rust crate] documentation.
@@ -734,14 +734,14 @@ You can pass raw data in bytes by running a command similar to the following:
 dfx canister call hello greet --type raw '4449444c00017103e29883'
 ----
 
-This example uses the raw data type to pass a hexadecimal to the `+greet+` function of the `+hello+` canister. 
+This example uses the raw data type to pass a hexadecimal to the `+greet+` function of the `+hello+` canister.
 
 == dfx canister create
 
 Use the `+dfx canister create+` command to register one or more canister identifiers without compiled code on the {IC} network.
 You must be connected to an {IC} network running locally or on a sub-network that you can access to run this command.
 
-Note that you can only run this command from within the project directory structure. 
+Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
 === Basic usage
@@ -773,13 +773,13 @@ You can use the following argument with the `+dfx canister create+` command.
 |Argument |Description
 |`+--all+` |Enables you to create multiple canister identifiers at once if you have a project `+dfx.json+` file that defines multiple canisters.
 Note that you must specify `+--all+` or an individual canister name.
-|`+canister_name+` |Specifies the name of the canister for which you want to register an identifier. 
+|`+canister_name+` |Specifies the name of the canister for which you want to register an identifier.
 If you are not using the `+--all+` option, the canister name is a required argument and must match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.
 |===
 
 === Examples
 
-You can use the `+dfx canister create+` command to register canister identifiers without first compiling any code. 
+You can use the `+dfx canister create+` command to register canister identifiers without first compiling any code.
 For example, if you want to create the canister identifier for the project `+my_counter+` before writing the program, you can run the following command:
 
 [source,bash]
@@ -791,7 +791,7 @@ dfx canister create my_counter
 
 Use the `+dfx canister id+` command to output the canister identifier for a specific canister name.
 
-Note that you can only run this command from within the project directory structure. 
+Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
 === Basic usage
@@ -822,7 +822,7 @@ You can use the following argument with the `+dfx canister id+` command.
 |===
 |Argument |Description
 
-|`+canister_name+` |Specifies the name of the canister for which you want to display an identifier. 
+|`+canister_name+` |Specifies the name of the canister for which you want to display an identifier.
 
 |===
 
@@ -841,7 +841,7 @@ The command displays output similar to the following:
 
 [source,bash]
 ----
-ic:05000000000000000000000000000000000185
+75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ----
 
 == dfx canister install
@@ -879,7 +879,7 @@ You can use the following options with the `+dfx canister install+` command.
 |Option |Description
 |`+-c+`, `+--compute-allocation <compute-allocation>+` |Defines a compute allocation—essentially the equivalent of setting CPU allocation—for  canister execution.
 
-|`+-m+`, `+--mode <mode>+` |Specifies whether you want to `+install+`, `+reinstall+`, or `+upgrade+` canisters. 
+|`+-m+`, `+--mode <mode>+` |Specifies whether you want to `+install+`, `+reinstall+`, or `+upgrade+` canisters.
 For more information about installation modes and canister management, see link:working-with-canisters{outfilesuffix}[Managing canisters].
 
 |===
@@ -895,7 +895,7 @@ You can use the following arguments with the `+dfx canister install+` command.
 |`+--all+` |Enables you to install multiple canisters at once if you have a project `dfx.json` file that includes multiple canisters.
 Note that you must specify `--all` or an individual canister name.
 
-|`+canister_name+` |Specifies the name of the canister to deploy. 
+|`+canister_name+` |Specifies the name of the canister to deploy.
 If you are not using the `+--all+` option, the canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
 |===
 
@@ -927,7 +927,7 @@ If you want to submit a request to install the canister and return a request ide
 dfx canister install hello_world --async
 ----
 
-This command submits a request to install the canister and returns a request identifier similar to the following: 
+This command submits a request to install the canister and returns a request identifier similar to the following:
 [source,bash]
 ----
 0x58d08e785445dcab4ff090463b9e8b12565a67bf436251d13e308b32b5058608
@@ -962,14 +962,14 @@ dfx canister install --all --compute-allocation 50
 With this setting, all of the canisters in the current projects are assigned a 50% allocation. When canisters in the project receive input messages to process, the messages are scheduled for execution.
 Over 100 execution cycles, each canister's messages will be scheduled for processing at least 50 times.
 
-The default value for this option is 0—indicating that no specific allocation or scheduling is in effect. 
+The default value for this option is 0—indicating that no specific allocation or scheduling is in effect.
 If all of your canisters use the default setting, processing occurs in a round-robin fashion.
 
 In a development environment, you might use this option for testing purposes if you have applications that require multiple canisters.
 
 == dfx canister request-status
 
-Use the `+dfx canister request-status+` to request the status of a specified call to a canister. 
+Use the `+dfx canister request-status+` to request the status of a specified call to a canister.
 This command requires you to specify the request identifier you received after invoking a method on the canister.
 The request identifier is an hexadecimal string starting with `+0x+`.
 
@@ -998,7 +998,7 @@ You can specify the following argument for the `+dfx canister request-status+` c
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Argument |Description
-|`+request_id+` |Specifies the hexadecimal string returned in response to a `+dfx canister call+` or `+dfx canister install+` command. 
+|`+request_id+` |Specifies the hexadecimal string returned in response to a `+dfx canister call+` or `+dfx canister install+` command.
 This identifier is an hexadecimal string starting with 0x.
 |===
 
@@ -1015,15 +1015,15 @@ This command displays an error message if the request identifier is invalid or r
 
 == dfx config
 
-Use the `+dfx config+` command to view or configure settings in the configuration file for a current project. 
-Note that you can only run this command from within the project directory structure. 
+Use the `+dfx config+` command to view or configure settings in the configuration file for a current project.
+Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
 === Basic usage
 
 [source,bash]
 ----
-dfx config [config_path] [value] [flag] 
+dfx config [config_path] [value] [flag]
 ----
 
 === Flags
@@ -1044,8 +1044,8 @@ You can use the following option with the `+dfx config+` command.
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Option |Description
-|`+--format+` |Specifies the format of the configuration file output. 
-By default, the file is displayed using JSON format. 
+|`+--format+` |Specifies the format of the configuration file output.
+By default, the file is displayed using JSON format.
 The valid values are `+json+` and `+text+`.
 |===
 
@@ -1056,7 +1056,7 @@ You can specify the following arguments for the `+dfx config+` command.
 [width="100%",cols="<34%,<66%",options="header"]
 |===
 |Argument |Description
-|`+config_path+` |Specifies the name of the configuration option that you want to set or read. 
+|`+config_path+` |Specifies the name of the configuration option that you want to set or read.
 You must specify the configuration file option using its period-delineated path to set or read the specific option you want to change or view.
 If you don't specify the path to a specific configuration option, the command displays the full configuration file.
 
@@ -1075,7 +1075,7 @@ For example, to change the default build output directory from `+canisters+` to 
 dfx config defaults.build.output "staging/"
 ----
 
-To view the current value for a configuration setting, you can specify the path to the setting in the configuration file without specifying a value. 
+To view the current value for a configuration setting, you can specify the path to the setting in the configuration file without specifying a value.
 For example:
 
 [source,bash]
@@ -1139,8 +1139,8 @@ dfx help new
 
 == dfx new
 
-Use the `+dfx new+` command to create a new project for the {platform}. 
-This command creates a default project structure with template files that you can modify to suit your application. 
+Use the `+dfx new+` command to create a new project for the {platform}.
+This command creates a default project structure with template files that you can modify to suit your application.
 You must specify the name of the project to you want to create.
 
 You can use the `+--dry-run+` option to preview the directories and files to be created without adding them to the file system.
@@ -1161,8 +1161,8 @@ You can use the following optional flags with the `+dfx new+` command:
 |Flag |Description
 |`+--dry-run+` |Generates a preview the directories and files to be created for a new project without adding them to the file system.
 
-| `+--frontend+` |Installs the template frontend code for the default project canister. 
-The default value for the flag is `+true+` if `+node.js+` is currently installed on your local computer. 
+| `+--frontend+` |Installs the template frontend code for the default project canister.
+The default value for the flag is `+true+` if `+node.js+` is currently installed on your local computer.
 If `+node.js+` is not currently installed, you can set this flag to `+true+` to attempt to install `+node.js+` and the template file when creating the project or you can set the flag to `+false+` to skip the installation of template frontend code entirely.
 
 |`+-h+`, `+--help+` |Displays usage information.
@@ -1201,17 +1201,17 @@ dfx new my_social_network --dry-run
 
 == dfx ping
 
-Use the `+dfx ping+` command to check connectivity between a local computer and an {IC} network provider. 
+Use the `+dfx ping+` command to check connectivity between a local computer and an {IC} network provider.
 This command enables you to verify that you can connect to a specific {IC} network and that the remote network services are running.
 
-Note that you can only run this command from within the project directory structure. 
+Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
 === Basic usage
 
 [source,bash]
 ----
-dfx ping [provider] [flag] 
+dfx ping [provider] [flag]
 ----
 
 === Flags
@@ -1256,17 +1256,17 @@ If the {IC} is running on the specified network provider address, the command re
 
 == dfx replica
 
-Use the `+dfx replica+` command to start a {IC} replica process (without a web server) locally. 
+Use the `+dfx replica+` command to start a {IC} replica process (without a web server) locally.
 This command enables you to deploy canisters locally to simulate network deployment and to test your programs during development.
 
-Note that you can only run this command from within the project directory structure. 
+Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
 === Basic usage
 
 [source,bash]
 ----
-dfx replica [option] [flag] 
+dfx replica [option] [flag]
 ----
 
 === Flags
@@ -1315,17 +1315,17 @@ dfx replica --maximum-gas-limit 1000
 
 == dfx start
 
-Use the `+dfx start+` command to start a local {IC} replica process and web server processes for the current project. 
+Use the `+dfx start+` command to start a local {IC} replica process and web server processes for the current project.
 This command enables you to deploy canisters to the local {IC} network to test your programs during development.
 
-Note that you can only run this command from within the project directory structure. 
+Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
 === Basic usage
 
 [source,bash]
 ----
-dfx start [option] [flag] 
+dfx start [option] [flag]
 ----
 
 === Flags
@@ -1364,7 +1364,7 @@ You can start the {IC} replica and web server processes in the current shell by 
 dfx start
 ----
 
-If you start the {IC} in the current shell, you need to open a new terminal shell to run additional commands. 
+If you start the {IC} in the current shell, you need to open a new terminal shell to run additional commands.
 Alternatively, you can start the {IC} in the background by running the following command:
 
 [source,bash]
@@ -1387,18 +1387,18 @@ more .dfx/pid
 
 == dfx stop
 
-Use the `+dfx stop+` command to stop the {IC} processes that you currently have running on your local computer. 
+Use the `+dfx stop+` command to stop the {IC} processes that you currently have running on your local computer.
 In most cases, you run the {IC} locally so that you can deploy canisters and test your programs during development.
 To simulate an external {IC} connection, these processes run continuously either in a terminal shell where you started them or the in the background until you stop or kill them.
 
-Note that you can only run this command from within the project directory structure. 
+Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
- 
+
 === Basic usage
 
 [source,bash]
 ----
-dfx stop [flag] 
+dfx stop [flag]
 ----
 
 === Flags
@@ -1424,7 +1424,7 @@ dfx stop
 
 If the local {IC} network is running in a current shell rather than in the background, open a new terminal shell, change to a project directory, then run the `+dfx stop+` command.
 
-The current process identifier (`+pid+`) for the {IC} process started by `+dfx+` is recorded in the `+.dfx/pid+` file. 
+The current process identifier (`+pid+`) for the {IC} process started by `+dfx+` is recorded in the `+.dfx/pid+` file.
 You can view the process identifier before running the `+dfx stop+` command by running the following command:
 [source,bash]
 ----
@@ -1440,12 +1440,12 @@ This command displays a process identifier similar to the following:
 
 Use the `+dfx upgrade+` command to upgrade the {sdk-short-name} components running on your local computer.
 This command checks the version of the {sdk-short-name} that you have currently installed, then upgrades to the latest version available if an older version is detected.
- 
+
 === Basic usage
 
 [source,bash]
 ----
-dfx upgrade [flag] 
+dfx upgrade [flag]
 ----
 
 === Flags

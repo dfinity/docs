@@ -11,11 +11,11 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-In this tutorial, you are going to write a simple program that enables you to store and look up telephone numbers. 
+In this tutorial, you are going to write a simple program that enables you to store and look up telephone numbers.
 This tutorial illustrates how to import and use a few basic {proglang} library functions.
 
-For this tutorial, the {proglang} base library functions are defined in the  `+List+` and `+AssocList+` modules and enable you to work with lists as linked key-value pairs. 
-In this example, the *key* is a `+name+` and the *value* is the `+phone+` text string associated with that name. 
+For this tutorial, the {proglang} base library functions are defined in the  `+List+` and `+AssocList+` modules and enable you to work with lists as linked key-value pairs.
+In this example, the *key* is a `+name+` and the *value* is the `+phone+` text string associated with that name.
 
 This program supports the following function calls:
 
@@ -77,7 +77,7 @@ Creating user-defined types improves the readability of the code.
 * The `+insert+` function is an update call and the `+lookup+` function is a query call.
 
 * The `+Phone+` type is identified as an optional value by using the `+?Phone+` syntax.
--- 
+--
 
 == Start the local network
 
@@ -124,8 +124,8 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"phonebook" canister created with canister id: "ic:0100000000000000000000000000000000012D"
-"phonebook_assets" canister created with canister id: "ic:02000000000000000000000000000000000153"
+"phonebook" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"phonebook_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 +
 Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
@@ -144,7 +144,7 @@ To build and deploy the program:
 ----
 dfx build --skip-frontend
 ----
-The `+dfx.json+` file provides default settings for creating an application front-end entry point and `+assets+` canister. 
+The `+dfx.json+` file provides default settings for creating an application front-end entry point and `+assets+` canister.
 For this tutorial, however, you can build your project using the `+--skip-frontend+` option because the project is a terminal-based application that doesn't include any front-end assets.
 +
 Although this tutorial illustrates how to skip compiling a front-end canister, you can add a simple user interface to this application later by exploring the link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] project in the link:https://github.com/dfinity/examples[examples] repository.
@@ -152,7 +152,7 @@ Although this tutorial illustrates how to skip compiling a front-end canister, y
 +
 [source,bash]
 ----
-dfx canister install phonebook 
+dfx canister install phonebook
 ----
 
 == Add names and numbers using the insert function

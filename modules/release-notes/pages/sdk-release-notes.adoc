@@ -9,7 +9,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.6.1
+:release: 0.6.2
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -32,21 +32,27 @@ This {release} version of the software and programming language should not be us
 
 == Highlights of what's new in {release}
 
-The {release} release only includes the following user-facing changes:
+The {release} release only includes the following user-facing change which is also a breaking change:
+
+- In this release, all canister identifiers are generated using a text-based representation.
++
+To work with this release, you should delete any existing canisters, then regenerate new canister identifiers using the `+dfx canister create+` command and redeploy with the `+dfx canister install+` command to begin using the new text-based identifiers.
+
+The 0.6.1 release only included the following user-facing changes:
 
 - An update to the `+dfx ping+` command enables you to specify a network name to check the status of a network connection.
 - An update to the user authentication method enables `+dfx+` to use the browser's `+localStorage+` for the user's public and private keys if cookies are not enabled.
 - Motoko programming guidelines are now available as part of the programming language guide on the link:../language-guide/style{outfilesuffix}[SDK website].
 
-All other new features and enhancements were included in the 0.6.0 release.
+All other new features and enhancements described below were included in the 0.6.0 release.
 
 === SDK
 
 - You can now look up a canister identifier using the command `dfx canister id <canister_name>`
 - The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister
 - Both canister name and identifiers are printed upon canister creation
-- The `dfx.json` configuration file has a new field—defaults/build/packtool—to support for the Vessel package manager.
-- The `dfx.json` file supports canister new types—`motoko`, `assets`, and `custom`—to allow different builders to be used for building canisters:
+- The `dfx.json` configuration file has a new field—`+defaults/build/packtool+`—to support the Vessel package manager.
+- The `dfx.json` file supports canister new types—`motoko`, `assets`, and `custom`—to allow different build tools to be used for building canisters:
 +
 ** The `motoko` canister type uses the `motoko` compiler to build a canister.
 +

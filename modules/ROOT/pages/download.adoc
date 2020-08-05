@@ -38,11 +38,11 @@ To download and install a specific version from a terminal shell:
 
 . Set the `DFX_VERSION` environment variable to the version of the {sdk-short-name} package you want to install as a prefix to `+curl+` command.
 +
-For example, to install version 0.5.7, you would run the following command:
+For example, to install version 0.6.0, you would run the following command:
 +
 [source,bash]
 ----
-DFX_VERSION=0.5.7 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.6.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 // end::install[]   
 

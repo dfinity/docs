@@ -150,11 +150,11 @@ Let's take a look at a few of the default settings.
 --
 * The `+canisters+` section specifies the name of the WebAssembly module for your `+explore_hello+` project is `+explore_hello+`.
 * The `+canisters.explore_hello+` key specifies that the main program to be compiled is located in the path specified by the `+main+` setting, in this case, `+src/explore_hello/main.mo+` and the `+type+` setting indicates that this is a `+motoko+` program.
-* The `+canisters.explore_hello_assets+` key specifies configuration details about front-end assets for this project. Let's skip past those for now.
+* The `+canisters.explore_hello_assets+` key specifies configuration details about front-end assets for this project. Let's skip those for now.
 * The `+dfx+` setting is used to identify the version of the software used to create the project.
 * The `+networks+` section specifies information about the networks to which you connect. The default settings bind the local {IC} network to the local host address `+127.0.0.1+` and port `+8000+`.
 +
-If you have access to other {IC} network providers, the `+networks+` can include network aliases and URLs for connecting to those providers.
+If you have access to other {IC} network providers, the `+networks+` section can include network aliases and URLs for connecting to those providers.
 --
 +
 You can leave the default settings as they are. 
@@ -412,15 +412,12 @@ drwxr-xr-x  5 pubs  staff     160 Jul 21 12:18 assets
 ....
 +
 These files were generated automatically by the `+dfx build+` command using node modules and the template `+index.js+` file.
-. Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
+. Open a browser and navigate to the `+local+` network address and port number—`+127.0.0.1:8000/+`—specified in the `+dfx.json+` configuration file.
 +
-By default, the URL uses the localhost address (`+127.0.0.1+`) and port number `+8000+`, so you can navigate to the front-end for the explore_hello program using `+127.0.0.1:8000/+` for the URL.
-+
-In addition to the host and port, the URL you specify needs to include `+canisterId+` parameter to identify the canister that you want the web server to display. 
-To specify the canister, append the identifier for the `+explore_hello_assets+` canister using the following syntax:
+To specify the canister you want the web server to display, add the `+canisterId+` parameter and the  `+explore_hello_assets+` canister identifier to the URL using the following syntax:
 +
 ....
-?canisterId=ic:<YOUR-CANISTER-IDENTIFIER>
+?canisterId=<YOUR-CANISTER-IDENTIFIER>
 ....
 +
 For example, the full URL should look similar to the following:

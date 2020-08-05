@@ -244,7 +244,7 @@ For example:
 Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end pop-up window using your web browser.
 
 . Open a browser.
-. Navigate to the default address and port number `+127.0.0.1:8000+`, then append `+/?canisterId=+` and the identifier for the `+hello_assets+` canister to the URL:
+. Navigate to the default address and port number `+127.0.0.1:8000+`, then append `+/?canisterId=+` and the `+hello_assets+` identifier to the URL.
 +
 For example, the full URL should look similar to the following:
 +

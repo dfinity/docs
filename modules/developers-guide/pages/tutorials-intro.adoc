@@ -30,7 +30,7 @@ If you already know how to use CSS, HTML, JavaScript, and React or other framewo
 * link:tutorials/my-contacts{outfilesuffix}[Adding a stylesheet] illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
 If you already know how to add stylesheets to React, you can skip this tutorial.
 
-* link:tutorials/intercanister-calls{outfilesuffix}[Calling shared functions] illustrates how to call shared functions in one canister from a program in another canister.
+* link:tutorials/intercanister-calls{outfilesuffix}[Making simple inter-canister calls] illustrates how to make simple calls to functions defined in one canister from another canister in the same project.
 
 * link:tutorials/scalability-cancan{outfilesuffix}[Creating scalable apps] describes using multiple canisters to create applications that scale.
 

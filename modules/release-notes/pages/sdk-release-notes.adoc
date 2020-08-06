@@ -30,13 +30,46 @@ Note that {sdk-long-name} and {proglang} programming language are Alpha-quality 
 This {release} version of the software and programming language should not be used for developing production applications at this time.
 =====================================================================
 
+[[highlights]]
 == Highlights of what's new in {release}
 
-The {release} release only includes the following user-facing change which is also a breaking change:
+The {release} release only includes one important user-facing change which is also a breaking change that will require an update to all existing projects.
 
-- In this release, all canister identifiers are generated using a text-based representation.
+In this release, all canister identifiers are generated using a text-based representation.
+To work with the {release} release, therefore, you must update your projects to use the new canister identifier format.
+
+If you are connected to the {IC} running locally, do the following in **each project directory**:
+
+. Stop the {IC} by running the following command:
 +
-To work with this release, you should delete any existing canisters, then regenerate new canister identifiers using the `+dfx canister create+` command and redeploy the updated canisters with the `+dfx canister install+` command to begin using the new text-based identifiers.
+[source,bash]
+----
+dfx stop
+----
+. Restart the {IC} in a clean state by running the following command:
++
+[source,bash]
+----
+dfx start --clean
+----
++
+This command removes all existing canister state and build output.
+. Generate new textual canister identifiers by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
+. Redeploy the updated canisters to use the new text-based identifiers by running the following command:
++
+[source,bash]
+----
+dfx canister install --all
+----
+
+For information about breaking changes that were introduced in the previous releases, see <<Breaking changes>>.
+
+=== Highlights of what's new in 0.6.1
 
 The 0.6.1 release only included the following user-facing changes:
 
@@ -44,9 +77,12 @@ The 0.6.1 release only included the following user-facing changes:
 - An update to the user authentication method enables `+dfx+` to use the browser's `+localStorage+` for the user's public and private keys if cookies are not enabled.
 - Motoko programming guidelines are now available as part of the programming language guide on the link:../language-guide/style{outfilesuffix}[SDK website].
 
-All other new features and enhancements described below were included in the 0.6.0 release.
+=== Highlights of what's new in 0.6.0
 
-=== SDK
+The 0.6.0 release included many new features and enhancements.
+The following sections describe the key features and enhancements that were introduced in the 0.6.0 release. 
+
+==== SDK
 
 - You can now look up a canister identifier using the command `dfx canister id <canister_name>`
 - The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister
@@ -61,7 +97,7 @@ All other new features and enhancements described below were included in the 0.6
 ** The `custom` canister type uses a custom builder that should output WASM and DID files.
 - The `dfx.json` file includes network mapping for `local` and `Tungsten` networks. The local network defaults to `127.0.0.1:8000`.
 
-=== Tungsten (Developer Network)
+==== Tungsten (Developer Network)
 
 - HTTP authorization and credentials management for onboarded Tungsten users
 - `Tungsten` added as a provider in `dfx.json
@@ -69,7 +105,7 @@ All other new features and enhancements described below were included in the 0.6
 - The `--network <network>` flag can be used to build and install canisters to the specified provider
 - Canister ID formatting for accessing Tungsten-deployed apps in the browser
 
-=== Motoko
+==== Motoko
 
 - The `motoko-base` repository is now open. We encourage developers to use Vessel package manager to download the latest `base` from `master`.
 - Stable variable support
@@ -79,7 +115,8 @@ All other new features and enhancements described below were included in the 0.6
 - `Buf` module renamed to `Buffer`
 
 == Breaking changes
-The {release} release includes the following changes that might require updates to existing programs:
+
+In addition to the change described in xref:highlights[Highlights of what's new], the {release} release includes the following changes that might require updates to existing programs:
 
 - Major breaking changes and updates to Motoko as detailed here: https://github.com/dfinity/motoko-base/issues/37
 - The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format.

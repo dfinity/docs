@@ -9,7 +9,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.6.2
+:release: 0.6.3
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -32,6 +32,16 @@ This {release} version of the software and programming language should not be us
 
 [[highlights]]
 == Highlights of what's new in {release}
+
+The {release} release only includes minor fixes and enhancements including the following:
+
+- The `+dfx start --clean+` command has been improved to no longer crash if you run the command in a project that is already in a clean state.
++
+Without this fix, manually removing the directories the command is intended to delete would result in `+dfx+` exiting without restarting the {IC}.
+- The parsing logic for the `+dfx canister call+` command has been improved to more consistently recognize arguments in Candid format and to return better error messages  when argument formats are not recognized.
+- The Welcome page displayed when you create a new project has been updated to reflect the current location of SDK and Motoko documentation.
+
+=== Highlights of what's new in 0.6.2
 
 The {release} release only includes one important user-facing change which is also a breaking change that will require an update to all existing projects.
 

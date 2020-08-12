@@ -183,6 +183,13 @@ include::example$mycontacts/mod-index.jsx[]
 mv index.js index.jsx
 ----
 . Navigate back to the root of your project directory.
++
+For example:
++
+[source,bash]
+----
+cd ../../..
+----
 
 == Start the local network
 
@@ -289,6 +296,7 @@ To specify the canister you want the web server to display, add the `+canisterId
 ....
 +
 For example, the full URL should look similar to the following but with the `+_canister_identifier_+` that was returned by the `+dfx canister install+` command:
++
 ....
 http://127.0.0.1:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
@@ -309,7 +317,7 @@ After viewing the Contacts application, you might want to make some changes.
 
 To change stylesheet properties:
 
-. Open the `mycontacts.css` file in a text editor and modify its style settings.
+. Open the `+src/contacts_assets/public/mycontacts.css+` file in a text editor and modify its style settings.
 +
 For example, you might want to change the background color or style the input form.
 . Rebuild the project with your changes by running the following command.
@@ -324,7 +332,7 @@ dfx build
 ----
 dfx canister install --all --mode upgrade
 ----
-. View the results in the browser.
+. View the results in the browser by refreshing or re-entering the canister URL.
 
 == Modify the front-end or back-end code
 

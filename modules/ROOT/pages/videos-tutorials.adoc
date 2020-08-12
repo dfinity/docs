@@ -1,0 +1,179 @@
+= Videos and tutorials
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The Fundamentals video series provides an introduction to building applications for the Internet Computer.
+
+== Building on the {IC}: Fundamentals
+
+The Fundamentals video series provides an introduction to building applications for the Internet Computer.
+The series consists of ten video segments, with a running time of three to five minutes each.
+
+++++
+<h1></h1>
+<br>
+++++
+
+video::viking-funeral.mp4[]
+
+=== What is the {IC} and why build applications to run on it?
+
+This segment of the Fundamentals video series provides a basic introduction to the {IC} and how it supports the future of open internet services. 
+If you want to learn more after watching the video, check out link:developers-guide/introduction-key-concepts{outfilesuffix}[Introduction and key concepts].
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::xCuZFwAHS1Y[youtube]
+
+=== Simplifying the developer experience
+
+The {IC} makes it easier to build applications by reducing the ecosystem complexity. 
+If you want to learn more after watching the video, check out link:developers-guide/introduction-key-concepts{outfilesuffix}[Evolution of the software ecosystem].
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::snow-day.mp4[width=300,height=auto]
+
+=== What is the DFINITY Canister SDK?
+
+Wondering what a "canister" is? Not sure where to start? This video segment introduces the key tools for developing programs that run on the {IC}.
+If you are ready to get started, visit the link:download{outfilesuffix}[Download center].
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::IMG_0048.mp4[width=300,height=auto]
+
+=== Deploying your first application
+
+This video segment walks through how to deploy your first application with the {IC} running locally.
+To try it yourself, follow the steps in the link:quickstart/quickstart{outfilesuffix}[Quick start] tutorial.
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::WVeovvm3znE[youtube]
+
+=== Introducing Motoko: A language designed for the {IC}
+
+This video segment offers an overview of the Motoko programming language and highlights a few key features that make it especially well-suited for writing applications that run on the {IC}.
+If you want to learn more about using {proglang}, see the link:language-guide/motoko{outfilesuffix}[{proglang} Language Guide].
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::IMG_0241.mp4[width=300,height=auto]
+
+=== Integrating a front-end
+
+This video segment demonstrates how to integrate a front-end user interface using React and TypeScript.
+After watching the video, you can experiment on your own or follow the steps in link:developers-guide/tutorials/my-contacts{outfilesuffix}[Adding a stylesheet].
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::IMG_0469.mp4[width=300,height=auto]
+
+=== How Candid provides a common language for application interfaces
+
+This video segment describes how Candid provides a common interface description language (IDL) for interacting with services running on the {IC}.
+For more complete information about the Candid syntax, see the link:candid-spec/IDL{outfilesuffix}[Candid specification].
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::IMG_0559.mp4[width=300,height=auto]
+
+=== Developer ecosystem
+
+This video segment highlights additional tools and resources available for developing programs using {proglang}.
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::IMG_1418.mp4[width=300,height=auto]
+
+===  Building a multi-player game
+
+This video segment showcases a multiple-player Reversi game built to run on the {IC}.
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::luxi3.mp4[width=300,height=auto]
+
+===  Join the community
+
+This video segment summarizes the resources available and how you can get involved. 
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+== Tutorials
+
+The link:quickstart/quickstart{outfilesuffix}[Quick start] provides a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
+
+If you want more hands-on experience creating programs that run on the {IC}, check out these tutorials:
+
+* link:developers-guide/tutorials/explore-templates{outfilesuffix}[Exploring the default project]
+
+* link:developers-guide/tutorials/define-an-actor{outfilesuffix}[Defining an actor]
+
+* link:developers-guide/tutorials/hello-location{outfilesuffix}[Passing arguments in a terminal]
+
+* link:developers-guide/tutorials/counter-tutorial{outfilesuffix}[Incrementing a value to illustrate persistence]
+
+* link:developers-guide/tutorials/calculator{outfilesuffix}[Exploring calculator functions]
+
+* link:developers-guide/tutorials/phonebook{outfilesuffix}[Importing base library functions]
+
+* link:developers-guide/tutorials/multiple-actors{outfilesuffix}[Using multiple actors]
+
+* link:developers-guide/tutorials/custom-frontend{outfilesuffix}[Customizing the front-end]
+
+* link:developers-guide/tutorials/my-contacts{outfilesuffix}[Adding a stylesheet]
+
+* link:xdevelopers-guide/tutorials/intercanister-calls{outfilesuffix}[Making simple inter-canister calls]
+
+* link:developers-guide/tutorials/scalability-cancan{outfilesuffix}[Creating scalable apps]

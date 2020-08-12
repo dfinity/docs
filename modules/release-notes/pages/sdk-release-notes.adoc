@@ -37,7 +37,7 @@ The {release} release only includes minor fixes and enhancements including the f
 
 - The `+dfx start --clean+` command has been improved to no longer crash if you run the command in a project that is already in a clean state.
 +
-Without this fix, manually removing the directories the command is intended to delete would result `+dfx+` exiting without restarting the {IC}.
+Without this fix, manually removing the directories the command is intended to delete would result in `+dfx+` exiting without restarting the {IC}.
 - The parsing logic for the `+dfx canister call+` command has been improved to more consistently recognize arguments in Candid format and to return better error messages  when argument formats are not recognized.
 - The Welcome page displayed when you create a new project has been updated to reflect the current location of SDK and Motoko documentation.
 

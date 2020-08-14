@@ -1,1 +1,1 @@
-* xref:index.adoc[Developers Center]
+* xref:index.adoc[Developer Center]

@@ -37,7 +37,7 @@ The {release} release primarily includes internal improvements that are not user
 The only user-facing features and fixes are the following:
 
 - A new Reserved type has been added to the JavaScript agent library.
-- The Candid UI has been updated with a timer to await the results when issuing function calls.
+- Fixed the timer that is used in the Candid UI when issuing function calls.
 
 == Highlights of what's new in 0.6.3
 

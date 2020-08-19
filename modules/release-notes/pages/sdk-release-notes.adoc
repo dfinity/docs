@@ -9,7 +9,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.6.3
+:release: 0.6.4
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -32,6 +32,14 @@ This {release} version of the software and programming language should not be us
 
 [[highlights]]
 == Highlights of what's new in {release}
+
+The {release} release primarily includes internal improvements that are not user-facing.
+The only user-facing features and fixes are the following:
+
+- A new Reserved type has been added to the JavaScript agent library.
+- Fixed the timer that is used in the Candid UI when issuing function calls.
+
+== Highlights of what's new in 0.6.3
 
 The {release} release only includes minor fixes and enhancements including the following:
 

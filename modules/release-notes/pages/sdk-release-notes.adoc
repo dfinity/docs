@@ -39,7 +39,7 @@ The only user-facing features and fixes are the following:
 - A new Reserved type has been added to the JavaScript agent library.
 - Fixed the timer that is used in the Candid UI when issuing function calls.
 
-== Highlights of what's new in 0.6.3
+=== Highlights of what's new in 0.6.3
 
 The {release} release only includes minor fixes and enhancements including the following:
 

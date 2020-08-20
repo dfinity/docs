@@ -1,0 +1,29 @@
+= Languages and API reference
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The Langauges and API reference information is intended for advanced programmers or system architects who want more details about the lower level structures, libraries, and modules that support the higher level developer tools.
+
+== {proglang}
+
+* link:language-guide/motoko{outfilesuffix}[Motoko Language Guide]
+* link:base-libraries/stdlib-intro{outfilesuffix}[Motoko Base Library]
+* link:language-guide/language-manual{outfilesuffix}[Motoko Language Quick Reference]
+
+== Candid
+
+* link:candid-spec/IDL{outfilesuffix}[Candid Specification]
+* link:https://docs.rs/candid[Candid crate]
+
+== JavaScript
+
+* TBD
+
+== Rust
+
+* link:https://crates.io/crates/ic-types[ic-types]
++
+Internet Computer typing library for testing using Rust
+
+////
+== AssemblyScript
+////

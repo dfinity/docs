@@ -1,5 +1,5 @@
 name: docs
-title: Developers Center
+title: Developer Center
 version: 'master'
 start_page: ROOT:index.adoc
 nav:

@@ -6,18 +6,20 @@ The Fundamentals video series provides an introduction to building applications 
 == Building on the {IC}: Fundamentals
 
 The Fundamentals video series provides an introduction to building applications for the Internet Computer.
-The series consists of ten video segments, with a running time of three to five minutes each.
+The series consists of ten video segments. 
+Most of the segments have a running time of three to five minutes, but there are also deeper technical dives that explore the {proglang} programming language, front-end development, and how all of the pieces come together in a sample application.
 
 ++++
 <h1></h1>
 <br>
 ++++
 
-video::viking-funeral.mp4[]
+video::video-id[youtube]
 
 === What is the {IC} and why build applications to run on it?
 
 This segment of the Fundamentals video series provides a basic introduction to the {IC} and how it supports the future of open internet services. 
+
 If you want to learn more after watching the video, check out link:developers-guide/introduction-key-concepts{outfilesuffix}[Introduction and key concepts].
 
 ++++
@@ -32,7 +34,8 @@ video::xCuZFwAHS1Y[youtube]
 === Simplifying the developer experience
 
 The {IC} makes it easier to build applications by reducing the ecosystem complexity. 
-If you want to learn more after watching the video, check out link:developers-guide/introduction-key-concepts{outfilesuffix}[Evolution of the software ecosystem].
+
+If you want to learn more after watching the video, check out link:developers-guide/introduction-key-concepts{outfilesuffix}#next-gen[Building the next generation of software and services].
 
 ++++
 <h1></h1>
@@ -41,11 +44,12 @@ If you want to learn more after watching the video, check out link:developers-gu
 <br>
 ++++
 
-video::snow-day.mp4[width=300,height=auto]
+video::video-id[youtube,width=300,height=auto]
 
 === What is the DFINITY Canister SDK?
 
 Wondering what a "canister" is? Not sure where to start? This video segment introduces the key tools for developing programs that run on the {IC}.
+
 If you are ready to get started, visit the link:download{outfilesuffix}[Download center].
 
 ++++
@@ -55,11 +59,12 @@ If you are ready to get started, visit the link:download{outfilesuffix}[Download
 <br>
 ++++
 
-video::IMG_0048.mp4[width=300,height=auto]
+video::IMG_0048.mp4[youtube]
 
 === Deploying your first application
 
 This video segment walks through how to deploy your first application with the {IC} running locally.
+
 To try it yourself, follow the steps in the link:quickstart/quickstart{outfilesuffix}[Quick start] tutorial.
 
 ++++
@@ -74,7 +79,8 @@ video::WVeovvm3znE[youtube]
 === Introducing Motoko: A language designed for the {IC}
 
 This video segment offers an overview of the Motoko programming language and highlights a few key features that make it especially well-suited for writing applications that run on the {IC}.
-If you want to learn more about using {proglang}, see the link:language-guide/motoko{outfilesuffix}[{proglang} Language Guide].
+
+If you want to learn more about using {proglang}, see the link:language-guide/motoko{outfilesuffix}[{proglang} Programming Language Guide].
 
 ++++
 <h1></h1>
@@ -83,11 +89,12 @@ If you want to learn more about using {proglang}, see the link:language-guide/mo
 <br>
 ++++
 
-video::IMG_0241.mp4[width=300,height=auto]
+video::IMG_0241.mp4[youtube]
 
 === Integrating a front-end
 
-This video segment demonstrates how to integrate a front-end user interface using React and TypeScript.
+This video segment demonstrates how to integrate a front-end user interface using raw JavaScript, React, and React with TypeScript.
+
 After watching the video, you can experiment on your own or follow the steps in link:developers-guide/tutorials/my-contacts{outfilesuffix}[Adding a stylesheet].
 
 ++++
@@ -97,12 +104,13 @@ After watching the video, you can experiment on your own or follow the steps in 
 <br>
 ++++
 
-video::IMG_0469.mp4[width=300,height=auto]
+video::IMG_0469.mp4[youtube,width=300,height=auto]
 
 === How Candid provides a common language for application interfaces
 
-This video segment describes how Candid provides a common interface description language (IDL) for interacting with services running on the {IC}.
-For more complete information about the Candid syntax, see the link:candid-spec/IDL{outfilesuffix}[Candid specification].
+This video segment describes how Candid provides a common interface description language (IDL) for interacting with services running on the Internet Computer.
+
+For more complete information about the Candid syntax, see the link:candid-spec/IDL{outfilesuffix}[Candid specification] or link:https://crates.io/crates/candid[Candid on crates.io].
 
 ++++
 <h1></h1>
@@ -111,12 +119,14 @@ For more complete information about the Candid syntax, see the link:candid-spec/
 <br>
 ++++
 
-video::IMG_0559.mp4[width=300,height=auto]
+video::IMG_0559.mp4[youtube,width=300,height=auto]
 
-=== Developer ecosystem
+=== Diving into the developer ecosystem
 
 This video segment highlights additional tools and resources available for developing programs using {proglang}.
 
+To start contributing to the community, take a look at the link:https://github.com/dfinity/motoko-base[Motoko base library].
+
 ++++
 <h1></h1>
 <br>
@@ -124,11 +134,13 @@ This video segment highlights additional tools and resources available for devel
 <br>
 ++++
 
-video::IMG_1418.mp4[width=300,height=auto]
+video::IMG_1418.mp4[youtube,width=300,height=auto]
 
 ===  Building a multi-player game
 
-This video segment showcases a multiple-player Reversi game built to run on the {IC}.
+This video segment showcases a multiple-player Reversi game built to run on the {IC} and demonstrates many key concepts involved in building applications for the {IC}.
+
+For a closer look at how the game was made, see link:https://ninegua.github.io/reversi/[Building a Multiplayer Reversi Game on the Internet Computer] or check out the source code in the link:https://github.com/ninegua/reversi[Reversi] repository.
 
 ++++
 <h1></h1>
@@ -137,11 +149,14 @@ This video segment showcases a multiple-player Reversi game built to run on the 
 <br>
 ++++
 
-video::luxi3.mp4[width=300,height=auto]
+video::luxi3.mp4[youtube,width=300,height=auto]
 
-===  Join the community
+===  Take the plunge and join the developer community
 
 This video segment summarizes the resources available and how you can get involved. 
+
+For further inspiration, check out the sample applications in the link:https://github.com/dfinity/examples[examples] or link:https://github.com/dfinity/awesome-dfinity[awesome-dfinity] repositories. 
+To be part of the conversation, join the  link:forum.dfinity.org[Developer Forum] or follow @dfinitydev on Twitter.
 
 ++++
 <h1></h1>

@@ -38,6 +38,7 @@ The computers that make up the virtual machine are organized into sub-networks o
 The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
 Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.
 
+[[next-gen]]
 === Building the next generation of software and services
 
 The {IC} protocol reduces platform-based risks and paves the way for innovation by re-imagining how software is built, deployed, and accessed. 

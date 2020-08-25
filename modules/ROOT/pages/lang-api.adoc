@@ -14,15 +14,15 @@ The Langauges and API reference information is intended for advanced programmers
 * link:candid-spec/IDL{outfilesuffix}[Candid Specification]
 * link:https://docs.rs/candid[Candid crate]
 
+////
 == JavaScript
 
 * TBD
+////
 
 == Rust
 
-* link:https://crates.io/crates/ic-types[ic-types]
-+
-Internet Computer typing library for testing using Rust
+* link:https://crates.io/crates/ic-types[ic-types] - Internet Computer typing library for testing using Rust
 
 ////
 == AssemblyScript

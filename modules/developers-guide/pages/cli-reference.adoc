@@ -843,7 +843,7 @@ To delete all of the canisters you have deployed on the `+tungsten+` Internet Co
 
 [source,bash]
 ----
-dfx canister ==network=tungsten delete --all
+dfx canister --network=tungsten delete --all
 ----
 
 == dfx canister id
@@ -1130,7 +1130,7 @@ To start all of the canisters you have deployed on the `+tungsten+` Internet Com
 
 [source,bash]
 ----
-dfx canister ==network=tungsten start --all
+dfx canister --network=tungsten start --all
 ----
 
 == dfx canister status
@@ -1189,7 +1189,7 @@ To check the status for all of the canisters you have deployed on the `+tungsten
 
 [source,bash]
 ----
-dfx canister ==network=tungsten status --all
+dfx canister --network=tungsten status --all
 ----
 
 == dfx canister stop
@@ -1250,7 +1250,7 @@ To stop all of the canisters you have deployed on the `+tungsten+` Internet Comp
 
 [source,bash]
 ----
-dfx canister ==network=tungsten stop --all
+dfx canister --network=tungsten stop --all
 ----
 
 == dfx config

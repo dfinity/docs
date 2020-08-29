@@ -14,9 +14,9 @@ Most of the segments have a running time of three to five minutes, but there are
 <br>
 ++++
 
-video::video-id[youtube]
+video::jduSMHxdYD8[youtube,width=100%,height=480px]
 
-=== What is the {IC} and why build applications to run on it?
+=== What is the {IC} and why build apps for it?
 
 This segment of the Fundamentals video series provides a basic introduction to the {IC} and how it supports the future of open internet services. 
 
@@ -29,7 +29,7 @@ If you want to learn more after watching the video, check out link:developers-gu
 <br>
 ++++
 
-video::xCuZFwAHS1Y[youtube]
+video::TXf87GTXO78[youtube,width=100%,height=480px]
 
 === Simplifying the developer experience
 
@@ -44,7 +44,7 @@ If you want to learn more after watching the video, check out link:developers-gu
 <br>
 ++++
 
-video::video-id[youtube,width=300,height=auto]
+video::60uHQfoA8Dk[youtube,width=100%,height=480px]
 
 === What is the DFINITY Canister SDK?
 
@@ -59,7 +59,7 @@ If you are ready to get started, visit the link:download{outfilesuffix}[Download
 <br>
 ++++
 
-video::IMG_0048.mp4[youtube]
+video::yqIoiyuGYNA[youtube,width=100%,height=480px]
 
 === Deploying your first application
 
@@ -74,7 +74,7 @@ To try it yourself, follow the steps in the link:quickstart/quickstart{outfilesu
 <br>
 ++++
 
-video::WVeovvm3znE[youtube]
+video::QbeP4xuPUp0[youtube,width=100%,height=480px]
 
 === Introducing Motoko: A language designed for the {IC}
 
@@ -89,9 +89,9 @@ If you want to learn more about using {proglang}, see the link:language-guide/mo
 <br>
 ++++
 
-video::IMG_0241.mp4[youtube]
+video::jWf1zY6o5xM[youtube,width=100%,height=480px]
 
-=== Integrating a front-end
+=== Integrating a front end
 
 This video segment demonstrates how to integrate a front-end user interface using raw JavaScript, React, and React with TypeScript.
 
@@ -104,7 +104,7 @@ After watching the video, you can experiment on your own or follow the steps in 
 <br>
 ++++
 
-video::IMG_0469.mp4[youtube,width=300,height=auto]
+video::O2KaWRtsqHg[youtube,width=100%,height=480px]
 
 === How Candid provides a common language for application interfaces
 
@@ -119,7 +119,7 @@ For more complete information about the Candid syntax, see the link:candid-spec/
 <br>
 ++++
 
-video::IMG_0559.mp4[youtube,width=300,height=auto]
+video::UAlqO66Tweg[youtube,width=100%,height=480px]
 
 === Diving into the developer ecosystem
 
@@ -134,9 +134,9 @@ To start contributing to the community, take a look at the link:https://github.c
 <br>
 ++++
 
-video::IMG_1418.mp4[youtube,width=300,height=auto]
+video::GzkRsbqPaA0[youtube,width=100%,height=480px]
 
-===  Building a multi-player game
+===  Building a multiplayer game
 
 This video segment showcases a multiple-player Reversi game built to run on the {IC} and demonstrates many key concepts involved in building applications for the {IC}.
 
@@ -149,9 +149,9 @@ For a closer look at how the game was made, see link:https://ninegua.github.io/r
 <br>
 ++++
 
-video::luxi3.mp4[youtube,width=300,height=auto]
+video::G6vUrC9lues[youtube,width=100%,height=480px]
 
-===  Take the plunge and join the developer community
+===  Join the {IC} developer community
 
 This video segment summarizes the resources available and how you can get involved. 
 

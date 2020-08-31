@@ -125,19 +125,21 @@ dfx canister install --all
 
 During the development cycle, you might want to install, then replace your program as you debug and improve it.
 
-In this scenario, you might want to keep the canister identifier you have registered but without preserving any of the canister state.
+In this scenario, you might want to keep the canister identifier you have registered but without preserving any of the canister code or state.
 For example, your canister might only have test data that you don't want to keep or you might have decided to change the program altogether but want to reinstall under a canister identifier you used to install a previous program. 
 
 To reinstall on the {IC} network:
 
 . Check that you can connect to the {IC} network.
-. Verify you have a `+canister_manifest.json+` with identifiers for all of the canisters you want to re-deploy.
+. Verify you have a canister identifier for all of the canisters you want to re-deploy.
 . Re-deploy all of the canisters by running the following command:
 +
 [source,bash]
 ----
 dfx canister install --all --mode reinstall
 ----
+
+Note that you can use the `+reinstall+` mode to replace any canister, regardless of whether the canister has code or state associated with it.
 
 == Upgrade a canister
 

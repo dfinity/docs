@@ -141,12 +141,68 @@ dfx canister install --all --mode reinstall
 
 Note that you can use the `+reinstall+` mode to replace any canister, regardless of whether the canister has code or state associated with it.
 
+== Managing the running status of a canister
+
+After you deploy a canister on the {IC}, it can begin receiving and processing requests from users and from other canisters. 
+Canisters that are available to send requests and receive replies are considered in be in a **Running** state.
+
+Although canisters are normally placed in the Running state by default, there are cases where you might want to temporarily or permanently stop a canister.
+For example, you might want to stop a canister before upgrading it. 
+Stopping a canister helps to ensure proper handling of any messages that are in progress and need to either run to completion or be rolled back. 
+You might also want to stop a canister to clear its message queue cleanly as a prerequisite to deleting the canister.
+
+You can check the current status of all canisters or a specified canister by running the `+dfx canister status+` command.
+For example, to see the status for all canisters running on the local {IC} network, you would run the following command:
+
+[source,bash]
+----
+dfx canister status -all
+----
+
+This command returns output similar to the following if canisters are currently running:
+
+....
+Canister status_check's status is Running.
+Canister status_check_assets's status is Running.
+....
+
+You can stop canisters that are currently running by running the `+dfx canister stop+` command.
+
+[source,bash]
+----
+dfx canister stop -all
+----
+
+This command displays output similar to the following:
+
+....
+Stopping code for canister status_check, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Stopping code for canister status_check_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+....
+
+If you were to rerun the `+dfx canister status+` command, you might see a status of `+Stopped+` indicating that there were no pending messages that needed to processed or a status of `+Stopping+` indicating that there were messages in-flight that needed to be addressed.
+
+To restart a canister-for example, after a successful canister upgrade—you can run the `+dfx canister start+` command.
+For example, to restart all of the canisters running on the local {IC} network, you would run the following command:
+
+[source,bash]
+----
+dfx canister start -all
+----
+
+This command displays output similar to the following:
+
+....
+Starting code for canister status_check, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Starting code for canister status_check_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+....
+
 == Upgrade a canister
 
 Unlike a canister replacement that preserves the canister identifier but no state, a canister upgrade enables you to preserve the state of a deployed canister, and change the code.
  
 For example, assume you have an application that manages professional profiles and social connections. 
-If you want to add a new feature to the application, you need to be able to update the canister code without losing any of the previously stored data.
+If you want to add a new feature to the application, you need to be able to update the canister code without losing any of the previously-stored data.
 A canister upgrade enables you to update existing canister identifiers with program changes without losing the program state.
 
 To upgrade a canister on the {IC} network:

@@ -165,7 +165,7 @@ For example, to see the status for all canisters running on the local {IC} netwo
 
 [source,bash]
 ----
-dfx canister status -all
+dfx canister status --all
 ----
 
 This command returns output similar to the following if canisters are currently running:
@@ -179,7 +179,7 @@ You can stop canisters that are currently running by running the `+dfx canister 
 
 [source,bash]
 ----
-dfx canister stop -all
+dfx canister stop --all
 ----
 
 This command displays output similar to the following:
@@ -196,7 +196,7 @@ For example, to restart all of the canisters running on the local {IC} network, 
 
 [source,bash]
 ----
-dfx canister start -all
+dfx canister start --all
 ----
 
 This command displays output similar to the following:
@@ -253,19 +253,19 @@ If you were deleting canisters on a remote network, you would include the `+--ne
 +
 [source,bash]
 ----
-dfx canister status -all
+dfx canister status --all
 ----
 . Stop all of the project canisters by running the following command:
 +
 [source,bash]
 ----
-dfx canister stop -all
+dfx canister stop --all
 ----
 . Delete all of the project canisters by running the following command:
 +
 [source,bash]
 ----
-dfx canister delete -all
+dfx canister delete --all
 ----
 
 ////

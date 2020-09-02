@@ -787,6 +787,65 @@ For example, if you want to create the canister identifier for the project `+my_
 dfx canister create my_counter
 ----
 
+== dfx canister delete
+
+Use the `+dfx canister delete+` command to delete a stopped canister from the local Internet Computer network or on a remote Internet Computer network.
+
+Note that you can only run this command from within the project directory structure.
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx canister delete [flag] [--all | canister_name]
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx canister delete+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Arguments
+
+You can use the following arguments with the `+dfx canister delete+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Argument |Description
+
+|`+--all+` |Deletes all of the canisters configured in the `+dfx.json+` file. Note that you must specify `+--all+` or an individual canister name.
+
+|`+canister_name+` |Specifies the name of the canister you want to delete.
+Note that you must specify either a canister name or the `+--all+` option.
+|===
+
+=== Examples
+
+You can use the `+dfx canister delete+` command to delete a specific canister or all canisters.
+
+To delete the `+hello_world+` canister, you can run the following command:
+
+[source,bash]
+----
+dfx canister delete hello_world
+----
+
+To delete all of the canisters you have deployed on the `+tungsten+` Internet Computer network, you can run the following command:
+
+[source,bash]
+----
+dfx canister --network=tungsten delete --all
+----
+
 == dfx canister id
 
 Use the `+dfx canister id+` command to output the canister identifier for a specific canister name.
@@ -1010,6 +1069,187 @@ dfx canister request-status 0x58d08e785445dcab4ff090463b9e8b12565a67bf436251d13e
 ----
 
 This command displays an error message if the request identifier is invalid or refused by the canister.
+
+== dfx canister start
+
+Use the `+dfx canister start+` command to restart a stopped canister on the local Internet Computer network or on a remote Internet Computer network.
+
+In most cases, you run this command after you have stopped a canister to properly terminate any pending requests as a prerequisite to upgrading the canister.
+
+Note that you can only run this command from within the project directory structure.
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx canister start [flag] [--all | canister_name]
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx canister start+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Arguments
+
+You can use the following arguments with the `+dfx canister start+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Argument |Description
+
+|`+--all+` |Starts all of the canisters configured in the `+dfx.json+` file. Note that you must specify `+--all+` or an individual canister name.
+
+|`+canister_name+` |Specifies the name of the canister you want to start.
+Note that you must specify either a canister name or the `+--all+` option.
+|===
+
+=== Examples
+
+You can use the `+dfx canister start+` command to start a specific canister or all canisters.
+
+To start the `+hello_world+` canister, you can run the following command:
+
+[source,bash]
+----
+dfx canister start hello_world
+----
+
+To start all of the canisters you have deployed on the `+tungsten+` Internet Computer network, you can run the following command:
+
+[source,bash]
+----
+dfx canister --network=tungsten start --all
+----
+
+== dfx canister status
+
+Use the `+dfx canister status+` command to check whether a canister is currently running, in the process of stopping, or currently stopped on the local Internet Computer network or on a remote Internet Computer network.
+
+Note that you can only run this command from within the project directory structure.
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx canister status [flag] [--all | canister_name]
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx canister status+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Arguments
+
+You can use the following arguments with the `+dfx canister status+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Argument |Description
+
+|`+--all+` |Returns status information for all of the canisters configured in the `+dfx.json+` file. Note that you must specify `+--all+` or an individual canister name.
+
+|`+canister_name+` |Specifies the name of the canister you want to return information for.
+Note that you must specify either a canister name or the `+--all+` option.
+|===
+
+=== Examples
+
+You can use the `+dfx canister status+` command to check the status of a specific canister or all canisters.
+
+To check the status of the `+hello_world+` canister, you can run the following command:
+
+[source,bash]
+----
+dfx canister status hello_world
+----
+
+To check the status for all of the canisters you have deployed on the `+tungsten+` Internet Computer network, you can run the following command:
+
+[source,bash]
+----
+dfx canister --network=tungsten status --all
+----
+
+== dfx canister stop
+
+Use the `+dfx canister stop+` command to stop a canister that is currently running on the local Internet Computer network or on a remote Internet Computer network.
+
+In most cases, you run this command to properly terminate any pending requests as a prerequisite to upgrading the canister.
+
+Note that you can only run this command from within the project directory structure.
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx canister stop [flag] [--all | canister_name]
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx canister stop+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Arguments
+
+You can use the following arguments with the `+dfx canister stop+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Argument |Description
+
+|`+--all+` |Stops all of the canisters configured in the `+dfx.json+` file. Note that you must specify `+--all+` or an individual canister name.
+
+|`+canister_name+` |Specifies the name of the canister you want to stop.
+Note that you must specify either a canister name or the `+--all+` option.
+|===
+
+=== Examples
+
+You can use the `+dfx canister stop+` command to start a specific canister or all canisters.
+
+To stop the `+hello_world+` canister, you can run the following command:
+
+[source,bash]
+----
+dfx canister stop hello_world
+----
+
+To stop all of the canisters you have deployed on the `+tungsten+` Internet Computer network, you can run the following command:
+
+[source,bash]
+----
+dfx canister --network=tungsten stop --all
+----
 
 == dfx config
 

@@ -911,7 +911,7 @@ dfx canister install --all
 
 ==== Installing a specific canister
 
-You can also use the dfx canister install command to deploy a specific canister instead of all of the canisters in your project.
+You can also use the `+dfx canister install+` command to deploy a specific canister instead of all of the canisters in your project.
 For example, if you have a project with a `+hello_world+` canister and a `+hello_world_assets+` canister but only want to deploy the `+hello_world+` canister, you can deploy just that the canister by running the following command:
 
 [source,bash]
@@ -964,8 +964,6 @@ Over 100 execution cycles, each canister's messages will be scheduled for proces
 
 The default value for this option is 0—indicating that no specific allocation or scheduling is in effect.
 If all of your canisters use the default setting, processing occurs in a round-robin fashion.
-
-In a development environment, you might use this option for testing purposes if you have applications that require multiple canisters.
 
 == dfx canister request-status
 

@@ -33,6 +33,18 @@ This {release} version of the software and programming language should not be us
 [[highlights]]
 == Highlights of what's new in {release}
 
+The {release} release includes the following new features and capabilities:
+
+- The `+dfx build+` command now supports building all or specific canister.
++
+For example, you can compile the code for a back-end canister without building the canister used for your project's front-end assets.
++
+Because of this change to the `+dfx build+` command, the `+--skip-frontend+` option is no longer needed and has been deprecated.
+- There are several new `+dfx identity+` commands that enable you to create and switch between different user identities to test access control for your programs.
+- 
+
+== Highlights of what's new in 0.6.6
+
 The {release} release features several new commands for managing canisters.
 The release include the following new commands for managing canister operations and the canister lifecycle:
 

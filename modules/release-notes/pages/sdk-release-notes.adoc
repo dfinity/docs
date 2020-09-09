@@ -35,11 +35,11 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- The `+dfx build+` command now supports building all or specific canister.
+- The `+dfx build+` command now supports building a specific canister, in addition to building all.
 +
 For example, you can compile the code for a back-end canister without building the canister used for your project's front-end assets.
 +
-Because of this change to the `+dfx build+` command, the `+--skip-frontend+` option is no longer needed and has been deprecated.
+Because of this change to the `+dfx build+` command, the `+--skip-frontend+` option is no longer needed and has been removed.
 - There are several new `+dfx identity+` commands that enable you to create and switch between different user identities to test access control for your programs.
 - 
 

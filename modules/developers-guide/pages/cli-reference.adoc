@@ -265,7 +265,7 @@ You can specify the following arguments for the `+dfx build+` command.
 |`+--all+` |Builds all of the canisters configured in the project's `+dfx.json+` file.
 
 |`+canister_name+` |Specifies the name of the canister you want to build.
-If you are not using the `+--all+` option, the canister name is a required argument and must match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.
+If you are not using the `+--all+` option, you can continue to use `+dfx build+` or provide a canister name as an argument (the canister name must match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.)
 
 |===
 

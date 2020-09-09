@@ -23,6 +23,11 @@ In this example, there are three named roles—`+owner+`, `+admin+`, and `+autho
 
 In addition, only the user identity that initialized the canister is assigned the `+owner+` role and only the `+owner+` and `+admin+` roles can assign roles to other users.
 
+At a high-level, each user has a public/private key pair. The public key combines with the canister identifier the user accesses forms a security principal that can then be used as a message caller to authenticate function calls made to the canister running on the {IC}.
+The following diagram provides a simplified view of how user identities authenticate message callers.
+
+image::principal-identities.svg[]
+
 == Before you begin
 
 Before starting the tutorial, verify the following:

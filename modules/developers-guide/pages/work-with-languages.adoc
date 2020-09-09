@@ -208,17 +208,17 @@ dfx start
 Depending on your platform and local security settings, you might see a warning displayed. 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
-. Build the program by running the following command:
-+
-[source,bash]
-----
-dfx build
-----
 . Register a unique canister identifier for the application by running the following command:
 +
 [source,bash]
 ----
 dfx canister create --all
+----
+. Build the program by running the following command:
++
+[source,bash]
+----
+dfx build
 ----
 . Deploy the program on the local network by running the following command:
 +

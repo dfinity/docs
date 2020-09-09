@@ -44,7 +44,11 @@ You can use the following options with the `+dfx+` command.
 [width="100%",cols="<32%,<68%",options="header",]
 |===
 |Option |Description
+
+|`+--identity <identity>+` |Specifies the user identity to use when running a command.
+
 |`+--logfile <logfile>+` |Writes log file messages to the specified log file name if you use the `+--log file+` logging option.
+
 |`+--log <logmode>+` |Specifies the logging mode to use.
 +
 You can set the log mode to one of the following:
@@ -76,6 +80,8 @@ Use the following subcommands to specify the operation you want to perform or to
 |`+config+` |Sets or changes configuration options for your current project.
 
 |`+help+` |Displays usage information for a specified subcommand.
+
+|`+identity+` |Manages the identities used to communicate with the Internet Computer network when accessing deployed canisters.
 
 |`+new+` |Creates a new project.
 
@@ -1374,6 +1380,54 @@ To display the usage information for `+dfx bew+`, run the following command:
 ----
 dfx help new
 ----
+
+== dfx identity
+
+Use the `+dfx identity+` command to manage the identities used to communicate with the Internet Computer network. 
+Creating multiple user identities enables you to test user-based access controls.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx identity [subcommand] [flag]
+----
+
+=== Flag
+
+You can use the following optional flags with the `+dfx identity+` command:
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Subcommands
+
+Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Command |Description
+
+| `+help+` |Displays this usage message or the help of the given subcommand(s).
+
+|`+list+` |Lists existing identities.
+
+|`+new+` |Creates a new identity.
+
+|`+remove+` |Removes an existing identity.
+
+|`+rename+` |Renames an existing identity.
+
+|`+use+` |Specifies the identity to use.
+
+|`+whoami+` |Displays the name of the current identity user context.
+|===
 
 == dfx new
 

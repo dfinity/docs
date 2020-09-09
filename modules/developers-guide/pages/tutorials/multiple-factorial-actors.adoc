@@ -161,7 +161,7 @@ To build the executable for each actor in the project:
 +
 [source,bash]
 ----
-dfx build --skip-frontend
+dfx build --all
 ----
 +
 If the command is successful, it builds all of the canisters you have specified in the `+dfx.json+` file.

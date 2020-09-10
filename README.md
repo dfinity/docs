@@ -7,7 +7,7 @@ You can get started right away by downloading the DFINITY Canister Software Deve
 - [*Examples Repository*](https://github.com/dfinity/examples) Explore on your own in the examples repository.
 - [*SDK Developer Tools*](https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html) Learn more about using the SDK to create applications.
 - [*Language Guide*](https://sdk.dfinity.org/docs/language-guide/motoko.html) Explore the Motoko programming language.
-- [*Step-by-Step Tutorials*](https://sdk.dfinity.org/docs/developers-guide/tutorials-intro.html) Get step-by-step instructions for building apps.
+- [*Videos and Tutorials*](https://sdk.dfinity.org/docs/developers-guide/tutorials-intro.html) Watch the _Building Applications for the Internet Computer: Fundamentals_ video series or follow step-by-step tutorials to get started building apps.
 
 # Contributing to the documentation
 

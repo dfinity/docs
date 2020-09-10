@@ -44,7 +44,11 @@ You can use the following options with the `+dfx+` command.
 [width="100%",cols="<32%,<68%",options="header",]
 |===
 |Option |Description
+
+|`+--identity <identity>+` |Specifies the user identity to use when running a command.
+
 |`+--logfile <logfile>+` |Writes log file messages to the specified log file name if you use the `+--log file+` logging option.
+
 |`+--log <logmode>+` |Specifies the logging mode to use.
 +
 You can set the log mode to one of the following:
@@ -76,6 +80,8 @@ Use the following subcommands to specify the operation you want to perform or to
 |`+config+` |Sets or changes configuration options for your current project.
 
 |`+help+` |Displays usage information for a specified subcommand.
+
+|`+identity+` |Enables you to create and manage the identities used to communicate with the Internet Computer network.
 
 |`+new+` |Creates a new project.
 
@@ -109,6 +115,8 @@ For example, to see usage information for `+dfx build+`, you can run the followi
 dfx build --help
 ----
 
+==== Using logging options
+
 You can use the `+--verbose+` and `+--quiet+` flags to increment or decrement the logging level.
 If you don't specify any logging level, CRITICAL, ERROR, WARNING, and INFO messages are logged by default.
 Specifying one verbose flag (`+-v+`) increases the log level to include DEBUG messages.
@@ -130,6 +138,18 @@ To output log messages to a file named `newlog.txt` and display the messages on 
 ----
 dfx --log tee --logfile newlog.txt new hello_world
 ----
+
+==== Specifying a user identity
+
+If you create user identities with the `+dfx identity new+` command, you can then use the `+--identity+` comment-line option to change the user context when running other `+dfx+` commands.
+
+In the most common use case, you use the `+--identity+` option to call specific canister functions to test access controls for specific operations.
+
+For example, you might want to test whether the `+devops+` user identity can call the `+modify_profile+` function for the `+accounts+` canister by running the following command:
+
+....
+dfx --identity devops canister call accounts modify_profile '("Kris Smith")'
+....
 
 == dfx bootstrap
 
@@ -758,6 +778,9 @@ You must be connected to an {IC} network running locally or on a sub-network tha
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+
+The first time you run the `+dfx canister create+` command to register an identifier, your public/private key pair credentials are used to create a `+default+` user identity.
+The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/identity/creds.pem+` to `+$HOME/.config/dfx/identity/default/identity.pem+`.
 
 === Basic usage
 
@@ -1389,6 +1412,81 @@ To display the usage information for `+dfx bew+`, run the following command:
 ----
 dfx help new
 ----
+
+== dfx identity
+
+Use the `+dfx identity+` command to manage the identities used to communicate with the Internet Computer network. 
+Creating multiple user identities enables you to test user-based access controls.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx identity [subcommand] [flag]
+----
+
+=== Flag
+
+You can use the following optional flags with the `+dfx identity+` command:
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Subcommands
+
+Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Command |Description
+
+| `+help+` |Displays this usage message or the help of the given subcommand(s).
+
+|`+list+` |Lists existing identities.
+
+|`+new <identity_name>+` |Creates a new identity.
+
+|`+remove <identity_name>+` |Removes an existing identity.
+
+|`+rename <from_name> <to_name>+` |Renames an existing identity.
+
+|`+use <identity_name>+` |Specifies the identity to use.
+
+|`+whoami+` |Displays the name of the current identity user context.
+|===
+
+=== Examples
+
+The first time you run the `+dfx canister create+` command to register an identifier, your public/private key pair credentials are used to create a `+default+` user identity.
+The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/identity/creds.pem+` to `+$HOME/.config/dfx/identity/default/identity.pem+`.
+
+You can then use `+dfx identity new+` to create new user identities and store credentials for those identities in `+$HOME/.config/dfx/identity/<identity_name>/identity.pem+` files.
+For example, you can create an identity named `+ic_admin+` by running the following command:
+
+....
+dfx identity new ic_admin
+....
+
+This command adds a private key for the `+ic_admin+` user identity in the `+~/.config/dfx/identity/ic_admin/identity.pem+` file.
+
+You can rename the default user or any identity you have previously created using the `+dfx identity rename+` command.
+For example, if you want to rename a `+test_admin+` identity that you previously created, you would specify the current identity name you want to change **from** and the new name you want to change **to** by running a command similar to the following:
+
+....
+dfx identity rename test_admin ops
+....
+
+If you want to run multiple commands with the same user identity context, you can run the following command:
+
+....
+dfx identity use ops
+....
 
 == dfx new
 

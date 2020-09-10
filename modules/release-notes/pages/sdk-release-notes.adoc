@@ -9,7 +9,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.6.6
+:release: 0.6.7
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -35,17 +35,20 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes the following new features and capabilities:
 
-- The `+dfx build+` command now supports building a specific canister, in addition to building all.
+- The `+dfx build+` command now supports building a specific canister, in addition to building all canisters.
 +
 For example, you can compile the code for a back-end canister without building the canister used for your project's front-end assets.
 +
 Because of this change to the `+dfx build+` command, the `+--skip-frontend+` option is no longer needed and has been removed.
-- There are several new `+dfx identity+` commands that enable you to create and switch between different user identities to test access control for your programs.
-- 
+- There are several new `+dfx identity+` commands that enable you to create, manage, and switch between different user identities when communicating with the {IC} network.
++
+You can also use a new `+--identity+` command-line option to set a specific user context when running `+dfx+` commands. 
++
+This new support for multiple identities enables you to test role-based access control for your programs.
 
 == Highlights of what's new in 0.6.6
 
-The {release} release features several new commands for managing canisters.
+The 0.6.6 release features several new commands for managing canisters.
 The release include the following new commands for managing canister operations and the canister lifecycle:
 
 - The `+dfx canister status+` command enables you to check whether all canisters or a specific canister in a project are currently running.

@@ -45,7 +45,7 @@ Because of this change to the `+dfx build+` command, the `+--skip-frontend+` opt
 You can also use a new `+--identity+` command-line option to set a specific user context when running `+dfx+` commands. 
 +
 This new support for multiple identities enables you to test role-based access control for your programs.
-* Updates to the Candid interface description language include the following user-facing features:
+* Updates to the Candid argument parser in `dfx canister call` include the following user-facing features:
 +
 ** Support type annotations when parsing Candid values. For example, you can use the following syntax to specify types:
 +
@@ -58,7 +58,6 @@ This new support for multiple identities enables you to test role-based access c
 +
 `+--output idl+` prints the value in a single line.
 ** Support for `+float e+` notation.
-** Support for nested comments.
 ** Support for Rust-like parsing errors.
 
 == Highlights of what's new in 0.6.6

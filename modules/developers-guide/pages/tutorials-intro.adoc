@@ -34,4 +34,6 @@ If you already know how to add stylesheets to React, you can skip this tutorial.
 
 * link:tutorials/scalability-cancan{outfilesuffix}[Creating scalable apps] describes using multiple canisters to create applications that scale.
 
+* link:tutorials/access-control{outfilesuffix}[Adding and using user identities] describes how to create and switch between multiple user identities.
+
 Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:https://github.com/dfinity/examples[examples] repository and link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].

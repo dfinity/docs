@@ -161,7 +161,7 @@ To build and deploy the program:
 +
 [source,bash]
 ----
-dfx build --skip-frontend
+dfx build calc
 ----
 +
 For this tutorial, you can build your project using the `+--skip-frontend+` option because the project is a simple terminal-based applications that doesn't include any front-end assets.

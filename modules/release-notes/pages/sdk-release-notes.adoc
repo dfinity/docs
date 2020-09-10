@@ -59,6 +59,12 @@ This new support for multiple identities enables you to test role-based access c
 `+--output idl+` prints the value in a single line.
 ** Support for `+float e+` notation.
 ** Support for Rust-like parsing errors.
+* Key updates for {proglang} include the following:
++
+** Support for polymorphic equality that enables the `==` and `!=` operators to work on all shareable types.
+** Improvements to catch clashing function and class declarations.
+** Language support to enable canisters to take installation arguments.
+** Optimized backend handling for `Bool` data types.
 
 == Highlights of what's new in 0.6.6
 

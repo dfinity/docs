@@ -7,18 +7,6 @@ This section provides some high-level guidance for writing programs in different
 
 == Using Rust
 
-<<<<<<< HEAD
-At a high-level, you can create Rust projects to run on the {IC} using Cargo.
-The Rust CDK provides some shortcuts to make it easier to write functions as query and update calls, but you can develop applications for the {IC} without using the Rust CDK.
-
-=== Create a project
-
-=== Compile the program into WebAssembly
-
-=== Create a minimal configuration file
-
-=== Create a minimal interface description file
-=======
 You can create Rust projects to run on the {IC} by using Cargo and compiling your program to use WebAssembly as the target output.
 The CanCan sample project illustrates one way of implementing a Rust-based canister—the `+BigMap+` library—using macros to write functions as query and update calls.
 
@@ -186,23 +174,12 @@ To modify the template source code:
 +
 As you write your program, keep in mind that there are two types of calls—update calls and query calls—and that update functions use asynchronous messaging.
 . Save your changes and close the `+main.rs+` file.
->>>>>>> master
 
 === Connect to a network and deploy
 
 Before you can deploy and test your program, you need to do the following:
 
 * Connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
-<<<<<<< HEAD
-* Register a network-specific identifier for the application.
-
-To deploy and test the application locally:
-
-. Open a new terminal window or tab on your local computer.
-+
-For example, if running Terminal on macOS,click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
-. Start the {IC} network on your local computer in your second terminal by running the following command:
-=======
 * Register a network-specific identifier for the application
 * Compile the program with a target output of WebAssembly.
 
@@ -222,25 +199,15 @@ For example, you can do either of the following if running Terminal on macOS:
 +
 You should now have two terminals open with your project directory as your current working directory**.
 . Start the {IC} network on your local computer by running the following command:
->>>>>>> master
 +
 [source,bash]
 ----
 dfx start
 ----
-<<<<<<< HEAD
-=======
 +
 Depending on your platform and local security settings, you might see a warning displayed. 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
-. Build the program by running the following command:
-+
-[source,bash]
-----
-dfx build
-----
->>>>>>> master
 . Register a unique canister identifier for the application by running the following command:
 +
 [source,bash]
@@ -248,20 +215,23 @@ dfx build
 dfx canister create --all
 ----
 <<<<<<< HEAD
-. Deploy the default program on the local network by running the following command:
-=======
-. Deploy the program on the local network by running the following command:
 >>>>>>> master
+. Register a unique canister identifier for the application by running the following command:
+=======
+. Build the program by running the following command:
+>>>>>>> master
++
+[source,bash]
+----
+dfx build
+----
+. Deploy the program on the local network by running the following command:
 +
 [source,bash]
 ----
 dfx canister install --all
 ----
-<<<<<<< HEAD
-. Test functions in the program from the command-line of in a browser.
-=======
 . Test functions in the program from the command-line or in a browser.
->>>>>>> master
 
 == Using C
 

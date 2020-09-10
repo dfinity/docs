@@ -44,7 +44,11 @@ You can use the following options with the `+dfx+` command.
 [width="100%",cols="<32%,<68%",options="header",]
 |===
 |Option |Description
+
+|`+--identity <identity>+` |Specifies the user identity to use when running a command.
+
 |`+--logfile <logfile>+` |Writes log file messages to the specified log file name if you use the `+--log file+` logging option.
+
 |`+--log <logmode>+` |Specifies the logging mode to use.
 +
 You can set the log mode to one of the following:
@@ -76,6 +80,8 @@ Use the following subcommands to specify the operation you want to perform or to
 |`+config+` |Sets or changes configuration options for your current project.
 
 |`+help+` |Displays usage information for a specified subcommand.
+
+|`+identity+` |Enables you to create and manage the identities used to communicate with the Internet Computer network.
 
 |`+new+` |Creates a new project.
 
@@ -109,6 +115,8 @@ For example, to see usage information for `+dfx build+`, you can run the followi
 dfx build --help
 ----
 
+==== Using logging options
+
 You can use the `+--verbose+` and `+--quiet+` flags to increment or decrement the logging level.
 If you don't specify any logging level, CRITICAL, ERROR, WARNING, and INFO messages are logged by default.
 Specifying one verbose flag (`+-v+`) increases the log level to include DEBUG messages.
@@ -130,6 +138,18 @@ To output log messages to a file named `newlog.txt` and display the messages on 
 ----
 dfx --log tee --logfile newlog.txt new hello_world
 ----
+
+==== Specifying a user identity
+
+If you create user identities with the `+dfx identity new+` command, you can then use the `+--identity+` comment-line option to change the user context when running other `+dfx+` commands.
+
+In the most common use case, you use the `+--identity+` option to call specific canister functions to test access controls for specific operations.
+
+For example, you might want to test whether the `+devops+` user identity can call the `+modify_profile+` function for the `+accounts+` canister by running the following command:
+
+....
+dfx --identity devops canister call accounts modify_profile '("Kris Smith")'
+....
 
 == dfx bootstrap
 
@@ -211,20 +231,18 @@ You can use CTRL-C to stop the bootstrap server.
 == dfx build
 
 Use the `+dfx build+` command to compile your program into a WebAssembly module that can be deployed on the {IC}.
-You can use this command to compile all of the programs that are defined for a project in the project's `+dfx.json+` configuration file.
-
-If you are connected to the {IC} running locally or on a sub-network, this command registers canister identifiers for all of the programs in your project and generates a `+canister_manifest.json+` file that stores details about the compiled program canisters it registered on the network.
+You can use this command to compile all of the programs that are defined for a project in the project's `+dfx.json+` configuration file or a specific canister.
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
 
-The `+dfx build+` command looks for the source code to compile into a canister in the directory you have configured using the `+canisters+` section in the `+dfx.json+` configuration file.
+The `+dfx build+` command looks for the source code to compile using the information you have configured under the `+canisters+` section in the `+dfx.json+` configuration file.
 
 === Basic usage
 
 [source,bash]
 ----
-dfx build [flag] [option]
+dfx build [flag] [option] [--all | canister_name]
 ----
 
 === Flags
@@ -238,8 +256,6 @@ You can use the following optional flags with the `+dfx build+` command.
 |`+--check+` |Builds canisters using a temporary, hard-coded, locally-defined canister identifier for testing that your program compiles without connecting to the {IC} network.
 
 |`+-h+`, `+--help+` |Displays usage information.
-
-|`+--skip-frontend+` |Skips building the canister frontend. Use this option when creating terminal-based programs or for testing functionality before creating front-end code.
 
 |`+-V+`, `+--version+` |Displays version information.
 |===
@@ -257,6 +273,22 @@ You can specify the following option for the `+dfx build+` command.
 
 |===
 
+=== Arguments
+
+You can specify the following arguments for the `+dfx build+` command.
+
+[width="100%",cols="<36%,<64%",options="header"]
+|===
+
+|Argument |Description
+
+|`+--all+` |Builds all of the canisters configured in the project's `+dfx.json+` file.
+
+|`+canister_name+` |Specifies the name of the canister you want to build.
+If you are not using the `+--all+` option, you can continue to use `+dfx build+` or provide a canister name as an argument (the canister name must match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.)
+
+|===
+
 === Examples
 
 You can use the `+dfx build+` command to build one or more WebAssembly modules from the programs specified in the `+dfx.json+` configuration file under the `+canisters+` key.
@@ -269,12 +301,15 @@ include::example$sample-dfx.json[]
 
 Note that the file name and path to the programs on your file system must match the information specified in the `+dfx.json+` configuration file.
 
-To build a canister without front-end code, you would run the following command:
+In this example, the `+hello_world+` canister contains the main program code and the `+hello_world_assets+` canister store front-end code and assets.
+If you want to keep the `+hello_world_assets+` canister defined in the `+dfx.json+` file, but only build the back-end program, you could run the following command:
 
 [source,bash]
 ----
-dfx build --skip-frontend
+dfx build hello_world
 ----
+
+Building a specific canister is useful when you have multiple canisters defined in the dfx.json file, but want to test and debug operations for canisters independently.
 
 To test whether a canister compiles without connecting to any {IC} network, you would run the following command:
 
@@ -743,6 +778,9 @@ You must be connected to an {IC} network running locally or on a sub-network tha
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+
+The first time you run the `+dfx canister create+` command to register an identifier, your public/private key pair credentials are used to create a `+default+` user identity.
+The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/identity/creds.pem+` to `+$HOME/.config/dfx/identity/default/identity.pem+`.
 
 === Basic usage
 
@@ -1374,6 +1412,81 @@ To display the usage information for `+dfx bew+`, run the following command:
 ----
 dfx help new
 ----
+
+== dfx identity
+
+Use the `+dfx identity+` command to manage the identities used to communicate with the Internet Computer network. 
+Creating multiple user identities enables you to test user-based access controls.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx identity [subcommand] [flag]
+----
+
+=== Flag
+
+You can use the following optional flags with the `+dfx identity+` command:
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Subcommands
+
+Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Command |Description
+
+| `+help+` |Displays this usage message or the help of the given subcommand(s).
+
+|`+list+` |Lists existing identities.
+
+|`+new <identity_name>+` |Creates a new identity.
+
+|`+remove <identity_name>+` |Removes an existing identity.
+
+|`+rename <from_name> <to_name>+` |Renames an existing identity.
+
+|`+use <identity_name>+` |Specifies the identity to use.
+
+|`+whoami+` |Displays the name of the current identity user context.
+|===
+
+=== Examples
+
+The first time you run the `+dfx canister create+` command to register an identifier, your public/private key pair credentials are used to create a `+default+` user identity.
+The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/identity/creds.pem+` to `+$HOME/.config/dfx/identity/default/identity.pem+`.
+
+You can then use `+dfx identity new+` to create new user identities and store credentials for those identities in `+$HOME/.config/dfx/identity/<identity_name>/identity.pem+` files.
+For example, you can create an identity named `+ic_admin+` by running the following command:
+
+....
+dfx identity new ic_admin
+....
+
+This command adds a private key for the `+ic_admin+` user identity in the `+~/.config/dfx/identity/ic_admin/identity.pem+` file.
+
+You can rename the default user or any identity you have previously created using the `+dfx identity rename+` command.
+For example, if you want to rename a `+test_admin+` identity that you previously created, you would specify the current identity name you want to change **from** and the new name you want to change **to** by running a command similar to the following:
+
+....
+dfx identity rename test_admin ops
+....
+
+If you want to run multiple commands with the same user identity context, you can run the following command:
+
+....
+dfx identity use ops
+....
 
 == dfx new
 

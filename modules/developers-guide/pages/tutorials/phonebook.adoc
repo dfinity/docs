@@ -142,7 +142,7 @@ To build and deploy the program:
 +
 [source,bash]
 ----
-dfx build --skip-frontend
+dfx build phonebook
 ----
 The `+dfx.json+` file provides default settings for creating an application front-end entry point and `+assets+` canister.
 For this tutorial, however, you can build your project using the `+--skip-frontend+` option because the project is a terminal-based application that doesn't include any front-end assets.

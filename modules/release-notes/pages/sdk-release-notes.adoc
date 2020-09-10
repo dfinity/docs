@@ -52,7 +52,7 @@ This new support for multiple identities enables you to test role-based access c
 ....
 (42: nat8, vec {1;-3;5} : vec int8)
 ....
-** Support for pretty-print decoded candid values:
+** Support for pretty-print decoded Candid values:
 +
 `+--output pp+` is the default and prints the value in multiple lines.
 +

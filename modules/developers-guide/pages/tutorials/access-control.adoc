@@ -17,7 +17,7 @@ To illustrate how to create and switch between user identities, this tutorial cr
 
 In this example, there are three named roles—`+owner+`, `+admin+`, and `+authorized+`. 
 
-* Users who are assigned an `+admin+` or `+authorized+` role see a greeting that displays `+Would you like to play a game?+`.
+* Users who are assigned an `+admin+` role see a greeting that displays `+You have a role with administrative privileges+`.
 * Users who are assigned an `+authorized+` role see a greeting that displays `+Would you like to play a game?+`.
 * Users who are not assigned one of these roles see a greeting that displays `+Nice to meet you!+`.
 

@@ -241,12 +241,15 @@ The command displays output similar to the following:
 ....
 (principal "kenjo-txsrk-ctozi-gnls4-v4sf4-ndupc-wmrji-nuemy-7hp2y-kwkre-tae")
 ....
-. Assign this principal the `+admin+` role by running the following command using Candid syntax:
+. Assign this principal the `+admin+` role by running a command similar to the following using Candid syntax:
 +
-[source,bash]
-----
+....
 dfx canister call access_hello assign_role '((principal "kenjo-txsrk-ctozi-gnls4-v4sf4-ndupc-wmrji-nuemy-7hp2y-kwkre-tae"),opt variant{admin})'
-----
+....
++
+
+NOTE: Be sure to replace the `+principal+` hash with the one returned by the `+dfx identity whoami+` command.
+
 +
 Optionally, you can rerun the command to call the `+my_role+` function to verify the role assignment.
 +

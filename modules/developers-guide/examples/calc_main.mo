@@ -20,7 +20,9 @@ actor Calc {
 
     // Clear the calculator and reset to zero
     public func clearall() : async Int {
-    if (cell : Int != 0)
-       cell -= cell;
-    return cell};
+    if (cell : Int != 0) {
+      cell -= cell; cell
+    } else {
+      cell 
+    }
  };

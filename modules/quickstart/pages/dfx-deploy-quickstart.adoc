@@ -373,11 +373,10 @@ You can specify the following arguments for the `+dfx deploy+` command.
 
 |Argument |Description
 
-|`+--all+` |Registers, builds, and deploys all of the canisters configured in the project's `+dfx.json+` file.
-Note that specifying `+--all+` as a command-line option is not required. You can run `+dfx deploy+` with no arguments to deploy all canisters defined in the `+dfx.json+` file. 
 
 |`+canister_name+` |Specifies the name of the canister you want to register, build, and deploy.
 Note that the canister name you specify must match at least one name in the `+canisters+` section of the `+dfx.json+` configuration file for the project.
+If you don't specify a canister name, `dfx deploy` will deploy all canisters defined in the `+dfx.json+` file.
 |===
 
 [[next-steps]]

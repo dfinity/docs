@@ -150,6 +150,15 @@ If you are using the default local host and port, you should have a URL similar 
 ....
 http://127.0.0.1:8000/candid?canisterId=75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
++
+After testing the functions, return to the terminal that displays network operations to stop the {IC} network.
+. Press Control-C to interrupt the local network process.
+. Stop the local {IC} network by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
 
 === Deploying a second application
 
@@ -162,7 +171,7 @@ To keep things simple, let's write a  program that is similar to the default sam
 
 To create a second sample application:
 
-. Open a terminal shell on your local computer, if you don’t already have one open.
+. Open a new terminal shell and navigate to the working directory you use for {IC} projects.
 . Create a new project by running the following command:
 +
 [source,bash]
@@ -195,7 +204,6 @@ import Nat "mo:base/Nat";
 ----
 var count: Nat = 0;
 var output : Text = "Welcome to the simplified developer preview, ";
-var name : Text = " ";
 ----
 +
 In the next step, we'll create an actor with two simple functions—`+whoami+` and `+get+`—to display a welcome message and increment a counter.
@@ -207,11 +215,11 @@ actor HelloActor {
 
    public func whoami(name: Text) : async Text {
       count += 1; 
-      output # name # ": " # Nat.toText(count)
+      return output # name # ": " # Nat.toText(count)
    };
 
    public query func get() : async Text {
-      output # "your counter value is: " # Nat.toText(count);
+      return "Your counter value is: " # Nat.toText(count);
    };
 };
 ----
@@ -235,7 +243,7 @@ If you want to copy and paste the whole program at once, it looks like this:
 +
 [source,motoko]
 ----
-include::example$hack-hello.mo[]
+include::example$preview-hello.mo[]
 ----
 . Save your changes and close the modified `+main.mo+` file.
 
@@ -277,7 +285,7 @@ The command displays output similar to the following:
 ----
 +
 Repeat the call the `+whoami+` function a few times to see the counter value increment.
-. Gall the `+get+` function by running the following command:
+. Call the `+get+` function by running the following command:
 +
 [source,bash]
 ----

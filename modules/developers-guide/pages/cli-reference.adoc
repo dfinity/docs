@@ -974,7 +974,12 @@ You can use the following options with the `+dfx canister install+` command.
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Option |Description
-|`+-c+`, `+--compute-allocation <compute-allocation>+` |Defines a compute allocation—essentially the equivalent of setting CPU allocation—for  canister execution.
+|`+-c+`, `+--compute-allocation <compute-allocation>+` |Defines a compute allocation—essentially the equivalent of setting a CPU allocation—for  canister execution.
+You can set this value as a percentage in the range of 0 to 100.
+
+|`+--memory-allocation <memory-allocation>+` |Specifies how much memory the canister is allowed to use in total.
+You can set this value in the range of 0 to 256 TB.
+The default is 8GB.
 
 |`+-m+`, `+--mode <mode>+` |Specifies whether you want to `+install+`, `+reinstall+`, or `+upgrade+` canisters.
 For more information about installation modes and canister management, see link:working-with-canisters{outfilesuffix}[Managing canisters].

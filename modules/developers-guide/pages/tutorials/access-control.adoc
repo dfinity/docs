@@ -133,7 +133,9 @@ The first time you run this command, it creates a `+default+` user identity in t
 ....
 Creating the "default" identity.
   - migrating key from /Users/lisagunn/.dfinity/identity/creds.pem to /Users/lisagunn/.config/dfx/identity/default/identity.pem
-  "access_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Created the "default" identity.
+Creating canister "access_hello"...
+"access_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 +
 After creating the `+identity.pem+` key file for the `+default+` user identity, the command displays the network-specific canister identifier for the `+access_hello+` main program.
@@ -216,6 +218,7 @@ The command displays output similar to the following:
 +
 ....
 Creating identity: "ic_admin".
+Created identity: "ic_admin".
 ....
 . Call the `+my_role+` function to see that your new user identity has not been assigned to any role.
 +
@@ -297,6 +300,7 @@ The command displays output similar to the following:
 +
 ....
 Creating identity: "alice_auth".
+Created identity: "alice_auth".
 ....
 . Store the principal for the new user in an environment variable by running the following command:
 +
@@ -370,6 +374,7 @@ The command displays output similar to the following:
 +
 ....
 Creating identity: "bob_standard".
+Created identity: "bob_standard".
 ....
 . Call the `+my_role+` function to see that your new user identity has not been assigned to any role.
 +

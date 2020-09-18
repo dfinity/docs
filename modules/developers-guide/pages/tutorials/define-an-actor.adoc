@@ -87,12 +87,6 @@ cd src/actor_hello
 . Open the template `+main.mo+` file in a text editor and delete the existing content.
 +
 The next step is to write a program that prints a statement like the traditional "Hello, World!" sample program.
-If you were writing this program to run on a platform other than the {IC}, you could write the program in {proglang} without an actor or a `main` function like this:
-+
-....
-print "Hello, World! from DFINITY\n"
-....
-+
 To compile the program for the {IC}, however, your program must include an `+actor+` object with a `+public+` function.
 . Copy and paste the following sample code into the `+main.mo+` file:
 +

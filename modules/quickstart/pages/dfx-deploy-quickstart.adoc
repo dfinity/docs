@@ -198,7 +198,7 @@ The new program uses a function in the Motoko base library for natural numbers, 
 ----
 import Nat "mo:base/Nat";
 ----
-. Add variable declarations for `+count+` as a natural number and `+output+` and `+name+` as text data types:
+. Add variable declarations for `+count+` as a natural number and `+output+` as text:
 +
 [source,bash]
 ----
@@ -206,7 +206,7 @@ var count: Nat = 0;
 var output : Text = "Welcome to the simplified developer preview, ";
 ----
 +
-In the next step, we'll create an actor with two simple functions—`+whoami+` and `+get+`—to display a welcome message and increment a counter.
+In the next step, we'll create an actor with two simple functions—`+whoami+` and `+get+`—to display a welcome message that takes a text argument and to increment a counter.
 . Copy and paste the following sample code into the `+main.mo+` file:
 +
 [source,motoko]
@@ -296,7 +296,7 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-("Welcome to the simplified developer preview, your counter value is: 3")
+("Your counter value is: 3")
 ----
 
 ==== Test functions in a browser

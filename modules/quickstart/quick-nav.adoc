@@ -1,2 +1,2 @@
 * xref:quickstart.adoc[Quick Start]
-* xref:rust-quickstart.adoc[Rust Canister Quick Start]
+* xref:rust-quickstart.adoc[Rust Canister Developer Quick Start]

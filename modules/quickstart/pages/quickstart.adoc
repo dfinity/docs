@@ -1,4 +1,4 @@
-= Quick start
+= Quick Start
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
@@ -16,7 +16,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
 This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} network.
-This _Quick start_ assumes that you are installing the {sdk-short-name} for the first time. 
+This _Quick Start_ assumes that you are installing the {sdk-short-name} for the first time. 
 
 ////
 IMPORTANT: For this release, only *macOS* and *Linux* platforms are supported.

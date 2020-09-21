@@ -31,27 +31,31 @@ Before you download and install the {cdk-long-name}, verify the following:
 
 * You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
 
-* You have downloaded and installed the Rust programming language and Cargo as described in link:https://doc.rust-lang.org/book/ch01-01-installation.html[Installation].
+* You have downloaded and installed the Rust programming language and Cargo as described in the link:https://doc.rust-lang.org/book/ch01-01-installation.html[Rust installation instructions] for your operating system.
 
 * You have downloaded and installed the {sdk-long-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
 
 * You have stopped any {IC} network processes running on the local computer.
 
 If you aren’t sure how to open a new terminal shell on your local computer, run commands in a terminal, or how to check for and install packages, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers]. 
-If you are comfortable meeting the prerequisites without instructions, continue to <<Download or clone the {cdk-short-name}>>.
+If you are comfortable meeting the prerequisites without instructions, continue to <<Get the latest {cdk-short-name}>>.
 
 [[download-cdk]]
-== Download or clone the {cdk-short-name}
+== Get the latest {cdk-short-name}
 
 You can download the latest version of the {cdk-long-name} from the link:https://crates.io/[Rust community’s crate registry] or from the link:https://github.com/dfinity/rust-cdk[Rust CDK] repository.
 
-To download or clone from the repository:
+To get the latest {cdk-short-name} from the repository:
 
 [arabic]
+. Open a browser and navigate to the link:https://github.com/dfinity/rust-cdk[DFINITY Rust CDK] repository.
+. Click **Code** to view the instructions for using HTTPS, SSH, or GitHub CLI to clone the repository, or to download a ZIP file of the repository directly.
 . Open a terminal shell on your local computer.
 +
 For example, open Applications, Utilities, then double-click *Terminal* or press kbd:[{commandkey} + spacebar] to open Search, then type `terminal`.
-. Download the {cdk-short-name} package from the `+rust_cdk+` repository by running the following command:
+. Download the {cdk-short-name} package using the appropriate command.
++
+For example, you can clone the repository to a local working directory using SSH by running the following command:
 +
 [source,bash]
 ----
@@ -67,9 +71,9 @@ ls -l rust_cdk/src
 . Verify you have the following packages available to used:
 +
 ....
-rwxr-xr-x  4 pubs  staff  128 Sep 21 09:36 ic_cdk
-drwxr-xr-x  4 pubs  staff  128 Sep 21 09:36 ic_cdk_macros
-drwxr-xr-x  5 pubs  staff  160 Sep 21 09:36 ic_cdk_optimizer
+ic_cdk
+ic_cdk_macros
+ic_cdk_optimizer
 ....
 
 [[create-a-new-project]]

@@ -1,5 +1,6 @@
 = Preliminary steps for newcomers
 :commandkey: &#8984;
+:sdk-short-name: DFINITY Canister SDK
 
 If this is the first time you are installing developer tools on your computer, you might need to take a few extra steps to prepare your environment.
 
@@ -62,24 +63,27 @@ If Homebrew isn't installed, copy and paste the following command in your termin
 ----
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ----
-. Check whether you have the `node.js` package manager installed by running the following command:
+. Check whether you have the Rust installed by running the following command:
 +
 [source,bash]
 ----
-node --version
+rustc --version
+----
++
+This command returns the version number, commit hash, and commit date for the version of Rust you have installed. 
+If you don't see this information, follow the link:https://doc.rust-lang.org/book/ch01-01-installation.html[Rust installation instructions] for your operating system before continuing.
+. Check whether you have the `+cargo+` package manager installed by running the following command:
++
+[source,bash]
+----
+cargo --version
 ----
 +
 If the command returns version information, continue to <<Create a working folder>>.
-If `node.js` isn't installed, copy and paste the following command in your terminal:
-+
-[source,bash]
-----
-brew install node
-----
 
 == Create a working folder
 
-By default, a new terminal shell always opens in your home directory with a path like `/Users/<your-user-name>`.
+By default, a new terminal shell on macOS always opens in your home directory with a path like `/Users/<your-user-name>`.
 To keep your workspace tidy, you can create a separate folder for your {IC} projects.
 
 To create a new working folder:

@@ -1,5 +1,5 @@
 = Glossary
-December 2019 (Alpha)
+:sdk-short-name: DFINITY Canister SDK
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer

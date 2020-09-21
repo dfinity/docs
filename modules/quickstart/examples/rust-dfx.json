@@ -9,11 +9,10 @@
   },
   "defaults": {
     "build": {
-      "output": "canisters/",
       "packtool": ""
     }
   },
-  "dfx": "0.5.13",
+  "dfx": "0.6.8",
   "networks": {
     "local": {
       "bind": "127.0.0.1:8000",

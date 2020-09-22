@@ -74,6 +74,8 @@
         <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
     </div>
 
+    <h1 class="intro">Let's get started...</h1>
+
     <div class="home-cards-grid">
 
         <a class="home-card" href="developers-guide/introduction-key-concepts.html">

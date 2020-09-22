@@ -60,7 +60,7 @@ dfx canister install profile_map xx
 
 * The `+dfx identity new+` command has been enhanced to display a confirmation message when adding a new identify is successful.
 
-== Highlights of what's new in 0.6.7
+=== Highlights of what's new in 0.6.7
 
 The 0.6.7 release includes the following new features and capabilities:
 
@@ -95,7 +95,7 @@ This new support for multiple identities enables you to test role-based access c
 ** Language support to enable canisters to take installation arguments.
 ** Optimized backend handling for `Bool` data types.
 
-== Highlights of what's new in 0.6.6
+=== Highlights of what's new in 0.6.6
 
 The 0.6.6 release features several new commands for managing canisters.
 The release include the following new commands for managing canister operations and the canister lifecycle:

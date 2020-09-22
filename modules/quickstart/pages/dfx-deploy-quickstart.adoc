@@ -53,7 +53,7 @@ For example, open Applications, Utilities, then double-click *Terminal* or press
 +
 [source,bash]
 ----
-DFX_VERSION=0.6.8 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.6.9 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 . Type `+y+` and press kbd:[Return] to accept the license agreement and continue with the installation.
 . Verify the {sdk-short-name} is ready to use by running the following command:
@@ -67,7 +67,7 @@ The command displays version information for the developer command-line interfac
 +
 [source,bash]
 ----
-dfx 0.6.8
+dfx 0.6.9
 ----
 . Preview usage information for the developer command-line interface (`+dfx+`) commands by running the following command:
 +

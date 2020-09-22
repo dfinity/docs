@@ -5,12 +5,11 @@
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.5.7
+:release: 0.6.8
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -31,63 +30,209 @@ Note that {sdk-long-name} and {proglang} programming language are Alpha-quality 
 This {release} version of the software and programming language should not be used for developing production applications at this time.
 =====================================================================
 
+[[highlights]]
 == Highlights of what's new in {release}
 
 The {release} release includes the following new features and capabilities:
 
-- {proglang} and the JavaScript library now support floating point numbers (Float).
-- When using the Candid UI, you can view return values in text, UI, and JSON formats.
+* The `+dfx build+` command now supports building a specific canister, in addition to building all canisters.
 +
-You can switch between the formats for representing values by clicking the results bar.
-- Internal updates that are not yet user-visible to support future features.
+For example, you can compile the code for a back-end canister without building the canister used for your project's front-end assets.
++
+Because of this change to the `+dfx build+` command, the `+--skip-frontend+` option is no longer needed and has been removed.
+* There are several new `+dfx identity+` commands that enable you to create, manage, and switch between different user identities when communicating with the {IC} network.
++
+You can also use a new `+--identity+` command-line option to set a specific user context when running `+dfx+` commands. 
++
+This new support for multiple identities enables you to test role-based access control for your programs.
+* Updates to the Candid argument parser in `+dfx canister call+` include the following user-facing features:
++
+** Support type annotations when parsing Candid values. For example, you can use the following syntax to specify types:
++
+....
+(42: nat8, vec {1;-3;5} : vec int8)
+....
+** Support for pretty-print decoded Candid values:
++
+`+--output pp+` is the default and prints the value in multiple lines.
++
+`+--output idl+` prints the value in a single line.
+** Support for `+float e+` notation.
+** Support for Rust-like parsing errors.
+* Key updates for {proglang} include the following:
++
+** Support for polymorphic equality that enables the `==` and `!=` operators to work on all shareable types.
+** Improvements to catch clashing function and class declarations.
+** Language support to enable canisters to take installation arguments.
+** Optimized backend handling for `Bool` data types.
 
-== Breaking change
-The {release} release includes the following changes that might require updates to existing programs:
+== Highlights of what's new in 0.6.6
 
-- The name of the built-in {proglang} library has changed from `stdlib` to `base`.
-- All of the module names in the `base` library start with an upper case letter.
-- The `principalId` module has been changed to `Principal`.
+The 0.6.6 release features several new commands for managing canisters.
+The release include the following new commands for managing canister operations and the canister lifecycle:
 
-=== Modifying existing programs
+- The `+dfx canister status+` command enables you to check whether all canisters or a specific canister in a project are currently running.
+- The `+dfx canister stop+` command enables you to stop all canisters or a specific canister in a project to prevent canisters from receiving new requests.
+- The `+dfx canister start+` command enables you to restart all canisters or a specific canister in a project so they can resume receiving new requests.
+- The `+dfx canister delete+` command enables you to delete all canisters or a specific canister in a project.
 
-If you have programs that rely on modules in the `stdlib` library, you must change the `import` statement to use the new `base` library name.
-For example, you might have previously imported the Array module using the following statement:
+=== Highlights of what's new in 0.6.4
 
-[source,motoko]
+The 0.6.4 release primarily included internal improvements that are not user-facing.
+The only user-facing features and fixes in the 0.6.4 release are the following:
+
+- A new Reserved type has been added to the JavaScript agent library.
+- Fixed the timer that is used in the Candid UI when issuing function calls.
+
+For information about breaking changes that were introduced in the previous releases, see <<Breaking changes>>.
+
+For information about known issues that were introduced in the previous releases, see <<Known issues and limitations>>.
+
+=== Highlights of what's new in 0.6.3
+
+The 0.6.3 release only included minor fixes and enhancements including the following:
+
+- The `+dfx start --clean+` command has been improved to no longer crash if you run the command in a project that is already in a clean state.
++
+Without this fix, manually removing the directories the command is intended to delete would result in `+dfx+` exiting without restarting the {IC}.
+- The parsing logic for the `+dfx canister call+` command has been improved to more consistently recognize arguments in Candid format and to return better error messages  when argument formats are not recognized.
+- The Welcome page displayed when you create a new project has been updated to reflect the current location of SDK and Motoko documentation.
+
+=== Highlights of what's new in 0.6.2
+
+The 0.6.3 release only included one important user-facing change which was also a breaking change that required you to update all existing projects.
+
+Starting with the 0.6.3 release, all canister identifiers are generated using a text-based representation.
+To work with the {release} release, therefore, you must update your projects to use the new canister identifier format.
+
+If you are connected to the {IC} running locally, do the following in **each project directory**:
+
+. Stop the {IC} by running the following command:
++
+[source,bash]
 ----
-import Array "mo:stdlib/array";
+dfx stop
+----
+. Restart the {IC} in a clean state by running the following command:
++
+[source,bash]
+----
+dfx start --clean
+----
++
+This command removes all existing canister state and build output.
+. Generate new textual canister identifiers by running the following command:
++
+[source,bash]
+----
+dfx canister create --all
+----
+. Redeploy the updated canisters to use the new text-based identifiers by running the following command:
++
+[source,bash]
+----
+dfx canister install --all
 ----
 
-With this release, you would change the statement like this:
+=== Highlights of what's new in 0.6.1
 
-[source,motoko]
-----
-import Array "mo:base/Array";
-----
-=== Addressing case-sensitivity
+The 0.6.1 release only included the following user-facing changes:
 
-If your local development environment runs on macOS, you might be able to build your {proglang} program using a lower case module name because the macOS file system is not case-sensitive by default. 
- 
-If you use lower case module names, however, the same code will not compile on Linux computers. 
-Therefore, the recommended best practice is to always capitalize module names.
-For example, use `import Array "mo:base/Array"`, not `import Array "mo:base/array"`.
+- An update to the `+dfx ping+` command enables you to specify a network name to check the status of a network connection.
+- An update to the user authentication method enables `+dfx+` to use the browser's `+localStorage+` for the user's public and private keys if cookies are not enabled.
+- Motoko programming guidelines are now available as part of the programming language guide on the link:../language-guide/style{outfilesuffix}[SDK website].
+
+=== Highlights of what's new in 0.6.0
+
+The 0.6.0 release included many new features and enhancements.
+The following sections describe the key features and enhancements that were introduced in the 0.6.0 release. 
+
+==== SDK
+
+- You can now look up a canister identifier using the command `dfx canister id <canister_name>`
+- The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister
+- Both canister name and identifiers are printed upon canister creation
+- The `dfx.json` configuration file has a new field—`+defaults/build/packtool+`—to support the Vessel package manager.
+- The `dfx.json` file supports canister new types—`motoko`, `assets`, and `custom`—to allow different build tools to be used for building canisters:
++
+** The `motoko` canister type uses the `motoko` compiler to build a canister.
++
+** The  `assets` canister type uses `npm run build` (optionally) to build files and uploads them to an asset canister
++
+** The `custom` canister type uses a custom builder that should output WASM and DID files.
+- The `dfx.json` file includes network mapping for `local` and `Tungsten` networks. The local network defaults to `127.0.0.1:8000`.
+
+==== Tungsten (Developer Network)
+
+- HTTP authorization and credentials management for onboarded Tungsten users
+- `Tungsten` added as a provider in `dfx.json
+- You can use the `dfx ping` command to ping an Internet Computer and request its status
+- The `--network <network>` flag can be used to build and install canisters to the specified provider
+- Canister ID formatting for accessing Tungsten-deployed apps in the browser
+
+==== Motoko
+
+- The `motoko-base` repository is now open. We encourage developers to use Vessel package manager to download the latest `base` from `master`.
+- Stable variable support
+- Released `mo-doc` for generating documentation from Motoko comments
+- Better support for `Char` and `Text` module
+- `Error` module for rejecting messages
+- `Buf` module renamed to `Buffer`
+
+== Breaking changes
+
+In addition to the change described in xref:highlights[Highlights of what's new], the {release} release includes the following changes that might require updates to existing programs:
+
+- Major breaking changes and updates to Motoko as detailed here: https://github.com/dfinity/motoko-base/issues/37
+- The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format.
+- You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
+- `dfx canister call` will consult the Candid file for method types. You no longer need to use `--type string/number`. The arguments are therefore deprecated.
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
 The {release} release includes internal fixes and improvements to the Candid user interface, the interface description library, and some refactoring of `dfx` commands.
 
+- Certification validation error fixed on Linux and NixOS
+- `dfx stop` now finds and kills all `dfx start` and `dfx replica` processes
+- Allow lowercase hex in Canister ID
+- Allow installation without sudo when possible
+- Install script issues resolved for Ubuntu and Mac
+- Check added to forbid starting webserver with a forwarded port
+- Cache directory management and error messages
+- Improved error messages for HTTP server error
+
 == Known issues and limitations
 
 This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
 If there are workarounds to any of the issues described in this section, you can find them in the link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] section.
 
-The {release} release includes the following known issues and limitations:
-
-- Using fixed-length Word data type arguments when running `+dfx+` commands.
+- Creating a new project displays errors or warnings
 +
-Fixed-length Word32 data types are not yet supported in the `+dfx+` command-line interface.
-As an alternative, you can convert integers to Word32 using the standard library function `+int32ToWord32(intToInt32(value))+`` until the support for fixed-length Word32 and Nat32 data types is added.
+By default, creating a new project installs node dependencies to support building a front-end for your project. 
++
+Depending on your environment, the installation of node dependencies might display errors or warnings generated by the `+npm+` package manager. 
+For example, you might see errors or warnings similar to the following on macOS:
++
+....
+gyp ERR! configure error 
+gyp ERR! stack Error: `gyp` failed with exit code: 1
+gyp ERR! stack     at ChildProcess.onCpExit (/usr/local/lib/node_modules/npm/node_modules/node-gyp/lib/configure.js:351:16)
+gyp ERR! stack     at ChildProcess.emit (events.js:321:20)
+gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12)
+gyp ERR! System Darwin 19.6.0
+gyp ERR! command "/usr/local/Cellar/node/13.7.0/bin/node" "/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "rebuild"
+gyp ERR! cwd /Users/pubs/hello/node_modules/watchpack-chokidar2/node_modules/fsevents
+gyp ERR! node -v v13.7.0
+gyp ERR! node-gyp -v v5.0.5
+⠴ Installing node dependencies...
+npm WARN notsup Unsupported engine for watchpack-chokidar2@2.0.0: wanted: {"node":"<8.10.0"} (current: {"node":"13.7.0","npm":"6.13.6"})
+npm WARN notsup Not compatible with your version of node/npm: watchpack-chokidar2@2.0.0
+npm WARN hello_assets@0.1.0 No repository field.
+npm WARN hello_assets@0.1.0 No license field.
+....
++
+The errors and warnings issued by the `+npm+` package manager do not prevent you from successfully creating a new project and, in most cases, can be safely ignored.
 
 == Additional questions and feedback
 

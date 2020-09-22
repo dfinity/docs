@@ -13,8 +13,8 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 In this tutorial, you are going to write a simple calculator program that creates a single actor with several public entry-point functions to perform basic arithmetic operations.
 
-For this tutorial, the actor is named `+Calc+`. 
-The program uses the `+cell+` variable to contain an integer number that represents the current result of a calculator operation. 
+For this tutorial, the actor is named `+Calc+`.
+The program uses the `+cell+` variable to contain an integer number that represents the current result of a calculator operation.
 
 This program supports the following function calls:
 
@@ -146,8 +146,8 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"calc" canister created with canister id: "ic:0100000000000000000000000000000000012D"
-"calc_assets" canister created with canister id: "ic:02000000000000000000000000000000000153"
+"calc" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"calc_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 
 == Build and deploy the program
@@ -161,7 +161,7 @@ To build and deploy the program:
 +
 [source,bash]
 ----
-dfx build --skip-frontend
+dfx build calc
 ----
 +
 For this tutorial, you can build your project using the `+--skip-frontend+` option because the project is a simple terminal-based applications that doesn't include any front-end assets.
@@ -169,7 +169,7 @@ For this tutorial, you can build your project using the `+--skip-frontend+` opti
 +
 [source,bash]
 ----
-dfx canister install calc 
+dfx canister install calc
 ----
 
 == Verify calculator functions on the canister

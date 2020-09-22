@@ -1,19 +1,19 @@
 {
   "canisters": {
-    "hello_world": {
-      "main": "src/hello_world/main.mo",
+    "explore_hello": {
+      "main": "src/explore_hello/main.mo",
       "type": "motoko"
     },
-    "hello_world_assets": {
+    "explore_hello_assets": {
       "dependencies": [
-        "hello_world"
+        "explore_hello"
       ],
       "frontend": {
-        "entrypoint": "src/hello_world_assets/public/index.js"
+        "entrypoint": "src/explore_hello_assets/public/index.js"
       },
       "source": [
-        "src/hello_world_assets/assets",
-        "dist/hello_world_assets/"
+        "src/explore_hello_assets/assets",
+        "dist/explore_hello_assets/"
       ],
       "type": "assets"
     }
@@ -23,7 +23,6 @@
       "packtool": ""
     }
   },
-
   "dfx": "0.6.8",
   "networks": {
     "local": {

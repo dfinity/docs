@@ -14,7 +14,7 @@ include::ROOT:page$download.adoc[leveloffset=0,tag=install]
 
 == Reviewing the license agreement
 
-The installation script prompts you to read and accept the link:https://sdk.dfinity.org/sdk-license-agreement[DFINITY Canister SDK License Agreement] before installing the `+dfx+` command-line interface executable and its dependencies on your local computer.
+The installation script prompts you to read and accept the link:https://sdk.dfinity.org/sdk-license-agreement.txt[DFINITY Canister SDK License Agreement] before installing the `+dfx+` command-line interface executable and its dependencies on your local computer.
 You must type `+y+` and press kbd:[Enter] to continue with the installation.
 
 After you accept the license agreement, the installation script displays information about the components being installed on the local computer.
@@ -56,29 +56,43 @@ The following table describes the development environment components that the in
 
 The `~/.cache/dfinity/versions` directory stores one or more versioned subdirectories of the {sdk-short-name}. 
 Each versioned subdirectory contains the all of the directories and files required for a specific version of the {sdk-short-name}.
-For example, if you list the contents of the `~/.cache/dfinity/versions/0.5.7` directory you would see the following core components:
+For example, if you list the contents of the `~/.cache/dfinity/versions/0.6.8` directory you would see the following core components:
 
-[source,bash]
-----
-total 220456
-drwxr-xr-x  25 pubs  staff       800 May 11 11:24 base
--r-x------   1 pubs  staff  62102180 May 11 11:24 dfx
--r-x------   1 pubs  staff   3516592 Dec 31  1969 didc
-drwxr-xr-x   8 pubs  staff       256 May 11 11:24 js-user-library
--r-x------   1 pubs  staff   8258424 Dec 31  1969 mo-ide
--r-x------   1 pubs  staff     70399 Dec 31  1969 mo-rts.wasm
--r-x------   1 pubs  staff   7864712 Dec 31  1969 moc
--r-x------   1 pubs  staff  31045112 Dec 31  1969 replica
-----
+....
+total 338216
+drwxr-xr-x  44 pubs  staff      1408 Jul 21 11:38 base
+drwxr-xr-x  20 pubs  staff       640 Jul 21 11:38 bootstrap
+drwxr-xr-x   3 pubs  staff        96 Jul 21 11:38 canisters
+-r-x------   1 pubs  staff  73477088 Jul 21 11:38 dfx
+-r-x------   1 pubs  staff   3550256 Dec 31  1969 didc
+-r-x------   1 pubs  staff   5383604 Dec 31  1969 ic-starter
+drwxr-xr-x   7 pubs  staff       224 Jul 21 11:38 js-user-library
+-r-x------   1 pubs  staff  16619864 Dec 31  1969 mo-doc
+-r-x------   1 pubs  staff  16370424 Dec 31  1969 mo-ide
+-r-x------   1 pubs  staff     78981 Dec 31  1969 mo-rts.wasm
+-r-x------   1 pubs  staff  15977344 Dec 31  1969 moc
+-r-x------   1 pubs  staff  41694644 Dec 31  1969 replica
+....
 
 === {proglang} base directory
 
-The `base` directory in the versioned subdirectory of the {sdk-short-name} contains the {proglang} base library modules that are compatible with that version of the {sdk-short-name}. 
+The `+base+` directory in the versioned subdirectory of the {sdk-short-name} contains the {proglang} base library modules that are compatible with that version of the {sdk-short-name}. 
 Because the {proglang} base library is evolving rapidly, you should only use the base modules that are packaged with the version of the {sdk-short-name} that you have installed.
+
+=== Bootstrap directory
+
+The `+bootstrap+` directory in the versioned subdirectory of the {sdk-short-name} provides the HTML and JavaScript files that are served when you run `+dfx start+` and access the `+localhost+` using the local {IC} web server.
+
+files to support local front-end development and the local web server.
+
+=== Canisters directory
+
+The `+canisters+` directory in the versioned subdirectory of the {sdk-short-name} contains prebuilt canisters that provide functionality for specific canister types. 
+For example, the prebuilt `+assetstorage+` canister stores and retrieves assets for the canisters that have the `+type+` key set to `+assets+` in the project's `+dfx.json+` configuration file.
 
 === JavaScript agent library
 
-The `js-user-library` directory in the versioned subdirectory of the {sdk-short-name} provides files to support writing front-end code that uses JavaScript to communicate with the {IC}.
+The `+js-user-library+` directory in the versioned subdirectory of the {sdk-short-name} provides files to support writing front-end code that uses JavaScript to communicate with the {IC}.
 In most cases, you should only use the JavaScript agent library files that are packaged with the version of the {sdk-short-name} that you have installed.
 
 == Upgrading to the latest version

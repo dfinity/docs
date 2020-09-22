@@ -4,6 +4,7 @@ April 2019 (Alpha)
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
+:sdk-short-name: DFINITY Canister SDK
 :ext: .mo
 :company-id: DFINITY
 :page-layout: home

@@ -1,1 +1,2 @@
-* xref:quickstart.adoc[Quick start]
+* xref:dfx-deploy-quickstart.adoc[Developer Workflow Preview]
+* xref:quickstart.adoc[Quick Start]

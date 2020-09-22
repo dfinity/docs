@@ -1,10 +1,10 @@
 = Glossary
-December 2019 (Alpha)
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
 :ext: .mo
 :company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
 
 actor::
   An actor is a special kind of object in modern programming languages that processes messages in an isolated state, enabling them to be handled remotely and asynchronously.

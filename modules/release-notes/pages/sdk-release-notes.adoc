@@ -9,7 +9,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.6.8
+:release: 0.6.9
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -33,7 +33,36 @@ This {release} version of the software and programming language should not be us
 [[highlights]]
 == Highlights of what's new in {release}
 
-The {release} release includes the following new features and capabilities:
+The {release} release includes both user-visible new features and internal enhancements and fixes. The most significant new features and capabilities include the following:
+
+* You can now register, build, and deploy applications with a single command.
++
+This release introduces a simplified developer workflow using the the `+dfx deploy+` command.
+You can use this command to replace running the following commands as separate steps:
++
+....
+dfx canister create --all
+dfx build
+dfx canister install -all
+....
++
+For a preview of how to use the simplified developer workflow, see https://sdk.dfinity.org/docs/quickstart/dfx-deploy-quickstart.html[Developer Workflow Preview].
+
+* You can now specify arguments on the command-line when you deploy a single canister using the `+dfx canister install+` command.
++
+For example, you might use the following command to add the xx argument when deploying the canister named profile_map locally.
++
+....
+dfx canister install profile_map xx
+....
+
+* A new `+--memory allocation+` command-line option enables you to specify a memory allocation when deploying a canister.
+
+* The `+dfx identity new+` command has been enhanced to display a confirmation message when adding a new identify is successful.
+
+== Highlights of what's new in 0.6.7
+
+The 0.6.7 release includes the following new features and capabilities:
 
 * The `+dfx build+` command now supports building a specific canister, in addition to building all canisters.
 +

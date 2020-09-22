@@ -150,7 +150,65 @@ dfx canister install --all --mode reinstall
 
 Note that you can use the `+reinstall+` mode to replace any canister, regardless of whether the canister has code or state associated with it.
 
-== Managing the running status of a canister
+== Set an identity to own a canister
+
+In most cases, a `+default+` user identity is created for you automatically the first time you run the `+dfx canister create+` command.
+This default identity consists of the public and private key pair generated for your local user account. 
+Typically, this `+default+` identity is also the default owner of all of the projects you create and all of the canisters you deploy.
+You can, however, proactively create and use identities of your choice to circumvent the `+default+` user identity from being used.
+
+As an example, the following scenario illustrates creating a `+registered_owner+` identity that is then used to register, build, deploy, and call the `+pubs+` project.
+
+To set an identity for a project:
+
+. Create a new project by running the following command:
++
+[source,bash]
+----
+dfx new pubs
+----
+. Change to the project directory by running the following command:
++
+[source,bash]
+----
+cd pubs
+----
+. Start the {IC} network locally in the background by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
+. Create a new `+registered_owner+` identity by running the following command:
++
+[source,bash]
+----
+dfx identity new registered_owner
+----
+. Set the active user context to use the `+registered_owner+` identity by running the following command:
++
+[source,bash]
+----
+dfx identity use registered_owner
+----
+. Register, build, and deploy canisters for the project by running the following commands:
++
+[source,bash]
+----
+dfx canister create --all
+dfx build --all
+dfx canister install --all
+----
++
+These commands run using the `+registered_owner+` identity, making that user the owner of the canisters deployed.
+. Call the `+greet+` function to verify a successful deployment by running the following command:
++
+[source,bash]
+---- 
+dfx canister call pubs greet '("Sam")'
+----
+
+== Managing the running state of a canister
 
 After you deploy a canister on the {IC}, it can begin receiving and processing requests from users and from other canisters. 
 Canisters that are available to send requests and receive replies are considered in be in a **Running** state.

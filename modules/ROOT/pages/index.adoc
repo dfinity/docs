@@ -3,12 +3,79 @@
 :idseparator: -
 :!example-caption:
 :!table-caption:
+:page-layout: landing
 
 You can get started right away by downloading the {sdk-long-name} and cloning an existing sample project or by exploring the documentation. Check out the tiles below to begin building open services and software to run on the {IC}.
 
 ++++
 
 <div class="html-container">
+
+    <div class="landing-hero">
+        <h1>The next generation of software engineering starts with you.</h1>
+        <div class="landing-cta">
+        <p>To download the DFINITY Canister SDK, run the following command in your terminal.</p>
+        <pre>sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</pre>
+        <p>By installing the SDK, you agree to our <a href="">Terms & Conditions</a>.</p>
+        </div>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/150.png?text=placeholder" />
+        <h2>Delete your database</h2>
+        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
+        making databases a thing of the past.</p>
+        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/150.png?text=placeholder" />
+        <h2>Delete your database</h2>
+        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
+        making databases a thing of the past.</p>
+        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/150.png?text=placeholder" />
+        <h2>Delete your database</h2>
+        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
+        making databases a thing of the past.</p>
+        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/150.png?text=placeholder" />
+        <h2>Delete your database</h2>
+        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
+        making databases a thing of the past.</p>
+        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/150.png?text=placeholder" />
+        <h2>Delete your database</h2>
+        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
+        making databases a thing of the past.</p>
+        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/150.png?text=placeholder" />
+        <h2>Delete your database</h2>
+        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
+        making databases a thing of the past.</p>
+        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/150.png?text=placeholder" />
+        <h2>Delete your database</h2>
+        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
+        making databases a thing of the past.</p>
+        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+    </div>
+
     <div class="home-cards-grid">
 
         <a class="home-card" href="developers-guide/introduction-key-concepts.html">

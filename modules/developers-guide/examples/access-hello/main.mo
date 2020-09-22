@@ -86,7 +86,7 @@ actor {
     };
 
     // Return the principal of the message caller/user identity
-    public shared { caller } func whoami() : async Principal {
+    public shared { caller } func callerPrincipal() : async Principal {
         return caller;
     };
 

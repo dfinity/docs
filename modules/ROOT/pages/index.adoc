@@ -19,59 +19,73 @@
     </div>
 
     <div class="landing-pitch">
-        <img src="https://via.placeholder.com/150.png?text=placeholder" />
-        <h2>Delete your database</h2>
-        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
-        making databases a thing of the past.</p>
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>DeFi is only the beginning</h2>
+        <p>Decentralized software can do so much more than just track financial transactions. The Internet Computer is a general purpose compute platform suitable for everything from crunching numbers to video streaming.</p>
+        <p class="link"><a href="">Check out some apps built by our community</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>Escape the Cloud</h2>
+        <p>Why build decentralized software just to run it on monopolistic hardware like Amazon Web Services or Google Cloud? The Internet Computer is formed by independent data centers across the globe, joined by the Internet Computer Protocol.</p>
+        <p class="link"><a href="">Read more about the ICP</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>Unstoppable by nature</h2>
+        <p>The cryptographic guarantees baked into the Internet Computer means mamny security complexities melt away. You might not need a firewall, VPNS, or even usernames and passwords.</p>
+        <p class="link"><a href="">Read more about security on the IC</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>Front-End Included</h2>
+        <p>Canisters can even serve static assets, so they're a perfect fit for your React, Angular, Vue, or even vanilla JavaScript app.</p>
+        <p class="link"><a href="">Read more about front-end development</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>Go ahead, delete your database</h2>
+        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages making databases a thing of the past.</p>
         <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
     </div>
 
     <div class="landing-pitch">
-        <img src="https://via.placeholder.com/150.png?text=placeholder" />
-        <h2>Delete your database</h2>
-        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
-        making databases a thing of the past.</p>
-        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>Interoperability is boring now</h2>
+        <p>Remember when getting services to talk to each other was something we had to worry about? Thanks to a standard Interface Description Language (IDL), every service running on the Internet Computer is interoperable with every other.</p>
+        <p class="link"><a href="">Learn more about Candid</a></p>
     </div>
 
     <div class="landing-pitch">
-        <img src="https://via.placeholder.com/150.png?text=placeholder" />
-        <h2>Delete your database</h2>
-        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
-        making databases a thing of the past.</p>
-        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>On the shoulders of giants</h2>
+        <p>The Open Source movement has been a tremendous gift to software development, allowing developers to build on top of one another's contributions. The Internet Computer extends that revolution into the realm of actively running services.</p>
+        <p class="link"><a href="">Read more about Open Internet Services</a></p>
     </div>
 
     <div class="landing-pitch">
-        <img src="https://via.placeholder.com/150.png?text=placeholder" />
-        <h2>Delete your database</h2>
-        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
-        making databases a thing of the past.</p>
-        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>Hyperscale out of the box</h2>
+        <p>Scaling a successful app is always an arduous experience. Reserving servers, sharding data stores. With autonomous libraries like BigMap and BigSearch, scaling happens "under the hood" as necessary.</p>
+        <p class="link"><a href="">Read more about BigMap and autonomous libraries</a></p>
     </div>
 
     <div class="landing-pitch">
-        <img src="https://via.placeholder.com/150.png?text=placeholder" />
-        <h2>Delete your database</h2>
-        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
-        making databases a thing of the past.</p>
-        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>Feel right at home</h2>
+        <p>The Internet Computer and Motoko language are packed with so many familiar features you may forget you're working with a blockchain: deterministic randomness, time and date functions, and even floating point numbers.</p>
+        <p class="link"><a href="">Check out the Motoko Base Library</a></p>
     </div>
 
     <div class="landing-pitch">
-        <img src="https://via.placeholder.com/150.png?text=placeholder" />
-        <h2>Delete your database</h2>
-        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
-        making databases a thing of the past.</p>
-        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
-    </div>
-
-    <div class="landing-pitch">
-        <img src="https://via.placeholder.com/150.png?text=placeholder" />
-        <h2>Delete your database</h2>
-        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages
-        making databases a thing of the past.</p>
-        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
+        <img src="https://via.placeholder.com/300.png?text=placeholder" />
+        <h2>A new foundation for software development</h2>
+        <p>We're admittedly a little impatient with the status quo of software development. We think every step in the legacy workflow from how you write code to how users access it could use some improvement.</p>
+        <p class="link"><a href="">Watch the Fundamentals video series</a></p>
     </div>
 
     <h1 class="intro">Let's get started...</h1>

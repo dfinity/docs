@@ -5,8 +5,6 @@
 :!table-caption:
 :page-layout: landing
 
-You can get started right away by downloading the {sdk-long-name} and cloning an existing sample project or by exploring the documentation. Check out the tiles below to begin building open services and software to run on the {IC}.
-
 ++++
 
 <div class="html-container">

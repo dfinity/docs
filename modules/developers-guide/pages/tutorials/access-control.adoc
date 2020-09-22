@@ -81,7 +81,7 @@ Let's take a look at a few key elements of this program:
 In this program, however, the `+greet+` function uses a message caller to determine the permissions that should be applied and, based on the permissions associated with the caller, which greeting to display.
 * The program defines two custom types—one for `+Roles+` and one for `+Permissions+`.
 * The `+assign_roles+` function enables the message aller to assign a role to the principal associated with an identity.
-* The `+whoami+` function enables you to return the principal associated with an identity.
+* The `+callerPrincipal+` function enables you to return the principal associated with an identity.
 * The `+my_role+` function enables you to return the role that is associated with an identity.
 --
 . Save your changes and close the `+main.mo+` file to continue.
@@ -179,7 +179,7 @@ Installing code for canister access_hello, with canister_id 75hes-oqbaa-aaaaa-aa
 +
 [source,bash]
 ----
-dfx canister call access_hello whoami
+dfx canister call access_hello callerPrincipal
 ----
 +
 The command displays output similar to the following:
@@ -236,7 +236,7 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-dfx --identity ic_admin canister call access_hello whoami
+dfx --identity ic_admin canister call access_hello callerPrincipal
 ----
 +
 The command displays output similar to the following:
@@ -251,7 +251,7 @@ dfx canister call access_hello assign_role '((principal "kenjo-txsrk-ctozi-gnls4
 ....
 +
 
-NOTE: Be sure to replace the `+principal+` hash with the one returned by the `+dfx identity whoami+` command.
+NOTE: Be sure to replace the `+principal+` hash with the one returned by the `+dfx identity callerPrincipal+` command.
 
 +
 Optionally, you can rerun the command to call the `+my_role+` function to verify the role assignment.
@@ -306,7 +306,7 @@ Created identity: "alice_auth".
 +
 [source,bash]
 ----
-ALICE_ID=$(dfx --identity alice_auth canister call access_hello whoami | sed 's/[\\(\\)]//g')
+ALICE_ID=$(dfx --identity alice_auth canister call access_hello callerPrincipal | sed 's/[\\(\\)]//g')
 ----
 +
 You can verify the principal stored by running the following command:
@@ -392,7 +392,7 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-BOB_ID=$(dfx --identity bob_standard canister call access_hello whoami | sed 's/[\\(\\)]//g')
+BOB_ID=$(dfx --identity bob_standard canister call access_hello callerPrincipal | sed 's/[\\(\\)]//g')
 ----
 . Attempt to use the `+bob_standard+` identity to assign a role.
 +

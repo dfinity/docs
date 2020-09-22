@@ -85,11 +85,11 @@ You can specify the following argument for the `+dfx cache delete+` command.
 === Examples
 
 You can use the `+dfx cache delete+` command to permanently delete versions of `+dfx+`  that you no longer want to use.
-For example, you can run the following command to delete `+dfx+` version `+0.5.2+`:
+For example, you can run the following command to delete `+dfx+` version `+0.6.2+`:
 
 [source,bash]
 ----
-dfx cache delete 0.5.2
+dfx cache delete 0.6.2
 ----
 
 == dfx cache install
@@ -162,9 +162,9 @@ This command displays the list of `+dfx+` versions found similar to the followin
 
 [source,bash]
 ----
-0.5.4 *
-0.5.3
-0.5.0
+0.6.4 *
+0.6.3
+0.6.0
 ----
 
 == dfx cache show
@@ -202,6 +202,6 @@ This command displays the path to the cache used by the `+dfx+` version you are 
 
 [source,bash]
 ----
-/Users/pubs/.cache/dfinity/versions/0.5.4
+/Users/pubs/.cache/dfinity/versions/0.6.4
 ----
 

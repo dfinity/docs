@@ -32,6 +32,8 @@ Use the following subcommands to specify the operation you want to perform or to
 |===
 |Command |Description
 
+| `+get-principal+` | Shows the textual representation of the Principal associated with the current identity.
+
 | `+help+` |Displays this usage message or the help of the given subcommand(s).
 
 |`+list+` |Lists existing identities.
@@ -47,7 +49,7 @@ Use the following subcommands to specify the operation you want to perform or to
 |`+whoami+` |Displays the name of the current identity user context.
 |===
 
-== Examples
+=== Examples
 
 The first time you run the `+dfx canister create+` command to register an identifier, your public/private key pair credentials are used to create a `+default+` user identity.
 The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/identity/creds.pem+` to `+$HOME/.config/dfx/identity/default/identity.pem+`.
@@ -61,6 +63,8 @@ dfx identity new ic_admin
 
 This command adds a private key for the `+ic_admin+` user identity in the `+~/.config/dfx/identity/ic_admin/identity.pem+` file.
 
+==== Renaming an identity
+
 You can rename the default user or any identity you have previously created using the `+dfx identity rename+` command.
 For example, if you want to rename a `+test_admin+` identity that you previously created, you would specify the current identity name you want to change **from** and the new name you want to change **to** by running a command similar to the following:
 
@@ -68,9 +72,24 @@ For example, if you want to rename a `+test_admin+` identity that you previously
 dfx identity rename test_admin ops
 ....
 
-If you want to run multiple commands with the same user identity context, you can run the following command:
+==== Setting a user context
+
+If you want to run multiple commands with the same user identity context, you can run a command similar to the following:
 
 ....
 dfx identity use ops
 ....
 
+After running this command, subsequent commands use the credentials and access controls associated with the `+ops+` user.
+
+==== Displaying an identity principal 
+
+If you want to display the textual representation of a principal associated with a specific user identity context, you can run commands similar to the following:
+
+[source,bash]
+----
+dfx identity use ic_admin
+dfx identity get-principal
+----
+
+In this example, the first command sets the user context to use the `+ic_admin+` identity. The second command then returns the principal associated with the `+ic_admin+` identity.

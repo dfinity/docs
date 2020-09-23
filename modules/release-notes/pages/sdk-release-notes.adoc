@@ -69,19 +69,21 @@ Note that you specify the argument you want to pass using the Candid interface d
 
 This release also includes the following BREAKING CHANGE: 
 
-* The Motoko compiler no longer supports variable or type declarations being specified before defining an actor or an actor class. 
+* The Motoko compiler no longer supports arbitrary declarations preceding the main actor or an actor class. 
 Only import declarations can be used as leading declarations for programs that define an actor or an actor class.
 +
-The recommended workaround is to move the declarations that previously preceded the main actor to an imported module then use a call to the imported declaration within the main actor.
-For example, if the `+counterA+` is declared in the `+mylib.mo+` module, you might use code similar to the following:
+The recommended workaround is:
+* to move the declarations that preceded the main actor into the actor's body; or
+* to move the declarations into a new, imported module, referenced from the main actor; or
+* a combination of both.
+For example:
 +
 ....
-import mylib "./mylib";
-
-actor Counter { 
-  mylib.counterA()
+type State = { #red; #orange; #green }
+var state : State = #red;
+actor TrafficLight { 
   ...
-....
+}
 
 
 === Highlights of what's new in 0.6.7
@@ -116,7 +118,7 @@ This new support for multiple identities enables you to test role-based access c
 +
 ** Support for polymorphic equality that enables the `==` and `!=` operators to work on all shareable types.
 ** Improvements to catch clashing function and class declarations.
-** Language support to enable canisters to take installation arguments.
+** Language support to enable canisters to take installation arguments. An actor  **class** defines a canister that takes an argument on installation.
 ** Optimized backend handling for `Bool` data types.
 
 === Highlights of what's new in 0.6.6

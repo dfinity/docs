@@ -201,15 +201,15 @@ A single user can have multiple public-private key pairs for accessing canisters
 
 In general, all canisters consume resources in the form of CPU cycles for execution, bandwidth for routing messages, and memory for persisted data.
 Canisters maintain an account balance to pay for the cost of communication, computation, and storage their applications consume. 
-The cost of computation is referred to as *gas*.
+The cost of computation is referred to as *cycles*.
 
-Gas reflects the real costs of operations including resources such physical hardware, rack space, energy,storage devices, and bandwidth. 
-In simple terms, a *unit of gas* represents the cost of executing a single WebAssembly instruction. 
+Cycles reflects the real costs of operations including resources such physical hardware, rack space, energy,storage devices, and bandwidth. 
+In simple terms, a *unit of cycles* represents the cost of executing a single WebAssembly instruction. 
 
-* Programs must be able to pay for complete execution (all or nothing), but the cost associated with a unit of gas will make efficient programs cost-effective.
-* By setting limits on how much gas a canister can consume, the platform can prevent malicious code from draining resources
+* Programs must be able to pay for complete execution (all or nothing), but the cost associated with a unit of cycles will make efficient programs cost-effective.
+* By setting limits on how many cycles a canister can consume, the platform can prevent malicious code from draining resources
 
-The relative stability of operational costs makes it easier to predict the gas required to process, for example, a million messages.
+The relative stability of operational costs makes it easier to predict the cycles required to process, for example, a million messages.
 
-NOTE: When you deploy canisters locally or to an {IC} test network, there’s no cost associated with program execution. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of gas” exception because the operations would exceed a predefined threshold. 
-If you see this exception in testing, you can temporarily configure a higher gas limit by setting a command-line option. 
+NOTE: When you deploy canisters locally or to an {IC} test network, there’s no cost associated with program execution. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
+If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option. 

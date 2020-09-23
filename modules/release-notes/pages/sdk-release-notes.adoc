@@ -62,21 +62,24 @@ Note that you specify the argument you want to pass using the Candid interface d
 
 * The `+dfx identity new+` command has been enhanced to display a confirmation message when adding a new identify is successful.
 
-* Key updates for {proglang} include backend support for the following features:
+=== Motoko updates in {release}
 
-** Preliminary support for importing and exporting actor classes and for dynamic canister installation.
-** Improved error handling for actor classes and input/output exceptions.
+Key updates for {proglang} include backend support for the following features and changes:
 
-This release also includes the following BREAKING CHANGE: 
-
+* Preliminary support for importing and exporting actor classes and for dynamic canister installation.
+* Improved error handling for actor classes and input/output exceptions.
 * The Motoko compiler no longer supports arbitrary declarations preceding the main actor or an actor class. 
 Only import declarations can be used as leading declarations for programs that define an actor or an actor class.
 +
-The recommended workaround is:
-* to move the declarations that preceded the main actor into the actor's body; or
-* to move the declarations into a new, imported module, referenced from the main actor; or
-* a combination of both.
-For example:
+As a recommended workaround for this change, you can:
++
+--
+* Move the declarations that preceded the main actor into the actor's body.
+* Move the declarations into a new, imported module, referenced from the main actor.
+* Use a combination of these strategies.
+--
++
+For example, if you have a code snippet like this:
 +
 ....
 type State = { #red; #orange; #green }
@@ -84,7 +87,17 @@ var state : State = #red;
 actor TrafficLight { 
   ...
 }
-
+....
++
+You can modify it like this:
++
+....
+import Types = "./types"; 
+actor TrafficLight { 
+  var state : Types.State = #red;
+  ...
+}
+....
 
 === Highlights of what's new in 0.6.7
 
@@ -238,7 +251,7 @@ The following sections describe the key features and enhancements that were intr
 
 In addition to the change described in xref:highlights[Highlights of what's new], the {release} release includes the following changes that might require updates to existing programs:
 
-- Major breaking changes and updates to Motoko as detailed here: https://github.com/dfinity/motoko-base/issues/37
+* The Motoko compiler no longer supports arbitrary declarations preceding the main actor or an actor class. 
 - The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format.
 - You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
 - `dfx canister call` will consult the Candid file for method types. You no longer need to use `--type string/number`. The arguments are therefore deprecated.

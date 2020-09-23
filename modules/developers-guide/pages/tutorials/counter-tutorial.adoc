@@ -126,13 +126,20 @@ To modify the default template source code:
 . Open the `+src/my_counter/increment_counter.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+increment_counter.mo+` file:
 +
-[source,motoko]
+[tabs]
+====
+Motoko::
++
+[source,motoko,indent=0]
 ----
 include::example$counter.mo[]
 ----
+Rust::
 +
-Note that the variable declaration in this example includes the `+stable+` keyword to indicate the state—the value that can be set, incremented, and retrieved—persists.
-For more information about stable and flexible variables, see the _{proglang} Programming Language Guide_.
+[source,rust]
+----
+include::example$lib.rs[]
+----
 . Save your changes and close the file to continue.
 
 == Start the local network

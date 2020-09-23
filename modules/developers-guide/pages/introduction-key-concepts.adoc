@@ -81,6 +81,7 @@ image:SDK-protocol-local-overview.svg[Internet Computer components in a develope
 As a developer, it isn’t necessary to know the details about how your applications and user interactions with your applications are routed through the {IC} architecture or replicated on the network. 
 However, a general understanding of the key components can be useful because the development environment includes the replica components to provide a local test network for deployment and a realistic sense of the workflow for a production deployment.
 
+[[canister-def]]
 == Writing, deploying, and running software 
 
 One of the most important principles to keep in mind is that the {IC} is primarily a distributed and decentralized platform for running software. 
@@ -90,6 +91,7 @@ When you deploy the WebAssembly module that contains your program on an {IC} rep
 
 Once deployed, end-users can interact with the software canister by accessing the entry point functions you have defined for that canister through a front-end client such as a browser.
 
+[[canister-state]]
 === Canisters include both program and state
 
 A software canister is similar to a container in that both are deployed as a software unit that contains compiled code and dependencies for an application or service.
@@ -127,6 +129,7 @@ There is an inherent tradeoff between security and performance because two-third
 As a developer, it is important to recognize this relationship between the calls that query the canister and the calls that change the canister state. 
 In particular, you should keep in mind the inherent tradeoff between security and performance.
 
+[[dev-motoko-intro]]
 === How to develop applications for the {IC}
 
 For programmers and software developers, the {platform} provides unique capabilities and opportunities within a framework that simplifies how you can design, build, and deploy applications. 
@@ -150,6 +153,7 @@ The following diagram provides a simplified drill-down view of the development e
 
 image:SDK-protocol-network.svg[Your development environment as part of the {IC} ecosystem]
 
+[[actor-intro]]
 === Canisters, actors, and the code you produce
 
 One of the most important principles to keep in mind when preparing to write programs using the {proglang} programming language is that {proglang} uses an _actor-based_ programming model.
@@ -161,6 +165,7 @@ In general, each software canister includes the compiled code for one actor obje
 Each canister also includes some additional information such as interface descriptions or front-end assets. 
 You can create projects that include multiple canisters, but each canister can only include one actor. 
 
+[[wasm-intro]]
 === Why your code is compiled into WebAssembly
 
 When you compile {proglang} code, the result is a WebAssembly module.
@@ -175,6 +180,7 @@ In addition, {proglang} provides built-in support for defining messaging service
 This guide provides an introduction to the basic features of the {proglang} programming language in the context of writing programs using the SDK. 
 For more detailed information about the {proglang} programming language itself, see the link:../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
 
+[[auth-intro]]
 == Identities and authentication
 
 One of the main differences between a user-initiated canister operation and a canister-to-canister operation is that canisters have an explicitly registered identity on the [IC].
@@ -190,6 +196,7 @@ Users with access to multiple canisters can manage the keys and devices used for
 
 A single user can have multiple public-private key pairs for accessing canisters from different devices—such as browsers running on different computers, mobile phones, or tablets—but these derived keys all map to a primary identifier.
 
+[[resource-intro]]
 == Canisters and resource usage
 
 In general, all canisters consume resources in the form of CPU cycles for execution, bandwidth for routing messages, and memory for persisted data.

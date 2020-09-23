@@ -62,7 +62,7 @@ Note that you specify the argument you want to pass using the Candid interface d
 
 * The `+dfx identity new+` command has been enhanced to display a confirmation message when adding a new identify is successful.
 
-* Key updates for {proglang} (0.4.4) include backend support for the following features:
+* Key updates for {proglang} include backend support for the following features:
 
 ** Preliminary support for importing and exporting actor classes and for dynamic canister installation.
 ** Unit installation arguments for actors.

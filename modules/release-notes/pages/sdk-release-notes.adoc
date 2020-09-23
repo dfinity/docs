@@ -71,8 +71,20 @@ Note that you specify the argument you want to pass using the Candid interface d
 
 This release also includes the following BREAKING CHANGE: 
 
-* The Motoko compiler no longer supports variable or type declarations before defining an actor or an actor class. 
+* The Motoko compiler no longer supports variable or type declarations being specified before defining an actor or an actor class. 
 Only import declarations can be used as leading declarations for programs that define an actor or an actor class.
++
+The recommended workaround is to move the declarations that previously preceded the main actor to an imported module then use a call to the imported declaration within the main actor.
+For example, if the `+counterA+` is declared in the `+mylib.mo+` module, you might use code similar to the following:
++
+....
+import mylib "./mylib";
+
+actor Counter { 
+  mylib.counterA()
+  ...
+....
+
 
 === Highlights of what's new in 0.6.7
 

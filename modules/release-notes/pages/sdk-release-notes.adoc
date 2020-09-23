@@ -48,7 +48,7 @@ dfx canister install -all
 +
 For a preview of how to use the simplified developer workflow, see https://sdk.dfinity.org/docs/quickstart/dfx-deploy-quickstart.html[Developer Workflow Preview].
 
-* You can now specify arguments on the command-line when you deploy a **single** canister using the `+dfx canister install+` command.
+* You can now specify arguments on the command-line when you deploy a **single** canister using an actor class with the `+dfx canister install+` command.
 +
 For example, you might use the following command to add the `+self+` Text argument when deploying the canister named `+profile_map+` locally.
 +
@@ -65,9 +65,7 @@ Note that you specify the argument you want to pass using the Candid interface d
 * Key updates for {proglang} include backend support for the following features:
 
 ** Preliminary support for importing and exporting actor classes and for dynamic canister installation.
-** Unit installation arguments for actors.
 ** Improved error handling for actor classes and input/output exceptions.
-** Improved garbage collection.
 
 This release also includes the following BREAKING CHANGE: 
 

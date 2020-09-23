@@ -20,72 +20,44 @@
 
     <div class="landing-pitch">
         <img src="https://via.placeholder.com/300.png?text=placeholder" />
-        <h2>DeFi is only the beginning</h2>
-        <p>Decentralized software can do so much more than just track financial transactions. The Internet Computer is a general purpose compute platform suitable for everything from crunching numbers to video streaming.</p>
-        <p class="link"><a href="">Check out some apps built by our community</a></p>
+        <h2>What will you build?</h2>
+        <p>Decentralized software can be more than financial transactions. The Internet Computer is a general purpose platform and our developer community has built everything from video chat to mobile games to compilers.</p>
+        <p class="link"><a href="http://github.com/dfinity/awesome-dfinity">Check out some awesome apps</a></p>
     </div>
 
     <div class="landing-pitch">
         <img src="https://via.placeholder.com/300.png?text=placeholder" />
         <h2>Escape the Cloud</h2>
-        <p>Why build decentralized software just to run it on monopolistic hardware like Amazon Web Services or Google Cloud? The Internet Computer is formed by independent data centers across the globe, joined by the Internet Computer Protocol.</p>
-        <p class="link"><a href="">Read more about the ICP</a></p>
+        <p>Why build decentralized software just to run your front-end on monopolistic hardware like Amazon Web Services or Google Cloud? Build your front-end in any framework (React, Angular, Vue, or even vanilla JavaScript) and your users can access it from a standard browser — no plug-ins.</p>
+        <p class="link"><a href="https://sdk.dfinity.org/docs/developers-guide/webpack-config.html">Read more about front-end development</a></p>
     </div>
 
     <div class="landing-pitch">
         <img src="https://via.placeholder.com/300.png?text=placeholder" />
-        <h2>Unstoppable by nature</h2>
-        <p>The cryptographic guarantees baked into the Internet Computer means mamny security complexities melt away. You might not need a firewall, VPNS, or even usernames and passwords.</p>
-        <p class="link"><a href="">Read more about security on the IC</a></p>
+        <h2>Welcome home</h2>
+        <p>The Motoko language is optimized for authoring for the Internet Computer and packed with so many familiar features you may forget you're working with a blockchain: async/await, randomness, time and date, and even floating point numbers. </p>
+        <p class="link"><a href="https://sdk.dfinity.org/docs/language-guide/motoko.html">Read more about Motoko</a></p>
     </div>
 
     <div class="landing-pitch">
         <img src="https://via.placeholder.com/300.png?text=placeholder" />
-        <h2>Front-End Included</h2>
-        <p>Canisters can even serve static assets, so they're a perfect fit for your React, Angular, Vue, or even vanilla JavaScript app.</p>
-        <p class="link"><a href="">Read more about front-end development</a></p>
+        <h2>Stand on the shoulders of giants</h2>
+        <p>Thanks to the interface description language Candid, every service running on the Internet Computer is interoperable with every other. That means you can import external services as easily as libraries and extend the Open Source revolution with Open Internet Services.</p>
+        <p class="link"><a href="https://sdk.dfinity.org/docs/candid-spec/idl">Read more about Candid</a></p>
     </div>
 
     <div class="landing-pitch">
         <img src="https://via.placeholder.com/300.png?text=placeholder" />
         <h2>Go ahead, delete your database</h2>
-        <p>On the Internet Computer, all data you create in your canister is automatically persisted in memory pages making databases a thing of the past.</p>
-        <p class="link"><a href="">Read more about Orthogonal Persistence</a></p>
-    </div>
-
-    <div class="landing-pitch">
-        <img src="https://via.placeholder.com/300.png?text=placeholder" />
-        <h2>Interoperability is boring now</h2>
-        <p>Remember when getting services to talk to each other was something we had to worry about? Thanks to a standard Interface Description Language (IDL), every service running on the Internet Computer is interoperable with every other.</p>
-        <p class="link"><a href="">Learn more about Candid</a></p>
-    </div>
-
-    <div class="landing-pitch">
-        <img src="https://via.placeholder.com/300.png?text=placeholder" />
-        <h2>On the shoulders of giants</h2>
-        <p>The Open Source movement has been a tremendous gift to software development, allowing developers to build on top of one another's contributions. The Internet Computer extends that revolution into the realm of actively running services.</p>
-        <p class="link"><a href="">Read more about Open Internet Services</a></p>
-    </div>
-
-    <div class="landing-pitch">
-        <img src="https://via.placeholder.com/300.png?text=placeholder" />
-        <h2>Hyperscale out of the box</h2>
-        <p>Scaling a successful app is always an arduous experience. Reserving servers, sharding data stores. With autonomous libraries like BigMap and BigSearch, scaling happens "under the hood" as necessary.</p>
-        <p class="link"><a href="">Read more about BigMap and autonomous libraries</a></p>
-    </div>
-
-    <div class="landing-pitch">
-        <img src="https://via.placeholder.com/300.png?text=placeholder" />
-        <h2>Feel right at home</h2>
-        <p>The Internet Computer and Motoko language are packed with so many familiar features you may forget you're working with a blockchain: deterministic randomness, time and date functions, and even floating point numbers.</p>
-        <p class="link"><a href="">Check out the Motoko Base Library</a></p>
+        <p>The radical rethinking baked into the Internet Computer means much of the typical complexity of software architecture melts away. You won't need a firewall, a VPN, usernames and passwords — and with Orthogonal Persistence, any data you create in your canister is automatically persisted in memory pages making databases a thing of the past.</p>
+        <p class="link"><a href="https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html">Read more about key concepts</a></p>
     </div>
 
     <div class="landing-pitch">
         <img src="https://via.placeholder.com/300.png?text=placeholder" />
         <h2>A new foundation for software development</h2>
-        <p>We're admittedly a little impatient with the status quo of software development. We think every step in the legacy workflow from how you write code to how users access it could use some improvement.</p>
-        <p class="link"><a href="">Watch the Fundamentals video series</a></p>
+        <p>We're admittedly a little impatient with the status quo of software development. We think every step in the legacy workflow from how you write code to how users access it could use some improvement. Developing on the Internet Computer is an exciting new frontier with a new set of best practices.</p>
+        <p class="link"><a href="https://www.youtube.com/watch?v=jduSMHxdYD8&list=PLuhDt1vhGcrejCmYeB1uqgl9Y3f6MCyFp">Watch the Fundamentals video series</a></p>
     </div>
 
     <h1 class="intro">Let's get started...</h1>

@@ -62,6 +62,18 @@ Note that you specify the argument you want to pass using the Candid interface d
 
 * The `+dfx identity new+` command has been enhanced to display a confirmation message when adding a new identify is successful.
 
+* Key updates for {proglang} (0.4.4) include backend support for the following features:
+
+** Preliminary support for importing and exporting actor classes and for dynamic canister installation.
+** Unit installation arguments for actors.
+** Improved error handling for actor classes and input/output exceptions.
+** Improved garbage collection.
+
+This release also includes the following BREAKING CHANGE: 
+
+* The Motoko compiler no longer supports variable or type declarations before defining an actor or an actor class. 
+Only import declarations can be used as leading declarations for programs that define an actor or an actor class.
+
 === Highlights of what's new in 0.6.7
 
 The 0.6.7 release includes the following new features and capabilities:

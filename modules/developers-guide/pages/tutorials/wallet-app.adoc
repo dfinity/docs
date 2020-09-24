@@ -36,9 +36,13 @@ The sample program also includes a `+record+` function to record a simple audit 
 
 Before starting the tutorial, verify the following:
 
+* You have downloaded and installed the Rust programming language and Cargo as described in the link:https://doc.rust-lang.org/book/ch01-01-installation.html[Rust installation instructions] for your operating system.
+
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
 
-* 
+* You have downloaded the latest version of the {cdk-long-name} from the link:https://crates.io/[Rust community’s crate registry] or from the link:https://github.com/dfinity/rust-cdk[Rust CDK] repository.
++
+For this tutorial, you should note the location you use for the local version of the `+rust-cdk+` repository or copy the directory to the folder you are using for your {IC} sample projects.
 
 * You have stopped any {IC} network processes running on the local
 computer.
@@ -62,6 +66,22 @@ dfx new rust_wallet_app
 ----
 cd rust_wallet_app
 ----
+
+== Modify the default canister settings
+
+Creating a new project adds a default `+dfx.json+` configuration file to your project directory.
+Because the sample program for this tutorial is written in the Rust programming language, we need to modify the default canister settings.
+
+For this sample program, we'll create the following canisters:
+
+* The `+alice_account+` canister is the wallet canister that's owned by the `+alice+` identity.
+* The `+bob_account+` is the wallet canister that's owned by the `+bob+` identity.
+* The `+wallet_app+` is a wallet canister that's owned by the default user for initialization purposes.
+
+To modify the default `+dfx.json+` configuration file for the `+wallet_app+` Rust project:
+
+. Open the `+dfx.json+` configuration file in a text editor and delete the existing content.
+. Replace the `+canisters.rust_counter+` settings with settings for building a canister using the `+cargo build+` command.
 
 == Modify the default program
 

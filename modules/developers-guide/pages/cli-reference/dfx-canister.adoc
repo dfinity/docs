@@ -2,67 +2,16 @@
 :sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx canister+` command with flags and subcommands to manage canister operations and interaction with the {platform}.
+In most cases, you use `+dfx canister+` subcommands after you compile a program to manage the canister lifecycle and to perform key tasks such as calling program functions.
 
-=== Basic usage
+The basic syntax for running `+dfx canister+` commands is:
 
 [source,bash]
 ----
 dfx canister [subcommand] [flag]
 ----
 
-=== Flags
-
-You can use the following optional flags with the `+dfx canister+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-
-|Flag |Description
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-
-|===
-
-=== Options
-
-You can specify the following option for the `+dfx canister+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-
-|Option |Description
-
-|`+--network <network>+` |Specifies the {IC} network you want to connect to.
-You can use this option to override the network specified in the `+dfx.json+` configuration file.
-
-|===
-
-=== Subcommands
-
-Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Command |Description
-|`+call+` |Calls a specified method on a deployed canister.
-
-|`+create+` |Creates a new "empty" canister by registering a canister identifier on an {IC} network.
-
-|`+help+` |Displays usage information message for a specified subcommand.
-
-|`+id+` |Displays the identifier for a canister.
-
-|`+install+` |Installs compiled code as a canister on the replica.
-
-|`+request-status+` |Request the status of a call to a canister.
-|===
-
-=== Examples
-
-In most cases, you use `+dfx canister+` subcommands after you compile a program to manage the canister lifecycle and perform key tasks such as calling program functions.
-
+Depending on the `+dfx canister+` subcommand you specify, additional arguments, options, and flags might apply or be required.
 To view usage information for a specific `+dfx canister+` subcommand, specify the subcommand and the `+--help+` flag.
 For example, to see usage information for `+dfx canister call+`, you can run the following command:
 
@@ -71,27 +20,60 @@ For example, to see usage information for `+dfx canister call+`, you can run the
 dfx canister call --help
 ----
 
-==== Registering a canister identifier
+For reference information and examples that illustrate using `+dfx canister+` commands, select an appropriate command.
 
-To register unique canister identifiers for a project, you can run the following command:
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Command |Description
+|<<dfx canister call,`+call+`>> |Calls a specified method on a deployed canister.
+
+|<<dfx canister create,`+create+`>> |Creates a new "empty" canister by registering a canister identifier on an {IC} network.
+
+|<<dfx canister delete,`+delete+`>> |Deletes a currently stopped canister.
+
+|`+help+` |Displays usage information message for a specified subcommand.
+
+|<<dfx canister id,`+id+`>> |Displays the identifier for a canister.
+
+|<<dfx canister install,`+install+`>> |Installs compiled code as a canister on the replica.
+
+|<<dfx canister request-status,`+request-status+`>> |Requests the status of a call to a canister.
+
+|<<dfx canister start,`+start+`>> |Restarts a stopped canister.
+
+|<<dfx canister status,`+status+`>> |Requests the running status of a canister.
+
+|<<dfx canister stop,`+stop+`>> |Stops a currently running canister.
+
+|===
+
+== Overriding the default network
+
+By default, `+dfx canister+` commands run on the local network specified in the `+dfx.json+` file.
+If you want to send a `+dfx canister+` subcommand to a specific network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the network using the `+--network+` option.
+
+For example, to register unique canister identifiers for a project when the {IC} runs on your local computer, you can run the following command:
 
 [source,bash]
 ----
 dfx canister create --all
 ----
 
-==== Overriding the default network
+If you want to register unique canister identifiers for the same project when the {IC} runs on the network that uses the tungsten alias in the `+dfx.json+` file, you can run the following command:
 
-If you want to send a `+dfx canister+` subcommand to a specific network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the network using the `+--network+` option.
+[source,bash]
+----
+dfx canister --network tungsten create --all
+----
 
-For example, you can specify a remote {IC} network by running a command similar to the following:
+Similarly, you can call a canister and function running on a remote {IC} network using a command similar to the following:
 
 [source,bash]
 ----
 dfx canister --network \http://192.168.3.1:5678 call counter get
 ----
 
-Note that you must specify the network parameter before the canister operation (`+call+`), canister name (`+counter+`), and function (`+get+`).
+Note that you must specify the `+--network+` parameter before the canister operation (`+create+` or `+call+`) and any additional arguments such as the canister name (`+counter+`), and function (`+get+`).
 
 == dfx canister call
 

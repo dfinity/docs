@@ -1,0 +1,95 @@
+= dfx identity
+:sdk-short-name: DFINITY Canister SDK
+
+Use the `+dfx identity+` command to manage the identities used to communicate with the Internet Computer network. 
+Creating multiple user identities enables you to test user-based access controls.
+
+== Basic usage
+
+[source,bash]
+----
+dfx identity [subcommand] [flag]
+----
+
+== Flags
+
+You can use the following optional flags with the `+dfx identity+` command:
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+== Subcommands
+
+Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Command |Description
+
+| `+get-principal+` | Shows the textual representation of the Principal associated with the current identity.
+
+| `+help+` |Displays this usage message or the help of the given subcommand(s).
+
+|`+list+` |Lists existing identities.
+
+|`+new <identity_name>+` |Creates a new identity.
+
+|`+remove <identity_name>+` |Removes an existing identity.
+
+|`+rename <from_name> <to_name>+` |Renames an existing identity.
+
+|`+use <identity_name>+` |Specifies the identity to use.
+
+|`+whoami+` |Displays the name of the current identity user context.
+|===
+
+=== Examples
+
+The first time you run the `+dfx canister create+` command to register an identifier, your public/private key pair credentials are used to create a `+default+` user identity.
+The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/identity/creds.pem+` to `+$HOME/.config/dfx/identity/default/identity.pem+`.
+
+You can then use `+dfx identity new+` to create new user identities and store credentials for those identities in `+$HOME/.config/dfx/identity/<identity_name>/identity.pem+` files.
+For example, you can create an identity named `+ic_admin+` by running the following command:
+
+....
+dfx identity new ic_admin
+....
+
+This command adds a private key for the `+ic_admin+` user identity in the `+~/.config/dfx/identity/ic_admin/identity.pem+` file.
+
+==== Renaming an identity
+
+You can rename the default user or any identity you have previously created using the `+dfx identity rename+` command.
+For example, if you want to rename a `+test_admin+` identity that you previously created, you would specify the current identity name you want to change **from** and the new name you want to change **to** by running a command similar to the following:
+
+....
+dfx identity rename test_admin ops
+....
+
+==== Setting a user context
+
+If you want to run multiple commands with the same user identity context, you can run a command similar to the following:
+
+....
+dfx identity use ops
+....
+
+After running this command, subsequent commands use the credentials and access controls associated with the `+ops+` user.
+
+==== Displaying an identity principal 
+
+If you want to display the textual representation of a principal associated with a specific user identity context, you can run commands similar to the following:
+
+[source,bash]
+----
+dfx identity use ic_admin
+dfx identity get-principal
+----
+
+In this example, the first command sets the user context to use the `+ic_admin+` identity. The second command then returns the principal associated with the `+ic_admin+` identity.

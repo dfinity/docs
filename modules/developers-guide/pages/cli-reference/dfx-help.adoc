@@ -1,0 +1,37 @@
+= dfx help
+:sdk-short-name: DFINITY Canister SDK
+
+Use this command to view usage information for the `+dfx+` parent command or for any specified subcommand.
+
+== Basic usage
+
+[source,bash]
+----
+dfx help [subcommand]
+----
+
+== Arguments
+
+You can specify any `+dfx+` subcommand as an argument to view usage information for that subcommand using the `+dfx help+` command.
+
+[width="100%",cols="<34%,<66%",options="header"]
+|===
+|Argument |Description
+|`+subcommand+` |Specifies the subcommand usage information you want to display.
+|===
+
+== Examples
+
+To display the usage information for `+dfx+`, run the following command:
+
+[source,bash]
+----
+dfx help
+----
+
+To display the usage information for `+dfx bew+`, run the following command:
+
+[source,bash]
+----
+dfx help new
+----

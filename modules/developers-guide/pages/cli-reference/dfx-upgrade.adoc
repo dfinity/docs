@@ -1,0 +1,43 @@
+= dfx upgrade
+:sdk-short-name: DFINITY Canister SDK
+
+Use the `+dfx upgrade+` command to upgrade the {sdk-short-name} components running on your local computer.
+This command checks the version of the {sdk-short-name} that you have currently installed, then upgrades to the latest version available if an older version is detected.
+
+== Basic usage
+
+[source,bash]
+----
+dfx upgrade [flag]
+----
+
+== Flags
+
+You can use the following optional flags with the `+dfx upgrade+` command.
+
+[width="100%",cols="<32%,<68%",options="header",]
+|===
+|Flag |Description
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+== Examples
+
+You can upgrade the version of the {sdk-short-name} that you have currently installed by running the following command:
+
+[source,bash]
+----
+dfx upgrade
+----
+
+This command checks the version of `+dfx+` you have currently installed and the latest version available published on the {sdk-short-name} website in a manifest file.
+If a newer version of `+dfx+` is available, the command automatically downloads and installs the latest version.
+
+[source,bash]
+----
+Current version: 0.6.8
+Fetching manifest \https://sdk.dfinity.org/manifest.json
+Already up to date
+----

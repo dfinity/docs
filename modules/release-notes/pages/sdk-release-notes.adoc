@@ -168,9 +168,9 @@ Without this fix, manually removing the directories the command is intended to d
 
 === Highlights of what's new in 0.6.2
 
-The 0.6.3 release only included one important user-facing change which was also a breaking change that required you to update all existing projects.
+The 0.6.2 release only included one important user-facing change which was also a breaking change that required you to update all existing projects.
 
-Starting with the 0.6.3 release, all canister identifiers are generated using a text-based representation.
+Starting with the 0.6.2 release, all canister identifiers are generated using a text-based representation.
 To work with the {release} release, therefore, you must update your projects to use the new canister identifier format.
 
 If you are connected to the {IC} running locally, do the following in **each project directory**:

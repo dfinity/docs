@@ -166,7 +166,7 @@ You can use the following optional flags with the `+dfx identity new+` command.
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-== Arguments
+=== Arguments
 
 You must specify the following argument for the `+dfx identity new+` command.
 
@@ -221,7 +221,7 @@ You can use the following optional flags with the `+dfx identity remove+` comman
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-== Arguments
+=== Arguments
 
 You must specify the following argument for the `+dfx identity remove+` command.
 
@@ -282,7 +282,7 @@ You can use the following optional flags with the `+dfx identity rename+` comman
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-== Arguments
+=== Arguments
 
 You must specify the following arguments for the `+dfx identity rename+` command.
 
@@ -331,7 +331,7 @@ You can use the following optional flags with the `+dfx identity use+` command.
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-== Arguments
+=== Arguments
 
 You must specify the following argument for the `+dfx identity use+` command.
 

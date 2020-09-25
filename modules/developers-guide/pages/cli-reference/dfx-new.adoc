@@ -34,7 +34,7 @@ If `+node.js+` is not currently installed, you can set this flag to `+true+` to 
 
 == Arguments
 
-You can specify the following argument for the `+dfx new+` command.
+You must specify the following argument for the `+dfx new+` command.
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===

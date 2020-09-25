@@ -229,7 +229,7 @@ You should see an installation confirmation message for your canister similar to
 Installing code for canister hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 Installing code for canister hello_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
-. Call the +`hello+` canister and the predefined `+greet+` function in the program by running the following command:
+. Call the `+hello+` canister and the predefined `+greet+` function in the program by running the following command:
 +
 [source,bash]
 ----

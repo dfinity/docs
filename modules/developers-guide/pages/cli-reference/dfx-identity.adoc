@@ -32,13 +32,13 @@ For reference information and examples that illustrate using `+dfx identity+` co
 
 |<<dfx identity list,`+list+`>> |Lists existing identities.
 
-|<<dfx identity new,`+new>> |Creates a new identity.
+|<<dfx identity new,`+new+`>> |Creates a new identity.
 
-|<<dfx identity remove,`+remove>> |Removes an existing identity.
+|<<dfx identity remove,`+remove+`>> |Removes an existing identity.
 
-|<<dfx identity rename,`+rename>> |Renames an existing identity.
+|<<dfx identity rename,`+rename+`>> |Renames an existing identity.
 
-|<<dfx identity use,`+use>> |Specifies the identity to use.
+|<<dfx identity use,`+use+`>> |Specifies the identity to use.
 
 |<<dfx identity whoami,`+whoami+`>> |Displays the name of the current identity user context.
 |===

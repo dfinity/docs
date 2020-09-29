@@ -44,7 +44,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     <div class="landing-pitch">
         <a href="https://sdk.dfinity.org/docs/language-guide/motoko.html"><img src="_images/MotokoLogo.png" height="320" width="320" /></a>
         <h2>Your new favorite language</h2>
-        <p>The <b>Motoko</b> language is optimized for authoring for the Internet Computer and packed with so many familiar features you may forget you're working with a blockchain: async/await, randomness, time and date, and even floating point numbers. </p>
+        <p>The <b>Motoko</b> language is optimized for authoring for the Internet Computer yet packed with familiar features—like async/await, randomness, time and date, and even floating point numbers—you might forget you're working with a blockchain.</p>
         <p class="link"><a href="https://sdk.dfinity.org/docs/language-guide/motoko.html">Read more about Motoko</a></p>
     </div>
 

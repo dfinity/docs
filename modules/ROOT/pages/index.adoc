@@ -65,7 +65,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     <div class="landing-pitch">
         <a href="https://www.youtube.com/watch?v=jduSMHxdYD8&list=PLuhDt1vhGcrejCmYeB1uqgl9Y3f6MCyFp"><img src="_images/VideoTutorial.png" height="320" width="320" /></a>
         <h2>A new foundation for software development</h2>
-        <p>We're admittedly a little impatient with the status quo of software development. We think every step in the legacy workflow from how you write code to how users access it could use some improvement. Developing on the Internet Computer is an exciting new frontier with a new set of <b>best practices</b>.</p>
+        <p>We're admittedly a little impatient with the status quo of software development. We think every step in the legacy workflow—from how you write code to how users access it—could use some improvement. Developing on the Internet Computer is an exciting new frontier with a new set of <b>best practices</b>.</p>
         <p class="link"><a href="https://www.youtube.com/watch?v=jduSMHxdYD8&list=PLuhDt1vhGcrejCmYeB1uqgl9Y3f6MCyFp">Watch the Fundamentals video series</a></p>
     </div>
 

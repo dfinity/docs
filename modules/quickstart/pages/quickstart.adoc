@@ -27,7 +27,7 @@ Before you download and install this release of the {sdk-short-name}, verify the
 
 * You have an internet connection and access to a shell terminal on your local **macOS** or **Linux** computer.
 +
-Currently, the {sdk-short-name} only runs on computers with a macOS and Linux operating system.
+Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
 
 * You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 
@@ -109,7 +109,7 @@ dfx new hello
 +
 The `+dfx new hello+` command creates a new `+hello+` project directory, template files, and a new `+hello+` Git repository for your project.
 +
-If you use a different project name instead of `+hello+`, make note of the name you used because you'll need to use that project name in place of the `+hello+` project name throughout these instructions.
+If you use a different project name instead of `+hello+`, make note of the name you used. You'll need to use that project name in place of the `+hello+` project name throughout these instructions.
 . Change to your project directory by running the following command:
 +
 [source,bash]
@@ -150,10 +150,10 @@ Depending on your platform and local security settings, you might see a warning 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal window that displays network operations open and switch your focus to the first terminal window where you created your new project.
 +
-You perform the remaining project-related steps in this terminal.
+You perform the remaining steps in the terminal that doesn't display network operations.
 
 [[register-ids]]
-== Register, build, and deploy your application
+== Register, build, and deploy the application
 
 After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
 If you are connecting to an external {IC} network, you will need to use the `+--network+` option to deploy to that network.
@@ -192,7 +192,7 @@ Installing code for canister hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaa
 Installing code for canister hello_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 +
-If you created a project with a different name, however, your canister names will match your project name instead of +hello+` and +hello_assets+`.
+If you created a project with a different name, however, your canister names will match your project name instead of `+hello+` and `+hello_assets+`.
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]

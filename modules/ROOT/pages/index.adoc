@@ -37,7 +37,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     <div class="landing-pitch">
         <a href="https://sdk.dfinity.org/docs/developers-guide/webpack-config.html"><img src="_images/CorporateCloud.png" height="320" width="320" /></a>
         <h2>Escape the Corporate Cloud</h2>
-        <p>Why build decentralized software just to run your front-end on monopolistic hardware like Amazon Web Services or Google Cloud? Build your front-end in any framework (React, Angular, Vue, or even vanilla JavaScript) and your users can access it from a standard browser — <b>no plug-ins</b>.</p>
+        <p>Why build decentralized software just to run your front-end on monopolistic hardware like Amazon Web Services or Google Cloud? Build your front-end in any framework (React, Angular, Vue, or even vanilla JavaScript) and your users can access it from a standard browser — <b>no plug-ins required</b>.</p>
         <p class="link"><a href="https://sdk.dfinity.org/docs/developers-guide/webpack-config.html">Read more about front-end development</a></p>
     </div>
 

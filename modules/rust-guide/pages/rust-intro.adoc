@@ -1,0 +1,19 @@
+= Introduction to working with Rust
+:cdk: Rust Canister Development Kit (CDK)
+
+Rust is a powerful and type sound modern programming language with an active developer community.
+Because Rust compiles to WebAssembly, it offers a rich development environment for writing applications to run on the {IC}.
+TO help pave the way for writing applications in Rust that can be deployed on the {IC}, {company} provides some tools to simplify the process.
+
+Collectively, these tools are referred to as the {cdk} and consist of the following main libraries:
+
+* `+ic_types+`
+* `+ic_agent+`
+* `+ic_utils+`
+* `+ic_cdk+`
+* `+ic_cdk_macros+`
+* `+ic_cdk_optimizer+`
+
+The following diagram provides a simplified view of the {cdk} building blocks from the lowest to highest level of abstraction.
+
+image:Rust-building-blocks.svg[]

@@ -1,0 +1,3 @@
+* xref:rust-intro.adoc[Working with Rust]
+** xref:rust-quickstart.adoc[Hello, World! Quick Start]
+** xref:rust-counter.adoc[Counter tutorial]

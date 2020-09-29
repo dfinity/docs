@@ -1,4 +1,5 @@
 = Front-end development
+:sdk-short-name: DFINITY Canister SDK
 
 The tutorials introduced a few basic approaches to building a front-end user interface for your projects.
 For example, the tutorials demonstrated:

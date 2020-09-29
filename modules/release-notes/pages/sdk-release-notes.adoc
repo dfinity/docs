@@ -9,7 +9,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.6.7
+:release: 0.6.10
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -33,7 +33,90 @@ This {release} version of the software and programming language should not be us
 [[highlights]]
 == Highlights of what's new in {release}
 
-The {release} release includes the following new features and capabilities:
+The {release} release includes both user-visible new features and internal enhancements and fixes. The most significant new features and capabilities include the following:
+
+* You can run the new `+dfx identity get-principal+` command to return the principal associated with the current identity.
++
+Note that you must be able to provide a principal identifier for either the `+default+` or a specific identity to deploy or manage applications on the external {IC} network.
++
+For more information about getting access to the {IC}, see link:dfinity.org/sodium[Sodium Developer Network onboarding].
+
+* A new `+dfx canister set-controller+` command enables you to specify the identity to use as the new **controller** for a specified canister.
++
+When you specify a controller identity, that identity has special rights to manage the canister it controls.
+For example, only the controlling identity can be used to install, upgrade, or delete the canister under its control.
+
+=== Highlights of what's new in 0.6.9
+
+The 0.6.9 release includes the following new features and capabilities:
+
+* You can now register, build, and deploy applications with a single command.
++
+This release introduces a simplified developer workflow using the the `+dfx deploy+` command. 
+You can use this command to replace running the following commands as separate steps:
++
+....
+dfx canister create --all
+dfx build
+dfx canister install -all
+....
++
+For a preview of how to use the simplified developer workflow, see https://sdk.dfinity.org/docs/quickstart/dfx-deploy-quickstart.html[Developer Workflow Preview].
+
+* You can now specify arguments on the command-line when you deploy a **single** canister using an actor class with the `+dfx canister install+` command.
++
+For example, you might use the following command to add the `+self+` Text argument when deploying the canister named `+profile_map+` locally.
++
+....
+dfx canister install profile_map '("self")'
+....
++
+Note that you specify the argument you want to pass using the Candid interface description format.
+
+* A new `+--memory allocation+` command-line option enables you to specify a memory allocation when deploying a canister.
+
+* The `+dfx identity new+` command has been enhanced to display a confirmation message when adding a new identify is successful.
+
+=== Motoko updates in {release}
+
+Key updates for {proglang} include backend support for the following features and changes:
+
+* Preliminary support for importing and exporting actor classes and for dynamic canister installation.
+* Improved error handling for actor classes and input/output exceptions.
+* The Motoko compiler no longer supports arbitrary declarations preceding the main actor or an actor class. 
+Only import declarations can be used as leading declarations for programs that define an actor or an actor class.
++
+As a recommended workaround for this change, you can:
++
+--
+* Move the declarations that preceded the main actor into the actor's body.
+* Move the declarations into a new, imported module, referenced from the main actor.
+* Use a combination of these strategies.
+--
++
+For example, if you have a code snippet like this:
++
+....
+type State = { #red; #orange; #green }
+var state : State = #red;
+actor TrafficLight { 
+  ...
+}
+....
++
+You can modify it like this:
++
+....
+import Types = "./types"; 
+actor TrafficLight { 
+  var state : Types.State = #red;
+  ...
+}
+....
+
+=== Highlights of what's new in 0.6.7
+
+The 0.6.7 release includes the following new features and capabilities:
 
 * The `+dfx build+` command now supports building a specific canister, in addition to building all canisters.
 +
@@ -63,10 +146,10 @@ This new support for multiple identities enables you to test role-based access c
 +
 ** Support for polymorphic equality that enables the `==` and `!=` operators to work on all shareable types.
 ** Improvements to catch clashing function and class declarations.
-** Language support to enable canisters to take installation arguments.
+** Language support to enable canisters to take installation arguments. An actor  **class** defines a canister that takes an argument on installation.
 ** Optimized backend handling for `Bool` data types.
 
-== Highlights of what's new in 0.6.6
+=== Highlights of what's new in 0.6.6
 
 The 0.6.6 release features several new commands for managing canisters.
 The release include the following new commands for managing canister operations and the canister lifecycle:
@@ -100,9 +183,9 @@ Without this fix, manually removing the directories the command is intended to d
 
 === Highlights of what's new in 0.6.2
 
-The 0.6.3 release only included one important user-facing change which was also a breaking change that required you to update all existing projects.
+The 0.6.2 release only included one important user-facing change which was also a breaking change that required you to update all existing projects.
 
-Starting with the 0.6.3 release, all canister identifiers are generated using a text-based representation.
+Starting with the 0.6.2 release, all canister identifiers are generated using a text-based representation.
 To work with the {release} release, therefore, you must update your projects to use the new canister identifier format.
 
 If you are connected to the {IC} running locally, do the following in **each project directory**:
@@ -183,7 +266,7 @@ The following sections describe the key features and enhancements that were intr
 
 In addition to the change described in xref:highlights[Highlights of what's new], the {release} release includes the following changes that might require updates to existing programs:
 
-- Major breaking changes and updates to Motoko as detailed here: https://github.com/dfinity/motoko-base/issues/37
+* The Motoko compiler no longer supports arbitrary declarations preceding the main actor or an actor class. 
 - The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format.
 - You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
 - `dfx canister call` will consult the Candid file for method types. You no longer need to use `--type string/number`. The arguments are therefore deprecated.

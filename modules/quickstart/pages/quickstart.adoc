@@ -16,15 +16,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
 This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} network.
-This _Quick start_ assumes that you are installing the {sdk-short-name} for the first time.
-
-////
-IMPORTANT: For this release, only *macOS* and *Linux* platforms are supported.
-
-By developing programs that run on the {platform}, you can deploy secure, tamper-proof applications and provide web-based services without the restrictions or expense of a proprietary infrastructure, the complexities of database management and maintenance, or the investment in hardware required to run enterprise-scale software.
-
-If you want to learn more about the {platform} and how it can transform distributed computing and the application landscape, check out link:https://dfinity.org/faq[Frequently Asked Questions] or the videos posted on the https://www.youtube.com/channel/UCOyguKlTxoDK3HRzmGbLyAg[DFINITY Official Youtube Channel].
-////
+This _Quick Start_ assumes that you are installing the {sdk-short-name} for the first time.
 
 To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
 
@@ -33,7 +25,9 @@ To get started, let's build and deploy a simple Hello application that has just 
 
 Before you download and install this release of the {sdk-short-name}, verify the following:
 
-* You have an internet connection and access to a shell terminal on your local macOS or Linux computer.
+* You have an internet connection and access to a shell terminal on your local **macOS** or **Linux** computer.
++
+Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
 
 * You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 
@@ -82,7 +76,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.6.8
+dfx 0.6.10
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -114,6 +108,8 @@ dfx new hello
 ----
 +
 The `+dfx new hello+` command creates a new `+hello+` project directory, template files, and a new `+hello+` Git repository for your project.
++
+If you use a different project name instead of `+hello+`, make note of the name you used. You'll need to use that project name in place of the `+hello+` project name throughout these instructions.
 . Change to your project directory by running the following command:
 +
 [source,bash]
@@ -125,6 +121,8 @@ cd hello
 == Start the local network
 
 Before you can build your first project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+
+These instructions assume you are running the {IC} locally. If you are connecting to an external {IC} network, you can skip this section. 
 
 As a best practice, this step requires you to have **two terminal shells** open, so that you can start and see network operations in one terminal and manage your project in another.
 
@@ -152,31 +150,17 @@ Depending on your platform and local security settings, you might see a warning 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal window that displays network operations open and switch your focus to the first terminal window where you created your new project.
 +
-You perform all of the remaining project-related steps in this terminal.
+You perform the remaining steps in the terminal that doesn't display network operations.
 
 [[register-ids]]
-== Register canister identifiers
+== Register, build, and deploy the application
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
+If you are connecting to an external {IC} network, you will need to use the `+--network+` option to deploy to that network.
 
-To register canister identifiers for the local network:
+To deploy your first application:
 
-. Check that you are still in your project directory, if needed.
-. Register unique canister identifiers for the `+hello+` project by running the following command:
-+
-[source,bash]
-----
-dfx canister create --all
-----
-
-[[build-the-project]]
-== Build the program
-
-Your new `+hello+` project includes a simple default program in the `+src/hello+` directory that you can compile.
-
-To build the program executable:
-
-. Check that you are still in your project directory, if needed.
+. Check that you are still in the root directory for your project, if needed.
 . Ensure that `+node+` modules are available in your project directory, if needed, by running the following command:
 +
 [source,bash]
@@ -185,44 +169,31 @@ npm install
 ----
 +
 For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
-. Build the executable from the default main program file by running the following command:
+. Register, build, and deploy your first application by running the following command:
 +
 [source,bash]
 ----
-dfx build
+dfx deploy
 ----
-. Verify the command displays output indicating that the build is successful.
 +
-You should see output similar to the following:
-+
-....
-Building canisters...
-Building frontend...
-....
-
-[[deploy]]
-== Deploy your program locally
-
-The `+dfx build+` command created several artifacts in a `canisters` directory for your project.
-You now have a compiled program that can be deployed on your local {IC} network.
-
-To deploy locally:
-
-. Check that you are still in your project directory, if needed.
-. Deploy the default program on the local network by running the following command:
+If you have access to the {IC} running remotely, you can deploy to the that network instead of deploying locally by specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file.
+For example, if you are connecting to the URL specified by the network alias `+tungsten+` you would run a command similar the following:
 +
 [source,bash]
 ----
-dfx canister install --all
+dfx deploy --network tungsten
 ----
 +
-You should see an installation confirmation message for your canister similar to the following:
+The `+dfx deploy+` command output displays information about the operations it performs.
+For example, this step registers two network-specific identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
 +
 ....
 Installing code for canister hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 Installing code for canister hello_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
-. Call the predefined `+greet+` function in the program by running the following command:
++
+If you created a project with a different name, however, your canister names will match your project name instead of `+hello+` and `+hello_assets+`.
+. Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]
 ----
@@ -230,6 +201,8 @@ dfx canister call hello greet everyone
 ----
 +
 This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
++
+Remember, however, that if you created a project with a different name, the canister name will match your project name and you'll need to modify the command line to match the name you used instead of `+hello+`.
 . Verify the command displays the return value of the `+greet+` function.
 +
 For example:
@@ -282,7 +255,7 @@ dfx stop
 [[next-steps]]
 == Next steps
 
-This _Quick start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
+This _Quick Start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
 There are more detailed examples and tutorials for you to explore in the link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] section of the _SDK Developer Tools_ and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
 
 * Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].

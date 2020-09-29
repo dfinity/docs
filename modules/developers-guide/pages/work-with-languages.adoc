@@ -1,5 +1,6 @@
 = Working with different languages
 :cpp: C++
+:sdk-short-name: DFINITY Canister SDK
 
 Most of the examples in this guide use {proglang}—the programming language specifically designed to work with the {IC}. 
 Potentially, however, you can write programs in any language that compiles to WebAssembly to deploy applications that run on the {IC}.

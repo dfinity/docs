@@ -3,12 +3,76 @@
 :idseparator: -
 :!example-caption:
 :!table-caption:
-
-You can get started right away by downloading the {sdk-long-name} and cloning an existing sample project or by exploring the documentation. Check out the tiles below to begin building open services and software to run on the {IC}.
+:page-layout: landing
 
 ++++
 
 <div class="html-container">
+
+    <div class="landing-hero">
+        <h1>The next generation of software engineering starts with you.</h1>
+        <div class="landing-cta">
+        <p>To download the DFINITY Canister SDK, run the following command in your terminal.</p>
+++++
+
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
+
+++++
+        <p>By installing the SDK, you agree to our <a href="https://sdk.dfinity.org/sdk-license-agreement.txt">Terms & Conditions</a>.</p>
+        </div>
+    </div>
+
+<div class="home-pitches-grid">
+
+    <div class="landing-pitch">
+        <a href="quickstart/quickstart.html"><img src="_images/HelloWorld.png" height="320" width="320" /></a>
+        <h2>What can you imagine?</h2>
+        <p>Decentralized software can be more than financial transactions. The Internet Computer is a <b>general purpose</b> platform and our developer community has built everything from video chat to mobile games to compilers.</p>
+        <p class="link"><a href="quickstart/quickstart.html">Get started now</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <a href="https://sdk.dfinity.org/docs/developers-guide/webpack-config.html"><img src="_images/CorporateCloud.png" height="320" width="320" /></a>
+        <h2>Escape the Corporate Cloud</h2>
+        <p>Why build decentralized software just to run your front-end on monopolistic hardware like Amazon Web Services or Google Cloud? Build your front-end in any framework (React, Angular, Vue, or even vanilla JavaScript) and your users can access it from a standard browser — <b>no plug-ins required</b>.</p>
+        <p class="link"><a href="https://sdk.dfinity.org/docs/developers-guide/webpack-config.html">Read more about front-end development</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <a href="https://sdk.dfinity.org/docs/language-guide/motoko.html"><img src="_images/MotokoLogo.png" height="320" width="320" /></a>
+        <h2>Your new favorite language</h2>
+        <p>The <b>Motoko</b> language is optimized for authoring for the Internet Computer yet packed with familiar features—like async/await, randomness, time and date, and even floating point numbers—you might forget you're working with a blockchain.</p>
+        <p class="link"><a href="https://sdk.dfinity.org/docs/language-guide/motoko.html">Read more about Motoko</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <a href="https://sdk.dfinity.org/docs/candid-spec/idl"><img src="_images/RustLogo.png" height="320" width="320" /></a>
+        <h2>On the shoulders of giants</h2>
+        <p>Thanks to the interface description language <b>Candid</b>, every service running on the Internet Computer is interoperable with every other (regardless of programming language). That means you can import external services as easily as libraries and extend the Open Source revolution with Open Internet Services.</p>
+        <p class="link"><a href="https://sdk.dfinity.org/docs/candid-spec/idl">Read more about Candid</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <a href="https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html"><img src="_images/DeleteDatabase.png" height="320" width="320" /></a>
+        <h2>Go ahead, delete your database</h2>
+        <p>The radical rethinking baked into the Internet Computer means much of the typical complexity of software architecture melts away. You won't need a firewall, a VPN, usernames and passwords — and with <b>Orthogonal Persistence</b>, any data you create in your application is automatically persisted in memory pages making databases a thing of the past.</p>
+        <p class="link"><a href="https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html">Read more about key concepts</a></p>
+    </div>
+
+    <div class="landing-pitch">
+        <a href="https://www.youtube.com/watch?v=jduSMHxdYD8&list=PLuhDt1vhGcrejCmYeB1uqgl9Y3f6MCyFp"><img src="_images/VideoTutorial.png" height="320" width="320" /></a>
+        <h2>A new foundation for software development</h2>
+        <p>We're admittedly a little impatient with the status quo of software development. We think every step in the legacy workflow—from how you write code to how users access it—could use some improvement. Developing on the Internet Computer is an exciting new frontier with a new set of <b>best practices</b>.</p>
+        <p class="link"><a href="https://www.youtube.com/watch?v=jduSMHxdYD8&list=PLuhDt1vhGcrejCmYeB1uqgl9Y3f6MCyFp">Watch the Fundamentals video series</a></p>
+    </div>
+
+    </div>
+
+    <h1 class="intro">Let's get started...</h1>
+
     <div class="home-cards-grid">
 
         <a class="home-card" href="developers-guide/introduction-key-concepts.html">

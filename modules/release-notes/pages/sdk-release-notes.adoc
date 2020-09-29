@@ -77,7 +77,7 @@ Note that you specify the argument you want to pass using the Candid interface d
 
 * The `+dfx identity new+` command has been enhanced to display a confirmation message when adding a new identify is successful.
 
-=== Motoko updates in {release}
+=== Motoko updates
 
 Key updates for {proglang} include backend support for the following features and changes:
 

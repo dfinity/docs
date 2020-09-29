@@ -58,7 +58,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     <div class="landing-pitch">
         <a href="https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html"><img src="_images/DeleteDatabase.png" height="320" width="320" /></a>
         <h2>Go ahead, delete your database</h2>
-        <p>The radical rethinking baked into the Internet Computer means much of the typical complexity of software architecture melts away. You won't need a firewall, a VPN, usernames and passwords — and with <b>Orthogonal Persistence</b>, any data you create in your canister is automatically persisted in memory pages making databases a thing of the past.</p>
+        <p>The radical rethinking baked into the Internet Computer means much of the typical complexity of software architecture melts away. You won't need a firewall, a VPN, usernames and passwords — and with <b>Orthogonal Persistence</b>, any data you create in your application is automatically persisted in memory pages making databases a thing of the past.</p>
         <p class="link"><a href="https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html">Read more about key concepts</a></p>
     </div>
 

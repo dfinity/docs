@@ -37,7 +37,7 @@ The {release} release includes both user-visible new features and internal enhan
 
 * You can run the new `+dfx identity get-principal+` command to return the principal associated with the current identity.
 +
-Note that you must be able to provide a principal identifier for either the `+default+` or a specific identity to access the external {IC} network.
+Note that you must be able to provide a principal identifier for either the `+default+` or a specific identity to deploy or manage applications on the external {IC} network.
 +
 For more information about getting access to the {IC}, see link:dfinity.org/sodium[Sodium Developer Network onboarding].
 

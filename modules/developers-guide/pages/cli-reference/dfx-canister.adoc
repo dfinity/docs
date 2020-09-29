@@ -39,6 +39,8 @@ For reference information and examples that illustrate using `+dfx canister+` co
 
 |<<dfx canister request-status,`+request-status+`>> |Requests the status of a call to a canister.
 
+|<<dfx canister set-controller,`+set-controller+`>> |Specifies the identity name or principal to use as the new controller for a specified canister on the Internet Computer network.
+
 |<<dfx canister start,`+start+`>> |Restarts a stopped canister.
 
 |<<dfx canister status,`+status+`>> |Requests the running status of a canister.
@@ -569,6 +571,59 @@ dfx canister request-status 0x58d08e785445dcab4ff090463b9e8b12565a67bf436251d13e
 ----
 
 This command displays an error message if the request identifier is invalid or refused by the canister.
+
+== dfx canister set-controller
+
+Use the `+dfx canister set-controller+` command to specify the identity name or principal to use as the new **controller** for a specified canister on the Internet Computer network.
+A controller identity has special rights to manage the canister it controls.
+For example, only a controlling identity can be used to install, upgrade, or delete the canister under its control.
+
+Note that you can specify either a user identity or a canister as a controller.
+You can also specify the controller identity by using its name or its principal.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx canister set-controller [flag] _canister_ _new-controller_
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx canister set-controller+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Arguments
+
+You must use the following arguments with the `+dfx canister set-controller+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Argument |Description
+
+|`+<canister>+` |Specifies the canister name or canister identifier to be controlled by the identity you specify using the _new_controller_ argument.
+
+|`+<new_controller>+` |Specifies the identity name or principal of the controller.
+|===
+
+=== Examples
+
+You can use the `+dfx canister set-controller+` command to specify a user or canister as the controlling identity for a specific canister.
+
+For example, you might create a new identity called `+pubsadmin+` then run the `+dfx canister set-controller+` to specify that you want the `+pubsadmin+` identity to be the controller of the `+hello_world+` canister by running the following commands:
+
+....
+dfx identity new pubsadmin
+dfx canister set-controller hello_world pubsadmin
+....
 
 == dfx canister start
 

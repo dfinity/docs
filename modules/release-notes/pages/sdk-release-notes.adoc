@@ -9,7 +9,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.6.9
+:release: 0.6.10
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -35,9 +35,24 @@ This {release} version of the software and programming language should not be us
 
 The {release} release includes both user-visible new features and internal enhancements and fixes. The most significant new features and capabilities include the following:
 
+* You can run the new `+dfx identity get-principal+` command to return the principal associated with the current identity.
++
+Note that you must be able to provide a principal identifier for either the `+default+` or a specific identity to access the external {IC} network.
++
+For more information about getting access to the {IC}, see link:dfinity.org/sodium[Sodium Developer Network onboarding].
+
+* A new `+dfx canister set-controller+` command enables you to specify the identity to use as the new **controller** for a specified canister.
++
+When you specify a controller identity, that identity has special rights to manage the canister it controls.
+For example, only the controlling identity can be used to install, upgrade, or delete the canister under its control.
+
+=== Highlights of what's new in 0.6.9
+
+The 0.6.9 release includes the following new features and capabilities:
+
 * You can now register, build, and deploy applications with a single command.
 +
-This release introduces a simplified developer workflow using the the `+dfx deploy+` command.
+This release introduces a simplified developer workflow using the the `+dfx deploy+` command. 
 You can use this command to replace running the following commands as separate steps:
 +
 ....

@@ -83,9 +83,9 @@ Use the `+dfx canister call+` command to call a specified method on a deployed c
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
-dfx canister call [option] canister_name method_name [argument] [flag]
+dfx canister call [option] _canister_name_ _method_name_ [argument] [flag]
 ----
 
 === Flags
@@ -243,9 +243,9 @@ The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/iden
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
-dfx canister create [flag] [--all | canister_name]
+dfx canister create [flag] [--all | _canister_name_]
 ----
 
 === Flags
@@ -293,9 +293,9 @@ For example, if your project name is `+hello_world+`, your current working direc
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
-dfx canister delete [flag] [--all | canister_name]
+dfx canister delete [flag] [--all | _canister_name_]
 ----
 
 === Flags
@@ -352,9 +352,9 @@ For example, if your project name is `+hello_world+`, your current working direc
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
-dfx canister id [flag] canister_name
+dfx canister id [flag] _canister_name_
 ----
 
 === Flags
@@ -406,9 +406,9 @@ Use the `+dfx canister install+` command to install compiled code as a canister 
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
-dfx canister install [flag] [option] [--all | canister_name]
+dfx canister install [flag] [option] [--all | _canister_name_]
 ----
 
 === Flags
@@ -583,7 +583,7 @@ You can also specify the controller identity by using its name or its principal.
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
 dfx canister set-controller [flag] _canister_ _new-controller_
 ----
@@ -636,9 +636,9 @@ For example, if your project name is `+hello_world+`, your current working direc
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
-dfx canister start [flag] [--all | canister_name]
+dfx canister start [flag] [--all | _canister_name_]
 ----
 
 === Flags
@@ -695,9 +695,9 @@ For example, if your project name is `+hello_world+`, your current working direc
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
-dfx canister status [flag] [--all | canister_name]
+dfx canister status [flag] [--all | _canister_name_]
 ----
 
 === Flags
@@ -756,9 +756,9 @@ For example, if your project name is `+hello_world+`, your current working direc
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
-dfx canister stop [flag] [--all | canister_name]
+dfx canister stop [flag] [--all | _canister_name_]
 ----
 
 === Flags

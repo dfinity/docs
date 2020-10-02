@@ -1,0 +1,39 @@
+{
+  "canisters": {
+    "contacts": {
+      "main": "src/contacts/contacts.mo",
+      "type": "motoko"
+    },
+    "contacts_assets": {
+      "dependencies": [
+        "contacts"
+      ],
+      "frontend": {
+        "entrypoint": "src/contacts_assets/public/index.jsx"
+      },
+      "source": [
+        "src/contacts_assets/assets",
+        "dist/contacts_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    },
+    "tungsten": {
+      "providers": [
+        "https://gw.dfinity.network"
+      ],
+      "type": "persistent"
+    }
+  },
+  "version": 1
+}

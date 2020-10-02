@@ -80,6 +80,8 @@ npm install --save typescript ts-loader
 ----
 npm install --save style-loader css-loader
 ----
++
+If the `+npm install+` command reports a vulnerability, you might also want to run the `+npm audit fix+` command to attempt to fix the vulnerability reported before continuing.
 
 == Modify the default configuration
 
@@ -219,21 +221,22 @@ dfx start
 After you start the local network, the terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
 
-== Register canister identifiers
+== Register, build, and deploy the application
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
 
-To register canister identifiers for the local network:
+To deploy the application:
 
-. Check that you are still in your project directory, if needed.
-. Register unique canister identifiers for the project by running the following command:
+. Check that you are still in the root directory for your project, if needed.
+. Register, build, and deploy your first application by running the following command:
 +
 [source,bash]
 ----
-dfx canister create --all
+dfx deploy
 ----
 +
-The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
+The `+dfx deploy+` command output displays information about the operations it performs.
+For example, the command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
 "contacts" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
@@ -241,43 +244,14 @@ The command displays the network-specific canister identifiers for the canisters
 ....
 +
 Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
-To deploy canisters on a remote network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
-
-== Build and deploy the program
-
-You are now ready to compile the program into a WebAssembly module and deploy it on your local network.
-
-To build and deploy the program:
-
-[arabic]
-. Open a terminal shell on your local computer, if you don’t already have one open.
-. Build the executable canister by running the following command:
++
+To deploy canisters on an external {IC} network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
+For example, if you are connecting to the URL specified by the network alias `+tungsten+` in the project `+dfx.json+` file, you would run a command similar the following:
 +
 [source,bash]
 ----
-dfx build
+dfx deploy --network tungsten
 ----
-+
-The command displays output indicating that the build is successful.
-+
-....
-Building canisters...
-Building frontend...
-....
-. Deploy your `+contacts+` project on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install --all
-----
-+
-The command output displays output similar to the following:
-+
-....
-Installing code for canister contacts, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-Installing code for canister contacts_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-....
-. Copy the canister identifier for the `+contacts_assets+` canister to the clipboard or a notepad application.
 
 == View the front-end
 
@@ -295,7 +269,7 @@ To specify the canister you want the web server to display, add the `+canisterId
 ?canisterId=<YOUR-CANISTER-IDENTIFIER>
 ....
 +
-For example, the full URL should look similar to the following but with the `+_canister_identifier_+` that was returned by the `+dfx canister install+` command:
+For example, the full URL should look similar to the following but with the `+canister_identifier+` that was returned by the `+dfx deploy+` command for the `+contacts_assets+`:
 +
 ....
 http://127.0.0.1:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q

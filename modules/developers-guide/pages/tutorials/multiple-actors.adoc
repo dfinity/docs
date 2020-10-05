@@ -91,7 +91,8 @@ After making the changes, the `+canisters+` section of the `+dfx.json+` file sho
 include::example$multiple-actors/dfx.json[]
 ----
 +
-You can leave the other sections as-is. 
+You can leave the other sections as-is.
+. Save your changes and close the `+dfx.json+` file to continue.
 . Change the name of the default source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
 +
 [source,bash]
@@ -125,6 +126,7 @@ To modify the default source code:
 ----
 include::example$multiple-actors/assistant/main.mo[]
 ----
+. Save your changes and close the `+main.mo+` file to continue.
 . Open the `+src/rock_paper_scissors/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
@@ -132,6 +134,7 @@ include::example$multiple-actors/assistant/main.mo[]
 ----
 include::example$multiple-actors/rock_paper_scissors/main.mo[]
 ----
+. Save your changes and close the `+main.mo+` file to continue.
 . Open the `+src/daemon/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
@@ -139,6 +142,7 @@ include::example$multiple-actors/rock_paper_scissors/main.mo[]
 ----
 include::example$multiple-actors/daemon/main.mo[]
 ----
+. Save your changes and close the `+main.mo+` file to continue.
 
 == Start the local network
 
@@ -168,60 +172,40 @@ dfx start
 After you start the local network, this terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
-== Register canister identifiers
+== Register, build, and deploy your application
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your multi-canister application locally.
 
-To register canister identifiers for the local network:
+To deploy the application locally:
 
-. Check that you are still in your project directory, if needed.
-. Register unique canister identifiers for all of the canisters in the project by running the following command:
+. Check that you are still in the root directory for your project, if needed.
+. Register, build, and deploy the application by running the following command:
 +
 [source,bash]
 ----
-dfx canister create --all
+dfx deploy
 ----
 +
-The command displays the network-specific canister identifiers for the three canisters defined in the `+dfx.json+` configuration file.
+If you have access to the {IC} running remotely, you can deploy to the that network instead of deploying locally by specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file.
+For example, if you are connecting to the URL specified by the network alias `+tungsten+` you would run a command similar the following:
++
+[source,bash]
+----
+dfx deploy --network tungsten
+----
++
+The `+dfx deploy+` command output displays information about the operations it performs.
+For example, the command displays the network-specific canister identifiers for the three canisters defined in the `+dfx.json+` configuration file.
 +
 ....
+Deploying all canisters.
+Creating canisters...
+Creating canister "assistant"...
 "assistant" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "daemon"...
 "daemon" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "rock_paper_scissors"...
 "rock_paper_scissors" canister created with canister id: "7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-....
-
-== Build and deploy multiple canisters
-
-Now that you have registered with the network, you are ready to compile your program into an executable WebAssembly module that you can then deploy on your local {IC} network.
-
-To build and deploy the programs for each actor in the project:
-
-. Check that you are still in your project directory by running the `+pwd+` command, if necessary.
-. Build the WebAssembly executable for each program by running the following command:
-+
-[source,bash]
-----
-dfx build
-----
-+
-If the command is successful, it builds all of the canisters you have specified in the `+dfx.json+` file.
-+
-....
-Building canisters...
-....
-. Deploy your canisters on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install --all
-----
-+
-The command displays output similar to the following:
-+
-....
-Installing code for canister assistant, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-Installing code for canister daemon, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-Installing code for canister rock_paper_scissors, with canister_id 7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 
 == Verify deployment by calling functions

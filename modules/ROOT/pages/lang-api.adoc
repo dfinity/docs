@@ -22,7 +22,11 @@ The Langauges and API reference information is intended for advanced programmers
 
 == Rust
 
-* link:https://crates.io/crates/ic-types[ic-types] - Internet Computer typing library for testing using Rust
+* link:https://crates.io/crates/ic-types[ic-types] - {IC} typing library for testing Rust-based applications.
+* link:https://crates.io/crates/ic-agent[ic-agent] - {IC} agent library that connects directly to
+the {C} protocol (ICP) link:developers-guide/introduction-key-concepts{outfilesuffix[replica].
+* link:https://crates.io/crates/ic-cdk[ic-cdk] - Application programming interface and procedural macros for building applications in Rust that can be deployed as canisters on the {IC}.
+* link:https://github.com/dfinity/cdk-rs/tree/master/examples[Rust CDK examples] - Sample projects that illustrate using the Canister Development Kit for Rust.
 
 ////
 == AssemblyScript

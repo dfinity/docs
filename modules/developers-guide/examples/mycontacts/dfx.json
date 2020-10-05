@@ -1,16 +1,21 @@
 {
   "canisters": {
-      "assistant": {
-      "main": "src/assistant/main.mo",
+    "contacts": {
+      "main": "src/contacts/contacts.mo",
       "type": "motoko"
     },
-    "rock_paper_scissors": {
-      "main": "src/rock_paper_scissors/main.mo",
-      "type": "motoko"
-    },
-    "daemon": {
-      "main": "src/daemon/main.mo",
-      "type": "motoko"
+    "contacts_assets": {
+      "dependencies": [
+        "contacts"
+      ],
+      "frontend": {
+        "entrypoint": "src/contacts_assets/public/index.jsx"
+      },
+      "source": [
+        "src/contacts_assets/assets",
+        "dist/contacts_assets/"
+      ],
+      "type": "assets"
     }
   },
   "defaults": {
@@ -18,7 +23,6 @@
       "packtool": ""
     }
   },
-  "dfx": "0.6.10",
   "networks": {
     "local": {
       "bind": "127.0.0.1:8000",

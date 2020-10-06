@@ -61,7 +61,7 @@ For example, to register unique canister identifiers for a project when the {IC}
 dfx canister create --all
 ----
 
-If you want to register unique canister identifiers for the same project when the {IC} runs on the network that uses the ic alias in the `+dfx.json+` file, you can run the following command:
+If you want to register unique canister identifiers for the same project when the {IC} runs on the network that uses the `+ic+` alias in the `+dfx.json+` file, you can run the following command:
 
 [source,bash]
 ----

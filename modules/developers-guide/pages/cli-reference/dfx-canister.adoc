@@ -61,11 +61,11 @@ For example, to register unique canister identifiers for a project when the {IC}
 dfx canister create --all
 ----
 
-If you want to register unique canister identifiers for the same project when the {IC} runs on the network that uses the tungsten alias in the `+dfx.json+` file, you can run the following command:
+If you want to register unique canister identifiers for the same project when the {IC} runs on the network that uses the ic alias in the `+dfx.json+` file, you can run the following command:
 
 [source,bash]
 ----
-dfx canister --network tungsten create --all
+dfx canister --network ic create --all
 ----
 
 Similarly, you can call a canister and function running on a remote {IC} network using a command similar to the following:
@@ -336,11 +336,11 @@ To delete the `+hello_world+` canister, you can run the following command:
 dfx canister delete hello_world
 ----
 
-To delete all of the canisters you have deployed on the `+tungsten+` Internet Computer network, you can run the following command:
+To delete all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
 
 [source,bash]
 ----
-dfx canister --network=tungsten delete --all
+dfx canister --network=ic delete --all
 ----
 
 == dfx canister id
@@ -679,11 +679,11 @@ To start the `+hello_world+` canister, you can run the following command:
 dfx canister start hello_world
 ----
 
-To start all of the canisters you have deployed on the `+tungsten+` Internet Computer network, you can run the following command:
+To start all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
 
 [source,bash]
 ----
-dfx canister --network=tungsten start --all
+dfx canister --network=ic start --all
 ----
 
 == dfx canister status
@@ -738,11 +738,11 @@ To check the status of the `+hello_world+` canister, you can run the following c
 dfx canister status hello_world
 ----
 
-To check the status for all of the canisters you have deployed on the `+tungsten+` Internet Computer network, you can run the following command:
+To check the status for all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
 
 [source,bash]
 ----
-dfx canister --network=tungsten status --all
+dfx canister --network=ic status --all
 ----
 
 == dfx canister stop
@@ -799,9 +799,9 @@ To stop the `+hello_world+` canister, you can run the following command:
 dfx canister stop hello_world
 ----
 
-To stop all of the canisters you have deployed on the `+tungsten+` Internet Computer network, you can run the following command:
+To stop all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
 
 [source,bash]
 ----
-dfx canister --network=tungsten stop --all
+dfx canister --network=ic stop --all
 ----

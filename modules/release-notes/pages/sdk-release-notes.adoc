@@ -9,7 +9,7 @@
 :page-layout: releasenotes
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
-:release: 0.6.10
+:release: 0.7.0
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications for the {IC} using the {proglang} programing language.
@@ -21,12 +21,12 @@ The {sdk-short-name} provides everything you need to perform the following key t
 - Run {IC} replica processes locally on your development computer.
 - Deploy compiled programs as standalone canisters and interact with the canisters using a command-line interface.
 
-This {release} version of the {sdk-long-name} is an interim update of the Alpha release recently shared with the development community and made available to the public for preliminary testing, demonstration, and exploration.
+This {release} version of the {sdk-long-name} is an interim update of the {IC} Developer Network available for application testing, demonstration, and exploration.
 As part of our commitment to continuous improvement and iterative development focused on addressing developer feedback, this version includes numerous fixes and enhancements.
 
 [IMPORTANT]
 =====================================================================
-Note that {sdk-long-name} and {proglang} programming language are Alpha-quality releases intended to give you an early look at the potential for building applications that run on the {IC}.
+Note that {sdk-long-name} and {proglang} programming language are intended to give you an early look at the potential for building applications that run on the {IC}.
 This {release} version of the software and programming language should not be used for developing production applications at this time.
 =====================================================================
 
@@ -232,49 +232,49 @@ The following sections describe the key features and enhancements that were intr
 
 ==== SDK
 
-- You can now look up a canister identifier using the command `dfx canister id <canister_name>`
-- The `--check` flag can be used with the `dfx build` command to check whether a canister will build before creating or building the canister
+- You can now look up a canister identifier using the command `+dfx canister id <canister_name>+`
+- The `+--check+` flag can be used with the `+dfx build+` command to check whether a canister will build before creating or building the canister
 - Both canister name and identifiers are printed upon canister creation
-- The `dfx.json` configuration file has a new field—`+defaults/build/packtool+`—to support the Vessel package manager.
-- The `dfx.json` file supports canister new types—`motoko`, `assets`, and `custom`—to allow different build tools to be used for building canisters:
+- The `+dfx.json+` configuration file has a new field—`+defaults/build/packtool+`—to support the Vessel package manager.
+- The `+dfx.json+` file supports canister new types—`+motoko+`, `+assets+`, and `+custom+`—to allow different build tools to be used for building canisters:
 +
-** The `motoko` canister type uses the `motoko` compiler to build a canister.
+** The `+motoko+` canister type uses the `+motoko+` compiler to build a canister.
 +
-** The  `assets` canister type uses `npm run build` (optionally) to build files and uploads them to an asset canister
+** The  `+assets+` canister type uses `+npm run build+` (optionally) to build files and uploads them to an asset canister
 +
-** The `custom` canister type uses a custom builder that should output WASM and DID files.
-- The `dfx.json` file includes network mapping for `local` and `Tungsten` networks. The local network defaults to `127.0.0.1:8000`.
+** The `+custom+` canister type uses a custom builder that should output WebAssembly (WASM) and Candid (DID) files.
+- The `+dfx.json+` file includes network mapping for `+local` and the {IC} network. The local network defaults to `127.0.0.1:8000`.
 
 ==== Tungsten (Developer Network)
 
-- HTTP authorization and credentials management for onboarded Tungsten users
-- `Tungsten` added as a provider in `dfx.json
-- You can use the `dfx ping` command to ping an Internet Computer and request its status
-- The `--network <network>` flag can be used to build and install canisters to the specified provider
-- Canister ID formatting for accessing Tungsten-deployed apps in the browser
+- HTTP authorization and credentials management for onboarded Tungsten users.
+- The `tungsten` network alias added as a provider in the `+dfx.json+`.
+- You can use the `+dfx ping+` command to ping the Internet Computer network and request its status.
+- The `+--network <network>+` command-line option can be used to build and install canisters to the specified provider.
+- A change to the formatting for the canister identifiers you use to access applications deployed on the {IC} using a web browser.
 
 ==== Motoko
 
-- The `motoko-base` repository is now open. We encourage developers to use Vessel package manager to download the latest `base` from `master`.
-- Stable variable support
-- Released `mo-doc` for generating documentation from Motoko comments
-- Better support for `Char` and `Text` module
-- `Error` module for rejecting messages
-- `Buf` module renamed to `Buffer`
+- The `+motoko-base+` repository is now open. You can use the Vessel package manager to download the latest `+base+` libraries directly from the `+master+` branch of the `+motoko-base+` repository.
+- Stable variable support.
+- Released `+mo-doc+` for generating documentation directly from Motoko comments.
+- Better support for `Char` and `Text` modules.
+- `Error` module for rejecting messages.
+- `Buf` module renamed to `Buffer`.
 
 == Breaking changes
 
 In addition to the change described in xref:highlights[Highlights of what's new], the {release} release includes the following changes that might require updates to existing programs:
 
 * The Motoko compiler no longer supports arbitrary declarations preceding the main actor or an actor class. 
-- The command `dfx new` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format.
-- You must now create empty canisters before building and installing using the subcommand `dfx canister create`.
-- `dfx canister call` will consult the Candid file for method types. You no longer need to use `--type string/number`. The arguments are therefore deprecated.
+- The command `+dfx new+` now creates a separate assets canister. Programs built with earlier versions of the SDK may need to be converted to this new format.
+- You must now create empty canisters before building and installing using the `+dfx canister create+`.
+- `+dfx canister call+` will consult the Candid file for method types. You no longer need to use `+--type string+` or `+--type number+` to specify the argument type. These flags have been deprecated.
 
 == Issues fixed in this release
 
 This section covers the issues fixed in this release.
-The {release} release includes internal fixes and improvements to the Candid user interface, the interface description library, and some refactoring of `dfx` commands.
+The {release} release includes internal fixes and improvements to the Candid user interface, the interface description library, and some refactoring of `+dfx+` commands.
 
 - Certification validation error fixed on Linux and NixOS
 - `dfx stop` now finds and kills all `dfx start` and `dfx replica` processes

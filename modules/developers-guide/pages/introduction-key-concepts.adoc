@@ -200,16 +200,16 @@ A single user can have multiple public-private key pairs for accessing canisters
 == Canisters and resource usage
 
 In general, all canisters consume resources in the form of CPU cycles for execution, bandwidth for routing messages, and memory for persisted data.
-Canisters maintain an account balance to pay for the cost of communication, computation, and storage their applications consume. 
-The cost of computation is referred to as *cycles*.
+Canisters maintain an account balance of *cycles* to pay for the cost of communication, computation, and storage that their applications consume. 
 
-Cycles reflects the real costs of operations including resources such physical hardware, rack space, energy,storage devices, and bandwidth. 
-In simple terms, a *unit of cycles* represents the cost of executing a single WebAssembly instruction. 
+Cycles are intended to reflect the real cost of operations including physical hardware, rack space, energy, storage devices, and bandwidth in a stable or deflationary way so that the cost of program execution remains the same or decreases with operational efficiency. 
 
 * Programs must be able to pay for complete execution (all or nothing), but the cost associated with a unit of cycles will make efficient programs cost-effective.
-* By setting limits on how many cycles a canister can consume, the platform can prevent malicious code from draining resources
+* By setting limits on how many cycles a canister can consume, the platform can prevent malicious code from draining resources.
 
 The relative stability of operational costs makes it easier to predict the cycles required to process, for example, a million messages.
 
-NOTE: When you deploy canisters locally or to an {IC} test network, there’s no cost associated with program execution. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
+The cycles available for program execution are held in a **wallet canister**. For local deployment, wallet canisters are automatically created and issued cycles. To deploy your application on the {IC} network running on external nodes and subnets, however, you'll need to provide a principal and be issued a wallet canister identifier.
+
+NOTE: When you deploy canisters locally or to an {IC} test network, program execution consumes cycles but there are funds associated with those cycles. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
 If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option. 

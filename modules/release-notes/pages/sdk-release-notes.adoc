@@ -26,14 +26,37 @@ As part of our commitment to continuous improvement and iterative development fo
 
 [IMPORTANT]
 =====================================================================
-Note that {sdk-long-name} and {proglang} programming language releases are intended to introduce you to how you can build applications that run on the {IC}.
+Note that {sdk-long-name} and {proglang} programming language releases are intended to introduce you to building applications that run on the {IC}.
 This {release} version of the software and programming language should not be used for developing production applications at this time.
 =====================================================================
 
-[[highlights]]
 == Highlights of what's new in {release}
 
 The {release} release includes both user-visible new features and internal enhancements and fixes. The most significant new features and capabilities include the following:
+
+* You can now specify arguments on the command-line when you deploy a **single** canister using an actor class with the `+dfx deploy+` command.
+
+- Improved handling of `+SIGINT+` and  `+SIGTERM+` events ensures that Ctrl-C can now reliably shut down the {IC} network `+replica+` process when running {IC} locally.
+
+- Enable the `+dfx start+` and `+dfx bootstrap+` commands to start the {IC} using a randomly-selected webserver port.
++
+To use a randomly-selected port, you can specify  `+0+` as the port when running `+dfx start+` or `+dfx bootstrap+` commands.
+For example:
++
+....
+dfx start --host 192.168.47.1:0
+dfx bootstrap --port 0
+....
+
+- The `+dfx start+` now supports specifying the `+--host+` option using the IPv6 address format.
+
+For information about breaking changes that were introduced in previous releases, see <<Breaking changes>>.
+
+For information about known issues that were introduced in previous releases, see <<Known issues and limitations>>.
+
+== Highlights of what's new in 0.6.10
+
+The 0.6.10 release includes both user-visible new features and internal enhancements and fixes. The most significant new features and capabilities include the following:
 
 * You can run the new `+dfx identity get-principal+` command to return the principal associated with the current identity.
 +
@@ -167,10 +190,6 @@ The only user-facing features and fixes in the 0.6.4 release are the following:
 - A new Reserved type has been added to the JavaScript agent library.
 - Fixed the timer that is used in the Candid UI when issuing function calls.
 
-For information about breaking changes that were introduced in the previous releases, see <<Breaking changes>>.
-
-For information about known issues that were introduced in the previous releases, see <<Known issues and limitations>>.
-
 === Highlights of what's new in 0.6.3
 
 The 0.6.3 release only included minor fixes and enhancements including the following:
@@ -181,6 +200,7 @@ Without this fix, manually removing the directories the command is intended to d
 - The parsing logic for the `+dfx canister call+` command has been improved to more consistently recognize arguments in Candid format and to return better error messages  when argument formats are not recognized.
 - The Welcome page displayed when you create a new project has been updated to reflect the current location of SDK and Motoko documentation.
 
+[[highlights]]
 === Highlights of what's new in 0.6.2
 
 The 0.6.2 release only included one important user-facing change which was also a breaking change that required you to update all existing projects.
@@ -269,6 +289,8 @@ The following features are only applicable if you are granted access to the {IC}
 == Breaking changes
 
 In addition to the change described in xref:highlights[Highlights of what's new], the {release} release includes the following changes that might require updates to existing programs:
+
+* If a {proglang} library contains a single actor class, it is imported as a module, which provides access to both the class type and the class constructor function as module components. This change restores the invariant that imported libraries are modules.
 
 * The Motoko compiler no longer supports arbitrary declarations preceding the main actor or an actor class. 
 - The command `+dfx new+` now creates a separate assets canister by default. Programs built with earlier versions of the SDK should be converted to this new format.

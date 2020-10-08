@@ -36,9 +36,9 @@ The {release} release includes both user-visible new features and internal enhan
 
 * You can now specify arguments on the command-line when you deploy a **single** canister using an actor class with the `+dfx deploy+` command.
 
-- Improved handling of `+SIGINT+` and  `+SIGTERM+` events ensures that Ctrl-C can now reliably shut down the {IC} network `+replica+` process when running {IC} locally.
+* Improved handling of `+SIGINT+` and  `+SIGTERM+` events ensures that Ctrl-C can now reliably shut down the {IC} network `+replica+` process when running {IC} locally.
 
-- Enable the `+dfx start+` and `+dfx bootstrap+` commands to start the {IC} using a randomly-selected webserver port.
+* Enable the `+dfx start+` and `+dfx bootstrap+` commands to start the {IC} using a randomly-selected webserver port.
 +
 To use a randomly-selected port, you can specify  `+0+` as the port when running `+dfx start+` or `+dfx bootstrap+` commands.
 For example:
@@ -48,13 +48,13 @@ dfx start --host 192.168.47.1:0
 dfx bootstrap --port 0
 ....
 
-- The `+dfx start+` now supports specifying the `+--host+` option using the IPv6 address format.
+* The `+dfx start+` now supports specifying the `+--host+` option using the IPv6 address format.
 
 For information about breaking changes that were introduced in previous releases, see <<Breaking changes>>.
 
 For information about known issues that were introduced in previous releases, see <<Known issues and limitations>>.
 
-== Highlights of what's new in 0.6.10
+=== Highlights of what's new in 0.6.10
 
 The 0.6.10 release includes both user-visible new features and internal enhancements and fixes. The most significant new features and capabilities include the following:
 
@@ -293,9 +293,12 @@ In addition to the change described in xref:highlights[Highlights of what's new]
 * If a {proglang} library contains a single actor class, it is imported as a module, which provides access to both the class type and the class constructor function as module components. This change restores the invariant that imported libraries are modules.
 
 * The Motoko compiler no longer supports arbitrary declarations preceding the main actor or an actor class. 
-- The command `+dfx new+` now creates a separate assets canister by default. Programs built with earlier versions of the SDK should be converted to this new format.
-- You must now register canister identifiers using the `+dfx canister create+` command before building and deploying.
-- The `+dfx canister call+` will consult the Candid file for method types. You no longer need to use `+--type string+` or `+--type number+` to specify the argument type. These flags have been deprecated.
+
+* The command `+dfx new+` now creates a separate assets canister by default. Programs built with earlier versions of the SDK should be converted to this new format.
+
+* You must now register canister identifiers using the `+dfx canister create+` command before building and deploying.
+
+* The `+dfx canister call+` will consult the Candid file for method types. You no longer need to use `+--type string+` or `+--type number+` to specify the argument type. These flags have been deprecated.
 
 == Issues fixed in this release
 

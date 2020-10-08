@@ -36,7 +36,7 @@ The {release} release includes both user-visible new features and internal enhan
 
 * You can now specify arguments on the command-line when you deploy a **single** canister using an actor class with the `+dfx deploy+` command.
 
-* Improved handling of `+SIGINT+` and  `+SIGTERM+` events ensures that Ctrl-C can now reliably shut down the {IC} network `+replica+` process when running {IC} locally.
+* Improved handling of `+SIGINT+` and  `+SIGTERM+` events ensures that Ctrl-C can now reliably shut down the {IC} network `+replica+` process when running the {IC} locally.
 
 * Enable the `+dfx start+` and `+dfx bootstrap+` commands to start the {IC} using a randomly-selected webserver port.
 +
@@ -48,7 +48,7 @@ dfx start --host 192.168.47.1:0
 dfx bootstrap --port 0
 ....
 
-* The `+dfx start+` now supports specifying the `+--host+` option using the IPv6 address format.
+* The `+dfx start+` command now supports specifying the `+--host+` option using the IPv6 address format.
 
 For information about breaking changes that were introduced in previous releases, see <<Breaking changes>>.
 

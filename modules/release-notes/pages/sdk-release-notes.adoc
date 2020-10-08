@@ -290,6 +290,8 @@ The following features are only applicable if you are granted access to the {IC}
 
 In addition to the change described in xref:highlights[Highlights of what's new], the {release} release includes the following changes that might require updates to existing programs:
 
+* If a {proglang} library contains a single actor class, it is imported as a module, which provides access to both the class type and the class constructor function as module components. This change restores the invariant that imported libraries are modules.
+
 * The Motoko compiler no longer supports arbitrary declarations preceding the main actor or an actor class. 
 - The command `+dfx new+` now creates a separate assets canister by default. Programs built with earlier versions of the SDK should be converted to this new format.
 - You must now register canister identifiers using the `+dfx canister create+` command before building and deploying.

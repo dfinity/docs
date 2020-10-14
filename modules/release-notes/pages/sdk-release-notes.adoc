@@ -1,4 +1,5 @@
 = Developer Release Notes
+:description: DFINITY Canister Software Development Kit Release Notes
 :toc:
 :toc: right
 :toc-title: QUICK LINKS

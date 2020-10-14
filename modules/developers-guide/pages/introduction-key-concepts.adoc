@@ -1,5 +1,5 @@
 = Introduction and key concepts
-April 2020 (Alpha)
+:keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,canister,developer
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer

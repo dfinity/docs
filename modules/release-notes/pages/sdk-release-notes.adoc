@@ -271,7 +271,7 @@ There are several features that are only applicable for users who have access to
 The following features are only applicable if you are granted access to the {IC} through the Tungsten Developer Network gateway:
 
 - User name and password credentials enable HTTP authentication for onboarded users.
-- The `+tungsten+` network alias is included as a network  in the `+dfx.json+` files.
+- The `+tungsten+` network alias is included as a network in the `+dfx.json+` files.
 - You can use the `+dfx ping+` command to ping the Internet Computer network and request its status.
 - You can use the `+--network <network>+` command-line option to build and deploy canisters on the on the {IC} network you specify.
 - A change to the formatting for the canister identifiers you use to access applications deployed on the {IC} using a web browser.
@@ -284,7 +284,6 @@ The following features are only applicable if you are granted access to the {IC}
 - Better support for `+Char+` and `+Text+` modules.
 - `+Error+` module for rejecting messages.
 - `+Buf+` module renamed to `+Buffer+`.
-
 
 == Breaking changes
 

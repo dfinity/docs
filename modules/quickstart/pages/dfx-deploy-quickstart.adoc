@@ -118,7 +118,7 @@ For example, you would run a command similar the following:
 +
 [source,bash]
 ----
-dfx deploy --network tungsten
+dfx deploy --network ic
 ----
 +
 If prompted, specify the credentials for accessing the {IC}.

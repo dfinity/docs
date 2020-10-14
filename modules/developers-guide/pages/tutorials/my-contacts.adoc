@@ -246,11 +246,11 @@ For example, the command displays the network-specific canister identifiers for 
 Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
 +
 To deploy canisters on an external {IC} network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
-For example, if you are connecting to the URL specified by the network alias `+tungsten+` in the project `+dfx.json+` file, you would run a command similar the following:
+For example, if you are connecting to the URL specified by the network alias `+ic+` in the project `+dfx.json+` file, you would run a command similar the following:
 +
 [source,bash]
 ----
-dfx deploy --network tungsten
+dfx deploy --network ic
 ----
 
 == View the front-end

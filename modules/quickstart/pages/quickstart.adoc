@@ -156,9 +156,11 @@ You perform the remaining steps in the terminal that doesn't display network ope
 == Register, build, and deploy the application
 
 After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
-If you are connecting to an external {IC} network, you will need to use the `+--network+` option to deploy to that network.
 
-To deploy your first application:
+If you are connecting to an external {IC} network, you will need to use the `+--network+` option to deploy to that network.
+For information about deploying on the {IC} running remotely, see link:network-quickstart{outfilesuffix}[Deploying on the {IC}].
+
+To deploy your first application locally:
 
 . Check that you are still in the root directory for your project, if needed.
 . Ensure that `+node+` modules are available in your project directory, if needed, by running the following command:
@@ -177,12 +179,7 @@ dfx deploy
 ----
 +
 If you have access to the {IC} running remotely, you can deploy to the that network instead of deploying locally by specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file.
-For example, if you are connecting to the URL specified by the network alias `+ic+` you would run a command similar the following:
-+
-[source,bash]
-----
-dfx deploy --network ic
-----
+For information about deploying on the {IC} running remotely, see link:network-quickstart{outfilesuffix}[Deploying on the {IC}].
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
 For example, this step registers two network-specific identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:

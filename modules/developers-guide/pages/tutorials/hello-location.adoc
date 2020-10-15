@@ -268,7 +268,6 @@ dfx build
 ----
 +
 For this tutorial, you have already removed the front-end assets canister, so running `+dfx build+` only compiles the `+favorite_cities+` canister.
-You can also build projects using the optional `+--skip-frontend+` argument if you are only interested in compiling back-end code for a project.
 . Deploy your `+favorite_cities+` program on the local network by running the following command:
 +
 [source,bash]

@@ -145,7 +145,7 @@ To build and deploy the program:
 dfx build phonebook
 ----
 The `+dfx.json+` file provides default settings for creating an application front-end entry point and `+assets+` canister.
-For this tutorial, however, you can build your project using the `+--skip-frontend+` option because the project is a terminal-based application that doesn't include any front-end assets.
+For this tutorial, however, you can build your project using the `+phonebook+` canister name because the project is a terminal-based application that doesn't include any front-end assets.
 +
 Although this tutorial illustrates how to skip compiling a front-end canister, you can add a simple user interface to this application later by exploring the link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] project in the link:https://github.com/dfinity/examples[examples] repository.
 . Deploy your `+phonebook+` project on the local network by running the following command:

@@ -53,7 +53,11 @@ import CANISTER-ALIAS from 'ic:canisters/CANISTER-ALIAS';
 
 Because projects rely on webpack to provide the framework for the default front-end, you must have `+node.js+` installed in your development environment and accessible in the project directory.
 
-* If you want to develop your project without using the default webpack configuration and canister aliases, you can build your project using the `+--skip-frontend+` command-line option.
+* If you want to develop your project without using the default webpack configuration and canister aliases, you can remove the `+assets+` canister from the `+dfx.json+` file or build your project using a specific canister name. For example, you can choose to build only the hello program without front-end assets by running the following command:
++
+....
+dfx build hello
+....
 
 * If you are using the default webpack configuration and running `+dfx build+` fails, you should try running `+npm install+` in the project directory then re-running `+dfx build+`.
 

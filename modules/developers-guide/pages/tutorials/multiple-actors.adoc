@@ -187,11 +187,11 @@ dfx deploy
 ----
 +
 If you have access to the {IC} running remotely, you can deploy to the that network instead of deploying locally by specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file.
-For example, if you are connecting to the URL specified by the network alias `+tungsten+` you would run a command similar the following:
+For example, if you are connecting to the URL specified by the network alias `+ic+` you would run a command similar the following:
 +
 [source,bash]
 ----
-dfx deploy --network tungsten
+dfx deploy --network ic
 ----
 +
 The `+dfx deploy+` command output displays information about the operations it performs.

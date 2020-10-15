@@ -67,7 +67,7 @@ The command displays version information for the developer command-line interfac
 +
 [source,bash]
 ----
-dfx 0.6.11
+dfx 0.6.12
 ----
 . Preview usage information for the developer command-line interface (`+dfx+`) commands by running the following command:
 +
@@ -118,7 +118,7 @@ For example, you would run a command similar the following:
 +
 [source,bash]
 ----
-dfx deploy --network tungsten
+dfx deploy --network ic
 ----
 +
 If prompted, specify the credentials for accessing the {IC}.

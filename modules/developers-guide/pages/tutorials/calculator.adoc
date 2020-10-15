@@ -164,7 +164,7 @@ To build and deploy the program:
 dfx build calc
 ----
 +
-For this tutorial, you can build your project using the `+--skip-frontend+` option because the project is a simple terminal-based applications that doesn't include any front-end assets.
+For this tutorial, you can build your project using the `+calc+` canister name because the project is a simple terminal-based applications that doesn't include any front-end assets.
 . Deploy your `+calc+` project on the local network by running the following command:
 +
 [source,bash]

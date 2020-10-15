@@ -1,0 +1,275 @@
+= Deploying on the {IC) Quick Start
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:toc:
+:toc: right
+:toc-title: NETWORK QUICK START
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[net-quick-start]
+This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run *locally* or on a remote {IC} network.
+This _Deploying on the {IC} Quick Start_ assumes that you are installing the {sdk-short-name} locally for the first time and deploying the default project on the {IC} network running remotely.
+
+If you are only deploying projects in a local development environment, see the link:quickstart{outfilesuffix}[Quick Start].
+
+To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. 
+The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
+
+[[net-before]]
+== Before you begin
+
+Before you download and install this release of the {sdk-short-name}, verify the following:
+
+* You have an internet connection and access to a shell terminal on your local **macOS** or **Linux** computer.
++
+Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
+
+* You have provided the {company-id} Foundation with a principal associated with your user identity and have received a **wallet canister identifier** in return.
++
+A wallet canister with **cycles** is required to deploy and manage applications on the {IC}.
+
+* You have `+node.js+` installed if you want to access the default front-end for the default project.
+
+If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
+If you are comfortable meeting the prerequisites without instructions, continue to <<Download and install>>.
+
+[[net-download-sdk]]
+== Download and install
+
+You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer.
+
+To download and install:
+
+. Open a terminal shell on your local computer.
++
+For example, open Applications, Utilities, then double-click *Terminal* or press kbd:[{commandkey} + spacebar] to open Search, then type `terminal`.
+. Download and install the {sdk-short-name} package by running the following command:
++
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
++
+This command prompts you to read and accept the license agreement before installing the {company-id} execution command-line interface (CLI) and its dependencies on your local computer.
+. Type `+y+` and press kbd:[Return] to continue with the installation.
++
+The command displays information about the components being installed on the local computer.
+
+[[net-verify-sdk-version]]
+== Verify the SDK is ready to use
+
+If the installation script runs without any errors, everything you need to start developing programs that run on the {platform} will be available on your local computer.
+
+To verify the SDK is ready to use:
+
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Check that you have the {company-id} execution command-line interface (CLI) installed and the `+dfx+` executable is available in your PATH by running the following command:
++
+[source,bash]
+----
+dfx --version
+----
++
+The command displays version information for the `+dfx+` command-line executable similar to the following:
++
+....
+dfx 0.6.12
+....
+. Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
++
+[source,bash]
+----
+dfx --help
+----
++
+The command displays usage information for the `+dfx+` parent command and its subcommands.
+
+include::example$vscode-plugin.adoc[]
+
+[[net-new-project]]
+== Create a new project
+
+Applications for the {IC} start as **projects**.
+You create projects using the `+dfx+` parent command and its subcommands.
+Creating a new project with `+dfx+` adds a default project directory structure to your development workspace with template files to get you started.
+
+To create a new project for your first application:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Create a new project named `+hello+` by running the following command:
++
+[source,bash]
+----
+dfx new hello
+----
++
+The `+dfx new hello+` command creates a new `+hello+` project directory, template files, and a new `+hello+` Git repository for your project.
++
+If you use a different project name instead of `+hello+`, make note of the name you used. You'll need to use that project name in place of the `+hello+` project name throughout these instructions.
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd hello
+----
+
+[[ping-the-network]]
+== Check the connection to the network
+
+Before you can deploy your first project on the {IC} network, you need to connect to the network gateway running remotely on a sub-network that you can access.
+A network alias for the {IC} network gateway is configured in your project `+dfx.json+` file by default.
+
+To check your connection to the {IC} network:
+
+[arabic]
+. Check that you are in the root directory for your project, if needed.
+. Check the current status of the {IC} network and your ability to connect to it by running the following command for the network alias `+ic+`:
++
+[source,bash]
+----
+dfx ping ic
+----
++
+If you modify the network alias for the {IC} network in your `+dfx.json+` file, replace the `+ic+` network alias with the alias you are using in this and subsequent commands.
+. Verify the command returns information about the {IC} network to which you are connecting.
++
+For example, you should see output similar to the following:
++
+....
+{
+  "ic_api_version": "0.11.1"  "impl_version": "2020-10-14"
+}
+....
+
+[[net-deploy]]
+== Register, build, and deploy the application
+
+After you connect to the {IC} network, you can register, build, and deploy your application.
+
+To deploy your first application on the {IC}:
+
+. Check that you are still in the root directory for your project, if needed.
+. Ensure that `+node+` modules are available in your project directory, if needed, by running the following command:
++
+[source,bash]
+----
+npm install
+----
++
+For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
+. Register, build, and deploy your first application by running the following command:
++
+[source,bash]
+----
+dfx deploy --network=ic
+----
++
+The `+dfx deploy+` command output displays information about the operations it performs.
+For example, this step registers two network-specific identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
++
+....
+Deploying all canisters.
+Creating canisters...
+Creating canister "hello"...
+"hello" canister created on network "ic" with canister id: "2lolz-fluaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "hello_assets"...
+"hello_assets" canister created on network "ic" with canister id: "hupnp-k3uaa-aaaaa-aaaaa-caaaa-aaaaa-aaaaa-q"
+Building canisters...
+Building frontend...
+Installing canisters...
+Installing code for canister hello, with canister_id 2lolz-fluaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister hello_assets, with canister_id hupnp-k3uaa-aaaaa-aaaaa-caaaa-aaaaa-aaaaa-q
+Deployed canisters.
+....
++
+
+NOTE: If you created a project with a different name, keep in mind that your canister names will match your project name instead of `+hello+` and `+hello_assets+`.
+
+. Check that your wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
++
+[source,bash]
+----
+dfx canister --network=ic call <WALLET-CANISTER-ID> cycle_balance
+----
++
+The command returns the cycle balance for the wallet canister identifier you specified.
+For example:
++
+....
+(99999994564407680)
+....
+. Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
++
+[source,bash]
+----
+dfx canister call hello greet everyone
+----
++
+This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
++
+Remember, however, that if you created a project with a different name, the canister name will match your project name and you'll need to modify the command line to match the name you used instead of `+hello+`.
+. Verify the command displays the return value of the `+greet+` function.
++
+For example:
++
+....
+("Hello, everyone!")
+....
+. Rerun the command to check the cycle balance for your wallet canister by running a command similar to the following:
++
+[source,bash]
+----
+dfx canister --network=ic call <WALLET-CANISTER-ID> cycle_balance
+----
++
+Note that a small number of cycles have been deducted from the cycle balance.
+For example:
++
+....
+(99999994564312294)
+....
+
+[[quickstart-frontend]]
+== Test the application front-end
+
+Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end pop-up window using your web browser.
+
+. Open a browser.
+. Navigate to the front-end for the application using a URL that consists of the `+hello_assets+` identifier and the `.+ic0.app+` suffix.
++
+For example, the full URL should look similar to the following:
++
+....
+https://hupnp-k3uaa-aaaaa-aaaaa-caaaa-aaaaa-aaaaa-q.ic0.app/
+....
++
+Navigating to this URL displays the prompt pop-up window.
+For example:
++
+image:quickstart-prompt.png[Prompt pop-up window]
+
+. Type a greeting, then click *OK* to return the greeting.
++
+For example:
++
+image:quickstart-return.png[Hello, everyone! greeting]
+. Click *OK* to close the alert pop-up window.
+
+[[next-steps]]
+== Next steps
+
+Now that you have seen how to deploy an application on the {IC} network, you are ready to develop and deploy programs of your own.
+There are more detailed examples and tutorials for you to explore in the link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] section of the _SDK Developer Tools_ and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
+
+* Have questions? mailto:support@dfinity.org?subject=DeveloperNetworkQuickstart[Contact us].
+* Want to join the community? Visit our https://forum.dfinity.org/[community forum].
+* Want to stay informed about new features and updates? Sign up for https://dfinity.org/newsletter[Developer updates].

@@ -46,7 +46,7 @@ Instead, you can access the {IC} network when running `+dfx+` commands simply by
 For example, to register, build, and deploy an application on the {IC}, you can run the following command:
 +
 ....
-dfx deploy `+--network=ic+`
+dfx deploy --network=ic
 ....
 +
 Note that the `+ic+` network alias is a reserved alias. 

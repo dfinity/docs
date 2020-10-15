@@ -1,2 +1,3 @@
 * xref:dfx-deploy-quickstart.adoc[Developer Workflow Preview]
 * xref:quickstart.adoc[Quick Start]
+* xref:network-quickstart.adoc[Deploying on the {IC}]

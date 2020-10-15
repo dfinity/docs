@@ -15,8 +15,8 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[net-quick-start]]
-This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run *locally* or on a remote {IC} network.
-This _Deploying on the {IC} Quick Start_ assumes that you are installing the {sdk-short-name} locally for the first time and deploying the default project on the {IC} network running remotely.
+This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run the {IC} network.
+This _Deploying on the {IC} Quick Start_ assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the {IC} network **running remotely**.
 
 If you are only deploying projects in a local development environment, see the link:quickstart{outfilesuffix}[Quick Start].
 

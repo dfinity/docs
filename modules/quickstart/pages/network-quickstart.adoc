@@ -1,4 +1,4 @@
-= Deploying on the {IC) Quick Start
+= Deploying on the {IC}
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
@@ -14,7 +14,7 @@
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-[[net-quick-start]
+[[net-quick-start]]
 This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run *locally* or on a remote {IC} network.
 This _Deploying on the {IC} Quick Start_ assumes that you are installing the {sdk-short-name} locally for the first time and deploying the default project on the {IC} network running remotely.
 
@@ -91,8 +91,6 @@ dfx --help
 ----
 +
 The command displays usage information for the `+dfx+` parent command and its subcommands.
-
-include::example$vscode-plugin.adoc[]
 
 [[net-new-project]]
 == Create a new project
@@ -255,13 +253,13 @@ https://hupnp-k3uaa-aaaaa-aaaaa-caaaa-aaaaa-aaaaa-q.ic0.app/
 Navigating to this URL displays the prompt pop-up window.
 For example:
 +
-image:quickstart-prompt.png[Prompt pop-up window]
+image:net-alert-prompt.png[Prompt pop-up window]
 
 . Type a greeting, then click *OK* to return the greeting.
 +
 For example:
 +
-image:quickstart-return.png[Hello, everyone! greeting]
+image:net-alert-window.png[Hello, everyone! greeting]
 . Click *OK* to close the alert pop-up window.
 
 [[next-steps]]

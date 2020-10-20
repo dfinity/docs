@@ -272,6 +272,9 @@ For example, assume you have an application that manages professional profiles a
 If you want to add a new feature to the application, you need to be able to update the canister code without losing any of the previously-stored data.
 A canister upgrade enables you to update existing canister identifiers with program changes without losing the program state.
 
+NOTE: To preserve state when you are upgrading a canister written in {proglang}, be sure to either use the `+stable+` keyword to identify the variables you want to preserve, For more information about preserving variable state in {proglang}, see link:../language-guide/actors-async{outfilesuffix}#_stable_and_flexible_variables[Stable and flexible variables]
+If you are upgrading a canister written in Rust, you can use `+pre_upgrade+` and `+post_upgrade+` functions as illustrated in the link:https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage/src/asset_storage_rs/lib.rs[Rust CDK asset storage] example.
+
 To upgrade a canister on the {IC} network:
 
 . Open a new terminal and navigate to your project directory.

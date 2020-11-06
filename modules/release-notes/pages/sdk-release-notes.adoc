@@ -33,7 +33,20 @@ This {release} version of the software and programming language should not be us
 
 == Highlights of what's new in {release}
 
-The {release} release includes both user-visible new features and internal enhancements and fixes. The most significant new features and fixes include the following:
+The {release} release primarily includes internal enhancements and fixes and updates to the version of {proglang} and the {proglang} base library that are supported. 
+
+The only user-visible new feature in this release is the ability to set the default compute and memory allocation settings for a project using the `+dfx.json+` configuration file.
+Previously, you could only set the compute allocation and memory allocation by specifying command-line options when running the `+dfx canister install+` command.
+Note that, although this release includes support for specifying the default compute and memory allocation settings in the `+dfx.json+` file, these keys are not exposed in the `+dfx.json+` template by default. 
+
+
+For information about breaking changes that were introduced in previous releases, see <<Breaking changes>>.
+
+For information about known issues that were introduced in previous releases, see <<Known issues and limitations>>.
+
+=== Highlights of what's new in 0.6.12
+
+The 0.6.12 release includes both user-visible new features and internal enhancements and fixes. The most significant new features and fixes include the following:
 
 * You can now access the {IC} network running remotely without user name and password credentials using the new `+ic+` network alias.
 +

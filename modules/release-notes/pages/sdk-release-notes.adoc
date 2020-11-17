@@ -76,7 +76,7 @@ You can, however, use variations on the reserved name such as `+ic-pubs+` or `+i
 Previously, some agent and HTTP error and status messages were returned in an encoded format.
 With this release, these agent and HTTP status messages are properly decoded and displayed as human-readable plain text.
 
-* This release of {proglang} improves stability of +`Blob+` and `+Text+` iterators when garbage collection happens.
+* This release of {proglang} improves stability of `+Blob+` and `+Text+` iterators when garbage collection happens.
 
 * This release of {proglang} fixes some erroneous-reported type errors related to using `+break+` in the context of an unconditional `+loop+`.
 +
@@ -85,10 +85,6 @@ For example, {proglang} supports the following to break out of a loop without ty
 ....
 label l : Int loop { break l(42) };
 ....
-
-For information about breaking changes that were introduced in previous releases, see <<Breaking changes>>.
-
-For information about known issues that were introduced in previous releases, see <<Known issues and limitations>>.
 
 === Highlights of what's new in 0.6.11
 
@@ -109,10 +105,6 @@ dfx bootstrap --port 0
 ....
 
 * The `+dfx start+` command now supports specifying the `+--host+` option using the IPv6 address format.
-
-For information about breaking changes that were introduced in previous releases, see <<Breaking changes>>.
-
-For information about known issues that were introduced in previous releases, see <<Known issues and limitations>>.
 
 === Highlights of what's new in 0.6.10
 

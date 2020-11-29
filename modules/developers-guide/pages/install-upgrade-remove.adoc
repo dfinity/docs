@@ -83,8 +83,6 @@ Because the {proglang} base library is evolving rapidly, you should only use the
 
 The `+bootstrap+` directory in the versioned subdirectory of the {sdk-short-name} provides the HTML and JavaScript files that are served when you run `+dfx start+` and access the `+localhost+` using the local {IC} web server.
 
-files to support local front-end development and the local web server.
-
 === Canisters directory
 
 The `+canisters+` directory in the versioned subdirectory of the {sdk-short-name} contains prebuilt canisters that provide functionality for specific canister types. 

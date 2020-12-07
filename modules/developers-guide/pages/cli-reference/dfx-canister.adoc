@@ -95,18 +95,18 @@ You can use the following optional flags with the `+dfx canister call+` command.
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Flag |Description
-|`+–async+` |Enables you to continue without waiting for the result of the call to be returned by polling the replica.
+|`+--async+` |Enables you to continue without waiting for the result of the call to be returned by polling the replica.
 
-|`+-h+`, `+–help+` |Displays usage information.
+|`+-h+`, `+--help+` |Displays usage information.
 
-|`+–query+` |Enables you to send a query request to a deployed canister.
+|`+--query+` |Enables you to send a query request to a deployed canister.
 For best performance and network efficiency, you should use this flag when you explicitly want to use the query method to retrieve information.
 For information about the difference between query and update calls, see link:introduction-key-concepts{outfilesuffix}#query-calls[Canisters include both program and state].
 
-|`+–update+` |Enables you to send an update request to a deployed canister.
+|`+--update+` |Enables you to send an update request to a deployed canister.
 By default, canister calls use the update method.
 
-|`+-V+`, `+–version+` |Displays version information.
+|`+-V+`, `+--version+` |Displays version information.
 |===
 
 === Options
@@ -433,6 +433,13 @@ You can use the following options with the `+dfx canister install+` command.
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Option |Description
+|`+--argument <argument>+` |Specifies an argument to pass to the canister during installation.
+
+|`+--argument-type <argument-type>+` |Specifies the data type for the argument when you install using the `+--argument+` option. The valid values are `+idl+` and `+raw+`.
+The default type is `+idl+`. 
+For information about the syntax to use when the `+--argument-type+` is `+idl+`, see <<Interface description syntax for arguments>>. 
+You can use `+raw+` as the argument type if you want to pass raw bytes to a canister.
+
 |`+-c+`, `+--compute-allocation <compute-allocation>+` |Defines a compute allocation—essentially the equivalent of setting a CPU allocation—for  canister execution.
 You can set this value as a percentage in the range of 0 to 100.
 

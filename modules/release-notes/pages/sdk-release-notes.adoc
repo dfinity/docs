@@ -44,7 +44,6 @@ This change enhances the security, interoperability, and future features that th
 +
 This change enables the Internet Computer to support different types of keys, including keys that are most commonly used for web authentication requests and keys that use cryptographic schemes that are better supported by hardware.
 The new encoding enables the {IC} to distinguish between the different types of keys that the {IC} supports.
-
 +
 This change also requires all principals to be regenerated to use the new encoding.
 If you have canisters deployed on the Internet Computer network or have canisters that use an existing principal for access control, you might need to do the following:
@@ -127,7 +126,7 @@ This change mostly affects interpreted programs and compiled programs with expli
 
 * Candid includes the ability to extend function with optional parameters in a backward-compatible way.
 
-* Injecting a value into an option type (`+? <exp>+`) no longer requires heap allocation in most cases. This removes the memory-tax of using iterators.																													
+* Injecting a value into an option type (`+? <exp>+`) no longer requires heap allocation in most cases. This removes the memory-tax of using iterators.
 
 For information about breaking changes that were introduced in previous releases, see <<Breaking changes>>.
 
@@ -137,7 +136,7 @@ For information about known issues that were introduced in previous releases, se
 
 The 0.6.14 release primarily includes internal enhancements and fixes and updates to the version of {proglang} and the {proglang} base library that are supported. 
 
-There are no user-visible new feature in this release. 
+There are no user-visible new features in this release. 
 
 === Highlights of what's new in 0.6.13
 

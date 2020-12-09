@@ -80,7 +80,7 @@ Key updates for {proglang} include support for the following features and change
 This change enables you to write expressions like this:
 +
 ....
-func foo(a : Nat) { return {x = x} }.									
+func foo(x : Nat) { return {x = x} }.
 ....
 +
 However, this new syntax breaks short-hand expressions such as:
@@ -96,10 +96,10 @@ For example, you might modify the expression to use an auxiliary declaration lik
 let a = 1; {a = a; b = a + 1}
 ....
 +
-Alternatively, you could modify the program to use object syntax like this:
+Alternatively, you could modify the program to use long form object syntax like this:
 +
 ....
-{public let a = 1; public let b = a + 1}
+object {public let a = 1; public let b = a + 1}
 ....
 
 * Free-standing blocks are no longer allowed.
@@ -124,7 +124,7 @@ This change mostly affects interpreted programs and compiled programs with expli
 
 * New `+Random+` library added to `+motoko-base+`.
 
-* Candid includes the ability to extend function with optional parameters in a backward-compatible way.
+* Candid includes the ability to extend records with optional fields in a backward-compatible way.
 
 * Injecting a value into an option type (`+? <exp>+`) no longer requires heap allocation in most cases. This removes the memory-tax of using iterators.
 

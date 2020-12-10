@@ -35,8 +35,8 @@ computer.
 [[create-a-new-project]]
 == Create a new project
 
-As discussed in the link:../../quickstart/quickstart{outfilesuffix}[Quick start], applications for the {IC} start as **projects** that you create projects using the `+dfx+` executable command-line interface (CLI).
-.
+As discussed in the link:../../quickstart/quickstart{outfilesuffix}[Quick start], applications for the {IC} start as **projects** that you create. You can create projects using the `+dfx+` executable command-line interface (CLI).
+
 To take a closer look at the files and folders that are included in a  project by default, let's create a new project to work with.
 
 To create a new project:

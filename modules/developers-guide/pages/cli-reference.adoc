@@ -34,6 +34,7 @@ For reference information and examples that illustrate using these commands, sel
 * link:cli-reference/dfx-cache{outfilesuffix}[dfx cache]
 * link:cli-reference/dfx-canister{outfilesuffix}[dfx canister]
 * link:cli-reference/dfx-config{outfilesuffix}[dfx config]
+* link:cli-reference/dfx-deploy{outfilesuffix}[dfx deploy]
 * link:cli-reference/dfx-help{outfilesuffix}[dfx help]
 * link:cli-reference/dfx-identity{outfilesuffix}[dfx identity]
 * link:cli-reference/dfx-new{outfilesuffix}[dfx new]

@@ -32,7 +32,7 @@ You can use the following option with the `+dfx upgrade+` command.
 |===
 |Option |Description
 
-|`+--current-version+ <version>` |Specifies the version you want to identify as the current version. 
+|`+--current-version <version>+` |Specifies the version you want to identify as the current version. 
 This option enables you to override the version of the software currently identified as the latest version with the version you pass on the command-line.
 
 |===

@@ -35,10 +35,10 @@ The ledger canister provides a set of accounts that have access to ICP tokens.
 Each account on the ledger canister is identified and controlled by a unique security identifier called a **principal**. 
 Principals are generated using the hash of a public key and are similar to addresses in Bitcoin or Ethereum. The principal is then used to sign messages to authenticate the operations that are passed to the canister.
 
-Initially, the ledger canister only includes the set of accounts associated with early investors and those who have a stake that can be converted to tokens. 
+Initially, the ledger canister only includes the set of accounts associated with early contributors and those who have a stake that can be converted to tokens. 
 The specific set of accounts that the ledger canister contains at genesis are the following: 
 
-* The account for the **Genesis token canister (GTC)** that holds all of the tokens that need to be distributed to initial investors. 
+* The account for the **Genesis token canister (GTC)** that holds all of the tokens that need to be distributed to initial contributors. 
 
 * The account for the **Neurons canister** that holds all of the tokens staked and locked at any given point in time.
 
@@ -211,7 +211,7 @@ The `+init+` method is the only way to create tokens and is only invoked once wh
 
 === transfer
 
-Creates a payment from the callers’ principal to the specified recipient with the specified amount.
+Creates a payment from the caller's principal to the specified recipient with the specified amount.
 After the `+init+` operation, the `+transfer+` method is the only method that changes the state of the canister. 
 
 ....
@@ -274,7 +274,7 @@ Returns the balance of a specific account.
 ....
 query account_balance : (pid: Principal ID) -> Balance balances[pid]
 ....
-
+////
 === Data structures
 
 The data structures of the ledger canister are as follows:
@@ -299,3 +299,4 @@ amount : Amount
 Hashed Transaction = (Hash(Previous Hash, Transaction), Transaction)
 Ledger = Vec <Hashed Transaction>
 ....
+////

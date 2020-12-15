@@ -1,0 +1,301 @@
+= Integrating with the Internet Computer ledger
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[ledger-intro]]
+This draft of _{doctitle}_ is based on the current design of the Internet Computer Protocol (ICP) components for token distribution, transaction management, token-based staking, and payments for services. 
+The document includes preliminary details about the design implementation, security guarantees, system requirements, and the application programming interface (API) that support token management for the Internet Computer Protocol.
+
+_{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and overall transaction management flow for Internet Computer Protocol (ICP) tokens.
+
+In reviewing this document, keep in mind that additional details about specific components or interfaces might be available in subsequent documents to supplement the overview provided in this document.
+
+== Basic terminology to get you started
+
+The Internet Computer is primarily a distributed and decentralized platform for running software. 
+When developers write applications that run on the Internet Computer, they deploy their programs in the form of a conceptual computational unit called a **canister**. 
+A canister is similar to a “smart contract” in that it consists of both program code and state running on a blockchain network with security and liveness guarantees.
+
+Each canister has a **controller**, a unique identifier, and the code and assets it needs for an application or service. 
+End-users—or other canisters—can send messages to canister functions to perform specific operations. 
+The messages can be either **query calls** that retrieve information without preserving state or **update calls** that change and preserve state. 
+State changes that result from update calls are arranged into an agreed upon order by consensus and written to blocks.
+
+== Ledger canister overview
+
+This core functionality of code that runs inside of a canister with state maintained on the blockchain provides the foundation for Internet Computer Protocol (ICP) token management in the form of a specialized canister, called the **ledger canister**.
+The ledger canister is, in essence, a smart contract with a blockchain that holds **accounts** and **transactions**.
+
+=== Accounts
+
+The ledger canister provides a set of accounts that have access to ICP tokens.
+Each account on the ledger canister is identified and controlled by a unique security identifier called a **principal**. 
+Principals are generated using the hash of a public key and are similar to addresses in Bitcoin or Ethereum. The principal is then used to sign messages to authenticate the operations that are passed to the canister.
+
+Initially, the ledger canister only includes the set of accounts associated with early investors and those who have a stake that can be converted to tokens. 
+The specific set of accounts that the ledger canister contains at genesis are the following: 
+
+* The account for the **Genesis token canister (GTC)** that holds all of the tokens that need to be distributed to initial investors. 
+
+* The account for the **Neurons canister** that holds all of the tokens staked and locked at any given point in time.
+
+* The account for the **Foundation** that holds the ICP tokens reserved for the DFINITY Foundation.
+
+* The account for the **Proposal canister** that holds a reserve of virtual ICP tokens that can be converted to ICP tokens for future events such as voting rewards or data center payments.
+
+After the initial set of accounts are instantiated with the appropriate token balances, new accounts are created by sending tokens to a specified principal.
+
+NOTE: Details about the accounts held in the genesis token canister (GTC) and the neuron canister and about how tokens for these accounts are instantiated and recorded in the ledger canister are outside the scope of this document.
+
+=== Transactions
+
+There are two types of operations that can mutate the internal state of the ledger canister: 
+
+* **Minting ICP tokens** for accounts.
+* **Transferring ICP tokens** between accounts. 
+
+Both of these operations are recorded as transactions in the ledger canister. 
+
+The transactions in the ledger are maintained as a hashed block chain.
+As state changes are recorded, each new transaction is authenticated using a signature on the tip of the chain, placed in a block, and assigned a unique index. 
+Queries can use the index to retrieve transaction details. 
+The signature used to authenticate a transaction can be verified by any third party who has access to the root public key of the internet Computer.
+
+== Integration with Rosetta
+
+While there are a number of ways to interact with ICP tokens on the Internet Computer, the https://www.rosetta-api.org/[Rosetta API] provides a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] that is designed to support multiple blockchain data formats and structured communication for exchange workflows.
+
+To make interacting with the internet Computer and ledger canister easy to implement and support, you can download and install integration software that uses the Rosetta application programming interface specification. 
+The integration software—`+dfinity/rosetta-api+`—enables you to deploy a passive Rosetta node outside of the Internet Computer network that can communicate with the ledger canister running on an Internet Computer sub-network.
+
+The following diagram provides a simplified view of the communication between the Rosetta node and the Internet Computer using the `+dfinity/rosetta-api+` integration software.
+
+image:basic-rosetta-api-integration.svg[]
+
+The ledger canister runs alongside other canisters on a subnet of the Internet Computer. 
+There are other subnets hosting other canisters, but there is only one ledger canister replicated on all of the nodes in its subnet. 
+The ledger canister maintains a traceable history of all transactions starting from the genesis state.
+The transactions that the ledger canister keeps track of consist of transactions that **mint ICP tokens** for accounts in the ledger and transactions that **transfer ICP tokens** from one account to another in the ledger. 
+
+The Rosetta node maintains a local copy of the ledger. 
+Periodically, the software running on the Rosetta node updates its local view of the ledger by querying the ledger canister for the tip of the chain, then querying for any missing blocks.
+
+=== Basic integration workflow
+
+The following steps summarize the basic operational workflow for transferring ICP tokens if using a Rosetta node to communicate with the Internet Computer ledger canister.
+
+After a user with a wallet submits a request to the Rosetta node to make a transaction, the request is passed to the integration software to complete the following steps:
+
+. Read from the local copy of the ledger to determine the state of the latest transaction index and block height identified by the `+latest_index+` label.
+. Generate a random `+nonce+` value.
+. Create an ingress message for the ledger canister that invokes the `+transfer+` function and specifies the amount and the destination for the transaction:
++
+....
+transfer(nonce, latest_index, dst, amount)
+....
+. Sign the ingress message using the principal ID for the owner of the source account specified in the transaction request.
+. Forward the message to the ledger canister on the Internet Computer.
+
+=== Setting up a Rosetta node
+
+This section summarizes the steps for how to set up a Rosetta API-compliant node to interact with the Internet Computer and exchange Internet Computer Protocol (ICP) tokens.
+To keep the instructions simple, the integration with the Rosetta API is encapsulated in a Docker image.
+If you don't already have Docker on your local computer, download and install the latest version.
+
+To set up a Rosetta node for exchanging ICP tokens:
+
+. https://docs.docker.com/get-docker/[Install Docker] and https://docs.docker.com/config/daemon/[start the Docker daemon].
++
+Typically, an operating system utility starts the Docker daemon (`+dockerd+`) automatically when you reboot your computer. 
+If you start the Docker daemon manually, the instructions vary depending on the local operating system.
+
+. Pull the latest `+dfinity/rosetta-api+` image down from Docker Hub by running the following command:
++
+[source,bash]
+----
+docker pull dfinity/rosetta-api
+----
+
+. Start the integration software from the image by running the following command:
++
+[source,bash]
+----
+docker run \
+    --interactive \
+    --tty \
+    --publish 8080:8080 \
+    --rm \
+   dfinity/rosetta-api
+----
++
+The command starts the software on the local host and displays output similar to the following:
++
+....
+Listening on 127.0.0.1:8080
+Starting Rosetta API server
+....
++
+By default, the software connects to the ledger canister running on the Internet Computer production network.
++
+If you have been assigned a test network and corresponding ledger canister identifier, you can run the command against that network by specifying an additional `+canister+` argument. For example, the following command illustrates connecting to the ledger canister on a test network by setting the `+canister+` argument to `+2xh5f-viaaa-aaaab-aae3q-cai+`.
++
+[source,bash]
+----
+docker run \
+    --interactive \
+    --tty \
+    --publish 8080:8080 \
+    --rm \
+   dfinity/rosetta-api
+   --canister 2xh5f-viaaa-aaaab-aae3q-cai
+----
++
+
+NOTE: The first time you run the command it might take some time for the node to catch up to the current tip of the chain.
+When the node is caught up, you should see output similar to the following:
++
+....
+You are all caught up to block height 100
+....
++
+After completing this step, the node continues to run as a **passive** node that does not participate in block making.
+
+=== Requirements and limitations
+
+The integration software provided in the Docker image has one requirement that is not part of the standard Rosetta API specification. 
+For transactions involving ICP tokens, the unsigned transaction must be created less than 24 hours before the network receives the signed transaction.
+
+Other than this requirement, the Rosetta API integration software is fully-compliant with all standard Rosetta endpoints and passes all of the `+rosetta-cli+` tests. 
+The software can accept any valid Rosetta request. 
+However, the integration software only prompts for transactions to be signed using Ed25519, rather than https://www.rosetta-api.org/docs/models/SignatureType.html#values[all the signature schemes listed here] and only replies with a small subset of the potential responses that the specification supports. For example, the software doesn't implement any of the UTXO features of Rosetta, so you won't see any UTXO messages in any of the software responses.
+
+=== Basic properties for ICP tokens
+
+The ICP token is very similar to Bitcoin. 
+For example:
+
+* Each ICP token is divisible 10^8 times.
+* All transactions are stored in the ledger starting with the genesis initial state.
+* Tokens are entirely fungible.
+* Account identifiers are 23 bytes and derived from a public key.
+
+The ICP token differs from Bitcoin however in a few small ways.
+For example:
+
+* Rather than using proof of work, staked participant nodes use a variant of BLS to agree on a valid state of the chain.
+* Any transaction can store an 8-byte memo, which can be used to disambiguate payments received by a payee.
+
+== Ledger canister API reference
+
+The ledger canister is initialized on a subnet using administrative operations that are internal to the Internet Computer. 
+As part of the initialization process, the canister is created with the set of accounts and associated ICP token balances described in <<Accounts>>.
+Each account on the ledger canister is identified by a principal identifier. 
+The canister also maintains an array balance which records the latest balance of each account.
+
+The ledger canister provides the following update and query application programming interfaces.
+
+=== init
+
+Initializes the canister with the set of accounts and associated ICP token balances as described in <<Accounts>>.
+
+....
+init : [(PrincipalID, Amount)] -> ()
+....
+
+The `+init+` method takes a list of the initial state of balances for individual principal IDs.
+The ledger represents this state as a series of `+mint+` operations of the form `+(Mint(dst, amount))+`
+The `+init+` method is the only way to create tokens and is only invoked once when the ledger canister is created.
+
+=== transfer
+
+Creates a payment from the callers’ principal to the specified recipient with the specified amount.
+After the `+init+` operation, the `+transfer+` method is the only method that changes the state of the canister. 
+
+....
+update transfer: (
+memo: u64, 
+created_at: Option<BlockHeight>
+dst: Principal ID, 
+amount: Amount,
+) -> Transaction Index
+....
+
+[width="90%",cols="<15%,<75%",options="header"]
+|===
+|Parameter |Description
+|`+memo+` |Allows the caller to set an optional value to identify and link transactions for applications that communicate with the ledger canister.
+
+|`+created_at+` |Provides an optional parameter to reference an already existing transaction.
+
+|`+dst+` |Specifies the destination accounts for the transaction.
+
+|`+amount+` |Specifies the amount is the amount of ICP token to be transferred.
+
+|===
+
+The account of the principal who invokes the transaction is the source (`+src+`) of the transfer.
+The transfer succeeds if `+balances[src]+` is greater than the `+amount+`. 
+If the transfer succeeds, the canister returns a unique index for the transaction and records the transaction in the ledger like this:
+
+....
+(memo, created_at, timestamp, Send(src, dst, amount))
+....
+
+The method succeeds only if:
+
+- `+created_at+` is not a block height that is more than 24 hours old.
+- `+(memo, created_at,timestamp, Send(src, dst,amount))+` is not already recorded as a transaction at any height greater than `+created_at+`.
+
+Together, these conditions efficiently ensure the uniqueness of each transaction.
+
+=== lookup
+
+Returns the transaction identified uniquely by the transaction index assigned to it.
+
+....
+query lookup : Transaction Index -> Option<Hashed Transaction>
+....
+	 
+=== last
+
+Returns the index of the most recent transaction.
+
+....
+query last: () -> Option<(Transaction Index, Certification)>
+....
+
+=== account_balance
+
+Returns the balance of a specific account.
+
+....
+query account_balance : (pid: Principal ID) -> Balance balances[pid]
+....
+
+=== Data structures
+
+The data structures of the ledger canister are as follows:
+
+....
+memo = u64
+amount = u64 (100,000,000 == 1 ICP)
+created_at = Block Height ( = u64 )
+timestamp = u64 (ledger time)
+
+Transaction = Send {
+from : Principal ID,
+to : Principal ID,
+amount : Amount,
+}
+
+Transaction = Mint {
+to : Principal ID,
+amount : Amount
+}
+
+Hashed Transaction = (Hash(Previous Hash, Transaction), Transaction)
+Ledger = Vec <Hashed Transaction>
+....

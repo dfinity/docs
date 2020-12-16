@@ -171,17 +171,18 @@ dfx canister create actor_hello
 You should see output similar to the following:
 +
 ....
-"actor_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "actor_hello"...
+"actor_hello" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 ....
 +
-The `+dfx canister create+` command also stores the network-specific canister identifier in a file in the `+.dfx/local+` directory.
+The `+dfx canister create+` command also stores the network-specific canister identifier in a `+canister_ids.json+` file in the `+.dfx/local+` directory.
 +
 For example:
 +
 ....
 {
   "actor_hello": {
-    "local": "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+    "local": "rwlgt-iiaaa-aaaaa-aaaaa-cai"
   }
 }
 ....
@@ -195,7 +196,7 @@ dfx canister install actor_hello
 The command displays output similar to the following:
 +
 ....
-Installing code for canister actor_hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister actor_hello, with canister_id rwlgt-iiaaa-aaaaa-aaaaa-cai
 ....
 
 == Query the canister
@@ -215,7 +216,7 @@ dfx canister call actor_hello hello
 For example, the program displays "Hello, World from DFINITY" in output similar to the following:
 +
 ....
-debug.print: Hello, World from DFINITY
+[Canister rwlgt-iiaaa-aaaaa-aaaaa-cai] Hello, World from DFINITY
 ....
 +
 Note that if you are running the Internet Computer network in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays network activity.

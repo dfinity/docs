@@ -15,8 +15,8 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[net-quick-start]]
-This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run *locally* or on a remote {IC} network.
-This _Deploying on the {IC} Quick Start_ assumes that you are installing the {sdk-short-name} locally for the first time and deploying the default project on the {IC} network running remotely.
+This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run the {IC} network.
+This _Deploying on the {IC} Quick Start_ assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the {IC} network **running remotely**.
 
 If you are only deploying projects in a local development environment, see the link:quickstart{outfilesuffix}[Quick Start].
 
@@ -32,10 +32,11 @@ Before you download and install this release of the {sdk-short-name}, verify the
 +
 Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
 
+////
 * You have provided the {company-id} Foundation with a principal associated with your user identity and have received a **wallet canister identifier** in return.
 +
 A wallet canister with **cycles** is required to deploy and manage applications on the {IC}.
-
+////
 * You have `+node.js+` installed if you want to access the default front-end for the default project.
 
 If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
@@ -81,7 +82,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.6.12
+dfx 0.6.16
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +

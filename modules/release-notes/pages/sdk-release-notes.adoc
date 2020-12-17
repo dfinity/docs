@@ -50,7 +50,7 @@ If you have canisters deployed on the Internet Computer network or have canister
 +
 
 . Upgrade to the latest SDK release.
-. Update your projects to use the new dfx version.
+. Update your projects to use the new `+dfx+` version.
 . Update your applications to use the new principal format, if needed, or to pass it programmatically.
 . Recreate and redeploy your canisters.
 

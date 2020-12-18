@@ -206,6 +206,8 @@ For your reference, however, this section provides information about the ledger 
 
 The ledger canister provides the following update and query application programming interfaces.
 
+NOTE: The ledger canister interfaces described in this document are preliminary and subject to change.
+
 === init
 
 Initializes the canister with the set of accounts and associated ICP token balances as described in <<Accounts>>.

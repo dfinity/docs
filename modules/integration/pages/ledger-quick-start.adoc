@@ -21,22 +21,26 @@ A canister is similar to a “smart contract” in that it consists of both prog
 
 Each canister has a **controller**, a unique identifier, and the code and assets it needs for an application or service. 
 End-users—or other canisters—can send messages to canister functions to perform specific operations. 
-The messages can be either **query calls** that retrieve information without preserving state or **update calls** that change and preserve state. 
-State changes that result from update calls are arranged into an agreed upon order by consensus and written to blocks.
+The messages can be either **query calls** that retrieve information without saving state or **update calls** that change and preserve state. 
+The update calls that contain the state changes are arranged into an agreed upon order by consensus and written to blocks.
 
 == Ledger canister overview
 
-This core functionality of code that runs inside of a canister with state maintained on the blockchain provides the foundation for Internet Computer Protocol (ICP) token management in the form of a specialized canister, called the **ledger canister**.
-The ledger canister is, in essence, a smart contract with a blockchain that holds **accounts** and **transactions**.
+This core functionality of canisters provides the foundation for Internet Computer Protocol (ICP) token management in the form of a specialized canister, called the **ledger canister**.
+The ledger canister is, in essence, a smart contract that holds **accounts** and **transactions**.
 
 === Accounts
 
 The ledger canister provides a set of accounts that have access to ICP tokens.
 Each account on the ledger canister is identified and controlled by a unique security identifier called a **principal**. 
-Principals are generated using the hash of a public key and are similar to addresses in Bitcoin or Ethereum. The principal is then used to sign messages to authenticate the operations that are passed to the canister.
+Principals are similar to addresses in Bitcoin or Ethereum. For example, like the user address in Bitcoin or Ethereum, the principal is the hash of the user's public key. The principal is then used to sign messages to authenticate the operations that are passed to the canister.
 
-Initially, the ledger canister only includes the set of accounts associated with early contributors and those who have a stake that can be converted to tokens. 
-The specific set of accounts that the ledger canister contains at genesis are the following: 
+Initially, the ledger canister only includes the set of accounts associated with early contributors and those who have a stake that can be converted to tokens.
+
+NOTE: Details about the specific set of accounts contained in the ledger canister and how tokens for these accounts are instantiated and recorded in the ledger canister at genesis are outside the scope of this document.
+
+////
+The specific set of accounts that the ledger canister contains at genesis are the following:
 
 * The account for the **Genesis token canister (GTC)** that holds all of the tokens that need to be distributed to initial contributors. 
 
@@ -49,7 +53,7 @@ The specific set of accounts that the ledger canister contains at genesis are th
 After the initial set of accounts are instantiated with the appropriate token balances, new accounts are created by sending tokens to a specified principal.
 
 NOTE: Details about the accounts held in the genesis token canister (GTC) and the neuron canister and about how tokens for these accounts are instantiated and recorded in the ledger canister are outside the scope of this document.
-
+////
 === Transactions
 
 There are two types of operations that can mutate the internal state of the ledger canister: 
@@ -60,7 +64,7 @@ There are two types of operations that can mutate the internal state of the ledg
 Both of these operations are recorded as transactions in the ledger canister. 
 
 The transactions in the ledger are maintained as a hashed block chain.
-As state changes are recorded, each new transaction is authenticated using a signature on the tip of the chain, placed in a block, and assigned a unique index. 
+As state changes are recorded, each new transaction is placed in a block and assigned a unique index. The entire chain is then authenticated by signing its tip.  
 Queries can use the index to retrieve transaction details. 
 The signature used to authenticate a transaction can be verified by any third party who has access to the root public key of the internet Computer.
 
@@ -194,6 +198,11 @@ The ledger canister is initialized on a subnet using administrative operations t
 As part of the initialization process, the canister is created with the set of accounts and associated ICP token balances described in <<Accounts>>.
 Each account on the ledger canister is identified by a principal identifier. 
 The canister also maintains an array balance which records the latest balance of each account.
+
+The Rosetta API integration is the simplest way to interact with the ledger canister.
+If you want to build an exchange for ICP tokens that uses the Rosetta API integration, you don't need to interact with the ledger canister functions directly.
+
+For your reference, however, this section provides information about the ledger canister interfaces. You can also use this information to help you plan for interacting with the ledger canister if you choose not to use the integration based on the Rosetta API.
 
 The ledger canister provides the following update and query application programming interfaces.
 

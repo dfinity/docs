@@ -1,21 +1,28 @@
 /**
- * Module      : hex.mo
+ * Module      : Hex.mo
  * Description : Hexadecimal encoding and decoding routines.
- * Copyright   : 2019 Enzo Haussecker
- * License     : Apache 2.0
+ * Copyright   : 2020 Enzo Haussecker
+ * License     : Apache 2.0 with LLVM Exception
  * Maintainer  : Enzo Haussecker <enzo@dfinity.org>
- * Stability   : Experimental
+ * Stability   : Stable
  */
 
-import List "mo:base/List";
+import Array "mo:base/Array";
+import Iter "mo:base/Iter";
 import Option "mo:base/Option";
-import Prelude "mo:base/Prelude";
+import Prim "mo:prim";
 import Result "mo:base/Result";
 
-type List<T> = List.List<T>;
-type Result<Ok, Err> = Result.Result<Ok, Err>;
+module {
 
-module Hex {
+  private type Result<Ok, Err> = Result.Result<Ok, Err>;
+
+  private let base : Word8 = 0x10;
+
+  private let symbols = [
+    '0', '1', '2', '3', '4', '5', '6', '7',
+    '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+  ];
 
   /**
    * Define a type to indicate that the decoder has failed.
@@ -25,120 +32,69 @@ module Hex {
   };
 
   /**
-   * Encode a list of unsigned 8-bit integers in hexadecimal format.
+   * Encode an array of unsigned 8-bit integers in hexadecimal format.
    */
-  public func encode(list : List<Word8>) : Text {
-    List.foldLeft<Word8, Text>(list, "", func (w8, accum) {
-      accum # encodeWord8(w8)
-    })
-  };
-
-  /**
-   * Decode a list of unsigned 8-bit integers in hexadecimal format.
-   */
-  public func decode(text : Text) : Result<List<Word8>, DecodeError> {
-
-    let get : () -> ?Char = text.chars().next;
-    func parse() : Result<Word8, DecodeError> {
-      Option.option<Text, Result<Word8, DecodeError>>(
-        Option.bind<Char, Text>(get(), func (c1) {
-          Option.bind<Char, Text>(get(), func (c2) {
-            ?(charToText(c1) # charToText(c2))
-          })
-        }),
-        decodeWord8,
-        #err (#msg "Not enough input!")
-      )
-    };
-
-    let n : Nat = text.len() / 2 + text.len() % 2;
-    var accum = List.nil<Word8>();
-    for (_ in range(1, n)) {
-      switch (parse()) {
-        case (#ok w8) {
-          accum := List.push<Word8>(w8, accum);
-        };
-        case (#err err) {
-          return #err err
-        }
-      }
-    };
-
-    #ok (List.rev<Word8>(accum))
-
+  public func encode(array : [Word8]) : Text {
+    Array.foldLeft<Word8, Text>(array, "", func (accum, w8) {
+      accum # encodeW8(w8);
+    });
   };
 
   /**
    * Encode an unsigned 8-bit integer in hexadecimal format.
    */
-  func encodeWord8(w8 : Word8) : Text {
-
-    func encodeWord4(w4 : Word8) : Char {
-      if (w4 > (0x0F : Word8)) {
-        Prelude.unreachable()
-      };
-      let arr : [Char] =
-        [ '0', '1', '2', '3', '4', '5', '6', '7'
-        , '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
-        ];
-      arr[word8ToNat(w4)]
-    };
-
-    let n : Word8 = 0x10;
-    let c1 : Char = encodeWord4(w8 / n);
-    let c2 : Char = encodeWord4(w8 % n);
-
-    charToText(c1) # charToText(c2)
-
+  private func encodeW8(w8 : Word8) : Text {
+    let c1 = symbols[Prim.word8ToNat(w8 / base)];
+    let c2 = symbols[Prim.word8ToNat(w8 % base)];
+    Prim.charToText(c1) # Prim.charToText(c2);
   };
 
   /**
-   * Decode an unsigned 8-bit integer in hexadecimal format.
+   * Decode an array of unsigned 8-bit integers in hexadecimal format.
    */
-  func decodeWord8(text : Text) : Result<Word8, DecodeError> {
-
-    func decodeWord4(char : Char) : Result<Word8, DecodeError> {
-      Result.mapOk<Nat, Word8, DecodeError>(
-        switch char {
-          case ('0') { #ok 00 };
-          case ('1') { #ok 01 };
-          case ('2') { #ok 02 };
-          case ('3') { #ok 03 };
-          case ('4') { #ok 04 };
-          case ('5') { #ok 05 };
-          case ('6') { #ok 06 };
-          case ('7') { #ok 07 };
-          case ('8') { #ok 08 };
-          case ('9') { #ok 09 };
-          case ('A') { #ok 10 };
-          case ('B') { #ok 11 };
-          case ('C') { #ok 12 };
-          case ('D') { #ok 13 };
-          case ('E') { #ok 14 };
-          case ('F') { #ok 15 };
-          case _ {
-            #err (#msg "Unexpected character!")
-          }
-        },
-        natToWord8
-      )
-    };
-
-    let get : () -> ?Char = text.chars().next;
+  public func decode(text : Text) : Result<[Word8], DecodeError> {
+    let next = text.chars().next;
     func parse() : Result<Word8, DecodeError> {
-      Option.option<Char, Result<Word8, DecodeError>>(
-        get(),
-        decodeWord4,
-        #err (#msg "Not enough input!")
-      )
+      Option.get<Result<Word8, DecodeError>>(
+        Option.chain<Char, Result<Word8, DecodeError>>(next(), func (c1) {
+          Option.chain<Char, Result<Word8, DecodeError>>(next(), func (c2) {?
+            Result.chain<Word8, Word8, DecodeError>(decodeW4(c1), func (x1) {
+              Result.chain<Word8, Word8, DecodeError>(decodeW4(c2), func (x2) {
+                #ok (x1 * base + x2);
+              });
+            });
+          });
+        }),
+        #err (#msg "Not enough input!"),
+      );
     };
+    var i = 0;
+    let n = text.size() / 2 + text.size() % 2;
+    let array = Array.init<Word8>(n, 0);
+    while (i != n) {
+      switch (parse()) {
+        case (#ok w8) {
+          array[i] := w8;
+          i += 1;
+        };
+        case (#err err) {
+          return #err err;
+        };
+      };
+    };
+    #ok (Array.freeze<Word8>(array));
+  };
 
-    Result.bind<Word8, Word8, DecodeError>(parse(), func (x1) {
-      Result.bind<Word8, Word8, DecodeError>(parse(), func (x2) {
-        #ok (x1 * 16 + x2 : Word8);
-      })
-    })
-
-  }
-
-}
+  /**
+   * Decode an unsigned 4-bit integer in hexadecimal format.
+   */
+  private func decodeW4(char : Char) : Result<Word8, DecodeError> {
+    for (i in Iter.range(0, 15)) {
+      if (symbols[i] == char) {
+        return #ok (Prim.natToWord8(i));
+      };
+    };
+    let str = "Unexpected character: " # Prim.charToText(char);
+    #err (#msg str);
+  };
+};

@@ -1,3 +1,3 @@
 * xref:quickstart.adoc[Quick Start]
-** xref:dfx-deploy-quickstart.adoc[Simplified Developer Workflow]
-** xref:network-quickstart.adoc[Deploying on the {IC}]
+** xref:dfx-deploy-quickstart.adoc[Local development]
+** xref:network-quickstart.adoc[Network deployment]

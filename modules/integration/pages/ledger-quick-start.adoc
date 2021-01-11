@@ -138,7 +138,7 @@ docker run \
 The command starts the software on the local host and displays output similar to the following:
 +
 ....
-Listening on 127.0.0.1:8080
+Listening on 0.0.0.0:8080
 Starting Rosetta API server
 ....
 +
@@ -162,10 +162,13 @@ NOTE: The first time you run the command it might take some time for the node to
 When the node is caught up, you should see output similar to the following:
 +
 ....
-You are all caught up to block height 100
+You are all caught up to block height 109
 ....
 +
 After completing this step, the node continues to run as a **passive** node that does not participate in block making.
++
+You can run the `+ps+` command to verify the status of the service.
+If you need to stop the service—for example, to change the canister identifier you are using—press CONTROL-C.
 
 === Requirements and limitations
 

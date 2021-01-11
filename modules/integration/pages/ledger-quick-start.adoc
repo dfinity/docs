@@ -6,8 +6,8 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[ledger-intro]]
-This draft of _{doctitle}_ is based on the current design of the Internet Computer Protocol (ICP) components for token distribution, transaction management, token-based staking, and payments for services. 
-The document includes preliminary details about the design implementation, security guarantees, system requirements, and the application programming interface (API) that support token management for the Internet Computer Protocol.
+_{doctitle}_ introduces the Internet Computer Protocol (ICP) components for token distribution, transaction management, token-based staking, and payments for services. 
+The document includes provides an overview of the design, implementation, security guarantees, system requirements, and the application programming interface (API) that support token management for the Internet Computer Protocol.
 
 _{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and overall transaction management flow for Internet Computer Protocol (ICP) tokens.
 
@@ -166,11 +166,11 @@ You are all caught up to block height 109
 ....
 +
 After completing this step, the node continues to run as a **passive** node that does not participate in block making.
+. Open a new terminal window or tab and run the `ps` command to verify the status of the service.
 +
-You can run the `+ps+` command to verify the status of the service.
+If you need to stop the service—for example, to change the canister identifier you are using—you can interrupt the process by pressing CONTROL-C.
++
 If you want to test the integration after setting up the node, you will need to write a program to simulate a principal submitting a transaction or looking up an account balance.
-+
-If you need to stop the service—for example, to change the canister identifier you are using—press CONTROL-C.
 
 === Requirements and limitations
 

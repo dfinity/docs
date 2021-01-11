@@ -168,6 +168,8 @@ You are all caught up to block height 109
 After completing this step, the node continues to run as a **passive** node that does not participate in block making.
 +
 You can run the `+ps+` command to verify the status of the service.
+If you want to test the integration after setting up the node, you will need to write a program to simulate a principal submitting a transaction or looking up an account balance.
++
 If you need to stop the service—for example, to change the canister identifier you are using—press CONTROL-C.
 
 === Requirements and limitations

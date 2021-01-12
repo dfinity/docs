@@ -5,10 +5,10 @@ start_page: ROOT:index.adoc
 nav:
   - modules/quickstart/quick-nav.adoc
   - modules/developers-guide/dev-nav.adoc
-  - modules/integration/integration-nav.adoc
   - modules/candid-spec/candid-nav.adoc
   - modules/language-guide/lang-nav.adoc
   - modules/base-libraries/lib-nav.adoc
   - modules/rust-guide/rust-nav.adoc
+  - modules/integration/integration-nav.adoc
   - modules/operators-guide/ops-nav.adoc
   - modules/release-notes/rn-nav.adoc

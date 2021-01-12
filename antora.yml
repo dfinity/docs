@@ -5,6 +5,7 @@ start_page: ROOT:index.adoc
 nav:
   - modules/quickstart/quick-nav.adoc
   - modules/developers-guide/dev-nav.adoc
+  - modules/languages/lang-overview-nav.adoc
   - modules/candid-spec/candid-nav.adoc
   - modules/language-guide/lang-nav.adoc
   - modules/base-libraries/lib-nav.adoc

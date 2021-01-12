@@ -133,7 +133,7 @@ Building canisters to check they build ok. Canister IDs might be hard coded.
 Building canisters...
 ....
 +
-If the program compiles successfully, you can inspect the output in the default `+.dfx/local/canisters+` directory.
+If the program compiles successfully, you can inspect the output in the default `+.dfx/local/canisters+` directory and `+.dfx/local/canisters/actor_hello/+` subdirectory.
 
 == Deploy the project
 

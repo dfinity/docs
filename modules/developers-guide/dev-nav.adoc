@@ -1,4 +1,4 @@
-* xref:concepts-intro.adoc[Concepts]
+* xref:concepts/concepts-intro.adoc[Concepts]
 ** xref:concepts/what-is-IC.adoc[What is the {IC}]
 ** xref:concepts/nodes-subnets.adoc[Nodes and sub-networks]
 ** xref:concepts/data-centers.adoc[Decentralized data centers]

@@ -1,0 +1,37 @@
+= Quick start
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:toc:
+:toc: right
+:toc-title: QUICK START
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[quick-start-intro]]
+This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on the {IC} network.
+The _Quick Start_ tutorial assumes that you are installing the {sdk-short-name} for the first time and illustrates how to create, build, and deploy your first application. 
+
+To keep the instructions simple and focused on the task at hand, the _Quick start_ is split into two scenarios:
+
+* In the link:local-quickstart{outfilesuffix}[Local development] scenario, you create and deploy the sample application with {IC} processes that run _locally to simulate connecting to the network_.
+
+* In the link:network-quickstate{outfilesuffix)[Network deployment] scenario, you create the sample application locally but _connect to the {IC} running remotely_ on computers in an external data center.
+
+== Default application
+
+Both scenarios build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
+
+== Want to learn more?
+
+If you are looking for more information before getting started or want to view a demonstration of how to deploy before you try it for yourself, check out the following related resources:
+
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8&[Building on the Internet Computer: Fundamentals (video)]
+* link:https://www.youtube.com/watch?v=60uHQfoA8Dk&[What is the DFINITY Canister SDK (video)]
+* link:https://www.youtube.com/watch?v=yqIoiyuGYNA&l[Deploying your first application (video)]

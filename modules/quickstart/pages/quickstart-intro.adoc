@@ -22,7 +22,7 @@ To keep the instructions simple and focused on the task at hand, the _Quick star
 
 * In the link:local-quickstart{outfilesuffix}[Local development] scenario, you create and deploy the sample application with {IC} processes that run _locally to simulate connecting to the network_.
 
-* In the link:network-quickstart{outfilesuffix)[Network deployment] scenario, you create the sample application locally but _connect to the {IC} running remotely_ on computers in an external data center.
+* In the link:network-quickstart{outfilesuffix}[Network deployment] scenario, you create the sample application locally but _connect to the {IC} running remotely_ on computers in an external data center.
 
 == Default application
 

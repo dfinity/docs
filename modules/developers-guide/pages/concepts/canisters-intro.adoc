@@ -139,12 +139,12 @@ The relative stability of operational costs makes it easier to predict the cycle
 NOTE: When you deploy canisters locally or to an {IC} test network, there’s no cost associated with program execution. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
 If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option. 
 
-== What to learn more?
+== Want to learn more?
 
 If you are looking for more information about canisters, check out the following related resources:
 
-- link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
 
-- link:https://www.youtube.com/watch?v=60uHQfoA8D[What is the DFINITY Canister SDK? (video)]
+* link:https://www.youtube.com/watch?v=60uHQfoA8D[What is the DFINITY Canister SDK? (video)]
 
-- link:https://www.youtube.com/watch?v=yqIoiyuG[Deploying your first application (video)]
+* link:https://www.youtube.com/watch?v=yqIoiyuG[Deploying your first application (video)]

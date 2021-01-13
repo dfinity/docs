@@ -19,4 +19,10 @@ In simple terms, a *unit of cycles* represents the cost of executing a single We
 The relative stability of operational costs makes it easier to predict the cycles required to process, for example, a million messages.
 
 NOTE: When you deploy canisters locally or to an {IC} test network, there’s no cost associated with program execution. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
-If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option. 
+If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option.
+
+== Want to learn more?
+
+If you are looking for more information about tokens and cycles, check out the following related resources:
+
+* link:https://www.youtube.com/watch?v=H2p5q0PR2pc[Overview of Token Economics (video)]

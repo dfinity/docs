@@ -53,3 +53,15 @@ Because of the inherent security of the blockchain, programs running on the {IC}
 In addition, because software services can be "autonomous" and public, developers can write services that communicate with each other and share functions in ways that increase productivity and efficiency while leaving room to innovate and improve projects with confidence.
 
 The {IC} also enables developers to use cryptographically-secure identities to enforce access controls, reducing the need to rely on user names and passwords or external identity management plug-ins.
+
+////
+== Want to learn more?
+
+If you are looking for more information about the Internet Computer project and how it fits into the natural evolution of blockchain technology and the internet itself, check out the following related resources:
+
+* link:https://www.youtube.com/watch?v=XgsOKP224Zw[Overview of the Internet Computer (video)]
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the {IC}: Fundamentals (video)]
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
+* link:https://dfinity.org/faq/[Frequently Asked Questions (video and short articles)]
+
+////

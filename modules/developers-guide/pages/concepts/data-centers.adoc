@@ -19,3 +19,11 @@ Its architecture enables multiple computers to operate like one, very powerful, 
 The computers that make up the virtual machine are organized into sub-networks of data centers around the globe. 
 The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
 Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.
+
+////
+== Want to learn more?
+
+If you are looking for more information about data center partners and node providers, check out the following related resources:
+
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
+////

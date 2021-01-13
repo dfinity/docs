@@ -17,7 +17,7 @@ As an application developer, you might find it useful to think of the {IC} as pr
 * A *network* that runs the protocol to provide computing capacity—for example, the hardware, CPU, and memory required to run programs—through *independent data centers*.
 * A *globally-accessible and scalable platform* for running software applications.
 
-=== Open infrastructure platform
+== Open infrastructure platform
 
 The {IC} is not physical hardware that exists in any physical location. 
 Instead, the {IC} combines computing resources provided by independent data centers around the world to give users and organizations secure access to applications and transaction processing services. 
@@ -33,7 +33,7 @@ The distributed architecture enables secure communication without firewalls or t
 Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.
 
 [[next-gen]]
-=== Building the next generation of software and services
+== Building the next generation of software and services
 
 The {IC} protocol reduces platform-based risks and paves the way for innovation by re-imagining how software is built, deployed, and accessed. 
 

@@ -1,4 +1,4 @@
-= Quick start
+= Local development
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
@@ -15,8 +15,8 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} network.
-This _Quick Start_ assumes that you are installing the {sdk-short-name} for the first time.
+This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on the {IC} network.
+This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time  and are running the {IC}as part of you *locally-development environment*.
 
 To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
 

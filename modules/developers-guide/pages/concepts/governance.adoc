@@ -1,0 +1,16 @@
+= Neurons and governance
+:keywords: Internet Computer,blockchain,proposals,voting,Neuron Nervous System,NNS,platform management
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+
+TBD
+////
+== Want to learn more?
+
+If you are looking for more information about staking, voting, and autonomous governamce, check out the following related resources:
+
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
+////

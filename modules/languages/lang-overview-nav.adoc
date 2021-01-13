@@ -1,0 +1,4 @@
+* xref:languages-overview.adoc[Languages]
+** link:../../docs/candid-spec/IDL{outfilesuffix}[Candid]
+** link:../../docs/language-guide/motoko{outfilesuffix}[Motoko]
+** link:../../docs/rust-guide/rust-intro{outfilesuffix}[Rust]

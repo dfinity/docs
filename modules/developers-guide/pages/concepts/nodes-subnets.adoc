@@ -1,0 +1,25 @@
+= Nodes and sub-networks
+:keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,canister,developer
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+
+{IC} *sub-networks* provide physical hardware and resources—like CPU and memory—for performing software operations. Each sub-network consists of some number of individual machines—connected peer computers called *nodes*—that run the software components of the {IC} protocol. 
+
+The {IC} software components that run on each node are called a *replica* because they replicate state and computation across all of the nodes in a sub-network.
+
+The core components of a replica are organized into the following logical layers:
+
+* A *peer-to-peer* (P2P) networking layer that collects and advertises messages from users, from other nodes in its sub-network, and from other sub-networks. Messages received by the peer-to-peer layer are replicated to all of the nodes in the sub-network to ensure the security, reliability, and resiliency of the platform.
+* A *consensus* layer that selects and sequences messages received from users and from different subnets to create input blocks that can be notarized and finalized before being delivered to the message routing layer. 
+* A *message routing* layer that routes user- and system-generated messages between subnets, manages the input and output queues for applications,  and schedules messages for execution.
+* An *execution environment* that calculates the deterministic computation involved in executing a program and processes the messages it receives from the message routing layer.
+
+The following diagram provides a simplified overview of the {IC} protocol components deployed as a local replica in a development environment.
+
+image:SDK-protocol-local-overview.svg[Internet Computer components in a developer’s environment]
+
+As a developer, it isn’t necessary to know the details about how your applications and user interactions with your applications are routed through the {IC} architecture or replicated on the network. 
+However, a general understanding of the key components can be useful because the development environment includes the replica components to provide a local test network for deployment and a realistic sense of the workflow for a production deployment.

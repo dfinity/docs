@@ -197,7 +197,7 @@ Users with access to multiple canisters can manage the keys and devices used for
 A single user can have multiple public-private key pairs for accessing canisters from different devices—such as browsers running on different computers, mobile phones, or tablets—but these derived keys all map to a primary identifier.
 
 [[resource-intro]]
-== Canisters and resource usage
+== Resource consumption and cycles
 
 In general, all canisters consume resources in the form of CPU cycles for execution, bandwidth for routing messages, and memory for persisted data.
 Canisters maintain an account balance to pay for the cost of communication, computation, and storage their applications consume. 

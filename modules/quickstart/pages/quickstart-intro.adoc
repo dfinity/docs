@@ -1,11 +1,4 @@
 = Quick start
-:experimental:
-// Define unicode for Apple Command key.
-:commandkey: &#8984;
-:toc:
-:toc: right
-:toc-title: QUICK START
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -27,6 +20,8 @@ To keep the instructions simple and focused on the task at hand, the _Quick star
 == Default application
 
 Both scenarios build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
+
+The default application consists of back-end code written in  {proglang}, a programming language specifically designed for interacting with the {IC}, and a simple webpack-based front-end.
 
 == Want to learn more?
 

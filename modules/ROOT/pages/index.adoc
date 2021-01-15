@@ -79,7 +79,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
             <p>Start here for key concepts and terminology.</p>
         </a>
 
-        <a class="home-card" href="quickstart/quickstart.html">
+        <a class="home-card" href="quickstart/quickstart-intro.html">
         <h3 class="home-card-header">Quick Start</h3>
             <p>Deploy your first app on the Internet Computer.</p>
         </a>

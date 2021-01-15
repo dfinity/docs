@@ -61,7 +61,7 @@ For example, the expression `+do? { f(x!, y!) + z!.a }+` evaluates to null if `+
 
 The 0.6.17 release primarily includes user-visible new features, internal enhancements, and fixes and updates to the version of {proglang} and the {proglang} base library that are supported. 
 
-Some of the changes in the {release} are not backward-compatible and introduce breaking changes that might require you to update all existing projects or to modify {proglang} programs.
+Some of the changes in the release are not backward-compatible and introduce breaking changes that might require you to update all existing projects or to modify {proglang} programs.
 
 The most significant new features and fixes include the following:
 

@@ -42,10 +42,6 @@ The most significant new features and fixes include the following minor updates 
 * A fix to `+dfx upgrade+` that prevents a `+main+` thread panic when `+Option::unwrap()+` is called on a `+None+` value. 
 * A fix to the name of the language service command to restore its compatibility with IDEs. 
 
-=== Candid
-
-* Candid has been updated to support more Rust built-in types and with support for reference types.
-
 === Motoko
 
 * The {proglang} compiler supports specifying command-line arguments using `+--args <file>+` and `+--args0 <file>+`.
@@ -99,7 +95,7 @@ You can now use the `+DFX_CONFIG_ROOT+` environment variable to specify a differ
 
 * Error handling has been improved.
 
-=== Motoko and Candid updates
+==== Motoko and Candid updates
 
 The {release} release includes changes to the version of {proglang}, the `+motoko-base+` library, and Candid included with the {sdk-short-name}.
 This version of {proglang} includes syntax changes that might require you to update existing programs.

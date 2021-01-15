@@ -7,11 +7,14 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[ledger-intro]]
 _{doctitle}_ introduces the Internet Computer Protocol (ICP) components for token distribution, transaction management, token-based staking, and payments for services. 
-The document includes provides an overview of the design, implementation, security guarantees, system requirements, and the application programming interface (API) that support token management for the Internet Computer Protocol.
+The document includes an overview of the design, implementation, security guarantees, system requirements, and the application programming interface (API) that support token management for the Internet Computer Protocol.
 
 _{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and overall transaction management flow for Internet Computer Protocol (ICP) tokens.
 
 In reviewing this document, keep in mind that additional details about specific components or interfaces might be available in subsequent documents to supplement the overview provided in this document.
+In addition, this overview focuses on how to integrate with the Internet Computer using the link:https://www.rosetta-api.org/docs/welcome.html[Rosetta API]. 
+Other options for integration are possible. 
+Information about other integration options and procedures might be available in future documentation.
 
 == Basic terminology to get you started
 
@@ -19,7 +22,6 @@ The Internet Computer is primarily a distributed and decentralized platform for 
 When developers write applications that run on the Internet Computer, they deploy their programs in the form of a conceptual computational unit called a **canister**. 
 A canister is similar to a “smart contract” in that it consists of both program code and state running on a blockchain network with security and liveness guarantees.
 
-Each canister has a **controller**, a unique identifier, and the code and assets it needs for an application or service. 
 End-users—or other canisters—can send messages to canister functions to perform specific operations. 
 The messages can be either **query calls** that retrieve information without saving state or **update calls** that change and preserve state. 
 The update calls that contain the state changes are arranged into an agreed upon order by consensus and written to blocks.
@@ -33,7 +35,7 @@ The ledger canister is, in essence, a smart contract that holds **accounts** and
 
 The ledger canister provides a set of accounts that have access to ICP tokens.
 Each account on the ledger canister is identified and controlled by a unique security identifier called a **principal**. 
-Principals are similar to addresses in Bitcoin or Ethereum. For example, like the user address in Bitcoin or Ethereum, the principal is the hash of the user's public key. The principal is then used to sign messages to authenticate the operations that are passed to the canister.
+Principals are similar to addresses in Bitcoin or Ethereum. For example, like the user address in Bitcoin or Ethereum, a principal might be the hash of a user's public key. The principal is then used to sign messages to authenticate the operations that are passed to the canister.
 
 Initially, the ledger canister only includes the set of accounts associated with early contributors and those who have a stake that can be converted to tokens.
 
@@ -70,6 +72,11 @@ The signature used to authenticate a transaction can be verified by any third pa
 
 == Integration with Rosetta
 
+The ledger canister runs alongside other canisters on a subnet of the Internet Computer. 
+There are other subnets hosting other canisters, but there is only one ledger canister replicated on all of the nodes in its subnet. 
+The ledger canister maintains a traceable history of all transactions starting from the genesis state.
+The transactions that the ledger canister keeps track of consist of transactions that **mint ICP tokens** for accounts in the ledger and transactions that **transfer ICP tokens** from one account to another in the ledger. 
+
 While there are a number of ways to interact with ICP tokens on the Internet Computer, the https://www.rosetta-api.org/[Rosetta API] provides a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] that is designed to support multiple blockchain data formats and structured communication for exchange workflows.
 
 To make interacting with the internet Computer and ledger canister easy to implement and support, you can download and install integration software that uses the Rosetta application programming interface specification. 
@@ -79,13 +86,8 @@ The following diagram provides a simplified view of the communication between th
 
 image:basic-rosetta-api-integration.svg[]
 
-The ledger canister runs alongside other canisters on a subnet of the Internet Computer. 
-There are other subnets hosting other canisters, but there is only one ledger canister replicated on all of the nodes in its subnet. 
-The ledger canister maintains a traceable history of all transactions starting from the genesis state.
-The transactions that the ledger canister keeps track of consist of transactions that **mint ICP tokens** for accounts in the ledger and transactions that **transfer ICP tokens** from one account to another in the ledger. 
-
-The Rosetta node maintains a local copy of the ledger. 
-Periodically, the software running on the Rosetta node updates its local view of the ledger by querying the ledger canister for the tip of the chain, then querying for any missing blocks.
+As this diagram suggests, the Rosetta node maintains a local copy of the {IC} ledger. 
+Periodically, the `+dfinity/rosetta-api+` software running on the Rosetta node updates its local view of the ledger by querying the ledger canister for the tip of the chain, then querying for any missing blocks.
 
 === Basic integration workflow
 

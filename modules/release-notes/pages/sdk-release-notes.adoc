@@ -39,7 +39,7 @@ The most significant new features and fixes include the following minor updates 
 
 === DFX
 
-* A fix to `+dfx upgrade+` that prevents a `+main+` thread panicked when `+Option::unwrap()+` is called on a `+None+` value. 
+* A fix to `+dfx upgrade+` that prevents a `+main+` thread panic when `+Option::unwrap()+` is called on a `+None+` value. 
 * A fix to the name of the language service command to restore its compatibility with IDEs. 
 
 === Candid

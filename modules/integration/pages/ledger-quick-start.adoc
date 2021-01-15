@@ -176,11 +176,12 @@ If you want to test the integration after setting up the node, you will need to 
 
 === Running the Rosetta node in production
 
-After sufficient testing, you should run the docker image in production mode without the `+--interactive+`, `+--tty+`, and `+--rm+` command-line options. 
-These command-line options to attach an interactive terminal session and remove the container are primarily for testing purposes. 
-To run the image in a production environment, you might instead start the image using the `+--detach+` option to run the container in the background and, optionally, specify the `+--volume+` for storing blocks.
+After sufficient testing, you should run the Docker image in production mode without the `+--interactive+`, `+--tty+`, and `+--rm+` command-line options. 
+These command-line options to used to attach an interactive terminal session and remove the container and are primarily intended for testing purposes.
 
-For more information about Docker command-line options, see the Docker documentation.
+To run the software in a production environment, you might instead start the Docker image using the `+--detach+` option to run the container in the background and, optionally, specify the `+--volume+` for storing blocks.
+
+For more information about Docker command-line options, see the link:https://docs.docker.com/engine/reference/commandline/run/[Docker documentation].
 
 === Requirements and limitations
 

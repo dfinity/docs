@@ -28,10 +28,10 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 <div class="home-pitches-grid">
 
     <div class="landing-pitch">
-        <a href="quickstart/quickstart.html"><img src="_images/HelloWorld.png" height="320" width="320" /></a>
+        <a href="quickstart/quickstart-intro.html"><img src="_images/HelloWorld.png" height="320" width="320" /></a>
         <h2>What can you imagine?</h2>
         <p>Decentralized software that is automatically secure and unstoppable can do more than financial transactions. The Internet Computer is a <b>general purpose</b> platform and the developer community has built everything from video chat to mobile games to compilers.</p>
-        <p class="link"><a href="quickstart/quickstart.html">Get started now</a></p>
+        <p class="link"><a href="quickstart/quickstart-intro.html">Get started now</a></p>
     </div>
 
     <div class="landing-pitch">

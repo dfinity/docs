@@ -35,11 +35,19 @@ This {release} version of the software and programming language should not be us
 
 The {release} release primarily includes internal enhancements, and fixes and updates to {proglang}, the {proglang} base library, and Candid. 
 
-The most significant new features and fixes include the following:
+The most significant new features and fixes include the following minor updates to DFX, Candid, and Motoko.
+
+=== DFX
 
 * A fix to `+dfx upgrade+` that prevents a `+main+` thread panicked when `+Option::unwrap()+` is called on a `+None+` value. 
 * A fix to the name of the language service command to restore its compatibility with IDEs. 
+
+=== Candid
+
 * Candid has been updated to support more Rust built-in types and with support for reference types.
+
+=== Motoko
+
 * The {proglang} compiler supports specifying command-line arguments using `+--args <file>+` and `+--args0 <file>+`.
 +
 The new options enable the compiler to read newline and NUL terminated arguments from a specified file name.

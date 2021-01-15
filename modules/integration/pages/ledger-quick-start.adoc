@@ -6,7 +6,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[ledger-intro]]
-_{doctitle}_ introduces the Internet Computer Protocol (ICP) components for token distribution, transaction management, token-based staking, and payments for services. 
+This _{doctitle}_ guide introduces the Internet Computer Protocol (ICP) components for token distribution, transaction management, token-based staking, and payments for services.
 The document includes an overview of the design, implementation, security guarantees, system requirements, and the application programming interface (API) that support token management for the Internet Computer Protocol.
 
 _{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and overall transaction management flow for Internet Computer Protocol (ICP) tokens.
@@ -173,6 +173,14 @@ After completing this step, the node continues to run as a **passive** node that
 If you need to stop the service—for example, to change the canister identifier you are using—you can interrupt the process by pressing CONTROL-C.
 +
 If you want to test the integration after setting up the node, you will need to write a program to simulate a principal submitting a transaction or looking up an account balance.
+
+=== Running the Rosetta node in production
+
+After sufficient testing, you should run the docker image in production mode without the `+--interactive+`, `+--tty+`, and `+--rm+` command-line options. 
+These command-line options to attach an interactive terminal session and remove the container are primarily for testing purposes. 
+To run the image in a production environment, you might instead start the image using the `+--detach+` option to run the container in the background and, optionally, specify the `+--volume+` for storing blocks.
+
+For more information about Docker command-line options, see the Docker documentation.
 
 === Requirements and limitations
 

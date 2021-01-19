@@ -93,7 +93,7 @@ Periodically, the `+dfinity/rosetta-api+` software running on the Rosetta node u
 
 The following steps summarize the basic operational workflow for transferring ICP tokens if using a Rosetta node to communicate with the Internet Computer ledger canister.
 
-After a user with a wallet submits a request to the Rosetta node to make a transaction, the request is passed to the integration software to complete the following steps:
+After a user with a wallet submits a request to the Rosetta node to make a transaction, the request is passed to the integration software running on that node to interact with the {IC} and complete the following steps:
 
 . Read from the local copy of the ledger to determine the state of the latest transaction index and block height identified by the `+latest_index+` label.
 . Generate a random `+nonce+` value.

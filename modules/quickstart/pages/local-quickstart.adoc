@@ -1,4 +1,4 @@
-= Quick start
+= Local development
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
@@ -15,8 +15,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on a *locally-deployed* {IC} network.
-This _Quick Start_ assumes that you are installing the {sdk-short-name} for the first time.
+This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time  and are running the {IC} as part of you *locally-development environment*.
 
 To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
 
@@ -76,7 +75,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.6.16
+dfx 0.6.18
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -157,9 +156,6 @@ You perform the remaining steps in the terminal that doesn't display network ope
 
 After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
 
-If you are connecting to an external {IC} network, you will need to use the `+--network+` option to deploy to that network.
-For information about deploying on the {IC} running remotely, see link:network-quickstart{outfilesuffix}[Deploying on the {IC}].
-
 To deploy your first application locally:
 
 . Check that you are still in the root directory for your project, if needed.
@@ -178,15 +174,22 @@ For more information about this step, see link:../developers-guide/webpack-confi
 dfx deploy
 ----
 +
-If you have access to the {IC} running remotely, you can deploy to the that network instead of deploying locally by specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file.
-For information about deploying on the {IC} running remotely, see link:network-quickstart{outfilesuffix}[Deploying on the {IC}].
-+
 The `+dfx deploy+` command output displays information about the operations it performs.
 For example, this step registers two network-specific identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
 +
 ....
-Installing code for canister hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-Installing code for canister hello_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Deploying all canisters.
+Creating canisters...
+Creating canister "hello"...
+"hello" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Creating canister "hello_assets"...
+"hello_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Building canisters...
+Building frontend...
+Installing canisters...
+Installing code for canister hello, with canister_id rwlgt-iiaaa-aaaaa-aaaaa-cai
+Installing code for canister hello_assets, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Deployed canisters.
 ....
 +
 If you created a project with a different name, however, your canister names will match your project name instead of `+hello+` and `+hello_assets+`.
@@ -219,7 +222,7 @@ Now that you have verified that your application has been deployed and tested it
 For example, the full URL should look similar to the following:
 +
 ....
-http://127.0.0.1:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+http://127.0.0.1:8000/?canisterId=rrkah-fqaaa-aaaaa-aaaaq-cai
 ....
 +
 Navigating to this URL displays the prompt pop-up window.

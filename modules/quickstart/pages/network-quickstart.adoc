@@ -1,4 +1,4 @@
-= Deploying on the {IC}
+= Network deployment
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
@@ -15,10 +15,9 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[net-quick-start]]
-This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run the {IC} network.
-This _Deploying on the {IC} Quick Start_ assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the {IC} network **running remotely**.
+This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the {IC} network **running remotely**.
 
-If you are only deploying projects in a local development environment, see the link:quickstart{outfilesuffix}[Quick Start].
+If you are only deploying projects in a local development environment, see the link:local-quickstart{outfilesuffix}[Local development] scenario.
 
 To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. 
 The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
@@ -82,7 +81,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.6.16
+dfx 0.6.18
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +

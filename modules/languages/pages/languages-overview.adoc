@@ -1,7 +1,7 @@
-= Languages and API reference (DUPLICATE)
+= Languages and API reference
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The Langauges and API reference information is intended for advanced programmers or system architects who want more details about the lower level structures, libraries, and modules that support the higher level developer tools.
+The Languages and API reference information is intended for advanced programmers or system architects who want more details about the lower level structures, libraries, and modules that support the higher-level developer tools.
 
 == {proglang}
 

@@ -1,4 +1,4 @@
-= Using multiple actors
+= Use multiple actors
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right

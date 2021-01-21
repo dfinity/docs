@@ -1,4 +1,4 @@
-= Importing base library functions
+= Import library modules
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right

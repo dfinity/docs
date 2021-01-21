@@ -1,4 +1,4 @@
-= Adding and using user identities
+= Add access control with identities
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right

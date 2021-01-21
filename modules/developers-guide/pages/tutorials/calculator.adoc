@@ -1,4 +1,4 @@
-= Exploring calculator functions
+= Use integers in calculator functions
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right

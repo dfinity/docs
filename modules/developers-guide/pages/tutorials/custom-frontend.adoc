@@ -1,4 +1,4 @@
-= Customizing the front-end
+= Customize the front-end
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right

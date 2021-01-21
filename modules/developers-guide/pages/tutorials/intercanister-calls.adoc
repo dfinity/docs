@@ -1,4 +1,4 @@
-= Making simple inter-canister calls
+= Make inter-canister calls
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:

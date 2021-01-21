@@ -67,7 +67,7 @@ The command displays version information for the developer command-line interfac
 +
 [source,bash]
 ----
-dfx 0.6.18
+dfx 0.6.20
 ----
 . Preview usage information for the developer command-line interface (`+dfx+`) commands by running the following command:
 +

@@ -41,6 +41,10 @@ The most significant new features and fixes include the following updates:
 +
 Previously, the `+--network+` option required you to specify a network name that matched a network aliases configured in the project's `+dfx.json+` file.
 
+=== Candid
+
+* The Candid web interface has been updated to provide easier navigation and a better user experience.
+
 === Motoko
 
 * The {proglang} base documentation examples are executable in the browser.

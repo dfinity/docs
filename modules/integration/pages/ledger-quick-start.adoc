@@ -28,7 +28,7 @@ The update calls that contain the state changes are arranged into an agreed upon
 
 == Ledger canister overview
 
-This core functionality of canisters provides the foundation for Internet Computer Protocol (ICP) token management in the form of a specialized canister, called the **ledger canister**.
+The Internet Computer Protocol (ICP) implements token management via a specialized canister, called the **ledger canister**.
 The ledger canister is, in essence, a smart contract that holds **accounts** and **transactions**.
 
 === Accounts

@@ -52,7 +52,11 @@
 
 .xref:languages:languages-overview.adoc[Languages]
 * xref:candid-guide:candid-intro.adoc[Candid]
-** xref:candid-guide:index.adoc[Reference]
+** xref:candid-guide:candid-concepts.adoc[What is Candid?]
+** xref:candid-guide:candid-howto.adoc[How to]
+** xref:candid-guide:candid-ref.adoc[Reference]
+*** xref:candid-guide:candid-tools.adoc[Tools and libraries]
+*** xref:candid-guide:candid-types.adoc[Supported types]
 *** link:https://github.com/dfinity/candid[Candid implementation specification]
 *** link:https://docs.rs/candid[Candid Rust crate]
 * xref:language-guide:motoko.adoc[Motoko]

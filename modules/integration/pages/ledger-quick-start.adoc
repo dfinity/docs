@@ -299,7 +299,7 @@ query last: () -> Option<(Transaction Index, Certification)>
 Returns the balance of a specific account.
 
 ....
-query account_balance : (pid: Principal ID) -> Balance balances[pid]
+query account_balance : (pid: Principal ID) -> Balance
 ....
 ////
 === Data structures

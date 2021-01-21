@@ -33,7 +33,25 @@ This {release} version of the software and programming language should not be us
 
 == Highlights of what's new in {release}
 
-The {release} release primarily includes internal enhancements, and fixes and updates to {proglang}, the {proglang} base library, and Candid. 
+The {release} release primarily both user-facing and internal enhancements, including fixes and updates to {proglang}, the {proglang} base library, and Candid. 
+
+The most significant new features and fixes include the following updates:
+
+* The `+dfx+` commands that support the `+--network+` option have been updated to support URLs when specying the network value.
++
+Previously, the `+--network+` option required you to specify a network name that matched a network aliases configured in the project's `+dfx.json+` file.
+
+=== Motoko
+
+* The {proglang} base documentation examples are executable in the browser.
+
+* The {proglang} compiler supports specifying command-line arguments using `+--args <file>+` and `+--args0 <file>+`.
++
+The new options enable the compiler to read newline and NUL terminated arguments from a specified file name.
+
+=== Highlights of what's new in 0.6.18
+
+The 0.6.18 release primarily includes internal enhancements, and fixes and updates to {proglang}, the {proglang} base library, and Candid. 
 
 The most significant new features and fixes include the following updates:
 

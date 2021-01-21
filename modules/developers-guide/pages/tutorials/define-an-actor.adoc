@@ -1,4 +1,4 @@
-= Defining an actor
+= Query using an actor
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -46,7 +46,7 @@ cd actor_hello
 
 == Modify the default configuration
 
-In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project adds a default `dfx.json` configuration file to your project directory.
+In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
 In this tutorial, you need to modify a few of the default settings to reflect your project.
 
 To modify the `+dfx.json+` configuration file:
@@ -134,6 +134,21 @@ Building canisters...
 ....
 +
 If the program compiles successfully, you can inspect the output in the default `+.dfx/local/canisters+` directory and `+.dfx/local/canisters/actor_hello/+` subdirectory.
++
+For example, you might use the `+tree+` command to review the files created:
++
+....
+tree ../../.dfx/local/canisters
+../../.dfx/local/canisters
+├── actor_hello
+│   ├── actor_hello.did
+│   ├── actor_hello.did.js
+│   ├── actor_hello.js
+│   └── actor_hello.wasm
+└── idl
+
+2 directories, 4 files
+....
 
 == Deploy the project
 

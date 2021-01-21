@@ -1,4 +1,4 @@
-= Passing arguments in a terminal
+= Pass text arguments
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -11,9 +11,9 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-This tutorial provides a simple variation on the default program that lets you pass a single string argument to a single actor, compile the code to create a canister, then retrieve the argument.
+This tutorial provides a simple variation on the default program that lets you pass a single text argument to a single actor, compile the code to create a canister, then retrieve the argument.
 
-This tutorial illustrates how to pass arguments on the command-line in a terminal using the Candid interface description language (IDL) and how to modify the program to allow it to accept more than one value for the string argument.
+This tutorial illustrates how to pass arguments on the command-line in a terminal using the Candid interface description language (IDL) and how to modify the program to allow it to accept more than one value for the text argument.
 
 == Before you begin
 
@@ -154,13 +154,13 @@ The command displays output similar to the following:
 Installing code for canister location_hello, with canister_id rwlgt-iiaaa-aaaaa-aaaaa-cai
 ....
 
-== Pass a string argument
+== Pass a text argument
 
 You now have a program deployed as a *canister* on your local {IC} network and can test your program by using `+dfx canister call+` commands.
 
 To test the program you have deployed locally:
 
-. Call the `+location+` method in the program and pass your `+city+` argument of type `+string+` by running the following command:
+. Call the `+location+` method in the program and pass your `+city+` argument of type `+text+` by running the following command:
 +
 [source,bash]
 ----
@@ -192,7 +192,7 @@ The command displays output similar to the following:
 ("Hello, San Francisco and Paris!")
 ....
 +
-Because your program only accepts a single string argument, specifying multiple strings returns only the first argument.
+Because your program only accepts a single text argument, specifying multiple strings returns only the first argument.
 +
 For example, if you try this command:
 +

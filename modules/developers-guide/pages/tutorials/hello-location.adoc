@@ -125,7 +125,8 @@ dfx canister create --all
 The command displays the network-specific canister identifier for the canister defined in the `+dfx.json+` configuration file.
 +
 ....
-"location_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "location_hello"...
+"location_hello" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 ....
 
 == Build and deploy the program
@@ -150,7 +151,7 @@ dfx canister install location_hello
 The command displays output similar to the following:
 +
 ....
-Installing code for canister location_hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister location_hello, with canister_id rwlgt-iiaaa-aaaaa-aaaaa-cai
 ....
 
 == Pass a text argument
@@ -191,7 +192,7 @@ The command displays output similar to the following:
 ("Hello, San Francisco and Paris!")
 ....
 +
-Because your program only accepts a single text argument, specifying multiple text strings returns only the first argument or a `+mismatch+` error.
+Because your program only accepts a single text argument, specifying multiple strings returns only the first argument.
 +
 For example, if you try this command:
 +
@@ -200,11 +201,7 @@ For example, if you try this command:
 dfx canister call location_hello location '("San Francisco","Paris","Rome")'
 ----
 +
-Only the first argument—`+("Hello, San Francisco!")+`—is returned or you'll see an error similar to the following:
-+
-....
-Invalid data: Unable to serialize Candid values: length mismatch for types and values
-....
+Only the first argument—`+("Hello, San Francisco!")+`—is returned.
 
 == Revise the source code in your program
 
@@ -258,7 +255,8 @@ dfx canister create favorite_cities
 The command returns output similar to the following:
 +
 ....
-"favorite_cities" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "favorite_cities"...
+"favorite_cities" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 . Build the program by running the following command:
 +

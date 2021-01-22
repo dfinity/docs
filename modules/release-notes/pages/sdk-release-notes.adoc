@@ -61,7 +61,6 @@ Previously, the `+--network+` option required you to specify a network name that
 === Candid
 
 The Candid web interface has been updated to provide easier navigation and a better user experience.
-+
 The updates to the Candid web interface include the following new features and improvements:
 
 * A new Console drawer provides quick access to method output and a list of all available methods as links for fast navigation.

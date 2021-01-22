@@ -38,9 +38,11 @@ The {release} release primarily both user-facing and internal enhancements, incl
 The most significant new features and fixes include the following updates:
 
 * A new notification message that the DFINITY Canister SDK sends anonymous usage data to DFINITY Stiftung by
-default has been added to `+dfx+` commands. 
+default has been added to `+dfx+` commands.
+The notification message is only displayed once, the first time you run any `+dfx+` subcommand.
+For example, the first time you run `+dfx new+` to create a new project, the notification is displayed before any other project creation messages.
 +
-This notification informs you that `+dfx+` is configured to collect anonymous information about command activity and errors.
+The purpose of this notification is informs you that `+dfx+` is configured to collect anonymous information about `+dfx+` command activity and errors.
 Collecting anonymous data is enabled by default in an effort to improve the developer experience based on usage patterns and behavior.
 +
 If you want to prevent the collection of data about `+dfx+` usage, you can explicitly opt-out by setting the following environment

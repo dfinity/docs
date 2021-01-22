@@ -313,7 +313,7 @@ If you are using the default local host and port, you should have a URL similar 
 http://127.0.0.1:8000/candid?canisterId=75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
 . Type a name for the `whoami` function, then click *Call* to see the result. 
-. Delete the text from the `whoami` function, then click *Lucky* to generate a random text value and see the result.
+. Delete the text from the `whoami` function, then click *Random* to generate a random text value and see the result.
 . Click *Query* for the `get` function.
 
 ==== Stop the local network

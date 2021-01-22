@@ -131,10 +131,10 @@ To modify the default template source code:
 include::example$counter.mo[]
 ----
 +
-+
 Let's take a closer look at this sample program:
 +
 --
+
 * You can see that the `+currentValue+` variable declaration in this example includes the `+stable+` keyword to indicate the state—the value that can be set, incremented, and retrieved—persists.
 +
 This keyword ensures that the value for the variable is unchanged when the program is upgraded. 

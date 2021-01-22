@@ -30,6 +30,8 @@ The order in which update are executed is agreed upon order by consensus.
 
 The Internet Computer Protocol (ICP) implements token management via a specialized canister, called the **ledger canister**.
 The ledger canister is, in essence, a smart contract that holds **accounts** and **transactions**.
+The ledger canister maintains a traceable history of all transactions starting from the genesis state.
+These transactions either **mint ICP tokens** for accounts or **transfer ICP tokens** from one account to another. 
 
 === Accounts
 
@@ -73,8 +75,7 @@ The signature used to authenticate a transaction can be verified by any third pa
 
 The ledger canister runs alongside other canisters on a subnet of the Internet Computer. 
 There are other subnets hosting other canisters, but there is only one ledger canister. 
-The ledger canister maintains a traceable history of all transactions starting from the genesis state.
-The transactions that the ledger canister keeps track of consist of transactions that **mint ICP tokens** for accounts in the ledger and transactions that **transfer ICP tokens** from one account to another in the ledger. 
+
 
 While there are a number of ways to interact with ICP tokens on the Internet Computer, the https://www.rosetta-api.org/[Rosetta API] provides a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] that is designed to support multiple blockchain data formats and structured communication for exchange workflows.
 

@@ -42,7 +42,7 @@ default has been added to `+dfx+` commands.
 The notification message is only displayed once, the first time you run any `+dfx+` subcommand.
 For example, the first time you run `+dfx new+` to create a new project, the notification is displayed before any other project creation messages.
 +
-The purpose of this notification is informs you that `+dfx+` is configured to collect anonymous information about `+dfx+` command activity and errors.
+The purpose of this notification is to inform you that `+dfx+` is configured to collect anonymous information about `+dfx+` command activity and errors.
 Collecting anonymous data is enabled by default in an effort to improve the developer experience based on usage patterns and behavior.
 +
 If you want to prevent the collection of data about `+dfx+` usage, you can explicitly opt-out by setting the following environment
@@ -60,18 +60,18 @@ Previously, the `+--network+` option required you to specify a network name that
 
 === Candid
 
-* The Candid web interface has been updated to provide easier navigation and a better user experience.
+The Candid web interface has been updated to provide easier navigation and a better user experience.
 +
 The updates to the Candid web interface include the following new features and improvements:
 
-** A new Console drawer provides quick access to method output and a list of all available methods as links for fast navigation.
-** Canister methods and their related form elements are more clearly separated and annotated.
-** Method output is selectable and easier to toggle between text, UI, and JSON formats.
-** The layout is now responsive to provide an optimized display when viewing service using mobile devices or other media. 
+* A new Console drawer provides quick access to method output and a list of all available methods as links for fast navigation.
+* Canister methods and their related form elements are more clearly separated and annotated.
+* Method output is selectable and easier to toggle between text, UI, and JSON formats.
+* The layout is now responsive to provide an optimized display when viewing service using mobile devices or other media. 
 
 === Motoko
 
-* The {proglang} base documentation examples are executable in the browser.
+* The {proglang} base documentation examples are now executable in the browser.
 
 * The {proglang} compiler supports specifying command-line arguments using `+--args <file>+` and `+--args0 <file>+`.
 +

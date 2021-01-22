@@ -54,7 +54,7 @@ DFX_TELEMETRY_DISABLED=1
 +
 To find out more about the data collected and what your consent means, see the DFINITY Canister SDK link:https://sdk.dfinity.org/sdk-license-agreement.txt[Terms and Conditions].
 
-* The `+dfx+` commands that support the `+--network+` option have been updated to support URLs when specying the network value.
+* The `+dfx+` commands that support the `+--network+` option have been updated to support URLs when specifying the network value.
 +
 Previously, the `+--network+` option required you to specify a network name that matched a network aliases configured in the project's `+dfx.json+` file.
 

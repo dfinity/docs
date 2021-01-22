@@ -1,4 +1,4 @@
-= Exploring calculator functions
+= Use integers in calculator functions
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -146,8 +146,10 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"calc" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-"calc_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "calc"...
+"calc" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Creating canister "calc_assets"...
+"calc_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 
 == Build and deploy the program

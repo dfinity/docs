@@ -1,4 +1,4 @@
-= Adding a stylesheet
+= Add a stylesheet
 March 2020 (Alpha)
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]

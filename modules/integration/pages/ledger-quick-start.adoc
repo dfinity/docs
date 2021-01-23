@@ -28,7 +28,7 @@ The order in which update are executed is agreed upon order by consensus.
 
 == Ledger canister overview
 
-The Internet Computer Protocol (ICP) implements token management via a specialized canister, called the **ledger canister**.
+The Internet Computer Protocol (ICP) implements token management using a specialized canister, called the **ledger canister**.
 There is a single ledger canister which runs alongside other canisters on the Internet Computer. 
 The ledger canister is, in essence, a smart contract that holds **accounts** and **transactions**.
 These transactions either **mint ICP tokens** for accounts or **transfer ICP tokens** from one account to another. 

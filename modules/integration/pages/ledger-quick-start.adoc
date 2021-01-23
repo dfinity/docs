@@ -20,42 +20,29 @@ Information about other integration options and procedures might be available in
 
 The Internet Computer is primarily a distributed and decentralized platform for running software. 
 When developers write applications that run on the Internet Computer, they deploy their programs in the form of a conceptual computational unit called a **canister**. 
-A canister is similar to a “smart contract” in that it consists of both program code and state running on a blockchain network with security and liveness guarantees.
+A canister is similar to a “smart contract” in that it consists of both program code and state running, replicated, on a block chain network with security and liveness guarantees.
 
 End-users—or other canisters—can send messages to canister functions to perform specific operations. 
 The messages can be either **query calls** that retrieve information without saving state or **update calls** that change and preserve state. 
-The update calls that contain the state changes are arranged into an agreed upon order by consensus and written to blocks.
+The order in which update are executed is agreed upon order by consensus.
 
 == Ledger canister overview
 
-This core functionality of canisters provides the foundation for Internet Computer Protocol (ICP) token management in the form of a specialized canister, called the **ledger canister**.
+The Internet Computer Protocol (ICP) implements token management using a specialized canister, called the **ledger canister**.
+There is a single ledger canister which runs alongside other canisters on the Internet Computer. 
 The ledger canister is, in essence, a smart contract that holds **accounts** and **transactions**.
+These transactions either **mint ICP tokens** for accounts or **transfer ICP tokens** from one account to another. 
+The ledger canister maintains a traceable history of all transactions starting from the genesis state.
 
 === Accounts
 
-The ledger canister provides a set of accounts that have access to ICP tokens.
-Each account on the ledger canister is identified and controlled by a unique security identifier called a **principal**. 
-Principals are similar to addresses in Bitcoin or Ethereum. For example, like the user address in Bitcoin or Ethereum, a principal might be the hash of a user's public key. The principal is then used to sign messages to authenticate the operations that are passed to the canister.
+The ledger canister maintains a set of accounts that contain ICP tokens.
+Each account on the ledger canister is identified and controlled by a unique identifier called a **principal**. 
+For the purpose of this document, one can think of principal identifiers as similar to addresses in Bitcoin or Ethereum: a principal identifier is (roughly) the hash of a user's public key. The corresponding secret key can be used to sign messages and therefore authenticate towards the ledger canister and operate on the principal's account. We remark that canisters may also have accounts with the ledger canister but the related details are outside the scope of this document.
+The ledger canister is initialized using administrative operations that are internal to the Internet Computer. 
+As part of the initialization process, the canister is created with the set of accounts and associated ICP token balances.
 
-Initially, the ledger canister only includes the set of accounts associated with early contributors and those who have a stake that can be converted to tokens.
 
-NOTE: Details about the specific set of accounts contained in the ledger canister and how tokens for these accounts are instantiated and recorded in the ledger canister at genesis are outside the scope of this document.
-
-////
-The specific set of accounts that the ledger canister contains at genesis are the following:
-
-* The account for the **Genesis token canister (GTC)** that holds all of the tokens that need to be distributed to initial contributors. 
-
-* The account for the **Neurons canister** that holds all of the tokens staked and locked at any given point in time.
-
-* The account for the **Foundation** that holds the ICP tokens reserved for the DFINITY Foundation.
-
-* The account for the **Proposal canister** that holds a reserve of virtual ICP tokens that can be converted to ICP tokens for future events such as voting rewards or data center payments.
-
-After the initial set of accounts are instantiated with the appropriate token balances, new accounts are created by sending tokens to a specified principal.
-
-NOTE: Details about the accounts held in the genesis token canister (GTC) and the neuron canister and about how tokens for these accounts are instantiated and recorded in the ledger canister are outside the scope of this document.
-////
 === Transactions
 
 There are two types of operations that can mutate the internal state of the ledger canister: 
@@ -63,46 +50,46 @@ There are two types of operations that can mutate the internal state of the ledg
 * **Minting ICP tokens** for accounts.
 * **Transferring ICP tokens** between accounts. 
 
-Both of these operations are recorded as transactions in the ledger canister. 
+All operations are recorded as transactions in the ledger canister. 
 
 The transactions in the ledger are maintained as a hashed block chain.
-As state changes are recorded, each new transaction is placed in a block and assigned a unique index. The entire chain is then authenticated by signing its tip.  
+As state changes are recorded, each new transaction is placed in a block and assigned a unique index. The entire chain is regularly authenticated by signing the latest tip of the chain.  
 Queries can use the index to retrieve transaction details. 
 The signature used to authenticate a transaction can be verified by any third party who has access to the root public key of the internet Computer.
 
-== Integration with Rosetta
+== Integration via the Rosetta API
 
-The ledger canister runs alongside other canisters on a subnet of the Internet Computer. 
-There are other subnets hosting other canisters, but there is only one ledger canister replicated on all of the nodes in its subnet. 
-The ledger canister maintains a traceable history of all transactions starting from the genesis state.
-The transactions that the ledger canister keeps track of consist of transactions that **mint ICP tokens** for accounts in the ledger and transactions that **transfer ICP tokens** from one account to another in the ledger. 
 
-While there are a number of ways to interact with ICP tokens on the Internet Computer, the https://www.rosetta-api.org/[Rosetta API] provides a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] that is designed to support multiple blockchain data formats and structured communication for exchange workflows.
+
+The Rosetta API integration is the simplest way to interact with the ledger canister.
+If you want to build an exchange for ICP tokens that uses the Rosetta API integration, you don't need to interact with the ledger canister functions directly.
+
+There are a number of ways to interact with the ledger canister on the Internet Computer. In this document we outline how to use the https://www.rosetta-api.org/[Rosetta API] which is a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] designed to support multiple block chain data formats and structured communication for exchange workflows.
 
 To make interacting with the internet Computer and ledger canister easy to implement and support, you can download and install integration software that uses the Rosetta application programming interface specification. 
-The integration software—`+dfinity/rosetta-api+`—enables you to deploy a passive Rosetta node outside of the Internet Computer network that can communicate with the ledger canister running on an Internet Computer sub-network.
+The integration software—`+dfinity/rosetta-api+`—enables you to deploy a passive Rosetta node outside of the Internet Computer network that can communicate with the ledger canister running on the Internet Computer.
 
 The following diagram provides a simplified view of the communication between the Rosetta node and the Internet Computer using the `+dfinity/rosetta-api+` integration software.
 
 image:basic-rosetta-api-integration.svg[]
 
 As this diagram suggests, the Rosetta node maintains a local copy of the {IC} ledger. 
-Periodically, the `+dfinity/rosetta-api+` software running on the Rosetta node updates its local view of the ledger by querying the ledger canister for the tip of the chain, then querying for any missing blocks.
+Periodically, the `+dfinity/rosetta-api+` software running on the Rosetta node updates its local view of the ledger by querying the ledger canister for the tip of the ledger chain, then querying for any missing ledger blocks.
 
 === Basic integration workflow
 
-The following steps summarize the basic operational workflow for transferring ICP tokens if using a Rosetta node to communicate with the Internet Computer ledger canister.
+The following steps summarize the basic operational workflow for transferring ICP tokens if using a Rosetta node to communicate with the Internet Computer ledger canister.  The description assumes a user which controls an IC principal ID using a signing key (stored in a wallet). 
 
-After a user with a wallet submits a request to the Rosetta node to make a transaction, the request is passed to the integration software running on that node to interact with the {IC} and complete the following steps:
+After a user submits a request to the Rosetta node to make a transaction, the request is passed to the integration software running on that node to interact with the {IC} and complete the following steps:
 
 . Read from the local copy of the ledger to determine the state of the latest transaction index and block height identified by the `+latest_index+` label.
-. Generate a random `+nonce+` value.
+. Generate a random `+nonce+` value -- used to ensure unicity of transactions.
 . Create an ingress message for the ledger canister that invokes the `+transfer+` function and specifies the amount and the destination for the transaction:
 +
 ....
 transfer(nonce, latest_index, dst, amount)
 ....
-. Sign the ingress message using the principal ID for the owner of the source account specified in the transaction request.
+. Sign the ingress message using the key stored in the wallet (to identify the principal ID for the owner)
 . Forward the message to the ledger canister on the Internet Computer.
 
 === Setting up a Rosetta node
@@ -186,7 +173,7 @@ For more information about Docker command-line options, see the link:https://doc
 === Requirements and limitations
 
 The integration software provided in the Docker image has one requirement that is not part of the standard Rosetta API specification. 
-For transactions involving ICP tokens, the unsigned transaction must be created less than 24 hours before the network receives the signed transaction.
+For transactions involving ICP tokens, the unsigned transaction must be created less than 24 hours before the network receives the signed transaction. The reason is that the '+created_at+' field of each transaction refers to an existing transaction (essentially last_index available locally at the time of transaction creation). For efficiency reasons any submitted transaction which refers to a transaction which is too old, is rejected.
 
 Other than this requirement, the Rosetta API integration software is fully-compliant with all standard Rosetta endpoints and passes all of the `+rosetta-cli+` tests. 
 The software can accept any valid Rosetta request. 
@@ -205,20 +192,13 @@ For example:
 The ICP token differs from Bitcoin however in a few small ways.
 For example:
 
-* Rather than using proof of work, staked participant nodes use a variant of BLS to agree on a valid state of the chain.
-* Any transaction can store an 8-byte memo, which can be used to disambiguate payments received by a payee.
+* Rather than using proof of work, staked participant nodes use a variant of threshold BLS signatures to agree on a valid state of the chain.
+* Any transaction can store an 8-byte memo -- this is the field which is used by the Rosetta API to store the nonce which disambiguates between transactions; other uses are also possible.
 
 == Ledger canister API reference
 
-The ledger canister is initialized on a subnet using administrative operations that are internal to the Internet Computer. 
-As part of the initialization process, the canister is created with the set of accounts and associated ICP token balances described in <<Accounts>>.
-Each account on the ledger canister is identified by a principal identifier. 
-The canister also maintains an array balance which records the latest balance of each account.
-
-The Rosetta API integration is the simplest way to interact with the ledger canister.
-If you want to build an exchange for ICP tokens that uses the Rosetta API integration, you don't need to interact with the ledger canister functions directly.
-
-For your reference, however, this section provides information about the ledger canister interfaces. You can also use this information to help you plan for interacting with the ledger canister if you choose not to use the integration based on the Rosetta API.
+In the previous sections, we outline how to integrate with the ledger canister via the Rosetta API. 
+For your reference, this section provides information about the ledger canister interfaces. You can also use this information to help you plan for interacting with the ledger canister, directly, if you choose not to use the integration based on the Rosetta API.
 
 The ledger canister provides the following update and query application programming interfaces.
 
@@ -276,7 +256,7 @@ The method succeeds only if:
 - `+created_at+` is not a block height that is more than 24 hours old.
 - `+(memo, created_at,timestamp, Send(src, dst,amount))+` is not already recorded as a transaction at any height greater than `+created_at+`.
 
-Together, these conditions efficiently ensure the uniqueness of each transaction.
+Together, these conditions allow the ledger canister to efficiently ensure the uniqueness of each transaction.
 
 === lookup
 

@@ -24,7 +24,7 @@ A canister is similar to a “smart contract” in that it consists of both prog
 
 End-users—or other canisters—can send messages to canister functions to perform specific operations. 
 The messages can be either **query calls** that retrieve information without saving state or **update calls** that change and preserve state. 
-The order in which update are executed is agreed upon via a consensus protocol between all IC nodes which run the canister.
+The order in which update are executed is agreed upon by using a consensus protocol between all IC nodes which run the canister.
 
 == Ledger canister overview
 
@@ -57,10 +57,10 @@ As state changes are recorded, each new transaction is placed in a block and ass
 Queries can use the index to retrieve transaction details. 
 The signature used to authenticate a transaction can be verified by any third party who has access to the root public key of the internet Computer.
 
-== Integration with the IC ledger canister via the Rosetta API
+== Integration with the IC ledger canister using the Rosetta API
 
 It is possible to interact with the internet Computer and ledger canister in several ways. 
-In this document we outline how to intergrate with the ledger canister using the the https://www.rosetta-api.org/[Rosetta application programming interface]. This is a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] designed to support multiple block chain data formats and structured communication for exchange workflows.
+This document outlines how to integrate with the ledger canister using the the https://www.rosetta-api.org/[Rosetta application programming interface]. This is a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] designed to support multiple block chain data formats and structured communication for exchange workflows.
 
 The integration software—`+dfinity/rosetta-api+`—enables you to deploy a passive Rosetta node outside of the Internet Computer network that can communicate with the ledger canister running on the Internet Computer.
 
@@ -74,7 +74,7 @@ The integration software also allows you to use the Rosetta node to submit trans
 
 === Basic integration workflow
 
-The following steps summarize the basic operational workflow for transferring ICP tokens if using a Rosetta node to communicate with the {IC} ledger canister.  The description concerns a user who controls an IC principal ID using a signing key (stored in a wallet). 
+The following steps summarize the basic operational workflow for transferring ICP tokens if using a Rosetta node to communicate with the {IC} ledger canister.  The description concerns a user who controls an {IC] principal identifier using a signing key stored in a wallet. 
 
 After a user submits a request to the Rosetta node to make a transaction, the request is passed to the integration software running on that node to interact with the {IC} and complete the following steps:
 
@@ -193,7 +193,7 @@ For example:
 
 == Ledger canister API reference
 
-In the previous sections, we outline how to integrate with the {IC} ledger canister via the Rosetta API. 
+In the previous sections, we outline how to integrate with the {IC} ledger canister using the Rosetta API. 
 For your reference, this section provides information about the ledger canister interfaces. You can also use this information to help you plan for interacting with the ledger canister, directly, if you choose not to use the integration based on the Rosetta API.
 
 The ledger canister provides the following update and query application programming interfaces.
@@ -229,7 +229,7 @@ amount: Amount,
 [width="90%",cols="<15%,<75%",options="header"]
 |===
 |Parameter |Description
-|`+memo+` |Allows the caller to set an optional value, e.g. to identify and link transactions for applications that communicate with the ledger canister. The Rosetta node implementation uses this field to store the nonces which ensure uniqueness of transactions. 
+|`+memo+` |Allows the caller to set an optional value, for example. to identify and link transactions for applications that communicate with the ledger canister. The Rosetta node implementation uses this field to store the nonces which ensure uniqueness of transactions. 
 
 |`+created_at+` |Provides an optional parameter to reference an already existing transaction.
 

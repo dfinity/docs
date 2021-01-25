@@ -81,7 +81,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.6.18
+dfx 0.6.20
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -209,7 +209,7 @@ For example:
 +
 [source,bash]
 ----
-dfx canister call hello greet everyone
+dfx canister --network=ic call hello greet everyone
 ----
 +
 This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
@@ -242,7 +242,7 @@ For example:
 Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end pop-up window using your web browser.
 
 . Open a browser.
-. Navigate to the front-end for the application using a URL that consists of the `+hello_assets+` identifier and the `.+ic0.app+` suffix.
+. Navigate to the front-end for the application using a URL that consists of the `+hello_assets+` identifier and the `+.ic0.app+` suffix.
 +
 For example, the full URL should look similar to the following:
 +

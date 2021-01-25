@@ -23,8 +23,8 @@ When developers write applications that run on the Internet Computer, they deplo
 A canister is similar to a “smart contract” in that it consists of both program code and state running, replicated, on a block chain network with security and liveness guarantees.
 
 End-users—or other canisters—can send messages to canister functions to perform specific operations. 
-The messages can be either **query calls** that retrieve information without saving state or **update calls** that change and preserve state. 
-The order in which update are executed is agreed upon by using a consensus protocol between all IC nodes which run the canister.
+The messages can be either **query calls** that retrieve information without saving state or **update calls** that change and preserve state.
+The order in which updates are executed is agreed upon by using a consensus protocol between all {IC} nodes that run the canister.
 
 == Ledger canister overview
 
@@ -55,11 +55,11 @@ All operations are recorded as transactions in the ledger canister.
 The transactions in the ledger are maintained as a hashed block chain.
 As state changes are recorded, each new transaction is placed in a block and assigned a unique index. The entire chain is regularly authenticated by signing the latest tip of the chain.  
 Queries can use the index to retrieve transaction details. 
-The signature used to authenticate a transaction can be verified by any third party who has access to the root public key of the internet Computer.
+The signature used to authenticate a transaction can be verified by any third party who has access to the root public key of the Internet Computer.
 
-== Integration with the IC ledger canister using the Rosetta API
+== Integration with the {IC} ledger canister using the Rosetta API
 
-It is possible to interact with the internet Computer and ledger canister in several ways. 
+It is possible to interact with the Internet Computer and ledger canister in several ways. 
 This document outlines how to integrate with the ledger canister using the the https://www.rosetta-api.org/[Rosetta application programming interface]. This is a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] designed to support multiple block chain data formats and structured communication for exchange workflows.
 
 The integration software—`+dfinity/rosetta-api+`—enables you to deploy a passive Rosetta node outside of the Internet Computer network that can communicate with the ledger canister running on the Internet Computer.
@@ -74,7 +74,7 @@ The integration software also allows you to use the Rosetta node to submit trans
 
 === Basic integration workflow
 
-The following steps summarize the basic operational workflow for transferring ICP tokens if using a Rosetta node to communicate with the {IC} ledger canister.  The description concerns a user who controls an {IC] principal identifier using a signing key stored in a wallet. 
+The following steps summarize the basic operational workflow for transferring ICP tokens if using a Rosetta node to communicate with the {IC} ledger canister.  The description concerns a user who controls an {IC} principal identifier using a signing key stored in a wallet. 
 
 After a user submits a request to the Rosetta node to make a transaction, the request is passed to the integration software running on that node to interact with the {IC} and complete the following steps:
 
@@ -169,7 +169,7 @@ For more information about Docker command-line options, see the link:https://doc
 === Requirements and limitations
 
 The integration software provided in the Docker image has one requirement that is not part of the standard Rosetta API specification. 
-For transactions involving ICP tokens, the unsigned transaction must be created less than 24 hours before the network receives the signed transaction. The reason is that the '+created_at+' field of each transaction refers to an existing transaction (essentially last_index available locally at the time of transaction creation). For efficiency reasons any submitted transaction which refers to a transaction which is too old, is rejected.
+For transactions involving ICP tokens, the unsigned transaction must be created less than 24 hours before the network receives the signed transaction. The reason is that the '+created_at+' field of each transaction refers to an existing transaction (essentially last_index available locally at the time of transaction creation). For efficiency reasons, any submitted transaction that refers to a transaction that is too old is rejected.
 
 Other than this requirement, the Rosetta API integration software is fully-compliant with all standard Rosetta endpoints and passes all of the `+rosetta-cli+` tests. 
 The software can accept any valid Rosetta request. 
@@ -189,7 +189,7 @@ The ICP token differs from Bitcoin however in a few small ways.
 For example:
 
 * Rather than using proof of work, staked participant nodes use a variant of threshold BLS signatures to agree on a valid state of the chain.
-* Any transaction can store an 8-byte memo -- this is the field which is used by the Rosetta API to store the nonce which disambiguates between transactions; other uses are also possible.
+* Any transaction can store an 8-byte memo -- this memo field is used by the Rosetta API to store the nonce that distinguishes between transactions. However, other uses for the field are also possible.
 
 == Ledger canister API reference
 
@@ -229,7 +229,7 @@ amount: Amount,
 [width="90%",cols="<15%,<75%",options="header"]
 |===
 |Parameter |Description
-|`+memo+` |Allows the caller to set an optional value, for example. to identify and link transactions for applications that communicate with the ledger canister. The Rosetta node implementation uses this field to store the nonces which ensure uniqueness of transactions. 
+|`+memo+` |Allows the caller to set an optional value, for example. to identify and link transactions for applications that communicate with the ledger canister. The Rosetta node implementation uses this field to store the nonces that ensure uniqueness of transactions. 
 
 |`+created_at+` |Provides an optional parameter to reference an already existing transaction.
 

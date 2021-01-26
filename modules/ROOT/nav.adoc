@@ -11,9 +11,11 @@
 ** xref:developers-guide:concepts/canisters-intro.adoc[Canisters and code]
 ** xref:developers-guide:concepts/tokens-cycles.adoc[Tokens and cycles]
 ** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
+//** xref:developers-guide:concepts/icp-replica.adoc[Core components of the Internet Computer Protocol]
 
 .xref:developers-guide:sdk-guide.adoc[How to]
 ** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
+//xref:developer-guide:connect-network.adoc[Connect to a network]
 ** xref:developers-guide:customize-projects.adoc[Design apps]
 ** xref:developers-guide:customize-projects.adoc[Manage projects]
 ** xref:developers-guide:work-with-languages.adoc[Develop using different backend languages]
@@ -40,7 +42,7 @@
 
 .xref:developers-guide:cli-reference.adoc[Reference]
 ** xref:developers-guide:cli-reference.adoc[DFX commands]
-** xref:candid-guide:candid-reference.adoc[Candid interface description language]
+** xref:candid-guide:candid-ref.adoc[Candid interface description language]
 ** xref:developers-guide:lang-service-ide.adoc[Language server protocol client]
 ** xref:developers-guide:glossary.adoc[Glossary]
 
@@ -75,10 +77,10 @@
 .Integration
 ** xref:integration:ledger-quick-start.adoc[Integrating with the Ledger]
 
-.xref:operators-guide:ops-guide.adoc[Operators]
-** xref:operators-guide:ops-guide.adoc[Concepts]
-** xref:operators-guide:ops-how-to.adoc[How to]
-** xref:operators-guide:ops-tutorials.adoc[Tutorials]
-** xref:operators-guide:ops-ref.adoc[Reference]
+//.xref:operators-guide:ops-guide.adoc[Operators]
+//** xref:operators-guide:ops-guide.adoc[Concepts]
+//** xref:operators-guide:ops-how-to.adoc[How to]
+//** xref:operators-guide:ops-tutorials.adoc[Tutorials]
+//** xref:operators-guide:ops-ref.adoc[Reference]
 
 .xref:release-notes:sdk-release-notes.adoc[Release notes]

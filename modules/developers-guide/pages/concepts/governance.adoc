@@ -6,8 +6,23 @@
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 
-TBD
-////
+As a decentralized platform, all changes to the configuration and behavior of the Internet Computer are controlled by a governance body called the Network Nervous System (NNS). The NNS controls many aspects of the Internet Computer platform including the following:
+
+- which data center providers participate in the network
+- the number, location, and ownership of the nodes accepted from a data center provider
+- assignment of nodes to subnets
+- whether upgrades to canister software or management services are allowed or not
+
+In addition, only members of the governance body can vote to approve or deny requests to upgrade Internet Computer replicas or modify the Internet Computer protocol.
+
+## Voting rights for stakeholders
+
+Because tokens on the Internet Computer are generally liquid, they do not represent a stable enough commitment on the part of their holders for them to be used for governance purposes. To provide the stability required for responsible governance, tokens can be converted to **neurons**. A neuron represents a number of ICP tokens that cannot be exchanged for a minimum period of time (the lock-up period).
+
+When a person or organization has some number of ICP tokens locked up in a neuron, the neuron holder has the right to vote on governance issues, and to be paid for voting in proportion to the number of ICP locked up and the length of the lock-up period.
+
+The Internet Computer tracks the number of ICP tokens that are locked up in neurons and provides the logic necessary for voting in conjunction with managing ICP token account balances.
+
 == Want to learn more?
 
 If you are looking for more information about staking, voting, and autonomous governamce, check out the following related resources:

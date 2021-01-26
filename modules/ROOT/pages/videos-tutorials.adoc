@@ -65,7 +65,7 @@ video::yqIoiyuGYNA[youtube,width=100%,height=480px]
 
 This video segment walks through how to deploy your first application with the {IC} running locally.
 
-To try it yourself, follow the steps in the link:quickstart/quickstart{outfilesuffix}[Quick start] tutorial.
+To try it yourself, follow the steps in the link:quickstart/quickstart-intro{outfilesuffix}[Quick start] tutorial.
 
 ++++
 <h1></h1>
@@ -167,7 +167,7 @@ To be part of the conversation, join the  link:forum.dfinity.org[Developer Forum
 
 == Tutorials
 
-The link:quickstart/quickstart{outfilesuffix}[Quick start] provides a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
+The link:quickstart/quickstart-intro{outfilesuffix}[Quick start] provides a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
 If you want more hands-on experience creating programs that run on the {IC}, check out these tutorials:
 

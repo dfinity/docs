@@ -28,7 +28,7 @@ You can use any editor or integrated development environment that supports the L
 For example, if you use Visual Studio Code (VSCode) or Emacs as your development environment, you can install a plugin extension that enables those editors to automatically invoke the {proglang} language server.
 
 NOTE: Only the Visual Studio Code (VSCode) plugin extension is currently available for {proglang}.
-For information about installing the plugin, see link:../quickstart/quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in].
+For information about installing the plugin, see link:../quickstart/quickstart-intro{outfilesuffix}#install-vscode[Install the language editor plug-in].
 
 == Invoking the language service manually
 

@@ -28,9 +28,9 @@ Before starting the tutorial, verify the following:
 * You have `+node.js+` installed for front-end development and can install packages using `+npm install+` in your project.
 For information about installing node for your local operating system and package manager, see the link:https://nodejs.org/en/[Node] website.
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart-intro{outfilesuffix}#download-and-install[Download and install].
 
-* You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
+* You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/quickstart-intro{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
 
 * You have stopped any {IC} network processes running on the local
 computer.

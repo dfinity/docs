@@ -1,8 +1,4 @@
 = Explore the default project
-:toc:
-:toc: right
-:toc-title: EXPLORE DEFAULT PROJECT
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer

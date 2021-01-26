@@ -2,7 +2,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 
-The link:../quickstart/quickstart{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
+The link:../quickstart/quickstart-intro{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
 Next, we’ll explore writing a few simple programs to give you hands-on experience creating programs that run on the {IC}.
 

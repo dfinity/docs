@@ -462,7 +462,7 @@ The following keywords are reserved for specific purposes and cannot be used as 
 
 |import |Import a source file or other resource as a named module.
 
-|in | Indicatethe domain of `for` loop.
+|in | Indicate the domain of `for` loop.
 
 |module |Declare a module identifier or module expression.
 

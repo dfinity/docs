@@ -111,7 +111,7 @@ If you are running `+dfx+` using a virtual machine image on Ubuntu or CentOS, yo
 [source,bash]
 -----
 Building hello...
-An error occured:
+An error occurred:
 Io(
     Os {
         code: 2,
@@ -137,7 +137,7 @@ pkill replica nodemanager dfx
 Fixing memory leaks is an ongoing process. If you encounter any error messages related to memory leaks, you should do the following:
 
 . Run `+dfx stop+` to stop currently running processes.
-. Uninstal `+dfx+` to prevent further degradation.
+. Uninstall `+dfx+` to prevent further degradation.
 . Re-install `+dfx+`
 . Run `+dfx start+` to restart replica processes.
 

@@ -4,7 +4,7 @@ import Error "mo:base/Error";
 import List "mo:base/List";
 import Prim "mo:prim";
 
-actor {
+shared { caller = initializer } actor class() {
 
     // Establish role-based greetings to display
     public shared { caller } func greet(name : Text) : async Text {
@@ -28,8 +28,6 @@ actor {
         #assign_role;
         #lowest;
     };
-
-    private let initializer : Principal = Prim.caller();
 
     private stable var roles: AssocList.AssocList<Principal, Role> = List.nil();
     private stable var role_requests: AssocList.AssocList<Principal, Role> = List.nil();

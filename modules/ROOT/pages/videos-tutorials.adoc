@@ -20,7 +20,7 @@ video::jduSMHxdYD8[youtube,width=100%,height=480px]
 
 This segment of the Fundamentals video series provides a basic introduction to the {IC} and how it supports the future of open internet services. 
 
-If you want to learn more after watching the video, check out link:developers-guide/introduction-key-concepts{outfilesuffix}[Introduction and key concepts].
+If you want to learn more after watching the video, check out link:developers-guide/concepts-intro{outfilesuffix}[Concepts].
 
 ++++
 <h1></h1>
@@ -35,7 +35,7 @@ video::TXf87GTXO78[youtube,width=100%,height=480px]
 
 The {IC} makes it easier to build applications by reducing the ecosystem complexity. 
 
-If you want to learn more after watching the video, check out link:developers-guide/introduction-key-concepts{outfilesuffix}#next-gen[Building the next generation of software and services].
+If you want to learn more after watching the video, check out link:developers-guide/what-is-IC{outfilesuffix}#next-gen[Building the next generation of software and services].
 
 ++++
 <h1></h1>
@@ -80,7 +80,7 @@ video::QbeP4xuPUp0[youtube,width=100%,height=480px]
 
 This video segment offers an overview of the Motoko programming language and highlights a few key features that make it especially well-suited for writing applications that run on the {IC}.
 
-If you want to learn more about using {proglang}, see the link:language-guide/motoko{outfilesuffix}[{proglang} Programming Language Guide].
+If you want to learn more about using {proglang}, see the link:language-guide/motoko{outfilesuffix}[{proglang} Programming Language] guide.
 
 ++++
 <h1></h1>
@@ -95,7 +95,7 @@ video::jWf1zY6o5xM[youtube,width=100%,height=480px]
 
 This video segment demonstrates how to integrate a front-end user interface using raw JavaScript, React, and React with TypeScript.
 
-After watching the video, you can experiment on your own or follow the steps in link:developers-guide/tutorials/my-contacts{outfilesuffix}[Adding a stylesheet].
+After watching the video, you can experiment on your own or follow the steps in link:developers-guide/tutorials/my-contacts{outfilesuffix}[Add a stylesheet] to learn how to add a stylesheet when using React.
 
 ++++
 <h1></h1>
@@ -110,7 +110,7 @@ video::O2KaWRtsqHg[youtube,width=100%,height=480px]
 
 This video segment describes how Candid provides a common interface description language (IDL) for interacting with services running on the Internet Computer.
 
-For more complete information about the Candid syntax, see the link:candid-spec/IDL{outfilesuffix}[Candid specification] or link:https://crates.io/crates/candid[Candid on crates.io].
+For more complete information about what Candid is and how to use it, see the link:candid-guide/candid-intro{outfilesuffix}[Candid] guide or link:https://crates.io/crates/candid[Candid on crates.io].
 
 ++++
 <h1></h1>
@@ -167,7 +167,7 @@ To be part of the conversation, join the  link:forum.dfinity.org[Developer Forum
 
 == Tutorials
 
-The link:quickstart/local-quickstart{outfilesuffix}[Quick start] provides a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
+The link:quickstart/quickstart-intro{outfilesuffix}[Quick start] provides a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
 If you want more hands-on experience creating programs that run on the {IC}, check out these tutorials:
 
@@ -181,7 +181,7 @@ If you want more hands-on experience creating programs that run on the {IC}, che
 
 * link:developers-guide/tutorials/calculator{outfilesuffix}[Use integers in calculator functions]
 
-* link:developers-guide/tutorials/phonebook{outfilesuffix}[Import base library modules]
+* link:developers-guide/tutorials/phonebook{outfilesuffix}[Import library modules]
 
 * link:developers-guide/tutorials/multiple-actors{outfilesuffix}[Use multiple actors]
 

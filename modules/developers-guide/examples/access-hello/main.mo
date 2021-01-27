@@ -4,10 +4,10 @@ import Error "mo:base/Error";
 import List "mo:base/List";
 import Prim "mo:prim";
 
-shared { caller = initializer } actor class() {
+shared(msg) actor class() {
 
     // Establish role-based greetings to display
-    public shared { caller } func greet(name : Text) : async Text {
+    public shared(msg) func greet(name : Text) : async Text {
         if (has_permission(caller, #assign_role)) {
             return "Hello, " # name # ". You have a role with administrative privileges."
         } else if (has_permission(caller, #lowest)) {

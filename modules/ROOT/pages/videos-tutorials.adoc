@@ -20,7 +20,7 @@ video::jduSMHxdYD8[youtube,width=100%,height=480px]
 
 This segment of the Fundamentals video series provides a basic introduction to the {IC} and how it supports the future of open internet services. 
 
-If you want to learn more after watching the video, check out link:developers-guide/concepts-intro{outfilesuffix}[Concepts].
+If you want to learn more after watching the video, check out link:developers-guide/concepts/what-is-IC{outfilesuffix}[What is the Internet Computer?].
 
 ++++
 <h1></h1>
@@ -35,7 +35,7 @@ video::TXf87GTXO78[youtube,width=100%,height=480px]
 
 The {IC} makes it easier to build applications by reducing the ecosystem complexity. 
 
-If you want to learn more after watching the video, check out link:developers-guide/what-is-IC{outfilesuffix}#next-gen[Building the next generation of software and services].
+If you want to learn more after watching the video, check out link:developers-guide/concepts/what-is-IC{outfilesuffix}#next-gen[Building the next generation of software and services].
 
 ++++
 <h1></h1>

@@ -42,7 +42,7 @@
 
 .xref:developers-guide:cli-reference.adoc[Reference]
 ** xref:developers-guide:cli-reference.adoc[DFX commands]
-** xref:candid-guide:candid-ref.adoc[Candid interface description language]
+** xref:candid-guide:candid-types.adoc[Candid supported types]
 ** xref:developers-guide:lang-service-ide.adoc[Language server protocol client]
 ** xref:developers-guide:glossary.adoc[Glossary]
 
@@ -58,7 +58,6 @@
 ** xref:candid-guide:candid-howto.adoc[How to]
 ** xref:candid-guide:candid-ref.adoc[Reference]
 *** xref:candid-guide:candid-types.adoc[Supported types]
-*** xref:candid-guide:candid-tools.adoc[Tools and libraries]
 *** link:https://github.com/dfinity/candid[Candid specification]
 *** link:https://docs.rs/candid[Candid Rust crate]
 

@@ -1,3 +1,0 @@
-* xref:quickstart-intro.adoc[Quick Start]
-** xref:local-quickstart.adoc[Local development]
-** xref:network-quickstart.adoc[Network deployment]

@@ -47,7 +47,7 @@ cd location_hello
 
 == Modify the default configuration
 
-In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
+In the link:explore-templates{outfilesuffix}[Explore the default project] tutorial, you saw that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
 You should always review the default settings in the file to verify the information accurately reflects the project settings you want to use.
 For this tutorial, you'll modify the default configuration to remove settings that aren't used.
 
@@ -63,7 +63,7 @@ Because this tutorial does not involve creating any front-end assets, you can re
 
 == Modify the default program
 
-In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
+In the link:explore-templates{outfilesuffix}[Explore the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
 
 To modify the default template source code:
 
@@ -280,7 +280,7 @@ dfx canister call favorite_cities location '(vec {"San Francisco";"Paris";"Rome"
 ----
 +
 The command uses the Candid interface description syntax `+(vec { val1; val2; val3; })+` to return a vector of values.
-For more information about the Candid interface description syntax, see link:../cli-reference{outfilesuffix}#idl-syntax[Interface description syntax for arguments].
+For more information about the Candid interface description language, see the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] language guide.
 +
 This command displays output similar to the following:
 +

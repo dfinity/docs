@@ -256,7 +256,7 @@ dfx stop
 == Next steps
 
 This _Quick Start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
-There are more detailed examples and tutorials for you to explore in the link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] section of the _SDK Developer Tools_ and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
+There are more detailed examples and tutorials for you to explore in the link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] for {sdk-short-name} developers and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
 
 * Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].
 * Want to join the community? Visit our https://forum.dfinity.org/[community forum].

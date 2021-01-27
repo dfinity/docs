@@ -52,7 +52,7 @@ For reference information and examples that illustrate using `+dfx canister+` co
 == Overriding the default network
 
 By default, `+dfx canister+` commands run on the local network specified in the `+dfx.json+` file.
-If you want to send a `+dfx canister+` subcommand to a specific network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the network using the `+--network+` option.
+If you want to send a `+dfx canister+` subcommand to a specific network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the URL for the network using the `+--network+` option.
 
 For example, to register unique canister identifiers for a project when the {IC} runs on your local computer, you can run the following command:
 
@@ -507,7 +507,7 @@ You can then use the request identifier to check the status of the request at a 
 
 If you want to deploy a canister on a specific {IC} network without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the network you want to connect to by using the `+--network` option.
 
-For example, you can specify a remote network by running a command similar to the following:
+For example, you can specify a remote network URL by running a command similar to the following:
 
 [source,bash]
 ----

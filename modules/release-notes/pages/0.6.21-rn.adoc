@@ -21,15 +21,22 @@ The most significant new features and capabilities include updates in the follow
 
 === DFX
 
-* 
+* Two new subcommands—`+get-wallet+` and `+set-wallet+`—have been added to the `+dfx identity+` command to support working with wallet canisters.
++
+You can use these commands locally for testing purposes. However, they are not yet supported on the public {IC} network.
 
 === Candid
 
-*
+* link:https://github.com/dfinity/candid/blob/master/Changelog.md[Candid changelog]
 
 === Motoko
 
-* 
+* The Motoko compiler now reports errors and warnings with an additional error code.
++
+You can use the error code to look up a more detailed description for a given error by passing the `+--explain+` flag with a code to the compiler. 
++
+Note that detailed descriptions are not yet available for most error codes and will be added incrementally in upcoming releases.
+
 
 == Issues fixed in this release
 

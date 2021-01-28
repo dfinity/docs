@@ -1,4 +1,4 @@
-= Importing base library functions
+= Import library modules
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -26,7 +26,7 @@ This program supports the following function calls:
 
 Before starting the tutorial, verify the following:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
 * You have stopped any {IC} network processes running on the local
 computer.
 
@@ -124,8 +124,10 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"phonebook" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-"phonebook_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "phonebook"...
+"phonebook" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Creating canister "phonebook_assets"...
+"phonebook_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 +
 Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.

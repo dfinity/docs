@@ -1,0 +1,23 @@
+= Concepts
+:keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,canister,developer
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+
+You don’t need to know much about the inner workings of the {platform} to write programs that run successfully on it.
+However, learning a few key concepts will help you get the most out of the unique features that the {IC} provides.
+
+Knowing a little about the design and architecture of the {platform} can make it easier for you to realize the benefits that align with your goals and inform the types of applications you develop.
+
+The topics in this section introduce key components and terminology to help you understand the architecture and operation of the {IC}.
+
+If you want to get right to developing code, though, you can skip this introductory material—key concepts and terminology—and look them up later when you need them either in this section or in the link:../glossary{outfilesuffix}[glossary].
+
+If you are looking for more introductory information, check out the following related resources:
+
+* link:https://www.youtube.com/watch?v=XgsOKP224Zw[Overview of the Internet Computer (video)]
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the {IC}: Fundamentals (video)]
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
+* link:https://dfinity.org/faq/[Frequently Asked Questions (video and short articles)]

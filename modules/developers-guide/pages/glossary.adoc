@@ -6,16 +6,30 @@
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 
+[[g-actor]]
 actor::
   An actor is a special kind of object in modern programming languages that processes messages in an isolated state, enabling them to be handled remotely and asynchronously.
+
+[[g-canister]]
 canister::
   A canister is a conceptual object with a universally-unique identifier and an owner that defines the boundaries of a specific application, service, or micro-site. 
   A canister encapsulates all of the programming logic, public entry methods, the interface description for the provided message types, and state information for the application, service, or micro-service it describes.
-replica::
+
+[[g-replica]]
+replica:: 
   In the context of the {platform}, a replica refers to the {IC} processes (for example, the `+replica+`, `+nodemanager+`, and other lower-level {IC} protocol processes) running on a physical computer node in the network.
   For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop the `+replica+` process locally to provide a local network for development.
+
+[[g-node]]
 node::
   A physical computer that is a registered member of the {platform} network and running the {IC} replica processes.
+
+[[g-wallet]]
+wallet::
+  On the {IC}, a wallet is a specialized application that allows you to store and retrieve your digital assets.
+  The wallet application is implemented as a canister that runs on the {IC}. A wallet enables you to manage your ICP token balances, convert ICP token into cycles, and distribute cycles to your own or other users' canisters as a means for accessing or providing internet services.
+
+[[g-wasm]]
 WebAssembly::
   https://webassembly.org/[WebAssembly] (`+Wasm+`) is a low-level computer instruction format. 
   Because WebAssembly defines a portable,open-standard, binary format that abstracts cleanly over most modern computer hardware, it is broadly supported for programs that run on the internet. 

@@ -7,7 +7,7 @@
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-As described in the link:../quickstart/quickstart{outfilesuffix}[Quick start], you can download and install the latest version of the {sdk-short-name} package by running a command in a terminal shell.
+As described in the link:../quickstart/quickstart-intro{outfilesuffix}[Quick start], you can download and install the latest version of the {sdk-short-name} package by running a command in a terminal shell.
 The topics in this section provide additional information about installing, upgrading, and removing the {sdk-short-name}.
 
 include::ROOT:page$download.adoc[leveloffset=0,tag=install]
@@ -56,7 +56,7 @@ The following table describes the development environment components that the in
 
 The `~/.cache/dfinity/versions` directory stores one or more versioned subdirectories of the {sdk-short-name}. 
 Each versioned subdirectory contains the all of the directories and files required for a specific version of the {sdk-short-name}.
-For example, if you list the contents of the `~/.cache/dfinity/versions/0.6.16` directory you would see the following core components:
+For example, if you list the contents of the `~/.cache/dfinity/versions/0.6.20` directory you would see the following core components:
 
 ....
 total 338216

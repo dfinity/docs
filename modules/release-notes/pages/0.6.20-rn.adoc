@@ -1,0 +1,69 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+:release: 0.6.20
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The {release} release has both user-facing and internal enhancements, including fixes and updates to {proglang}, the {proglang} base library, and Candid. 
+
+== New features and capabilities
+
+The most significant new features and capabilities include updates in the following functional areas:
+
+* <<DFX,DFX>>
+* <<Candid,Candid>>
+* <<Motoko,Motoko>>
+
+=== DFX
+
+* A new notification message that the DFINITY Canister SDK sends anonymous usage data to DFINITY Stiftung by
+default has been added to `+dfx+` commands.
+The notification message is only displayed once, the first time you run any `+dfx+` subcommand.
+For example, the first time you run `+dfx new+` to create a new project, the notification is displayed before any other project creation messages.
++
+The purpose of this notification is to inform you that `+dfx+` is configured to collect anonymous information about `+dfx+` command activity and errors.
+Collecting anonymous data is enabled by default in an effort to improve the developer experience based on usage patterns and behavior.
++
+If you want to prevent the collection of data about `+dfx+` usage, you can explicitly opt-out by setting the following environment
+variable:
++
+....
+DFX_TELEMETRY_DISABLED=1
+....
++
+To find out more about the data collected and what your consent means, see the DFINITY Canister SDK link:https://sdk.dfinity.org/sdk-license-agreement.txt[Terms and Conditions].
+
+* The `+dfx+` commands that support the `+--network+` option have been updated to support URLs when specifying the network value.
++
+Previously, the `+--network+` option required you to specify a network name that matched a network aliases configured in the project's `+dfx.json+` file.
+
+=== Candid
+
+The Candid web interface has been updated to provide easier navigation and a better user experience.
+The updates to the Candid web interface include the following new features and improvements:
+
+* A new Console drawer provides quick access to method output and a list of all available methods as links for fast navigation.
+* Canister methods and their related form elements are more clearly separated and annotated.
+* Method output is selectable and easier to toggle between text, UI, and JSON formats.
+* The layout is now responsive to provide an optimized display when viewing service using mobile devices or other media. 
+
+=== Motoko
+
+* The {proglang} base documentation examples are now executable in the browser.
+
+* The {proglang} compiler supports specifying command-line arguments using `+--args <file>+` and `+--args0 <file>+`.
++
+The new options enable the compiler to read newline and NUL terminated arguments from a specified file name.
+
+== Issues fixed in this release
+
+This section covers any reported issues that have been fixed in this release.
+
+== Known issues and limitations
+
+This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.

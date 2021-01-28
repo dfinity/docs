@@ -23,7 +23,7 @@ The most significant new features and capabilities include updates in the follow
 
 * Two new subcommands—`+get-wallet+` and `+set-wallet+`—have been added to the `+dfx identity+` command to support working with wallet canisters.
 +
-You can use these commands locally for testing purposes. However, they are not yet supported on the public {IC} network.
+In a future release, you will be able to use these commands locally for testing purposes. However, the commands are not currently supported on any version of the {IC} network available for you to run locally or on the public {IC} network.
 
 === Candid
 

@@ -82,17 +82,19 @@
 ** xref:rust-guide:rust-counter.adoc[Simple counter tutorial]
 ** xref:rust-guide:multiply-dependency.adoc[Basic dependency tutorial]
 ** xref:rust-guide:rust-profile.adoc[Profile tutorial]
-//** xref:rust-guide:rust-asset-storage.adoc[Asset storage tutorial] 
-//** xref:rust-guide:rust-chess-autonomous.adoc[Autonomous game tutorial]
+////
+** xref:rust-guide:rust-asset-storage.adoc[Asset storage tutorial] 
+** xref:rust-guide:rust-chess-autonomous.adoc[Autonomous game tutorial]
 
-//.Integration
-//** xref:integration:ledger-quick-start.adoc[Integrating with the Ledger]
+.Integration
+** xref:integration:ledger-quick-start.adoc[Integrating with the Ledger]
 
-//.xref:operators-guide:ops-guide.adoc[Operators]
-//** xref:operators-guide:ops-guide.adoc[Concepts]
-//** xref:operators-guide:ops-how-to.adoc[How to]
-//** xref:operators-guide:ops-tutorials.adoc[Tutorials]
-//** xref:operators-guide:ops-ref.adoc[Reference]
+.xref:operators-guide:ops-guide.adoc[Operators]
+** xref:operators-guide:ops-guide.adoc[Concepts]
+** xref:operators-guide:ops-how-to.adoc[How to]
+** xref:operators-guide:ops-tutorials.adoc[Tutorials]
+** xref:operators-guide:ops-ref.adoc[Reference]
+////
 
 .xref:developers-guide:sample-apps.adoc[Examples]
 ** link:https://github.com/dfinity/examples[Examples repository]
@@ -101,3 +103,4 @@
 //** link:https://github.com/dfinity/cancan[CanCan]//
 
 .xref:release-notes:sdk-release-notes.adoc[Release notes]
+** xref:release-notes:0.6.21-rn.adoc[0.6.21]

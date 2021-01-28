@@ -105,3 +105,4 @@
 .xref:release-notes:sdk-release-notes.adoc[Release notes]
 ** xref:release-notes:0.6.21-rn.adoc[0.6.21]
 ** xref:release-notes:0.6.20-rn.adoc[0.6.20]
+** link:https://github.com/dfinity/sdk/releases[Release history]

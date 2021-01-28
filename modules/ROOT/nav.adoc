@@ -46,12 +46,6 @@
 ** xref:developers-guide:lang-service-ide.adoc[Language server protocol client]
 ** xref:developers-guide:glossary.adoc[Glossary]
 
-.xref:developers-guide:sample-apps.adoc[Examples]
-** link:https://github.com/dfinity/examples[Examples repository]
-** link:https://github.com/dfinity/awesome-dfinity[Awesome DFINITY]
-** link:https://github.com/dfinity/linkedup[LinkedUp]
-//** link:https://github.com/dfinity/cancan[CanCan]
-
 .xref:languages:languages-overview.adoc[Languages]
 * xref:candid-guide:candid-intro.adoc[Candid]
 ** xref:candid-guide:candid-concepts.adoc[What is Candid?]
@@ -99,5 +93,11 @@
 //** xref:operators-guide:ops-how-to.adoc[How to]
 //** xref:operators-guide:ops-tutorials.adoc[Tutorials]
 //** xref:operators-guide:ops-ref.adoc[Reference]
+
+.xref:developers-guide:sample-apps.adoc[Examples]
+** link:https://github.com/dfinity/examples[Examples repository]
+** link:https://github.com/dfinity/awesome-dfinity[Awesome DFINITY]
+** link:https://github.com/dfinity/linkedup[LinkedUp]
+//** link:https://github.com/dfinity/cancan[CanCan]//
 
 .xref:release-notes:sdk-release-notes.adoc[Release notes]

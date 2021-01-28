@@ -42,6 +42,7 @@
 
 .xref:developers-guide:cli-reference.adoc[Reference]
 ** xref:developers-guide:cli-reference.adoc[DFX commands]
+** xref:developers-guide:cli-reference/dfx-envars.adoc[DFX environment variables]
 ** xref:candid-guide:candid-types.adoc[Candid supported types]
 ** xref:developers-guide:lang-service-ide.adoc[Language server protocol client]
 ** xref:developers-guide:glossary.adoc[Glossary]

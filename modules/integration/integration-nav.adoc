@@ -1,1 +1,2 @@
-* xref:ledger-quick-start.adoc[Integrating with the Ledger]
+* xref:ledger-quick-start.adoc[Integration]
+** xref:ledger-quick-start.adoc[Integrating with the Ledger]

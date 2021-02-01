@@ -9,30 +9,25 @@
         "explore_hello"
       ],
       "frontend": {
-        "entrypoint": "src/explore_hello_assets/public/index.js",
-        "output": "canisters/explore_hello_assets/assets"
+        "entrypoint": "src/explore_hello_assets/public/index.js"
       },
       "source": [
-        "src/explore_hello_assets/assets"
+        "src/explore_hello_assets/assets",
+        "dist/explore_hello_assets/"
       ],
       "type": "assets"
     }
   },
   "defaults": {
     "build": {
-      "output": "canisters/",
       "packtool": ""
     }
   },
-  "dfx": "0.5.11",
+  "dfx": "0.6.21",
   "networks": {
     "local": {
-      "bind": "127.0.0.1:8000"
-    },
-    "ic": {
-      "providers": [
-        "https://gw.dfinity.network"
-      ]
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
     }
   },
   "version": 1

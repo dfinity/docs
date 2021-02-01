@@ -1,0 +1,67 @@
+= What is the {IC}?
+:keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,canister,developer
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+
+[[ic-overview]]
+
+The *{IC}* is a computing infrastructure that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof software programs.
+Unlike most cloud-based or distributed architectures, however, the {IC} provides an open platform where software and services run directly on the internet itself rather than on a proprietary infrastructure or a specific hosting service.
+
+As an application developer, you might find it useful to think of the {IC} as providing the following key infrastructure elements:
+
+* An *open communication protocol* that enables general-purpose computations to run transparently directly on the internet
+* A *network* that runs the protocol to provide computing capacity—for example, the hardware, CPU, and memory required to run programs—through *independent data centers*.
+* A *globally-accessible and scalable platform* for running software applications.
+
+== Open infrastructure platform
+
+The {IC} is not physical hardware that exists in any physical location. 
+Instead, the {IC} combines computing resources provided by independent data centers around the world to give users and organizations secure access to applications and transaction processing services. 
+
+If you think of the {IC} as an infrastructure platform, it is similar to a public cloud provider, like Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure, or to a private cloud managed internally by a private organization. 
+
+Unlike a public or private cloud, however, the {platform} is not owned and operated by a single private company. 
+Instead, platform updates and operations are managed through a decentralized governance system defined in the protocol.
+Its architecture enables multiple computers to operate like one, very powerful, virtual machine.
+
+The computers that make up the virtual machine are organized into sub-networks of data centers around the globe. 
+The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
+Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.
+
+[[next-gen]]
+== Building the next generation of software and services
+
+The {IC} protocol reduces platform-based risks and paves the way for innovation by re-imagining how software is built, deployed, and accessed. 
+
+For example, with the {IC}, developers can focus on writing code without environment-related distractions such as:
+
+* physical or virtual network configuration requirements
+* load balancing services
+* firewalls, network topology, or port management
+* database configuration and maintenance
+* storage volumes and devices
+
+By enabling developers to focus on building applications and delivering value, the {IC} helps simplify the development process, reduce time to market, and foster innovation.
+
+For end-users, the {IC} provides a secure environment for accessing applications with fewer risks. 
+Because of the inherent security of the blockchain, programs running on the {IC} cannot be hijacked by malicious code, which also reduces the total cost of ownership for both application end-users or organizations.
+
+In addition, because software services can be "autonomous" and public, developers can write services that communicate with each other and share functions in ways that increase productivity and efficiency while leaving room to innovate and improve projects with confidence.
+
+The {IC} also enables developers to use cryptographically-secure identities to enforce access controls, reducing the need to rely on user names and passwords or external identity management plug-ins.
+
+////
+== Want to learn more?
+
+If you are looking for more information about the Internet Computer project and how it fits into the natural evolution of blockchain technology and the internet itself, check out the following related resources:
+
+* link:https://www.youtube.com/watch?v=XgsOKP224Zw[Overview of the Internet Computer (video)]
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the {IC}: Fundamentals (video)]
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
+* link:https://dfinity.org/faq/[Frequently Asked Questions (video and short articles)]
+
+////

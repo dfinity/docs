@@ -1,4 +1,4 @@
-= Exploring calculator functions
+= Use integers in calculator functions
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right
@@ -30,7 +30,7 @@ The `+div+` function also includes code to prevent the program from attempting t
 
 Before starting the tutorial, verify the following:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
 * You have stopped any {IC} network processes running on the local
 computer.
 
@@ -146,8 +146,10 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"calc" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-"calc_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "calc"...
+"calc" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Creating canister "calc_assets"...
+"calc_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 
 == Build and deploy the program

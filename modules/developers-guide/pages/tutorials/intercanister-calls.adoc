@@ -1,4 +1,4 @@
-= Making simple inter-canister calls
+= Make inter-canister calls
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
@@ -33,7 +33,7 @@ The LinkedUp sample application is implemented using the following canisters:
 
 Before building the sample application, verify the following:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
 * You have stopped any {IC} network processes running on the local
 computer.
 

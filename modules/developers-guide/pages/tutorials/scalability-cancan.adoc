@@ -1,4 +1,4 @@
-= Creating scalable apps
+= Create scalable apps
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc:
 :toc: right

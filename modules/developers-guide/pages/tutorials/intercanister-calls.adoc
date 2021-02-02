@@ -345,7 +345,7 @@ In this example, the public functions are defined in the `+connectd+` canister a
 +
 Therefore, the `+src/linkedup/main.mo+` includes the following code:
 +
-[source,motoko,no-repl.copy]
+[source.copy,motoko,no-repl]
 ----
 // Make the Connectd app's public methods available locally
 import Connectd "canister:connectd";
@@ -358,7 +358,7 @@ You can see the code that enables interaction between the `+linkedup+` canister 
 
 For example, the `+src/connectd/main.mo+` defines the following functions:
 +
-[source,motoko,no-repl.copy]
+[source.copy,motoko,no-repl]
 ----
 actor Connectd {
   flexible var graph: Digraph.Digraph = Digraph.Digraph();
@@ -378,7 +378,7 @@ actor Connectd {
 
 Because of the `+Import+` statement, the `+connectd+` functions are available to the `+linkedup+` canister and the `+src/linkedup/main.mo+` includes the following code:
 
-[source,motoko,no-repl.copy]
+[source.copy,motoko,no-repl]
 ----
   // Connections
 

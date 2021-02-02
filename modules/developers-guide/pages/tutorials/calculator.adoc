@@ -92,7 +92,7 @@ cp src/calc/main.mo src/calc/calc_main.mo
 . Open the `+src/calc/calc_main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+calc_main.mo+` file:
 +
-[source,motoko,no-repl.copy]
+[source.copy,motoko,no-repl]
 ----
 include::example$calc_main.mo[]
 ----

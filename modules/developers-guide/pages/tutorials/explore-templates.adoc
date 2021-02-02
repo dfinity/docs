@@ -38,19 +38,7 @@ To take a closer look at the files and folders that are included in a  project b
 To create a new project:
 
 . Open a terminal shell on your local computer, if you don’t already have one open.
-. Create a folder for your {IC} sample projects in your home directory by running the following command:
-+
-[source,bash]
-----
-mkdir ~/ic-projects
-----
-. Change to your sample projects folder.
-For example:
-+
-[source,bash]
-----
-cd ~/ic-projects
-----
+. Navigate to the folder you are using for your {IC} projects, if you are using a separate working folder.
 . Create a new project by running the following command:
 +
 [source,bash]
@@ -65,20 +53,6 @@ If you have `+node.js+` installed locally, creating a new project also adds some
 +
 To ensure that project names are valid when used in JavaScript, Motoko, and other contexts, you should only use alphanumeric characters and underscores.
 You cannot include dashes or any special characters.
-+
-The command displays output similar to the following excerpt:
-+
-....
-Fetching manifest https://sdk.dfinity.org/manifest.json
-Creating new project "explore_hello"...
-CREATE       explore_hello/src/explore_hello/main.mo (107B)...
-CREATE       explore_hello/dfx.json (320B)...
-CREATE       explore_hello/.gitignore (189B)...
-CREATE       explore_hello/README.md (1.01KB)...
-CREATE       explore_hello/src/explore_hello/public/index.js (155B)...
-CREATE       explore_hello/package.json (263B)...
-CREATE       explore_hello/webpack.config.js (1.76KB)...
-....
 . View the default directory structure by running the following command:
 +
 [source,bash]
@@ -202,21 +176,19 @@ For now, you can continue to the next section.
 
 Before you can build the default project, you need to connect to the {IC} network either running *locally* in your development environment or running *remotely* on a sub-network that you can access.
 
-As a best practice, this step requires you to have two terminal shells open, so that you can start and see network operations in one terminal and manage your project in another.
+Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
+For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
 
 To start the network locally:
 
 [arabic]
-. Open a new terminal window or tab on your local computer and navigate to your project directory.
-+
-For example, you can do either of the following if running Terminal on macOS:
+. Open a new terminal window or a new terminal tab on your local computer.
+. Navigate to the root directory for your project, if necessary.
 +
 --
-* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
-* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/explore_hello+` in the new terminal if your `+explore_hello+` project is in the `+ic-projects+` working folder.
+* You should now have **two terminals** open.
+* You should have the **project directory** as your **current working directory**.
 --
-+
-You should now have **two terminals** open with your **project directory** as your **current working directory**.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
@@ -270,7 +242,6 @@ For example:
   }
 }
 ....
-
 
 == Build the program
 
@@ -352,14 +323,20 @@ The command displays output similar to the following:
 Installing code for canister explore_hello, with canister_id rwlgt-iiaaa-aaaaa-aaaaa-cai
 Installing code for canister explore_hello_assets, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
 ....
-. Call the predefined `+greet+` function in the program by running the following command:
+. Run the `+dfx canister call+` command and specify the program and function to call by running the following command:
 +
 [source,bash]
 ----
 dfx canister call explore_hello greet everyone
 ----
 +
-This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
+This command specifies:
++
+--
+* `explore_hello` as the name of the _canister_ or application service you want to call.
+* `greet` as the specific _method_ or function you want to call.
+* `everyone` as the argument to pass to the `+greet+` function.
+--
 . Verify the command displays the return value of the `+greet+` function.
 +
 For example:

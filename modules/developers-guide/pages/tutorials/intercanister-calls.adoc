@@ -1,10 +1,6 @@
 = Make inter-canister calls
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - INTER-CANISTER
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer

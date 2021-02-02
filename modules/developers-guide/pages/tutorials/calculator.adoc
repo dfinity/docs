@@ -1,9 +1,5 @@
 = Use integers in calculator functions
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - CALCULATOR
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -43,7 +39,7 @@ To create a new project for this tutorial:
 [arabic]
 . Open a terminal shell on your local computer, if you don’t already
 have one open.
-. Change to the folder you are using for your {IC} sample projects.
+. Change to the folder you are using for your {IC} projects, if you are using one.
 . Create a new project by running the following command:
 +
 [source,bash]
@@ -73,7 +69,10 @@ For example:
 "main": "src/calc/calc_main.mo",
 ----
 +
-For this tutorial, you are changing the name of the source file from `+main.mo+` to `+calc_main.mo+` to illustrate how this setting in the `+dfx.json+` file determines the source file to be compiled.
+For this tutorial, changing the name of the source file from `+main.mo+` to `+calc_main.mo+` simply illustrates how the setting in the `+dfx.json+` configuration file determines the source file to be compiled.
++
+In a more complex application, you might have multiple source files instead of a single `+main+` program file.
+More complex applications might also have specific dependencies between multiple source files that you need to manage using settings in the `+dfx.json+` configuration file.
 . Save your changes and close the file to continue.
 
 == Modify the default program

@@ -272,7 +272,7 @@ Note that if your function is returning an optional value of type `+T+`, then th
 prefixing a type with question mark (?) adds the `null` value. 
 For example, you would use the following syntax to indicate that the return value of the type identified by `+?Phone+` is optional (for example, the return value can be `+null+` as well as a proper phone number):
 
-[source,motoko,subs="quotes"]
+[source,motoko,no-repl,subs="quotes"]
 ----
 public query func lookup(name: Name): async *?Phone* {
         return A.find<Name, Phone>(book, name, nameEq);

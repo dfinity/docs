@@ -131,21 +131,21 @@ To modify the default template source code:
 . Open the `+src/assistant/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$multiple-actors/assistant/main.mo
 ----
 . Open the `+src/factorial/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$multiple-actors/factorial/main.mo
 ----
 . Open the `+src/daemon/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$multiple-actors/daemon/main.mo
 ----

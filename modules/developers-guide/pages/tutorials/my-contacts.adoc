@@ -115,7 +115,7 @@ mv main.mo contacts.mo
 . Open the `+contacts.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$mycontacts/contacts.mo[]
 ----

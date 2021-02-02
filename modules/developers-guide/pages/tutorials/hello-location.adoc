@@ -1,9 +1,6 @@
 = Pass text arguments
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - PASS ARGUMENTS
-:toclevels: 3
+//:!page-repl:
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -72,7 +69,7 @@ To modify the default template source code:
 +
 For example:
 +
-[source,bash]
+[source.copy,motoko,no-repl]
 ----
 include::example$location_hello.mo[]
 ----
@@ -223,7 +220,7 @@ cp -r src/location_hello src/favorite_cities
 +
 For example:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$favorite_cities.mo[]
 ----

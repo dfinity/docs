@@ -90,7 +90,7 @@ The next step is to write a program that prints a statement like the traditional
 To compile the program for the {IC}, however, your program must include an `+actor+` object with a `+public+` function.
 . Copy and paste the following sample code into the `+main.mo+` file:
 +
-[source,motoko,no-repl]
+[source,motoko,no-repl.copy]
 ----
 include::example$actor_hello.mo[]
 ----

@@ -65,7 +65,7 @@ To modify the default program:
 . Open the `+src/access_hello/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
-[source,motoko,no-repl]
+[source,motoko,no-repl.copy]
 ----
 include::example$access-hello/main.mo[]
 ----

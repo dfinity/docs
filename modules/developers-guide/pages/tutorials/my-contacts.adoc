@@ -192,8 +192,6 @@ cd ../../..
 
 Before you can build the `+contacts+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
 
-Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
-
 To start the network locally:
 
 [arabic]

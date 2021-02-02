@@ -48,7 +48,7 @@ To create a new project for this tutorial:
 
 [arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
-. Change to the folder you are using for your {IC} sample projects.
+. Change to the folder you are using for your {IC} projects, if you are using one.
 . Create a new project by running the following command:
 +
 [source,bash]

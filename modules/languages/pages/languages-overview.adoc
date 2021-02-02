@@ -5,14 +5,15 @@ The Languages and API reference information is intended for advanced programmers
 
 == {proglang}
 
-* link:language-guide/motoko{outfilesuffix}[Motoko Language Guide]
-* link:base-libraries/stdlib-intro{outfilesuffix}[Motoko Base Library]
-* link:language-guide/language-manual{outfilesuffix}[Motoko Language Quick Reference]
+* link:../language-guide/motoko{outfilesuffix}[Motoko Language Guide]
+* link:../base-libraries/stdlib-intro{outfilesuffix}[Motoko Base Library]
+* link:../language-guide/language-manual{outfilesuffix}[Motoko Language Quick Reference]
 
 == Candid
 
-* link:candid-spec/IDL{outfilesuffix}[Candid Specification]
-* link:https://docs.rs/candid[Candid crate]
+* link:../candid-guide/candid-intro{outfilesuffix}[Candid Guide]
+* link:https://github.com/dfinity/candid/tree/master/spec[Candid specification]
+* link:../https://docs.rs/candid[Candid crate]
 
 ////
 == JavaScript
@@ -22,7 +23,8 @@ The Languages and API reference information is intended for advanced programmers
 
 == Rust
 
-* link:https://crates.io/crates/ic-types[{IC} Type Library (ic-types)].
+* link:../rust-guide/rust-intro{outfilesuffix}[Introduction to working with Rust]
+* link:https://crates.io/crates/ic-types[{IC} Type Library (ic-types)]
 * link:https://crates.io/crates/ic-agent[{IC} Agent Library (ic-agent)]
 * link:https://crates.io/crates/ic-cdk[{IC} Canister Development Kit (ic-cdk)]
 * link:https://github.com/dfinity/cdk-rs/tree/master/examples[Rust Canister Development Kit (CDK) examples]

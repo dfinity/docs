@@ -220,7 +220,7 @@ cp -r src/location_hello src/favorite_cities
 +
 For example:
 +
-[source,motoko,no-repl.copy]
+[source.copy,motoko,no-repl]
 ----
 include::example$favorite_cities.mo[]
 ----

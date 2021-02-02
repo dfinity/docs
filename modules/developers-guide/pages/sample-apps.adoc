@@ -60,7 +60,7 @@ The project includes the following xref:hex[hex.mo] source code.
 
 [[hex]]
 ===== hex.mo
-[source,motoko]
+[source,motoko,no-repl]
 ----
 include::example$hex/hex.mo[]
 ----
@@ -79,7 +79,7 @@ In addition to standard libraries, this project uses two main {proglang} source 
 [[galois]]
 ===== galois.mo
 
-[source,motoko]
+[source,motoko,no-repl]
 ----
 include::example$galois/galois.mo[]
 ----
@@ -87,7 +87,7 @@ include::example$galois/galois.mo[]
 [[nat]]
 ===== nat.mo
 
-[source,motoko]
+[source,motoko,no-repl]
 ----
 include::example$galois/nat.mo[]
 ----

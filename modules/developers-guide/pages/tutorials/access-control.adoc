@@ -1,9 +1,6 @@
 = Add access control with identities
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - IDENTITY
-:toclevels: 3
+//:!page-repl:
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -68,7 +65,7 @@ To modify the default program:
 . Open the `+src/access_hello/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
-[source,motoko]
+[source,motoko,no-repl]
 ----
 include::example$access-hello/main.mo[]
 ----

@@ -62,7 +62,7 @@ To modify the default template:
 . Open the `+src/phonebook/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+main.mo+` file:
 +
-[source,motoko]
+[source,motoko,no-repl]
 ----
 include::example$phonebook.mo[]
 ----

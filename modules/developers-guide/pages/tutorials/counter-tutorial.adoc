@@ -126,7 +126,7 @@ To modify the default template source code:
 . Open the `+src/my_counter/increment_counter.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+increment_counter.mo+` file:
 +
-[source,motoko]
+[source,motoko,no-repl]
 ----
 include::example$counter.mo[]
 ----

@@ -97,7 +97,7 @@ A separate folder is especially useful if you plan to experiment with any of the
 To create a new working folder:
 
 . Open a terminal shell on your local computer, if you don’t already have one open.
-. Create a new folder called `ic-projects` in your home directory by running the following command:
+. Create a new folder called `+ic-projects+` in your home directory by running the following command:
 +
 [source,bash]
 ----

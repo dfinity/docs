@@ -91,6 +91,9 @@ brew install node
 By default, a new terminal shell always opens in your home directory with a path like `/Users/<your-user-name>`.
 To keep your workspace tidy, you can create a separate folder for your {IC} projects.
 
+Creating a working folder for {IC} projects is optional, but can make it easier to find and navigate between projects.
+A separate folder is especially useful if you plan to experiment with any of the link:../developers-guide/tutorial-intro{outfilesuffix}[tutorials] beyond the link:quickstart-intro{outfilesuffix}[Quick start].
+
 To create a new working folder:
 
 . Open a terminal shell on your local computer, if you don’t already have one open.

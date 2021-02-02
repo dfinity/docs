@@ -6,7 +6,7 @@ actor {
     var str = "Hello from ";
     for (city in cities.vals()) {
       str := str # city #", ";
-      };
+    };
     return str # "bon voyage!";
   }
 };

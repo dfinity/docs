@@ -77,7 +77,6 @@
 ** xref:language-guide:compiler-ref.adoc[Compiler reference]
 ** xref:language-guide:motoko-grammar.adoc[Motoko grammar]
 ** xref:language-guide:style.adoc[Motoko style guidelines]
-** xref:base-libraries:stdlib-intro.adoc[Motoko base modules]
 
 * xref:rust-guide:rust-intro.adoc[Rust]
 ** xref:rust-guide:rust-quickstart.adoc[Hello, World! Quick Start]

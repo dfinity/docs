@@ -1,0 +1,126 @@
+= Integrating with the Internet Computer governance system
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[nns-intro]]
+This _{doctitle}_ guide introduces the Internet Computer Network Nervous System (NNS). 
+The Internet Computer Network Nervous System (NNS) is a decentralized, algorithmic governance system that manages network operations for (ICP) subnets and stakeholders.
+
+The document includes an overview of the NNS and its key operations and provides a summary of the application programming interface (API) methods that support staking operations for ICP token holders.
+
+_{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and operational management flow for participants in the Internet Computer network who want to have a stake and voting rights by locking some number of ICP tokens for a given period of time.
+
+In reviewing this document, keep in mind that additional details about specific components or interfaces might be available in subsequent documents to supplement the overview provided in this document.
+In addition, this overview focuses on how to integrate with the Internet Computer using the link:https://www.rosetta-api.org/docs/welcome.html[Rosetta API]. 
+Other options for integration are possible. 
+Information about other integration options and procedures might be available in future documentation.
+
+== Basic terminology to get you started
+
+The Internet Computer is primarily a distributed and decentralized platform for running software. 
+When developers write applications that run on the Internet Computer, they deploy their programs in the form of a conceptual computational unit called a **canister**. 
+A canister is similar to a “smart contract” in that it consists of both program code and state running, replicated, on a block chain network with security and liveness guarantees.
+
+
+
+== NNS overview
+
+=== Neurons
+
+=== Proposals
+
+=== Voting
+
+== Integration with the NNS using the Rosetta API
+
+
+The following diagram provides a simplified view of the communication between the Rosetta node and the Internet Computer using the `+dfinity/rosetta-api+` integration software.
+
+image:nns-integration.svg[]
+
+As this diagram suggests ...
+
+=== Basic integration workflow
+
+The following steps summarize the basic operational workflow for .... 
+
+
+=== How to ... 
+
+This section summarizes the steps for how to 
+
+=== Requirements and limitations
+
+== NNS API reference
+
+This section provides reference information about the NNS interfaces. You can also use this information to help you plan for interacting with the NNS.
+
+The NNS provides the following application programming interface methods.
+
+NOTE: The interfaces described in this document are preliminary and subject to change.
+
+=== create_neuron
+
+Transfers the ICP tokens specified for the ‘+locked_icpt+’ from a ledger account controlled by the caller and creates a new neuron with the `+dissolve_period+` specified.?UNIT? 
+The neuron is not dissolving. ?MEANING?
+The caller is authenticated with the “cold” key. ?MEANING?
+
+....
+create_neuron(locked_icpt, ledger_account, dissolve_period)
+....
+
+=== add_hotkey
+
+Adds a hot key to the list of authorized keys of the neuron.
+The caller is authenticated with the “cold” key. ?MEANING?
+
+....
+add_hotkey(neuron_id)
+....
+
+=== remove_hotkey
+
+Removes a hot key from the list of authorized keys for the specified neuron. ?MEANING of "hot" key?
+The caller is authenticated with the “cold” key. ?MEANING?
+....
+remove_hotkey(neuron_id)
+....
+
+=== get_neuron_info
+
+Returns information about the neuron.
+The caller is authenticated with the cold key or any of the neuron holder's hot keys.
+
+....
+get_neuron_info(neuron_id)
+....
+
+=== start_dissolving
+
+Starts the dissolve timer.
+The caller is authenticated with the “cold” key.
+
+....
+start_dissolving(neuron_id)
+....
+
+=== stop_dissolving
+
+Stops the dissolve timer.
+The caller is authenticated with the “cold” key.
+
+....
+stop_dissolving(neuron_id)
+....
+
+=== dissolve_neuron
+
+Transfers all of the staked ICP tokens held in the specified neuron to the caller's ledger account.
+This method requires the dissolve timer to have a value of zero (0) for the withdrawal of staked ICP tokens to be successful.
+The caller is authenticated with the “cold” key.
+....
+dissolve_neuron(neuron_id)
+....

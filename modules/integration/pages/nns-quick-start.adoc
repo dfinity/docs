@@ -11,9 +11,12 @@ The Internet Computer Network Nervous System (NNS) is a decentralized, algorithm
 The document includes an overview of the NNS and its key operations and provides a summary of the application programming interface (API) methods that support staking operations for ICP token holders.
 
 _{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and operational management flow for Internet Computer governance system. 
-The document focuses on how participants in the Internet Computer network can create a stake with voting rights by locking up some number of ICP tokens that they control for a given period of time.
+The document focuses on how participants in the Internet Computer network can create a stake with voting rights by locking up ICP tokens for a given period of time.
 
-In reviewing this document, keep in mind that additional details about specific operations, components, or interfaces might be available in subsequent documents to supplement the overview provided in this document.
+NOTE: Currently, _{doctitle}_ only covers the minimal API for neuron custody and staking. 
+It does not provide information about how to participate in governance by submitting proposals or voting.
+
+In reviewing this document, keep in mind that additional details about specific operations, components, or interfaces might be available in subsequent documents to supplement the overview provided in this document. For example, information about submitting proposals or voting might be provided in a subsequent document or in a update to this document at a later time.
 
 == Basic terminology to get you started
 
@@ -21,45 +24,45 @@ The Internet Computer is primarily a distributed and decentralized platform for 
 When developers write applications that run on the Internet Computer, they deploy their programs in the form of a conceptual computational unit called a **canister**. 
 A canister is similar to a “smart contract” in that it consists of both program code and state running, replicated, on a block chain network with security and liveness guarantees.
 
-
 == NNS overview
 
-As a decentralized platform, all changes to the configuration and behavior of the Internet Computer are controlled by a governance body called the Network Nervous System (NNS). The NNS controls all aspects of the {IC} network configuration and is responsible for performing many network management operations. For example, the Network Nervous System (NNS) performs the following tasks:
+As a decentralized platform, all changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS). 
+The NNS controls all aspects of the {IC} network configuration and is responsible for performing many network management operations. For example, the Network Nervous System (NNS) is responsible for:
 
-* which data center providers participate in the network
+* Upgrading the protocol and guest operating system software used by the nodes that provide computing capacity to the network.
+* Inducting new node operators and machines into the network.
+* Creating new subnets to increase network capacity.
+* Splitting subnets to balance network load.
+* Configuring parameters that control how much must be paid by users for compute capacity.
+* Monitoring canister activity and node performance for
+malicious behavior and statistical deviations.
+* De-activating malicious software or under-performing nodes to protect the network.
 
-* the number, location, and ownership of the nodes accepted from a data center provider
+The NNS works by accepting proposals, then deciding to adopt or reject those proposals based on voting activity by “neurons” that network participants have created.
 
-* assignment of nodes to subnets
-
-* whether upgrades to canister software or management services are allowed or not
-
-In addition, only members of the governance body can vote to approve or deny requests to upgrade Internet Computer replicas or modify the Internet Computer protocol.
-
-The requests for changes and updates to the network are submitted in the form of proposals, which are then voted upon network participants who have locked up a stake of ICP tokens called a **neuron**.
+The requests for changes and updates to the network are submitted to the NNS in the form of proposals.
+The NNS decides to adopt or reject proposals based on voting activity by certain network participants.
 
 === Neurons
 
-- neuron
+For network participants to be able to vote on proposals, they need to lock up a stake of ICP tokens for a given period of time to create a representative called a **neuron**.
 
-    An entity that can make proposals and vote on proposals related to governance of the Internet Computer platform. 
+Because neurons represent a stake of ICP tokens, they also represent an identity with a ledger canister account and a principal that controls the ledger account.
 
-    To provide the stability required for responsible governance, Internet Computer Protocol tokens (ICP tokens) can be converted to **neurons**. A neuron represents a number of ICP tokens that cannot be exchanged for a minimum period of time (the lock-up period).
+Neurons provide the stability required for responsible governance of the {IC} by ensuring the ICP tokens they represent cannot be exchanged for a specific period of time sometimes referred to as the lock-up period.
 
-    When a person or organization has some number of ICP tokens locked up in a neuron, the neuron holder has the right to propose and vote on governance issues, and to be paid for voting in proportion to the number of ICP locked up and the length of the lock-up period.
+When a person or organization has ICP tokens locked up in a neuron, the neuron holder can propose and vote on governance issues.
+To encourage participation, neuron holders are also paid for voting in proportion to the number of ICP tokens they have locked up and the length of the lock-up period up to a maximum of eight years.
 
+After network participants create a neuron, the locked balance of ICP tokens can only be unlocked by fully dissolving the neuron.
+
+The period of time it takes for a neuron to be fully dissolved is configured with a *dissolve timer* setting. The dissolve timer determines how long it will take to completely dissolve a neuron after it is placed into “dissolve mode”. 
+When the dissolve timer reaches zero, the neuron owner—the ICP token holder who created the neuron or an authenticated custodian (?)—can dissolve the neuron and unlock the balance of ICP tokens. 
+
+////
 === Proposals
 
 === Voting
-
-== Integration with the NNS using the Rosetta API
-
-
-The following diagram provides a simplified view of the communication between the Rosetta node and the Internet Computer using the `+dfinity/rosetta-api+` integration software.
-
-image:nns-integration.svg[]
-
-As this diagram suggests ...
 
 === Basic integration workflow
 
@@ -70,7 +73,9 @@ The following steps summarize the basic operational workflow for ....
 
 This section summarizes the steps for how to 
 
+////
 === Requirements and limitations
+////
 
 == NNS API reference
 

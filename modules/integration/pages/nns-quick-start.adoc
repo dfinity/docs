@@ -70,7 +70,6 @@ The following steps summarize the basic operational workflow for ....
 
 This section summarizes the steps for how to 
 
-
 === Requirements and limitations
 ////
 
@@ -142,6 +141,7 @@ like voting on proposals or obtaining the current state of the neuron.
 === remove_hotkey
 
 Removes a hot key to the list of hot keys of the neuron. Hot keys can be used to participate in governance (vote and submit proposals), as well as to obtain information about the neuron.
+
 ....
 remove_hot_key: (
 neuron_id: NeuronId,

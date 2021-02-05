@@ -10,15 +10,15 @@ The Internet Computer Network Nervous System (NNS) is a decentralized, algorithm
 
 The document includes an overview of the NNS and its key operations and provides a summary of the application programming interface (API) methods that support staking operations for ICP token holders.
 
-_{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and operational management flow for Internet Computer governance system. 
+_{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and operational management flow for Internet Computer governance system.
 The document focuses on how participants in the Internet Computer network can create a stake with voting rights by locking up some number of ICP tokens that they control for a given period of time.
 
 In reviewing this document, keep in mind that additional details about specific operations, components, or interfaces might be available in subsequent documents to supplement the overview provided in this document.
 
 == Basic terminology to get you started
 
-The Internet Computer is primarily a distributed and decentralized platform for running software. 
-When developers write applications that run on the Internet Computer, they deploy their programs in the form of a conceptual computational unit called a **canister**. 
+The Internet Computer is primarily a distributed and decentralized platform for running software.
+When developers write applications that run on the Internet Computer, they deploy their programs in the form of a conceptual computational unit called a **canister**.
 A canister is similar to a “smart contract” in that it consists of both program code and state running, replicated, on a block chain network with security and liveness guarantees.
 
 
@@ -42,7 +42,7 @@ The requests for changes and updates to the network are submitted in the form of
 
 - neuron
 
-    An entity that can make proposals and vote on proposals related to governance of the Internet Computer platform. 
+    An entity that can make proposals and vote on proposals related to governance of the Internet Computer platform.
 
     To provide the stability required for responsible governance, Internet Computer Protocol tokens (ICP tokens) can be converted to **neurons**. A neuron represents a number of ICP tokens that cannot be exchanged for a minimum period of time (the lock-up period).
 
@@ -63,12 +63,12 @@ As this diagram suggests ...
 
 === Basic integration workflow
 
-The following steps summarize the basic operational workflow for .... 
+The following steps summarize the basic operational workflow for ....
 
 
-=== How to ... 
+=== How to ...
 
-This section summarizes the steps for how to 
+This section summarizes the steps for how to
 
 === Requirements and limitations
 
@@ -80,66 +80,238 @@ The NNS provides the following application programming interface methods.
 
 NOTE: The interfaces described in this document are preliminary and subject to change.
 
+
 === create_neuron
 
-Transfers the ICP tokens specified for the ‘+locked_icpt+’ from a ledger account controlled by the caller and creates a new neuron with the `+dissolve_period+` specified.?UNIT? 
-The neuron is not dissolving. ?MEANING?
-The caller is authenticated with the “cold” key. ?MEANING?
+Creates a new neuron by locking ICP.
+
+Transfers the ICP tokens specified for the ‘+locked_icpt+’ from a ledger account controlled by the caller and creates a new neuron with the `+dissolve_period+` specified in seconds.
 
 ....
-create_neuron(locked_icpt, ledger_account, dissolve_period)
+create_neuron: (
+locked_icpt: ICPT,
+dissolve_period_sec,
+) -> Result<NeuronId, String>
 ....
+
+[wi
+dth="90%",cols="<15%,<75%",options="header"]
+|===
+|Parameter |Description
+|`+locked_icpt+` |Defines how much ICPT should be staked in the neuron.
+|`+dissolve_period_sec+` |Specifies what is the minimum dissolve period for the neuron, in seconds.
+|===
+
+The principal who invokes the method is identified as `+caller+`.
+
+This will cause a transfer from the `+caller+'s ledger account to a new ledger account corresponding to the
+neuron and the transaction for the transfer is recorded on the ledger.
+
+This method succeeds only if:
+
+- `+dissolve_period_sec+` is greater than 0 and less than 8 years (252288000 seconds)
+- there is at least `+staked_icpt+` available in the `+caller+`'s account
 
 === add_hotkey
 
-Adds a hot key to the list of authorized keys of the neuron.
-The caller is authenticated with the “cold” key. ?MEANING?
-
+Adds a hot key to the list of hot keys of the neuron. Hot keys can be used to participate in governance
+(vote and submit proposals), as well as to obtain information about the neuron.
 ....
-add_hotkey(neuron_id)
+add_hot_key: (
+neuron_id: NeuronId,
+key: PrincipalId,
+) -> Result<(), String>
 ....
 
+[width="90%",cols="<15%,<75%",options="header"]
+|===3
+|Parameter |Description
+|`+neuron_id+`|The neuron to add the hot key to.
+|`+key+` |Specifies the key to add to the list of hot keys of the neuron.
+|===
+
+The principal who invokes the method is identified as `+caller+`.
+
+This method succeeds only if:
+
+- `+caller+` is equal the `+controller+` of the neuron.
+
+After this call succeeds the key corresponding to `+key+` can be used to sign governance messages
+like voting on proposals or obtaining the current state of the neuron.
 === remove_hotkey
 
-Removes a hot key from the list of authorized keys for the specified neuron. ?MEANING of "hot" key?
-The caller is authenticated with the “cold” key. ?MEANING?
+Removes a hot key to the list of hot keys of the neuron. Hot keys can be used to participate in governance
+(vote and submit proposals), as well as to obtain information about the neuron.
 ....
-remove_hotkey(neuron_id)
+remove_hot_key: (
+neuron_id: NeuronId,
+key: PrincipalId,
+) -> Result<(), String>
 ....
+
+[width="90%",cols="<15%,<75%",options="header"]
+|===
+|Parameter |Description
+|`+neuron_id+`|The neuron to add the hot key to.
+|`+key+` |Specifies the key to add to the list of hot keys of the neuron.
+|===
+
+The principal who invokes the method is identified as `+caller+`.
+
+This method succeeds only if:
+
+- `+caller+` is equal the `+controller+` of the neuron.
+- `+key+` is in the list of hot keys for the neuron
+
+After this call succeeds the key corresponding to `+key+` cannot be used to sign governance messages
+like voting on proposals or obtaining the current state of the neuron.
 
 === get_neuron_info
 
-Returns information about the neuron.
-The caller is authenticated with the cold key or any of the neuron holder's hot keys.
+Returns the current state of the neuron it's voting history.
 
 ....
-get_neuron_info(neuron_id)
+get_neuron_info: (
+neuron_id: NeuronId,
+) -> Result<(), Neuron>
 ....
+
+[width="90%",cols="<15%,<75%",options="header"]
+|===
+|Parameter |Description
+|`+neuron_id+`|The neuron to return the info from.
+|===
+
+The principal who invokes the method is identified as `+caller+`.
+
+Neuron is defined (as least) as:
+...
+Neuron {
+ id: NeuronId,
+ account: LedgerAccount,
+ dissolve_delay: u64,
+ dissolving: boolean,
+}
+...
+[width="90%",cols="<15%,<75%",options="header"]
+|===
+|Fields |Description
+|`+id+`|The unique id of the neuron.
+|`+account+`|The ledger account, controlled by the neuron, that holds the stake.
+|`+disolve_delay+`|The time, in seconds, it will take to unlock the ICP balance by "dissolving" the neuron
+|`+dissolving+`|Whether the neuron is currently dissolving.
+|===
+
+The method succeeds only if:
+
+- `+caller+` is either the `+controller+` of the neuron or one of the hot keys.
 
 === start_dissolving
 
 Starts the dissolve timer.
-The caller is authenticated with the “cold” key.
+
+This makes is so that the neuron starts progressing towards dissolution, starting with current amount (which
+was either set on creation, or set the last time the timer was stopped). The neuron might lose any accumulated
+bonuses related to aging. When this timer becomes less that 6 months (15552000 seconds), the neuron will no
+longer be able to participate in governance (either by voting or submitting proposals).
 
 ....
-start_dissolving(neuron_id)
+start_dissolving: (
+neuron_id: NeuronId,
+) -> Result<(), String>
 ....
+
+[width="90%",cols="<15%,<75%",options="header"]
+|===
+|Parameter |Description
+|`+neuron_id+`|The neuron to start dissolving.
+|===
+
+The principal who invokes the method is identified as `+caller+`.
+
+The method succeeds only if:
+
+- `+caller+` is equal the `+controller+` of the neuron.
+- `+dissolve_delay+` is greater than 0.
 
 === stop_dissolving
 
-Stops the dissolve timer.
-The caller is authenticated with the “cold” key.
+Stop the dissolve timer.
+
+This makes is so that the neuron stops progressing towards dissolution. The neuron might
+start accumulating bonuses related to aging, if it's still able to participate in governance.
 
 ....
-stop_dissolving(neuron_id)
+stop_dissolving: (
+neuron_id: NeuronId,
+) -> Result<(), String>
 ....
+
+[width="90%",cols="<15%,<75%",options="header"]
+|===
+|Parameter |Description
+|`+neuron_id+`|The neuron to stop dissolving.
+|===
+
+The principal who invokes the method is identified as `+caller+`.
+
+The method succeeds only if:
+
+- `+caller+` is equal the `+controller+` of the neuron.
+- `+dissolve_delay+` is greater than 0.
+
+=== increase_dissolve_delay
+
+Increases the dissolve delay of the neuron.
+
+This makes is so that the neuron's dissolve delay is increased by the provided amount.
+If this increase brings the total dissolve_delay above 6 months (15552000 seconds) the
+neuron will be once more able to participate in governance. This has no effect on whether
+the neuron is dissolving or not. The dissolve timer can only be increased to a maximum of
+8 years.
+
+....
+increase_dissolve_delay: (
+neuron_id: NeuronId,
+dissolve_delay_to_add: u64,
+) -> Result<(), String>
+....
+
+[width="90%",cols="<15%,<75%",options="header"]
+|===
+|Parameter |Description
+|`+neuron_id+`|The neuron to increase the dissolve_delay in.
+|`+dissolve_delay_to_add+`|The amount of delay to add to the current dissolve timer, in seconds.
+|===
+
+The principal who invokes the method is identified as `+caller+`.
+
+The method succeeds only if:
+
+- `+caller+` is equal the `+controller+` of the neuron.
 
 === dissolve_neuron
 
+Dissolve the neuron and obtain the locked ICP tokens.
+
 Transfers all of the staked ICP tokens held in the specified neuron to the caller's ledger account.
 This method requires the dissolve timer to have a value of zero (0) for the withdrawal of staked ICP tokens to be successful.
-The caller is authenticated with the “cold” key.
+The neuron will not
 
 ....
-dissolve_neuron(neuron_id)
+dissolve_neuron: (
+neuron_id: NeuronId,
+) -> Result<(), String>
 ....
+
+[width="90%",cols="<15%,<75%",options="header"]
+|===
+|Parameter |Description
+|`+neuron_id+`|The neuron to increase the dissolve_delay in.
+|===
+
+The principal who invokes the method is identified as `+caller+`.
+
+The method succeeds only if:
+
+- `+caller+` is equal the `+controller+` of the neuron.

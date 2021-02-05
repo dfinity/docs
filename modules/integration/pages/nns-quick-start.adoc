@@ -58,6 +58,7 @@ The period of time it takes for a neuron to be fully dissolved is configured wit
 When the dissolve timer reaches zero, the neuron owner—the ICP token holder who created the neuron or an authenticated custodian (?)—can dissolve the neuron and unlock the balance of ICP tokens. 
 
 ////
+
 === Proposals
 
 === Voting
@@ -69,7 +70,6 @@ The following steps summarize the basic operational workflow for ....
 === How to ... 
 
 This section summarizes the steps for how to 
-
 
 === Requirements and limitations
 ////

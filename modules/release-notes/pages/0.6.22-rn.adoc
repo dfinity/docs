@@ -24,13 +24,13 @@ The most significant new features and capabilities include updates in the follow
 
 * The `+dfx canister call+` command can now pass a randomly-generated value to a canister method when an argument is required but not provided.
 
-* The `+dfx canister call+` can take canister ids for local canisters even if the canister is installed on a remote network.
+* The `+dfx canister call+` command can take canister identifiers for local canisters even if the canister is installed on a remote network.
 
 * The `+dfx replica+` command has been fixed so that it does not attempt to write the replica `+pid+` to a nonexistent directory.
 
 * The default `+webpack.config.js+` file used when you create new projects has been modified to comment out the configuration to enable TypeScript. 
 +
-Previously, the `+webpack.config.js+` file configured `+ts-loader+` to process files with the `+.js+` extension, which could lead to errors. 
+Previously, the `+webpack.config.js+` file configured `+ts-loader+` to process files with the `+.js+` file extension, which could lead to errors. 
 This configuration is now disabled by default and the commented-out configuration only processes `.ts`, `.tsx`, and `.jsx` files through `ts-loader`.
 
 [[Apps]]

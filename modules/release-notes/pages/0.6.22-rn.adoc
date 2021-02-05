@@ -30,17 +30,17 @@ The most significant new features and capabilities include updates in the follow
 
 * The default `+webpack.config.js+` file used when you create new projects has been modified to comment out the configuration to enable TypeScript. 
 +
-Previously, the `+webpack.config.js+` file configured `+ts-loader+` to process files with extension of `+.js+`, which could lead to errors. 
+Previously, the `+webpack.config.js+` file configured `+ts-loader+` to process files with the `+.js+` extension, which could lead to errors. 
 This configuration is now disabled by default and the commented-out configuration only processes `.ts`, `.tsx`, and `.jsx` files through `ts-loader`.
 
 [[Apps]]
 === Sample applications
 
-* There have been updates, improvements, and new sample apps added to thelink:https://github.com/dfinity/examples/tree/master/motoko[examples] repository. 
+* There have been updates, improvements, and new sample applications added to the link:https://github.com/dfinity/examples/tree/master/motoko[examples] repository. 
 +
-All of Motoko sample apps in the link:https://github.com/dfinity/examples/tree/master/motoko[examples] repository have been updated to work with the latest release of the SDK.
+All of Motoko sample apps in the link:https://github.com/dfinity/examples/tree/master/motoko[examples] repository have been updated to work with the latest release of the {sdk-short-name}.
 +
-There are new sample apps to illustrate using arrays (link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort]) and building create/read/update/delete (CRUD) operations for a web application link:https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes].
+There are also new sample apps to illustrate using arrays (link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort]) and building create/read/update/delete (CRUD) operations for a web application link:https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes].
 
 * The link:https://github.com/dfinity/linkedup:[LinkedUp] sample application has been updated to work with the latest release of Motoko and the SDK.
 
@@ -55,7 +55,7 @@ There are new sample apps to illustrate using arrays (link:https://github.com/df
 You can use the error code to look up a more detailed description for a given error by passing the `+--explain+` flag with a code to the compiler. 
 +
 Note that detailed descriptions are not yet available for most error codes and will be added incrementally in upcoming releases.
-
+////
 == Issues fixed in this release
 
 This section covers any reported issues that have been fixed in this release.
@@ -63,3 +63,4 @@ This section covers any reported issues that have been fixed in this release.
 == Known issues and limitations
 
 This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+////

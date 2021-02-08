@@ -98,7 +98,7 @@ Let's take a closer look at this simple program:
 * The program uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister or perform any operations that would update the data you are accessing.
 --
 +
-For more information about using a query call, see link:../concepts/canisters-code{outfilesuffix}#query-calls[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
+For more information about using a query call, see link:../concepts/canisters-code{outfilesuffix}#query-update[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the `+main.mo+` file.
 
 == Build the program with a local identifier

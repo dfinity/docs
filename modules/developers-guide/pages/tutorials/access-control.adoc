@@ -470,5 +470,5 @@ dfx stop
 
 If you are looking for more information about identity and authentication, check out the following related resources:
 
-* link:cli-reference{outfilesuffix}[dfx identity (command reference)]
-* link:working-with-canister{outfilesuffix}#set-owner[Set an identity to own a canister]
+* link:../cli-reference/dfx-identity{outfilesuffix}[dfx identity (command reference)]
+* link:../working-with-canisters{outfilesuffix}#set-owner[Set an identity to own a canister (how-to)]

@@ -73,11 +73,14 @@ The dissolved neuron ceases to exist and the stake of ICP tokens that the neuron
 === Proposals
 
 === Voting
-
+////
 === Basic workflow
 
-The following steps summarize the basic operational workflow for .... 
+The following diagram provides a simplified view of the workflow for creating a neuron and the relationship between the neuron and ledger canisters.
 
+image:create-dissolve-neuron-api.svg[]
+
+////
 === How to ... 
 
 This section summarizes the steps for how to 
@@ -116,7 +119,7 @@ dissolve_period_sec,
 The principal who invokes the method is identified as `+caller+`.
 
 This method results in a transfer from the ledger account associated with the `+caller+` principal to a new ledger account corresponding to the neuron. 
-If the neuronis created successfully, the transfer is recorded as a transaction in the ledger canister.
+If the neuron is created successfully, the transfer is recorded as a transaction in the ledger canister.
 
 This method succeeds only if:
 

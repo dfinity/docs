@@ -28,38 +28,38 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 <div class="home-pitches-grid">
 
     <div class="landing-pitch">
-        <a href="quickstart/quickstart.html"><img src="_images/HelloWorld.png" height="320" width="320" /></a>
+        <a href="quickstart/quickstart-intro.html"><img src="_images/HelloWorld.png" height="320" width="320" /></a>
         <h2>What can you imagine?</h2>
-        <p>Decentralized software can be more than financial transactions. The Internet Computer is a <b>general purpose</b> platform and our developer community has built everything from video chat to mobile games to compilers.</p>
-        <p class="link"><a href="quickstart/quickstart.html">Get started now</a></p>
+        <p>Decentralized software that is automatically secure and unstoppable can do more than financial transactions. The Internet Computer is a <b>general purpose</b> platform and the developer community has built everything from video chat to mobile games to compilers.</p>
+        <p class="link"><a href="quickstart/quickstart-intro.html">Get started now</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="https://sdk.dfinity.org/docs/developers-guide/webpack-config.html"><img src="_images/CorporateCloud.png" height="320" width="320" /></a>
+        <a href="developers-guide/webpack-config.html"><img src="_images/CorporateCloud.png" height="320" width="320" /></a>
         <h2>Escape the Corporate Cloud</h2>
-        <p>Why build decentralized software just to run your front-end on monopolistic hardware like Amazon Web Services or Google Cloud? Build your front-end in any framework (React, Angular, Vue, or even vanilla JavaScript) and your users can access it from a standard browser — <b>no plug-ins required</b>.</p>
-        <p class="link"><a href="https://sdk.dfinity.org/docs/developers-guide/webpack-config.html">Read more about front-end development</a></p>
+        <p>Why build decentralized software just to run your front-end on monopolistic private platforms like Amazon Web Services or Google Cloud?  Build your front-end in any framework (React, Angular, Vue, or even vanilla JavaScript) and have a public network serve it directly into your users' Web browsers — <b>no plug-ins required</b>.</p>
+        <p class="link"><a href="developers-guide/webpack-config.html">Read more about front-end development</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="https://sdk.dfinity.org/docs/language-guide/motoko.html"><img src="_images/MotokoLogo.png" height="320" width="320" /></a>
+        <a href="language-guide/motoko.html"><img src="_images/MotokoLogo.png" height="320" width="320" /></a>
         <h2>Your new favorite language</h2>
-        <p>The <b>Motoko</b> language is optimized for authoring for the Internet Computer yet packed with familiar features—like async/await, randomness, time and date, and even floating point numbers—you might forget you're working with a blockchain.</p>
-        <p class="link"><a href="https://sdk.dfinity.org/docs/language-guide/motoko.html">Read more about Motoko</a></p>
+        <p>The <b>Motoko</b> language is optimized for authoring for the Internet Computer yet packed with familiar features—like async/await, randomness, time and date, and even floating point numbers—you might forget you're building directly on a new kind of blockchain.</p>
+        <p class="link"><a href="language-guide/motoko.html">Read more about Motoko</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="https://sdk.dfinity.org/docs/candid-spec/idl"><img src="_images/RustLogo.png" height="320" width="320" /></a>
+        <a href="candid-guide/candid-intro.html"><img src="_images/RustLogo.png" height="320" width="320" /></a>
         <h2>On the shoulders of giants</h2>
-        <p>Thanks to the interface description language <b>Candid</b>, every service running on the Internet Computer is interoperable with every other (regardless of programming language). That means you can import external services as easily as libraries and extend the Open Source revolution with Open Internet Services.</p>
-        <p class="link"><a href="https://sdk.dfinity.org/docs/candid-spec/idl">Read more about Candid</a></p>
+        <p>Thanks to the interface description language Candid, every service and actor object running on the Internet Computer is interoperable with every other (regardless of programming language). Your code can link in the functions of external services like static library code, extending open source coding with <b>Open Internet Services</b>.</p>
+        <p class="link"><a href="candid-guide/candid-intro.html">Read more about Candid</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html"><img src="_images/DeleteDatabase.png" height="320" width="320" /></a>
+        <a href="developers-guide/concepts/concepts-intro.html"><img src="_images/DeleteDatabase.png" height="320" width="320" /></a>
         <h2>Go ahead, delete your database</h2>
-        <p>The radical rethinking baked into the Internet Computer means much of the typical complexity of software architecture melts away. You won't need a firewall, a VPN, usernames and passwords — and with <b>Orthogonal Persistence</b>, any data you create in your application is automatically persisted in memory pages making databases a thing of the past.</p>
-        <p class="link"><a href="https://sdk.dfinity.org/docs/developers-guide/introduction-key-concepts.html">Read more about key concepts</a></p>
+        <p>The radical rethinking baked into the Internet Computer means much of the typical complexity of software architecture melts away. You won't need a firewall, a VPN, usernames and passwords — and with <b>Orthogonal Persistence</b> your data persists automagically within your variables, objects and collections, as the memory pages that host them are persistent, making databases a thing of the past.</p>
+        <p class="link"><a href="developers-guide/concepts/concepts-intro.html">Read more about key concepts</a></p>
     </div>
 
     <div class="landing-pitch">
@@ -74,12 +74,12 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     <h1 class="intro">Let's get started...</h1>
 
     <div class="home-cards-grid">
-        <a class="home-card" href="developers-guide/introduction-key-concepts.html">            
+        <a class="home-card" href="developers-guide/concepts/concepts-intro.html">
         <h3 class="home-card-header">Concepts</h3>
             <p>Start here for key concepts and terminology.</p>
         </a>
 
-        <a class="home-card" href="quickstart/quickstart.html">
+        <a class="home-card" href="quickstart/quickstart-intro.html">
         <h3 class="home-card-header">Quick Start</h3>
             <p>Deploy your first app on the Internet Computer.</p>
         </a>
@@ -94,7 +94,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
             <p>Use DFINITY developer tool to create applications.</p>
         </a>
 
-        <a class="home-card" href="lang-api.html">
+        <a class="home-card" href="languages/languages-overview.html">
         <h3 class="home-card-header">Languages and API Guides</h3>
             <p>Explore languages, reference manuals, and agent APIs.</p>
         </a>

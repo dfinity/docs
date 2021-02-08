@@ -1,9 +1,5 @@
-= Customizing the front-end
+= Customize the front-end
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - FRONT-END
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -27,9 +23,9 @@ Before starting the tutorial, verify the following:
 * You have `+node.js+` installed for front-end development and can install packages using `+npm install+` in your project.
 For information about installing node for your local operating system and package manager, see the link:https://nodejs.org/en/[Node] website.
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
 
-* You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
+* You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
 
 * You have stopped any {IC} network processes running on the local
 computer.
@@ -40,7 +36,7 @@ To create a new project directory for your custom front-end application:
 
 [arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
-. Change to the folder you are using for your {IC} sample projects.
+. Change to the folder you are using for your {IC} projects, if you are using one.
 . Check that you have `+node.js+` installed locally by running the following commands:
 +
 [source,bash]
@@ -209,25 +205,16 @@ Before you can build the `+custom_greeting+` project, you need to connect to the
 To start the network locally:
 
 [arabic]
-. Open a new terminal window or tab on your local computer and navigate to your project directory.
-+
-For example, you can do either of the following if running Terminal on macOS:
-+
---
-* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
-* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/custom_greeting+` in the new terminal if your `+custom_greeting+` project is in the `+ic-projects+` working folder.
---
-+
-You should now have two terminals open with your project directory as your current working directory.
+. Open a new terminal window or tab on your local computer.
+. Navigate to the root directory for your project, if necessary.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
 ----
-dfx start
+dfx start --background
 ----
 +
-After you start the local network, the terminal displays messages about network operations.
-. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
+After the local {IC} network completes its startup operations, you can continue to the next step.
 
 == Register canister identifiers
 

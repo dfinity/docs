@@ -1,88 +1,10 @@
-= Introduction and key concepts
-April 2020 (Alpha)
+= Canisters and code
+:keywords: Internet Computer,blockchain,protocol,smart contracts,canister,developer
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
-
-You don’t need to know much about the inner workings of the {platform} to write programs that run successfully on it.
-However, learning a few key concepts will help you get the most out of the unique features that the {IC} provides.
-
-Knowing a little about the design and architecture of the {platform} can make it easier for you to realize the benefits that align with your goals and inform the types of applications you develop. 
-If you want to get right to developing code, though, you can skip this introductory material—key concepts and terminology—and look them up later when you need them either in this section or in the link:glossary{outfilesuffix}[glossary] provided at the end of this guide.
-
-[[ic-overview]]
-== What is the {IC}?
-
-The *{IC}* is a computing infrastructure that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof software programs.
-Unlike most cloud-based or distributed architectures, however, the {IC} provides an open platform where software and services run directly on the internet itself rather than on a proprietary infrastructure or a specific hosting service.
-
-As an application developer, you might find it useful to think of the {IC} as providing the following key infrastructure elements:
-
-* An *open communication protocol* that enables general-purpose computations to run transparently directly on the internet
-* A *network* that runs the protocol to provide computing capacity—for example, the hardware, CPU, and memory required to run programs—through *independent data centers*.
-* A *globally-accessible and scalable platform* for running software applications.
-
-=== Open infrastructure platform
-
-The {IC} is not physical hardware that exists in any physical location. 
-Instead, the {IC} combines computing resources provided by independent data centers around the world to give users and organizations secure access to applications and transaction processing services. 
-
-If you think of the {IC} as an infrastructure platform, it is similar to a public cloud provider, like Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure, or to a private cloud managed internally by a private organization. 
-
-Unlike a public or private cloud, however, the {platform} is not owned and operated by a single private company. 
-Instead, platform updates and operations are managed through a decentralized governance system defined in the protocol.
-Its architecture enables multiple computers to operate like one, very powerful, virtual machine.
-
-The computers that make up the virtual machine are organized into sub-networks of data centers around the globe. 
-The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
-Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.
-
-[[next-gen]]
-=== Building the next generation of software and services
-
-The {IC} protocol reduces platform-based risks and paves the way for innovation by re-imagining how software is built, deployed, and accessed. 
-
-For example, with the {IC}, developers can focus on writing code without environment-related distractions such as:
-
-* physical or virtual network configuration requirements
-* load balancing services
-* firewalls, network topology, or port management
-* database configuration and maintenance
-* storage volumes and devices
-
-By enabling developers to focus on building applications and delivering value, the {IC} helps simplify the development process, reduce time to market, and foster innovation.
-
-For end-users, the {IC} provides a secure environment for accessing applications with fewer risks. 
-Because of the inherent security of the blockchain, programs running on the {IC} cannot be hijacked by malicious code, which also reduces the total cost of ownership for both application end-users or organizations.
-
-In addition, because software services can be "autonomous" and public, developers can write services that communicate with each other and share functions in ways that increase productivity and efficiency while leaving room to innovate and improve projects with confidence.
-
-The {IC} also enables developers to use cryptographically-secure identities to enforce access controls, reducing the need to rely on user names and passwords or external identity management plug-ins.
-
-=== Basic architecture
-
-{IC} *sub-networks* provide physical hardware and resources—like CPU and memory—for performing software operations. Each sub-network consists of some number of individual machines—connected peer computers called *nodes*—that run the software components of the {IC} protocol. 
-
-The {IC} software components that run on each node are called a *replica* because they replicate state and computation across all of the nodes in a sub-network.
-
-The core components of a replica are organized into the following logical layers:
-
-* A *peer-to-peer* (P2P) networking layer that collects and advertises messages from users, from other nodes in its sub-network, and from other sub-networks. Messages received by the peer-to-peer layer are replicated to all of the nodes in the sub-network to ensure the security, reliability, and resiliency of the platform.
-* A *consensus* layer that selects and sequences messages received from users and from different subnets to create input blocks that can be notarized and finalized before being delivered to the message routing layer. 
-* A *message routing* layer that routes user- and system-generated messages between subnets, manages the input and output queues for applications,  and schedules messages for execution.
-* An *execution environment* that calculates the deterministic computation involved in executing a program and processes the messages it receives from the message routing layer.
-
-The following diagram provides a simplified overview of the {IC} protocol components deployed as a local replica in a development environment.
-
-image:SDK-protocol-local-overview.svg[Internet Computer components in a developer’s environment]
-
-As a developer, it isn’t necessary to know the details about how your applications and user interactions with your applications are routed through the {IC} architecture or replicated on the network. 
-However, a general understanding of the key components can be useful because the development environment includes the replica components to provide a local test network for deployment and a realistic sense of the workflow for a production deployment.
-
-[[canister-def]]
-== Writing, deploying, and running software 
 
 One of the most important principles to keep in mind is that the {IC} is primarily a distributed and decentralized platform for running software. 
 
@@ -92,7 +14,7 @@ When you deploy the WebAssembly module that contains your program on an {IC} rep
 Once deployed, end-users can interact with the software canister by accessing the entry point functions you have defined for that canister through a front-end client such as a browser.
 
 [[canister-state]]
-=== Canisters include both program and state
+== Canisters include both program and state
 
 A software canister is similar to a container in that both are deployed as a software unit that contains compiled code and dependencies for an application or service.
 
@@ -100,6 +22,9 @@ Containerization allows for applications to be decoupled from the environment, a
 The canister differs from a container, however, in that it also stores information about the current software *state* with a record of preceding events and user interactions. 
 
 While a containerized application might include information about the state of the environment in which the application runs, a software canister is able to persist a record of state changes that resulted from an application’s functions being used.
+
+[[query-update]]
+== Query and update methods
 
 This concept of a canister consisting of both program and state is an important one because when a canister function is invoked by sending a message to one of its entry points, there are only two types of calls: non-committing *query calls* and committing *update calls*.
 
@@ -130,7 +55,7 @@ As a developer, it is important to recognize this relationship between the calls
 In particular, you should keep in mind the inherent tradeoff between security and performance.
 
 [[dev-motoko-intro]]
-=== How to develop applications for the {IC}
+== How to develop applications for the {IC}
 
 For programmers and software developers, the {platform} provides unique capabilities and opportunities within a framework that simplifies how you can design, build, and deploy applications. 
 A key part of this framework is a new, general purpose programming language, {proglang}. 
@@ -154,7 +79,7 @@ The following diagram provides a simplified drill-down view of the development e
 image:SDK-protocol-network.svg[Your development environment as part of the {IC} ecosystem]
 
 [[actor-intro]]
-=== Canisters, actors, and the code you produce
+== Canisters, actors, and the code you produce
 
 One of the most important principles to keep in mind when preparing to write programs using the {proglang} programming language is that {proglang} uses an _actor-based_ programming model.
 
@@ -166,7 +91,7 @@ Each canister also includes some additional information such as interface descri
 You can create projects that include multiple canisters, but each canister can only include one actor. 
 
 [[wasm-intro]]
-=== Why your code is compiled into WebAssembly
+== Why your code is compiled into WebAssembly
 
 When you compile {proglang} code, the result is a WebAssembly module.
 WebAssembly is a low-level computer instruction format that is portable and abstracts program execution cleanly over most modern computer hardware. 
@@ -197,7 +122,7 @@ Users with access to multiple canisters can manage the keys and devices used for
 A single user can have multiple public-private key pairs for accessing canisters from different devices—such as browsers running on different computers, mobile phones, or tablets—but these derived keys all map to a primary identifier.
 
 [[resource-intro]]
-== Canisters and resource usage
+== Resource consumption and cycles
 
 In general, all canisters consume resources in the form of CPU cycles for execution, bandwidth for routing messages, and memory for persisted data.
 Canisters maintain an account balance of *cycles* to pay for the cost of communication, computation, and storage that their applications consume. 
@@ -213,3 +138,13 @@ The cycles available for program execution are held in a **wallet canister**. Fo
 
 NOTE: When you deploy canisters locally or to an {IC} test network, program execution consumes cycles but there are funds associated with those cycles. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
 If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option. 
+
+== Want to learn more?
+
+If you are looking for more information about canisters, check out the following related resources:
+
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
+
+* link:https://www.youtube.com/watch?v=60uHQfoA8D[What is the DFINITY Canister SDK? (video)]
+
+* link:https://www.youtube.com/watch?v=yqIoiyuG[Deploying your first application (video)]

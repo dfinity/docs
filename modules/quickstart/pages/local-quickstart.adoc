@@ -1,0 +1,263 @@
+= Local development
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:toc:
+:toc: right
+:toc-title: QUICK START
+:toclevels: 3
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[quick-start-intro]]
+This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time  and are running the {IC} as part of you *locally-development environment*.
+
+To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
+
+[[before-you-begin]]
+== Before you begin
+
+Before you download and install this release of the {sdk-short-name}, verify the following:
+
+* You have an internet connection and access to a shell terminal on your local **macOS** or **Linux** computer.
++
+Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
+
+* You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
+
+If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
+If you are comfortable meeting the prerequisites without instructions, continue to <<Download and install>>.
+
+[[download-and-install]]
+== Download and install
+
+You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer.
+
+To download and install:
+
+[arabic]
+. Open a terminal shell on your local computer.
++
+For example, open Applications, Utilities, then double-click *Terminal* or press kbd:[{commandkey} + spacebar] to open Search, then type `terminal`.
+. Download and install the {sdk-short-name} package by running the following command:
++
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
++
+This command prompts you to read and accept the license agreement before installing the {company-id} execution command-line interface (CLI) and its dependencies on your local computer.
+. Type `+y+` and press kbd:[Return] to continue with the installation.
++
+The command displays information about the components being installed on the local computer.
+
+[[verify-the-sdk-is-ready-to-use]]
+== Verify the SDK is ready to use
+
+If the installation script runs without any errors, everything you need to start developing programs that run on the {platform} will be available on your local computer.
+
+To verify the SDK is ready to use:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Check that you have the {company-id} execution command-line interface (CLI) installed and the `+dfx+` executable is available in your PATH by running the following command:
++
+[source,bash]
+----
+dfx --version
+----
++
+The command displays version information for the `+dfx+` command-line executable similar to the following:
++
+....
+dfx 0.6.22
+....
+. Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
++
+[source,bash]
+----
+dfx --help
+----
++
+The command displays usage information for the `+dfx+` parent command and its subcommands.
+
+include::example$vscode-plugin.adoc[]
+
+[[create-a-new-project]]
+== Create a new project
+
+Applications for the {IC} start as **projects**.
+You create projects using the `+dfx+` parent command and its subcommands.
+Creating a new project with `+dfx+` adds a default project directory structure to your development workspace with template files to get you started.
+
+To create a new project for your first application:
+
+[arabic]
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Create a new project named `+hello+` by running the following command:
++
+[source,bash]
+----
+dfx new hello
+----
++
+The `+dfx new hello+` command creates a new `+hello+` project directory, template files, and a new `+hello+` Git repository for your project.
++
+If you use a different project name instead of `+hello+`, make note of the name you used. You'll need to use that project name in place of the `+hello+` project name throughout these instructions.
+. Change to your project directory by running the following command:
++
+[source,bash]
+----
+cd hello
+----
+
+[[start-the-local-network]]
+== Start the local network
+
+Before you can build your first project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+
+These instructions assume you are running the {IC} locally. If you are connecting to an external {IC} network, you can skip this section. 
+
+As a best practice, this step requires you to have **two terminal shells** open, so that you can start and see network operations in one terminal and manage your project in another.
+
+To start the network locally:
+
+[arabic]
+. Open a new second terminal window or tab on your local computer and navigate to your project directory.
++
+For example, you can do either of the following if running Terminal on macOS:
++
+--
+* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
+* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/hello+` in the new terminal if your `+hello+` project is in the `+ic-projects+` working folder.
+--
++
+You should now have **two terminals** open with your **project directory** as your **current working directory**.
+. Start the {IC} network on your local computer in your second terminal by running the following command:
++
+[source,bash]
+----
+dfx start
+----
++
+Depending on your platform and local security settings, you might see a warning displayed.
+If you are prompted to allow or deny incoming network connections, click *Allow*.
+. Leave the terminal window that displays network operations open and switch your focus to the first terminal window where you created your new project.
++
+You perform the remaining steps in the terminal that doesn't display network operations.
+
+[[register-ids]]
+== Register, build, and deploy the application
+
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
+
+To deploy your first application locally:
+
+. Check that you are still in the root directory for your project, if needed.
+. Ensure that `+node+` modules are available in your project directory, if needed, by running the following command:
++
+[source,bash]
+----
+npm install
+----
++
+For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
+. Register, build, and deploy your first application by running the following command:
++
+[source,bash]
+----
+dfx deploy
+----
++
+The `+dfx deploy+` command output displays information about the operations it performs.
+For example, this step registers two network-specific identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
++
+....
+Deploying all canisters.
+Creating canisters...
+Creating canister "hello"...
+"hello" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Creating canister "hello_assets"...
+"hello_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Building canisters...
+Building frontend...
+Installing canisters...
+Installing code for canister hello, with canister_id rwlgt-iiaaa-aaaaa-aaaaa-cai
+Installing code for canister hello_assets, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Deployed canisters.
+....
++
+If you created a project with a different name, however, your canister names will match your project name instead of `+hello+` and `+hello_assets+`.
+. Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
++
+[source,bash]
+----
+dfx canister call hello greet everyone
+----
++
+This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
++
+Remember, however, that if you created a project with a different name, the canister name will match your project name and you'll need to modify the command line to match the name you used instead of `+hello+`.
+. Verify the command displays the return value of the `+greet+` function.
++
+For example:
++
+....
+("Hello, everyone!")
+....
+
+[[quickstart-frontend]]
+== Test the application front-end
+
+Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end pop-up window using your web browser.
+
+. Open a browser.
+. Navigate to the default address and port number `+127.0.0.1:8000+`, then append `+/?canisterId=+` and the `+hello_assets+` identifier to the URL.
++
+For example, the full URL should look similar to the following:
++
+....
+http://127.0.0.1:8000/?canisterId=rrkah-fqaaa-aaaaa-aaaaq-cai
+....
++
+Navigating to this URL displays the prompt pop-up window.
+For example:
++
+image:quickstart-prompt.png[Prompt pop-up window]
+
+. Type a greeting, then click *OK* to return the greeting.
++
+For example:
++
+image:quickstart-return.png[Hello, everyone! greeting]
+. Click *OK* to close the alert pop-up window.
+
+== Stop the local network
+
+After testing the application in the browser, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+
+To stop the local network:
+
+. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+
+. Stop the local {IC} network running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
+
+[[next-steps]]
+== Next steps
+
+This _Quick Start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
+There are more detailed examples and tutorials for you to explore in the link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] for {sdk-short-name} developers and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
+
+* Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].
+* Want to join the community? Visit our https://forum.dfinity.org/[community forum].
+* Want to stay informed about new features and updates? Sign up for https://dfinity.org/newsletter[Developer updates].

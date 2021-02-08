@@ -1,9 +1,5 @@
-= Exploring calculator functions
+= Use integers in calculator functions
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - CALCULATOR
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -30,7 +26,7 @@ The `+div+` function also includes code to prevent the program from attempting t
 
 Before starting the tutorial, verify the following:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
 * You have stopped any {IC} network processes running on the local
 computer.
 
@@ -43,7 +39,7 @@ To create a new project for this tutorial:
 [arabic]
 . Open a terminal shell on your local computer, if you don’t already
 have one open.
-. Change to the folder you are using for your {IC} sample projects.
+. Change to the folder you are using for your {IC} projects, if you are using one.
 . Create a new project by running the following command:
 +
 [source,bash]
@@ -73,7 +69,10 @@ For example:
 "main": "src/calc/calc_main.mo",
 ----
 +
-For this tutorial, you are changing the name of the source file from `+main.mo+` to `+calc_main.mo+` to illustrate how this setting in the `+dfx.json+` file determines the source file to be compiled.
+For this tutorial, changing the name of the source file from `+main.mo+` to `+calc_main.mo+` simply illustrates how the setting in the `+dfx.json+` configuration file determines the source file to be compiled.
++
+In a more complex application, you might have multiple source files instead of a single `+main+` program file.
+More complex applications might also have specific dependencies between multiple source files that you need to manage using settings in the `+dfx.json+` configuration file.
 . Save your changes and close the file to continue.
 
 == Modify the default program
@@ -92,7 +91,7 @@ cp src/calc/main.mo src/calc/calc_main.mo
 . Open the `+src/calc/calc_main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+calc_main.mo+` file:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$calc_main.mo[]
 ----
@@ -106,19 +105,19 @@ If you wanted to restrict the functions in this calculator code to only use posi
 
 Before you can build the `+calc+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
 
+Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
+For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
+
 To start the network locally:
 
 [arabic]
-. Open a new terminal window or tab on your local computer and navigate to your project directory.
-+
-For example, you can do either of the following if running Terminal on macOS:
+. Open a new terminal window or tab on your local computer.
+. Navigate to the root directory for your project, if necessary.
 +
 --
-* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
-* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/calc+` in the new terminal if your `+calc+` project is in the `+ic-projects+` working folder.
+* You should now have **two terminals** open.
+* You should have the **project directory** as your **current working directory**.
 --
-+
-You should now have two terminals open with your project directory as your current working directory.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
@@ -146,8 +145,10 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
-"calc" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-"calc_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "calc"...
+"calc" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Creating canister "calc_assets"...
+"calc_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 
 == Build and deploy the program
@@ -164,7 +165,7 @@ To build and deploy the program:
 dfx build calc
 ----
 +
-For this tutorial, you can build your project using the `+--skip-frontend+` option because the project is a simple terminal-based applications that doesn't include any front-end assets.
+For this tutorial, you can build your project using the `+calc+` canister name because the project is a simple terminal-based applications that doesn't include any front-end assets.
 . Deploy your `+calc+` project on the local network by running the following command:
 +
 [source,bash]

@@ -1,0 +1,34 @@
+= Languages and API reference
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The Languages and API reference information is intended for advanced programmers or system architects who want more details about the lower level structures, libraries, and modules that support the higher-level developer tools.
+
+== {proglang}
+
+* link:../language-guide/motoko{outfilesuffix}[Motoko Language Guide]
+* link:../base-libraries/stdlib-intro{outfilesuffix}[Motoko Base Library]
+* link:../language-guide/language-manual{outfilesuffix}[Motoko Language Quick Reference]
+
+== Candid
+
+* link:../candid-guide/candid-intro{outfilesuffix}[Candid Guide]
+* link:https://github.com/dfinity/candid/tree/master/spec[Candid specification]
+* link:../https://docs.rs/candid[Candid crate]
+
+////
+== JavaScript
+
+* TBD
+////
+
+== Rust
+
+* link:../rust-guide/rust-intro{outfilesuffix}[Introduction to working with Rust]
+* link:https://crates.io/crates/ic-types[{IC} Type Library (ic-types)]
+* link:https://crates.io/crates/ic-agent[{IC} Agent Library (ic-agent)]
+* link:https://crates.io/crates/ic-cdk[{IC} Canister Development Kit (ic-cdk)]
+* link:https://github.com/dfinity/cdk-rs/tree/master/examples[Rust Canister Development Kit (CDK) examples]
+
+////
+== AssemblyScript
+////

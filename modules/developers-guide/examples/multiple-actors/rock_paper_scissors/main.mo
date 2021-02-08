@@ -4,8 +4,8 @@ actor rock_paper_scissors {
 
 	stable var alice_score: Nat = 0;
     stable var bob_score: Nat = 0;
-    stable var alice_last: Choice = do { #scissors };
-    stable var bob_last: Choice = do { #rock };
+    stable var alice_last: Choice = #scissors;
+    stable var bob_last: Choice = #rock;
 
 	type Choice = {
 		#rock;

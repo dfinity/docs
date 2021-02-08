@@ -1,10 +1,6 @@
 = Managing canisters
 March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: COMMAND REFERENCE
-:toclevels: 1
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -150,6 +146,7 @@ dfx canister install --all --mode reinstall
 
 Note that you can use the `+reinstall+` mode to replace any canister, regardless of whether the canister has code or state associated with it.
 
+[[set-owner]]
 == Set an identity to own a canister
 
 In most cases, a `+default+` user identity is created for you automatically the first time you run the `+dfx canister create+` command.

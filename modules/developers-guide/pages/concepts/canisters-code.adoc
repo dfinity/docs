@@ -147,8 +147,4 @@ If you are looking for more information about canisters, check out the following
 
 * link:https://www.youtube.com/watch?v=60uHQfoA8D[What is the DFINITY Canister SDK? (video)]
 
-<<<<<<< HEAD
 * link:https://www.youtube.com/watch?v=yqIoiyuG[Deploying your first application (video)]
-=======
-* link:https://www.youtube.com/watch?v=yqIoiyuG[Deploying your first application (video)]
->>>>>>> master

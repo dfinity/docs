@@ -3,10 +3,14 @@ title: Developer Center
 version: 'master'
 start_page: ROOT:index.adoc
 nav:
-  - modules/quickstart/quick-nav.adoc
-  - modules/developers-guide/dev-nav.adoc
-  - modules/candid-spec/candid-nav.adoc
-  - modules/rust-guide/rust-nav.adoc
-  - modules/language-guide/lang-nav.adoc
+  - modules/ROOT/nav.adoc
+  #- modules/quickstart/quick-nav.adoc
+  #- modules/developers-guide/dev-nav.adoc
+  #- modules/languages/lang-overview-nav.adoc
+  #- modules/candid-spec/candid-nav.adoc
+  #- modules/language-guide/lang-nav.adoc
   - modules/base-libraries/lib-nav.adoc
-  - modules/release-notes/rn-nav.adoc
+  #- modules/rust-guide/rust-nav.adoc
+  #- modules/integration/integration-nav.adoc
+  #- modules/operators-guide/ops-nav.adoc
+  #- modules/release-notes/rn-nav.adoc

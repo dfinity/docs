@@ -1,9 +1,5 @@
-= Defining an actor
+= Query using an actor
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - HELLO, WORLD
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -11,14 +7,14 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-In the link:../../quickstart/quickstart{outfilesuffix}[Quick start], you had your first look at a simple program for the {IC} involving an actor object and asynchronous messaging.
+In the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], you had your first look at a simple program for the {IC} involving an actor object and asynchronous messaging.
 As the next step in learning to write programs that take advantage of actor-based messaging, this tutorial illustrates how to modify a traditional `+Hello, World!+` program to define an actor, then deploy and test your program on a local network.
 
 == Before you begin
 
 Before starting the tutorial, verify the following:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
 * You have stopped any {IC} network processes running on the local computer.
 
 This tutorial takes approximately 20 minutes to complete.
@@ -30,7 +26,7 @@ To create a new project for this tutorial:
 [arabic]
 . Open a terminal shell on your local computer, if you don’t already
 have one open.
-. Change to the folder you are using for your {IC} sample projects.
+. Change to the folder you are using for your {IC} projects, if you are using one.
 . Create a new project by running the following command:
 +
 [source,bash]
@@ -46,7 +42,7 @@ cd actor_hello
 
 == Modify the default configuration
 
-In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project adds a default `dfx.json` configuration file to your project directory.
+In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
 In this tutorial, you need to modify a few of the default settings to reflect your project.
 
 To modify the `+dfx.json+` configuration file:
@@ -90,7 +86,7 @@ The next step is to write a program that prints a statement like the traditional
 To compile the program for the {IC}, however, your program must include an `+actor+` object with a `+public+` function.
 . Copy and paste the following sample code into the `+main.mo+` file:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$actor_hello.mo[]
 ----
@@ -134,6 +130,21 @@ Building canisters...
 ....
 +
 If the program compiles successfully, you can inspect the output in the default `+.dfx/local/canisters+` directory and `+.dfx/local/canisters/actor_hello/+` subdirectory.
++
+For example, you might use the `+tree+` command to review the files created:
++
+....
+tree ../../.dfx/local/canisters
+../../.dfx/local/canisters
+├── actor_hello
+│   ├── actor_hello.did
+│   ├── actor_hello.did.js
+│   ├── actor_hello.js
+│   └── actor_hello.wasm
+└── idl
+
+2 directories, 4 files
+....
 
 == Deploy the project
 

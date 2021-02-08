@@ -1,0 +1,41 @@
+= Environment variables
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+You can configure certain properties for your {sdk-short-name} execution environment using environment variables.
+
+This section lists the environment variables that are currently supported with examples of how to use them.
+
+== DFX_CONFIG_ROOT
+
+Use the `+DFX_CONFIG_ROOT+` environment variable to specify a different location for for storing the `+.cache+` and `+.config+` subdirectories for `+dfx+`.
+
+By default, the `+.cache+` and `+.config+` directories are located in the home directory for your development environment. 
+For example, on macOS the default location is in the `+/Users/<YOUR-USER-NAME>+` directory.
+Use the `+DFX_CONFIG_ROOT+` environment variable to specify a different location for these directories.
+
+....
+DFX_CONFIG_ROOT=~/ic-root
+....
+
+== DFX_TELEMETRY_DISABLED
+
+Use the `+DFX_TELEMETRY_DISABLED+` environment variable to opt-out of having data collected about `+dfx+` usage.
+
+By default, `+dfx+` is configured to collect anonymous—that is, no identifying information such as IP addresses or user information—data about `+dfx+` command activity and errors.
+Collecting anonymous data is enabled by default in an effort to improve the developer experience based on usage patterns and behavior.
+
+If you want to prevent the collection of data about `+dfx+` usage, however, you can explicitly opt-out by setting the `+DFX_TELEMETRY_DISABLED+` environment variable to one.
+
+....
+DFX_TELEMETRY_DISABLED=1
+....
+
+== DFX_VERSION
+
+Use the `+DFX_VERSION+` environment variable to identify a specific version of the {sdk-short-name} that you want to install.
+
+....
+DFX_VERSION=0.6.22 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+....

@@ -2,7 +2,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 
-The link:../quickstart/quickstart{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
+The link:../quickstart/quickstart-intro{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
 Next, we’ll explore writing a few simple programs to give you hands-on experience creating programs that run on the {IC}.
 
@@ -11,30 +11,30 @@ For additional examples of programs written in other languages, see the {company
 
 The following tutorials introduce the basics for writing programs that run on the {IC}:
 
-* link:tutorials/explore-templates{outfilesuffix}[Exploring the default project] takes a closer look at the work flow for creating projects by exploring the default files and folders that are added to your workspace when you create a new project.
+* link:tutorials/explore-templates{outfilesuffix}[Explore the default project] takes a closer look at the work flow for creating projects by exploring the default files and folders that are added to your workspace when you create a new project.
 
-* link:tutorials/define-an-actor{outfilesuffix}[Defining an actor] highlights how to replace the typical `+print+` function usually defined in a "Hello, World!" program by defining an actor (object) with a `+hello+` function.
+* link:tutorials/define-an-actor{outfilesuffix}[Query using an actor] highlights how to replace the typical `+print+` function usually defined in a "Hello, World!" program by defining an actor (object) with a `+hello+` function.
 
-* link:tutorials/hello-location{outfilesuffix}[Passing arguments in a terminal] introduces different ways you can pass arguments to a function using the command-line in a terminal shell.
+* link:tutorials/hello-location{outfilesuffix}[Pass text arguments] introduces different ways you can pass arguments to a function using the command-line in a terminal shell.
 
-* link:tutorials/counter-tutorial{outfilesuffix}[Incrementing a value to illustrate persistence] guides you through the process of writing a program that creates an actor with functions to increment and return the value of a counter.
+* link:tutorials/counter-tutorial{outfilesuffix}[Increment a natural number] guides you through the process of writing a program that creates an actor with functions to increment and return the value of a counter.
 
-* link:tutorials/calculator{outfilesuffix}[Exploring calculator functions] shows you how to write a simple calculator program for more practice working with {proglang} and to learn more about how you can customize your project environment.
+* link:tutorials/calculator{outfilesuffix}[Use integers in calculator functions] shows you how to write a simple calculator program for more practice working with {proglang} and to learn more about how you can customize your project environment.
 
-* link:tutorials/phonebook{outfilesuffix}[Importing base library functions] illustrates how to import and use a few basic standard library functions for working with key-value pairs in a list using {proglang}.
+* link:tutorials/phonebook{outfilesuffix}[Import library modules] illustrates how to import and use a few basic {proglang} base library functions for working with key-value pairs in a list.
 
-* link:tutorials/multiple-actors{outfilesuffix}[Using multiple actors] describes how to include multiple unrelated actors in a single project to illustrate how you can compile multiple canisters for the same project.
+* link:tutorials/multiple-actors{outfilesuffix}[Use multiple actors] describes how to include multiple unrelated actors in a single project to illustrate how you can compile multiple canisters for the same project.
 
-* link:tutorials/custom-frontend{outfilesuffix}[Customizing the front-end] illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed. 
+* link:tutorials/custom-frontend{outfilesuffix}[Customize the front-end] illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed. 
 If you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.
 
-* link:tutorials/my-contacts{outfilesuffix}[Adding a stylesheet] illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
+* link:tutorials/my-contacts{outfilesuffix}[Add a stylesheet] illustrates how to add a stylesheet when you use React to create a new front-end for your project. 
 If you already know how to add stylesheets to React, you can skip this tutorial.
 
-* link:tutorials/intercanister-calls{outfilesuffix}[Making simple inter-canister calls] illustrates how to make simple calls to functions defined in one canister from another canister in the same project.
+* link:tutorials/intercanister-calls{outfilesuffix}[Make inter-canister calls] illustrates how to make simple calls to functions defined in one canister from another canister in the same project.
 
-* link:tutorials/scalability-cancan{outfilesuffix}[Creating scalable apps] describes using multiple canisters to create applications that scale.
+* link:tutorials/scalability-cancan{outfilesuffix}[Create scalable apps] describes using multiple canisters to create applications that scale.
 
-* link:tutorials/access-control{outfilesuffix}[Adding and using user identities] describes how to create and switch between multiple user identities.
+* link:tutorials/access-control{outfilesuffix}[Add access control with identities] describes how to create and switch between multiple user identities.
 
 Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:https://github.com/dfinity/examples[examples] repository and link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].

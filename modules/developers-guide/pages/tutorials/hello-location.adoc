@@ -1,9 +1,6 @@
-= Passing arguments in a terminal
+= Pass text arguments
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - PASS ARGUMENTS
-:toclevels: 3
+//:!page-repl:
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -11,15 +8,15 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-This tutorial provides a simple variation on the default program that lets you pass a single string argument to a single actor, compile the code to create a canister, then retrieve the argument.
+This tutorial provides a simple variation on the default program that lets you pass a single text argument to a single actor, compile the code to create a canister, then retrieve the argument.
 
-This tutorial illustrates how to pass arguments on the command-line in a terminal using the Candid interface description language (IDL) and how to modify the program to allow it to accept more than one value for the string argument.
+This tutorial illustrates how to pass arguments on the command-line in a terminal using the Candid interface description language (IDL) and how to modify the program to allow it to accept more than one value for the text argument.
 
 == Before you begin
 
 Before you start this tutorial, verify the following:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/quickstart{outfilesuffix}#download-and-install[Download and install].
+* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
 * You have stopped any {IC} network processes running on the local
 computer.
 
@@ -31,7 +28,7 @@ To create a new project for this tutorial:
 
 [arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
-. Change to the folder you are using for your {IC} sample projects.
+. Change to the folder you are using for your {IC} projects, if you are using one.
 . Create a new project by running the following command:
 +
 [source,bash]
@@ -47,7 +44,7 @@ cd location_hello
 
 == Modify the default configuration
 
-In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
+In the link:explore-templates{outfilesuffix}[Explore the default project] tutorial, you saw that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
 You should always review the default settings in the file to verify the information accurately reflects the project settings you want to use.
 For this tutorial, you'll modify the default configuration to remove settings that aren't used.
 
@@ -63,7 +60,7 @@ Because this tutorial does not involve creating any front-end assets, you can re
 
 == Modify the default program
 
-In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
+In the link:explore-templates{outfilesuffix}[Explore the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
 
 To modify the default template source code:
 
@@ -72,7 +69,7 @@ To modify the default template source code:
 +
 For example:
 +
-[source,bash]
+[source.copy,motoko,no-repl]
 ----
 include::example$location_hello.mo[]
 ----
@@ -82,21 +79,19 @@ include::example$location_hello.mo[]
 
 Before you can build your project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
 
-As a best practice, this step requires you to have two terminal shells open, so that you can start and see network operations in one terminal and manage your project in another.
+Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
+For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
 
 To start the local network:
 
 [arabic]
-. Open a new terminal window or tab on your local computer and navigate to your project directory.
-+
-For example, you can do either of the following if running Terminal on macOS:
+. Open a new terminal window or tab on your local computer.
+. Navigate to the root directory for your project, if necessary.
 +
 --
-* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
-* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/location_hello+` in the new terminal if your `+location_hello+` project is in the `+ic-projects+` working folder.
+* You should now have **two terminals** open.
+* You should have the **project directory** as your **current working directory**.
 --
-+
-You should now have **two terminals** open with your **project directory** as your **current working directory**.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
@@ -104,7 +99,6 @@ You should now have **two terminals** open with your **project directory** as yo
 dfx start
 ----
 +
-Depending on your platform and local security settings, you might see a warning displayed.
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
 
@@ -125,7 +119,8 @@ dfx canister create --all
 The command displays the network-specific canister identifier for the canister defined in the `+dfx.json+` configuration file.
 +
 ....
-"location_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "location_hello"...
+"location_hello" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 ....
 
 == Build and deploy the program
@@ -150,16 +145,16 @@ dfx canister install location_hello
 The command displays output similar to the following:
 +
 ....
-Installing code for canister location_hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister location_hello, with canister_id rwlgt-iiaaa-aaaaa-aaaaa-cai
 ....
 
-== Pass a string argument
+== Pass a text argument
 
 You now have a program deployed as a *canister* on your local {IC} network and can test your program by using `+dfx canister call+` commands.
 
 To test the program you have deployed locally:
 
-. Call the `+location+` method in the program and pass your `+city+` argument of type `+string+` by running the following command:
+. Call the `+location+` method in the program and pass your `+city+` argument of type `+text+` by running the following command:
 +
 [source,bash]
 ----
@@ -191,7 +186,7 @@ The command displays output similar to the following:
 ("Hello, San Francisco and Paris!")
 ....
 +
-Because your program only accepts a single string argument, specifying multiple strings returns only the first argument or a `+mismatch+` error.
+Because your program only accepts a single text argument, specifying multiple strings returns only the first argument.
 +
 For example, if you try this command:
 +
@@ -200,11 +195,7 @@ For example, if you try this command:
 dfx canister call location_hello location '("San Francisco","Paris","Rome")'
 ----
 +
-Only the first argument—`+("Hello, San Francisco!")+`—is returned or you'll see an error similar to the following:
-+
-....
-Invalid data: Unable to serialize Candid values: length mismatch for types and values
-....
+Only the first argument—`+("Hello, San Francisco!")+`—is returned.
 
 == Revise the source code in your program
 
@@ -226,7 +217,7 @@ cp -r src/location_hello src/favorite_cities
 +
 For example:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$favorite_cities.mo[]
 ----
@@ -258,7 +249,8 @@ dfx canister create favorite_cities
 The command returns output similar to the following:
 +
 ....
-"favorite_cities" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+Creating canister "favorite_cities"...
+"favorite_cities" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 . Build the program by running the following command:
 +
@@ -282,7 +274,7 @@ dfx canister call favorite_cities location '(vec {"San Francisco";"Paris";"Rome"
 ----
 +
 The command uses the Candid interface description syntax `+(vec { val1; val2; val3; })+` to return a vector of values.
-For more information about the Candid interface description syntax, see link:../cli-reference{outfilesuffix}#idl-syntax[Interface description syntax for arguments].
+For more information about the Candid interface description language, see the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] language guide.
 +
 This command displays output similar to the following:
 +

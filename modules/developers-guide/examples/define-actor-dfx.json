@@ -10,14 +10,8 @@
       "packtool": ""
     }
   },
-  "dfx": "0.6.17",
+  "dfx": "0.6.22",
   "networks": {
-    "ic": {
-      "providers": [
-        "https://gw.dfinity.network"
-      ],
-      "type": "persistent"
-    },
     "local": {
       "bind": "127.0.0.1:8000",
       "type": "ephemeral"

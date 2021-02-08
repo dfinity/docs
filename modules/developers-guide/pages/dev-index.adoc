@@ -12,7 +12,7 @@ December 2019 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 Are you ready to write code that runs directly on the internet? 
-Dive in right away with the link:../quickstart/quickstart{outfilesuffix}[Quick start].
+Dive in right away with the link:../quickstart/quickstart-intro{outfilesuffix}[Quick start].
 
 The Alpha release of the DFINITY Canister SDK is available for download now. The contents of this release are built directly from the production source code repository and are ready for you to start exploring a new frontier—the next generation of the open internet.
 

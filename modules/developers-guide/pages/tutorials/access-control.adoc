@@ -465,3 +465,10 @@ To stop the local network:
 ----
 dfx stop
 ----
+
+== Want to learn more?
+
+If you are looking for more information about identity and authentication, check out the following related resources:
+
+* link:../cli-reference/dfx-identity{outfilesuffix}[dfx identity (command reference)]
+* link:../working-with-canisters{outfilesuffix}#set-owner[Set an identity to own a canister (how-to)]

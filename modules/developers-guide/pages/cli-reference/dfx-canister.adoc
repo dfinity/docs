@@ -101,7 +101,7 @@ You can use the following optional flags with the `+dfx canister call+` command.
 
 |`+--query+` |Enables you to send a query request to a deployed canister.
 For best performance and network efficiency, you should use this flag when you explicitly want to use the query method to retrieve information.
-For information about the difference between query and update calls, see link:introduction-key-concepts{outfilesuffix}#query-calls[Canisters include both program and state].
+For information about the difference between query and update calls, see link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 
 |`+--update+` |Enables you to send an update request to a deployed canister.
 By default, canister calls use the update method.

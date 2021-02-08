@@ -6,28 +6,13 @@
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 
-In general, all canisters consume resources in the form of CPU cycles for execution, bandwidth for routing messages, and memory for persisted data.
-Canisters maintain an account balance to pay for the cost of communication, computation, and storage their applications consume. 
-The cost of computation is referred to as *cycles*.
-
-Cycles reflects the real costs of operations including resources such physical hardware, rack space, energy,storage devices, and bandwidth. 
-In simple terms, a *unit of cycles* represents the cost of executing a single WebAssembly instruction. 
-
-* Programs must be able to pay for complete execution (all or nothing), but the cost associated with a unit of cycles will make efficient programs cost-effective.
-* By setting limits on how many cycles a canister can consume, the platform can prevent malicious code from draining resources
-
-The relative stability of operational costs makes it easier to predict the cycles required to process, for example, a million messages.
-
-NOTE: When you deploy canisters locally or to an {IC} test network, there’s no cost associated with program execution. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
-If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option.
-
 Within the Internet Computer ecosystem, Internet Computer Protocol tokens (ICP tokens) are the native currency that can be converted to **cycles** to pay for computation and resource consumption.
 
 As an example, imagine you have a house where propane is used for a water heater, kitchen stove, dryer, and space heater. As you use these appliances, you deplete the supply of gas you have on hand, so periodically you exchange currency to have your gas refilled so you can continue to use your appliances without interruption. This is similar to canisters in that each canister that must have an account with cycles available to pay for the communication, computation, and storage that the canister’s application consumes.
 
 Internet Computer Protocol token holders can exchange tokens when they need to replenish the cycles available in each canister account.
 
-### Cost of computation
+== Cost of computation
 
 - Cycles reflect the real costs of operations for applications hosted in the Internet Computer platform including resources such physical hardware, rack space, energy, storage devices, and bandwidth.
 - In simple terms, cycles represent the cost of executing each application's WebAssembly instructions.
@@ -37,7 +22,7 @@ Internet Computer Protocol token holders can exchange tokens when they need to r
 - Although Internet Computer Protocol tokens can be used to add cycles to canisters, cycles themselves are not currency and have no liquidity or as an asset.
 - Cycles cannot be converted back to value in the form of Internet Computer Protocol tokens, but can be transferred between canisters to enable canisters to pay for operations.
 
-### Token value and volatility
+== Token value and volatility
 
 - Tokens reflect the value of the network and can fluctuate. To prevent the token value from affecting the number of messages a canister can process, tokens are not used to pay for network resources directly.
 - Tokens can be exchanged between token holders or locked up in **neurons** to secure voting rights as part of the platform governance system.

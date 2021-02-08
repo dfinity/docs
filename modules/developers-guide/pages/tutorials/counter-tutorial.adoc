@@ -136,7 +136,7 @@ This keyword ensures that the value for the variable is unchanged when the progr
 +
 For more information about stable and flexible variables, see link:language-guide:upgrades{outfilesuffix}[Stable variables and upgrade methods] in the link:language-guide:motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
 +
-For more information about the differences between a query and an update, see link:../introduction-key-concepts{outfilesuffix}#query-calls[query calls] in link:../introduction-key-concepts{outfilesuffix}#canister-state[Canisters include both program and state].
+For more information about the differences between a query and an update, see link:../concepts/canisters-code{outfilesuffix}#query-calls[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the file to continue.
 
 == Start the local network

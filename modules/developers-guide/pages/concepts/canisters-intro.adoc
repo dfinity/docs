@@ -136,7 +136,7 @@ The relative stability of operational costs makes it easier to predict the cycle
 
 The cycles available for program execution are held in a **wallet canister**. For local deployment, wallet canisters are automatically created and issued cycles. To deploy your application on the {IC} network running on external nodes and subnets, however, you'll need to provide a principal and be issued a wallet canister identifier.
 
-NOTE: When you deploy canisters locally or to an {IC} test network, program execution consumes cycles but there are funds associated with those cycles. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
+NOTE: When you deploy canisters locally or to an {IC} test network, program execution consumes cycles but there are no funds associated with those cycles. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
 If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option. 
 
 == Want to learn more?

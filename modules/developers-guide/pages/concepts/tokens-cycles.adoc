@@ -21,7 +21,6 @@ The relative stability of operational costs makes it easier to predict the cycle
 NOTE: When you deploy canisters locally or to an {IC} test network, there’s no cost associated with program execution. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
 If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option.
 
-////
 Within the Internet Computer ecosystem, Internet Computer Protocol tokens (ICP tokens) are the native currency that can be converted to **cycles** to pay for computation and resource consumption.
 
 As an example, imagine you have a house where propane is used for a water heater, kitchen stove, dryer, and space heater. As you use these appliances, you deplete the supply of gas you have on hand, so periodically you exchange currency to have your gas refilled so you can continue to use your appliances without interruption. This is similar to canisters in that each canister that must have an account with cycles available to pay for the communication, computation, and storage that the canister’s application consumes.
@@ -51,8 +50,6 @@ With this model, the Internet Computer platform provides data center providers w
 If the Internet Computer network requires additional capacity, it can request bids from potential data center providers. If a bid is accepted, a data center provider might be contracted to provide a given number of servers with an acceptable level of service availability for a specific period of time. For example, a data center provider might be contracted to provide ten servers with 99% uptime for 30 days. Even if those nodes do not host any canisters and are only used as spare nodes, the data center provider receives compensation for availability as part of the network.
 
 The Internet Computer economic model places much of the power and responsibility of managing capacity on the governance system—the Network Nervous System. Specific details about compensation and service level requirements are outside the scope of this document.
-
-////
 
 == Want to learn more?
 

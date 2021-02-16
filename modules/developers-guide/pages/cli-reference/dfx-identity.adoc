@@ -133,6 +133,13 @@ If you want to display the canister identifier for the wallet canister associate
 dfx identity get-wallet
 ----
 
+To display the canister identifier for the wallet canister associated with your identity on a specific network, you might run a command similar to the following:
+
+[source,bash]
+----
+dfx identity --network=https://192.168.74.4 get-wallet
+----
+
 == dfx identity list
 
 Use the `+dfx identity list+` command to display the list of user identities available.
@@ -348,7 +355,7 @@ dfx identity rename test_admin devops
 
 == dfx identity set-wallet
 
-Use the `+dfx identity use+` command to specify the wallet canister identifier to use for your identity on a network.
+Use the `+dfx identity set-wallet+` command to specify the wallet canister identifier to use for your identity on a network.
 
 === Basic usage
 
@@ -372,7 +379,15 @@ This option is only useful if you are connecting to the {IC} running locally.
 
 === Example
 
+If you have access to more than one {IC} network or use more than one principal for your identity, you might have access to more than one wallet canister identifier. 
+You can use the `+dfx identity set-wallet+` command to specify the wallet canister identifier to use for a given identity on a given network.
 
+For example, you might store the wallet canister identifier in an environment variable, then invoke the `+dfx identity set-wallet+` command to use that wallet canister for additional operations by running the following:
+
+....
+export WALLET_CANISTER_ID=$(dfx identity get-wallet)
+dfx identity --network=https://192.168.74.4 set-wallet --canister-name ${WALLET_CANISTER_ID} 
+....
 
 == dfx identity use
 

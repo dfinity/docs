@@ -1,0 +1,16 @@
+= Design apps
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+
+
+
+== Single or multiple canister architecture
+
+== Segregating actors from types and utilities
+
+
+== Using query calls
+

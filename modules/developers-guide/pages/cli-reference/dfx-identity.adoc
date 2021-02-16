@@ -26,7 +26,9 @@ For reference information and examples that illustrate using `+dfx identity+` co
 |===
 |Command |Description
 
-|<<dfx identity get-principal,`+get-principal+`>> | Shows the textual representation of the Principal associated with the current identity.
+|<<dfx identity get-principal,`+get-principal+`>> | Shows the textual representation of the principal associated with the current identity.
+
+|<<dfx identity get-wallet,`+get-wallet+`>> | Shows the canister identifier for the wallet associated with your current identity principal on a network.
 
 |`+help+` |Displays this usage message or the help of the given subcommand(s).
 
@@ -37,6 +39,8 @@ For reference information and examples that illustrate using `+dfx identity+` co
 |<<dfx identity remove,`+remove+`>> |Removes an existing identity.
 
 |<<dfx identity rename,`+rename+`>> |Renames an existing identity.
+
+|<<dfx identity set-wallet,`+set-wallet+`>> | Sets the wallet canister identifier to use for your current identity principal on a network.
 
 |<<dfx identity use,`+use+`>> |Specifies the identity to use.
 
@@ -93,6 +97,41 @@ dfx identity get-principal
 ----
 
 In this example, the first command sets the user context to use the `+ic_admin+` identity. The second command then returns the principal associated with the `+ic_admin+` identity.
+
+== dfx identity get-wallet
+
+Use the `+dfx identity get-wallet+` command to display the canister identifier for the wallet associated with your current identity principal on a network.
+
+Note that you must be connected to the {IC} network or running the network locally to run this command. 
+In addition, you must be in a project directory to run the command.
+For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories to run the `+dfx identity get-wallet+` command.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx identity get-wallet [flag]
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx identity get-wallet+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+|`+-h+`, `+--help+` |Displays usage information.
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Example
+
+If you want to display the canister identifier for the wallet canister associated with your identity, you can run the following command:
+
+[source,bash]
+----
+dfx identity get-wallet
+----
 
 == dfx identity list
 
@@ -307,6 +346,34 @@ For example, if you want to rename a `+test_admin+` identity that you previously
 dfx identity rename test_admin devops
 ....
 
+== dfx identity set-wallet
+
+Use the `+dfx identity use+` command to specify the wallet canister identifier to use for your identity on a network.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx identity set-wallet [flag] [--canister-name canister-name] 
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx identity set-wallet+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+|`+force+` |Skips verification that the canister you specify is a valid wallet canister. 
+This option is only useful if you are connecting to the {IC} running locally.
+|`+-h+`, `+--help+` |Displays usage information.
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Example
+
+
+
 == dfx identity use
 
 Use the `+dfx identity use+` command to specify the user identity you want to active.
@@ -343,7 +410,6 @@ You must specify the following argument for the `+dfx identity use+` command.
 This argument is required.
 
 |===
-
 
 === Examples
 

@@ -1,4 +1,4 @@
-= Customizing projects
+= Manage projects
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer

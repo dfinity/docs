@@ -9,13 +9,12 @@ This section provides some high-level guidance for writing programs in different
 == Using Rust
 
 You can create Rust projects to run on the {IC} by using Cargo and compiling your program to use WebAssembly as the target output.
-The CanCan sample project illustrates one way of implementing a Rust-based canister—the `+BigMap+` library—using macros to write functions as query and update calls.
 
 This section provides a summary of the key steps involved in deploying a Rust program as a canister on the {IC}.
 You should note, however, that the steps described here only illustrate one approach. 
 Other implementation approaches are also possible. 
-////
-The Rust CDK provides some shortcuts to make it easier to write functions as query and update calls, but you can develop applications for the {IC} without using the Rust CDK.
+
+Note that the link:https://github.com/dfinity/cdk-rs[Rust canister development kit (Rust CDK)] for provides some shortcuts to make it easier to write functions as query and update calls and includes several link:https://github.com/dfinity/cdk-rs/tree/next/examples[examples] to get you started building Rust-based projects, but you can also develop applications for the {IC} without using the Rust CDK.
 ////
 
 === Create a project

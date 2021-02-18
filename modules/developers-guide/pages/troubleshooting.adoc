@@ -1,4 +1,4 @@
-= Troubleshooting and tips
+= Troubleshoot issues
 December 2019 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :linkedcss:

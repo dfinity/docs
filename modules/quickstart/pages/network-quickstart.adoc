@@ -186,21 +186,6 @@ Installing code for canister hello_assets, with canister_id ro5wz-6qaaa-aaaaa-qa
 Uploading assets to asset canister...
 Deployed canisters.
 ....
-////
-. Check that your wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
-+
-[source,bash]
-----
-dfx canister --network=ic call <WALLET-CANISTER-ID> cycle_balance
-----
-+
-The command returns the cycle balance for the wallet canister identifier you specified.
-For example:
-+
-....
-(99999994564407680)
-....
-////
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]

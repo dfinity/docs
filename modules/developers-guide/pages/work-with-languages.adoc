@@ -1,4 +1,4 @@
-= Working with different languages
+= Develop using different languages
 :cpp: C++
 :sdk-short-name: DFINITY Canister SDK
 

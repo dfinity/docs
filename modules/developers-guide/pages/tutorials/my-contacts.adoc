@@ -77,6 +77,12 @@ npm install --save style-loader css-loader
 ----
 +
 If the `+npm install+` command reports a vulnerability, you might also want to run the `+npm audit fix+` command to attempt to fix the vulnerability reported before continuing.
++
+NOTE: As an alternative to installing these modules, you can edit the default `+package.json+` file to add dependencies for your project.
++
+....
+include::example$add-stylesheet-package.json[]
+....
 
 == Modify the default configuration
 

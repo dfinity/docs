@@ -80,6 +80,12 @@ npm install --save react react-dom
 ----
 npm install --save typescript ts-loader
 ----
++
+NOTE: As an alternative to installing these modules, you can edit the default `+package.json+` file to add dependencies for your project.
++
+....
+include::example$custom-frontend-package.json[]
+....
 
 == Modify the default configuration
 

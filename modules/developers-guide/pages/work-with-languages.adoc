@@ -15,7 +15,6 @@ You should note, however, that the steps described here only illustrate one appr
 Other implementation approaches are also possible. 
 
 Note that the link:https://github.com/dfinity/cdk-rs[Rust canister development kit (Rust CDK)] for provides some shortcuts to make it easier to write functions as query and update calls and includes several link:https://github.com/dfinity/cdk-rs/tree/next/examples[examples] to get you started building Rust-based projects, but you can also develop applications for the {IC} without using the Rust CDK.
-////
 
 === Create a project
 

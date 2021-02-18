@@ -77,7 +77,7 @@ Let's take a look at a few key elements of this program:
 +
 In this program, however, the `+greet+` function uses a message caller to determine the permissions that should be applied and, based on the permissions associated with the caller, which greeting to display.
 * The program defines two custom types—one for `+Roles+` and one for `+Permissions+`.
-* The `+assign_roles+` function enables the message aller to assign a role to the principal associated with an identity.
+* The `+assign_roles+` function enables the message caller to assign a role to the principal associated with an identity.
 * The `+callerPrincipal+` function enables you to return the principal associated with an identity.
 * The `+my_role+` function enables you to return the role that is associated with an identity.
 --

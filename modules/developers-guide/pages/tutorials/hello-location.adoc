@@ -209,32 +209,11 @@ public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
 ....
 +
 For information about the functions that perform operations on arrays, see the description of the Array module in the {proglang} base library or the _{proglang} Programming Language Reference_.
-. Register a network-specific identifier for the new program by running the following command:
+. Register, build, and deploy the application by running the following command:
 +
 [source,bash]
 ----
-dfx canister create favorite_cities
-----
-+
-The command returns output similar to the following:
-+
-....
-Creating canister "favorite_cities"...
-"favorite_cities" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
-....
-. Build the program by running the following command:
-+
-[source,bash]
-----
-dfx build
-----
-+
-For this tutorial, you have already removed the front-end assets canister, so running `+dfx build+` only compiles the `+favorite_cities+` canister.
-. Deploy your `+favorite_cities+` program on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install favorite_cities
+dfx deploy
 ----
 . Call the `+location+` method in the program and pass your `+city+` argument using the Candid interface description syntax by running the following command:
 +

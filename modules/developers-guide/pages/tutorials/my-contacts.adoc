@@ -213,7 +213,7 @@ After you connect to the {IC} network running locally in your development enviro
 To deploy the application:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your first application by running the following command:
+. Register, build, and deploy your application by running the following command:
 +
 [source,bash]
 ----

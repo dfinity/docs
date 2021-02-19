@@ -1,9 +1,5 @@
 = Import library modules
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - BASE LIBRARY
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -114,9 +110,11 @@ The `+--clean+` option ensures the you can start the {IC} network and continue t
 
 After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
 
+NOTE: You can register, build, and deploy your application in a single step by running the link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy`] command. This tutorial demonstrates performing each of these steps independently to illustrate the difference between registering identifiers for local and network deployment and how to build a specific canister instead of all canisters in a project.
+
 To register canister identifiers for the local network:
 
-. Check that you are still in your project directory, if needed.
+. Check that you are still in the root directory for your project, if needed.
 . Register unique canister identifiers for the project by running the following command:
 +
 [source,bash]

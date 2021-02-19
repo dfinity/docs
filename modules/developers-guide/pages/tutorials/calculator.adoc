@@ -128,50 +128,21 @@ dfx start
 After you start the local network, the terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
-== Register canister identifiers
+== Register, build, and deploy the application
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique, network-specific *canister identifiers* for your project.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
 
-To register canister identifiers for the local network:
+To deploy the application locally:
 
-. Check that you are still in your project directory, if needed.
-. Register unique canister identifiers for the canisters in the project by running the following command:
+. Check that you are still in the root directory for your project, if needed.
+. Register, build, and deploy your application by running the following command:
 +
 [source,bash]
 ----
-dfx canister create --all
+dfx deploy
 ----
 +
-The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
-+
-....
-Creating canister "calc"...
-"calc" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
-Creating canister "calc_assets"...
-"calc_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
-....
-
-== Build and deploy the program
-
-You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local {IC} network.
-
-To build and deploy the program:
-
-. Check that you are still in your project directory by running the `+pwd+` command, if necessary.
-. Build the WebAssembly executable by running the following command:
-+
-[source,bash]
-----
-dfx build calc
-----
-+
-For this tutorial, you can build your project using the `+calc+` canister name because the project is a simple terminal-based applications that doesn't include any front-end assets.
-. Deploy your `+calc+` project on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install calc
-----
+The `+dfx deploy+` command output displays information about the operations it performs.
 
 == Verify calculator functions on the canister
 

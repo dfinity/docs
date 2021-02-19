@@ -55,6 +55,7 @@ dfx canister create --all
 +
 The command creates the `+.dfx/local+` directory and adds the `+canister_ids.json+` file to that directory for the project.
 
+[[local-id]]
 == Build a canister with a local identifier
 
 After you have written source code for your project, you need to compile it into a WebAssembly module before deploying it to the network as a canister.

@@ -18,7 +18,7 @@
 //xref:developer-guide:connect-network.adoc[Connect to a network]
 ** xref:developers-guide:customize-projects.adoc[Design apps]
 ** xref:developers-guide:customize-projects.adoc[Manage projects]
-** xref:developers-guide:work-with-languages.adoc[Develop using different backend languages]
+** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
 //*** xref:language-guide:at-a-glance.adoc[Motoko]
 //*** xref:rust-guide:basic-syntax-rules.adoc[Rust]
 //*** xref:developers-guide:basic-syntax-rules.adoc[C and C++]

@@ -16,6 +16,7 @@ Before you install the {sdk-short-name}, you need to know:
 * How to open and run commands in a terminal
 * How to check for and install packages and dependencies
 * How to create and navigate to new directories
+* How to view and update your PATH on the platform you use
 
 The steps in this section describe how to prepare a basic development environment.
 
@@ -111,5 +112,39 @@ mkdir ic-projects
 ----
 cd ic-projects
 ----
+
+[[check-path]]
+== View directories in your PATH
+
+The `+PATH+` environment variable is an important setting that your operating system uses to locate
+the set of directories where executable programs are located. 
+Because every operating system has its own set of directories where it expects to find programs, you need to know how to view and update the PATH environment variable so that you can verify that the {sdk-short-name} command-line executable—`+dfx+`—is in one of the directories listed.
+
+On macOS computers, the default location for the `+dfx+` executable is `+/usr/local/bin+` and this directory is typically included in the default set of paths. 
+Therefore, updating the `+PATH+` variable is usually not necessary for computers running macOS.
+If you are using a Linux distribution, however, you should know how to do the following:
+
+* Verify the location of the `+dfx+` executable.
+* View the set of directories in your current `+PATH+`.
+* Update the `+PATH+` environment variable, if necessary.
+
+On most operating systems, you can run a command similar to the following to view the set of directories in your current `+PATH+`:
+
+....
+export $PATH
+....
+
+To check the location of the `+dfx+` executable after you install the {sdk-short-name}, you might run a command similar to the following:
+
+....
+which dfx
+....
+
+If the `+dfx+` executable is not in one of the directories listed in your current `+$PATH+`, you need to move the executable or update the `+PATH+` setting.
+The specific steps for updating the `+PATH+` depend on your operating system, but, in many cases, you can run a command similar to the following and specifying the appropriate directory, such as `+~/bin+`:
+
+....
+export PATH=<path-to-directory-for-dfx>
+....
 
 Now you're ready to link:local-quickstart{outfilesuffix}#download-and-install[install] the {sdk-short-name} and get coding!

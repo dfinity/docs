@@ -1,4 +1,4 @@
-= Managing canisters
+= Manage canisters
 March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
@@ -120,6 +120,28 @@ If you were installing canisters on a remote network, you would include the `+--
 ----
 dfx canister install --all
 ----
+
+== Look up a canister identifier
+
+All canisters have unique, network-specific identifiers. 
+You often need to use these identifiers to interact with the canister.
+For example, if you want to access the front-end canister for an application or interact with a service using the Candid web interface, you must specify the appropriate canister identifier.
+
+Because the identifiers are network-specific, the files used to store the information are in different directories.
+For example, identifiers for a canister deployed locally are located in the project's `+.dfx/local/canister_ids.json+` file.
+
+You can look up the canister identifier for any specific canister by running the `+dfx canister id+` command.
+For example, to look up the the canister identifier for the `+lookup+` canister deployed on the local network, you could run the following command:
+
+....
+dfx canister id lookup
+....
+
+To look up the canister identifier for the same canister deployed on the network specified by the `+ic+` alias, you would run the following command:
+
+....
+dfx canister --network=ic id lookup
+....
 
 == Reinstall a canister
 

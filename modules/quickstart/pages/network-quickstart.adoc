@@ -140,7 +140,7 @@ For example, you should see output similar to the following:
 +
 ....
 {
-  "ic_api_version": "0.11.1"  "impl_version": "2020-10-14"
+  "ic_api_version": "0.14.0"  "impl_hash": "40d5e890ae5c3558fbb4281ec04a5c0d0c1c0104012a33dfc8ecb0445057f405"  "impl_version": "0.1.0"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 133, 168, 228, 168, 232, 127, 43, 51, 212, 173, 127, 167, 169, 84, 223, 125, 69, 157, 31, 105, 91, 34, 207, 123, 136, 227, 152, 187, 36, 246, 25, 58, 90, 24, 169, 86, 122, 201, 212, 11, 111, 43, 156, 193, 106, 11, 210, 217, 22, 13, 187, 148, 153, 152, 176, 171, 45, 130, 247, 231, 157, 251, 92, 190, 202, 13, 150, 116, 95, 187, 28, 157, 173, 170, 60, 156, 45, 127, 248, 25, 95, 9, 43, 102, 161, 46, 198, 237, 227, 77, 244, 79, 227, 134, 69, 161]
 }
 ....
 
@@ -168,41 +168,24 @@ dfx deploy --network=ic
 ----
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
++
 For example, this step registers two network-specific identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
 +
 ....
 Deploying all canisters.
 Creating canisters...
 Creating canister "hello"...
-"hello" canister created on network "ic" with canister id: "2lolz-fluaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"hello" canister created on network "ic" with canister id: "bj6e2-xqaaa-aaaab-aagja-cai"
 Creating canister "hello_assets"...
-"hello_assets" canister created on network "ic" with canister id: "hupnp-k3uaa-aaaaa-aaaaa-caaaa-aaaaa-aaaaa-q"
+"hello_assets" canister created on network "ic" with canister id: "ro5wz-6qaaa-aaaaa-qagsa-cai"
 Building canisters...
 Building frontend...
 Installing canisters...
-Installing code for canister hello, with canister_id 2lolz-fluaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-Installing code for canister hello_assets, with canister_id hupnp-k3uaa-aaaaa-aaaaa-caaaa-aaaaa-aaaaa-q
+Installing code for canister hello, with canister_id bj6e2-xqaaa-aaaab-aagja-cai
+Installing code for canister hello_assets, with canister_id ro5wz-6qaaa-aaaaa-qagsa-cai
+Uploading assets to asset canister...
 Deployed canisters.
 ....
-+
-
-NOTE: If you created a project with a different name, keep in mind that your canister names will match your project name instead of `+hello+` and `+hello_assets+`.
-
-////
-. Check that your wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
-+
-[source,bash]
-----
-dfx canister --network=ic call <WALLET-CANISTER-ID> cycle_balance
-----
-+
-The command returns the cycle balance for the wallet canister identifier you specified.
-For example:
-+
-....
-(99999994564407680)
-....
-////
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]
@@ -210,9 +193,16 @@ For example:
 dfx canister --network=ic call hello greet everyone
 ----
 +
-This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
+Let's take a closer look at this example:
 +
-Remember, however, that if you created a project with a different name, the canister name will match your project name and you'll need to modify the command line to match the name you used instead of `+hello+`.
+-- 
+
+* Using the `+--network=ic+` option indicates that the canister you want to call is deployed on the `+ic+` network. The `+ic+` network alias is an internally-reserved alias for accessing the {IC}.
+* Note that the `+--network=ic+` option must precede the operation subcommand, which, in this case, is the `+dfx canister call+` command.
+* The `+hello+` argument specifies the name of the canister you want to call.
+* The `+greet+` argument specifies the name of the function you want to call in the `+hello+` canister.
+* The text string `+everyone+` is the argument that you want to pass to the `+greet+` function.
+--
 . Verify the command displays the return value of the `+greet+` function.
 +
 For example:

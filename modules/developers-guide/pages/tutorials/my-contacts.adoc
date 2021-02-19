@@ -213,7 +213,7 @@ After you connect to the {IC} network running locally in your development enviro
 To deploy the application:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your first application by running the following command:
+. Register, build, and deploy your application by running the following command:
 +
 [source,bash]
 ----
@@ -221,21 +221,23 @@ dfx deploy
 ----
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
-For example, the command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
-....
-"contacts" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-"contacts_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-....
-+
-Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
+Keep in mind that because you are running the {IC} locally, the identifiers displayed when you run the `+dfx deploy+` command are only valid on the local network.
 +
 To deploy canisters on an external {IC} network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
-For example, if you are connecting to the URL specified by the network alias `+ic+` in the project `+dfx.json+` file, you would run a command similar the following:
+For example, to deploy on the {IC} using the reserve network alias `+ic+`, you would run a command similar the following:
 +
 [source,bash]
 ----
-dfx deploy --network ic
+dfx deploy --network=ic
+----
+. Copy the canister identifier for the `+contacts_assets+` canister to the clipboard or a notepad application.
++
+If you didn't make a note of the canister identifier, you can look it up by running the following command:
++
+[source,bash]
+----
+dfx canister id contacts_assets
 ----
 
 == View the front-end

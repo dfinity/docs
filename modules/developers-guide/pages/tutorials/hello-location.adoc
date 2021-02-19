@@ -102,51 +102,21 @@ dfx start
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
 
-== Register canister identifiers
+== Register, build, and deploy the application
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique, network-specific *canister identifiers* for your project.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
 
-To register canister identifiers for the local network:
+To deploy the application locally:
 
-. Check that you are still in your project directory, if needed.
-. Register unique canister identifiers for the canisters in the project by running the following command:
+. Check that you are still in the root directory for your project, if needed.
+. Register, build, and deploy your application by running the following command:
 +
 [source,bash]
 ----
-dfx canister create --all
+dfx deploy
 ----
 +
-The command displays the network-specific canister identifier for the canister defined in the `+dfx.json+` configuration file.
-+
-....
-Creating canister "location_hello"...
-"location_hello" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
-....
-
-== Build and deploy the program
-
-You now have a simple program that you can compile into an executable WebAssembly module, then deploy as a canister on your local {IC} network.
-
-To build and deploy the program executable:
-
-. Build the WebAssembly executable by running the following command:
-+
-[source,bash]
-----
-dfx build
-----
-. Deploy your `+location_hello+` project on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install location_hello
-----
-+
-The command displays output similar to the following:
-+
-....
-Installing code for canister location_hello, with canister_id rwlgt-iiaaa-aaaaa-aaaaa-cai
-....
+The `+dfx deploy+` command output displays information about the operations it performs.
 
 == Pass a text argument
 
@@ -239,32 +209,11 @@ public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
 ....
 +
 For information about the functions that perform operations on arrays, see the description of the Array module in the {proglang} base library or the _{proglang} Programming Language Reference_.
-. Register a network-specific identifier for the new program by running the following command:
+. Register, build, and deploy the application by running the following command:
 +
 [source,bash]
 ----
-dfx canister create favorite_cities
-----
-+
-The command returns output similar to the following:
-+
-....
-Creating canister "favorite_cities"...
-"favorite_cities" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
-....
-. Build the program by running the following command:
-+
-[source,bash]
-----
-dfx build
-----
-+
-For this tutorial, you have already removed the front-end assets canister, so running `+dfx build+` only compiles the `+favorite_cities+` canister.
-. Deploy your `+favorite_cities+` program on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install favorite_cities
+dfx deploy
 ----
 . Call the `+location+` method in the program and pass your `+city+` argument using the Candid interface description syntax by running the following command:
 +

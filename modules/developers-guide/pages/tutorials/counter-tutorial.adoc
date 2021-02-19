@@ -166,66 +166,21 @@ dfx start
 After you start the local network, the terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
-== Register canister identifiers
+== Register, build, and deploy the application
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique, network-specific *canister identifiers* for your project.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
 
-To register canister identifiers for the local network:
+To deploy the application locally:
 
-. Check that you are still in your project directory, if needed.
-. Register unique canister identifiers for the canisters in the project by running the following command:
+. Check that you are still in the root directory for your project, if needed.
+. Register, build, and deploy your application by running the following command:
 +
 [source,bash]
 ----
-dfx canister create --all
+dfx deploy
 ----
 +
-The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
-+
-....
-Creating canister "my_counter"...
-"my_counter" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
-Creating canister "my_counter_assets"...
-"my_counter_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
-....
-
-[[build-counter]]
-== Build and deploy the program
-
-Now that you have a main program with an actor that increments a value, a connection to the {IC} network, and network-specific canister identifiers, you are ready to compile the program into an executable WebAssembly module that can be deployed on your local network.
-
-To build and deploy the program:
-
-. Check that you are still in your project directory by running the `+pwd+` command, if necessary.
-. Build the WebAssembly executable by running the following command:
-+
-[source,bash]
-----
-dfx build
-----
-+
-The command displays output similar to the following:
-+
-....
-Building canisters...
-Building frontend...
-....
-+
-Because you are running the {IC} network locally, the WebAssembly modules created by the `+dfx build+` command for your program are stored in the `+.dfx/local/canisters+` directory.
-. Verify that the `+.dfx/local/canisters/my_counter+` directory contains the WebAssembly and interface description files by running the following command:
-+
-[source,bash]
-----
-ls -l .dfx/local/canisters/my_counter
-----
-. Deploy the canister you created by running a `+dfx canister install+` command and specifying the _canister_name_.
-+
-Because this tutorial doesn't yet include any front-end assets, you can deploy the back-end program—the program defined in the `+increment_counter.mo+` file—by running the following command:
-+
-[source,bash]
-----
-dfx canister install my_counter
-----
+The `+dfx deploy+` command output displays information about the operations it performs.
 
 == Invoke methods on the deployed canister
 

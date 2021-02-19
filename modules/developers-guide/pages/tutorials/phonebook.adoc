@@ -1,9 +1,5 @@
 = Import library modules
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - BASE LIBRARY
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -110,55 +106,23 @@ For example, if you forgot to issue a `+dfx stop+` when moving between projects,
 The `+--clean+` option ensures the you can start the {IC} network and continue to the next step without manually finding and terminating any running processes.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
-== Register canister identifiers
+== Register, build, and deploy the application
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
+After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.
 
-To register canister identifiers for the local network:
+To deploy the application locally:
 
-. Check that you are still in your project directory, if needed.
-. Register unique canister identifiers for the project by running the following command:
+. Check that you are still in the root directory for your project, if needed.
+. Register, build, and deploy your application by running the following command:
 +
 [source,bash]
 ----
-dfx canister create --all
-----
-+
-The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
-+
-....
-Creating canister "phonebook"...
-"phonebook" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
-Creating canister "phonebook_assets"...
-"phonebook_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
-....
-+
-Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
-To deploy canisters on a remote network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
-
-== Build and deploy the program
-
-Now that you have registered with the network, you are ready to compile your program into an executable WebAssembly module that you can then deploy on your local {IC} network.
-
-To build and deploy the program:
-
-. Check that you are still in your project directory by running the `+pwd+` command, if necessary.
-. Build the WebAssembly executable by running the following command:
-+
-[source,bash]
-----
-dfx build phonebook
+dfx deploy phonebook
 ----
 The `+dfx.json+` file provides default settings for creating an application front-end entry point and `+assets+` canister.
-For this tutorial, however, you can build your project using the `+phonebook+` canister name because the project is a terminal-based application that doesn't include any front-end assets.
+For this tutorial, however, you can deploy just the phonebook back-end canister using the `+dfx deploy phonebook+` command because the project is a terminal-based application that doesn't include any front-end assets.
 +
 Although this tutorial illustrates how to skip compiling a front-end canister, you can add a simple user interface to this application later by exploring the link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] project in the link:https://github.com/dfinity/examples[examples] repository.
-. Deploy your `+phonebook+` project on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install phonebook
-----
 
 == Add names and numbers using the insert function
 

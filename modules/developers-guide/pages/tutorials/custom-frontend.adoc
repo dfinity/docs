@@ -216,63 +216,29 @@ dfx start --background
 +
 After the local {IC} network completes its startup operations, you can continue to the next step.
 
-== Register canister identifiers
+== Register, build, and deploy the application
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique, network-specific *canister identifiers* for your project.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
 
-To register canister identifiers for the local network:
+To deploy the application locally:
 
-. Check that you are still in your project directory, if needed.
-. Register unique canister identifiers for the canisters in the project by running the following command:
+. Check that you are still in the root directory for your project, if needed.
+. Register, build, and deploy your application by running the following command:
 +
 [source,bash]
 ----
-dfx canister create --all
+dfx deploy
 ----
 +
-The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
-+
-....
-"custom_greeting" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-"custom_greeting_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-....
-
-== Build and deploy the program
-
-You are now ready to compile the program with the new front-end into a WebAssembly module for your project.
-
-To build and deploy the program with the new front-end:
-
-[arabic]
-. Open a terminal shell on your local computer, if you don’t already have one open.
-. Navigate to the root of your `+custom_greeting+` project folder.
-. Build the executable canister by running the following command:
-+
-[source,bash]
-----
-dfx build
-----
-+
-The command displays output indicating that the build is successful.
-+
-....
-Building canisters...
-Building frontend...
-....
-. Deploy your `+custom_greeting+` project on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install --all
-----
-+
-The command output displays output similar to the following:
-+
-....
-Installing code for canister custom_greeting, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-Installing code for canister custom_greeting_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-....
+The `+dfx deploy+` command output displays information about the operations it performs.
 . Copy the canister identifier for the `+custom_greeting_assets+` canister to the clipboard or a notepad application.
++
+If you didn't make a note of the canister identifier, you can look it up by running the following command:
++
+[source,bash]
+----
+dfx canister id custom_greeting_assets
+----
 
 == View the new front-end
 

@@ -12,6 +12,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 If you have experimented with using the {sdk-long-name} by following the tutorials in the link:tutorials-intro{outfilesuffix}[Tutorials] section or by cloning examples from the link:https://github.com/dfinity/examples[examples] repository, you are already familiar with how to build and deploy programs as **canisters**.
 This section provides additional information about the canister lifecycle and how to manage canisters.
 
+[[create-canister]]
 == Register a canister identifier
 
 Depending on your preferred development workflow, you can register a unique canister identifier before or after you have a program ready to compile.
@@ -99,6 +100,7 @@ dfx build
 == Generate interface bindings for a canister
 ////
 
+[[deploy-canister]]
 == Deploy canisters on the {IC} network
 
 After you have compiled a program, you can install the compiled code on the {IC} network running locally in your development or on a remote network provider.

@@ -18,7 +18,7 @@
 //xref:developer-guide:connect-network.adoc[Connect to a network]
 ** xref:developers-guide:customize-projects.adoc[Design apps]
 ** xref:developers-guide:customize-projects.adoc[Manage projects]
-** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
+** xref:developers-guide:work-with-languages.adoc[Develop using different backend languages]
 //*** xref:language-guide:at-a-glance.adoc[Motoko]
 //*** xref:rust-guide:basic-syntax-rules.adoc[Rust]
 //*** xref:developers-guide:basic-syntax-rules.adoc[C and C++]
@@ -46,6 +46,7 @@
 ** xref:candid-guide:candid-types.adoc[Candid supported types]
 ** xref:developers-guide:lang-service-ide.adoc[Language server protocol client]
 ** xref:developers-guide:glossary.adoc[Glossary]
+//** xref:ic-spec:index.adoc[Interface specification]
 
 .xref:languages:languages-overview.adoc[Languages]
 * xref:candid-guide:candid-intro.adoc[Candid]
@@ -110,3 +111,8 @@
 ** xref:release-notes:0.6.21-rn.adoc[0.6.21]
 ** xref:release-notes:0.6.20-rn.adoc[0.6.20]
 ** link:https://github.com/dfinity/sdk/releases[Release history]
+
+.xref:ic-spec:index.adoc[Interface specification]
+** xref:ic-spec:about-the-spec.adoc[About the specification]
+//** xref:ic-spec:intro-canisters.adoc[Introduction to key interfaces]
+//** xref:ic-spec:index.adoc[{IC} external interfaces]

@@ -1,6 +1,6 @@
 # Write code for the Internet Computer
 
-You can get started right away by downloading the DFINITY Canister Software Development Kit (SDK) and cloning an existing sample project or by exploring the documentation. Check out the links below to begin building open services and software to run on the Internet Computer.
+You can get started right away by downloading the DFINITY Canister Software Development Kit (SDK) and cloning an existing sample project or by exploring the documentation. Check out the links below to begin building open services and software to run on the Internet Computer:
 
 - [*Get the SDK*](https://sdk.dfinity.org/docs/download.html) Download the SDK for the Internet Computer.
 - [*Quick Start*](https://sdk.dfinity.org/docs/quickstart/quickstart-intro.html) Deploy your first app on the Internet Computer.

@@ -1,11 +1,6 @@
 = Add a stylesheet
-March 2020 (Alpha)
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - STYLESHEET
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -41,7 +36,7 @@ To create a new project directory for your custom front-end application:
 
 [arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
-. Change to the folder you are using for your {IC} sample projects.
+. Change to the folder you are using for your {IC} projects, if you are using one.
 . Verify that you have `+node.js+` installed locally, if necessary.
 . Create a new project by running the following command:
 +
@@ -82,6 +77,12 @@ npm install --save style-loader css-loader
 ----
 +
 If the `+npm install+` command reports a vulnerability, you might also want to run the `+npm audit fix+` command to attempt to fix the vulnerability reported before continuing.
++
+NOTE: As an alternative to installing these modules, you can edit the default `+package.json+` file to add dependencies for your project.
++
+....
+include::example$add-stylesheet-package.json[]
+....
 
 == Modify the default configuration
 
@@ -115,7 +116,7 @@ mv main.mo contacts.mo
 . Open the `+contacts.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$mycontacts/contacts.mo[]
 ----
@@ -200,26 +201,16 @@ Before you can build the `+contacts+` project, you need to connect to the {IC} n
 To start the network locally:
 
 [arabic]
-. Open a new terminal window or tab on your local computer and navigate to your project directory.
-+
-For example, you can do either of the following if running Terminal on macOS:
-+
---
-* Click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
-
-* Click *Shell* and select *New Window*, then run `+cd ~/ic-projects/contacts+` in the new terminal if your `+contacts+` project is in the `+ic-projects+` working folder.
---
-+
-You should now have two terminals open with your project directory as your current working directory.
+. Open a new terminal window or tab on your local computer.
+. Navigate to the root directory for your project, if necessary.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]
 ----
-dfx start
+dfx start --background
 ----
 +
-After you start the local network, the terminal displays messages about network operations.
-. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
+After the local {IC} network completes its startup operations, you can continue to the next step.
 
 == Register, build, and deploy the application
 
@@ -228,7 +219,7 @@ After you connect to the {IC} network running locally in your development enviro
 To deploy the application:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your first application by running the following command:
+. Register, build, and deploy your application by running the following command:
 +
 [source,bash]
 ----
@@ -236,21 +227,23 @@ dfx deploy
 ----
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
-For example, the command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
-....
-"contacts" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-"contacts_assets" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
-....
-+
-Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
+Keep in mind that because you are running the {IC} locally, the identifiers displayed when you run the `+dfx deploy+` command are only valid on the local network.
 +
 To deploy canisters on an external {IC} network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
-For example, if you are connecting to the URL specified by the network alias `+ic+` in the project `+dfx.json+` file, you would run a command similar the following:
+For example, to deploy on the {IC} using the reserve network alias `+ic+`, you would run a command similar the following:
 +
 [source,bash]
 ----
-dfx deploy --network ic
+dfx deploy --network=ic
+----
+. Copy the canister identifier for the `+contacts_assets+` canister to the clipboard or a notepad application.
++
+If you didn't make a note of the canister identifier, you can look it up by running the following command:
++
+[source,bash]
+----
+dfx canister id contacts_assets
 ----
 
 == View the front-end

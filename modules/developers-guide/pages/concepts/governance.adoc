@@ -23,8 +23,11 @@ When a person or organization has some number of ICP tokens locked up in a neuro
 
 The Internet Computer tracks the number of ICP tokens that are locked up in neurons and provides the logic necessary for voting in conjunction with managing ICP token account balances.
 
+////
 == Want to learn more?
 
-If you are looking for more information about staking, voting, and autonomous governamce, check out the following related resources:
+If you are looking for more information about staking, voting, and autonomous governance, check out the following related resources:
 
 * link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
+
+////

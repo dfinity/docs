@@ -38,11 +38,11 @@ To download and install a specific version from a terminal shell:
 
 . Set the `DFX_VERSION` environment variable to the version of the {sdk-short-name} package you want to install as a prefix to `+curl+` command.
 +
-For example, to install version 0.6.21, you would run the following command:
+For example, to install version 0.6.23, you would run the following command:
 +
 [source,bash]
 ----
-DFX_VERSION=0.6.21 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.6.23 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 // end::install[]   
 
@@ -50,7 +50,7 @@ DFX_VERSION=0.6.21 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 For information about the next steps to take, see link:developers-guide/tutorials-intro{outfilesuffix}[Tutorials] in the link:developers-guide/sdk-guide{outfilesuffix}[_SDK Developer Tools_].
 
-To learn more about writing programs for the {IC} before you start experimenting with code, see link:developers-guide/introduction-key-concepts{outfilesuffix}[Introduction and key concepts] in the link:developers-guide/sdk-guide{outfilesuffix}[_SDK Developer Tools_].
+To learn more about writing programs for the {IC} before you start experimenting with code, see link:developers-guide/concepts/concepts-intro{outfilesuffix}[Concepts].
 
 For information about writing programs for the {IC} using {proglang}, see the link:language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
 

@@ -1,10 +1,6 @@
-= Managing canisters
+= Manage canisters
 March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: COMMAND REFERENCE
-:toclevels: 1
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -16,6 +12,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 If you have experimented with using the {sdk-long-name} by following the tutorials in the link:tutorials-intro{outfilesuffix}[Tutorials] section or by cloning examples from the link:https://github.com/dfinity/examples[examples] repository, you are already familiar with how to build and deploy programs as **canisters**.
 This section provides additional information about the canister lifecycle and how to manage canisters.
 
+[[create-canister]]
 == Register a canister identifier
 
 Depending on your preferred development workflow, you can register a unique canister identifier before or after you have a program ready to compile.
@@ -58,6 +55,7 @@ dfx canister create --all
 +
 The command creates the `+.dfx/local+` directory and adds the `+canister_ids.json+` file to that directory for the project.
 
+[[local-id]]
 == Build a canister with a local identifier
 
 After you have written source code for your project, you need to compile it into a WebAssembly module before deploying it to the network as a canister.
@@ -103,6 +101,7 @@ dfx build
 == Generate interface bindings for a canister
 ////
 
+[[deploy-canister]]
 == Deploy canisters on the {IC} network
 
 After you have compiled a program, you can install the compiled code on the {IC} network running locally in your development or on a remote network provider.
@@ -125,6 +124,30 @@ If you were installing canisters on a remote network, you would include the `+--
 dfx canister install --all
 ----
 
+[[lookup-id]]
+== Look up a canister identifier
+
+All canisters have unique, network-specific identifiers. 
+You often need to use these identifiers to interact with the canister.
+For example, if you want to access the front-end canister for an application or interact with a service using the Candid web interface, you must specify the appropriate canister identifier.
+
+Because the identifiers are network-specific, the files used to store the information are in different directories.
+For example, identifiers for a canister deployed locally are located in the project's `+.dfx/local/canister_ids.json+` file.
+
+You can look up the canister identifier for any specific canister by running the `+dfx canister id+` command.
+For example, to look up the the canister identifier for the `+lookup+` canister deployed on the local network, you could run the following command:
+
+....
+dfx canister id lookup
+....
+
+To look up the canister identifier for the same canister deployed on the network specified by the `+ic+` alias, you would run the following command:
+
+....
+dfx canister --network=ic id lookup
+....
+
+[[reinstall-canister]]
 == Reinstall a canister
 
 During the development cycle, you might want to install, then replace your program as you debug and improve it.
@@ -150,6 +173,7 @@ dfx canister install --all --mode reinstall
 
 Note that you can use the `+reinstall+` mode to replace any canister, regardless of whether the canister has code or state associated with it.
 
+[[set-owner]]
 == Set an identity to own a canister
 
 In most cases, a `+default+` user identity is created for you automatically the first time you run the `+dfx canister create+` command.
@@ -208,6 +232,7 @@ These commands run using the `+registered_owner+` identity, making that user the
 dfx canister call pubs greet '("Sam")'
 ----
 
+[[running-state]]
 == Managing the running state of a canister
 
 After you deploy a canister on the {IC}, it can begin receiving and processing requests from users and from other canisters. 
@@ -218,6 +243,7 @@ For example, you might want to stop a canister before upgrading it.
 Stopping a canister helps to ensure proper handling of any messages that are in progress and need to either run to completion or be rolled back. 
 You might also want to stop a canister to clear its message queue cleanly as a prerequisite to deleting the canister.
 
+// tag::check-status[]
 You can check the current status of all canisters or a specified canister by running the `+dfx canister status+` command.
 For example, to see the status for all canisters running on the local {IC} network, you would run the following command:
 
@@ -232,7 +258,9 @@ This command returns output similar to the following if canisters are currently 
 Canister status_check's status is Running.
 Canister status_check_assets's status is Running.
 ....
+// end::check-status[]   
 
+// tag::stop-status[]
 You can stop canisters that are currently running by running the `+dfx canister stop+` command.
 
 [source,bash]
@@ -248,7 +276,9 @@ Stopping code for canister status_check_assets, with canister_id cxeji-wacaa-aaa
 ....
 
 If you were to rerun the `+dfx canister status+` command, you might see a status of `+Stopped+` indicating that there were no pending messages that needed to processed or a status of `+Stopping+` indicating that there were messages in-flight that needed to be addressed.
+// end::stop-status[]
 
+// tag::restart-status[]
 To restart a canister-for example, after a successful canister upgrade—you can run the `+dfx canister start+` command.
 For example, to restart all of the canisters running on the local {IC} network, you would run the following command:
 
@@ -263,6 +293,7 @@ This command displays output similar to the following:
 Starting code for canister status_check, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 Starting code for canister status_check_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ....
+// tag::restart-status[]
 
 [[upgrade-canister]]
 == Upgrade a canister
@@ -296,6 +327,7 @@ For more information about declaring stable variables, see the _{proglang} Progr
 dfx canister install --all --mode upgrade
 ----
 
+[[delete-canister]]
 == Delete a canister
 
 If you want to permanently delete a specific canister or all canisters for a specific project on a given {IC} network, you can do so by running the `+dfx canister delete+` command.

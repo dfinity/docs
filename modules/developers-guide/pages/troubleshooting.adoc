@@ -1,15 +1,10 @@
-= Troubleshooting and tips
+= Troubleshoot issues
 December 2019 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:linkedcss:
-:toc:
-:toc: right
-:toc-title: TROUBLESHOOTING
 :toclevels: 1
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)

@@ -17,6 +17,9 @@ To keep the instructions simple and focused on the task at hand, the _Quick star
 
 * In the link:network-quickstart{outfilesuffix}[Network deployment] scenario, you create the sample application locally but _connect to the {IC} running remotely_ on computers in an external data center.
 
+If you need some help setting up your development environment—for example, if you aren’t sure how to open a new terminal, install packages, or create folders and navigate between directories—you might want to start with the link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
+
+[[default-app]]
 == Default application
 
 Both scenarios build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.

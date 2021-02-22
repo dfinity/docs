@@ -6,24 +6,43 @@
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 
-* A *network* that runs the protocol to provide computing capacity—for example, the hardware, CPU, and memory required to run programs—through *independent data centers*.
-* A *globally-accessible and scalable platform* for running software applications.
-
 The {IC} is not physical hardware that exists in any physical location. 
-Instead, the {IC} combines computing resources provided by independent data centers around the world to give users and organizations secure access to applications and transaction processing services. 
+Instead, the {IC} combines computing resources provided by independently-operated data centers around the world. 
 
 Unlike a public or private cloud, the {IC} is not owned and operated by a single private company. 
-Instead, the {IC} is a public utility with updates and operations that are managed through a decentralized governance system defined in the protocol.
+Instead, the {IC} is a public utility with updates and operations that are managed through an algorithmic, decentralized governance system defined in the protocol.
 Its architecture enables multiple computers to operate like one, very powerful, virtual machine.
 
 The computers that make up the virtual machine are organized into sub-networks of data centers around the globe. 
 The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
 Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.
 
-////
+== Subnets and data centers
+
+To provide a truly decentralized network that can withstand potential service disruptions, the physical nodes that make up any given subnet are distributed across data centers in diverse locations.
+The nodes themselves might be owned or provided by different parties in partnership or unaffiliated with the data center location where they operate.
+
+The following diagram provides a simplified view of a subnet with nodes in four data centers.
+
+image:data-center-simplified.svg[]
+
+In this simplified scenario:
+
+* There are four geographically-independent data centers.
+* Each data center has hardware supplied by multiple node providers.
+* Any single node provider might have equipment in multiple data centers.
+
+Although this example represents one subnet with nodes in multiple data centers, any of the nodes could be moved out of this subnet to form a new subnet, if needed. 
+Changes to the network topology are managed through the {IC} governance system called the **Network Nervous System** (NNS). 
+
+== Node providers and data center operators
+
+In most cases, node providers—or the data center operators they partner with—are responsible for monitoring and maintaining the compute capacity of the equipment on which the {IC} runs.
+For example, node providers or data center operators might need to repair or replace equipment if there's a hardware failure or if a system under-performs.
+Network operations and upgrades, however, are monitored and managed through the decentralized governance system, the Network Nervous System (NNS). 
+
 == Want to learn more?
 
-If you are looking for more information about data center partners and node providers, check out the following related resources:
+If you are looking for more information about data center operations and node providers, check out the following related resources:
 
-* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
-////
+* link:https://internetcomputer.zendesk.com/hc/en-us/categories/360005114372-Node-Provider[Internet Computer Help Center for Node Providers (FAQ and articles)]

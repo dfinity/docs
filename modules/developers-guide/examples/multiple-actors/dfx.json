@@ -1,6 +1,6 @@
 {
   "canisters": {
-      "assistant": {
+    "assistant": {
       "main": "src/assistant/main.mo",
       "type": "motoko"
     },
@@ -18,17 +18,11 @@
       "packtool": ""
     }
   },
-  "dfx": "0.6.21",
+  "dfx": "0.6.23",
   "networks": {
     "local": {
       "bind": "127.0.0.1:8000",
       "type": "ephemeral"
-    },
-    "ic": {
-      "providers": [
-        "https://gw.dfinity.network"
-      ],
-      "type": "persistent"
     }
   },
   "version": 1

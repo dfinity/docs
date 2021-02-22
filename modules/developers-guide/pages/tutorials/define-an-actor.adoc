@@ -1,9 +1,5 @@
 = Query using an actor
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - HELLO, WORLD
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -30,7 +26,7 @@ To create a new project for this tutorial:
 [arabic]
 . Open a terminal shell on your local computer, if you don’t already
 have one open.
-. Change to the folder you are using for your {IC} sample projects.
+. Change to the folder you are using for your {IC} projects, if you are using one.
 . Create a new project by running the following command:
 +
 [source,bash]
@@ -90,7 +86,7 @@ The next step is to write a program that prints a statement like the traditional
 To compile the program for the {IC}, however, your program must include an `+actor+` object with a `+public+` function.
 . Copy and paste the following sample code into the `+main.mo+` file:
 +
-[source,motoko]
+[source.copy,motoko,no-repl]
 ----
 include::example$actor_hello.mo[]
 ----
@@ -102,7 +98,7 @@ Let's take a closer look at this simple program:
 * The program uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister or perform any operations that would update the data you are accessing.
 --
 +
-For more information about using a query call, see link:../introduction-key-concepts{outfilesuffix}#query-calls[query calls] in link:../introduction-key-concepts{outfilesuffix}#canister-state[Canisters include both program and state].
+For more information about using a query call, see link:../concepts/canisters-code{outfilesuffix}#query-update[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the `+main.mo+` file.
 
 == Build the program with a local identifier

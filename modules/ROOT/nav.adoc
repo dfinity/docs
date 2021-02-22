@@ -8,7 +8,7 @@
 ** xref:developers-guide:concepts/what-is-IC.adoc[What is the {IC}]
 ** xref:developers-guide:concepts/nodes-subnets.adoc[Nodes and sub-networks]
 ** xref:developers-guide:concepts/data-centers.adoc[Decentralized data centers]
-** xref:developers-guide:concepts/canisters-intro.adoc[Canisters and code]
+** xref:developers-guide:concepts/canisters-code.adoc[Canisters and code]
 ** xref:developers-guide:concepts/tokens-cycles.adoc[Tokens and cycles]
 ** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
 //** xref:developers-guide:concepts/icp-replica.adoc[Core components of the Internet Computer Protocol]
@@ -18,7 +18,7 @@
 //xref:developer-guide:connect-network.adoc[Connect to a network]
 ** xref:developers-guide:customize-projects.adoc[Design apps]
 ** xref:developers-guide:customize-projects.adoc[Manage projects]
-** xref:developers-guide:work-with-languages.adoc[Develop using different backend languages]
+** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
 //*** xref:language-guide:at-a-glance.adoc[Motoko]
 //*** xref:rust-guide:basic-syntax-rules.adoc[Rust]
 //*** xref:developers-guide:basic-syntax-rules.adoc[C and C++]
@@ -77,7 +77,6 @@
 ** xref:language-guide:compiler-ref.adoc[Compiler reference]
 ** xref:language-guide:motoko-grammar.adoc[Motoko grammar]
 ** xref:language-guide:style.adoc[Motoko style guidelines]
-** xref:base-libraries:stdlib-intro.adoc[Motoko base modules]
 
 * xref:rust-guide:rust-intro.adoc[Rust]
 ** xref:rust-guide:rust-quickstart.adoc[Hello, World! Quick Start]
@@ -90,6 +89,7 @@
 
 .Integration
 ** xref:integration:ledger-quick-start.adoc[Integrating with the Ledger]
+** xref:integration:nns-quick-start.adoc[Integrating with NNS]
 
 .xref:operators-guide:ops-guide.adoc[Operators]
 ** xref:operators-guide:ops-guide.adoc[Concepts]
@@ -105,6 +105,8 @@
 //** link:https://github.com/dfinity/cancan[CanCan]//
 
 .xref:release-notes:sdk-release-notes.adoc[Release notes]
+** xref:release-notes:0.6.23-rn.adoc[0.6.23]
+** xref:release-notes:0.6.22-rn.adoc[0.6.22]
 ** xref:release-notes:0.6.21-rn.adoc[0.6.21]
 ** xref:release-notes:0.6.20-rn.adoc[0.6.20]
 ** link:https://github.com/dfinity/sdk/releases[Release history]

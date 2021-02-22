@@ -1,0 +1,28 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+:release: 0.6.23
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The {release} release consists of changes to support new features and enhancements that are not yet complete.
+
+== New features and capabilities
+
+The most significant new feature enables you to use a locally-installed `+@dfinity/bootstrap+` server.
+
+For information about updates to Candid, see the link:https://github.com/dfinity/candid/blob/master/Changelog.md[Candid changelog].
+
+////
+== Issues fixed in this release
+
+This section covers any reported issues that have been fixed in this release.
+
+== Known issues and limitations
+
+This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+////

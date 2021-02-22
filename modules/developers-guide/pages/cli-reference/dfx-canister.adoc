@@ -101,7 +101,7 @@ You can use the following optional flags with the `+dfx canister call+` command.
 
 |`+--query+` |Enables you to send a query request to a deployed canister.
 For best performance and network efficiency, you should use this flag when you explicitly want to use the query method to retrieve information.
-For information about the difference between query and update calls, see link:introduction-key-concepts{outfilesuffix}#query-calls[Canisters include both program and state].
+For information about the difference between query and update calls, see link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 
 |`+--update+` |Enables you to send an update request to a deployed canister.
 By default, canister calls use the update method.
@@ -140,7 +140,7 @@ The canister method is a required argument.
 Depending on your program logic, the argument can be a required or optional argument.
 You can specify a data format type using the `+--type+` option if you pass an argument to the canister.
 By default, you can specify arguments using the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) syntax for data values. 
-For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Pass arguments in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types].
+For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Interact with a service in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types].
 You can use `+raw+` as the argument type if you want to pass raw bytes to a canister.
 |===
 
@@ -406,7 +406,7 @@ You can use the following options with the `+dfx canister install+` command.
 
 |`+--argument-type <argument-type>+` |Specifies the data format for the argument when you install using the `+--argument+` option. The valid values are `+idl+` and `+raw+`.
 By default, you can specify arguments using the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) syntax for data values.
-For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Pass arguments in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types]. 
+For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Interact with a service in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types]. 
 You can use `+raw+` as the argument type if you want to pass raw bytes to a canister.
 
 |`+-c+`, `+--compute-allocation <compute-allocation>+` |Defines a compute allocation—essentially the equivalent of setting a CPU allocation—for  canister execution.

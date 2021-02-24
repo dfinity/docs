@@ -1,0 +1,110 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+:release: 0.6.24
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
+
+== New features and capabilities
+
+The most significant new features and capabilities include updates in the following functional areas:
+
+* <<DFX,DFX>>
+* <<Candid,Candid>>
+* <<Motoko,Motoko>>
+
+=== DFX
+
+* A new `+deploy-wallet+` subcommand enables you to specify the canister identifier for your cycles wallet WebAssembly module (WASM).
++
+For example, to deploy a cycles wallet for local development, you can run a command similar to the following:
+....
+dfx identity deploy-wallet <canister-id>
+....
++
+Keep in mind that the wallet canister identifier is specific to an active identity—for example, your `+default+` identity—on a specific network.
+
+* A new command-line option enables you to specify the number of initial cycles to transfer to a newly-created canister.
++
+The `+dfx canister create+` and `+dfx deploy+` commands now support a new `+--with-cycles <with-cycles>+` option.
+This option allows you to specify the initial cycle balance of a canister created by your wallet.
++
+You can use this option when running the {IC} network locally or connected to the current `+ic+` network (Sodium) for testing purposes. However, because wallets and cycle balances are not currently used for canisters you create while connected to the current `+ic+` network (Sodium), the `+--with-cycles <with-cycles>+` option does not affect any canister operations.
++
+For example, you might run the following `+dfx canister create+` command to initialize `+8000000000+` cycles for all of the canisters in a project:
++
+[source, bash]
+----
+dfx canister create --with-cycles 8000000000 --all
+----
++
+If using `+dfx deploy+`, you might run the following command to initialize `+8000000000+` cycles for the `+backend+` canister in a project:
++
+[source, bash]
+----
+dfx deploy --with-cycles 8000000000 backend
+----
++
+
+NOTE: You must have a cycles wallet canister with a cycles balance on the network where you want to create or deploy additional canisters.
+
+* You can now use the new `+dfx toolchain+` command to manage the version of the `+dfx+` command-line interface you are using for your projects.
++
+The dfx toolchain command enables you to install, uninstall, and set the default version of `dfx` that you want to use. 
+You can specify the version by the complete version number, the major and minor version number, or a tag name.
+For example:
+
+....
+dfx toolchain install 0.6.24 # complete version
+dfx toolchain install 0.6    # major minor version
+dfx toolchain install latest # tag name
+....
+
+=== Candid
+
+* New link:../candid-guide/candid-intro{outfilesuffix}[Candid documentation] for developers provides type mapping information for Rust and JavaScript.
+
+* Candid now supports additional native Rust types and Typescript.
+
+* For additional informatin, see the link:https://github.com/dfinity/candid/blob/master/Changelog.md[Candid changelog].
+
+=== Motoko
+
+* The Motoko compiler (`+moc+`) now accepts the `+-Werror+` flag to turn warnings into errors.
+
+* The language server now returns documentation comments alongside
+  completions and hover notifications.
+
+* Motoko supports wrapping arithmetic and bit-wise operations on `NatN` and `IntN`.
++
+The conventional arithmetic operators on `NatN` and `IntN` trap on overflow.
+If wrap-around semantics is desired, the operators `+%`, `-%`, `*%` and `**%` can be used. The corresponding assignment operators (`+%=` etc.) are also available.
++ 
+Likewise, the bit fiddling operators (`&`, `|`, `^`, `<<`, `>>`, `<<>`,`<>>` etc.) are now also available on `NatN` and `IntN`. The right shift operator (`>>`) is an unsigned right shift on `NatN` and a signed right shift on `IntN`; the `+>>` operator is _not_ available on these types.
++
+The motivation for this change is to eventually deprecate and remove the
+`WordN` types.
+Therefore, the wrapping arithmetic operations on `WordN` are deprecated and their use will print a warning. 
+For information about replacing Word types, see link:../language-guide/language-manual{outfilesuffix}#word-types[Word types].
+
+* For values `x` of type `Blob`, an iterator over the elements of the blob `x.vals()` is introduced. 
+It works like `x.bytes()`, but returns the elements as type `Nat8`.
+
+* The base library documentation tool `+mo-doc+` now generates cross-references for types in signatures. 
+With this enhancement, when you view a signature like `fromIter : I.Iter<Nat> -> List.List<Nat>`, you can click `I.Iter` or `List.List` to navigate to the appropriate definition.
+
+* Improvements to the type checker and compiler provide better handling for object literals.
+
+== Issues fixed in this release
+
+This section covers any reported issues that have been fixed in this release.
+
+== Known issues and limitations
+
+This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.

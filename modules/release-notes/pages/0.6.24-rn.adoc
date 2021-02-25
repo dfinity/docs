@@ -31,7 +31,6 @@ To deploy applications on the {IC} network:
 +
 --
 . Download and install the {sdk-short-name}.
-. Create a
 .  Run the `dfx identity get-principal` command to create your default identity and principal:
 +
 [source,bash]

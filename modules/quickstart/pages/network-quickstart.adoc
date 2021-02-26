@@ -118,8 +118,8 @@ cd hello
 [[ping-the-network]]
 == Check the connection to the network
 
-Before you can deploy your first project on the {IC} network, you need to connect to the network gateway running remotely on a sub-network that you can access.
-A network alias for the {IC} network gateway is configured in your project `+dfx.json+` file by default.
+Before you can deploy your first project on the {IC}, you need to connect to the network gateway running remotely on a sub-network that you can access.
+There is a reserved network alias that you can use to access the {IC} running remotely on nodes in data centers. The network alias is a system setting that's defined internally, so there's nothing you need to configure in your projects by default.
 
 To check your connection to the {IC} network:
 
@@ -132,7 +132,7 @@ To check your connection to the {IC} network:
 dfx ping alpha
 ----
 +
-If you modify the network alias for the {IC} network in your `+dfx.json+` file, replace the `+alpha+` network alias with the alias you are using in this and subsequent commands.
+If you want to manually specify a network provider IP address and alias for the {IC} network, you can add this information to your `+dfx.json+` file.
 . Verify the command returns information about the {IC} network to which you are connecting.
 +
 For example, you should see output similar to the following:
@@ -159,7 +159,7 @@ wcp5u-pietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
 == Validate the wallet application
 
 You must have a wallet canister with ICP tokens or execution cycles to create, deploy, and manage applications that run on the {IC}.
-If you submitted textual representation of a principal to the {company-id} Foundation, you should have received a wallet canister identifier in return.
+If you submitted a textual representation of a principal to the {company-id} Foundation, you should have received a wallet canister identifier in return.
 
 To validate your wallet for the network:
 
@@ -190,14 +190,14 @@ dfx canister --network=alpha call <WALLET-CANISTER-IDENTIER> wallet_balance
 ----
 +
 The command returns the balance for the wallet canister identifier you specified as a record using Candid format.
-For example:
+For example, the command might display a balance of 99,999,970,754,324 cycles like this:
 +
 ....
 (record { 3_573_748_184 = 99_999_970_754_324 })
 ....
 +
 Using the command-line to call the wallet canister lets you quickly verify that your wallet is available and ready to use. But results returned in Candid format can be difficult to read, so let's take another look at your wallet from a web browser.
-. Open a web browser and navigate to the wallet application using a URL similar to the following:
+. Open a web browser and navigate to the wallet application front-end by using a URL similar to the following:
 +
 ....
 https://<WALLET-CANISTER-ID>.ic0.app/?host=https://mercury.dfinity.network
@@ -206,7 +206,7 @@ https://<WALLET-CANISTER-ID>.ic0.app/?host=https://mercury.dfinity.network
 The first time you access the application, you are prompted to register your device, authenticate your identity, and authorize access to the wallet.
 . Authorize access to the wallet application by copying the command displayed in the Register Your device page and running it in a terminal.
 +
-For example, call the authorize method for the wallet canister with a command similar to the following:
+For example, call the `+authorize+` method for the wallet canister with a command similar to the following:
 +
 ....
 dfx canister --network=alpha call "6xosd-yiaaa-aaaaa-qaala-cai" authorize '(principal "5x6ri-35e7y-tpmtv-tsxf4-bu5dy-33ki7-rrowt-uwtmm-4tg4n-u3v2y-gae")'
@@ -221,7 +221,7 @@ image::wallet-ui.png[]
 [[net-deploy]]
 == Register, build, and deploy the application
 
-After you connect to the {IC} network and validate your wallet, you can register, build, and deploy your application.
+After you connect to the {IC} network and validate your wallet, you can register, build, and deploy your sample application.
 
 To deploy your first application on the {IC}:
 
@@ -240,6 +240,15 @@ For more information about this step, see link:../developers-guide/webpack-confi
 ----
 dfx deploy --network=alpha --with-cycles=2000000000000
 ----
++
+--
+* The `+--network+` option specifies the network alias or URL for deploying the application.
++
+This option is required to install on the {IC} running remotely.
+* The `+--with-cycles+` option specifies the number of initial cycles you want to transfer from your wallet to the application you are deploying.
++
+This option is required because a canister must have cycles to be deployed on the {IC} running remotely.
+--
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
 +
@@ -306,7 +315,7 @@ To access the application front-end:
 For example, the full URL should look similar to the following:
 +
 ....
-https://wmbea-daaaa-aaaab-aacjq-cai.ic0.app/
+https://wmbea-daaaa-aaaab-aacjq-cai.ic0.app//?host=https://mercury.dfinity.network
 ....
 +
 Navigating to this URL displays the prompt pop-up window.

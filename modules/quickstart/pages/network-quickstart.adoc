@@ -217,7 +217,6 @@ For example:
 +
 image::wallet-ui.png[]
 
-
 [[net-deploy]]
 == Register, build, and deploy the application
 
@@ -315,7 +314,7 @@ To access the application front-end:
 For example, the full URL should look similar to the following:
 +
 ....
-https://wmbea-daaaa-aaaab-aacjq-cai.ic0.app//?host=https://mercury.dfinity.network
+https://7td5r-biaaa-aaaaa-qaana-cai.ic0.app//?host=https://mercury.dfinity.network
 ....
 +
 Navigating to this URL displays the prompt pop-up window.

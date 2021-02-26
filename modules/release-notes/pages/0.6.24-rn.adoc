@@ -25,6 +25,8 @@ The most significant new features and capabilities include updates in the follow
 +
 For local development, `+dfx+` automatically creates a wallet for you when you run `+dfx canister create+` or `+dfx deploy+` commands within each project.
 +
+Wallets are also created automatically if you deploy to the {IC} using the `+ic+` network alias before the network is upgraded to require a cycle balance.
++
 To deploy and manage applications on the main {IC} network, you must provide the {company-id} Foundation with a principal associated with your user identity and receive a **wallet canister identifier** in return.
 +
 To deploy applications on the {IC} network:

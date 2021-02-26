@@ -167,7 +167,7 @@ To validate your wallet for the network:
 +
 [source.bash]
 ----
-dfx identity --network=alpha set-wallet --canister-name=<WALLET-CANISTER-IDENTIFIER>
+dfx identity --network=alpha set-wallet --canister-name=<WALLET-CANISTER-ID>
 ----
 +
 For example:
@@ -186,7 +186,7 @@ Checking availability of the canister on the network...
 +
 [source,bash]
 ----
-dfx canister --network=alpha call <WALLET-CANISTER-IDENTIER> wallet_balance
+dfx canister --network=alpha call <WALLET-CANISTER-ID> wallet_balance
 ----
 +
 The command returns the balance for the wallet canister identifier you specified as a record using Candid format.

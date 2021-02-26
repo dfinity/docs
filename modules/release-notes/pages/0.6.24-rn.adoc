@@ -42,7 +42,7 @@ Running the command displays output similar to the following:
 +
 ....
 Creating the "default" identity.
-  - generating new key at /Users/lisagunn/.config/dfx/identity/default/identity.pem
+  - generating new key at /Users/pubs/.config/dfx/identity/default/identity.pem
 Created the "default" identity.
 wre5u-xietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
 ....
@@ -56,7 +56,7 @@ dfx identity set-wallet <wallet-canister-identifier>
 . Open the wallet application in a web browser by navigating to the canister with a URL similar to the following:
 +
 ....
-https://<canister-identifier>.ic0.app/?host=https://mercury.dfinity.network
+https://<WALLET-CANISTER-ID>.ic0.app
 ....
 --
 
@@ -96,13 +96,14 @@ dfx toolchain install latest # tag name
 
 * A new `+deploy-wallet+` subcommand enables you to specify the canister identifier for your cycles wallet WebAssembly module (WASM).
 +
-For example, if you have an account with a third party exchange such as Coinbase and receive a wallet canister identifier, you can run a command similar to the following to deploy the wallet and uses its cycles for development:
+For example, if you have an account with a third party exchange provider and receive a wallet canister identifier, you can run a command similar to the following to deploy the wallet and uses its cycles for development:
 +
 ....
 dfx identity deploy-wallet <canister-identifier>
 ....
 +
-Note that this feature is only applicable if you received the wallet canister identifier as part of a transfer operation that converted ICP tokens to cycles.
+NOTE: The `+deploy-wallet+` feature is intended for a future use case. The command is only applicable if you received the wallet canister identifier as part of a transfer operation that converted ICP tokens to cycles.
+In addition, the `+deploy-wallet+` subcommand is **not intended for use** with the current version of {IC} running locally or on the remote network.
 
 === Candid
 

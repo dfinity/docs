@@ -112,7 +112,7 @@
 ** xref:release-notes:0.6.20-rn.adoc[0.6.20]
 ** link:https://github.com/dfinity/sdk/releases[Release history]
 
-.xref:ic-spec:index.adoc[Interface specification]
-** xref:ic-spec:about-the-spec.adoc[About the specification]
+//.xref:ic-spec:index.adoc[Interface specification]
+//** xref:ic-spec:about-the-spec.adoc[About the specification]
 //** xref:ic-spec:intro-canisters.adoc[Introduction to key interfaces]
 //** xref:ic-spec:index.adoc[{IC} external interfaces]

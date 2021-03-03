@@ -132,7 +132,18 @@ To check your connection to the {IC} network:
 dfx ping alpha
 ----
 +
-If you want to manually specify a network provider IP address and alias for the {IC} network, you can add this information to your `+dfx.json+` file.
+If the `+alpha+` network alias for the {IC} network gateway is not configured in your project `+dfx.json+` file, you might see a `+ComputeNetworkNotFound+` error.
+To manually specify the network provider IP address and alias for the {IC} network, open the `+dfx.json+` file in a text editor and add the following under the `+networks+` key:
++
+[source,json]
+----
+    "alpha": {
+      "providers": [
+        "http://10.10.101.17:8002"
+      ],
+      "type": "persistent"
+    }  
+----
 . Verify the command returns information about the {IC} network to which you are connecting.
 +
 For example, you should see output similar to the following:
@@ -160,6 +171,8 @@ wcp5u-pietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
 
 You must have a wallet canister with ICP tokens or execution cycles to create, deploy, and manage applications that run on the {IC}.
 If you submitted a textual representation of a principal to the {company-id} Foundation, you should have received a wallet canister identifier in return.
+
+Note that upgrades to the {IC} have changed the encoding for principals and new wallet canister identifiers. If you submitted a principal and received a wallet prior to the current release, it is likely that the principal and wallet canister are no longer valid and you should regenerate a new principal after you upgrade the {sdk-short-name} to the latest version.
 
 To validate your wallet for the network:
 
@@ -190,8 +203,8 @@ dfx canister --network=alpha call <WALLET-CANISTER-ID> wallet_balance
 ----
 +
 The command returns the balance for the wallet canister identifier you specified as a record using Candid format.
-For example, the command might display a balance of 99,999,970,754,324 cycles like this:
-+
+For example, the command might display a record with an `+amount+` field (represented by the hash `+3_573_748_184+`) and a balance of 99,999,970,754,324 cycles like this:
++ 
 ....
 (record { 3_573_748_184 = 99_999_970_754_324 })
 ....
@@ -247,6 +260,8 @@ This option is required to install on the {IC} running remotely.
 * The `+--with-cycles+` option specifies the number of initial cycles you want to transfer from your wallet to the application you are deploying.
 +
 This option is required because a canister must have cycles to be deployed on the {IC} running remotely.
++
+You must specify an initial cycle balance grater than one trillion (1,000,000,000,000) to deploy a canister with cycles.
 --
 +
 The `+dfx deploy+` command output displays information about the operations it performs.

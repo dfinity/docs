@@ -43,7 +43,7 @@ For projects that use the {proglang} programming language, see link:https://gith
 * link:https://github.com/dfinity/examples/tree/master/motoko/hello-world[Hello, world]
 //* link:[Hex encoding and decoding]
 * link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[Phone book]
-* link:https://github.com/dfinity/examples/tree/master/motoko/pubsub[Publish/subscribe]
+* link:https://github.com/dfinity/examples/tree/master/motoko/pub-sub[Publish/subscribe]
 * link:https://github.com/dfinity/examples/tree/master/motoko/simple_to_do[To-do checklist]
 
 == Additional sample applications

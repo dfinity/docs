@@ -1,0 +1,59 @@
+= Self-custody token distribution
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+If you recently received notification of your token distribution options and have decided to take ownership and manage the tokens available to you on your own, you can follow the instructions in this guide to authenticate your distribution and take custody of your tokens.
+
+If you aren't sure if self-custody is right for you, be sure to review the information in the link:xxx[Frequently-asked questions] before you continue down this path.
+
+[[before-you-begin]]
+== Before you begin
+
+This _Self-Custody Quick Start_ scenario assumes that you are a new token holders and are installing the {sdk-short-name} for the first time on a local computer.
+
+To get start, verify the following:
+
+* You have an internet connection and access to a shell terminal on your local **macOS** or **Linux** computer.
+
+* You have all of the personal documents—such your passport and driver's license available.
+These documents are required to validate your identity as part of the Know Your Customer (KYC) process.
+
+* You know how to open a new terminal shell on your local computer and how to run basic command-line programsin the terminal.
+
+If you need help meeting any of these prerequisites, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
+If you are comfortable meeting the prerequisites without additional instructions, continue to <<Download and install>>.
+
+[[download-and-install]]
+== Download and install
+
+You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer.
+
+To download and install:
+
+[arabic]
+. Open a terminal shell on your local computer.
++
+For example, on macOS, open Applications, Utilities, then double-click *Terminal* or press kbd:[{commandkey} + spacebar] to open Search, then type `terminal`.
+. Download and install the {sdk-short-name} package by running the following command:
++
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
++
+This command prompts you to read and accept the license agreement before installing the {company-id} execution command-line interface (CLI) and its dependencies on your local computer.
+. Type `+y+` and press kbd:[Return] to continue with the installation.
++
+After you accept the license agreement, the installation script installs components on the local computer then returns to the command-line prompt.
+. Verify the {sdk-short-name} command-line interface (CLI) installed and the `+dfx+` executable is available in your PATH by running the following command:
++
+[source,bash]
+----
+dfx --version
+----

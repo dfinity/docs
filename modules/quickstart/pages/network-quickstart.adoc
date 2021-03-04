@@ -261,7 +261,7 @@ This option is required to install on the {IC} running remotely.
 +
 This option is required because a canister must have cycles to be deployed on the {IC} running remotely.
 +
-You must specify an initial cycle balance grater than one trillion (1,000,000,000,000) to deploy a canister with cycles.
+You must specify an initial cycle balance greater than one trillion (1,000,000,000,000) to deploy a canister with cycles.
 --
 +
 The `+dfx deploy+` command output displays information about the operations it performs.

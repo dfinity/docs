@@ -15,7 +15,7 @@ If you aren't sure if self-custody is right for you, be sure to review the infor
 [[before-you-begin]]
 == Before you begin
 
-This _Self-Custody Quick Start_ scenario assumes that you are a new token holders and are installing the {sdk-short-name} for the first time on a local computer.
+This _Self-Custody Quick Start_ scenario assumes that you are a new token holder and are installing the {sdk-short-name} for the first time on a local computer.
 
 To get start, verify the following:
 

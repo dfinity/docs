@@ -112,5 +112,4 @@
 ** xref:release-notes:0.6.20-rn.adoc[0.6.20]
 ** link:https://github.com/dfinity/sdk/releases[Release history]
 
-.xref:interface-spec:interface-spec.adoc[Interface specification]
-** xref:interface-spec:interface-spec.adoc[Interfaces!]
+//.xref:interface-spec:interface-spec.adoc[Interface specification]

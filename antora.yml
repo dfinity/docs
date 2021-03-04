@@ -9,7 +9,7 @@ nav:
   #- modules/languages/lang-overview-nav.adoc
   #- modules/candid-spec/candid-nav.adoc
   #- modules/language-guide/lang-nav.adoc
-  - modules/interface-spec/ic-nav.adoc
+  #- modules/interface-spec/ic-nav.adoc
   - modules/base-libraries/lib-nav.adoc
   #- modules/rust-guide/rust-nav.adoc
   #- modules/integration/integration-nav.adoc

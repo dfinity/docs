@@ -51,9 +51,61 @@ This command prompts you to read and accept the license agreement before install
 . Type `+y+` and press kbd:[Return] to continue with the installation.
 +
 After you accept the license agreement, the installation script installs components on the local computer then returns to the command-line prompt.
-. Verify the {sdk-short-name} command-line interface (CLI) installed and the `+dfx+` executable is available in your PATH by running the following command:
+. (Optional) Verify the {sdk-short-name} command-line interface (CLI) installed and the `+dfx+` executable is available in your PATH by running the following command:
 +
 [source,bash]
 ----
 dfx --version
 ----
+
+== Generate a public/private key pair
+
+If you have a hardware security module (HSM) appliance or a hardware wallet, you can use those devices to generate and store a public/private key pair for your identity in a secure way.
+After you generate the public/private key pair you can import your certificate to create a secure identity on a connected device.
+
+If you don't have a hardware security module or a hardware wallet, you can use `+dfx+` to automatically generate and store a public/private key pair for your default identity on the local computer.
+
+== Get the principal for your identity
+
+After you have generated the public/private key pair, you can use dfx to retrieve a principal identifier. A principal identifier is a textual representation of your identity
+that is similar to an address in Bitcoin or Ethereum. The principal identifier enables the secret key associated with a user’s public key to be used to sign messages and therefore authenticate actions on your behalf. 
+
+To get the principal:
+
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Check the active identity context by running the following command:
++
+[source,bash]
+----
+dfx identity whoami
+----
+. Get the principal for you currently-active identity by running the following command:
++
+[source,bash]
+----
+dfx identity get-principal
+----
++
+This command displays the textual representation of your principal as plain text that you can copy and paste.
+For example:
++
+....
+g3jww-sbmtm-gxsag-4mecu-72yc4-kef5v-euixq-og2kd-sav2v-p2sb3-pae
+....
+. Copy the principal identifier for use in the next step.
+. Open a web browser and navigate to the link:xxx[Foundation] website.
+. Paste the principal you copied in the XX field.
++
+If the principal is valid, the Foundation website generates a token-holder identifier (THID) for you to use in the KYC process and you can continue to the next step.
++
+If your principal is not validated, submit a link:xx[support request].
+
+== Submit documents for the KYC process
+
+TBD
+
+After passing the KYC process, yor will receive email notification that your tokens have been released and additional instructions on the next steps, including how to view your distribution and vesting schedule.
+
+////
+== View funds
+////

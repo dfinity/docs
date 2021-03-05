@@ -27,11 +27,10 @@ Before you download and install this release of the {sdk-short-name}, verify the
 +
 Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
 
-////
 * You have provided the {company-id} Foundation with a principal associated with your user identity and have received a **wallet canister identifier** in return.
 +
 A wallet canister with **cycles** is required to deploy and manage applications on the {IC}.
-////
+
 * You have `+node.js+` installed if you want to access the default front-end for the default project.
 
 If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].

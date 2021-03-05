@@ -225,7 +225,10 @@ This wallet canister is preconfigured with cycles and provides a few basic funct
 dfx canister --network=ic call <WALLET-CANISTER-ID> wallet_balance
 ----
 +
-This command...99,999.974,174,602
+This command returns the balance for the wallet canister identifier you specified using the Candid syntax for `+record+` data types. 
+For example, the command might display a record with an `+amount+` field (represented by the hash `+3_573_748_184+`) and a
+balance of 99,999.974,174,602 cycles like this:
++
 ....
 (record { 3_573_748_184 = 99_999_974_174_602 })
 ....
@@ -237,18 +240,22 @@ For example:
 ----
 dfx canister --network=ic call hello greet '("San Francisco")'
 ----
-. Rerun the 
-
+. Rerun the command to check the cycle balance for your wallet.
++
+For example, you might run a command similar to the following if the wallet canister identifier is `+oi7fh-tiaaa-aaaab-aahpq-cai+`:
++
+....
 dfx canister --network=ic call oi7fh-tiaaa-aaaab-aahpq-cai wallet_balance
-
-Note that a small number of cycles have been deducted from the cycle balance.
+....
++
+Note that in the new balance, a small number of cycles have been deducted from the previous total of cycles available.
 For example:
 +
 ....
 (record { 3_573_748_184 = 99_999_974_082_913 })
 ....
-
-99,999,974,082,913
++
+In this example, the new balance is 99,999,974,082,913 cycles.
 
 [[quickstart-frontend]]
 == Test the application front-end

@@ -174,14 +174,19 @@ For example, this step registers two network-specific identifiers—one for the 
 Deploying all canisters.
 Creating canisters...
 Creating canister "hello"...
-"hello" canister created on network "ic" with canister id: "bj6e2-xqaaa-aaaab-aagja-cai"
+Creating the canister using the wallet canister...
+Creating a wallet canister on the ic network.
+The wallet canister on the "ic" network for user "default" is "oi7fh-tiaaa-aaaab-aahpq-cai"
+"hello" canister created on network "ic" with canister id: "lue7c-yaaaa-aaaab-aahqa-cai"
 Creating canister "hello_assets"...
-"hello_assets" canister created on network "ic" with canister id: "ro5wz-6qaaa-aaaaa-qagsa-cai"
+Creating the canister using the wallet canister...
+"hello_assets" canister created on network "ic" with canister id: "ltfzw-vyaaa-aaaab-aahqq-cai"
 Building canisters...
 Building frontend...
 Installing canisters...
-Installing code for canister hello, with canister_id bj6e2-xqaaa-aaaab-aagja-cai
-Installing code for canister hello_assets, with canister_id ro5wz-6qaaa-aaaaa-qagsa-cai
+Installing code for canister hello, with canister_id lue7c-yaaaa-aaaab-aahqa-cai
+Installing code for canister hello_assets, with canister_id ltfzw-vyaaa-aaaab-aahqq-cai
+Authorizing our identity (default) to the asset canister...
 Uploading assets to asset canister...
 Deployed canisters.
 ....
@@ -209,21 +214,47 @@ For example:
 ....
 ("Hello, everyone!")
 ....
-////
-. Rerun the command to check the cycle balance for your wallet canister by running a command similar to the following:
++
+You might have noticed that deploying your project automatically generated a wallet for your `+default+` identity.
+This wallet canister is preconfigured with cycles and provides a few basic functions that enable you to experiment with sending and receiving cycles without requiring an account with ICP tokens.
+. Check the cycle balance for your default wallet canister by running a command similar to the following:
 +
 [source,bash]
 ----
-dfx canister --network=ic call <WALLET-CANISTER-ID> cycle_balance
+dfx canister --network=ic call <WALLET-CANISTER-ID> wallet_balance
 ----
 +
-Note that a small number of cycles have been deducted from the cycle balance.
+This command returns the balance for the wallet canister identifier you specified using the Candid syntax for `+record+` data types. 
+For example, the command might display a record with an `+amount+` field (represented by the hash `+3_573_748_184+`) and a
+balance of 99,999.974,174,602 cycles like this:
++
+....
+(record { 3_573_748_184 = 99_999_974_174_602 })
+....
+. Call the `+greet+` function again with a different argument.
++
+For example:
++
+[source,bash]
+----
+dfx canister --network=ic call hello greet '("San Francisco")'
+----
+. Rerun the command to check the cycle balance for your wallet.
++
+For example, you might run a command similar to the following if the wallet canister identifier is `+oi7fh-tiaaa-aaaab-aahpq-cai+`:
++
+....
+dfx canister --network=ic call oi7fh-tiaaa-aaaab-aahpq-cai wallet_balance
+....
++
+Note that in the new balance, a small number of cycles have been deducted from the previous total of cycles available.
 For example:
 +
 ....
-(99999994564312294)
+(record { 3_573_748_184 = 99_999_974_082_913 })
 ....
-////
++
+In this example, the new balance is 99,999,974,082,913 cycles.
 
 [[quickstart-frontend]]
 == Test the application front-end

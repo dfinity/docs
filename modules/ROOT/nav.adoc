@@ -16,7 +16,7 @@
 .xref:developers-guide:sdk-guide.adoc[How to]
 ** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
 //xref:developer-guide:connect-network.adoc[Connect to a network]
-** xref:developers-guide:customize-projects.adoc[Design apps]
+** xref:developers-guide:design-apps.adoc[Design apps]
 ** xref:developers-guide:customize-projects.adoc[Manage projects]
 ** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
 //*** xref:language-guide:at-a-glance.adoc[Motoko]

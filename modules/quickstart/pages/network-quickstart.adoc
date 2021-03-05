@@ -27,10 +27,10 @@ Before you download and install this release of the {sdk-short-name}, verify the
 +
 Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
 
-* You have provided the {company-id} Foundation with a principal associated with your user identity and have received a **wallet canister identifier** in return.
-+
-A wallet canister with **cycles** is required to deploy and manage applications on the {IC}.
-
+//* You have provided the {company-id} Foundation with a principal associated with your user identity and have received a **wallet canister identifier** in return.
+//+
+//A wallet canister with **cycles** is required to deploy and manage applications on the {IC}.
+//
 * You have `+node.js+` installed if you want to access the default front-end for the default project.
 
 If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
@@ -217,6 +217,13 @@ For example:
 +
 You might have noticed that deploying your project automatically generated a wallet for your `+default+` identity.
 This wallet canister is preconfigured with cycles and provides a few basic functions that enable you to experiment with sending and receiving cycles without requiring an account with ICP tokens.
++
+If you didn't notice the wallet canister identifier when you ran `+dfx deploy+`, you can look it up now by running the following command:
++
+[source,bash]
+----
+dfx identity --network=ic get-wallet
+----
 . Check the cycle balance for your default wallet canister by running a command similar to the following:
 +
 [source,bash]

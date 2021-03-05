@@ -601,6 +601,56 @@ dfx identity new pubsadmin
 dfx canister set-controller hello_world pubsadmin
 ....
 
+To set the controlling identity using the textual representation of the identity principal, you might run a command similar to the following:
+
+....
+dfx canister set-controller hello_world wcp5u-pietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
+....
+
+Although specifying a user identity name or principal is one potential use case, a more common scenario is to specify the wallet canister that you want to use to send cycles to the canister.
+The following steps illustrate this scenario when you are doing local development. For this example, assume you have created a project called `open_sf` with two canisters deployed on the {IC} running locally.
+
+. Create an identity—for example, `sf-controller`—to act as the controller.
++
+....
+dfx identity new sf-controller
+
+Creating identity: "sf-controller".
+Created identity: "sf-controller".
+....
+. Make the new identity the active identity.
++
+....
+dfx identity use sf-controller
+
+Using identity: "sf-controller".
+....
+. Generate a wallet canister identifier for the new identity.
++
+....
+dfx identity get-wallet
+
+Creating a wallet canister on the local network.
+r7inp-6aaaa-aaaaa-aaabq-cai
+The wallet canister on the "local" network for user "sf-controller" is "r7inp-6aaaa-aaaaa-aaabq-cai"
+....
+. Switch the active identity to the current controller of the canister. For example, if the default identity was used to create the canister, you would run the following command:
++
+....
+dfx identity use default
+
+Using identity: "default".
+....
+. Set the controller for a specified canister to use the wallet associated wit the sf-controller identity.
++
+....
+dfx canister set-controller open_sf_assets r7inp-6aaaa-aaaaa-aaabq-cai
+
+Set "r7inp-6aaaa-aaaaa-aaabq-cai" as controller of "open_sf_assets".
+....
++
+You can now use the wallet canister `r7inp-6aaaa-aaaaa-aaabq-cai` to send cycles or add custodians to the `open_sf_assets` canister.
+
 == dfx canister start
 
 Use the `+dfx canister start+` command to restart a stopped canister on the local Internet Computer network or on a remote Internet Computer network.

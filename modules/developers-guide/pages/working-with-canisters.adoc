@@ -147,6 +147,28 @@ To look up the canister identifier for the same canister deployed on the network
 dfx canister --network=ic id lookup
 ....
 
+[[add-wallet]]
+== Add a wallet for an existing canister
+
+When you are doing local development, creating a new project automatically creates a default wallet for you to use with the canisters in that project.If you want to add a wallet for projects with canisters that you have previously created, you can force dfx to generate one by taking a couple of manual steps.
+
+To add a wallet for use with an existing canister:
+
+. Open a terminal and navigate to your project directory.
+. Stop the local {IC} network, if necessary, by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
+. Delete the `+.dfx+` directory.
+. Start with {IC} network by running the following command:
++
+[source,bash]
+----
+dfx start --clean
+----
+
 [[reinstall-canister]]
 == Reinstall a canister
 

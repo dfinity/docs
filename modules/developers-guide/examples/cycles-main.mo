@@ -25,7 +25,7 @@ shared(msg) actor class HelloCycles (
     { accepted = Nat64.fromNat(accepted) };
   };
 
-//Return the gretting
+//Return the greeting
   public func greet(name : Text) : async Text {
     return "Hello, " # name # "!";
   };
@@ -37,4 +37,3 @@ shared(msg) actor class HelloCycles (
   };
 
 };
-

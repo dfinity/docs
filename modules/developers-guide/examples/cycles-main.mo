@@ -34,7 +34,7 @@ shared(msg) actor class HelloCycles (
   public shared(msg) func owner() : async Principal {
     let currentOwner = msg.caller;
     return currentOwner;
-};
+  };
 
 };
 

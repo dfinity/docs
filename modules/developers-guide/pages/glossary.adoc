@@ -8,29 +8,140 @@
 
 [[g-actor]]
 actor::
-  An actor is a special kind of object in modern programming languages that processes messages in an isolated state, enabling them to be handled remotely and asynchronously.
+An actor is a special kind of object in modern programming languages that processes messages in an isolated state, enabling them to be handled remotely and asynchronously.
 
+//# tag::g-app-canister[] 
+[[g-app-canister]]
+application canister::
+A distributed application written by third-party developers or organizations that has been compiled into a WebAssembly (wasm) module and deployed as a canister on the <<Internet-Computer,Internet Computer>> platform.
++
+This terminology is sometimes used to distinguish between user-facing programs deployed as <<g-canister,canisters>> and system management services deployed as <<g-canister, canisters>>.
+However, because an application’s functions might be contained within a single canister or split into multiple canisters—depending on design and implementation decisions made by the application developer—you'll most often find **application** used to describe a software feature set or <<g-canister,canister>> used to describe a deployed computational unit.
++
+Applications and canisters provide services that can be accessed directly by users or accessed by other applications deployed in other canisters.
+//# end::g-app-canister[]
+
+//# tag::g-canister[] 
 [[g-canister]]
 canister::
-  A canister is a conceptual object with a universally-unique identifier and an owner that defines the boundaries of a specific application, service, or micro-site. 
-  A canister encapsulates all of the programming logic, public entry methods, the interface description for the provided message types, and state information for the application, service, or micro-service it describes.
+A canister is a conceptual computational unit that consists of both code and state.
+Every canister has a unique <<g-canister-id,identifier>> and a <<g-controller,controller>> with permission to manage the canister lifecycle.
++
+A canister encapsulates all of the programming logic, public entry methods, the interface description for the provided message types, and state information for  it describes.
+After code and state are compiled into a WebAssembly (WASM) module, the application, service, or micro-service can be deployed as canister on the <<Internet-Computer,Internet Computer>> and accessed over the network.
 
-[[g-replica]]
-replica:: 
-  In the context of the {platform}, a replica refers to the {IC} processes (for example, the `+replica+`, `+nodemanager+`, and other lower-level {IC} protocol processes) running on a physical computer node in the network.
-  For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop the `+replica+` process locally to provide a local network for development.
+[[g-canister-id]]
+canister identifier::
+A globally-unique identifier that is registered on a <<sub-network,subnet>> before code is deployed on the <<InternetComputer,Internet Computer>> platform.
 
+[[g-canister-owner]]
+canister owner::
+Deprecated terminology for the person or entity—for example, another canister—that can upgrade or mark a <<canister>> as permanent. See <<g-controller,controller>>.
+//# end::g-canister[]
+
+//# tag::g-controller[]
+[[g-controller]]
+controller::
+The person, organization, or <<g-canister,canister>> that has administrative rights to control operations for another <<g-canister,canister>>. 
++
+For example, the controller for a canister can control whether the canister can be upgraded or marked as permanent.+
+The *controller* is a <<g-canister,canister>> property that supports autonomous software operation.
+//# end::g-controller[]
+
+//# tag::g-cycles[]
+[[g-cycles]]
+cycles::
+Represents the unit of measurement for resources consumed in the form of processing time, memory an application requires for storage, and network bandwidth. The cycles used to pay for resources consumed are held in an account on behalf of a user or an application.
++
+The <<internet-computer,Internet Computer>> native currency (ICP tokens) can be converted to cycles and transferred to an application account to ensure the application has the resources required to perform its services. 
+Cycles can also be transferred directly from one application to another.
+//# end::g-cycles[]
+
+//# tag::g-ingress-message[]
+[[ingress-message]]
+== ingress message
+A <<message>> sent by an end-user to <<g-canister,canister>> that is routed through consensus.
+//# end::g-ingress-message[]
+
+//# tag::g-intercanister-call[]
+[[g-intercanister-call]]
+inter-canister call::
+A <<message>> sent from one <<canister>> to another. Inter-canister calls might be initiated on behalf of a user but are distinct from user-initiated <<g-ingress-messages,ingress messages>>.
++
+Note that a <<canister-message,canister message>> can be an
+application-generated <<message>> sent from one <<canister>> to another or a system-generated <<message>> sent from one <<canister>> to another and that the <<g-canister,canisters>> can be on the same or
+different <<sub-network,subnets>>. 
+This type of message is also referred to as a *canister-to-canister* message or an *inter-canister message*.
+//# end::g-intercanister-call[]
+
+//# tag::g-nns[]
+[[g-nns]]
+network nervous system (NNS)::
+The native governance system for the<<Internet-Computer, Internet Computer>> platform. The *network nervous system* provides global configuration and subnet specific information to manage updates to the
+replicas, <<sub-network,subnets>>, and <<g-canister,canisters>> deployed and to handle system change proposals and voting.
+//# end::g-nns[]
+
+//# tag::g-neuron[]
+[[g-neuron]]
+neuron::
+An entity that can make proposals and vote on proposals related to governance of the <<Internet-Computer, Internet Computer>> platform.
++
+To provide the stability required for responsible governance, Internet Computer Protocol tokens (ICP tokens) can be converted to <<g-neuron,neurons>>. 
+A <<neuron>> represents a number of ICP tokens
+that cannot be exchanged for a minimum period of time (the lock-up period).
+When a person or organization has some number of ICP tokens locked up in a <<neuron>>, the <<neuron>> holder has the right to propose and vote on governance issues, and to be paid for voting in proportion to the number of ICP locked up and the length of the lock-up period.
+//# end::g-neuron[]
+
+//# tag::g-node[]
 [[g-node]]
 node::
-  A physical computer that is a registered member of the {platform} network and running the {IC} replica processes.
+A physical or virtual network endpoint that hosts all the hardware, software, and configuration settings required to participate
+in the <<Internet-Computer, Internet Computer>> network.
+//# end::g-node[]
 
+//# tag::g-principal[]
+[[g-principal]]
+principal::
+A principal is a byte string that is used to identify an entity, for example a token holder, in the {IC}. 
+It is the SHA-224 hash of the DER-encoded public key of the entity.
+//# end::g-principal[]
+
+//# tag::g-query[]
+[[g-query]]
+query::
+A call optimized to allow read-only operations or to perform transient state changes in which the <<g-canister,canister>> state **is not preserved**.
++
+
+- Are synchronous and can be made to any <<g-node,node>> that holds the <<g-canister,canister>>.
+- Do not require consensus to verify the result.
+There is an inherent tradeoff between security and performance because the reply from a single <<g-node,node>> might be untrustworthy or inaccurate.
+//# end::g-query[]
+
+//# tag::g-replica[]
+[[g-replica]]
+replica:: 
+In the context of the {IC}, a replica refers to the {IC} processes (for example, the `+replica+`, `+nodemanager+`, and other lower-level {IC} protocol processes) running on a physical or virtual <<g-node,node>> in the network.
++
+Within {IC} protocol documentation, replica is most often used to represent the set of protocol components that are necessary for a <<node>> to participate in a network.
++
+For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop the `+replica+` processes locally to provide a local network for development.
+//# end::g-replica[]
+
+//# tag::g-wallet[]
 [[g-wallet]]
 wallet::
-  On the {IC}, a wallet is a specialized application that allows you to store and retrieve your digital assets.
-  The wallet application is implemented as a canister that runs on the {IC}. A wallet enables you to manage your ICP token balances, convert ICP token into cycles, and distribute cycles to your own or other users' canisters as a means for accessing or providing internet services.
+On the {IC}, a wallet is a specialized application that allows you to store and retrieve your digital assets.
++
+The default wallet application is implemented as a canister that runs on the {IC}. A wallet enables you to manage your ICP token balances, convert ICP token into cycles, and distribute cycles to your own or other users' canisters as a means for accessing or providing internet services.
+//# end::g-wallet[]
 
+//# tag::g-wasm[]
 [[g-wasm]]
 WebAssembly::
-  https://webassembly.org/[WebAssembly] (`+Wasm+`) is a low-level computer instruction format. 
-  Because WebAssembly defines a portable,open-standard, binary format that abstracts cleanly over most modern computer hardware, it is broadly supported for programs that run on the internet. 
-  Programs written in {proglang} are compiled to WebAssembly code for execution on {IC} replicas.
+https://webassembly.org/[WebAssembly] is a low-level computer instruction format. 
++
+Because WebAssembly defines a portable,open-standard, binary format that abstracts cleanly over most modern computer hardware, it is broadly supported for programs that run on the internet. 
++
+The {sdk-short-name} provides enhanced support for programs written in {proglang} or Rust to run on the {IC}. 
+However, you can write programs in any language that can be compiled to WebAssembly for deployment on the {IC}.
+//# end::g-wasm[]

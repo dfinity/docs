@@ -17,6 +17,7 @@ This example consists of the following:
 * The `+wallet_balance+` function enables you to check the current cycle balance for the canister.
 * The `+wallet_receive+` function enables the program to accept cycles that are sent to the canister.
 * The `+greet+` function accepts a text argument and displays a greeting in a terminal.
+* The `+owner+` function returns the principal used by the message caller.
 
 == Before you begin
 
@@ -55,7 +56,7 @@ For this tutorial, you are going to modify the template source code to include n
 
 To modify the default program:
 
-. Open the `+src/access_hello/main.mo+` file in a text editor and delete the existing content.
+. Open the `+src/cycles_hello/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
 [source.copy,motoko,no-repl]
@@ -67,7 +68,7 @@ Let's take a look at a few key elements of this program:
 +
 --
 * The program imports a Motoko base library—`+ExperimentalCycles+`—that provides basic functions for working with cycles. 
-* The program uses an `+actor class+` instead of a single actor so that it can have multiple actor instances.
+* The program uses an `+actor class+` instead of a single actor so that it can have multiple actor instances to accept different cycle amounts up to a `capacity` for all instances.
 * The `+capacity+` is passed as an argument to the actor class.
 * The `+msg.caller+` identifies the principal associated with the call.
 --
@@ -92,7 +93,6 @@ dfx start --clean --background
 After the local {IC} network completes its startup operations, you can continue to the next step.
 
 == Register, build, and deploy the application
-
 
 After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.
 
@@ -152,7 +152,7 @@ The command displays output similar to the following for the current identity:
 ....
 +
 If you haven't made changes to the identity you were using to run the `+dfx deploy+` command, you should get the same principal by running the `+dfx identity get-principal+` command.
-This is important because you must be the owner of the wallet canister to perform certain tasks such as send cycles or grant other custodian identities permission to send cycles. 
+This is important because you must be the owner of the wallet canister to perform certain tasks such as sending cycles or granting other *custodian* identities permission to send cycles. 
 . Check the initial wallet cycle balance by running the following command:
 +
 [source,bash]
@@ -171,7 +171,7 @@ You haven't sent any cycles to the canister, so the command displays the followi
 ----
 dfx canister call rwlgt-iiaaa-aaaaa-aaaaa-cai wallet_send '(record { canister = principal "rrkah-fqaaa-aaaaa-aaaaq-cai"; amount = (256000000000:nat64); } )'
 ----
-. Call the `+wallet_balance+` function to see that the `cycles_hello` canister has the number of cycles you transferred, if you specified an amount under the allowed capacity, or the `capacity` you specified when you ran the dfx deploy command.
+. Call the `+wallet_balance+` function to see that the `cycles_hello` canister has the number of cycles you transferred, if you specified an amount under the allowed capacity, or the `capacity` you specified when you ran the `dfx deploy` command.
 +
 [source,bash]
 ----
@@ -182,6 +182,39 @@ The command displays output similar to the following:
 +
 ....
 (256_000_000_000)
+....
+. Call the `+wallet_balance+` function to see the number of cycles in your default wallet by running a command similar to the following:
++
+[source,bash]
+----
+dfx canister call rwlgt-iiaaa-aaaaa-aaaaa-cai wallet_balance
+----
++
+The command returns the balance for the wallet canister identifier you specified as a record using Candid format.
+For example, the command might display a record with an `+amount+` field (represented by the hash `+3_573_748_184+`) and a balance of 97,738,624,621,042 cycles like this:
++
+....
+(record { 3_573_748_184 = 97_738_624_621_042 })
+....
++
+For this simple tutorial, cycles are only consumed from the balance in the default wallet canister, not from the `+cycles_hello+` canister.
+. Call the `+greet+` function by running a command similar to the following:
++
+[source,bash]
+----
+dfx canister call cycles_hello greet '("from DFINITY"0'
+----
+. Rerun the call to the `+wallet_balance+` function to see the number of cycles deducted from your default wallet:
++
+[source,bash]
+----
+dfx canister call rwlgt-iiaaa-aaaaa-aaaaa-cai wallet_balance
+----
++
+For example, you might a result similar to this:
++
+....
+(record { 3_573_748_184 = 97_638_622_179_500 })
 ....
 
 == Stop the local network

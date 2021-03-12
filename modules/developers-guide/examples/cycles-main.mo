@@ -19,8 +19,8 @@ shared(msg) actor class HelloCycles (
     let accepted =
       if (amount <= limit) amount
       else limit;
-    let rec_accepted = Cycles.accept(accepted);
-    assert (rec_accepted == accepted);
+    let deposit = Cycles.accept(accepted);
+    assert (deposit == accepted);
     balance += accepted;
     { accepted = Nat64.fromNat(accepted) };
   };

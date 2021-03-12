@@ -1,0 +1,49 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+:release: 0.6.25
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
+
+== New features and capabilities
+
+The most significant new features and capabilities include the following updates:
+
+* This release introduces environment variables for specifying canister identifiers.
++
+You can now use the `CANISTER_ID_{canister.name}` and `CANISTER_CANDID_PATH_{canister.name}`
+environment variables to reference canister identifiers and the path to the canister Candid description (`.did` file) during the build process.
+These environment variables enable you to construct the JavaScript for front-end assets using the correct canister identifiers.
++
+The environment variables are intended to replace the `+import+` syntax for dependent canisters described in link:../developers-guide/webpack-config{outfilesuffix}[Entry and output configuration] which is being deprecated and will be removed in a future release.
+
+* A new `+deploy identity import+` subcommand enables you to import a security certificate to create an identity.
++
+For example, if you use a hardware wallet or a key generation utility to generate a PEM file for authenticating your identity, you can now import that PEM file into `+dfx+` to create a new identity.
+After importing the PEM file, you can run the `dfx identity use` command t set that identity as your default context.
++
+For example, to import the `my-external-id.pem` and create an identity named `alice`, you would run the following command:
++
+....
+dfx identity import alice my-external-id.pem
+....
++
+After running this command, you would run the following command to begin using the new identity:
++
+....
+dfx identity use alice
+....
+
+== Issues fixed in this release
+
+This section covers any reported issues that have been fixed in this release.
+
+== Known issues and limitations
+
+This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.

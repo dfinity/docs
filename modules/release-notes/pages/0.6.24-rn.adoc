@@ -48,7 +48,6 @@ Creating the "default" identity.
 Created the "default" identity.
 wre5u-xietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
 ....
-. Submit the principal to get your wallet canister identifier.
 . Run the `+dfx identity set-wallet+` command to associate your wallet canister identifier with your default identity.
 +
 [source,bash]

@@ -39,6 +39,7 @@
 ** xref:developers-guide:tutorials/intercanister-calls.adoc[Make inter-canister calls]
 ** xref:developers-guide:tutorials/scalability-cancan.adoc[Create scalable apps]
 ** xref:developers-guide:tutorials/access-control.adoc[Add access control with identities]
+** xref:developers-guide:tutorials/simple-cycles.adoc[Accept cycles from a wallet]
 
 .xref:developers-guide:cli-reference.adoc[Reference]
 ** xref:developers-guide:cli-reference.adoc[DFX commands]

@@ -113,3 +113,6 @@
 ** xref:release-notes:0.6.21-rn.adoc[0.6.21]
 ** xref:release-notes:0.6.20-rn.adoc[0.6.20]
 ** link:https://github.com/dfinity/sdk/releases[Release history]
+
+.xref:ic-protocol:icp-glossary.adoc[Internet Computer Protocol]
+** xref:ic-protocol:icp-glossary.adoc[Glossary]

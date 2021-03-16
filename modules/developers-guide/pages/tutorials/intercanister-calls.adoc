@@ -42,7 +42,7 @@ To experiment with inter-canister calls using the LinkedUp sample application:
 +
 [source,bash]
 ----
-git clone git@github.com:dfinity-lab/linkedup.git
+git clone git@github.com:dfinity/linkedup.git
 ----
 . Change to the local working directory for the `linkedup` repository.
 +
@@ -225,41 +225,6 @@ image:linkedup-connected-to-maya.png[]
 . Return to the browser tab with your original profile.
 +
 If you want to create a connection between the original profile and the profile you created in the private browsing window, you can do so by repeating the search, select, and connect steps.
-
-== Save identity information for the incognito profile
-
-Currently, user identities get generated when a user connects to a canister using a device such as a browser running on a laptop.
-You used an incognito browser window to create a second LinkedUp profile.
-If you close that private browsing window, the incognito user identity will no longer be available.
-
-NOTE: This section demonstrates how user identities are currently associated with a canister and stored by the browser.
-You might find the information useful for testing programs that involve more than one user.
-Keep in mind, however, that this specific approach is only a temporary solution for handling authentication and user identities.
-
-To illustrate saving the incognito user identity, take the following steps:
-
-. At the top right of the browser window, click the vertical ellipse to display the *More* menu.
-. Click *More Tools*, then select *Developer Tools* to display the developer tools explorer.
-. Click *Application*, expand *Local storage*, then select the host name and port running the LinkedUp application.
-+
-image:local-storage.png[]
-
-. Copy the Value of the `+dfinity-ic-user-identity+` key.
-+
-The `+dfinity-ic-user-identity+` key value stores the public and private keys for the user.
-. Return to the standard browser window.
-+
-For example, the window that displays the Maya profile.
-. Click the vertical ellipse to display the More menu, click *More Tools*, then select *Developer Tools* to display the developer tools explorer.
-. Click *Application*, expand *Local storage*, then select the host name and port running the LinkedUp application.
-. Rename the `+dfinity-ic-user-identity+` key to preserve the existing public-private key.
-+
-For example, rename the `+dfinity-ic-user-identity+` to `+maya-dfinity-ic-user-identity+`.
-. Add a `+dfinity-ic-user-identity+` key and paste the value from the incognito user to save the incognito user’s identity in the browser.
-. Refresh or close and reopen the browser window, then click *Login* to log in using the profile you created in the incognito window.
-. Open another incognito window, type Maya in the Search field, then click *Search* to see that Maya’s profile and connections are persisted.
-+
-You can create another new profile or close the incognito window.
 
 == Explore the configuration file
 

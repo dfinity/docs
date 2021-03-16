@@ -38,7 +38,7 @@ To download and install a specific version from a terminal shell:
 
 . Set the `DFX_VERSION` environment variable to the version of the {sdk-short-name} package you want to install as a prefix to `+curl+` command.
 +
-For example, to install version 0.6.24, you would run the following command:
+For example, to install version 0.6.25, you would run the following command:
 +
 [source,bash]
 ----

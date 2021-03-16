@@ -43,5 +43,5 @@ DFX_TELEMETRY_DISABLED=1
 Use the `+DFX_VERSION+` environment variable to identify a specific version of the {sdk-short-name} that you want to install.
 
 ....
-DFX_VERSION=0.6.24 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.6.25 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ....

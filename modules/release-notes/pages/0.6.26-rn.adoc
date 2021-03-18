@@ -45,16 +45,16 @@ This release updates the default cycles wallet to provide better handling of unu
 
 This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
 
-* Only the default wallet canister principal can perform canister management tasks
-+
+=== Only the default wallet canister principal can perform canister management tasks
+
 The introduction of the cycles wallet canister changes the default principal used to perform key canister management tasks, such as registering a new canister identifier and deploying a new canister on the {IC}.
 This change introduces some inconsistencies in the identity used to perform certain tasks and can result in potential access control issues.
-+
+
 You should note that none of the tutorials have been updated to reflect this specific change in behavior yet and the current version of the link:../developers-guide/tutorials/access-control{outfilesuffix}[Add access control with identities] tutorial is known to be invalid for this release.
 If you want to experiment with access control using the link:../developers-guide/tutorials/access-control{outfilesuffix}[Add access control with identities] tutorial, you should install the {sdk-short-name} version 0.6.23 (or older).
 
-* Incompatibility when using the JavaScript agent (`@dfinity/agent`) directly in a project
-+
+=== Incompatibility when using the JavaScript agent directly in a project
+
 If you access the `@dfinity/agent` JavaScript agent directly in a project—that is, without going through the bootstrap server—you will not be able to import the `bls` certification scheme with the `agent-js` release. 
-+
+
 If your application uses the JavaScript agent directly, you should use the latest beta version (`@dfinity/agent@0.6.26-beta.1`) of the agent instead of the published version.

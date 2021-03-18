@@ -1,0 +1,52 @@
+= Use the default cycles wallet
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+As discussed in link:concepts/tokens-cycles{outfilesuffix}[Tokens and cycles], ICP tokens can be converted into *cycles* to power canister operations. 
+Cycles provide a largely stable value proposition and represent the operational cost of communication, computation, and storage that applications consume. 
+For example, cycles reflect the actual cost of physical hardware, rack space, energy, storage devices, and network bandwidth required by applications running on the {IC}.
+
+Unlike ICP tokens, cycles are only associated with canisters and not user or developer principals. 
+Instead, users and developes manage the distribution and ownership of cycles through a special type of canister called a *cycles wallet*.
+
+For the purposes of local development, the {sdk-short-name} automatically creates a default cycles wallet for you in every project and most of the operations performed using the cycles wallet happen behind the scenes.
+For example, the cycles wallet acts on your behalf to register canister identifiers and deploy canisters on the local network.
+
+In a production environment, however, you often need to explicitly register and transfer cycles to new canisters, specify the principals that can act as custodians, and manage the principals with ownership rights. 
+
+[[wallet-create-wallets]]
+== Create a new cycles wallet
+
+[[wallet-create-canister]]
+== Register a new canister identifier
+
+
+[[wallet-add-controller]]
+== Add a controller
+
+[[wallet-remove-controller]]
+== Remove a controller
+
+[[wallet-add-custodian]]
+== Add a custodian
+
+[[wallet-add-custodian]]
+== Add a controller
+
+[[wallet-list-custodians]]
+== List controllers
+
+[[wallet-check-balance]]
+== Checking the cycle balance
+
+[[wallet-send]]
+== Send cycles to a canister
+
+[[wallet-receive]]
+== Receive cycles from a canister
+

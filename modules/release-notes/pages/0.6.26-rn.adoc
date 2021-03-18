@@ -46,3 +46,7 @@ This release updates the default cycles wallet to provide better handling of unu
 This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
 
 The introduction of the cycles wallet canister changes the default principal used to perform key canister management tasks, such as registering a new canister identifier and deploying a new canister on the {IC}. 
+This change introduces some inconsistencies in the identity used to perform certain tasks and can result in potential access control issues.
+
+You should note that none of the tutorials have been updated to reflect this specific change in behavior yet and the current version of the link:../developers-guide/tutorials/access-control{outfilesuffix}[Add access control with identities] tutorial is known to be invalid for this release.
+If you want to experiment with access control using the link:../developers-guide/tutorials/access-control{outfilesuffix}[Add access control with identities] tutorial, you should install the {sdk-short-name} version 0.6.23 (or older). 

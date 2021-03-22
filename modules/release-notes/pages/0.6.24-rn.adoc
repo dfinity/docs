@@ -52,7 +52,7 @@ wre5u-xietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
 +
 [source,bash]
 ----
-dfx identity set-wallet --canister-name <wallet-canister-identifier>
+dfx identity set-wallet <wallet-canister-identifier>
 ----
 . Open the wallet application in a web browser by navigating to the canister with a URL similar to the following:
 +

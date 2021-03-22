@@ -82,6 +82,7 @@ cat identity.pem
 +
 The command should display results similar to the following:
 +
+....
 -----BEGIN EC PARAMETERS-----
 BgUrgQQACg==
 -----END EC PARAMETERS-----
@@ -90,6 +91,7 @@ MHQCAQEEIAgy7nZEcVHkQ4Z1Kdqby8SwyAiyKDQmtbEHTIM+WNeBoAcGBSuBBAAK
 oUQDQgAEgO87rJ1ozzdMvJyZQ+GABDqUxGLvgnAnTlcInV3NuhuPv4O3VGzMGzeB
 N3d26cRxD99TPtm8uo2OuzKhSiq6EQ==
 -----END EC PRIVATE KEY-----
+....
 
 [[import-pem]]
 === Import your PEM file using DFX

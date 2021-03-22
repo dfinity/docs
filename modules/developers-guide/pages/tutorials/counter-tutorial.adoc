@@ -20,12 +20,6 @@ This program supports the following function calls:
 This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister.
 By calling the function to increment a value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.
 
-The following diagram provides a simplified overview of the workflow passing from the developer’s command-line environment to the {IC} network deployed locally:
-
-image:dev-work-flow-2.svg[Overview of the developer workflow]
-
-As the diagram suggests, the network infrastructure and the development environment co-exist on the same computer in this tutorial.
-
 == Before you begin
 
 Before starting the tutorial, verify the following:

@@ -13,8 +13,9 @@ If you participated in the DFINITY Foundation seed round by making a contributio
 To receive your tokens, you need to complete the following steps:
 
 * Add an identity for your Ethereum-based address to the {IC}.
+* Create the neuron stake for your account.
+* Dissolve the neuron stake to view and access ICP tokens.
 * Complete the Know Your Customer (KYC) verification process.
-* Create the neuron from your ICP tokens.
 
 == Add an identity for your address to the {IC}
 

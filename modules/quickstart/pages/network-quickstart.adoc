@@ -180,13 +180,13 @@ To validate your wallet for the network:
 +
 [source.bash]
 ----
-dfx identity --network=alpha set-wallet --canister-name=<WALLET-CANISTER-ID>
+dfx identity --network=alpha set-wallet <WALLET-CANISTER-ID>
 ----
 +
 For example:
 +
 ....
-dfx identity --network=alpha set-wallet --canister-name=6xosd-yiaaa-aaaaa-qaala-cai
+dfx identity --network=alpha set-wallet 6xosd-yiaaa-aaaaa-qaala-cai
 ....
 +
 The command displays output similar to the following:

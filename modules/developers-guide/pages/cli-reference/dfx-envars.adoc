@@ -7,6 +7,22 @@ You can configure certain properties for your {sdk-short-name} execution environ
 
 This section lists the environment variables that are currently supported with examples of how to use them.
 
+== CANISTER_CANDID_PATH_{canister.name}
+
+Use environment variables with the `CANISTER_CANDID_PATH` prefix to reference the path to the Candid description file for the canisters that are listed as dependencies in the `dfx.json` file for your project.
+
+For example, if you have a `whoami_assets` canister that lists `whoami` under the `dependencies` key, you could use the `CANISTER_CANDID_PATH_whoami_assets` environment variable to refer to the location of the `whoami.did` file, which for local development might be:
+
+....
+$PROJECT_ROOT/.dfx/local/canisters/whoami/whoami.did
+....
+
+== CANISTER_ID_{canister.name}
+
+Use environment variables with the `CANISTER_ID` prefix to reference the canister identifier for each canister in the `dfx.json` file for your project.
+
+For example, if you have a `linkedup` project that consists of the `linkedup` and `connectd` canisters, you could use the `CANISTER_ID_linkedup` and `CANISTER_ID_connectd` environment variables to refer to the canister identifiers—for example `ryjl3-tyaaa-aaaaa-aaaba-cai` and `rrkah-fqaaa-aaaaa-aaaaq-cai`—created for your project.
+
 == DFX_CONFIG_ROOT
 
 Use the `+DFX_CONFIG_ROOT+` environment variable to specify a different location for storing the `+.cache+` and `+.config+` subdirectories for `+dfx+`.

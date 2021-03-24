@@ -21,10 +21,10 @@ To get start, verify the following:
 
 * You have an internet connection and access to a shell terminal on your local **macOS** or **Linux** computer.
 
-* You have all of the personal documents—such your passport and driver's license available.
+* You have all of the personal documents — such as your passport and driver's license — available.
 These documents are required to validate your identity as part of the Know Your Customer (KYC) process.
 
-* You know how to open a new terminal shell on your local computer and how to run basic command-line programsin the terminal.
+* You know how to open a new terminal shell on your local computer and how to run basic command-line programs in the terminal.
 
 If you need help meeting any of these prerequisites, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
 If you are comfortable meeting the prerequisites without additional instructions, continue to <<Download and install>>.
@@ -79,14 +79,14 @@ To get the principal:
 ----
 dfx identity whoami
 ----
-. Get the principal for you currently-active identity by running the following command:
+. Get the principal for your currently-active identity by running the following command:
 +
 [source,bash]
 ----
 dfx identity get-principal
 ----
 +
-This command displays the textual representation of your principal as plain text that you can copy and paste.
+This command displays the textual representation of your principal as plain text that you can copy-and-paste.
 For example:
 +
 ....
@@ -104,7 +104,7 @@ If your principal is not validated, submit a link:xx[support request].
 
 TBD
 
-After passing the KYC process, yor will receive email notification that your tokens have been released and additional instructions on the next steps, including how to view your distribution and vesting schedule.
+After passing the KYC process, you will receive email notification that your tokens have been released and additional instructions on the next steps, including how to view your distribution and vesting schedule.
 
 ////
 == View funds

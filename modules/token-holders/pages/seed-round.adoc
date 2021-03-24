@@ -22,7 +22,7 @@ To receive your tokens, you need to complete the following steps:
 As a participant in the seed round, you received a 12-word mnemonic seed phrase that was created with a DFINITY Chrome extension. 
 To receive your tokens, you need to use this 12-word mnemonic seed phrase to generate a public/private key pair for your identity that can be recognized by the {IC}.
 The output from your seed phrase is a security certificate in the form of a PEM file. 
-You can then import the PEM file using the {sdk-short-name} command-line interface, `dfx` to create an {IC} *principal* for your identity. 
+You can then import the PEM file using the {sdk-short-name} command-line interface, `dfx`, to create an {IC} *principal* for your identity. 
 A principal similar to a Bitcoin or Ethereum address and can be used to securely identify your account for making transactions and creating neurons.
 
 === Access a secure device 
@@ -31,13 +31,14 @@ To get start, you should first verify that you have access to a hardware wallet 
 Depending on the hardware you have available, you might need to physically remove network cards, disable software, or be prepared to completely wipe the machine before connecting it to the internet again. 
 As an example, before entering your seed phrase, you can start a air-gapped computer from a bootable image that provides a minimal operating system, perform the steps to create a public/private key pair for your 12-word mnemonic seed phrase, then remove any artifacts and reboot the computer normally after completing your registration for token distribution. 
 
-NOTE: It is not clear if we will provide access to an image for this purpose. The PoC image has a minimal OS, `keysmith`, and `dfx` for a self-contained solution.
+// NOTE: It is not clear if we will provide access to an image for this purpose. The PoC image has a minimal OS, `keysmith`, and `dfx` for a self-contained solution.
 
 After you start the computer, you can either install the DFINITY Chrome extension or a software program like `keysmith` to convert your 12-word mnemonic seed phrase into a hashed address.
 
 === Install and use keysmith
 
 If you want to use the `keysmith` program to convert your 12-word mnemonic seed phrase into a hashed address, you can install the `keysmith` program then run `keysmith` commands.
+Alternatively, you can build the `keysmith` program binary yourself by cloning the link:https://github.com/enzoh/keysmith[keysmith] repository.
 
 NOTE: The keysmith program is written in the Go programming language. You can download a binary for your operating system from the link:https://golang.org/dl/[Download Go] page if you don't already have Go installed on your air-gapped computer.
 Follow the appropriate instructions for your operating environment to download, install, and verify Go is in your PATH. 
@@ -53,25 +54,31 @@ For example, on macOS, open Applications, Utilities, then double-click *Terminal
 ----
 go get github.com/enzoh/keysmith
 ----
-. Change to the directory that contains the keysmith binary by running the following command:
+. Change to the directory that contains the `keysmith` binary by running the following command:
 +
 [source,bash]
 ----
 cd go/bin
 ----
++
+Optionally, you might want to copy the `keysmith` binary to another location so that it is available in your PATH and you can perform the remaining steps in a temporary directory. For example, you might want to move the `keysmith` binary to the `/usr/local/bin` directory by running the following command:
++
+....
+cp keysmith /usr/local/bin/
+....
 . Run an appropriate command—such as an `echo` or `printf` command—to write your 12-word mnemonic seed phrase to a text file. 
 +
 For example, you might use `echo` followed by your 12-word mnemonic seed phrase and redirect the output to a file named `my-seed-phrase.txt` by running a command similar to the following:
 +
 [source,bash]
 ----
- echo 'verb bottom twelve symptom plastic believe beach cargo inherit viable dice loop' > my-seed-phrase.txt
+echo 'twelve tide pepper woman sustain please divorce firm order hurry share story' > my-seed-phrase.txt
 ----
 . Generate a PEM certificate file from the file containing your 12-word mnemonic seed phrase by running a command similar to the following:
 +
 [source,bash]
 ----
-./keysmith private-key -f my-seed-phrase.txt -o identity.pem
+keysmith private-key -f my-seed-phrase.txt -o identity.pem
 ----
 . (Optional) Review the contents of the PEM file you just created to verify they match what you would expect by running the following command:
 +
@@ -87,9 +94,9 @@ The command should display results similar to the following:
 BgUrgQQACg==
 -----END EC PARAMETERS-----
 -----BEGIN EC PRIVATE KEY-----
-MHQCAQEEIAgy7nZEcVHkQ4Z1Kdqby8SwyAiyKDQmtbEHTIM+WNeBoAcGBSuBBAAK
-oUQDQgAEgO87rJ1ozzdMvJyZQ+GABDqUxGLvgnAnTlcInV3NuhuPv4O3VGzMGzeB
-N3d26cRxD99TPtm8uo2OuzKhSiq6EQ==
+MHQCAQEEIKZ+lAq3M5D5nSx4m1YJSSMm6UI7DbQhK9KqNlxEbVFOoAcGBSuBBAAK
+oUQDQgAE2VP17I4jXnMl4pRIjIxAkRDIu7fm4GXUWxZZlj9sRM2FDCSXHH7UjIGj
+92+7gBvrL/iiM55hoDTUi7kxuu/GuA==
 -----END EC PRIVATE KEY-----
 ....
 
@@ -97,60 +104,119 @@ N3d26cRxD99TPtm8uo2OuzKhSiq6EQ==
 === Import your PEM file using DFX
 
 After using your 12-word mnemonic seed phrase to create a PEM file, you can import your certificate to create a secure identity and a hashed identifier called a principal.
-A principal identifier is a textual representation of your identity that is similar to an address in Bitcoin or Ethereum. The principal identifier enables the secret key associated with your public key to be used to sign messages and therefore authenticate actions on your behalf. 
+A principal identifier is a textual representation of your identity that is similar to an address in Bitcoin or Ethereum. The principal identifier enables the secret key associated with your public key to be used to sign messages and  authenticate actions on your behalf.
 
-If you don't already have the {sdk-short-name} installed, you can download the latest version directly from within a terminal shell on your local computer. For information about downloading and installing the {sdk-short-name}, see link:../download{outfilesuffix}[Download and install].
+If you don't already have the {sdk-short-name} installed, you can download the latest version directly from within a terminal shell on your local computer. For information about downloading and installing the {sdk-short-name}, see the link:../download{outfilesuffix}[download and install] instructions.
 
 To create an identity from your PEM file:
 
-. Open a terminal shell on the computer where you have {sdk-short-name} installed.
-. Store a name for your {IC} identity in a `NAME` environment variable by running a command similar to the following:
+. In a terminal shell on your local computer, import your PEM file to create an identity by running a command similar to the following:
 +
 ....
-NAME="Jane Doe"
+dfx identity import <your-identity-name> identity.pem
 ....
-. Create an identity associated with the `NAME` environment variable from your PEM file by running a command similar to the following:
++
+For example, if you wanted to import the PEM file to create an identity named `Jane Doe`, you would run the following command:
 +
 ....
-dfx identity import "$NAME" identity.pem
+dfx identity import "Jane Doe" identity.pem
 ....
-. Store the address associated with your 12-word seed phrase in an `ADDRESS` environment variable by running a command similar to the following:
++
+The command displays output similar to the following:
 +
 ....
-ADDRESS="$(./keysmith address -f my-seed-phrase.txt)"
+Creating identity: "Jane Doe".
+Created identity: "Jane Doe".
 ....
-. Store the public key associated with your 12-word seed phrase in a `PUBLIC_KEY` environment variable by running a command similar to the following:
+. Make the identity created from the imported PEM file your currently-active identity by running a command similar to the following and substituting "Jane Doe" with your identity name:
 +
 ....
-PUBLIC_KEY="$(./keysmith public-key -f my-seed-phrase.txt)"
+dfx identity use "Jane Doe"
 ....
-. Use the principal associated with the identity you created from the PEM file by running the following command:
 +
-[source,bash]
-----
-dfx --identity="$NAME" canister call <canister-name> <method-name> "(\"$PUBLIC_KEY\")"
-----
+The command displays output similar to the following:
++
+....
+Using identity: "Jane Doe".
+....
++
+You can verify the currently-active identity at any point by running the `dfx identity whoami` command.
+. Get the principal for you currently-active identity by running the following command:
++
+....
+dfx identity get-principal
+....
++
+This command displays the textual representation of your principal as plain text that you can copy and paste. For example:
++
+....
+g3jww-sbmtm-gxsag-4mecu-72yc4-kef5v-euixq-og2kd-sav2v-p2sb3-pae
+....
++
+This principal represents the beneficiary for which you will create neurons and is used to call the genesis token canister (GTC) on the {IC}.
+. Generate and store the public key for your principal and 12-word seed phrase in a `PUBLIC_KEY` environment variable by running a command similar to the following:
++
+....
+PUBLIC_KEY="$(keysmith public-key -f my-seed-phrase.txt)"
+....
 
 == Create neurons
 
-. Sign a message using the principal associated with the identity you created from the PEM file by running the following command:
+The next step is to sign and send a message to the genesis token canister (GTC) to create your neuron stake.
+You can do this in one step using a single `dfx canister call` command, or, for added security, as two separate steps that your complete at different times or using different devices.
+For example, you might want to create and sign the message to create neurons on one computer, then copy the message to a different computer or convert the message to a QR code before sending it.
+
+Note the you must have a `dfx.json` file available in the directory from which you are running `dfx` commands that connect to the {IC}. 
+You can create an empty `dfx.json` file in your current directory by running the following command:
+
+....
+touch dfx.json
+....
+
+After creating the `dfx.json` file, you can continue to either the <<Single call>> or <<Separate sign and send steps>> instructions.
+
+=== Single call
+
+To create your neuron stake using a single call:
+
+. Verify that you can access the {IC} by running the following command:
 +
-[source,bash]
-----
-dfx --identity="$NAME" canister sign "(\"$PUBLIC_KEY\")" ????
-----
+....
+dfx ping ic
+....
+. Call the genesis token canister *canister identifier* and the `create_neurons` method by running a command similar to the following:
++
+....
+dfx canister --network=ic --no-wallet call rno2w-sqaaa-aaaaa-aaacq-cai create_neurons '(\"$PUBLIC_KEY\")'
+....
+
+=== Separate sign and send steps
+
+In some cases, however, you might want to separate the request for creating neurons in separate signing and sending tasks.
+For example, you might want to sign the request but delay sending it for some period of time.
+
+To create your neuron stake using separate sign and send commands:
+
+. Verify that you can access the {IC} by running the following command:
++
+....
+dfx ping ic
+....
+. Create a signed `message.json` file using the principal associated with the identity you created from the PEM file by running a command similar to the following:
++
+....
+dfx canister --network=ic --no-wallet sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’
+....
++
+This command illustrates how to creates a `message.json` to create neurons that is signed using your principal identifier as the message sender and with an expiration window of one hour.
++
+The `--expire-after` option enables you to specify a maximum period of time for the signed message to be valid. The default is 5 minutes (5m).
+If you set an `expire-after` window, however, that the message cannot be sent within the first five minute waiting period. In this example, therefore, you would need to send the message after the initial five minute waiting and within the next 55 minutes for the message to be recognized as valid.
 . Send the signed message to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:
 +
-[source,bash]
-----
-dfx --identity="$NAME" canister send ????
-----
-. Open a web browser and navigate to the link:xxx[Foundation Registry] website.
-. Paste the public key stored in the `PUBLIC_KEY` environment variable in the XX field.
-+
-If the principal is valid, the Foundation website generates a token-holder identifier (THID) for you to use in the KYC process and you can continue to the next step.
-+
-If your principal is not validated, submit a link:xx[support request].
+....
+dfx canister --no-wallet --network=ic send message.json
+....
 
 == Dissolve neurons
 

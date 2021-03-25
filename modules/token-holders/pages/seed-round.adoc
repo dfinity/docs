@@ -27,7 +27,9 @@ A principal similar to a Bitcoin or Ethereum address and can be used to securely
 
 === Access a secure device 
 
-To get start, you should first verify that you have access to a hardware wallet or an air-gapped computer that is secure and not connected to the internet.
+To get start, you should first verify that you have access to an *air-gapped computer* that is secure and not connected to the internet.
+Although you can complete the steps for token distribution without using an air-gapped computer, we strongly recommend you use a secure device to safeguard your secret keys and reduce the risk of having your information compromised.
+
 Depending on the hardware you have available, you might need to physically remove network cards, disable software, or be prepared to completely wipe the machine before connecting it to the internet again. 
 As an example, before entering your seed phrase, you can start a air-gapped computer from a bootable image that provides a minimal operating system, perform the steps to create a public/private key pair for your 12-word mnemonic seed phrase, then remove any artifacts and reboot the computer normally after completing your registration for token distribution. 
 
@@ -106,7 +108,7 @@ oUQDQgAE2VP17I4jXnMl4pRIjIxAkRDIu7fm4GXUWxZZlj9sRM2FDCSXHH7UjIGj
 After using your 12-word mnemonic seed phrase to create a PEM file, you can import your certificate to create a secure identity and a hashed identifier called a principal.
 A principal identifier is a textual representation of your identity that is similar to an address in Bitcoin or Ethereum. The principal identifier enables the secret key associated with your public key to be used to sign messages and  authenticate actions on your behalf.
 
-If you don't already have the {sdk-short-name} installed, you can download the latest version directly from within a terminal shell on your local computer. For information about downloading and installing the {sdk-short-name}, see the link:../download{outfilesuffix}[download and install] instructions.
+If you don't already have the {sdk-short-name} installed, you can download the latest version directly from within a terminal shell on your local computer. For information about downloading and installing the {sdk-short-name}, see the link:../download{outfilesuffix}[download] instructions.
 
 To create an identity from your PEM file:
 
@@ -208,14 +210,17 @@ dfx ping ic
 dfx canister --network=ic --no-wallet sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’
 ....
 +
-This command illustrates how to creates a `message.json` to create neurons that is signed using your principal identifier as the message sender and with an expiration window of one hour.
+This command illustrates how to creates a `message.json` to create neurons that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
 +
-The `--expire-after` option enables you to specify a maximum period of time for the signed message to be valid. The default is 5 minutes (5m).
-If you set an `expire-after` window, however, that the message cannot be sent within the first five minute waiting period. In this example, therefore, you would need to send the message after the initial five minute waiting and within the next 55 minutes for the message to be recognized as valid.
+Note that the time alloted to send a signed message is a fixed *5-minute window*. The `--expire-after` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `--expire-after` option to one hour (`1h`), you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute.
++
+In this example, therefore, you would need to send the message after 55 minutes and before 60 minutes for the message to be recognized as valid.
++
+If you don't specify the `--expire-after` option, the default expiration is five minutes.
 . Send the signed message to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:
 +
 ....
-dfx canister --no-wallet --network=ic send message.json
+dfx canister --no-wallet send message.json
 ....
 
 == Dissolve neurons

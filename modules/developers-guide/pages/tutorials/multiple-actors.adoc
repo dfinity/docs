@@ -21,7 +21,7 @@ This project defines the following unrelated actors:
 
 * The `+assistant+` actor provides functions to add and show tasks in a to-do list.
 +
-For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is available in the link:https://github.com/dfinity/examples/[examples] repository as link:https://github.com/dfinity/examples/tree/master/motoko/simple_to_do[Simple to-do checklist].
+For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is available in the link:https://github.com/dfinity/examples/[examples] repository as link:https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[Simple to-do checklist].
 
 * The `+rock_paper_scissors+` actor provides a function for determining a winner in a hard-coded rock-paper-scissors contest.
 +

@@ -417,7 +417,7 @@ You can set this value in the range of 0 to 256 TB.
 The default is 8GB.
 
 |`+-m+`, `+--mode <mode>+` |Specifies whether you want to `+install+`, `+reinstall+`, or `+upgrade+` canisters.
-For more information about installation modes and canister management, see link:working-with-canisters{outfilesuffix}[Managing canisters].
+For more information about installation modes and canister management, see link:../working-with-canisters{outfilesuffix}[Managing canisters].
 
 |===
 

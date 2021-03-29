@@ -7,7 +7,7 @@
 
 
 As you come up with ideas for applications, you are going to make many design decisions about how to structure and organize your project. 
-Most of these design decisions are independent of whether you you deploy your app on a traditional cloud service on the {IC}. 
+Most of these design decisions are independent of whether you deploy your app on a traditional cloud service or on the {IC}. 
 However, if you are going to deploy on the {IC}, there are a few design decisions that you should pay particular attention to as you plan the implementation for your app. 
 
 == Single or multiple canister architecture

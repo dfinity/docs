@@ -98,5 +98,5 @@ You can use the `+dfx deploy+` command with the `+--with-cycles+` option to spec
 
 [source,bash]
 ----
-dfx canister create --with-cycles 8000000000 backend
+dfx deploy --with-cycles 8000000000 backend
 ----

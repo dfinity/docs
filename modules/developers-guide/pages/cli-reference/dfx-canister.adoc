@@ -264,11 +264,11 @@ For example, if you want to create the canister identifier for the project `+my_
 dfx canister create my_counter
 ----
 
-You can use the `+dfx canister create+` command with the `+--with-cycles+` option to specify the initial balance upon the creation of one canister or all canisters in a project. For example, to specify an initial balance of 8000000000 cycles for all canisters, run the following command:    
+You can use the `+dfx canister create+` command with the `+--with-cycles+` option to specify the initial balance upon the creation of one canister or all canisters in a project. For example, to specify an initial balance of 8000000000000 cycles for all canisters, run the following command:    
 
 [source,bash]
 ----
-dfx canister create --with-cycles 8000000000 --all
+dfx canister create --with-cycles 8000000000000 --all
 ----
 
 == dfx canister delete

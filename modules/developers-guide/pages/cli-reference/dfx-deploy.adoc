@@ -47,7 +47,7 @@ By default, the local network is used.
 |`+--argument <argument>+` |Specifies an argument using Candid syntax to pass to the canister during deployment.
 Note that this option requires you to define an actor class in the {proglang} program.
 
-|`+--with-cycles <number-of-cycles>+` |Enables you to specify the initial number of cycles for the backend canister in a project. 
+|`+--with-cycles <number-of-cycles>+` |Enables you to specify the initial number of cycles for a canister in a project. 
 |===
 
 === Arguments
@@ -94,9 +94,9 @@ actor class Greet(name: Text) {
 };
 ....
 
-You can use the `+dfx deploy+` command with the `+--with-cycles+` option to specify the initial balance of a backend canister created by your wallet. For example, for an initial balance of 8000000000 cycles for a backend canister, run the following command:    
+You can use the `+dfx deploy+` command with the `+--with-cycles+` option to specify the initial balance of a canister created by your wallet. If you don't specify a canister, the number of cycles you specify will be added to all canisters by default. To avoid this, specify a specific canister by name. For example, to add an initial balance of 8000000000000 cycles to a canister called "hello-assets", run the following command:    
 
 [source,bash]
 ----
-dfx deploy --with-cycles 8000000000 backend
+dfx deploy --with-cycles 8000000000000 hello-assets
 ----

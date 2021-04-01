@@ -28,25 +28,47 @@ The safety and security of your private key is your responsibility and there is 
 
 === Install Keysmith
 
-The DFINITY Canister SDK does not yet provide HD wallet capabilities, so you must rely on 3rd-party software to derive your private key. We strongly recommend using link:https://github.com/enzoh/keysmith[Keysmith] for this task. You can install Keysmith by fetching the `v1.0.0` release binary or by building it from source. Note that Keysmith is written in link:https://golang.org[Go], so if you choose to build it from source, then you must first link:https://golang.org/dl[download] and install Go, verify that `go` is in your `PATH`, and configure your `GOPATH` and `GOBIN` environment variables.
+The DFINITY Canister SDK does not yet provide HD wallet capabilities, so you must rely on 3rd-party software to derive your private key. We strongly recommend using link:https://github.com/enzoh/keysmith[Keysmith] for this task. You can install Keysmith by fetching the `v1.0.0` release binary from link:https://github.com/enzoh/keysmith/releases/tag/v1.0.0[GitHub] or by building it from source. Note that Keysmith is written in link:https://golang.org[Go], so if you choose to build it from source, then you must first link:https://golang.org/dl[download] and install Go, verify that `go` is in your `PATH`, and configure your `GOPATH` and `GOBIN` environment variables.
 
-Run the following command to build Keysmith from source. Note that this can only be done from a networked computer. How you copy the `keysmith` binary from your networked computer to your air-gapped computer will depend on your configuration.
+==== Fetch the release binary
+
+Fetch the `v1.0.0` release binary from link:https://github.com/enzoh/keysmith/releases/tag/v1.0.0[GitHub].
+
+Note that this can only be done from a networked computer. How you copy the release binary from your networked computer to your air-gapped computer will depend on your configuration. Below are SHA256 checksums for supported architectures.
+
+....
+SHA256(keysmith-darwin-amd64)= b153196c14d847aea5d33c20e3ad48509f48146cbcbf13cbc342689e220f55e8
+SHA256(keysmith-linux-amd64)= 54a937fafc55edc745ec02a45fec6c18defcb30126b0a67a758fa5e337fb7279
+....
+
+==== Build from source
+
+Run the following command to build Keysmith from source.
 
 [source,bash]
 ----
 go get github.com/enzoh/keysmith
 ----
 
+Note that this can only be done from a networked computer. How you copy the target binary from your networked computer to your air-gapped computer will depend on your configuration.
+
 === Install the DFINITY Canister SDK
 
 You can install the DFINITY Canister SDK by fetching the `v0.7.0-beta.0` release binary. It is not yet possible to build DFINITY Canister SDK from source.
 
-Run the following command to install DFINITY Canister SDK. Note that this can only be done from a networked computer. How you copy the `dfx` binary from your networked computer to your air-gapped computer will depend on your configuration.
+Run the following command to install the DFINITY Canister SDK.
 
 [source,bash]
 ----
 DFX_VERSION=v0.7.0-beta.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
+
+Note that this can only be done from a networked computer. How you copy the release binary from your networked computer to your air-gapped computer will depend on your configuration. Below are SHA256 checksums for supported architectures.
+
+....
+SHA256(dfx-darwin-amd64)= 2f410a34eaf26b276988716fbbe4e15b1c5e89bced2c111b4d28832f9b468fa6
+SHA256(dfx-linux-amd64)= ced2f3440cbd5b5795d4270e92d7ba0482cba0ccf2b6629d90306bdabd9aa3a7
+....
 
 === Derive and import your private key
 
@@ -95,10 +117,12 @@ The command displays output similar to the following:
 Using identity: "Jane Doe".
 ....
 
-== Create neurons
+== Claim your neurons
 
-The next step is to sign and send a message to the genesis token canister (GTC) to create your neuron stake.
-You can do this in one step using a single `dfx canister call` command, or, for added security, as two separate steps that your complete at different times or using different devices.
+The next step is to sign and send a message to the Genesis Token Canister (GTC) to claim your neurons. You can accomplish this in one step using `dfx canister call`, or, for added security, as two separate steps, `dfx canister sign` and `dfx canister send`, that your complete at different times or using different devices.
+
+
+
 For example, you might want to create and sign the message to create neurons on one computer, then copy the message to a different computer or convert the message to a QR code before sending it.
 
 Note the you must have a `dfx.json` file available in the directory from which you are running `dfx` commands that connect to the {IC}. 
@@ -110,7 +134,7 @@ touch dfx.json
 
 After creating the `dfx.json` file, you can continue to either the <<Single call>> or <<Separate sign and send steps>> instructions.
 
-=== Single call
+=== Single call (not recommended)
 
 To create your neuron stake using a single call:
 

@@ -404,6 +404,8 @@ image:menu-expanded.png[]
 image:create-wallet.png[]
 . Copy the canister identifier for the new wallet, then click *Okay* to close the new canister confirmation pop-up.
 +
+
+image:new-id.png[]
 . Associate the new cycles wallet with the new identity by running a command similar to the following:
 +
 ....

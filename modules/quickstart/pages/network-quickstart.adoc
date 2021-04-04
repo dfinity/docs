@@ -27,9 +27,10 @@ Before you download and install this release of the {sdk-short-name}, verify the
 +
 Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
 
-* You have provided the {company-id} Foundation with a principal associated with your user identity and have received a **wallet canister identifier** in return.
+* You have provided the {company-id} Foundation with a principal associated with your user identity and have received a **cycles wallet** canister identifier in return.
 +
 A wallet canister with **cycles** is required to deploy and manage applications on the {IC}.
+Once you have a default cycles wallet associated with your `default` identity on the network, you can use that wallet to create additional wallets or to create additional canisters for other services.
 
 * You have `+node.js+` installed if you want to access the default front-end for the default project.
 
@@ -50,7 +51,7 @@ For example, open Applications, Utilities, then double-click *Terminal* or press
 +
 [source,bash]
 ----
-DFX_VERSION=0.7.0-beta.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.7.0-beta.2 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 +
 This command prompts you to read and accept the license agreement before installing the {company-id} execution command-line interface (CLI) and its dependencies on your local computer.
@@ -76,7 +77,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.7.0-beta.1
+dfx 0.7.0-beta.2
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -133,7 +134,7 @@ dfx ping alpha
 ----
 +
 If the `+alpha+` network alias for the {IC} network gateway is not configured in your project `+dfx.json+` file, you might see a `+ComputeNetworkNotFound+` error.
-To manually specify the network provider IP address and alias for the {IC} network, open the `+dfx.json+` file in a text editor and add the following under the `+networks+` key:
+To manually specify the network provider for the {IC} network, open the `+dfx.json+` file in a text editor and add the following under the `+networks+` key:
 +
 [source,json]
 ----
@@ -145,8 +146,10 @@ To manually specify the network provider IP address and alias for the {IC} netwo
     }  
 ----
 +
-NOTE: If you are manually updating the `dfx.json` file, you need to add a comma after the brace (`}`) that defines the end of the `local` network section.
-. Verify the command returns information about the {IC} network to which you are connecting.
+
+NOTE: If you are manually updating the `dfx.json` file, you need to add a comma after the brace (`}`) that separates the `alpha` network definition from the `local` network definition.
+
+. Verify that the `+dfx ping alpha+` command returns information about the {IC} network to which you are connecting.
 +
 For example, you should see output similar to the following:
 +
@@ -155,7 +158,7 @@ For example, you should see output similar to the following:
   "ic_api_version": "0.15.6"  "impl_hash": "2404c16edc44f3f23b99a9866839042a5a92d19986ba78c1d98e0f21c0f4996a"  "impl_version": "0.1.0"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 141, 112, 102, 140, 151, 59, 6, 112, 118, 149, 202, 39, 63, 86, 168, 196, 227, 57, 230, 191, 67, 238, 205, 17, 183, 233, 137, 163, 211, 157, 153, 251, 138, 145, 185, 82, 190, 141, 124, 50, 51, 102, 191, 24, 117, 136, 70, 95, 12, 228, 191, 236, 36, 136, 20, 28, 165, 164, 5, 209, 196, 101, 75, 118, 85, 63, 185, 15, 53, 16, 166, 200, 130, 252, 124, 254, 246, 22, 4, 212, 212, 61, 243, 237, 154, 66, 15, 51, 218, 93, 183, 185, 44, 223, 215, 232]
 }
 ....
-. Verify your principal exists on the network by running the following command
+. Verify your principal exists on the network by running the following command:
 +
 [source,bash]
 ----
@@ -174,10 +177,10 @@ IMPORTANT: You should note that this principal is directly associated with a spe
 [[set-wallet]]
 == Validate the wallet application
 
-You must have a wallet canister with ICP tokens or execution cycles to create, deploy, and manage applications that run on the {IC}.
-If you submitted a textual representation of a principal to the {company-id} Foundation, you should have received a wallet canister identifier in return.
+You must have a wallet canister with ICP tokens or a cycles wallet with enough cycles available to create, deploy, and manage applications that run on the {IC}.
+If you submitted a textual representation of a principal to the {company-id} Foundation, you should have received a default cycles wallet canister identifier in return.
 
-Note that upgrades to the {IC} have changed the encoding for principals and new wallet canister identifiers. If you submitted a principal and received a wallet prior to the current release, it is likely that the principal and wallet canister are no longer valid and you should regenerate a new principal after you upgrade the {sdk-short-name} to the latest version.
+Note that upgrades to the {IC} have changed the encoding for principals and new wallet canister identifiers. If you submitted a principal and received a wallet prior to the current release, it is likely that the principal and wallet canister are no longer valid and you should generate a new principal after you upgrade the {sdk-short-name} to the latest version.
 
 To validate your wallet for the network:
 
@@ -188,7 +191,7 @@ To validate your wallet for the network:
 dfx identity --network=alpha set-wallet <WALLET-CANISTER-ID>
 ----
 +
-For example:
+For example, if `f3yw6-7qaaa-aaaab-qaabq-cai` is your default cycles wallet identifier, you would run the following command:
 +
 ....
 dfx identity --network=alpha set-wallet f3yw6-7qaaa-aaaab-qaabq-cai
@@ -240,7 +243,7 @@ For example, call the `+authorize+` method for the wallet canister with a comman
 dfx canister --no-wallet --network alpha call "f3yw6-7qaaa-aaaab-qaabq-cai" authorize '(principal "uymke-5ldqg-w6g7u-qjvng-efsfp-t45m2-tekqj-xvjel-57yv2-hpsdl-zqe")'
 ....
 +
-When the browser refreshes after running the authorize command, the cycles wallet for your principal account is displayed.
+When the browser refreshes after running the `authorize` command, the cycles wallet for your principal account is displayed.
 . View your cycles balance and activity in the browser.
 +
 For example:
@@ -278,7 +281,7 @@ This option is required to install on the {IC} running remotely.
 +
 This option is required because a canister must have cycles to be deployed on the {IC} running remotely.
 +
-You **must** specify an initial cycle balance grater than one trillion (1,000,000,000,000) to deploy a canister with cycles.
+You **must** specify an initial cycle balance greater than one trillion (1,000,000,000,000) to deploy a canister with cycles.
 --
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
@@ -289,16 +292,23 @@ For example, this step registers two network-specific identifiers—one for the 
 Deploying all canisters.
 Creating canisters...
 Creating canister "hello"...
-"hello" canister created on network "alpha" with canister id: "gznlb-paaaa-aaaab-qaakq-cai"
+"hello" canister created on network "alpha" with canister id: "hbe6c-baaaa-aaaab-qaaoq-cai"
 Creating canister "hello_assets"...
-"hello_assets" canister created on network "alpha" with canister id: "gqoa5-ziaaa-aaaab-qaala-cai"
+"hello_assets" canister created on network "alpha" with canister id: "hihv6-xiaaa-aaaab-qaapa-cai"
 Building canisters...
 Building frontend...
 Installing canisters...
-Installing code for canister hello, with canister_id gznlb-paaaa-aaaab-qaakq-cai
-Installing code for canister hello_assets, with canister_id gqoa5-ziaaa-aaaab-qaala-cai
+Installing code for canister hello, with canister_id hbe6c-baaaa-aaaab-qaaoq-cai
+Installing code for canister hello_assets, with canister_id hihv6-xiaaa-aaaab-qaapa-cai
 Authorizing our identity (default) to the asset canister...
 Uploading assets to asset canister...
+  /index.html 1/1 (472 bytes)
+  /index.js 1/1 (296836 bytes)
+  /main.css 1/1 (484 bytes)
+  /sample-asset.txt 1/1 (24 bytes)
+  /logo.png 1/1 (25397 bytes)
+  /index.js.map 1/1 (963981 bytes)
+  /index.js.LICENSE.txt 1/1 (499 bytes)
 Deployed canisters.
 ....
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
@@ -326,10 +336,6 @@ For example:
 ("Hello, everyone!")
 ....
 . Refresh the browser to see your new cycle balance and recent activity.
-+
-For example:
-+
-image::wallet-ui-2.png[]
 
 [[quickstart-frontend]]
 == Test the application front-end
@@ -344,7 +350,7 @@ To access the application front-end:
 For example, the full URL should look similar to the following:
 +
 ....
-https://gqoa5-ziaaa-aaaab-qaala-cai.ic0.app//?host=https://mercury.dfinity.network
+https://hihv6-xiaaa-aaaab-qaapa-cai.ic0.app//?host=https://mercury.dfinity.network
 ....
 +
 Navigating to this URL displays the HTML entry page for the template application.
@@ -357,6 +363,7 @@ image:net-front-end-prompt.png[HTML page with prompt]
 For example:
 +
 image:net-result.png[Hello, Everyone! greeting]
+. Refresh the browser to see how your recent activity affects the cycle balance.
 
 == Create a wallet for another identity
 
@@ -397,7 +404,20 @@ image:menu-expanded.png[]
 image:create-wallet.png[]
 . Copy the canister identifier for the new wallet, then click *Okay* to close the new canister confirmation pop-up.
 +
-You now have a new principal and cycles wallet canister that you can use for testing or share with someone else to give them cycles for a service.
+. Associate the new cycles wallet with the new identity by running a command similar to the following:
++
+....
+dfx identity --network=alpha set-wallet h5aet-waaaa-aaaab-qaamq-cai
+....
++
+In this example, the new identity is named `sf-wallet` and we are running the `set-wallet` command with `sf-wallet` as the current identity context, so the command displays output like this:
++
+....
+Setting wallet for identity 'sf-wallet' on network 'alpha' to id 'h5aet-waaaa-aaaab-qaamq-cai'
+Checking availability of the canister on the network...
+....
++
+You now have a new principal and a new cycles wallet canister that you can use for testing or share with someone else to give them cycles for a service.
 For example, you might want to register a new canister that has the new wallet as its controller.
 +
 You can register a new empty canister from the cycles wallet by clicking *Create a Canister*.

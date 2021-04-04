@@ -395,11 +395,22 @@ image:menu-expanded.png[]
 . Paste the principal for the new identity you created in the controller field, specify the number of cycles for the new wallet, then click *Create*.
 +
 image:create-wallet.png[]
-. Copy the canister identifier for the new wallet, then click *Okay*.
-+
-image:new-id.png[]
+. Copy the canister identifier for the new wallet, then click *Okay* to close the new canister confirmation pop-up.
 +
 You now have a new principal and cycles wallet canister that you can use for testing or share with someone else to give them cycles for a service.
+For example, you might want to register a new canister that has the new wallet as its controller.
++
+You can register a new empty canister from the cycles wallet by clicking *Create a Canister*.
+You can send cycles to any canister for which you have an identifier by clicking *Send Cycles*.
+To perform other tasks, you can call your cycles wallet from the command line.
+For example, to add another principal as a controller, you can run a command similar to the following:
++
+[source,bash]
+----
+dfx canister --network=alpha --no-wallet call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe")'
+----
+
+For more information about the methods available in the default cycles wallet, see link:[]
 
 [[next-steps]]
 == Next steps

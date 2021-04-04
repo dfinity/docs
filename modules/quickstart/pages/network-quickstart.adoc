@@ -410,7 +410,7 @@ For example, to add another principal as a controller, you can run a command sim
 dfx canister --network=alpha --no-wallet call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe")'
 ----
 
-For more information about the methods available in the default cycles wallet, see link:[]
+For more information about the methods available in the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
 
 [[next-steps]]
 == Next steps

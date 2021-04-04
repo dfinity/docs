@@ -22,31 +22,115 @@ In a production environment, however, you often need to explicitly register and 
 [[wallet-create-wallets]]
 == Create a new cycles wallet
 
+Use the `wallet_create_wallet` method to
+
 [[wallet-create-canister]]
 == Register a new canister identifier
 
+Use the `wallet_create_canister` method to
+
+[[wallet-get-controllers]]
+== List the current controllers
+
+Use the `get_controllers` method to
+
+....
+dfx canister --network=alpha call f3yw6-7qaaa-aaaab-qaabq-cai get_controllers
+....
+
+....
+(
+  vec {
+    principal "zen7w-sjxmx-jcslx-ey4hf-rfxdq-l4soz-7ie3o-hti3o-nyoma-nrkwa-cqe";
+    principal "uymke-5ldqg-w6g7u-qjvng-efsfp-t45m2-tekqj-xvjel-57yv2-hpsdl-zqe";
+    principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe";
+  },
+)
+....
 
 [[wallet-add-controller]]
 == Add a controller
 
+Use the `add_controllers` method to 
+
+....
+dfx canister --network=alpha --no-wallet call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe")'
+....
+
 [[wallet-remove-controller]]
 == Remove a controller
 
-[[wallet-add-custodian]]
-== Add a custodian
+Use the `remove_controller` method to 
 
-[[wallet-add-custodian]]
-== Add a controller
+[[wallet-authorize]]
+== Authorize a custodian
 
-[[wallet-list-custodians]]
-== List controllers
+Use the `authorize` method to 
+
+[[wallet-get-custodian]]
+== List current custodians
+
+Use the `get_custodians` method to return the list of principals that are currently defined as custodians for the cycles wallet.
+
+....
+dfx canister --network=alpha call f3yw6-7qaaa-aaaab-qaabq-cai get_custodians
+....
+
+The command returns a list of principals similar to the following:
+
+....
+(
+  vec {
+    principal "zen7w-sjxmx-jcslx-ey4hf-rfxdq-l4soz-7ie3o-hti3o-nyoma-nrkwa-cqe";
+    principal "uymke-5ldqg-w6g7u-qjvng-efsfp-t45m2-tekqj-xvjel-57yv2-hpsdl-zqe";
+    principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe";
+  },
+)
+....
+
+[[wallet-deauthorize]]
+== Remove authorization for a custodian
+
+Use the `deauthorize` method to 
+
 
 [[wallet-check-balance]]
-== Checking the cycle balance
+== Check the cycle balance
+
+Use the `wallet_balance` method to 
 
 [[wallet-send]]
 == Send cycles to a canister
 
+Use the wallet_send method to 
+
 [[wallet-receive]]
 == Receive cycles from a canister
 
+Use the `wallet_receive` method to
+
+[[wallet-call]]
+== Forward calls from a wallet
+
+Use the `wallet_call` method to
+
+[[wallet-addresses]]
+== Manage addresses
+
+Use the following methods to manage address book entries:
+
+add_address: (address: AddressEntry) -> ();
+
+list_addresses: () -> (vec AddressEntry) query;
+
+remove_address: (address: principal) -> ();
+
+
+[[events]]
+== Manage events
+
+Use the following methods to retrieve event and chart information.
+
+get_events: (opt record { from: opt nat32; to: opt nat32; }) -> (vec Event) query;
+
+get_chart: (opt record { count: opt nat32; precision: opt nat64; } ) -> (vec record { nat64; nat64; }) query;

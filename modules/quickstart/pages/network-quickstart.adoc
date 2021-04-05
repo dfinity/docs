@@ -207,7 +207,7 @@ Checking availability of the canister on the network...
 +
 [source,bash]
 ----
-dfx canister --network=alpha call <WALLET-CANISTER-ID> wallet_balance
+dfx canister --no-wallet --network=alpha call <WALLET-CANISTER-ID> wallet_balance
 ----
 +
 The command returns the balance for the wallet canister identifier you specified as a record using Candid format.
@@ -242,6 +242,8 @@ For example, call the `+authorize+` method for the wallet canister with a comman
 ....
 dfx canister --no-wallet --network alpha call "f3yw6-7qaaa-aaaab-qaabq-cai" authorize '(principal "uymke-5ldqg-w6g7u-qjvng-efsfp-t45m2-tekqj-xvjel-57yv2-hpsdl-zqe")'
 ....
++
+Be sure that the command you copy has the `+--no-wallet+` option and the correct network (`+alpha+`) alias.
 +
 When the browser refreshes after running the `authorize` command, the cycles wallet for your principal account is displayed.
 . View your cycles balance and activity in the browser.

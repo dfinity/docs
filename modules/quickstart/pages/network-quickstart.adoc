@@ -237,13 +237,15 @@ image:auth-session.png[]
 . Authorize access to the wallet application by clicking *Allow* and confirming your identity, then click *Finish*.
 . Register the device you are using for this session by copying the command displayed in the Register Your device page and running it in a terminal.
 +
-For example, call the `+authorize+` method for the wallet canister with a command similar to the following:
+For example, call the `+authorize+` method for the cycles wallet canister with a command similar to the following:
 +
 ....
 dfx canister --no-wallet --network alpha call "f3yw6-7qaaa-aaaab-qaabq-cai" authorize '(principal "uymke-5ldqg-w6g7u-qjvng-efsfp-t45m2-tekqj-xvjel-57yv2-hpsdl-zqe")'
 ....
 +
 Be sure that the command you copy has the `+--no-wallet+` option and the correct network (`+alpha+`) alias.
+You should recognize the canister identifier—in this example, f3yw6-7qaaa-aaaab-qaabq-cai—as the cycles wallet associated with your identity.
+If this is your first wallet on the network, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
 +
 When the browser refreshes after running the `authorize` command, the cycles wallet for your principal account is displayed.
 . View your cycles balance and activity in the browser.

@@ -284,10 +284,10 @@ For example, the full URL should look similar to the following:
 https://pnbda-pyaaa-aaaab-qanva-cai.ic0.app/
 ....
 +
-Navigating to this URL displays the HTML entry page for the template application.
+Navigating to this URL displays the HTML entry page for the template application with a sample asset image file, an input field, and a button.
 For example:
 +
-image:net-front-end-prompt.png[HTML page with prompt ]
+image:net-front-end-prompt.png[Sample HTML page]
 
 . Type a greeting, then click *Click Me* to return the greeting.
 +

@@ -238,7 +238,7 @@ http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
 Navigating to this URL displays a simple HTML page with a sample asset image file, an input field, and a button.
 For example:
 +
-image:front-end-prompt.png[HTML page with prompt]
+image:front-end-prompt.png[Sample HTML page]
 
 . Type a greeting, then click *Click Me* to return the greeting.
 +

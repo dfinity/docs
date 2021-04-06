@@ -115,5 +115,5 @@ The best way to migrate your current front-end is to create a new project and mo
 
 For a limited period of time, the {IC} will continue to support the `bootstrap` code and the use of the `ic0.app` suffix to serve canister front-ends. 
 If, during this period, a request sent to a canister returns an error because the canister cannot return HTTP responses, the request will revert to using the `bootstrap` code.
-At network launch, the `bootstrap` static files will be removed from `ic0.app` entirely and all projects will need to use the new architecture moving forward. In the meantime, the {sdk-short-name} team will help developers make the transition to the new architecture through the link:https://forum.dfinity.org/{DFINITY Developer Forum].
+At network launch, the `bootstrap` static files will be removed from `ic0.app` entirely and all projects will need to use the new architecture moving forward. In the meantime, the {sdk-short-name} team will help developers make the transition to the new architecture through the link:https://forum.dfinity.org/[DFINITY Developer Forum].
  

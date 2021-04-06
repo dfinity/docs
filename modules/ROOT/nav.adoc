@@ -16,7 +16,7 @@
 .xref:developers-guide:sdk-guide.adoc[How to]
 ** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
 //xref:developer-guide:connect-network.adoc[Connect to a network]
-** xref:developers-guide:customize-projects.adoc[Design apps]
+** xref:developers-guide:design-apps.adoc[Design apps]
 ** xref:developers-guide:customize-projects.adoc[Manage projects]
 ** xref:developers-guide:work-with-languages.adoc[Develop using different backend languages]
 //*** xref:language-guide:at-a-glance.adoc[Motoko]
@@ -39,6 +39,7 @@
 ** xref:developers-guide:tutorials/intercanister-calls.adoc[Make inter-canister calls]
 ** xref:developers-guide:tutorials/scalability-cancan.adoc[Create scalable apps]
 ** xref:developers-guide:tutorials/access-control.adoc[Add access control with identities]
+** xref:developers-guide:tutorials/simple-cycles.adoc[Accept cycles from a wallet]
 
 .xref:developers-guide:cli-reference.adoc[Reference]
 ** xref:developers-guide:cli-reference.adoc[DFX commands]
@@ -106,6 +107,9 @@
 //** link:https://github.com/dfinity/cancan[CanCan]//
 
 .xref:release-notes:sdk-release-notes.adoc[Release notes]
+** xref:release-notes:0.6.26-rn.adoc[0.6.26]
+** xref:release-notes:0.6.25-rn.adoc[0.6.25]
+** xref:release-notes:0.6.24-rn.adoc[0.6.24]
 ** xref:release-notes:0.6.23-rn.adoc[0.6.23]
 ** xref:release-notes:0.6.22-rn.adoc[0.6.22]
 ** xref:release-notes:0.6.21-rn.adoc[0.6.21]

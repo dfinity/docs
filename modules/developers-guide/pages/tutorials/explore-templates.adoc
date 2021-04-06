@@ -72,10 +72,16 @@ explore_hello/
 ├── package-lock.json
 ├── package.json
 ├── src            # source files directory
-|   └── explore_hello
-│       ├── main.mo
-│       └── public
-│           └── index.js
+│   ├── explore_hello
+│   │   └── main.mo
+│   └── explore_hello_assets
+│       ├── assets
+│       │   ├── logo.png
+│       │   ├── main.css
+│       │   └── sample-asset.txt
+│       └── src
+│           ├── index.html
+│           └── index.js
 └── webpack.config.js
 ....
 +
@@ -91,7 +97,7 @@ The default `+src+` directory includes a template `+main.mo+` file that you can 
 +
 Because this tutorial focuses on the basics of getting started, you are only going to use the `+main.mo+` file.
 If you have `+node.js+` installed, your project directory includes additional files and directories that you can use to define the front-end interface for your application.
-Front-end development and the template files in the `+public+` folder are discussed a little later.
+Front-end development and the template files in the `+assets+` folder are discussed a little later.
 
 == Review the default configuration
 
@@ -222,10 +228,12 @@ dfx canister create --all
 The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "pubs-id" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 Creating canister "explore_hello"...
-"explore_hello" canister created with canister id: "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+"explore_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 Creating canister "explore_hello_assets"...
-"explore_hello_assets" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+"explore_hello_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
 ....
 +
 Because you are connected to the {IC} network running locally, these canister identifiers are only valid locally and are stored for the project in the `+.dfx/local/canister_ids.json+` file.
@@ -235,10 +243,10 @@ For example:
 ....
 {
   "explore_hello": {
-    "local": "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+    "local": "rrkah-fqaaa-aaaaa-aaaaq-cai"
   },
   "explore_hello_assets": {
-    "local": "rrkah-fqaaa-aaaaa-aaaaq-cai"
+    "local": "ryjl3-tyaaa-aaaaa-aaaba-cai"
   }
 }
 ....
@@ -278,10 +286,12 @@ ls -l .dfx/local/canisters/explore_hello/
 For example, the command returns output similar to the following:
 +
 ....
--rw-r--r--  1 pubs  staff     43 Jul 21 12:18 explore_hello.did
--rw-r--r--  1 pubs  staff    103 Jul 21 12:18 explore_hello.did.js
--rw-r--r--  1 pubs  staff    174 Jul 21 12:18 explore_hello.js
--rw-r--r--  1 pubs  staff  95905 Jul 21 12:18 explore_hello.wasm
+-rw-r--r--  1 pubs  staff     178 Apr  6 14:25 explore_hello.d.ts
+-rw-r--r--  1 pubs  staff      41 Apr  6 14:25 explore_hello.did
+-rw-r--r--  1 pubs  staff     155 Apr  6 14:25 explore_hello.did.js
+-rw-r--r--  1 pubs  staff     142 Apr  6 14:25 explore_hello.js
+-rw-r--r--  1 pubs  staff  157613 Apr  6 14:25 explore_hello.wasm
+
 ....
 +
 The `canisters/explore_hello` directory contains the following key files:
@@ -320,8 +330,17 @@ dfx canister install --all
 The command displays output similar to the following:
 +
 ....
-Installing code for canister explore_hello, with canister_id rwlgt-iiaaa-aaaaa-aaaaa-cai
-Installing code for canister explore_hello_assets, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister explore_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister explore_hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+Authorizing our identity (pubs-id) to the asset canister...
+Uploading assets to asset canister...
+  /index.html 1/1 (480 bytes)
+  /index.js 1/1 (296836 bytes)
+  /main.css 1/1 (484 bytes)
+  /sample-asset.txt 1/1 (24 bytes)
+  /logo.png 1/1 (25397 bytes)
+  /index.js.map 1/1 (964679 bytes)
+  /index.js.LICENSE.txt 1/1 (499 bytes)
 ....
 . Run the `+dfx canister call+` command and specify the program and function to call by running the following command:
 +
@@ -353,19 +372,26 @@ If you have `+node.js+` installed in your development environment, your project 
 To explore the default front-end template:
 
 . Open a terminal shell on your local computer, if you don’t already have one open, and navigate to your `+explore_hello+` project directory.
-. Open the `+src/explore_hello_assets/public/index.js+` file in a text editor and review the code in the template script:
+. Open the `+src/explore_hello_assets/src/index.js+` file in a text editor and review the code in the template script:
 +
 ....
-import explore_hello from 'ic:canisters/explore_hello';
+import { Actor, HttpAgent } from '@dfinity/agent';
+import { idlFactory as explore_hello_idl, canisterId as explore_hello_id } from 'dfx-generated/explore_hello';
 
-explore_hello.greet(window.prompt("Enter your name:")).then(greeting => {
-  window.alert(greeting);
+const agent = new HttpAgent();
+const explore_hello = Actor.createActor(explore_hello_idl, { agent, canisterId: explore_hello_id });
+
+document.getElementById("clickMeBtn").addEventListener("click", async () => {
+  const name = document.getElementById("name").value.toString();
+  const greeting = await explore_hello.greet(name);
+
+  document.getElementById("greeting").innerText = greeting;
 });
 ....
 +
-The template `+index.js+` file uses the Document Object Model (DOM) to describe the structure and content of a document on the web.
+The template `+index.js+` file uses two `import` statements to explicitly create an agent instance and the actor for the `explore_hello` canister generated by `dfx`. 
 +
-This sample file imports the canister you created and calls the `+greet+` function in a prompt window.
+This file works in conjunction with the template `index.html` file to display an HTML page with an image asset, input field, and button for the `+greet+` function.
 . Close the `+index.js+` file to continue.
 . View the front-end assets created for the project by running following command:
 +
@@ -377,14 +403,14 @@ ls -l .dfx/local/canisters/explore_hello_assets/
 The command displays output similar to the following:
 +
 ....
-total 464
-drwxr-xr-x  5 pubs  staff     160 Jan 21 14:30 assets
--r--r--r--  1 pubs  staff     217 Dec 31  1969 assetstorage.did
--r--r--r--  1 pubs  staff  110059 Dec 31  1969 assetstorage.wasm
--rw-rw-rw-  1 pubs  staff     217 Dec 31  1969 explore_hello_assets.did
--rw-r--r--  1 pubs  staff     377 Jan 21 14:30 explore_hello_assets.did.js
--rw-r--r--  1 pubs  staff     167 Jan 21 14:30 explore_hello_assets.js
--rw-rw-rw-  1 pubs  staff  110059 Dec 31  1969 explore_hello_assets.wasm
+drwxr-xr-x  9 pubs  staff     288 Apr  6 14:25 assets
+-r--r--r--  1 pubs  staff    2931 Dec 31  1969 assetstorage.did
+-r--r--r--  1 pubs  staff  265823 Dec 31  1969 assetstorage.wasm
+-rw-r--r--  1 pubs  staff    3651 Apr  6 14:25 explore_hello_assets.d.ts
+-rw-rw-rw-  1 pubs  staff    2931 Dec 31  1969 explore_hello_assets.did
+-rw-r--r--  1 pubs  staff    4236 Apr  6 14:25 explore_hello_assets.did.js
+-rw-r--r--  1 pubs  staff     149 Apr  6 14:25 explore_hello_assets.js
+-rw-rw-rw-  1 pubs  staff  265823 Dec 31  1969 explore_hello_assets.wasm
 ....
 +
 These files were generated automatically by the `+dfx build+` command using node modules and the template `+index.js+` file.
@@ -404,17 +430,16 @@ http://127.0.0.1:8000/?canisterId=rrkah-fqaaa-aaaaa-aaaaq-cai
 +
 NOTE: You must use the case-sensitive `+canisterId+` parameter before the canister identifier.
 
-. Verify that you are prompted to type a greeting.
+. Verify that you see the HTML page for the sample application.
 +
 For example:
 +
-image:prompt-window.png[Hello world prompt window]
-. Type a greeting, then click *OK* to return the greeting.
+image:explore-hello.png[Sample HTML entry page]
+. Type a greeting, then click *Click Me* to return the greeting.
 +
 For example:
 +
-image:alert-window.png[Hello world return string]
-. Click *OK* to close the pop-up alert window.
+image:greeting.png[Return the name argument]
 
 == Stop the local network
 

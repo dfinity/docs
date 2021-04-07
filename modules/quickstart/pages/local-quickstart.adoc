@@ -173,7 +173,7 @@ For example, this step registers two network-specific identifiers—one for the 
 +
 ....
 Creating the "default" identity.
-  - generating new key at /Users/lisagunn/.config/dfx/identity/default/identity.pem
+  - generating new key at /Users/pubs/.config/dfx/identity/default/identity.pem
 Created the "default" identity.
 Deploying all canisters.
 Creating canisters...

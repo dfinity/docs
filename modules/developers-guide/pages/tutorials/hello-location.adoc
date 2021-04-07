@@ -181,6 +181,8 @@ For example, you might want to modify the `+location+` function to return multip
 To experiment with modifying the source code for this tutorial:
 
 . Open the `+dfx.json+` configuration file in a text editor and change the default `+location_hello+` settings to `+favorite_cities+`.
++
+For this step, you should modify both the canister name and the path to the main program for the canister to use `+favorite_cities+`.
 . Save your changes and close the `+dfx.json+` file to continue.
 . Copy the `+location_hello+` source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
 +

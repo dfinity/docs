@@ -425,7 +425,9 @@ Checking availability of the canister on the network...
 +
 You now have a new principal and a new cycles wallet canister that you can use for testing or share with someone else to give them cycles for a service.
 For example, you might want to register a new canister that has the new wallet as its controller.
-+
+
+=== Explore other tasks from the cycles wallet
+
 You can register a new empty canister from the cycles wallet by clicking *Create a Canister*.
 You can send cycles to any canister for which you have an identifier by clicking *Send Cycles*.
 To perform other tasks, you can call your cycles wallet from the command line.
@@ -435,6 +437,29 @@ For example, to add another principal as a controller, you can run a command sim
 ----
 dfx canister --network=alpha --no-wallet call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe")'
 ----
+
+For more information about the methods available in the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
+
+=== Create a wallet for someone else
+
+If you are creating a cycles wallet for someone else to help them get on the network, the steps are similar to creating a second wallet for yourself but you will need that person's principal identifier. 
+
+To create a wallet for someone else:
+
+. Ensure that the person you want to create a wallet for takes these steps:
++
+--
+
+* Downloads and installs the {sdk-short-name}.
+* Runs the `dfx identity get-principal` command.
+* Sends you the textual representation of his or her principal.
+
+--
++
+After you have the principal identifier, continue to the next step.
+. Use the cycles wallet application front-end or `wallet_create_wallet` method to create a wallet with the controller set to the principal identifier associated with the person you are creating the wallet for.
+. Use the cycles wallet `get_controllers` method to verify that the list of controllers for the new wallet includes the new principal identifier.
+. Use the cycles wallet `remove_controller` method to remove your principal identifier as a controller of the wallet you created for someone else.
 
 For more information about the methods available in the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
 

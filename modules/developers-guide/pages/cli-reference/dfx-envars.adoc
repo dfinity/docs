@@ -6,6 +6,11 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 You can configure certain properties for your {sdk-short-name} execution environment using environment variables.
 
 This section lists the environment variables that are currently supported with examples of how to use them.
+In most cases, you can set environment variables for a session by executing an   command in the terminal or by adding a line similar to the following to your `.profile` file:
+
+....
+export DFX_TELEMETRY_DISABLED=1
+....
 
 == CANISTER_CANDID_PATH_{canister.name}
 

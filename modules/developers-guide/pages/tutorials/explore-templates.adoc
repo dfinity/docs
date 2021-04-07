@@ -25,8 +25,9 @@ Before you start this tutorial, verify the following:
 
 * You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
 
-* You have stopped any {IC} network processes running on the local
-computer.
+* You have stopped any {IC} network processes running on the local computer.
+
+This tutorial takes approximately 20 minutes to complete.
 
 [[create-a-new-project]]
 == Create a new project

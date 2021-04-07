@@ -51,26 +51,6 @@ The command creates a new `+my_counter+` project and Git repository for your pro
 ----
 cd my_counter
 ----
-[arabic]
-. View the top-level directory structure of the new project by running the following command:
-+
-[source,bash]
-----
-ls -l
-----
-+
-The command displays output similar to the following if you have `+node.js+` installed in your development environment:
-+
-....
-total 384
--rw-r--r--    1 pubs  staff    1192 Jan 21 15:34 README.md
--rw-r--r--    1 pubs  staff     614 Jan 21 15:34 dfx.json
-drwxr-xr-x  350 pubs  staff   11200 Jan 21 15:35 node_modules
--rw-r--r--    1 pubs  staff  178355 Jan 21 15:35 package-lock.json
--rw-r--r--    1 pubs  staff     289 Jan 21 15:34 package.json
-drwxr-xr-x    4 pubs  staff     128 Jan 21 15:34 src
--rw-r--r--    1 pubs  staff    2198 Jan 21 15:34 webpack.config.js
-....
 
 == Modify the default configuration
 
@@ -91,6 +71,7 @@ For example:
 For this tutorial, changing the name of the source file from `+main.mo+` to `+increment_counter.mo+` simply illustrates how the setting in the `+dfx.json+` configuration file determines the source file to be compiled.
 +
 In a more complex application, you might have multiple source files with dependencies that you need to manage using settings in the `+dfx.json+` configuration file.
+In a scenario like that—with multiple canisters and programs defined in your `dfx.json` file—having multiple files all named `main.mo` might be confusing.
 +
 You can leave the rest of the default settings as they are.
 . Save your change and close the `+dfx.json+` file to continue.

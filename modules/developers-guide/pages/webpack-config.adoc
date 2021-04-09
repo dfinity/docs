@@ -5,46 +5,100 @@ The tutorials introduced a few basic approaches to building a front-end user int
 For example, the tutorials demonstrated:
 
 * Using link:tutorials/hello-location{outfilesuffix}#candid-ui[Candid] as a bare-bones interface to expose and test the functions in a canister.
-* Using link:tutorials/explore-templates{outfilesuffix}#default-frontend[raw JavaScript] to display a simple pop-up alert window.
+* Using link:tutorials/explore-templates{outfilesuffix}#default-frontend[raw HTML and JavaScript] to display a simple HTML entry page.
 * Using link:tutorials/custom-frontend{outfilesuffix}[React and compiled JavaScript] to embed HTML attributes and elements directly in a page.
 * Using link:tutorials/my-contacts{outfilesuffix}[React and TypeScript] to import CSS properties from an external file.
 
 This section takes a closer look at the default front-end template, front-end configuration options, and using other frameworks to build the user interface for your projects.
 
-== How the default template is used
+== How the default templates are used
 
-As you might have noticed in the tutorials, projects include a template `+webpack.config.js+` file by default.
-Because webpack is a popular and highly-configurable module bundler for JavaScript-based applications, the default `+webpack.config.js+` file makes it easy to add the specific modules—such as `react` and `markdown`—that you want to use.
+As you might have noticed in the tutorials, projects include template `index.js` and `+webpack.config.js+` files.
 
-By default, the template `+webpack.config.js+` file also creates canister aliases based on the entries in the project's `+dfx.json+` file.
-If you review the code in the template `+webpack.config.js+` file, you see that it performs this alias creation task using the following code block:
+By default, the `+index.js+` file explicitly instantiates an instance of the HTTP agent. This agent provides an interface for interactions between the user-facing front-end and the {IC}. 
+After creating the agent, the `+index.js+` file constructs an actor for the canisters defined in your project's `+dfx.json+` file.
+
+If you review the code in the `+index.js+` file, you see that it performs these steps using the following code block:
+
+[source,js]
+----
+import { Actor, HttpAgent } from '@dfinity/agent';
+import { idlFactory as hello_idl, canisterId as hello_id } from 'dfx-generated/hello';
+
+const agent = new HttpAgent();
+const hello = Actor.createActor(hello_idl, { agent, canisterId: hello_id });
+----
+
+After the agent and the actor are created for the project, the index.js provides a placeholder for the JavaScript you use to interact with the document object model (DOM) and HTML for your application.
+
+=== Modifying the webpack configuration
+
+Because webpack is a popular and highly-configurable module bundler for JavaScript-based applications, new projects new a default `+webpack.config.js+` file that makes it easy to add the specific modules—such as `react` and `markdown`—that you want to use.
+
+If you review the code in the template `+webpack.config.js+` file, you see that it constructs aliases for the canisters defined in your project's `+dfx.json+` file. The aliases can then be used to reference the canisters when imported as modules by the front-end.
+
+You can see these steps in the following code block:
 
 [source,js]
 ----
 // List of all aliases for canisters. This creates the module alias for
-// the `import ... from "ic:canisters/xyz"` where xyz is the name of a
+// the `import ... from "@dfinity/ic/canisters/xyz"` where xyz is the name of a
 // canister.
-const aliases = Object.entries(dfxJson.canisters)
-    .filter(([name,value]) => value.main)
-    .reduce((acc, [name,value]) => {
-  const outputRoot = path.join(__dirname, dfxJson.defaults.build.output, name);
-  const filename = path.basename(value.main, ".mo");
-  return {
-    ...acc,
-    ["ic:canisters/" + name]: path.join(outputRoot, filename + ".js"),
-    ["ic:idl/" + name]: path.join(outputRoot, filename + ".did.js"),
-  };
-}, {});
+const aliases = Object.entries(dfxJson.canisters).reduce(
+  (acc, [name, _value]) => {
+    // Get the network name, or `local` by default.
+    const networkName = process.env["DFX_NETWORK"] || "local";
+    const outputRoot = path.join(
+      __dirname,
+      ".dfx",
+      networkName,
+      "canisters",
+      name
+    );
+
+    return {
+      ...acc,
+      ["dfx-generated/" + name]: path.join(outputRoot, name + ".js"),
+    };
+  },
+  {}
+);
 ----
 
 === Entry and output configuration
 
-After creating canister aliases, the template `+webpack.config.js+` file generates a webpack configuration that adds the canister aliases automatically as imported modules in the default front-end entry point defined in the project's `+dfx.json+` file.
-For example, using the default settings an import similar to the following is added to the `+src/CANISTER_assets/public/index.js+` file:
+After creating canister aliases, the template `+webpack.config.js+` file generates a webpack configuration for the front-end and adds the resulting files to your project directory. 
+
+You can use the default webpack.config.js file as-is, add plug-ins, or customize it completely to suit your needs.
+
+For example, if you experiment with the front-end tutorials, you might have modified the following section:
 
 [source,js]
 ----
-import CANISTER-ALIAS from 'ic:canisters/CANISTER-ALIAS';
+    // Depending in the language or framework you are using for
+    // front-end development, add module loaders to the default
+    // webpack configuration. For example, if you are using React
+    // modules and CSS as described in the "Adding a stylesheet"
+    // tutorial, uncomment the following lines:
+    // module: {
+    //  rules: [
+    //    { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
+    //    { test: /\.css$/, use: ['style-loader','css-loader'] }
+    //  ]
+    // },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, info.frontend.entrypoint),
+        filename: 'index.html',
+        chunks: ['index'],
+      }),
+      new webpack.ProvidePlugin({
+        Buffer: [require.resolve('buffer/'), 'Buffer'],
+        process: require.resolve('process/browser'),
+      }),
+    ],
+  };
+}
 ----
 
 // tag::node[] 

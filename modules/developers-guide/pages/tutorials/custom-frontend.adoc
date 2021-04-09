@@ -12,8 +12,7 @@ Now that you have a basic understanding of how to create, build, and deploy a si
 This tutorial illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed.
 Later tutorials expand on the techniques introduced here, but if you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.
 
-NOTE: Currently, you can only use Javascript to implement the front-end for your canister.
-This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
+NOTE: This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
 Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see link:https://reactjs.org/docs/getting-started.html[Getting started] on the https://reactjs.org/[React website].
 
 == Before you begin
@@ -87,11 +86,11 @@ NOTE: As an alternative to installing these modules, you can edit the default `+
 include::example$custom-frontend-package.json[]
 ....
 
-== Modify the default configuration
+== Review the default configuration
 
-For this tutorial, you need to modify the default front-end settings in the `+dfx.json+` configuration file for your project.
+Before we make any changes to use React for this tutorial, let's review the default front-end settings in the `+dfx.json+` configuration file for your project.
 
-To modify the default `+dfx.json+` configuration file:
+To review the default `+dfx.json+` configuration file:
 
 . Open the `+dfx.json+` configuration file in a text editor.
 . Notice that the `+canisters+` key includes settings for a `custom_greeting_assets` canister.
@@ -106,7 +105,7 @@ To modify the default `+dfx.json+` configuration file:
         "custom_greeting"
       ],
       "frontend": {
-        "entrypoint": "src/custom_greeting_assets/public/index.js"
+        "entrypoint": "src/custom_greeting_assets/src/index.html"
       },
       "source": [
         "src/custom_greeting_assets/assets",
@@ -125,40 +124,50 @@ Let's take a look at the settings in this section.
 
 * The assets canister has a default dependency on the main canister for the project.
 
-* The `+frontend.entrypoint+` setting specifies the path to a file—in this case, the `+index.js+` file—to use as your application entry point.
-If you had a different starting point—for example, a custom `index.html` file—you would modify this setting.
+* The `+frontend.entrypoint+` setting specifies the path to a file—in this case, the `+index.html+` file—to use as your application entry point.
+If you had a different starting point—for example, a custom `first-page.html` file—you would modify this setting.
 
-* The `+source+` setting specifies the path to a directory for static assets that will be included in your assets canister when you build your project.
-If you had custom cascading stylesheet (CSS) or JavaScript files, you would include them in this source folder.
-After building the project, these assets are served from the directory specified by the `+frontend.output+` setting.
+* The `+source+` settings specify the path to your `src` and `dist` directories. The `src` setting specifies the directory to use for static assets that will be included in your assets canister when you build your project.
+If you have custom cascading stylesheet (CSS) or JavaScript files, you would include them in the folder specified by this path.
+After building the project, the project assets are served from the directory specified by the `+dist+` setting.
 
 * The `+type+` setting specifies that the `+custom_greeting_assets+` is an asset canister rather than a program canister.
 --
 +
-For this tutorial, change the `+entrypoint+` file name to `+index.jsx+` to enable adding HTML directly inside the React Javascript front-end.
-+
-....
-"entrypoint": "src/custom_greeting_assets/public/index.jsx",
-....
+For this tutorial, we are going to add React JavaScript in an `+index.jsx+` file, but that won't require any changes to the default settings in the `dfx.json` file.
 . Close the `+dfx.json+` file to continue.
 
-== Review the default program
+== Review the default program and JavaScript files
 
 For this tutorial, you are going to use the default `+main.mo+` file.
 Later, you can return to this file and make changes to see how you can use the front-end to reflect changes in your program code.
 
 To review the default program:
 
-. Change to the `+src/custom_greeting+` directory.
+. Open the `+src/custom_greeting/main.mo+` file in a text editor.
+. Review the default back-end code.
 +
-[source,bash]
-----
-cd src/custom_greeting
-----
-. Open the `+main.mo+` file to review the default code.
+The default program consists of one actor with one `+greet+` function and one `+name+` argument.
+As you saw in link:explore-templates{outfilesuffix}#default-frontend[Viewing the default front-end], the default front-end for this program uses a few lines of raw JavaScript to call the `+greet+` function and return the `+name+` argument a simple HTML page.
+. Close the `+main.mo+` file to continue.
+. Open the `+src/custom_greeting_assets/src/index.js+` file in a text editor.
 +
-The default program consists of one actor, one `+greet+` function, and one `+name+` argument.
-As you saw in link:explore-templates{outfilesuffix}#default-frontend[Viewing the default front-end], the default front-end for this program uses a few lines of raw JavaScript to place the `+greet+` function and returned `+name+` argument a simple alert window.
+....
+import { Actor, HttpAgent } from '@dfinity/agent';
+import { idlFactory as custom_greeting_idl, canisterId as custom_greeting_id } from 'dfx-generated/custom_greeting';
+
+const agent = new HttpAgent();
+const custom_greeting = Actor.createActor(custom_greeting_idl, { agent, canisterId: custom_greeting_id });
+
+document.getElementById("clickMeBtn").addEventListener("click", async () => {
+  const name = document.getElementById("name").value.toString();
+  const greeting = await custom_greeting.greet(name);
+
+  document.getElementById("greeting").innerText = greeting;
+});
+....
++
+The two `import` statement in the default `index.js` file create an actor and an agent using the JavaScript agent library.
 . Close the `+main.mo+` file to continue.
 
 == Modify the front-end files
@@ -167,7 +176,6 @@ You are now ready to create a new front-end for the default program.
 
 To prepare the front-end files:
 
-. Navigate back to the root of your project directory.
 . Open the webpack configuration file (`webpack.config.js`) in a text editor.
 . Add the following `+module+` key above the `+plugins+` section:
 +
@@ -180,8 +188,9 @@ module: {
 },
 ----
 +
-This setting enables the program to use the `+ts-loader+` compiler for the `+index.jsx+` file.
-. Create a new file named `+tsconfig.json+` in your project directory.
+This setting enables the program to use the `+ts-loader+` compiler for a React JavaScript `+index.jsx+` file.
+Note that there's a commented section in the default `webpack.config.js` file that you can modify to add the `module` key.
+. Create a new file named `+tsconfig.json+` in the root directory for your project directory.
 . Open the `+tsconfig.json+` file in a text editor, then copy and paste the following into the file:
 +
 [source,json]
@@ -189,8 +198,7 @@ This setting enables the program to use the `+ts-loader+` compiler for the `+ind
 include::example$sample-tsconfig.json[]
 ----
 . Save your changes and close the `+tsconfig.json+` file to continue.
-. Change to the `+src/custom_greeting_assets/public+` directory.
-. Open the default `+src/custom_greeting_assets/public/index.js+` file in a text editor and delete the existing content.
+. Open the default `+src/custom_greeting_assets/src/index.js+` file in a text editor and delete lines x to x.
 . Copy and paste the following sample code into the `+index.js+` file:
 +
 [source,react]
@@ -201,7 +209,7 @@ include::example$react-index.jsx[]
 +
 [source,bash]
 ----
-mv src/custom_greeting_assets/public/index.js src/custom_greeting_assets/public/index.jsx
+mv src/custom_greeting_assets/src/index.js src/custom_greeting_assets/src/index.jsx
 ----
 
 == Start the local network

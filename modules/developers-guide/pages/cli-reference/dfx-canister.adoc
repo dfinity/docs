@@ -776,7 +776,7 @@ You can use `+raw+` as the argument type if you want to pass raw bytes.
 
 === Examples
 
-Use the `+dfx canister sign+` command to create a signed `method.json` file using hte pricipal ID associated with the identitiy you created using the Privacy Enhanced Mail (PEM) file by running a command similar to the following:
+Use the `+dfx canister sign+` command to create a signed `method.json` file using the pricipal ID associated with the identitiy you created using the Privacy Enhanced Mail (PEM) file by running a command similar to the following:
 
 `+dfx canister --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’+`
 

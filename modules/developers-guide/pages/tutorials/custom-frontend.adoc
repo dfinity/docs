@@ -29,6 +29,8 @@ For information about installing node for your local operating system and packag
 * You have stopped any {IC} network processes running on the local
 computer.
 
+This tutorial takes approximately 30 minutes to complete.
+
 == Create a new project
 
 To create a new project directory for your custom front-end application:
@@ -137,19 +139,21 @@ After building the project, the project assets are served from the directory spe
 For this tutorial, we are going to add React JavaScript in an `+index.jsx+` file, but that won't require any changes to the default settings in the `dfx.json` file.
 . Close the `+dfx.json+` file to continue.
 
-== Review the default program and JavaScript files
+== Review the default front-end files
 
-For this tutorial, you are going to use the default `+main.mo+` file.
-Later, you can return to this file and make changes to see how you can use the front-end to reflect changes in your program code.
+For this tutorial, you are going to use the default `+main.mo+` program and only manipulate the application by modifying the front-end.
+Before you make any changes, though, let's take a look at what's in the default front-end files for a project.
 
-To review the default program:
+To review the default front-end files:
 
-. Open the `+src/custom_greeting/main.mo+` file in a text editor.
-. Review the default back-end code.
+. Open the `+src/custom_greeting_assets/src/index.html+` file in a text editor.
 +
-The default program consists of one actor with one `+greet+` function and one `+name+` argument.
-As you saw in link:explore-templates{outfilesuffix}#default-frontend[Viewing the default front-end], the default front-end for this program uses a few lines of raw JavaScript to call the `+greet+` function and return the `+name+` argument a simple HTML page.
-. Close the `+main.mo+` file to continue.
+This template file is the default front-end entry point for the application as specified by the `+frontend.entrypoint+` setting in the `dfx.json` file.
++
+This file contains standard HTML with references to a CSS file and an image that are located in the `+src/custom_greeting_assets/assets+` directory. 
+The default `+index.html+` file also includes standard HTML syntax for displaying an input field for the `+name+` argument and a clickable button.
++
+This is the same default front-end you saw in link:explore-templates{outfilesuffix}#default-frontend[Viewing the default front-end].
 . Open the `+src/custom_greeting_assets/src/index.js+` file in a text editor.
 +
 ....
@@ -167,8 +171,13 @@ document.getElementById("clickMeBtn").addEventListener("click", async () => {
 });
 ....
 +
-The two `import` statement in the default `index.js` file create an actor and an agent using the JavaScript agent library.
-. Close the `+main.mo+` file to continue.
+--
+* The first `import` statement in the default `index.js` file creates an actor and an agent instance using the JavaScript agent library.
+* The second `import` statement prepares the `custom_greeting` canister for the actor object to be constructed.
+* The next two statements construct the agent and actor objects.
+* The remaining lines provide the document object handling for the default application.
+--
+. Close the `+index.js+` file to continue.
 
 == Modify the front-end files
 
@@ -190,7 +199,7 @@ module: {
 +
 This setting enables the program to use the `+ts-loader+` compiler for a React JavaScript `+index.jsx+` file.
 Note that there's a commented section in the default `webpack.config.js` file that you can modify to add the `module` key.
-. Create a new file named `+tsconfig.json+` in the root directory for your project directory.
+. Create a new file named `+tsconfig.json+` in the root directory for your project.
 . Open the `+tsconfig.json+` file in a text editor, then copy and paste the following into the file:
 +
 [source,json]

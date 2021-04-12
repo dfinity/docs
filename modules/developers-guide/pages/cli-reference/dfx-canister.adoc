@@ -39,11 +39,11 @@ For reference information and examples that illustrate using `+dfx canister+` co
 
 |<<dfx canister request-status,`+request-status+`>> |Requests the status of a call to a canister.
 
-|<<dfx canister send,`+send+`>> |Send a signed `message.js` to create neurons.
-
-|<<dfx canister send,`+sign+`>> |Create a signed `message.js` file to customize the process of creating neurons.
-
 |<<dfx canister set-controller,`+set-controller+`>> |Specifies the identity name or principal to use as the new controller for a specified canister on the Internet Computer network.
+
+|<<dfx canister send,`+send+`>> |Send a signed `+message.json+` to create neurons.
+
+|<<dfx canister send,`+sign+`>> |Create a signed `+message.json+` file to customize the process of creating neurons.
 
 |<<dfx canister start,`+start+`>> |Restarts a stopped canister.
 

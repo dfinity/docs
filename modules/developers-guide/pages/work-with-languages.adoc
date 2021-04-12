@@ -325,7 +325,7 @@ cp reverse.wasm build/reverse/
 
 In a standard development workflow, running the `+dfx build+` command creates several files in the `+canisters+` output directory, including one or more Candid interface description (`+.did+`) files that handle type matching for the data types associated with a program’s functions.
 
-For details about the syntax to use for different data types, see the link:https://github.com/dfinity/candid/tree/master/spec[Candid specification].
+For details about the syntax to use for different data types, see the link:../candid-guide/candid-intro{outfilesuffix}[_Candid Guide_] and link:https://github.com/dfinity/candid/tree/master/spec[Candid specification].
 
 To create a Candid interface description file for this program:
 

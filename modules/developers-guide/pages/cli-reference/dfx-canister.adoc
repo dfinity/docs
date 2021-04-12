@@ -710,7 +710,7 @@ You can specify the following argument for the `+dfx canister send+` command.
 
 Use the `+dfx canister send+` command to send a signed message created using the `+dfx canister sign+` command to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:
 
-`+dfx canister --no-wallet send message.json+`
+`+dfx canister send message.json+`
 
 == dfx canister sign ==
 
@@ -790,7 +790,7 @@ If you don't specify the `+--expire-after+` option, the default expiration is fi
 
 Send the signed message to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:
 
-`+dfx canister --no-wallet send message.json+`
+`+dfx canister send message.json+`
 
 == dfx canister start
 

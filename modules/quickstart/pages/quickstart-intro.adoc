@@ -30,6 +30,6 @@ The default application consists of back-end code written in  {proglang}, a prog
 
 If you are looking for more information before getting started or want to view a demonstration of how to deploy before you try it for yourself, check out the following related resources:
 
-* link:https://www.youtube.com/watch?v=jduSMHxdYD8&[Building on the Internet Computer: Fundamentals (video)]
-* link:https://www.youtube.com/watch?v=60uHQfoA8Dk&[What is the DFINITY Canister SDK (video)]
-* link:https://www.youtube.com/watch?v=yqIoiyuGYNA&l[Deploying your first application (video)]
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the Internet Computer: Fundamentals (video)]
+* link:https://www.youtube.com/watch?v=60uHQfoA8Dk[What is the DFINITY Canister SDK (video)]
+* link:https://www.youtube.com/watch?v=yqIoiyuGYNA[Deploying your first application (video)]

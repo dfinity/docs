@@ -214,7 +214,7 @@ The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/iden
 
 [source,bash,subs="quotes"]
 ----
-dfx canister create [flag] [--all | _canister_name_]
+dfx canister create [option] [flag] [--all | _canister_name_]
 ----
 
 === Flags
@@ -228,6 +228,17 @@ You can use the following optional flags with the `+dfx canister create+` comman
 |`+-h+`, `+--help+` |Displays usage information.
 
 |`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Options
+
+You can use the following options with the `+dfx canister create+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Option |Description
+
+|`+--with-cycles <number-of-cycles>+` |Enables you to specify the initial number of cycles in a canister when it is created by your wallet. 
 |===
 
 === Arguments
@@ -251,6 +262,13 @@ For example, if you want to create the canister identifier for the project `+my_
 [source,bash]
 ----
 dfx canister create my_counter
+----
+
+You can use the `+dfx canister create+` command with the `+--with-cycles+` option to specify the initial balance upon the creation of one canister or all canisters in a project. For example, to specify an initial balance of 8000000000000 cycles for all canisters, run the following command:    
+
+[source,bash]
+----
+dfx canister create --with-cycles 8000000000000 --all
 ----
 
 == dfx canister delete
@@ -417,7 +435,7 @@ You can set this value in the range of 0 to 256 TB.
 The default is 8GB.
 
 |`+-m+`, `+--mode <mode>+` |Specifies whether you want to `+install+`, `+reinstall+`, or `+upgrade+` canisters.
-For more information about installation modes and canister management, see link:working-with-canisters{outfilesuffix}[Managing canisters].
+For more information about installation modes and canister management, see link:../working-with-canisters{outfilesuffix}[Managing canisters].
 
 |===
 

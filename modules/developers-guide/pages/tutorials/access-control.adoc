@@ -121,8 +121,10 @@ The first time you run this command, it creates a `+default+` user identity in t
 +
 ....
 Creating the "default" identity.
-  - migrating key from /Users/lisagunn/.dfinity/identity/creds.pem to /Users/lisagunn/.config/dfx/identity/default/identity.pem
-  "access_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+  - migrating key from /Users/pubs/.dfinity/identity/creds.pem to /Users/pubs/.config/dfx/identity/default/identity.pem
+Created the "default" identity.
+Creating canister "access_hello"...
+"access_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 +
 After creating the `+identity.pem+` key file for the `+default+` user identity, the command displays the network-specific canister identifier for the `+access_hello+` main program.

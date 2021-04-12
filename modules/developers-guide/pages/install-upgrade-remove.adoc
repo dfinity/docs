@@ -59,19 +59,24 @@ Each versioned subdirectory contains the all of the directories and files requir
 For example, if you list the contents of the `~/.cache/dfinity/versions/0.6.26` directory you would see the following core components:
 
 ....
-total 338216
-drwxr-xr-x  44 pubs  staff      1408 Jul 21 11:38 base
-drwxr-xr-x  20 pubs  staff       640 Jul 21 11:38 bootstrap
-drwxr-xr-x   3 pubs  staff        96 Jul 21 11:38 canisters
--r-x------   1 pubs  staff  73477088 Jul 21 11:38 dfx
--r-x------   1 pubs  staff   3550256 Dec 31  1969 didc
--r-x------   1 pubs  staff   5383604 Dec 31  1969 ic-starter
-drwxr-xr-x   7 pubs  staff       224 Jul 21 11:38 js-user-library
--r-x------   1 pubs  staff  16619864 Dec 31  1969 mo-doc
--r-x------   1 pubs  staff  16370424 Dec 31  1969 mo-ide
--r-x------   1 pubs  staff     78981 Dec 31  1969 mo-rts.wasm
--r-x------   1 pubs  staff  15977344 Dec 31  1969 moc
--r-x------   1 pubs  staff  41694644 Dec 31  1969 replica
+total 349192
+drwxr-xr-x  17 pubs  staff       544 Mar 15 11:55 .
+drwxr-xr-x   4 pubs  staff       128 Mar 25 14:36 ..
+drwxr-xr-x  49 pubs  staff      1568 Mar 15 11:55 base
+drwxr-xr-x  20 pubs  staff       640 Mar 15 11:55 bootstrap
+-r-x------   1 pubs  staff  66253292 Mar 15 11:55 dfx
+-r-x------   1 pubs  staff  10496256 Dec 31  1969 ic-ref
+-r-x------   1 pubs  staff   5663644 Dec 31  1969 ic-starter
+-r-x------   1 pubs  staff      9604 Dec 31  1969 libcharset.1.0.0.dylib
+-r-x------   1 pubs  staff     38220 Dec 31  1969 libffi.7.dylib
+-r-x------   1 pubs  staff    668300 Dec 31  1969 libgmp.10.dylib
+-r-x------   1 pubs  staff    958248 Dec 31  1969 libiconv.2.4.0.dylib
+-r-x------   1 pubs  staff      4200 Dec 31  1969 libiconv.dylib
+-r-x------   1 pubs  staff     96900 Dec 31  1969 libz.1.2.11.dylib
+-r-x------   1 pubs  staff  15417684 Dec 31  1969 mo-doc
+-r-x------   1 pubs  staff  14634020 Dec 31  1969 mo-ide
+-r-x------   1 pubs  staff  15111508 Dec 31  1969 moc
+-r-x------   1 pubs  staff  49404128 Dec 31  1969 replica
 ....
 
 === {proglang} base directory
@@ -81,17 +86,9 @@ Because the {proglang} base library is evolving rapidly, you should only use the
 
 === Bootstrap directory
 
-The `+bootstrap+` directory in the versioned subdirectory of the {sdk-short-name} provides the HTML and JavaScript files that are served when you run `+dfx start+` and access the `+localhost+` using the local {IC} web server.
-
-=== Canisters directory
-
-The `+canisters+` directory in the versioned subdirectory of the {sdk-short-name} contains prebuilt canisters that provide functionality for specific canister types. 
-For example, the prebuilt `+assetstorage+` canister stores and retrieves assets for the canisters that have the `+type+` key set to `+assets+` in the project's `+dfx.json+` configuration file.
-
-=== JavaScript agent library
-
-The `+js-user-library+` directory in the versioned subdirectory of the {sdk-short-name} provides files to support writing front-end code that uses JavaScript to communicate with the {IC}.
-In most cases, you should only use the JavaScript agent library files that are packaged with the version of the {sdk-short-name} that you have installed.
+The `bootstrap` directory contains web server code that is deprecated. 
+Beginning with version 0.7.0, agents can call an HTTP middleware server instead of the `bootstrap` code. 
+This change enables canisters to respond to HTTP requests directly and operate more like traditional web-based applications.
 
 == Upgrading to the latest version
 
@@ -102,7 +99,7 @@ If a newer version of `+dfx+` is available, the `+dfx upgrade+` command automati
 Note that you don't need to uninstall the software before installing the new version.
 However, if you want to perform a clean installation rather than an upgrade, you can first uninstall the software as described in xref:remove[Removing the software], then re-run the download and installation command.
 
-For information about the features and fixes in the latest release, see the link:sdk-release-notes{outfilesuffix}[Release notes].
+For information about the features and fixes in the latest release, see the link:../../release-notes/sdk-release-notes{outfilesuffix}[Release notes].
 
 [[remove]]
 == Removing the software

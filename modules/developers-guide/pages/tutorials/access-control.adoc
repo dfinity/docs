@@ -207,7 +207,6 @@ The command displays output similar to the following:
 +
 ....
 Creating identity: "ic_admin".
-Created identity: "ic_admin".
 ....
 . Call the `+my_role+` function to see that your new user identity has not been assigned to any role.
 +
@@ -289,7 +288,6 @@ The command displays output similar to the following:
 +
 ....
 Creating identity: "alice_auth".
-Created identity: "alice_auth".
 ....
 . Store the principal for the new user in an environment variable by running the following command:
 +
@@ -363,7 +361,6 @@ The command displays output similar to the following:
 +
 ....
 Creating identity: "bob_standard".
-Created identity: "bob_standard".
 ....
 . Call the `+my_role+` function to see that your new user identity has not been assigned to any role.
 +

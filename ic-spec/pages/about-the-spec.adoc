@@ -1,0 +1,101 @@
+= About the Internet Computer Interface Specification
+:doctitle: Internet Computer Interface Specification
+
+As discussed in link:../developers-guide/concepts/what-is-IC{outfilesuffix}[What is the {IC}?], the {IC} runs on a large number of physical computers that work together in non-trivial ways, but appear to act as a single, shared, secure, and globally-accessible computer.
+
+The complexity that makes a large network of computers operate like a single computer is largely invisible to the developers who deploy their applications on the {IC} and to the end-users who access applications running on the {IC}.
+
+For most application developers and users,interacting with the {IC} doesn't require any access to low-level interfaces or any knowledge of the relationship between those interfaces. 
+In most cases, developers build their applications using higher-level interfaces such as the link:../developers-guide/cli-reference/dfx-parent{outfilesuffix}[DFX command-line interface] or the link:../rust-guide/rust-intro{outfilesuffix}[Rust Canister Development Kit (CDK)]. 
+
+For developers interested in building tools for the {IC}—for example, to support canister development or user agents in new languages—the _{doctitle}_ describes the _external_ interfaces that the {IC} provides and the behavior to expect when using these interfaces.
+
+== Intended audience
+
+The _{doctitle}_ is intended for a technical audience with a need to understand the low-level operations and behavior for the {IC} external interfaces.
+
+Depending on your role and interests, you should consult the information in the {doctitle} if you want to:
+
+* use any of the low-level interfaces to implement agents, canister developments kits, emulators, or other {IC} tooling.
+
+* implement features that are described by the specification but not yet implemented in existing tooling, for example as a developer working on the {IC} project.
+
+* analyze the intricacies of the Internet Computer’s behavior in great detail, for example, as part of a security review or audit.
+
+== Scope of this document
+
+If you think of the Internet Computer as a distributed execution engine that provides a WebAssembly-based hosting service for applications, then this document describes exclusively the service hosting aspect of it. 
+To the extent possible, this document does _not_ talk about block chains, consensus protocols, nodes, subnets, orthogonal persistence, or governance.
+
+This document also tries to be implementation-agnostic. 
+It would apply just as well to a (hypothetical) compatible re-implementation of the Internet Computer. 
+This implies that this document does not cover interfaces towards those running the Internet Computer (for example, data center operators, protocol developers, governance users), as topics like node updates, monitoring, logging are inherently tied to the actual _implementation_ and its architecture.
+
+== Documentation conventions and terminology
+
+For consistency, this document uses the following conventions for terminology:
+
+* _User_ denotes any external entity interacting with the {IC}.
++
+--
+
+* The term _user_ is used to avoid the more ambiguous term _client_. In most cases within the context of the {doctitle}, however, _user_ refers to code acting as an _agent_ on behalf of a person. 
+
+* Canisters, users, and other entities are identified by a _principal_, sometimes also called an _id_.
+
+* _Users_ interact with the system by issuing _requests_ on the HTTPS interface. 
+Requests have responses which can either be replies or rejects. Some requests cause internal messages to be created.
+
+--
+
+* The public entry points of canisters are called _methods_. 
++
+--
+
+* Methods can be declared to be either _update methods_, in which state mutation is preserved, or _query methods_, in which state mutation is discarded and no further calls can be made.
+
+* Methods can be _called_, from _caller_ to _callee_.
+
+* Method calls eventually incur a _response_ which is either a _reply_ or a _reject_. 
+
+* A method can have _parameters_, which are provided with concrete _arguments_ in a method call.
+
+* Internally, a call or a response is transmitted as a _message_ from a _sender_ to a _receiver_. 
+Messages do not have a response.
+
+--
+
+* _Inter-canister calls_ describe calls from one canister to another or calls from a canister to itself
++
+--
+* Inter-canister calls can preserve state mutation.
+
+* Because inter-canister calls do not distinguish between update and query methods, all inter-canister calls are treated as update method calls.
+
+* External update calls can call update or query methods.
+
+* External query calls can _only_ call query methods.
+--
+
+* [[define-wasm-fn]]WebAssembly  _functions_ are exported by the WebAssembly module or provided by the canister interface system API.
++
+--
+* WebAssembly functions are _invoked_.
+
+* WebAssembly functions can either _trap_ or _return_, possibly with a return value. 
+
+* WebAssembly Functions can also have parameters and take arguments.
+--
+
+== Unspecified constants and limits
+
+This specification may refer to certain constants and limits without specifying their concrete value because the values are implementation defined. 
+Many of these values are resource limits that are relevant only to specify the error-handling behavior of the system. This list is not complete.
+
+* `MAX_CYCLES_PER_MESSAGE`
++
+Amount of cycles that a canister has to have before a message is attempted to be executed, which is deducted from the canister balance before message execution. See link:index{outfilesuffix}#rule-message-execution[Message execution].
+
+* `MAX_CANISTER_BALANCE`
++
+Maximum canister cycle balance. Any excess is discarded. Less than 2^64^.

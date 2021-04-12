@@ -1,8 +1,12 @@
-import contact from 'ic:canisters/contacts';
+import { Actor, HttpAgent } from '@dfinity/agent';
+import { idlFactory as contacts_idl, canisterId as contacts_id } from 'dfx-generated/contacts';
+
 import * as React from 'react';
 import { render } from 'react-dom';
+import '../assets/mycontacts.css'; // Import custom styles
 
-import './mycontacts.css'; // Import custom styles
+const agent = new HttpAgent();
+const contacts = Actor.createActor(contacts_idl, { agent, canisterId: contacts_id });
 
 class Contact extends React.Component {
   constructor(props) {
@@ -18,12 +22,12 @@ class Contact extends React.Component {
     let email = document.getElementById("newEntryEmail").value;
     let phone = document.getElementById("newEntryPhone").value;
 
-    contact.insert(name, add1, add2, email, parseInt(phone, 10));
+    contacts.insert(name, add1, add2, email, parseInt(phone, 10));
   }
 
   async lookup() {
     let name = document.getElementById("lookupName").value;
-    contact.lookup(name).then(opt_entry => {
+    contacts.lookup(name).then(opt_entry => {
       let entry;
 
       if (opt_entry.length == 0) {
@@ -70,4 +74,4 @@ class Contact extends React.Component {
 
 document.title = "DFINITY CONTACT EXAMPLE";
 
-render(<Contact />, document.getElementById('app'));
+render(<Contact />, document.getElementById('contacts'));

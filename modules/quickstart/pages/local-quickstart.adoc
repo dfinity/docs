@@ -17,7 +17,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 [[quick-start-intro]]
 This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and are running the {IC} as part of your *local development environment*.
 
-To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
+To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.
 
 [[before-you-begin]]
 == Before you begin
@@ -86,7 +86,7 @@ dfx --help
 +
 The command displays usage information for the `+dfx+` parent command and its subcommands.
 
-include::example$vscode-plugin.adoc[]
+//include::example$vscode-plugin.adoc[]
 
 [[create-a-new-project]]
 == Create a new project
@@ -175,15 +175,13 @@ For example, this step registers two network-specific identifiers—one for the 
 Creating the "default" identity.
   - generating new key at /Users/pubs/.config/dfx/identity/default/identity.pem
 Created the "default" identity.
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 Deploying all canisters.
 Creating canisters...
 Creating canister "hello"...
-Creating the canister using the wallet canister...
-Creating a wallet canister on the local network.
-The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 "hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 Creating canister "hello_assets"...
-Creating the canister using the wallet canister...
 "hello_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
 Building canisters...
 Building frontend...
@@ -192,6 +190,13 @@ Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
 Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
 Authorizing our identity (default) to the asset canister...
 Uploading assets to asset canister...
+  /index.html 1/1 (472 bytes)
+  /index.js 1/1 (295480 bytes)
+  /main.css 1/1 (484 bytes)
+  /sample-asset.txt 1/1 (24 bytes)
+  /logo.png 1/1 (25397 bytes)
+  /index.js.map 1/1 (957052 bytes)
+  /index.js.LICENSE.txt 1/1 (499 bytes)
 Deployed canisters.
 ....
 +
@@ -227,20 +232,19 @@ Now that you have verified that your application has been deployed and tested it
 For example, the full URL should look similar to the following:
 +
 ....
-http://127.0.0.1:8000/?canisterId=rrkah-fqaaa-aaaaa-aaaaq-cai
+http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
 ....
 +
 Navigating to this URL displays the prompt pop-up window.
 For example:
 +
-image:quickstart-prompt.png[Prompt pop-up window]
+image:front-end-prompt.png[HTML page with prompt]
 
-. Type a greeting, then click *OK* to return the greeting.
+. Type a greeting, then click *Click Me* to return the greeting.
 +
 For example:
 +
-image:quickstart-return.png[Hello, everyone! greeting]
-. Click *OK* to close the alert pop-up window.
+image:front-end-result.png[Hello, everyone! greeting]
 
 == Stop the local network
 

@@ -1,0 +1,27 @@
+= Introduction to key interfaces
+
+If you want to use the Internet Computer as an application developer, you first write a program in a language that can be compiled into WebAssembly code. 
+
+When you are ready to deploy your application on the {IC}, the Web Assembly code is incorporated into a computational unit called a _canister_.
+
+Interacting with a canister—as an application developer or as an end-user—typically involves interacting with the following underlying interfaces:
+
+* HTTP handler interface
+* System application programming interface
+
+If you use existing tools like the DFINITY Canister SDK to work with canisters, the tools interact with these lower-level interfaces on your behalf and you don't need to know the details about how they work.
+If you want to create your own tooling for working with canisters, however, you need to know a little about the canister format. how to use the link:index{outfilesuffix}#http-handler[HTTP interface] to interact with canisters, and the operations that the link:index{outfilesuffix}#system-api[system API] supports.
+
+The following diagram provides a simplified view of the work flow for an application running on the {IC}.
+
+image:simplified-canister-workflow.svg[]
+
+As this diagram suggests, requests to canisters deployed on the {IC} pass through a `+/submit+` endpoint to perform canister management operations.
+
+For details about specific interfaces and operations and how they work, see the following sections:
+
+* link:index{outfilesuffix}#http-interface[HTTP interfaces]
+* link:index{outfilesuffix}#system-api[Canister interface (System API)]
+* link:index{outfilesuffix}#ic-management-canister[IC management canister]
+ 
+For a more formal description and precise information about state-related operations for the Internet Computer as a whole, see the link:index{outfilesuffix}#abstract-behavior[Abstract behavior] section.

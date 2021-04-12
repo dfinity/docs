@@ -1,0 +1,83 @@
+= Magnify User's Guide
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:app-short-name: Magnify
+:app-long-name: Magnify Video Conferencing
+:sdk-short-name: DFINITY Canister SDK
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[quick-start-intro]]
+{app-long-name} illustrates how you can create a basic video conferencing application that runs on an {IC} network provider.
+For this demonstration, the {app-short-name} runs on a Digital Ocean instance with a self-signed certificate.
+Depending on your browser and security settings, access to server running {app-short-name} might be blocked by default.
+
+NOTE: If you want to build a local version of {app-short-name}, see  link:magnify-quickstart{outfilesuffix}[_Building {app-long-name}_].
+For information about deploying the canister, see link:magnify-quickstart{outfilesuffix}#deploy[How to deploy].
+
+[[before-you-begin]]
+== Before you begin
+
+Before you attempt to use {app-long-name}, verify that ou have an internet connection and access to a Google Chrome, Mozilla Firefox, or macOS Safari browser.
+
+[[open-magnify]]
+== Open {app-short-name} in a browser
+
+To open {app-short-name} in a browser:
+
+. Open a new browser tab or window.
+. Connect to the {app-short-name} canister running on the link:https://161.35.207.208/?canisterId=ic:02000000000000000000000000000000000153[Digital Ocean instance].
+. Review the options displayed on the {app-short-name} welcome page.
++
+image:no-rooms-available.png[]
+. Select a task from the options available:
++
+* Create a new conference.
+* Join an existing conference.
+* Request an invitation by sending someone your personal identifier.
+
+Let's start by creating a new room.
+
+=== Create a new conference
+
+If you are the first participant or want to create a new conference, you first must create a room for your conference.
+After you create the room, you can invite others to join you.
+
+To create a new conference:
+
+. Type a room number in the **New Room** field.
+. Type the name you want displayed for your video stream in the **Your name** field.
+. Click **Create**.
+. Click **Allow** to allow {app-short-name} to access you media devices--for example, the camera and microphone you want to use for the conference.
++
+image:audio.png[Allow or block audio]
++
+Clicking Allow starts your video stream.
+. Type the name of the person you want to invite to the conference in the **Invitee name** field.
+. Paste the personal identifier for the person you want to invite to the conference in the **Invitee principal** field.
+. Click **Invite**.
+
+When your invitation is accepted the invitee video stream is displayed.
+You or your guest can invite additional people to participate.
+
+=== Join a conference in an existing room
+
+If you are not the first participant or have been invited to join an existing conference, select the room number for the conference to which you have been invited.
+
+image:magnify-welcome.png[]
+
+=== Send a host your personal identifier
+
+For you to participate in a secure conference, the host or another participant must have your personal identifier, the invitee principal displayed on the welcome page.
+
+To participate in a conference:
+
+. Copy and send your identifier to the host or another participant.
++
+image:personal-id.png[]
+. Select the conference to join from the list of available rooms.
+

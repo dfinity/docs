@@ -1,7 +1,10 @@
-import custom_greeting from 'ic:canisters/custom_greeting';
+// Insert these lines after the import statements for
+// importing an agent and an actor
 import * as React from 'react';
 import { render } from 'react-dom';
 
+// Replace the default index.js content with 
+// React JavaScript
 class MyHello extends React.Component {
   constructor(props) {
     super(props);

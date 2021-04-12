@@ -186,6 +186,15 @@ You are now ready to create a new front-end for the default program.
 To prepare the front-end files:
 
 . Open the webpack configuration file (`webpack.config.js`) in a text editor.
+. Modify the front-end entry to replace the default `+index.html+` with `+index.jsx+`.
++
+....
+entry: {
+  // The frontend.entrypoint points to the HTML file for this build, so we need
+  // to replace the extension to `.js`.
+  index: path.join(__dirname, info.frontend.entrypoint).replace(/\.html$/, ".jsx"),
+},
+....
 . Add the following `+module+` key above the `+plugins+` section:
 +
 [source,json]
@@ -207,7 +216,7 @@ Note that there's a commented section in the default `webpack.config.js` file th
 include::example$sample-tsconfig.json[]
 ----
 . Save your changes and close the `+tsconfig.json+` file to continue.
-. Open the default `+src/custom_greeting_assets/src/index.js+` file in a text editor and delete lines x to x.
+. Open the default `+src/custom_greeting_assets/src/index.js+` file in a text editor and delete lines 7 to 12.
 . Copy and paste the following sample code into the `+index.js+` file:
 +
 [source,react]
@@ -220,6 +229,13 @@ include::example$react-index.jsx[]
 ----
 mv src/custom_greeting_assets/src/index.js src/custom_greeting_assets/src/index.jsx
 ----
+. Open the default `+src/custom_greeting_assets/src/index.html+` file in a text editor, then replace the body contents with `+<div id="app"></div>+`.
++
+For example:
++
+....
+
+....
 
 == Start the local network
 
@@ -227,7 +243,6 @@ Before you can build the `+custom_greeting+` project, you need to connect to the
 
 To start the network locally:
 
-[arabic]
 . Open a new terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
 . Start the {IC} network on your local computer by running the following command:

@@ -12,8 +12,7 @@ Cascading stylesheets represent one of the most common ways to customize the use
 This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project.
 If you already know how to add cascading stylesheets (CSS) to a React-based project, you can skip this tutorial.
 
-NOTE: Currently, you can only use Javascript to implement the front-end for your canister.
-This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
+NOTE: This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
 Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see link:https://reactjs.org/docs/getting-started.html[Getting started] on the https://reactjs.org/[React website].
 
 == Before you begin
@@ -84,50 +83,36 @@ NOTE: As an alternative to installing these modules, you can edit the default `+
 include::example$add-stylesheet-package.json[]
 ....
 
-== Modify the default configuration
-
-For this tutorial, you need to modify the default front-end settings in the `+dfx.json+` configuration file for your project.
-
-To modify settings in the default `+dfx.json+` configuration file:
-
-. Open the `+dfx.json+` configuration file in a text editor.
-. Under the `+canisters.contacts+` section, change the name of the main program file from `+main.mo+` to `+contacts.mo+`.
-. Under the `+canisters.contacts_assets+` section, change the `+frontend.entrypoint+` file name from `+index.js+` to `+index.jsx+` to enable adding HTML directly inside JavaScript.
-. Save your changes and close the `+dfx.json+` file to continue.
-
 == Modify the default program
 
-For this tutorial, you are going to rename the main program file and modify the file content to replace the default program with a program that allow you to store and look up contact information.
+For this tutorial, you are going to modify the main program to with code that allows you to store and look up contact information.
 
 To modify the default program:
 
-. Change to the `+src/contacts+` directory.
-+
-[source,bash]
-----
-cd src/contacts
-----
-. Rename the `+main.mo+` file as `+contacts.mo+` by running the following command:
-+
-[source,bash]
-----
-mv main.mo contacts.mo
-----
-. Open the `+contacts.mo+` file in a text editor and delete the existing content.
+. Open the `+src/contacts/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
 +
 [source.copy,motoko,no-repl]
 ----
 include::example$mycontacts/contacts.mo[]
 ----
-. Save your changes and close the `+contacts.mo+` file to continue.
+. Save your changes and close the `+main.mo+` file to continue.
 
 == Modify the front-end files
 
 You are now ready to create a new front-end for your program.
 
-. Navigate back to the root of your project directory.
 . Open the webpack configuration file (`webpack.config.js`) in a text editor.
+. Modify the front-end entry to replace the default index.html with index.jsx.
++
+[source,js]
+----
+entry: {
+  // The frontend.entrypoint points to the HTML file for this build, so we need
+  // to replace the extension to `.js`.
+  index: path.join(__dirname, info.frontend.entrypoint).replace(/\.html$/, ".jsx"),
+},
+----
 . Locate the commented example for the `+module+` key above the `+plugins+` section, then uncomment the following lines:
 +
 [source,js]
@@ -156,13 +141,19 @@ You are now ready to create a new cascading stylesheet and add it to your projec
 
 To add a stylesheet:
 
-. Change to the `+src/contacts_assets/public+` directory.
+. Change to the `+src/contacts_assets/assets+` directory.
 +
 [source,bash]
 ----
-cd src/contacts_assets/public/
+cd src/contacts_assets/assets/
 ----
-. Create a new file named `+mycontacts.css+` and open the file in a text editor.
+. Rename the `+main.css+` file to create a new file named `+mycontacts.css+`.
++
+[source.bash]
+----
+mv main.css mycontacts.css
+----
+. Open the `+mycontacts.css+` file in a text editor and delete the existing content.
 . Define some style properties for the front-end.
 +
 For example, copy and paste the following sample styles into the file:
@@ -172,6 +163,12 @@ For example, copy and paste the following sample styles into the file:
 include::example$mycontacts/mycontacts.css[]
 ----
 . Save your changes and close the `+mycontacts.css+` file to continue.
+. Change to the `+src/contacts_assets/src+` directory.
++
+[source,bash]
+----
+cd ../src
+----
 . Open the default `+index.js+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the `+index.js+` file:
 +
@@ -184,6 +181,27 @@ include::example$mycontacts/mod-index.jsx[]
 [source,bash]
 ----
 mv index.js index.jsx
+----
+. Open the default `src/contacts_assets/src/index.html` file in a text editor, then replace `main.css` as the stylesheet file name with `mycontacts.css` and update the `body` contents with `<div id="contacts"></div>`.
++
+For example:
++
+[source,bash]
+----
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>contacts</title>
+    <base href="/">
+
+    <link type="text/css" rel="stylesheet" href="mycontacts.css" />
+</head>
+<body>
+    <div id="contacts"></div>
+</body>
+</html>
 ----
 . Navigate back to the root of your project directory.
 +
@@ -202,7 +220,6 @@ To start the network locally:
 
 [arabic]
 . Open a new terminal window or tab on your local computer.
-. Navigate to the root directory for your project, if necessary.
 . Start the {IC} network on your local computer by running the following command:
 +
 [source,bash]

@@ -22,10 +22,10 @@ Previously, developing a front-end on the Internet Computer involved adding a fr
 The `retrieve()` function would take a path and return a blob. The blob returned by the `retrieve()` function would then have an `index.js` file that contained some JavaScript and static HTML called the `bootstrap` code. 
 After you deployed a canister on the Internet Computer, accessing the canister using the `<CANISTER_ID>.ic0.app` URL executed the `bootstrap` code, which in turn, performed the following steps:
 
-* Create a secure worker to contain your private key.
-* Polyfill the `window.ic` to provide some mechanics to the running application so that it can communicate with the Internet Computer.
-* Call the canister’s `retrieve()` method with `index.js` as the path, and evaluate it.
-* Pass control of the document object model (DOM) and the page to the canister’s JavaScript code.
+* Created a secure worker to contain your private key.
+* Polyfilled the `window.ic` to provide some mechanics to the running application so that it can communicate with the Internet Computer.
+* Called the canister’s `retrieve()` method with `index.js` as the path, and evaluate it.
+* Passed control of the document object model (DOM) and the page to the canister’s JavaScript code.
 
 This `bootstrap` workflow is quite different from how people usually build web applications. 
 For example, this approach did not support loading HTML directly or downloading assets like PNG files. 
@@ -116,4 +116,3 @@ The best way to migrate your current front-end is to create a new project and mo
 For a limited period of time, the {IC} will continue to support the `bootstrap` code and the use of the `ic0.app` suffix to serve canister front-ends. 
 If, during this period, a request sent to a canister returns an error because the canister cannot return HTTP responses, the request will revert to using the `bootstrap` code.
 At network launch, the `bootstrap` static files will be removed from `ic0.app` entirely and all projects will need to use the new architecture moving forward. In the meantime, the {sdk-short-name} team will help developers make the transition to the new architecture through the link:https://forum.dfinity.org/[DFINITY Developer Forum].
- 

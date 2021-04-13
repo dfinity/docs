@@ -177,7 +177,7 @@ The **Internet Computer** is a decentralized platform that enables a global netw
 
 [[Internet-Computer-Association-ICA]]
 Internet Computer Association (ICA)::
-The **Internet Computer Association** is a legally-recognized entity (under Swiss law) for member organizations that participate in the development and deployment of the <<internet-computer,Internet Computer>> as a computing platform. The association includes the https://dfinity.org[DFINITY] Foundation, independent data centers, universities, and developer partners that have registered and been accepted as members.
+The **Internet Computer Association** is a legally-recognized entity (under Swiss law) for member organizations that participate in the development and deployment of the <<internet-computer,Internet Computer>> as a computing platform. The association includes the https://dfinity.org[DFINITY Foundation], independent data centers, universities, and developer partners that have registered and been accepted as members.
 
 [[Internet-Computer-nervous-system-ICNS]]
 Internet Computer nervous system (ICNS)::
@@ -229,15 +229,15 @@ include::developers-guide:page$glossary.adoc[leveloffset=2,tag=g-node]
 
 [[node-identifier-NID]]
 node identifier (NID)::
-The unique identifier of a <<g-node,node>>. It is a 29-byte selfauthenticating identifier, i.e., the SHA-224 hash of its private key with the byte 0x02 appended as defined in the https://docs.dfinity.systems/dfinity/spec/public/index.html#idclasses[Interface Specification].
+The unique identifier of a <<g-node,node>>. This identifier is a 29-byte selfauthenticating SHA-224 hash of its private key with the byte 0x02 appended as defined in the link:../interface-spec/index{outfilesuffix}[_Interface Specification_].
 
 [[node-operator]]
-node operator::
-A *node operator* owns and operates a <<g-node,node>>. The *node operator* is remunerated periodically for providing <<g-node,nodes>> in the form of newly minted ICP tokens.
+node provider::
+A *node provider* is an entity that provides and operates a <<g-node,node>>. The *node provider* is remunerated periodically for providing <<g-node,nodes>> in the form of newly minted ICP tokens.
 
 [[node-operator-identifier-NOID]]
 node operator identifier (NOID)::
-The unique identifier of a <<node-operator,node operator>>. It is a 29-byte self-authenticating identifier, i.e., the SHA-224 hash of the public key stored on its https://en.wikipedia.org/wiki/Hardware_security_module[HSM] with the byte 0x02 appended as defined in the https://docs.dfinity.systems/dfinity/spec/public/index.html#idclasses[Interface Specification].
+The unique identifier of a <<node-operator,node provider>>. This identifier is a 29-byte self-authenticating SHA-224 hash of the public key stored on its https://en.wikipedia.org/wiki/Hardware_security_module[HSM] with the byte 0x02 appended as defined in the link:../interface-spec/index{outfilesuffix}[_Interface Specification_].
 
 [[NOID]]
 NOID::

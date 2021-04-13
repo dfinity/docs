@@ -28,7 +28,7 @@ computer.
 
 This tutorial takes approximately 10 minutes to complete.
 
-== Creating a new project
+== Create a new project
 
 To create a new project for this tutorial:
 
@@ -120,7 +120,10 @@ To deploy the application locally:
 dfx deploy phonebook
 ----
 The `+dfx.json+` file provides default settings for creating an application front-end entry point and `+assets+` canister.
-For this tutorial, however, you can deploy just the phonebook back-end canister using the `+dfx deploy phonebook+` command because the project is a terminal-based application that doesn't include any front-end assets.
++
+In previous tutorials, we deleted the entries for the asset canister because we weren’t adding a front-end for the sample application. That change kept our project workspace tidy by eliminating files that would go unused. There’s no requirement to do this, however, and there’s no harm in leaving the asset canister description in the `dfx.json` file. For example, you might want to use it as a placeholder if you intend to add front-end assets later.  
++
+For this tutorial, you can deploy just the phonebook back-end canister using the `+dfx deploy phonebook+` command because the project is a terminal-based application that doesn't include any front-end assets.
 +
 Although this tutorial illustrates how to skip compiling a front-end canister, you can add a simple user interface to this application later by exploring the link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] project in the link:https://github.com/dfinity/examples[examples] repository.
 

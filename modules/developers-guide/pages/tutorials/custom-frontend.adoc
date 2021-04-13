@@ -188,13 +188,14 @@ To prepare the front-end files:
 . Open the webpack configuration file (`webpack.config.js`) in a text editor.
 . Modify the front-end entry to replace the default `+index.html+` with `+index.jsx+`.
 +
-....
+[source,js]
+----
 entry: {
   // The frontend.entrypoint points to the HTML file for this build, so we need
   // to replace the extension to `.js`.
   index: path.join(__dirname, info.frontend.entrypoint).replace(/\.html$/, ".jsx"),
 },
-....
+----
 . Add the following `+module+` key above the `+plugins+` section:
 +
 [source,json]
@@ -233,7 +234,8 @@ mv src/custom_greeting_assets/src/index.js src/custom_greeting_assets/src/index.
 +
 For example:
 +
-....
+[source,html]
+----
 <!doctype html>
 <html lang="en">
  <head>
@@ -247,7 +249,7 @@ For example:
     <div id="app"></div>
  </body>
 </html>
-....
+----
 
 == Start the local network
 

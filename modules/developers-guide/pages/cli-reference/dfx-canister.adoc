@@ -41,9 +41,9 @@ For reference information and examples that illustrate using `+dfx canister+` co
 
 |<<dfx canister set-controller,`+set-controller+`>> |Specifies the identity name or principal to use as the new controller for a specified canister on the Internet Computer network.
 
-|<<dfx canister send,`+send+`>> |Send a signed `+message.json+` to create neurons.
+|<<dfx canister send,`+send+`>> |Send a previously-signed `+message.json+` to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.
 
-|<<dfx canister send,`+sign+`>> |Create a signed `+message.json+` file to customize the process of creating neurons.
+|<<dfx canister send,`+sign+`>> |Create a signed `+message.json+` file before making a call to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.
 
 |<<dfx canister start,`+start+`>> |Restarts a stopped canister.
 
@@ -676,7 +676,9 @@ You can now use the wallet canister `r7inp-6aaaa-aaaaa-aaabq-cai` to send cycles
 
 == dfx canister send ==
 
-When creating your neuron stake, use the `+dfx canister send+` command with the `+dfx canister sign+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction.  
+Use the `+dfx canister send+` command after signing a message with the `+dfx canister sign+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction. 
+
+For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message.  
 
 === Basic usage
 
@@ -714,7 +716,8 @@ Use the `+dfx canister send+` command to send a signed message created using the
 
 == dfx canister sign ==
 
-When creating your neuron stake, use the `+dfx canister sign+` command with the `+dfx canister send+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction.
+Use the `+dfx canister sign+` command before sending a message with the `+dfx canister send+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction. 
+For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message from a computer connected to the network.
 
 === Basic usage
 
@@ -776,11 +779,13 @@ You can use `+raw+` as the argument type if you want to pass raw bytes.
 
 === Examples
 
-Use the `+dfx canister sign+` command to create a signed `method.json` file using the pricipal ID associated with the identitiy you created using the Privacy Enhanced Mail (PEM) file by running a command similar to the following:
+Use the `+dfx canister sign+` command to create a signed `message.json` file using the principal associated with the identity you created using the Privacy Enhanced Mail (PEM) file by running a command similar to the following:
 
-`+dfx canister --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’+`
+`+dfx canister --no-wallet --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’+`
 
-This command illustrates how to creates a `+message.json+` file to create neurons that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
+Currently, the `+--no-wallet+` command must be used to execute the command using the user identity instead of the cycles wallet canister identifier. 
+
+This command illustrates how to creates a `+message.json+` file to create neurons on the network stpecified by the `+ic+` alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
 
 Note that the time alloted to send a signed message is a fixed 5-minute window. The `+--expire-after+` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `+--expire-after+` option to one hour (`+1h+`), you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute.
 

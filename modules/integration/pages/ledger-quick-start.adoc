@@ -16,14 +16,14 @@ In addition, this overview focuses on how to integrate with the Internet Compute
 Other options for integration are possible. 
 Information about other integration options and procedures might be available in future documentation.
 
-== Basic terminology 
+== Basic quickstart integration terminology 
 
 The Internet Computer is primarily a distributed and decentralized platform for running software. 
 When you write applications that run on the Internet Computer, you deploy your programs in the form of a conceptual computational unit called a **canister**. 
-A canister is similar to a "smart contract" in that it consists of the source code of a program as well as its running state, and is replicated on a block chain network that guarentees security as well as a persistant operational state.
+A canister is similar to a "smart contract" in that it consists of the source code of a program as well as its running state, and is replicated on a blockchain network that guarantees security as well as liveness.
 
 End-users or other canisters can send messages to canister functions to perform specific operations. 
-The messages can be either **query calls** that retrieve information without saving the state of the applcation or **update calls** that change and preserve the state.
+The messages can be either **query calls** that retrieve information without saving the state of application data or **update calls** that change and preserve the state.
 The order in which updates are executed is agreed upon by using a consensus protocol between all {IC} nodes that run the canister.
 
 == Ledger canister overview
@@ -36,7 +36,7 @@ The ledger canister maintains a traceable history of all transactions starting f
 
 === Accounts
 
-Your account belongs to and is controlled by you, the account owner, identified by a unique IC principal. No account can be owned by two or more IC principals (i.e. no "joint accounts").
+An account belongs to and is controlled by the account owner who must be identified by a unique IC principal. No account can be owned by two or more IC principals (i.e. no "joint accounts").
 
 An account owner may control more than one account. In this case, each account corresponds to a pair (account_owner, sub_account). The sub-account is an optional bitstring which helps distinguish between the different sub-accounts of the same owner.
 
@@ -63,7 +63,7 @@ The entire chain is regularly authenticated by signing the latest chain link. Th
 
 == Integrate with the {IC} ledger canister using the Rosetta API
 
-You can interact with the Internet Computer and ledger canister in several ways. 
+The integration that you build can interact with the Internet Computer and ledger canister in several ways. 
 This document outlines how to integrate with the ledger canister using the https://www.rosetta-api.org/[Rosetta application programming interface]. This is a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] designed to support multiple blockchain data formats and structured communication for exchange transactions.
 
 The integration software—`+dfinity/rosetta-api+`—enables you to deploy a passive Rosetta node outside of the Internet Computer network that can communicate with the ledger canister running on the Internet Computer.
@@ -77,11 +77,11 @@ Periodically, the `+dfinity/rosetta-api+` software running on the Rosetta node u
 The Rosetta node uses the root key of the Internet Computer to ensure that the local copy of the ledger is genuine.
 The integration software also allows you to use the Rosetta node to submit transactions to the {IC} ledger. 
 
-=== The Integration workflow
+=== Integration workflow overview
 
-The following summarizes the basic operational workflow for transferring ICP tokens if you're using a Rosetta node to communicate with the {IC} ledger canister. You must be an {IC} principal who authenticates to the {IC} using a signing key stored in a wallet.
+The following summarizes the basic operational workflow for transferring ICP tokens if you're using a Rosetta node to communicate with the {IC} ledger canister. In this scenario, you must be an {IC} principal who authenticates to the {IC} using a signing key stored in a wallet.
 
-After a user submits a request to the Rosetta node to make a transaction, the request is passed to the integration software running on that node to interact with the {IC} and completes the following ordered operations:
+After a user submits a request to the Rosetta node to make a transaction, the request is passed to the integration software running on that node to interact with the {IC} and completes the following operations:
 
 . It reads from the local copy of the ledger to determine the state of the latest transaction index and block height identified by the `+latest_index+` label.
 . It generates a random `+nonce+` value -- used to ensure transactions are unique.
@@ -188,7 +188,7 @@ The ICP token is similar to Bitcoin in the following ways:
 * Each ICP token is divisible 10^8 times.
 * All transactions are stored in the ledger starting with the genesis initial state.
 * Tokens are entirely fungible.
-* Account identifiers are 32 bytes and are roughly the equivalent of the hash of a public key, possibly together with some additional sub-account specifier.
+* Account identifiers are 32 bytes and are roughly the equivalent of the hash of a public key, optionally together with some additional sub-account specifier.
 
 The ICP token differs from Bitcoin in the following ways:
 

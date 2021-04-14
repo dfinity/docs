@@ -14,7 +14,7 @@ _{doctitle}_ is intended as a high-level overview for organizations and develope
 While you read this guide, be aware that additional details about specific components or interfaces might be available in subsequent documents to supplement the overview provided in this document.
 In addition, this overview focuses on how to integrate with the Internet Computer using the link:https://www.rosetta-api.org/docs/welcome.html[Rosetta API]. 
 Other options for integration are possible. 
-Information about other integration options and procedures will be available in future documentation.
+Information about other integration options and procedures might be available in future documentation.
 
 == Basic terminology 
 

@@ -283,7 +283,7 @@ Start `dfinity/rosetta-api` with `--help`, you can see some additional CLI argum
 - Successful calls always have `200` response status code.
 - Failed calls always have `500` response status code, with a JSON payload containing more information. The possible Rosetta error codes and their text descriptions can be seen in the `/network/options` call result.
 
-==== How to send Mint/Burn transactions?
+==== How do I send Mint or Burn transactions?
 
 - Mint is a privileged operation; we don't support Burn through Rosetta API calls at the moment.
 

@@ -251,7 +251,8 @@ Start `dfinity/rosetta-api` with `--help`, you can see some additional CLI argum
 
 ==== What kinds of transactions may appear in a block, and what do they mean?
 
-- Each block as queried from the `[/block](https://www.rosetta-api.org/docs/BlockApi.html#block)` endpoint contains exactly one transaction.
+- Each block as queried from the `[/block](https://www.rosetta-api.org/docs/BlockApi.html#block)` endpoint contains exactly one transaction. Note that some operations, such as `+burn+`, are not suppoted in Rosetta API calls. 
+
 - Transfer
     * Operation 0: type `"TRANSACTION"`, subtracts the transfer amount from the source account.
     * Operation 1: type `"TRANSACTION"`, adds the same transfer amount to the destination account.

@@ -16,7 +16,7 @@ In addition, this overview focuses on how to integrate with the Internet Compute
 Other options for integration are possible. 
 Information about other integration options and procedures might be available in future documentation.
 
-== Basic quickstart integration terminology 
+== Basic terminology 
 
 The Internet Computer is primarily a distributed and decentralized platform for running software. 
 When you write applications that run on the Internet Computer, you deploy your programs in the form of a conceptual computational unit called a **canister**. 
@@ -36,7 +36,7 @@ The ledger canister maintains a traceable history of all transactions starting f
 
 === Accounts
 
-An account belongs to and is controlled by the account owner who must be identified by a unique IC principal. No account can be owned by two or more IC principals (i.e. no "joint accounts").
+An account belongs to and is controlled by the account owner who must be an IC principal. No account can be owned by two or more IC principals (no "joint accounts").
 
 An account owner may control more than one account. In this case, each account corresponds to a pair (account_owner, sub_account). The sub-account is an optional bitstring which helps distinguish between the different sub-accounts of the same owner.
 
@@ -194,6 +194,113 @@ The ICP token differs from Bitcoin in the following ways:
 
 * Rather than using proof of work, staked participant nodes use a variant of threshold BLS signatures to agree on a valid state of the chain.
 * Any transaction can store an 8-byte memo -- this memo field is used by the Rosetta API to store the nonce that distinguishes between transactions. However, other uses for the field are possible.
+
+== Frequently asked questions
+The following questions are taken from the most commonly reported questions and blockers from the developer community regarding Rosetta integration with the {IC}.
+
+=== The Rosetta node
+
+==== How to I run an instance of the Rosetta node?
+
+An easy way to accomplish this is to use the [`dfinity/rosetta-api`](https://hub.docker.com/r/dfinity/rosetta-api/tags?page=1&ordering=last_updated) Docker image. Once the node initializes and syncs all blocks, you can perform queries and submit transactions by invoking the Rosetta API on the node. The node listens on the `8080` port.
+
+==== How do I know if the node has caught up with the test net?
+
+Search the `Starting Rosetta API server` startup log. There will be a log entry that says `You are all caught up to block XX`. This message confirms that you are caught up with all blocks.
+
+==== How to persist synced blocks data?
+
+Mount the `/data` directory elsewhere.
+
+==== Is the Rosetta node versioned?
+
+Not yet. Before launch, when we push to the `dfinity/rosetta-api:latest` image, it's usually a major update that we'll announce in our communication channels beforehand.
+
+We'll soon implement nightly builds of the image, and CI will ensure it works before pushing. Other than `latest`, those images will also be tagged with the build date, so for more reproducibility, it's possible to use the image of a specific date tag rather than `latest`. We'll announce when nightly builds become available.
+
+### How do I connect to the main net instead of the test net?
+
+Start `dfinity/rosetta-api` with `--help`, you can see some additional CLI arguments that can be passed. Among those there are `--canister-id` and `--ic-url` which can be used to configure the ledger destination. At the moment, they default to the test net.
+
+**Note**: The main net is not live yet; it will be live some time before the publicly announced date, and we'll push the updated image to point to the main net to ensure you can perform testing on the main net beforehand.
+
+=== ICPT-specific Rosetta API details
+
+==== How are accounts generated and verified?
+
+- Generate an ED25519 keypair.
+- The secret key is used for signing transactions.
+- The public key is used for generating a self-authenticating Principal ID. For more information, see: https://sdk.dfinity.org/docs/interface-spec/index.html#_principals.
+- The Principal ID is hashed to generate the account address.
+
+==== How to use the public key to generate its account address?
+
+- Call the `[/construction/derive](https://www.rosetta-api.org/docs/ConstructionApi.html#constructionderive)` endpoint with the hex-encoded 32-byte public key.
+- Call the `pub_key_to_address` function in the JavaScript SDK.
+
+==== How to verify the checksum of an account address?
+
+- After hex decoding, the first 4 bytes is the big-endian CRC32 checksum of the rest of the address.
+- Call `[address_from_hex](https://github.com/dfinity/rosetta-client#working-with-account-addresses)` in the JavaScript SDK. It returns and error if checksum doesn't match.
+- [Here](https://gist.github.com/TerrorJack/d6c79b33e5b5d0f5d52f3a2c5cdacc60) is a Java implementation of address validation logic.
+
+==== What is the `signature_type` / `curve_type` for ED25519?
+
+- `signature_type` is `"ed25519"`
+- `curve_type` is `"edwards25519"`
+
+==== What kinds of transactions may appear in a block, and what do they mean?
+
+- Each block as queried from the `[/block](https://www.rosetta-api.org/docs/BlockApi.html#block)` endpoint contains exactly one transaction.
+- Transfer
+    * Operation 0: type `"TRANSACTION"`, subtracts the transfer amount from the source account.
+    * Operation 1: type `"TRANSACTION"`, adds the same transfer amount to the destination account.
+    * Operation 2: type `"FEE"`, subtracts the fee from the source account.
+    - Don't rely on the order above, you can rearrange them in the `/construction/payloads` call, and when parsing transactions in a block, you should check for transaction type and amount sign instead.
+- Mint
+    * Operation 0: type `"MINT"`, adds the minted amount to the destination account.
+- Burn
+    * Operation 0: type `"BURN"`, subtract the burned amount from the source account.
+- `"status"` is always `"COMPLETED"`, failed transactions don't show up in the polled blocks
+
+==== What fee is needed? Can I customize the fee?
+
+- By calling `[/construction/metadata](https://www.rosetta-api.org/docs/ConstructionApi.html#constructionmetadata)`, you can get `suggested_fee`.
+- At the moment, `suggested_fee` is a constant, and the fee specified in a transfer must be equal to it.
+- Fees do not apply to Mint/Burn operations.
+
+==== How do I know if the submitted transaction hit the chain?
+
+- The Rosetta server will wait for a short period of time after a `/construction/submit` call, if the transaction hit the chain, it'll be returned.
+- In case of an error from the ledger, the error information will be available in the `/construction/submit` result.
+- It's still possible that a `/construction/submit` call has returned successfully, but there's still some time before it hits the chain. You can poll latest blocks and search for the transaction hash. We also implemented a subset of the `[/search/transactions](https://www.rosetta-api.org/docs/SearchApi.html#searchtransactions)` endpoint which allows searching for a transaction given its hash.
+- 5 minutes is a worst case timeout.
+- Don't use `mempool` APIs, our implementation is an empty stub.
+
+==== What kinds of errors might I get from Rosetta API calls?
+
+- Successful calls always have `200` response status code.
+- Failed calls always have `500` response status code, with a JSON payload containing more information. The possible Rosetta error codes and their text descriptions can be seen in the `/network/options` call result.
+
+==== How to send Mint/Burn transactions?
+
+- Mint is a privileged operation; we don't support Burn through Rosetta API calls at the moment.
+
+==== What happens if the same signed transaction is submitted multiple times?
+
+The ledger rejects duplicate transactions. Only the first transaction will make it to the chain and for the duplicate submissions the `/construction/submit` call will fail.
+
+==== How to sign a transaction without calling Rosetta API?
+
+The JavaScript SDK contains an [implementation](https://github.com/dfinity/rosetta-client/blob/master/lib/construction_combine.js) of the offline signing logic. This is deeply coupled with internal implementation details, so we strongly advise you to call `/construction/combine` to sign a transaction if possible.
+
+==== How to configure the ingress time period?
+
+In the `/construction/payloads` call, you can add one or all of the `ingress_start` / `ingress_end` fields to specify the ingress time period. They are nanoseconds since the Unix epoch, and must be within the next 24 hours. This enables generating & signing a transaction, but delaying the actual submission to a later time.
+
+==== How to deserialize a signed transaction?
+
+The JavaScript SDK supports [deserializing](https://github.com/dfinity/rosetta-client/blob/master/lib/signed_transaction_decode.js) a `signed_transaction` hex string and recovering some information about the transfer. This may be useful in the case that you'd like to perform a sanity check.
 
 ////
 

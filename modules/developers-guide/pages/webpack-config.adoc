@@ -69,7 +69,7 @@ const aliases = Object.entries(dfxJson.canisters).reduce(
 
 After creating canister aliases, the template `+webpack.config.js+` file generates a webpack configuration for the front-end and adds the resulting files to your project directory. 
 
-You can use the default webpack.config.js file as-is, add plug-ins, or customize it completely to suit your needs.
+You can use the default `webpack.config.js` file as-is, add plug-ins, or customize it completely to suit your needs.
 
 For example, if you experiment with the front-end tutorials, you might have modified the following section:
 
@@ -152,6 +152,93 @@ const Navigation = () => {
 
 export default Navigation;
 ----
+
+== Iterate faster using webpack serve
+
+There are a few simple shortcuts you can use to iterate faster in your development environment. 
+For example, you can choose to build and deploy only specific canisters instead of all canisters in a project.
+
+If most of your changes are in the front-end for your application, one of the most effective ways you can iterate faster is by installing and configuring the webpack development server.
+THe webpack development server—`+webpack-dev-server+`—provides in-memory access to the webpack assets, enabling you to make changes and see them reflected in the browser right away using live reloading.
+
+To install and configure `+webpack-dev-server+`:
+
+. Create a new project and change to your project directory.
+. Install the `+webpack-dev-server+` in the project directory by running the following command:
++
+[source,bash]
+----
+npm install webpack-dev-server
+----
+. Open the `+webpack.config.js+` file for your project in a text editor.
+. Add your network host name and port information after the `+output+` section of the `+webpack.config.js+` file.
++
+For example, if you are using the default host and port information for local development, you would add the following to the `+webpack.config.js+` file:
++
+[source,bash]
+---- 
+devServer: {
+ proxy: {
+   "/api": "http://localhost:8000",
+ },
+},
+----
+. Save your changes and close the `+webpack.config.js+` file to continue.
+. Open the `+package.json+` file for your project in a text editor. 
+. Add a comma after `"build": "webpack"` in the `+scripts+` section.
+. Add a new line with `"start": "webpack serve"` in the `+scripts+` section.
++
+For example:
++
+[source,bash]
+----
+"start": "webpack serve"
+----
+. Save your changes and close the `+package.json+` file to continue.
+. Start the {IC} locally, if necessary, and deploy as you normally would, for example, by running the `+dfx deploy+` command.
+. Start the webpack development server by running the following command:
++
+[source,bash]
+----
+npm start
+----
+. Open a web browser and navigate to the asset canister for your application using port 8080.
++
+For example:
++
+....
+http://localhost:8080/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
+....
+. Open a new terminal window or tab and navigate to your project directory.
+. Open the `+index.js+` file for your project in a text editor and make changes to the content.
++
+For example, you might add an element to the page using JavaScript:
++
+document.body.onload = addElement;
++
+[source,js]
+----
+document.body.onload = addElement;
+
+function addElement () {
+  // create a new div element
+  const newDiv = document.createElement("div");
+
+  // and give it some content
+  const newContent = document.createTextNode("Test live page reloading!");
+
+  // add the text node to the newly created div
+  newDiv.appendChild(newContent);
+
+  // add the newly created element and its content into the DOM
+  const currentDiv = document.getElementById("div1");
+  document.body.insertBefore(newDiv, currentDiv);
+}
+----
+. Save your changes to the `index.js` file but leave the editor open to continue making changes.
+. Refresh the browser or wait for it to refresh on its own to see your change. 
++
+When you are done working on the front-end for your project, you can stop the webpack development server by pressing Control-C.
 
 ////
 == Using other frameworks

@@ -67,11 +67,12 @@ const aliases = Object.entries(dfxJson.canisters).reduce(
 
 === Entry and output configuration
 
-After creating canister aliases, the template `+webpack.config.js+` file generates a webpack configuration for the front-end and adds the resulting files to your project directory. 
+After creating canister aliases, the template `+webpack.config.js+` file generates a webpack configuration for the front-end and adds the resulting files to the output directory for your project directory. 
 
-You can use the default `webpack.config.js` file as-is, add plug-ins, or customize it completely to suit your needs.
+In many cases, you can use the default `+webpack.config.js+` file as-is, without any modification, or you can add plug-ins, modules, and other custom configuration to suit your needs.
+The specific changes you make to the `+webpack.config.js+` configuration largely depend on the other tools and frameworks you want to use.
 
-For example, if you experiment with the front-end tutorials, you might have modified the following section:
+For example, if you have experimented with the link:tutorials/custom-frontend{outfilesuffix}[Customize the front-end] or link:tutorials/my-contacts{outfilesuffix}[Add a stylesheet] front-end tutorials, you might have modified the following section to work with React JavaScript:
 
 [source,js]
 ----

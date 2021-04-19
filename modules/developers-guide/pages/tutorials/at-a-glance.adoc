@@ -1,4 +1,4 @@
-= Tutorials at a glance
+= At a glance
 :IC: Internet Computer
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
@@ -6,7 +6,7 @@
 The link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start] provides a fast path to deploying a simple default application without stopping to admire the scenery along the way. 
 Individual link:../tutorials-intro{outfilesuffix}[tutorials] walk through specific scenarios, pointing out details about what you're doing in each step. 
 
-If the quick start or tutorials aren’t quite your style, this tutorial cheat sheet summarizes the steps to follow for quick reference at a glance.  
+If the quick start and tutorials aren’t quite your style, this at-a-glance cheat sheet summarizes the steps to follow for quick reference.  
 
 After you install the {sdk-short-name}, here's all you need to know:
 

@@ -33,7 +33,6 @@ computer.
 
 To create a new project directory for your custom front-end application:
 
-[arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
 . Change to the folder you are using for your {IC} projects, if you are using one.
 . Verify that you have `+node.js+` installed locally, if necessary.
@@ -108,8 +107,9 @@ You are now ready to create a new front-end for your program.
 [source,js]
 ----
 entry: {
-  // The frontend.entrypoint points to the HTML file for this build, so we need
-  // to replace the extension to `.js`.
+  // The frontend.entrypoint points to the HTML file for this build.
+  // Use the next line to change the extension. For example, the
+  // default configuration changes the extension to `.js`.
   index: path.join(__dirname, info.frontend.entrypoint).replace(/\.html$/, ".jsx"),
 },
 ----
@@ -127,7 +127,8 @@ module: {
 +
 These settings enable your program to use the `+ts-loader+` compiler and to import CSS files.
 . Save your changes and close the `+webpack.config.js+` file to continue.
-. Create a new file named `+tsconfig.json+`, open the file in a text editor, then copy and paste the following into the file:
+. Create a new file named `+tsconfig.json+` in the root directory for your project.
+. Open the `+tsconfig.json+` file in a text editor, then copy and paste the following into the file:
 +
 [source,json]
 ----

@@ -42,7 +42,7 @@ You can see these steps in the following code block:
 [source,js]
 ----
 // List of all aliases for canisters. This creates the module alias for
-// the `import ... from "@dfinity/ic/canisters/xyz"` where xyz is the name of a
+// the `import ... from "dfx-generated/canisters/xyz"` where xyz is the name of a
 // canister.
 const aliases = Object.entries(dfxJson.canisters).reduce(
   (acc, [name, _value]) => {
@@ -76,27 +76,18 @@ For example, if you have experimented with the link:tutorials/custom-frontend{ou
 
 [source,js]
 ----
-    // Depending in the language or framework you are using for
-    // front-end development, add module loaders to the default
-    // webpack configuration. For example, if you are using React
-    // modules and CSS as described in the "Adding a stylesheet"
-    // tutorial, uncomment the following lines:
-    // module: {
-    //  rules: [
-    //    { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
-    //    { test: /\.css$/, use: ['style-loader','css-loader'] }
-    //  ]
-    // },
+    module: {
+      rules: [
+        { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
+        { test: /\.css$/, use: ['style-loader','css-loader'] }
+      ]
+    },
     plugins: [
       new HtmlWebpackPlugin({
         template: path.join(__dirname, info.frontend.entrypoint),
         filename: 'index.html',
         chunks: ['index'],
-      }),
-      new webpack.ProvidePlugin({
-        Buffer: [require.resolve('buffer/'), 'Buffer'],
-        process: require.resolve('process/browser'),
-      }),
+      })
     ],
   };
 }

@@ -29,7 +29,7 @@ const agent = new HttpAgent();
 const hello = Actor.createActor(hello_idl, { agent, canisterId: hello_id });
 ----
 
-After the agent and the actor are created for the project, the index.js provides a placeholder for the JavaScript you use to interact with the document object model (DOM) and HTML for your application.
+After the agent and the actor are created for the project, the `+index.js+` file provides a placeholder for the JavaScript you use to interact with the document object model (DOM) and HTML for your application.
 
 === Modifying the webpack configuration
 
@@ -154,7 +154,7 @@ const Navigation = () => {
 export default Navigation;
 ----
 
-== Iterate faster using webpack serve
+== Iterate faster using webpack-dev-server
 
 There are a few simple shortcuts you can use to iterate faster in your development environment. 
 For example, you can choose to build and deploy only specific canisters instead of all canisters in a project.

@@ -27,6 +27,7 @@
 ** xref:developers-guide:troubleshooting.adoc[Troubleshoot issues]
 
 .xref:developers-guide:tutorials-intro.adoc[Tutorials]
+** xref:developers-guide/tutorials/at-a-glance.adoc[Tutorials at a glance]
 ** xref:developers-guide:tutorials/explore-templates.adoc[Explore the default project]
 ** xref:developers-guide:tutorials/define-an-actor.adoc[Query using an actor]
 ** xref:developers-guide:tutorials/hello-location.adoc[Pass text arguments]

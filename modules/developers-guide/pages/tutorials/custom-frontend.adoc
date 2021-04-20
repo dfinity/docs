@@ -305,10 +305,10 @@ For example, if you are using the default binding for the local network, navigat
 To specify the canister you want the web server to display, add the `+canisterId+` parameter and the  `+custom_greeting_assets+` canister identifier to the URL using the following syntax:
 +
 ....
-?canisterId=<YOUR-CANISTER-IDENTIFIER>
+?canisterId=<YOUR-ASSET-CANISTER-IDENTIFIER>
 ....
 +
-For example, the full URL should look similar to the following but with the `+_canister_identifier_+` that was returned for the `+custom_greeting_assets+` canister when you ran the `+dfx canister install+` command:
+For example, the full URL should look similar to the following but with the `+_canister_identifier_+` that was returned for the `+custom_greeting_assets+` canister when you deployed the canister:
 +
 ....
 http://127.0.0.1:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q

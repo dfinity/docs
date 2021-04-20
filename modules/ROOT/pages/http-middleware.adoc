@@ -1,0 +1,118 @@
+= Introducing a new approach to handling HTTP requests and serving assets 
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+If you are installing any 0.7.0-beta version of the {sdk-short-name}, you might have noticed that those versions have introduced some major improvements for handling HTTP queries and front-end assets.
+When these changes are officially rolled into the next publicly-available release of the {sdk-short-name}, they will change how you build and deploy applications on the Internet Computer.
+
+If you are creating new projects, the changes to the underlying architecture will have little, if any, effect on your development workflow. In fact, you might find that the new architecture makes building applications that run on the {IC} a more familiar experience. 
+
+If you have any existing projects, however, you’ll need to plan for a one-time migration to the new architecture. 
+Migration to the new architecture doesn’t have to be completed immediately, but updating your projects to take advantage of the changes will ultimately make it easier to upload and manage front-end assets.
+
+== Replacing the bootstrap code: a recap
+
+Before we describe the new architecture, it’s useful to have some context about the old approach that we are replacing and how the code has worked up to this point. 
+Previously, developing a front-end on the Internet Computer involved adding a front-end assets canister with a `retrieve()` function. 
+The `retrieve()` function would take a path and return a blob. The blob returned by the `retrieve()` function would then have an `index.js` file that contained some JavaScript and static HTML called the `bootstrap` code. 
+After you deployed a canister on the Internet Computer, accessing the canister using the `<CANISTER_ID>.ic0.app` URL executed the `bootstrap` code, which in turn, performed the following steps:
+
+* Created a secure worker to contain your private key.
+* Polyfilled the `window.ic` to provide some mechanics to the running application so that it can communicate with the Internet Computer.
+* Called the canister’s `retrieve()` method with `index.js` as the path, and evaluate it.
+* Passed control of the document object model (DOM) and the page to the canister’s JavaScript code.
+
+This `bootstrap` workflow is quite different from how people usually build web applications. 
+For example, this approach did not support loading HTML directly or downloading assets like PNG files. 
+Asset handling required either loading the assets from another domain (for example, an AWS bucket) or loading the assets in JavaScript, transforming them into data URI, then setting the `src` attribute accordingly.
+Handling assets in this way led to problems in the browser, such as:
+
+* Not waiting for re-layout of pages.
+* Deferred loading of assets.
+* Executing JavaScript out of band.
+
+The `bootstrap` approach provided advantages in terms of security and decentralization, but those advantages were offset by the poor HTTP and asset handling that front-end developers and application users didn't expect to experience.
+
+Over the last year, the {sdk-short-name} team has been gathering and evaluating feedback from the developer community. Based on that feedback, the team has decided to provide a more flexible developer experience while continuing to provide an equivalent security model.
+
+== Enabling canisters to respond to HTTP requests
+
+After considering the advantages and disadvantages of different  proposals, the team decided on an architecture that would allow canisters to answer HTTP requests directly. 
+With this new approach, the {sdk-short-name} implements an HTTP middleware server.
+
+The HTTP middleware server handles the processing for the HTTP request by doing the following:
+
+* Receiving the HTTP request and converting its method, uri, headers and body into a Candid structure.
+* Resolving the canister identifier for the request.
+* Instantiating an agent to talk to the canister.
+* Calling an `http_request()` query method.
+
+If the canister implements the `http_request()` method, the HTTP middleware decodes the response, takes the headers and body, and constructs an HTTP response.
+If the canister does not implement the `http_request()` method, for backward compatibility, the middleware returns a bootstrap polyfill that points out the deprecation as a warning.
+For any errors in the process, the HTTP middleware returns the following error codes:
+
+* 400 Bad Request for any invalid requests (for example, if the HTTP middleware could not find or decode a canister ID).
+* 500 Internal Server Error for errors from the HTTP middleware itself (for example, if it could not connect to a replica)
+* 502 Bad Gateway if an error is coming from the replica itself (including canister trapping).
+
+If any of these errors occur,  the `dfx` command-line interface provides additional details in the response body.
+
+== Revisiting the asset storage canister
+
+To make this transition easier, new and existing projects built with the newer version of `dfx` will include an improved asset canister that supports the `http_request()` method by default. This means that assets you upload—including binary assets like images—will be available directly from your browser using their URL.
+For example, in a new project, the `sample-asset.txt` file would be uploaded and available after publishing to the Internet Computer at https://CANISTER_ID.ic0.app/sample-asset.txt.
+
+In the future, we will also provide additional support for managing the asset canister cache, handling default assets, and providing HTTP-specific features.
+
+== Routing
+
+Both the `/api` (for replicas) and `/_` (for tool purposes) routes are reserved by the HTTP request specification. 
+All other routes are available for you to use as needed within your application, eliminating the need to rely on a separate hash router.
+
+== Structure of a new DFX project
+
+Before going into how to migrate an existing project, let’s take a look at a new project. 
+The front-end changes include the following:
+
+* The `dfx.json` includes a `frontend` key for the asset canister that now points to an `index.html` file instead of the `index.js` JavaScript entry point.
+* The `package.json` file now supports Webpack 5 by default.
+* The `webpack.config.js` file now generates the list of canister imports for for each canister that has a `frontend` key in a different way.
+* The `src/<project_name>_assets/src/index.html` file is a new template file that you can replace with your own `index.html` file for your front-end. It is served by default by the asset canister when a file isn’t found.
+* The `index.js` file has been modified to support agent and actor creation.
+
+== Agent and actor creation
+
+With the new architecture, we explicitly create an agent instance, then create the actor that we’ll use for our canister.
+In the `index.js` file, this means that where before there was only one `import` from files generated by `dfx`, now there are two.
+
+For example, the new `index.js` file in a project provides code similar to this:
+
+....
+import { Actor, HttpAgent } from '@dfinity/agent';
+import { idlFactory as example_idl, canisterId as example_id } from 'dfx-generated/example';
+ 
+const agent = new HttpAgent();
+const example = Actor.createActor(example_idl, { agent, canisterId: example_id });
+....
+
+Explicitly creating the agent and actor like this example illustrates is better for a couple reasons:
+
+* First, the agent itself is entirely configurable by the application, and so is the actor. For example, authentication can only be set when the agent is constructed, so if you want to manage a user identity, you’ll need to do it before creating the agent.
+* Second, being explicit about creating the agent and actor gives you much more control over when you instantiate those objects. If you want a React hook or an Angular service to create the actor, this approach allows you to do so easily.
+
+== Migrating an existing project
+
+If you have an existing project, chances are it will not work seamlessly after you update the {sdk-short-name}. 
+Unfortunately, a direct migration path isn’t possible in this case. 
+The best way to migrate your current front-end is to create a new project and move your code manually to the new structure.
+
+=== Deprecation of bootstrap and the ic0.app suffix
+
+For a limited period of time, the {IC} will continue to support the `bootstrap` code and the use of the `ic0.app` suffix to serve canister front-ends. 
+If, during this period, a request sent to a canister returns an error because the canister cannot return HTTP responses, the request will revert to using the `bootstrap` code.
+At network launch, the `bootstrap` static files will be removed from `ic0.app` entirely and all projects will need to use the new architecture moving forward. In the meantime, the {sdk-short-name} team will help developers make the transition to the new architecture through the link:https://forum.dfinity.org/[DFINITY Developer Forum].

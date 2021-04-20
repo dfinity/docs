@@ -9,7 +9,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 This guide is an introduction to the Internet Computer Protocol (ICP) components for token distribution, transaction management, token-based staking, and payments for services.
 The document includes an overview of the design, implementation, security guarantees, system requirements, and the application programming interface (API) that support token management for the Internet Computer Protocol.
 
-_{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and overall transaction management flow for Internet Computer Protocol (ICP) tokens.
+_{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and overall transaction management flow for Internet Computer Protocol (ICP) utility tokens.
 
 While you read this guide, be aware that additional details about specific components or interfaces might be available in subsequent documents to supplement the overview provided in this document.
 In addition, this overview focuses on how to integrate with the Internet Computer using the link:https://www.rosetta-api.org/docs/welcome.html[Rosetta API]. 
@@ -56,7 +56,7 @@ There are three operations that can change the internal state of the ledger cani
 
 All operations are recorded as transactions in the ledger canister. 
 
-The transactions in the ledger are maintained as a hashed block chain.
+The transactions in the ledger are maintained as a hashed blockchain.
 As state changes are recorded, each new transaction is placed in a block and assigned a unique index.
 Queries can use the index to retrieve transaction details.
 The entire chain is regularly authenticated by signing the latest chain link. The signature used to authenticate a transaction can be verified by any third party who has access to the root public key of the Internet Computer.
@@ -180,8 +180,9 @@ Other than this requirement, the Rosetta API integration software is fully-compl
 The software can accept any valid Rosetta request. 
 However, the integration software only prompts for transactions to be signed using Ed25519, rather than https://www.rosetta-api.org/docs/models/SignatureType.html#values[all the signature schemes listed here] and only replies with a small subset of the potential responses that the specification supports. For example, the software doesn't implement any of the UTXO features of Rosetta, so you won't see any UTXO messages in any of the software responses.
 
-=== Basic properties for ICP tokens
-The IPC token is similar to Bitcoin, but differs in important ways.
+=== Basic properties for ICP utility tokens
+
+The ICP token is similar to utility tokens governing decentralized networks such as Bitcoin, but also differs in important ways.
 
 The ICP token is similar to Bitcoin in the following ways:
 

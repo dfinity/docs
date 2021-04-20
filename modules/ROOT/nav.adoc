@@ -90,7 +90,7 @@
 
 .Integration
 ** xref:integration:ledger-quick-start.adoc[Integrating with the Ledger]
-** xref:integration:nns-quick-start.adoc[Integrating with NNS]
+//** xref:integration:nns-quick-start.adoc[Integrating with NNS]
 
 ////
 .xref:operators-guide:ops-guide.adoc[Operators]

@@ -88,11 +88,13 @@
 ////
 ** xref:rust-guide:rust-asset-storage.adoc[Asset storage tutorial] 
 ** xref:rust-guide:rust-chess-autonomous.adoc[Autonomous game tutorial]
+////
 
 .Integration
 ** xref:integration:ledger-quick-start.adoc[Integrating with the Ledger]
-** xref:integration:nns-quick-start.adoc[Integrating with NNS]
+//** xref:integration:nns-quick-start.adoc[Integrating with NNS]
 
+////
 .xref:operators-guide:ops-guide.adoc[Operators]
 ** xref:operators-guide:ops-guide.adoc[Concepts]
 ** xref:operators-guide:ops-how-to.adoc[How to]

@@ -44,6 +44,9 @@ For example, to install version 0.6.26, you would run the following command:
 ----
 DFX_VERSION=0.6.26 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
+
+NOTE: If you are using the DFX_VERSION environment variable to install a version of the {sdk-short-name} not yet publicly available, see this link:http-middleware{outfilesuffix}[article] for an overview of what's changed. 
+
 // end::install[]   
 
 == Next steps

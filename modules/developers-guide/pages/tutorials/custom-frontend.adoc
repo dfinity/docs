@@ -29,7 +29,7 @@ For information about installing node for your local operating system and packag
 * You have stopped any {IC} network processes running on the local
 computer.
 
-NOTE: Because of significant changes to the handling of HTTP requests and front-end assets, this tutorial assumes you have used the `+DFX_VERSION+` environment variable to install a `+0.7.0-beta+` version of the {sdk-short-name} that is not yet publicly available. For an overview of what's changed, see this link:http-middleware{outfilesuffix}[article]. If you are using 0.6.26 or older version of the {sdk-short-name}, click the Support link to request an older version of this tutorial.
+NOTE: Because of significant changes to the handling of HTTP requests and front-end assets, this tutorial assumes you have used the `+DFX_VERSION+` environment variable to install a `+0.7.0-beta+` version of the {sdk-short-name} that is not yet publicly available. For an overview of what's changed, see this link:../../http-middleware{outfilesuffix}[article]. If you are using 0.6.26 or older version of the {sdk-short-name}, click the Support link to request an older version of this tutorial.
 
 
 This tutorial takes approximately 30 minutes to complete.

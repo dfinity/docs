@@ -1,7 +1,4 @@
-import custom_greeting from 'ic:canisters/custom_greeting';
-import * as React from 'react';
-import { render } from 'react-dom';
-
+// Modify the front-end in the React JavaScript
 class MyHello extends React.Component {
   constructor(props) {
     super(props);

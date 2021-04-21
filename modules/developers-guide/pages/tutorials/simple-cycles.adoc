@@ -202,7 +202,7 @@ For this simple tutorial, cycles are only consumed from the balance in the defau
 +
 [source,bash]
 ----
-dfx canister call cycles_hello greet '("from DFINITY"0'
+dfx canister call cycles_hello greet '("from DFINITY")'
 ----
 . Rerun the call to the `+wallet_balance+` function to see the number of cycles deducted from your default wallet:
 +

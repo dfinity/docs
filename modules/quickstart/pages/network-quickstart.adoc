@@ -51,7 +51,7 @@ For example, open Applications, Utilities, then double-click *Terminal* or press
 +
 [source,bash]
 ----
-DFX_VERSION=0.7.0-beta.2 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.7.0-beta.3 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 +
 This command prompts you to read and accept the license agreement before installing the {company-id} execution command-line interface (CLI) and its dependencies on your local computer.
@@ -77,7 +77,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.7.0-beta.2
+dfx 0.7.0-beta.3
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -97,7 +97,6 @@ Creating a new project with `+dfx+` adds a default project directory structure t
 
 To create a new project for your first application:
 
-[arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
 . Create a new project named `+hello+` by running the following command:
 +
@@ -140,14 +139,14 @@ To manually specify the network provider for the {IC} network, open the `+dfx.js
 ----
     "alpha": {
       "providers": [
-        "https://mercury.dfinity.network"
+        "https://boundary.dfinity.network"
       ],
       "type": "persistent"
     }  
 ----
 +
 
-NOTE: If you are manually updating the `dfx.json` file, you need to add a comma after the brace (`}`) that separates the `alpha` network definition from the `local` network definition.
+NOTE: If you are manually updating the `+dfx.json+` file, you need to add a comma after the brace (`+}+`) that separates the `+alpha+` network definition from the `+local+` network definition.
 
 . Verify that the `+dfx ping alpha+` command returns information about the {IC} network to which you are connecting.
 +
@@ -155,7 +154,7 @@ For example, you should see output similar to the following:
 +
 ....
 {
-  "ic_api_version": "0.15.6"  "impl_hash": "2404c16edc44f3f23b99a9866839042a5a92d19986ba78c1d98e0f21c0f4996a"  "impl_version": "0.1.0"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 141, 112, 102, 140, 151, 59, 6, 112, 118, 149, 202, 39, 63, 86, 168, 196, 227, 57, 230, 191, 67, 238, 205, 17, 183, 233, 137, 163, 211, 157, 153, 251, 138, 145, 185, 82, 190, 141, 124, 50, 51, 102, 191, 24, 117, 136, 70, 95, 12, 228, 191, 236, 36, 136, 20, 28, 165, 164, 5, 209, 196, 101, 75, 118, 85, 63, 185, 15, 53, 16, 166, 200, 130, 252, 124, 254, 246, 22, 4, 212, 212, 61, 243, 237, 154, 66, 15, 51, 218, 93, 183, 185, 44, 223, 215, 232]
+  "ic_api_version": "0.16.0"  "impl_hash": "6e7ca1de35d9cf887618ab099ac9ec1c457ac47653d31292189f34a29e92046f"  "impl_version": "0.1.0"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 134, 106, 150, 223, 27, 192, 53, 112, 201, 236, 15, 28, 18, 178, 205, 175, 22, 14, 44, 102, 206, 178, 148, 89, 248, 198, 215, 219, 31, 109, 137, 40, 236, 36, 249, 39, 18, 163, 131, 159, 223, 86, 168, 119, 171, 224, 72, 157, 9, 177, 53, 20, 92, 209, 81, 57, 36, 188, 4, 215, 143, 10, 124, 252, 233, 225, 169, 53, 213, 109, 243, 82, 215, 113, 127, 77, 113, 53, 117, 239, 37, 150, 174, 176, 79, 36, 49, 43, 136, 244, 11, 231, 73, 119, 42, 189]
 }
 ....
 . Verify your principal exists on the network by running the following command:
@@ -191,16 +190,16 @@ To validate your wallet for the network:
 dfx identity --network=alpha set-wallet <WALLET-CANISTER-ID>
 ----
 +
-For example, if `f3yw6-7qaaa-aaaab-qaabq-cai` is your default cycles wallet identifier, you would run the following command:
+For example, if `47ung-kiaaa-aaaaa-qaaha-cai` is your default cycles wallet identifier, you would run the following command:
 +
 ....
-dfx identity --network=alpha set-wallet f3yw6-7qaaa-aaaab-qaabq-cai
+dfx identity --network=alpha set-wallet 47ung-kiaaa-aaaaa-qaaha-cai
 ....
 +
 The command displays output similar to the following:
 +
 ....
-Setting wallet for identity 'default' on network 'alpha' to id 'f3yw6-7qaaa-aaaab-qaabq-cai'
+Setting wallet for identity 'default' on network 'alpha' to id '47ung-kiaaa-aaaaa-qaaha-cai'
 Checking availability of the canister on the network...
 ....
 . Check that your wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
@@ -211,20 +210,20 @@ dfx canister --no-wallet --network=alpha call <WALLET-CANISTER-ID> wallet_balanc
 ----
 +
 The command returns the balance for the wallet canister identifier you specified as a record using Candid format.
-For example, the command might display a record with an `+amount+` field (represented by the hash `+3_573_748_184+`) and a balance of 99,988,118,091,113 cycles like this:
+For example, the command might display a record with an `+amount+` field (represented by the hash `+3_573_748_184+`) and a balance of 99,534,132,182,200 cycles like this:
 + 
 ....
-(record { 3_573_748_184 = 99_988_118_091_113 })
+(record { 3_573_748_184 = 99_534_132_182_200 })
 ....
 +
 Using the command-line to call the wallet canister lets you quickly verify that your wallet is available and ready to use. But results returned in Candid format can be difficult to read, so let's take another look at your wallet from a web browser.
 . Open a web browser and navigate to the wallet application front-end by using a URL similar to the following:
 +
 ....
-https://<WALLET-CANISTER-ID>.ic0.app/?host=https://mercury.dfinity.network
+https://<WALLET-CANISTER-ID>boundary.ic0.app
 ....
 +
-The first time you access the application, you are prompted to register your device, authenticate your identity, and authorize access to the wallet.
+The first time you access the application, you see a notice that you are using an Anonymous Device and are prompted to authenticate your identity, authorize access to the wallet, and register your device.
 +
 . Click *Authenticate* to continue then click *Create Profile*.
 +
@@ -240,14 +239,14 @@ image:auth-session.png[]
 For example, call the `+authorize+` method for the cycles wallet canister with a command similar to the following:
 +
 ....
-dfx canister --no-wallet --network alpha call "f3yw6-7qaaa-aaaab-qaabq-cai" authorize '(principal "uymke-5ldqg-w6g7u-qjvng-efsfp-t45m2-tekqj-xvjel-57yv2-hpsdl-zqe")'
+dfx canister --no-wallet --network alpha call "47ung-kiaaa-aaaaa-qaaha-cai" authorize '(principal "mkqvz-rnwpc-bsdyz-krgdo-f3yyo-fytfg-sv2y7-lnsua-at7lo-gtylc-2qe")'
 ....
 +
 Be sure that the command you copy has the `+--no-wallet+` option and the correct network (`+alpha+`) alias.
-You should recognize the canister identifier—in this example, f3yw6-7qaaa-aaaab-qaabq-cai—as the cycles wallet associated with your identity.
+You should recognize the canister identifier—in this example, 47ung-kiaaa-aaaaa-qaaha-cai—as the cycles wallet associated with your identity.
 If this is your first wallet on the network, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
 +
-When the browser refreshes after running the `authorize` command, the cycles wallet for your principal account is displayed.
+When the browser refreshes after running the `=authorize=` command, the cycles wallet for your principal account is displayed.
 . View your cycles balance and activity in the browser.
 +
 For example:
@@ -270,23 +269,24 @@ npm install
 ----
 +
 For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
+. Deposit some initial cycles for your application to use by running the following commands:
++
+[source,bash]
+----
+dfx canister --network alpha call --with-cycles 10000000000000 aaaaa-aa deposit_cycles "(record { canister_id = principal \"$(dfx canister --network alpha id hello)\" })"
+
+dfx canister --network alpha call --with-cycles 10000000000000 aaaaa-aa deposit_cycles "(record { canister_id = principal \"$(dfx canister --network alpha id hello_assets)\" })"
+----
++
+These commands are required to provide a initial cycles balance for creating the `+hello+` and `+hello_assets+` canisters.
++
+You **must** specify an initial cycle balance greater than one trillion (1,000,000,000,000) to deploy a canister with cycles.
 . Register, build, and deploy your first application by running the following command:
 +
 [source,bash]
 ----
-dfx deploy --network=alpha --with-cycles=2500000000000
+dfx deploy --network=alpha
 ----
-+
---
-* The `+--network+` option specifies the network alias or URL for deploying the application.
-+
-This option is required to install on the {IC} running remotely.
-* The `+--with-cycles+` option specifies the number of initial cycles you want to transfer from your wallet to the application you are deploying.
-+
-This option is required because a canister must have cycles to be deployed on the {IC} running remotely.
-+
-You **must** specify an initial cycle balance greater than one trillion (1,000,000,000,000) to deploy a canister with cycles.
---
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
 +
@@ -302,17 +302,22 @@ Creating canister "hello_assets"...
 Building canisters...
 Building frontend...
 Installing canisters...
-Installing code for canister hello, with canister_id hbe6c-baaaa-aaaab-qaaoq-cai
-Installing code for canister hello_assets, with canister_id hihv6-xiaaa-aaaab-qaapa-cai
+Installing code for canister hello, with canister_id 3zt77-7qaaa-aaaaa-qaaxq-cai
+Installing code for canister hello_assets, with canister_id zeorx-myaaa-aaaaa-qaaya-cai
 Authorizing our identity (default) to the asset canister...
 Uploading assets to asset canister...
   /index.html 1/1 (472 bytes)
-  /index.js 1/1 (296836 bytes)
+  /index.html (gzip) 1/1 (314 bytes)
+  /index.js 1/1 (260041 bytes)
+  /index.js (gzip) 1/1 (87716 bytes)
   /main.css 1/1 (484 bytes)
+  /main.css (gzip) 1/1 (263 bytes)
   /sample-asset.txt 1/1 (24 bytes)
   /logo.png 1/1 (25397 bytes)
-  /index.js.map 1/1 (963981 bytes)
+  /index.js.map 1/1 (838745 bytes)
+  /index.js.map (gzip) 1/1 (227353 bytes)
   /index.js.LICENSE.txt 1/1 (499 bytes)
+  /index.js.LICENSE.txt (gzip) 1/1 (285 bytes)
 Deployed canisters.
 ....
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
@@ -354,7 +359,7 @@ To access the application front-end:
 For example, the full URL should look similar to the following:
 +
 ....
-https://hihv6-xiaaa-aaaab-qaapa-cai.ic0.app//?host=https://mercury.dfinity.network
+https://zeorx-myaaa-aaaaa-qaaya-cai.boundary.ic0.app
 ....
 +
 Navigating to this URL displays the HTML entry page for the template application.
@@ -367,7 +372,9 @@ image:net-front-end-prompt.png[HTML page with prompt]
 For example:
 +
 image:net-result.png[Hello, Everyone! greeting]
-. Refresh the browser to see how your recent activity affects the cycle balance.
+. Return to the browser window or tab that displays the cycles wallet and refresh the browser to see how your recent activity affects the cycle balance.
++
+image:cycles-wallet-new-balance.png[]
 
 == Create a wallet for another identity
 
@@ -400,12 +407,11 @@ The command displays output similar to the following:
 ....
 vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe
 ....
-. In your cycles wallet, click the menu icon to display the list of actions available, then click *Create a Wallet*.
-+
-image:menu-expanded.png[]
+. In your cycles wallet, click the plus (*+*) icon to display the list of actions available, then click *Create a Wallet*.
 . Paste the principal for the new identity you created in the controller field, specify the number of cycles for the new wallet, then click *Create*.
 +
 image:create-wallet.png[]
+////
 . Copy the canister identifier for the new wallet, then click *Okay* to close the new canister confirmation pop-up.
 +
 
@@ -423,6 +429,7 @@ Setting wallet for identity 'sf-wallet' on network 'alpha' to id 'h5aet-waaaa-aa
 Checking availability of the canister on the network...
 ....
 +
+////
 You now have a new principal and a new cycles wallet canister that you can use for testing or share with someone else to give them cycles for a service.
 For example, you might want to register a new canister that has the new wallet as its controller.
 
@@ -457,9 +464,9 @@ To create a wallet for someone else:
 --
 +
 After you have the principal identifier, continue to the next step.
-. Use the cycles wallet application front-end or `wallet_create_wallet` method to create a wallet with the controller set to the principal identifier associated with the person you are creating the wallet for.
-. Use the cycles wallet `get_controllers` method to verify that the list of controllers for the new wallet includes the new principal identifier.
-. Use the cycles wallet `remove_controller` method to remove your principal identifier as a controller of the wallet you created for someone else.
+. Use the cycles wallet application front-end or `+wallet_create_wallet+` method to create a wallet with the controller set to the principal identifier associated with the person you are creating the wallet for.
+. Use the cycles wallet `+get_controllers+` method to verify that the list of controllers for the new wallet includes the new principal identifier.
+. Use the cycles wallet `+remove_controller+` method to remove your principal identifier as a controller of the wallet you created for someone else.
 
 For more information about the methods available in the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
 

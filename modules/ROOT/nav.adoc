@@ -24,6 +24,7 @@
 //*** xref:developers-guide:basic-syntax-rules.adoc[C and C++]
 ** xref:developers-guide:webpack-config.adoc[Add frontend assets]
 ** xref:developers-guide:working-with-canisters.adoc[Manage canisters]
+** xref:developers-guide:default-wallet.adoc[Use the default cycles wallet]
 ** xref:developers-guide:troubleshooting.adoc[Troubleshoot issues]
 
 .xref:developers-guide:tutorials-intro.adoc[Tutorials]

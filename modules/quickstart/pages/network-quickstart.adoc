@@ -246,7 +246,7 @@ Be sure that the command you copy has the `+--no-wallet+` option and the correct
 You should recognize the canister identifier—in this example, 47ung-kiaaa-aaaaa-qaaha-cai—as the cycles wallet associated with your identity.
 If this is your first wallet on the network, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
 +
-When the browser refreshes after running the `=authorize=` command, the cycles wallet for your principal account is displayed.
+When the browser refreshes after running the `+authorize+` command, the cycles wallet for your principal account is displayed.
 . View your cycles balance and activity in the browser.
 +
 For example:

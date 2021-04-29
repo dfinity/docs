@@ -29,11 +29,11 @@ The default application consists of back-end code written in  {proglang}, a prog
 == Getting ICP tokens and cycles
 
 As discussed in link:concepts/tokens-cycles{outfilesuffix}[Tokens and cycles], *cycles* are required to power canister operations for applications running on the {IC}. 
-As a developer, yo have a few different options for acquiring and managing cycles for your applications:
+As a developer, you have a few different options for acquiring and managing cycles for your applications:
 
 * Purchase or claim ICP tokens through an exchange that lists ICP tokens available for trade, then convert your tokens to cycles using the link:network-quickstart{outfilesuffix}#convert-tokens[{sdk-short-name} command-line interface] or the link:nns-app{outfilesuffix}[Network Nervous System application].
-* Register for cycles by signing up for an account or cycles wallet through a provider offering those services.
-* Coordinate with other developers to send and receive cycles directly to canister through a cycles wallet or another application.
+* Register for cycles by signing up for an account or link:../developers-guide/default-wallet{outfilesuffix}#wallet-create-wallets[cycles wallet] through a provider offering those services.
+* Coordinate with other developers to link:../developers-guide/default-wallet{outfilesuffix}#wallet-send[send] and link:../developers-guide/default-wallet{outfilesuffix}#wallet-receive[receive] cycles directly to and from canisters through a cycles wallet or another application.
 
 Because only canisters require and consume cycles—to perform operations and to pay for the resources they use—cycles are always transferred between canisters and not to users or developers. You can manage the distribution of cycles, however, through a cycles wallet created for you or using a similar application. 
 

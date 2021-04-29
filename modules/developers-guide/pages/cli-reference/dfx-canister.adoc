@@ -41,6 +41,10 @@ For reference information and examples that illustrate using `+dfx canister+` co
 
 |<<dfx canister set-controller,`+set-controller+`>> |Specifies the identity name or principal to use as the new controller for a specified canister on the Internet Computer network.
 
+|<<dfx canister send,`+send+`>> |Send a previously-signed `+message.json+` to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.
+
+|<<dfx canister send,`+sign+`>> |Create a signed `+message.json+` file before making a call to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.
+
 |<<dfx canister start,`+start+`>> |Restarts a stopped canister.
 
 |<<dfx canister status,`+status+`>> |Requests the running status of a canister.
@@ -214,7 +218,7 @@ The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/iden
 
 [source,bash,subs="quotes"]
 ----
-dfx canister create [flag] [--all | _canister_name_]
+dfx canister create [option] [flag] [--all | _canister_name_]
 ----
 
 === Flags
@@ -228,6 +232,17 @@ You can use the following optional flags with the `+dfx canister create+` comman
 |`+-h+`, `+--help+` |Displays usage information.
 
 |`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Options
+
+You can use the following options with the `+dfx canister create+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Option |Description
+
+|`+--with-cycles <number-of-cycles>+` |Enables you to specify the initial number of cycles in a canister when it is created by your wallet. 
 |===
 
 === Arguments
@@ -251,6 +266,13 @@ For example, if you want to create the canister identifier for the project `+my_
 [source,bash]
 ----
 dfx canister create my_counter
+----
+
+You can use the `+dfx canister create+` command with the `+--with-cycles+` option to specify the initial balance upon the creation of one canister or all canisters in a project. For example, to specify an initial balance of 8000000000000 cycles for all canisters, run the following command:    
+
+[source,bash]
+----
+dfx canister create --with-cycles 8000000000000 --all
 ----
 
 == dfx canister delete
@@ -417,7 +439,7 @@ You can set this value in the range of 0 to 256 TB.
 The default is 8GB.
 
 |`+-m+`, `+--mode <mode>+` |Specifies whether you want to `+install+`, `+reinstall+`, or `+upgrade+` canisters.
-For more information about installation modes and canister management, see link:working-with-canisters{outfilesuffix}[Managing canisters].
+For more information about installation modes and canister management, see link:../working-with-canisters{outfilesuffix}[Managing canisters].
 
 |===
 
@@ -502,9 +524,10 @@ Over 100 execution cycles, each canister's messages will be scheduled for proces
 The default value for this option is 0—indicating that no specific allocation or scheduling is in effect.
 If all of your canisters use the default setting, processing occurs in a round-robin fashion.
 
+
 == dfx canister request-status
 
-Use the `+dfx canister request-status+` to request the status of a specified call to a canister.
+Use the `+dfx canister request-status+` command to request the status of a specified call to a canister.
 This command requires you to specify the request identifier you received after invoking a method on the canister.
 The request identifier is an hexadecimal string starting with `+0x+`.
 
@@ -600,6 +623,179 @@ For example, you might create a new identity called `+pubsadmin+` then run the `
 dfx identity new pubsadmin
 dfx canister set-controller hello_world pubsadmin
 ....
+
+To set the controlling identity using the textual representation of the identity principal, you might run a command similar to the following:
+
+....
+dfx canister set-controller hello_world wcp5u-pietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
+....
+
+Although specifying a user identity name or principal is one potential use case, a more common scenario is to specify the wallet canister that you want to use to send cycles to the canister.
+The following steps illustrate this scenario when you are doing local development. For this example, assume you have created a project called `open_sf` with two canisters deployed on the {IC} running locally.
+
+. Create an identity—for example, `sf-controller`—to act as the controller.
++
+....
+dfx identity new sf-controller
+
+Creating identity: "sf-controller".
+Created identity: "sf-controller".
+....
+. Make the new identity the active identity.
++
+....
+dfx identity use sf-controller
+
+Using identity: "sf-controller".
+....
+. Generate a wallet canister identifier for the new identity.
++
+....
+dfx identity get-wallet
+
+Creating a wallet canister on the local network.
+r7inp-6aaaa-aaaaa-aaabq-cai
+The wallet canister on the "local" network for user "sf-controller" is "r7inp-6aaaa-aaaaa-aaabq-cai"
+....
+. Switch the active identity to the current controller of the canister. For example, if the default identity was used to create the canister, you would run the following command:
++
+....
+dfx identity use default
+
+Using identity: "default".
+....
+. Set the controller for a specified canister to use the wallet associated wit the sf-controller identity.
++
+....
+dfx canister set-controller open_sf_assets r7inp-6aaaa-aaaaa-aaabq-cai
+
+Set "r7inp-6aaaa-aaaaa-aaabq-cai" as controller of "open_sf_assets".
+....
++
+You can now use the wallet canister `r7inp-6aaaa-aaaaa-aaabq-cai` to send cycles or add custodians to the `open_sf_assets` canister.
+
+== dfx canister send ==
+
+Use the `+dfx canister send+` command after signing a message with the `+dfx canister sign+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction. 
+
+For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message.  
+
+=== Basic usage
+
+[source,bash,subs="quotes"]
+----
+dfx canister send _file_name_
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx canister request-status+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+|`+-h+`, `+--help+` |Displays usage information.
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Arguments
+
+You can specify the following argument for the `+dfx canister send+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Argument |Description
+|`+file_name+` |Specifies the file name of the message.
+|===
+
+=== Examples
+
+Use the `+dfx canister send+` command to send a signed message created using the `+dfx canister sign+` command to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:
+
+`+dfx canister send message.json+`
+
+== dfx canister sign ==
+
+Use the `+dfx canister sign+` command before sending a message with the `+dfx canister send+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction. 
+For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message from a computer connected to the network.
+
+=== Basic usage
+
+[source,bash,subs="quotes"]
+----
+dfx canister sign [flag] [option] _canister-name_ _method-name_ [argument]
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx canister sign+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+|`+-h+`, `+--help+` |Displays usage information.
+|`+--query+` |Sends a query request to a canister.
+|`+--update+` |Sends an update request to the canister. This is the defualt method if the `+--query+` method is not used.
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Options
+
+You can specify the following options for the `+dfx canister sign+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Option |Description
+|`+--expire-after <expire-after>+` |Specifies how long will  will be valid before it expires and cannot be sent. Specify  in seconds. If not defined, the default is 300s (5m)
+|`+--file <file>+` |Specifies the output file name. The  default is `+message.json+`.
+|`+--random <random>+` |Specifies the configuration for generating random arguments.
+|`+--type <type>+` |Specifies the data type for the argument when making a call using an argument.
+
+By default, you can specify arguments using the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) syntax for data values.
+For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Interact with a service in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types]. 
+You can use `+raw+` as the argument type if you want to pass raw bytes.
+|===
+
+=== Arguments
+
+You can specify the following arguments for the `+dfx canister sign+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+
+|===
+|Argument |Description
+|`+canister_name+` |Specifies the name of the canister to call. The canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
+
+|`+method_name+` |Specifies the method name to call on the canister.
+The canister method is a required argument.
+
+|`+argument+` |Specifies the argument to pass to the method.
+Depending on your program logic, the argument can be a required or optional argument.
+You can specify a data format type using the `+--type+` option if you pass an argument to the canister.
+By default, you can specify arguments using the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) syntax for data values. 
+For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Interact with a service in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types].
+You can use `+raw+` as the argument type if you want to pass raw bytes.
+|===
+
+=== Examples
+
+Use the `+dfx canister sign+` command to create a signed `message.json` file using the principal associated with the identity you created using the Privacy Enhanced Mail (PEM) file by running a command similar to the following:
+
+`+dfx canister --no-wallet --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’+`
+
+Currently, the `+--no-wallet+` command must be used to execute the command using the user identity instead of the cycles wallet canister identifier. 
+
+This command illustrates how to creates a `+message.json+` file to create neurons on the network stpecified by the `+ic+` alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
+
+Note that the time alloted to send a signed message is a fixed 5-minute window. The `+--expire-after+` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `+--expire-after+` option to one hour (`+1h+`), you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute.
+
+In this example, therefore, you would need to send the message after 55 minutes and before 60 minutes for the message to be recognized as valid.
+
+If you don't specify the `+--expire-after+` option, the default expiration is five minutes.
+
+Send the signed message to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:
+
+`+dfx canister send message.json+`
 
 == dfx canister start
 

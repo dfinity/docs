@@ -37,4 +37,6 @@ If you already know how to add stylesheets to React, you can skip this tutorial.
 
 * link:tutorials/access-control{outfilesuffix}[Add access control with identities] describes how to create and switch between multiple user identities.
 
+* link:tutorials/simple-cycles{outfilesuffix}[Accept cycles from a wallet] illustrates how to accept cycles sent from the default wallet canister.
+
 Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the link:https://github.com/dfinity/examples[examples] repository and link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].

@@ -73,6 +73,8 @@ For this tutorial, changing the name of the source file from `+main.mo+` to `+ca
 +
 In a more complex application, you might have multiple source files instead of a single `+main+` program file.
 More complex applications might also have specific dependencies between multiple source files that you need to manage using settings in the `+dfx.json+` configuration file.
+In a scenario like that—with multiple canisters and programs defined in your `dfx.json` file—having multiple files all named `main.mo` might make navigating your workspace more difficult.
+The name you choose for each program isn't significant, but it is important that the name you set in the `+dfx.json+` file matches the name of your program in the file system.
 . Save your changes and close the file to continue.
 
 == Modify the default program

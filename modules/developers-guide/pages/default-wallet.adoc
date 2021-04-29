@@ -12,7 +12,8 @@ Cycles provide a largely stable value proposition and represent the operational 
 For example, cycles reflect the actual cost of physical hardware, rack space, energy, storage devices, and network bandwidth required by applications running on the {IC}.
 
 Unlike ICP tokens, cycles are only associated with canisters and not user or developer principals. 
-Instead, users and developers manage the distribution and ownership of cycles through a special type of canister called a *cycles wallet*.
+
+Because only canisters require and consume cycles—to perform operations and to pay for the resources they use—users and developers manage the distribution and ownership of cycles through a special type of canister called a *cycles wallet*. Because the cycles wallet holds the cycles required to perform operations such as creating new canisters, these operations are executed by default using the canister identifier for the cycles wallet instead of your user principal.
 
 For the purposes of local development, the {sdk-short-name} automatically creates a default cycles wallet for you in every project and most of the operations performed using the cycles wallet happen behind the scenes.
 For example, the cycles wallet acts on your behalf to register canister identifiers and deploy canisters on the local network.
@@ -20,10 +21,8 @@ For example, the cycles wallet acts on your behalf to register canister identifi
 In a production environment, however, you often need to explicitly register and transfer cycles to new canisters, specify the principals that can act as custodians, and manage the principals with ownership rights. 
 You can perform these types of tasks using the methods in the default cycles wallet.
 
-
-
-You should keep in mind, however, that calls to the cycles wallet canister are executed using the cycles wallet identifier associated with the currently-active user identity.
-Depending on your currently-active identity and whether the principal associated with that identity has been added as a controller or a custodian for a wallet, you might see different results or be denied access to a specific method.
+You should keep in mind, however, that calls to the cycles wallet canister are executed using the cycles wallet identifier associated with the currently-selected user identity.
+Depending on your currently-selected identity and whether the principal associated with that identity has been added as a controller or a custodian for a wallet, you might see different results or be denied access to a specific method.
 
 [[wallet-create-wallets]]
 == Create a new cycles wallet
@@ -31,12 +30,36 @@ Depending on your currently-active identity and whether the principal associated
 Use the `wallet_create_wallet` method to create a new cycles wallet canister with an initial cycle balance and, optionally, with a specific principal as its controller.
 If you don't specify a controlling principal, the cycles wallet you use to create the new wallet will be the new wallet's controller.
 
+For example, you can run a command similar to the following to create a new wallet and assign a principal as a controller:
+
+....
+dfx canister --network=alpha call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_wallet '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
+....
+
+The command returns the principal for the new wallet:
+
+....
+(record { 1_313_628_723 = principal "dcxxq-jqaaa-aaaab-qaavq-cai" })
+....
+
 [[wallet-create-canister]]
 == Register a new canister identifier
 
 Use the `wallet_create_canister` method to register a new canister identifier on the {IC}. 
 This method creates a new "empty" canister placeholder with an initial cycle balance and, optionally, with a specific principal as its controller.
 After you have registered the canister identifier, you can install code for your application as a separate step.
+
+For example, you can run a command similar to the following to create a new wallet and assign a principal as a controller:
+
+....
+dfx canister --network=alpha call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_canister '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
+....
+
+The command returns the principal for the new canister you created:
+
+....
+(record { 1_313_628_723 = principal "dxqg5-iyaaa-aaaab-qaawa-cai" })
+....
 
 [[wallet-get-controllers]]
 == List the current controllers
@@ -137,6 +160,19 @@ dfx canister --network=alpha call f3yw6-7qaaa-aaaab-qaabq-cai deauthorize '(prin
 == Check the cycle balance
 
 Use the `wallet_balance` method to check the current cycle balance.
+
+For example, if your principal is a controller for the `h5aet-waaaa-aaaab-qaamq-cai` cycles wallet, you check check the current cycle balance by running the following command:
+
+....
+dfx canister --network=alpha call h5aet-waaaa-aaaab-qaamq-cai wallet_balance
+....
+
+The command returns the balance using Candid format as a record with an amount field (represented by the hash 3_573_748_184) and a balance of
+6,895,656,625,450 cycles like this:
+
+....
+(record { 3_573_748_184 = 6_895_656_625_450 })
+....
 
 [[wallet-send]]
 == Send cycles to a canister

@@ -39,12 +39,15 @@ For projects that use the {proglang} programming language, see link:https://gith
 * link:https://github.com/dfinity/examples/tree/master/motoko/counter[Counter]
 * link:https://github.com/dfinity/examples/tree/master/motoko/echo[Echo]
 * link:https://github.com/dfinity/examples/tree/master/motoko/factorial[Factorial]
-* link:https://github.com/dfinity/examples/tree/master/motoko/favorite_cities[Favorite cities]
+//* link:https://github.com/dfinity/examples/tree/master/motoko/favorite_cities[Favorite cities]
 * link:https://github.com/dfinity/examples/tree/master/motoko/hello-world[Hello, world]
 //* link:[Hex encoding and decoding]
 * link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[Phone book]
-* link:https://github.com/dfinity/examples/tree/master/motoko/pubsub[Publish/subscribe]
-* link:https://github.com/dfinity/examples/tree/master/motoko/simple_to_do[To-do checklist]
+* link:https://github.com/dfinity/examples/tree/master/motoko/pub-sub[Publish/subscribe]
+* link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort]
+* link:https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[To-do checklist]
+* link:https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes database]
+* link:https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami]
 
 == Additional sample applications
 

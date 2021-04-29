@@ -6,11 +6,36 @@
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 
-Within the Internet Computer ecosystem, Internet Computer Protocol tokens (ICP tokens) are a native utility token with a value that can be converted to **cycles** to pay for computation and resource consumption.
+Within the Internet Computer ecosystem, Internet Computer Protocol tokens (ICP tokens) are a native utility token with a value determined on the open market.
+ICP tokens play a key role in both the governance and economics of the {IC}. 
 
-As an example, imagine you have a house where propane is used for a water heater, kitchen stove, dryer, and space heater. As you use these appliances, you deplete the supply of gas you have on hand, so periodically you contact a provider to refill your supply so you can continue to use your appliances without interruption. This is similar to canisters in that each canister that must have an account with cycles available to pay for the communication, computation, and storage that the canister’s application consumes.
+== How you can get ICP tokens
 
-Internet Computer Protocol token holders can exchange tokens when they need to replenish the cycles available in each canister account.
+As a utility token for the {IC}, there are a few different ways you might acquire ICP tokens. 
+For example, you might:
+
+* Purchase ICP tokens directly through an exchange that lists ICP tokens available for trade.
+* Claim tokens as a result of your investment.
+* Receive a grant of tokens through the Internet Computer Association (ICA) or the {company-id} Foundation.
+* Receive tokens as remuneration for providing computing capacity as a node provider or data center.
+
+== How you can use ICP tokens
+
+If you have ICP tokens, but aren't sure how to use them, the following diagram provides a simplified overview to illustrate the three most common scenarios.
+
+image:icp-tokens-how-to-use.svg[]
+
+As this diagram suggests, how you use ICP tokens depends primarily on your goals in acquiring them.
+For example, if you are a developer or entrepreneur, ICP tokens can be converted to **cycles**. Cycles can then be used to build and deploy applications to deliver products and services to the market.
+If you are a member of the community interested in participating in governance and influencing the the direction of the {IC}, you can lock up ICP tokens in a stake—called a neuron—so that you can submit and vote on proposals.
+
+== How cycles works
+
+For developers, ICP tokens are important because they can be converted to cycles that, in turn, are used to pay for computation and resource consumption.
+
+As an example, imagine you have a house where propane is used for a water heater, kitchen stove, dryer, and space heater. As you use these appliances, you deplete the supply of gas you have on hand, so periodically you contact a provider to refill your supply so you can continue to use your appliances without interruption. This is similar to canisters in that each canister must have an account with cycles available to pay for the communication, computation, and storage that the canister’s application consumes.
+
+Internet Computer Protocol token holders can exchange tokens when they need to replenish the cycles available in each canister's account.
 
 == Cost of computation
 

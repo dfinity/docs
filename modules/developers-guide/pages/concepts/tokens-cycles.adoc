@@ -9,6 +9,7 @@
 Within the Internet Computer ecosystem, Internet Computer Protocol tokens (ICP tokens) are a native utility token with a value determined on the open market.
 ICP tokens play a key role in both the governance and economics of the {IC}. 
 
+[[get-cycles]]
 == How you can get ICP tokens
 
 As a utility token for the {IC}, there are a few different ways you might acquire ICP tokens. 
@@ -19,6 +20,7 @@ For example, you might:
 * Receive a grant of tokens through the Internet Computer Association (ICA) or the {company-id} Foundation.
 * Receive tokens as remuneration for providing computing capacity as a node provider or data center.
 
+[[using-cycles]]
 == How you can use ICP tokens
 
 If you have ICP tokens, but aren't sure how to use them, the following diagram provides a simplified overview to illustrate the three most common scenarios.
@@ -29,7 +31,8 @@ As this diagram suggests, how you use ICP tokens depends primarily on your goals
 For example, if you are a developer or entrepreneur, ICP tokens can be converted to **cycles**. Cycles can then be used to build and deploy applications to deliver products and services to the market.
 If you are a member of the community interested in participating in governance and influencing the the direction of the {IC}, you can lock up ICP tokens in a stake—called a neuron—so that you can submit and vote on proposals.
 
-== How cycles works
+[[how-cycles-work]]
+== How cycles work
 
 For developers, ICP tokens are important because they can be converted to cycles that, in turn, are used to pay for computation and resource consumption.
 
@@ -37,6 +40,7 @@ As an example, imagine you have a house where propane is used for a water heater
 
 Internet Computer Protocol token holders can exchange tokens when they need to replenish the cycles available in each canister's account.
 
+[[cost-of-compute]]
 == Cost of computation
 
 - Cycles reflect the real costs of operations for applications hosted in the Internet Computer platform including resources such physical hardware, rack space, energy, storage devices, and bandwidth.
@@ -47,13 +51,15 @@ Internet Computer Protocol token holders can exchange tokens when they need to r
 - Although Internet Computer Protocol tokens can be used to add cycles to canisters, cycles themselves are not currency and have no liquidity or as an asset.
 - Cycles cannot be converted back to value in the form of Internet Computer Protocol tokens, but can be transferred between canisters to enable canisters to pay for operations.
 
+[[volatility]]
 == Token value and volatility
 
 - Tokens reflect the value of the network and can fluctuate. To prevent the token value from affecting the number of messages a canister can process, tokens are not used to pay for network resources directly.
 - Tokens can be exchanged between token holders or locked up in **neurons** to secure voting rights as part of the platform governance system.
 - Tokens are used to reward data centers for providing compute capacity and platform stakeholders for participating in secure operation of the network by voting on proposals submitted to the governance system.
 
-## Payment to data center providers
+[[data-centers]]
+== Payment to data centers and node providers
 
 With this model, the Internet Computer platform provides data center providers with a predictable economic model for computing power capacity to ensure resources are available when and where they are needed. Data center providers receive compensation for both active and spare nodes so that the network has capacity to handle both normal traffic and workload spikes.
 

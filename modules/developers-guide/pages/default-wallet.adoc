@@ -1,4 +1,4 @@
-= Using the default cycles wallet
+= Use the default cycles wallet
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
 :platform: Internet Computer platform

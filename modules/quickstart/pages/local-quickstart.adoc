@@ -196,10 +196,9 @@ Deployed canisters.
 If you created a project with a different name, however, your canister names will match your project name instead of `+hello+` and `+hello_assets+`.
 +
 You should also note that the *first time you deploy*, `+dfx+` creates a `+default+` identity and a local cycle wallet controlled by your `+default+` identity.
-+
 A cycles wallet is a special type of canister that enables you to transfer link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[cycles] to other canisters.
 +
-To deploy this sample application locally, you don't need to know anything about your default developer identity, using a cycles wallet, or managing cycles. We'll cover these topics later, but for now, just note that these are created for you automatically. 
+*To deploy this sample application locally*, you don't need to know anything about your default developer identity, using a cycles wallet, or managing cycles. We'll cover these topics later, but for now, just note that these are created for you automatically. 
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]
@@ -268,7 +267,7 @@ You cab find more detailed examples and tutorials to help you learn about how to
 
 Here are some suggestions for where to go next:
 
-* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building applications in a local development environment.
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building simple applications using a local development environment.
 
 * link:convert-icp{outfilesuffix}[Convert ICP tokens to cycles] if you have ICP tokens that you want to convert to cycles to enable you to deploy applications to the {IC} network.
 

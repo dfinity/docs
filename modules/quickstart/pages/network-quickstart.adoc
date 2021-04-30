@@ -1,4 +1,6 @@
 = Network deployment
+:description: Download the DFINITY Canister SDK and deploy your first application on the Internet Computer.
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
@@ -27,12 +29,14 @@ Before you download and install this release of the {sdk-short-name}, verify the
 +
 Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
 
-* You have provided the {company-id} Foundation with a principal associated with your user identity and have received a **cycles wallet** canister identifier in return.
-+
-A wallet canister with **cycles** is required to deploy and manage applications on the {IC}.
-Once you have a default cycles wallet associated with your `default` identity on the network, you can use that wallet to create additional wallets or to create additional canisters for other services.
-
 * You have `+node.js+` installed if you want to access the default front-end for the default project.
+
+* You need to have cycles available to you to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
++
+For information about how to get ICP tokens, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
++
+You must have at least one canister with cycles to deploy and manage applications on the {IC}.
+Once you have a default cycles wallet associated with your `default` developer identity on the network, you can use that wallet to create additional wallets or to create additional canisters for other services.
 
 If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
 If you are comfortable meeting the prerequisites without instructions, continue to <<Download and install>>.
@@ -88,12 +92,83 @@ dfx --help
 +
 The command displays usage information for the `+dfx+` parent command and its subcommands.
 
+[[net-ledger-id]]
+== Confirm your developer identity and ledger account
+
+All ICP token transactions are recorded in a ledger canister running on the Internet Computer.
+Before you can transfer any ICP tokens you hold in your ledger account, you need to send a secure and properly-signed message that verifies your identity to the ledger and authorizes your developer identity to complete the transaction.
+
+Depending on how you have set up custody for holding your ICP tokens, the hardware, software, and steps required to connect to the ledger and complete a transaction can vary.
+
+One simple approach is to use your developer identity to retrieve your ledger account identifier, then transfer ICP tokens from the ledger account identifier to a cycles wallet canister controller by your developer identity.
+
+The first time you use the {sdk-short-name}, the `+dfx+` command-line tool creates a `+default+` developer identity for you. This identity is represented by a *principal* identifier.
+
+To look up your account in the ledger:
+
+. Confirm the developer identity you are currently using by running the following command:
++
+[source,bash]
+----
+dfx identity whoami
+----
++
+In most cases, you should see that you are currently using +default+` developer identity.
+. View the textual representation of the principal for your current identity by running the following command:
++
+[source,bash]
+----
+dfx identity get-principal
+----
++
+This command displays output similar to the following:
++
+[source,bash]
+----
+
+----
+. Retrieve the account identifier from the ledger by running the following command:
++
+[source,bash]
+----
+dfx ledger account-id
+----
++
+This command displays the ledger account identifier associated with your developer identity.
+For example, you should see output similar to the following:
++
+[source,bash]
+----
+
+----
+. Check your account balance by running the following command:
++
+[source,bash]
+----
+dfx ledger balance
+----
+This command displays the ICP token balance from the ledger account.
+For example, you should see output similar to the following:
++
+[source,bash]
+----
+
+----
+
+[[convert-icp]]
+== Convert ICP tokens to cycles
+
+
 [[net-new-project]]
 == Create a new project
 
-Applications for the {IC} start as **projects**.
-You create projects using the `+dfx+` parent command and its subcommands.
-Creating a new project with `+dfx+` adds a default project directory structure to your development workspace with template files to get you started.
+Now that you have some cycles available, you can start creating applications by:
+
+* Creating *new projects* with a default set of template files.
+* Creating *empty canister placeholders* without any code or template files.
+
+For this tutorial, we'll start with the default sample application to illustrate creating an application using the starter files in a project.
+When you create a new project, the `+dfx+` command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the link:../developers-guide/tutorials/explore-templates{outfilesuffix}[Explore the default project] tutorial.
 
 To create a new project for your first application:
 
@@ -125,19 +200,19 @@ To check your connection to the {IC} network:
 
 [arabic]
 . Check that you are in the root directory for your project, if needed.
-. Check the current status of the {IC} network and your ability to connect to it by running the following command for the network alias `+alpha+`:
+. Check the current status of the {IC} network and your ability to connect to it by running the following command for the network alias `+ic+`:
 +
 [source,bash]
 ----
-dfx ping alpha
+dfx ping ic
 ----
 +
-If the `+alpha+` network alias for the {IC} network gateway is not configured in your project `+dfx.json+` file, you might see a `+ComputeNetworkNotFound+` error.
+If the `+ic+` network alias for the {IC} network gateway is not configured in your project `+dfx.json+` file, you might see a `+ComputeNetworkNotFound+` error.
 To manually specify the network provider for the {IC} network, open the `+dfx.json+` file in a text editor and add the following under the `+networks+` key:
 +
 [source,json]
 ----
-    "alpha": {
+    "ic": {
       "providers": [
         "https://boundary.dfinity.network"
       ],
@@ -504,11 +579,9 @@ You can find more detailed examples and tutorials to help you learn about how to
 
 Here are some suggestions for where to go next:
 
-* Tutorials to explore building applications in a local development environment.
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building front-end and back-end applications in a local development environment.
 
-* Convert ICP tokens to cycles if you have ICP tokens that you want to convert to cycles to enable you to deploy applications to the Internet Computer network.
+* link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
 
-* What is Candid? to learn how the Candid interface description language enables service interoperability and composability.
-
-* Motoko at-a-glance to learn about the features and syntax for using Motoko.
+* link:../language-guide/language-manual{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using Motoko.
 

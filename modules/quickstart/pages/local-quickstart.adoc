@@ -1,11 +1,9 @@
 = Local development
+:description: Download the DFINITY Canister SDK and deploy your first application locally.
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
-:toc:
-:toc: right
-:toc-title: QUICK START
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -75,7 +73,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.6.26
+dfx 0.7.0
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -196,8 +194,10 @@ Deployed canisters.
 ....
 +
 If you created a project with a different name, however, your canister names will match your project name instead of `+hello+` and `+hello_assets+`.
++
 You should also note that the first time you deploy, `+dfx+` creates a `+default+` identity and a local wallet controlled by your `+default+` identity.
 The wallet is required to enable you to transfer link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[cycles] to other canisters.
+To deploy this sample application locally, you don't need to know anything about your default developer identity, using a cycles wallet, or managing cycles. We'll cover these topics later, but for now, just note that these are created for you automatically. 
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]
@@ -261,8 +261,16 @@ dfx stop
 == Next steps
 
 This _Quick Start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
-There are more detailed examples and tutorials for you to explore in the link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] for {sdk-short-name} developers and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
+There are more detailed examples and tutorials to help you learn about the {IC}, using {proglang}, and how to develop applications to run on the {IC} throughout the documentation.
 
-* Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].
-* Want to join the community? Visit our https://forum.dfinity.org/[community forum].
-* Want to stay informed about new features and updates? Sign up for https://dfinity.org/newsletter[Developer updates].
+Here are some suggestions for where to go next:
+
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building applications in a local development environment.
+
+* link:convert-icp{outfilesuffix}[Convert ICP tokens to cycles] if you have ICP tokens that you want to convert to cycles to enable you to deploy applications to the {IC} network.
+
+* link:network-quickstart{outfilesuffix}[Network deployment] if you have cycles and are ready to deploy an application to the {IC} network.
+
+* link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
+
+* link:../language-guide/language-manual{outfilesuffix}[{proglang} Quick reference] and link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_] to learn about the features and syntax for using {proglang}.

@@ -1,4 +1,6 @@
 = Quick start
+:description: Download the DFINITY Canister SDK and learn how to deploy your first application.
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer

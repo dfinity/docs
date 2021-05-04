@@ -31,7 +31,7 @@ Currently, the {sdk-short-name} only runs on computers with a macOS or Linux ope
 
 * You have `+node.js+` installed if you want to access the default front-end for the default project.
 
-* You need to have cycles available to you to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
+* You must have cycles available to you to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
 +
 For information about how to get ICP tokens, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
 +
@@ -44,7 +44,7 @@ If you are comfortable meeting the prerequisites without instructions, continue 
 [[net-download-sdk]]
 == Download and install
 
-You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer.
+You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer. If you have previously installed the {sdk-short-name}, you can skip this section and start with <<net-ledger-id,Confirm your developer identity and ledger account>>.
 
 To download and install:
 
@@ -55,7 +55,7 @@ For example, open Applications, Utilities, then double-click *Terminal* or press
 +
 [source,bash]
 ----
-DFX_VERSION=0.7.0-beta.4 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.7.0-beta.6 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 +
 This command prompts you to read and accept the license agreement before installing the {company-id} execution command-line interface (CLI) and its dependencies on your local computer.
@@ -81,7 +81,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.7.0-beta.4
+dfx 0.7.0-beta.6
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -99,10 +99,19 @@ All ICP token transactions are recorded in a ledger canister running on the Inte
 Before you can transfer any ICP tokens you hold in your ledger account, you need to send a secure and properly-signed message that verifies your identity to the ledger and authorizes your developer identity to complete the transaction.
 
 Depending on how you have set up custody for holding your ICP tokens, the hardware, software, and steps required to connect to the ledger and complete a transaction can vary.
+For example, you might connect to the ledger using a hardware wallet, hardware security module (HSM) appliance, the Network Nervous System application, or the {sdk-short-name} `+dfx+` command-line interface. 
+Each approach presents a different interface for signing and sending messages to the ledger and representing your identity as an account holder.
 
-One simple approach is to use your developer identity to retrieve your ledger account identifier, then transfer ICP tokens from the ledger account identifier to a cycles wallet canister controller by your developer identity.
+=== About your developer identity
 
-The first time you use the {sdk-short-name}, the `+dfx+` command-line tool creates a `+default+` developer identity for you. This identity is represented by a *principal* identifier.
+The first time you use the {sdk-short-name}, the `+dfx+` command-line tool creates a `+default+` developer identity for you. This identity is represented by a *principal* data type and a textual representation of the principal often referred to as your *principal identifier*.
+This representation of your identity is similar to a Bitcoin or Ethereum address.
+
+However, the principal associated with developer identity is typically not the same as your *account identifier* in the ledger.
+
+=== Connect to the ledger to get account information
+
+For the purposes of this tutorial—where there's no hardware wallet or external application to connect to the ledger—we'll use your developer identity to retrieve your ledger account identifier, then transfer ICP tokens from the ledger account identifier to a cycles wallet canister controller by your developer identity.
 
 To look up your account in the ledger:
 
@@ -125,9 +134,9 @@ This command displays output similar to the following:
 +
 [source,bash]
 ----
-
+tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
 ----
-. Retrieve the account identifier from the ledger by running the following command:
+. Get the account identifier for your developer identity by running the following command:
 +
 [source,bash]
 ----
@@ -139,25 +148,62 @@ For example, you should see output similar to the following:
 +
 [source,bash]
 ----
-
+03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223
 ----
 . Check your account balance by running the following command:
 +
 [source,bash]
 ----
-dfx ledger balance
+dfx ledger --network ic balance
 ----
 This command displays the ICP token balance from the ledger account.
 For example, you should see output similar to the following:
 +
 [source,bash]
 ----
-
+100.00000000 ICP
 ----
 
 [[convert-icp]]
 == Convert ICP tokens to cycles
 
+Now that you have confirmed your account information and current ICP token balance, you can convert some of those ICP tokens to cycles and move them into a cycles wallet.
+
+To transfer ICP tokens to create a cycles wallet:
+
+. Create a new canister with cycles from ICP token by running the following command:
++
+[source,bash]
+----
+dfx ledger --network ic create-canister --amount 1.25 --controller tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+----
++
+If the transaction is successful, the ledger records the event and you should see output similar to the following:
++
+[source,bash]
+----
+Transfer sent at BlockHeight: 20
+Canister created with id: "53zcu-tiaaa-aaaaa-qaaba-cai"
+----
+. Install the cycles wallet code in the newly-created canister placeholder by running a command similar to the following:
++
+[source,bash]
+----
+dfx identity --network ic deploy-wallet <canister-identifer>
+----
++
+For example:
++
+....
+dfx identity --network ic deploy-wallet 53zcu-tiaaa-aaaaa-qaaba-cai
+....
++
+For example, you should see output similar to the following:
++
+....
+Creating a wallet canister on the execution network.
+The wallet canister on the "ic" network for user "default" is "53zcu-tiaaa-aaaaa-qaaba-cai"
+....
 
 [[net-new-project]]
 == Create a new project
@@ -223,79 +269,66 @@ To manually specify the network provider for the {IC} network, open the `+dfx.js
 
 NOTE: If you are manually updating the `+dfx.json+` file, you need to add a comma after the brace (`+}+`) that separates the `+alpha+` network definition from the `+local+` network definition.
 
-. Verify that the `+dfx ping alpha+` command returns information about the {IC} network to which you are connecting.
+. Verify that the `+dfx ping ic+` command returns information about the {IC} network to which you are connecting.
 +
 For example, you should see output similar to the following:
 +
 ....
 {
-  "ic_api_version": "0.17.0"  "impl_hash": "9460c743a55d508df1946394c3dfc9c12c6481eeab650720b72b2031febfb243"  "impl_version": "0.1.0"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 151, 13, 186, 126, 73, 184, 201, 141, 177, 136, 195, 207, 252, 10, 168, 212, 93, 65, 147, 200, 194, 100, 124, 104, 96, 177, 203, 236, 241, 76, 134, 145, 67, 217, 210, 223, 45, 249, 42, 204, 122, 236, 242, 64, 223, 248, 162, 6, 18, 20, 155, 212, 102, 169, 180, 240, 57, 226, 101, 162, 123, 41, 36, 57, 252, 45, 186, 229, 131, 139, 88, 207, 20, 161, 61, 223, 99, 129, 80, 199, 178, 84, 115, 228, 51, 41, 62, 204, 134, 158, 19, 200, 109, 191, 62, 201]
+  "ic_api_version": "0.17.0"  "impl_hash": "f6ccc304526a28bbb91d0603e8c1ba549847eb0524351a822c5ad52ac941e207"  "impl_version": "0.1.0"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 181, 243, 155, 255, 186, 159, 221, 212, 218, 49, 250, 130, 50, 177, 148, 34, 24, 191, 102, 20, 93, 48, 182, 174, 80, 183, 210, 201, 0, 152, 175, 34, 176, 99, 112, 129, 94, 138, 24, 126, 210, 238, 209, 29, 65, 35, 149, 187, 0, 4, 52, 151, 90, 147, 7, 234, 23, 130, 9, 192, 108, 253, 219, 228, 119, 217, 93, 155, 186, 165, 182, 135, 219, 232, 158, 45, 235, 113, 37, 221, 105, 153, 203, 205, 133, 25, 109, 115, 164, 248, 120, 48, 230, 167, 118, 134]
 }
 ....
 . Verify your principal exists on the network by running the following command:
 +
 [source,bash]
 ----
-dfx identity --network=alpha get-principal
+dfx identity --network ic get-principal
 ----
 +
 The command should display a textual representation of your identity similar to the following:
 +
 ....
-zen7w-sjxmx-jcslx-ey4hf-rfxdq-l4soz-7ie3o-hti3o-nyoma-nrkwa-cqe
+tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
 ....
 +
 
 IMPORTANT: You should note that this principal is directly associated with a specific cycles wallet canister identifier. If you change or remove the identity associated with the principal, you also lose access to the cycles wallet it controls.
 
-[[set-wallet]]
-== Validate the wallet application
+== Validate your cycles wallet
 
-You must have a wallet canister with ICP tokens or a cycles wallet with enough cycles available to create, deploy, and manage applications that run on the {IC}.
-If you submitted a textual representation of a principal to the {company-id} Foundation, you should have received a default cycles wallet canister identifier in return.
+After verifying your connection to the network and your current principal, you might want to validate the cycles wallet canister you deployed and your current cycles balance.
 
-Note that upgrades to the {IC} have changed the encoding for principals and new wallet canister identifiers. If you submitted a principal and received a wallet prior to the current release, it is likely that the principal and wallet canister are no longer valid and you should generate a new principal after you upgrade the {sdk-short-name} to the latest version.
+To validate your cycles wallet:
 
-To validate your wallet for the network:
-
-. Associate the wallet canister identifier you received for the network with your identity by running a command similar to the following:
+. Verify the canister identifier for the cycles wallet you deployed on the {IC} network by running the following command:
 +
 [source.bash]
 ----
-dfx identity --network=alpha set-wallet <WALLET-CANISTER-ID>
+dfx identity --network ic get-wallet
 ----
 +
-For example, if `47ung-kiaaa-aaaaa-qaaha-cai` is your default cycles wallet identifier, you would run the following command:
+The command displays the canister identifier for your cycles wallet with output similar to the following:
 +
 ....
-dfx identity --network=alpha set-wallet 47ung-kiaaa-aaaaa-qaaha-cai
+53zcu-tiaaa-aaaaa-qaaba-cai
 ....
-+
-The command displays output similar to the following:
-+
-....
-Setting wallet for identity 'default' on network 'alpha' to id '47ung-kiaaa-aaaaa-qaaha-cai'
-Checking availability of the canister on the network...
-....
-. Check that your wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
+. Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
 +
 [source,bash]
 ----
-dfx canister --no-wallet --network=alpha call <WALLET-CANISTER-ID> wallet_balance
+dfx wallet --network ic balance
 ----
 +
-The command returns the balance for the wallet canister identifier you specified as a record using Candid format.
-For example, the command might display a record with an `+amount+` field (represented by the hash `+3_573_748_184+`) and a balance of 99,991,425,128,012 cycles like this:
+The command returns the balance for the your cycles wallet.
+For example:
 + 
 ....
-(record { 3_573_748_184 = 99_991_425_128_012 })
+15430122328028812 cycles.
 ....
-+
-Using the command-line to call the wallet canister lets you quickly verify that your wallet is available and ready to use. But results returned in Candid format can be difficult to read, so let's take another look at your wallet from a web browser.
 . Open a web browser and navigate to the wallet application front-end by using a URL similar to the following:
 +
 ....
-https://<WALLET-CANISTER-ID>.boundary.ic0.app
+https://<WALLET-CANISTER-ID>.raw.ic0.app
 ....
 +
 The first time you access the application, you see a notice that you are using an Anonymous Device and are prompted to authenticate your identity, authorize access to the wallet, and register your device.
@@ -351,37 +384,16 @@ npm install
 ----
 +
 For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
-////
-. Deposit some initial cycles for your application to use by running the following commands:
-+
-[source,bash]
-----
-dfx canister --network alpha call --with-cycles 10000000000000 aaaaa-aa deposit_cycles "(record { canister_id = principal \"$(dfx canister --network alpha id hello)\" })"
 
-dfx canister --network alpha call --with-cycles 10000000000000 aaaaa-aa deposit_cycles "(record { canister_id = principal \"$(dfx canister --network alpha id hello_assets)\" })"
-----
-+
-These commands are required to provide a initial cycles balance for creating the `+hello+` and `+hello_assets+` canisters.
-+
-You **must** specify an initial cycle balance greater than one trillion (1,000,000,000,000) to deploy a canister with cycles.
-////
 . Register, build, and deploy your first application by running the following command:
 +
 [source,bash]
 ----
-dfx deploy --network=alpha --with-cycles 20000000000000
+dfx deploy --network ic
 ----
 +
---
-* The `+--network+` option specifies the network alias or URL for deploying the application.
-+
+The `+--network+` option specifies the network alias or URL for deploying the application.
 This option is required to install on the {IC} running remotely.
-* The `+--with-cycles+` option specifies the number of initial cycles you want to transfer from your wallet to the application you are deploying.
-+
-This option is required because a canister must have cycles to be deployed on the {IC} running remotely.
-+
-You **must** specify an initial cycle balance greater than one trillion (1,000,000,000,000) to deploy a canister with cycles.
---
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
 +
@@ -391,26 +403,26 @@ For example, this step registers two network-specific identifiers—one for the 
 Deploying all canisters.
 Creating canisters...
 Creating canister "hello"...
-"hello" canister created on network "alpha" with canister id: "hbe6c-baaaa-aaaab-qaaoq-cai"
+"hello" canister created on network "ic" with canister id: "5o6tz-saaaa-aaaaa-qaacq-cai"
 Creating canister "hello_assets"...
-"hello_assets" canister created on network "alpha" with canister id: "hihv6-xiaaa-aaaab-qaapa-cai"
+"hello_assets" canister created on network "ic" with canister id: "5h5yf-eiaaa-aaaaa-qaada-cai"
 Building canisters...
 Building frontend...
 Installing canisters...
-Installing code for canister hello, with canister_id 3zt77-7qaaa-aaaaa-qaaxq-cai
-Installing code for canister hello_assets, with canister_id zeorx-myaaa-aaaaa-qaaya-cai
+Installing code for canister hello, with canister_id 5o6tz-saaaa-aaaaa-qaacq-cai
+Installing code for canister hello_assets, with canister_id 5h5yf-eiaaa-aaaaa-qaada-cai
 Authorizing our identity (default) to the asset canister...
 Uploading assets to asset canister...
   /index.html 1/1 (472 bytes)
   /index.html (gzip) 1/1 (314 bytes)
-  /index.js 1/1 (260041 bytes)
-  /index.js (gzip) 1/1 (87716 bytes)
+  /index.js 1/1 (260215 bytes)
+  /index.js (gzip) 1/1 (87776 bytes)
   /main.css 1/1 (484 bytes)
   /main.css (gzip) 1/1 (263 bytes)
   /sample-asset.txt 1/1 (24 bytes)
   /logo.png 1/1 (25397 bytes)
-  /index.js.map 1/1 (838745 bytes)
-  /index.js.map (gzip) 1/1 (227353 bytes)
+  /index.js.map 1/1 (842511 bytes)
+  /index.js.map (gzip) 1/1 (228404 bytes)
   /index.js.LICENSE.txt 1/1 (499 bytes)
   /index.js.LICENSE.txt (gzip) 1/1 (285 bytes)
 Deployed canisters.
@@ -419,15 +431,15 @@ Deployed canisters.
 +
 [source,bash]
 ----
-dfx canister --network=alpha call hello greet everyone
+dfx canister --network ic call hello greet '("everyone")'
 ----
 +
 Let's take a closer look at this example:
 +
 -- 
 
-* Using the `+--network=alpha+` option indicates that the canister you want to call is deployed on the `+alpha+` network. The `+alpha+` network alias is an internally-reserved alias for accessing the {IC}.
-* Note that the `+--network=alpha+` option must precede the operation subcommand, which, in this case, is the `+dfx canister call+` command.
+* Using the `+--network ic+` option indicates that the canister you want to call is deployed on the `+ic+` network. The `+ic+` network alias is an internally-reserved alias for accessing the {IC}.
+* Note that the `+--network ic+` option must precede the operation subcommand, which, in this case, is the `+dfx canister call+` command.
 * The `+hello+` argument specifies the name of the canister you want to call.
 * The `+greet+` argument specifies the name of the function you want to call in the `+hello+` canister.
 * The text string `+everyone+` is the argument that you want to pass to the `+greet+` function.
@@ -475,7 +487,7 @@ image:net-result.png[Hello, Everyone! greeting]
 . Return to the browser window or tab that displays the cycles wallet and refresh the browser to see how your recent activity affects the cycle balance.
 +
 image:cycles-wallet-new-balance.png[]
-
+////
 == Create a wallet for another identity
 
 . In your terminal shell, create a second identity by running the following command:
@@ -529,7 +541,6 @@ Setting wallet for identity 'sf-wallet' on network 'alpha' to id 'h5aet-waaaa-aa
 Checking availability of the canister on the network...
 ....
 +
-////
 You now have a new principal and a new cycles wallet canister that you can use for testing or share with someone else to give them cycles for a service.
 For example, you might want to register a new canister that has the new wallet as its controller.
 
@@ -565,10 +576,11 @@ To create a wallet for someone else:
 +
 After you have the principal identifier, continue to the next step.
 . Use the cycles wallet application front-end or `+wallet_create_wallet+` method to create a wallet with the controller set to the principal identifier associated with the person you are creating the wallet for.
-. Use the cycles wallet `+get_controllers+` method to verify that the list of controllers for the new wallet includes the new principal identifier.
-. Use the cycles wallet `+remove_controller+` method to remove your principal identifier as a controller of the wallet you created for someone else.
+. Use the `+dfx wallet controllers+` command to verify that the list of controllers for the new wallet includes the new principal identifier.
+. Use the `+dfx wallet remove_controller+` command to remove your principal identifier as a controller of the wallet you created for someone else.
 
-For more information about the methods available in the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
+For more information about the commands and methods available for working with the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
+////
 
 [[next-steps]]
 == Next steps

@@ -99,7 +99,7 @@ All ICP token transactions are recorded in a ledger canister running on the Inte
 Before you can transfer any ICP tokens you hold in your ledger account, you need to send a secure and properly-signed message that verifies your identity to the ledger and authorizes your developer identity to complete the transaction.
 
 Depending on how you have set up custody for holding your ICP tokens, the hardware, software, and steps required to connect to the ledger and complete a transaction can vary.
-For example, you might connect to the ledger using a hardware wallet, hardware security module (HSM) appliance, the Network Nervous System application, or the {sdk-short-name} `+dfx+` command-line interface. 
+For example, you might connect to the ledger and start a transaction from a hardware wallet, using a hardware security module (HSM) appliance, through the Network Nervous System (NNS) front-end application, or using the {sdk-short-name} `+dfx+` command-line interface.
 Each approach presents a different interface for signing and sending messages to the ledger and representing your identity as an account holder.
 
 === About your developer identity

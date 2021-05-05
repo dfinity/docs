@@ -92,6 +92,7 @@
 ////
 
 .Integration
+** xref:ic-identity-guide:what-is-ic-identity.adoc[Authenticating using internet identity service]
 ** xref:integration:ledger-quick-start.adoc[Integrating with the Ledger]
 //** xref:integration:nns-quick-start.adoc[Integrating with NNS]
 

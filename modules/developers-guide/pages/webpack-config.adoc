@@ -5,46 +5,92 @@ The tutorials introduced a few basic approaches to building a front-end user int
 For example, the tutorials demonstrated:
 
 * Using link:tutorials/hello-location{outfilesuffix}#candid-ui[Candid] as a bare-bones interface to expose and test the functions in a canister.
-* Using link:tutorials/explore-templates{outfilesuffix}#default-frontend[raw JavaScript] to display a simple pop-up alert window.
+* Using link:tutorials/explore-templates{outfilesuffix}#default-frontend[raw HTML and JavaScript] to display a simple HTML entry page.
 * Using link:tutorials/custom-frontend{outfilesuffix}[React and compiled JavaScript] to embed HTML attributes and elements directly in a page.
 * Using link:tutorials/my-contacts{outfilesuffix}[React and TypeScript] to import CSS properties from an external file.
 
 This section takes a closer look at the default front-end template, front-end configuration options, and using other frameworks to build the user interface for your projects.
 
-== How the default template is used
+== How the default templates are used
 
-As you might have noticed in the tutorials, projects include a template `+webpack.config.js+` file by default.
-Because webpack is a popular and highly-configurable module bundler for JavaScript-based applications, the default `+webpack.config.js+` file makes it easy to add the specific modules—such as `react` and `markdown`—that you want to use.
+As you might have noticed in the tutorials, projects include template `index.js` and `+webpack.config.js+` files.
 
-By default, the template `+webpack.config.js+` file also creates canister aliases based on the entries in the project's `+dfx.json+` file.
-If you review the code in the template `+webpack.config.js+` file, you see that it performs this alias creation task using the following code block:
+By default, the `+index.js+` file explicitly instantiates an instance of the HTTP agent. This agent provides an interface for interactions between the user-facing front-end and the {IC}. 
+After creating the agent, the `+index.js+` file constructs an actor for the canisters defined in your project's `+dfx.json+` file.
+
+If you review the code in the `+index.js+` file, you see that it performs these steps using the following code block:
+
+[source,js]
+----
+import { Actor, HttpAgent } from '@dfinity/agent';
+import { idlFactory as hello_idl, canisterId as hello_id } from 'dfx-generated/hello';
+
+const agent = new HttpAgent();
+const hello = Actor.createActor(hello_idl, { agent, canisterId: hello_id });
+----
+
+After the agent and the actor are created for the project, the `+index.js+` file provides a placeholder for the JavaScript you use to interact with the document object model (DOM) and HTML for your application.
+
+=== Modifying the webpack configuration
+
+Because webpack is a popular and highly-configurable module bundler for JavaScript-based applications, new projects new a default `+webpack.config.js+` file that makes it easy to add the specific modules—such as `react` and `markdown`—that you want to use.
+
+If you review the code in the template `+webpack.config.js+` file, you see that it constructs aliases for the canisters defined in your project's `+dfx.json+` file. The aliases can then be used to reference the canisters when imported as modules by the front-end.
+
+You can see these steps in the following code block:
 
 [source,js]
 ----
 // List of all aliases for canisters. This creates the module alias for
-// the `import ... from "ic:canisters/xyz"` where xyz is the name of a
+// the `import ... from "dfx-generated/canisters/xyz"` where xyz is the name of a
 // canister.
-const aliases = Object.entries(dfxJson.canisters)
-    .filter(([name,value]) => value.main)
-    .reduce((acc, [name,value]) => {
-  const outputRoot = path.join(__dirname, dfxJson.defaults.build.output, name);
-  const filename = path.basename(value.main, ".mo");
-  return {
-    ...acc,
-    ["ic:canisters/" + name]: path.join(outputRoot, filename + ".js"),
-    ["ic:idl/" + name]: path.join(outputRoot, filename + ".did.js"),
-  };
-}, {});
+const aliases = Object.entries(dfxJson.canisters).reduce(
+  (acc, [name, _value]) => {
+    // Get the network name, or `local` by default.
+    const networkName = process.env["DFX_NETWORK"] || "local";
+    const outputRoot = path.join(
+      __dirname,
+      ".dfx",
+      networkName,
+      "canisters",
+      name
+    );
+
+    return {
+      ...acc,
+      ["dfx-generated/" + name]: path.join(outputRoot, name + ".js"),
+    };
+  },
+  {}
+);
 ----
 
 === Entry and output configuration
 
-After creating canister aliases, the template `+webpack.config.js+` file generates a webpack configuration that adds the canister aliases automatically as imported modules in the default front-end entry point defined in the project's `+dfx.json+` file.
-For example, using the default settings an import similar to the following is added to the `+src/CANISTER_assets/public/index.js+` file:
+After creating canister aliases, the template `+webpack.config.js+` file generates a webpack configuration for the front-end and adds the resulting files to the output directory for your project directory. 
+
+In many cases, you can use the default `+webpack.config.js+` file as-is, without any modification, or you can add plug-ins, modules, and other custom configuration to suit your needs.
+The specific changes you make to the `+webpack.config.js+` configuration largely depend on the other tools and frameworks you want to use.
+
+For example, if you have experimented with the link:tutorials/custom-frontend{outfilesuffix}[Customize the front-end] or link:tutorials/my-contacts{outfilesuffix}[Add a stylesheet] front-end tutorials, you might have modified the following section to work with React JavaScript:
 
 [source,js]
 ----
-import CANISTER-ALIAS from 'ic:canisters/CANISTER-ALIAS';
+    module: {
+      rules: [
+        { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
+        { test: /\.css$/, use: ['style-loader','css-loader'] }
+      ]
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, info.frontend.entrypoint),
+        filename: 'index.html',
+        chunks: ['index'],
+      })
+    ],
+  };
+}
 ----
 
 // tag::node[] 
@@ -98,6 +144,93 @@ const Navigation = () => {
 
 export default Navigation;
 ----
+
+== Iterate faster using webpack-dev-server
+
+There are a few simple shortcuts you can use to iterate faster in your development environment. 
+For example, you can choose to build and deploy only specific canisters instead of all canisters in a project.
+
+If most of your changes are in the front-end for your application, one of the most effective ways you can iterate faster is by installing and configuring the webpack development server.
+THe webpack development server—`+webpack-dev-server+`—provides in-memory access to the webpack assets, enabling you to make changes and see them reflected in the browser right away using live reloading.
+
+To install and configure `+webpack-dev-server+`:
+
+. Create a new project and change to your project directory.
+. Install the `+webpack-dev-server+` in the project directory by running the following command:
++
+[source,bash]
+----
+npm install webpack-dev-server
+----
+. Open the `+webpack.config.js+` file for your project in a text editor.
+. Add your network host name and port information after the `+output+` section of the `+webpack.config.js+` file.
++
+For example, if you are using the default host and port information for local development, you would add the following to the `+webpack.config.js+` file:
++
+[source,bash]
+---- 
+devServer: {
+ proxy: {
+   "/api": "http://localhost:8000",
+ },
+},
+----
+. Save your changes and close the `+webpack.config.js+` file to continue.
+. Open the `+package.json+` file for your project in a text editor. 
+. Add a comma after `"build": "webpack"` in the `+scripts+` section.
+. Add a new line with `"start": "webpack serve"` in the `+scripts+` section.
++
+For example:
++
+[source,bash]
+----
+"start": "webpack serve"
+----
+. Save your changes and close the `+package.json+` file to continue.
+. Start the {IC} locally, if necessary, and deploy as you normally would, for example, by running the `+dfx deploy+` command.
+. Start the webpack development server by running the following command:
++
+[source,bash]
+----
+npm start
+----
+. Open a web browser and navigate to the asset canister for your application using port 8080.
++
+For example:
++
+....
+http://localhost:8080/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
+....
+. Open a new terminal window or tab and navigate to your project directory.
+. Open the `+index.js+` file for your project in a text editor and make changes to the content.
++
+For example, you might add an element to the page using JavaScript:
++
+document.body.onload = addElement;
++
+[source,js]
+----
+document.body.onload = addElement;
+
+function addElement () {
+  // create a new div element
+  const newDiv = document.createElement("div");
+
+  // and give it some content
+  const newContent = document.createTextNode("Test live page reloading!");
+
+  // add the text node to the newly created div
+  newDiv.appendChild(newContent);
+
+  // add the newly created element and its content into the DOM
+  const currentDiv = document.getElementById("div1");
+  document.body.insertBefore(newDiv, currentDiv);
+}
+----
+. Save your changes to the `index.js` file but leave the editor open to continue making changes.
+. Refresh the browser or wait for it to refresh on its own to see your change. 
++
+When you are done working on the front-end for your project, you can stop the webpack development server by pressing Control-C.
 
 ////
 == Using other frameworks

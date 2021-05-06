@@ -28,6 +28,7 @@ Currently, the {sdk-short-name} only runs on computers with a macOS or Linux ope
 
 * You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 
+This tutorial assumes you know how to perform common tasks—like opening a terminal and running commands—on your computer.
 If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
 If you are comfortable meeting the prerequisites without instructions, continue to <<Download and install>>.
 
@@ -91,7 +92,9 @@ The command displays usage information for the `+dfx+` parent command and its su
 
 Applications for the {IC} start as **projects**.
 You create projects using the `+dfx+` parent command and its subcommands.
-Creating a new project with `+dfx+` adds a default project directory structure to your development workspace with template files to get you started.
+
+For this tutorial, we'll start with the default sample application to illustrate creating an application using the starter files in a project.
+When you create a new project, the `+dfx+` command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the link:../developers-guide/tutorials/explore-templates{outfilesuffix}[Explore the default project] tutorial.
 
 To create a new project for your first application:
 

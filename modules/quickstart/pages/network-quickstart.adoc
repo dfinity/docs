@@ -31,14 +31,17 @@ Currently, the {sdk-short-name} only runs on computers with a macOS or Linux ope
 
 * You have `+node.js+` installed if you want to access the default front-end for the default project.
 
-* You must have cycles available to you to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
+* You have cycles available for you to use. 
++
+You must have cycles available to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
 +
 For information about how to get ICP tokens, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
 +
 You must have at least one canister with cycles to deploy and manage applications on the {IC}.
 Once you have a default cycles wallet associated with your `default` developer identity on the network, you can use that wallet to create additional wallets or to create additional canisters for other services.
 
-If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
+This tutorial assumes you know how to perform common tasks—like opening a terminal and running commands—on your computer.
+If you aren’t sure how to open a new terminal shell or how to install software packages like `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
 If you are comfortable meeting the prerequisites without instructions, continue to <<Download and install>>.
 
 [[net-download-sdk]]
@@ -107,7 +110,7 @@ Each approach presents a different interface for signing and sending messages to
 The first time you use the {sdk-short-name}, the `+dfx+` command-line tool creates a `+default+` developer identity for you. This identity is represented by a *principal* data type and a textual representation of the principal often referred to as your *principal identifier*.
 This representation of your identity is similar to a Bitcoin or Ethereum address.
 
-However, the principal associated with developer identity is typically not the same as your *account identifier* in the ledger.
+However, the principal associated with your developer identity is typically not the same as your *account identifier* in the ledger. The principal identifier and the account identifier are related—both provide a textual representation of your identity—but they use different formats.
 
 === Connect to the ledger to get account information
 
@@ -123,6 +126,11 @@ dfx identity whoami
 ----
 +
 In most cases, you should see that you are currently using +default+` developer identity.
+For example:
++
+....
+default
+....
 . View the textual representation of the principal for your current identity by running the following command:
 +
 [source,bash]

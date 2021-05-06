@@ -31,14 +31,12 @@ Currently, the {sdk-short-name} only runs on computers with a macOS or Linux ope
 
 * You have `+node.js+` installed if you want to access the default front-end for the default project.
 
-* You have cycles available for you to use. 
+* You have ICP tokens or cycles available for you to use. 
 +
-You must have cycles available to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
+You must have *cycles* available to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
 +
 For information about how to get ICP tokens, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
-+
-You must have at least one canister with cycles to deploy and manage applications on the {IC}.
-Once you have a default cycles wallet associated with your `default` developer identity on the network, you can use that wallet to create additional wallets or to create additional canisters for other services.
+For information about using your default cycles wallet after you have created it, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
 
 This tutorial assumes you know how to perform common tasks—like opening a terminal and running commands—on your computer.
 If you aren’t sure how to open a new terminal shell or how to install software packages like `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
@@ -47,7 +45,8 @@ If you are comfortable meeting the prerequisites without instructions, continue 
 [[net-download-sdk]]
 == Download and install
 
-You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer. If you have previously installed the {sdk-short-name}, you can skip this section and start with <<net-ledger-id,Confirm your developer identity and ledger account>>.
+You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer. If you have previously installed the {sdk-short-name}, you can skip this section and start with <<net-new-project,Create a new project>>.
+//<<net-ledger-id,Confirm your developer identity and ledger account>>.
 
 To download and install:
 
@@ -58,7 +57,7 @@ For example, open Applications, Utilities, then double-click *Terminal* or press
 +
 [source,bash]
 ----
-DFX_VERSION=0.7.0-beta.6 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 +
 This command prompts you to read and accept the license agreement before installing the {company-id} execution command-line interface (CLI) and its dependencies on your local computer.
@@ -84,7 +83,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.7.0-beta.6
+dfx 0.7.0
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -95,131 +94,11 @@ dfx --help
 +
 The command displays usage information for the `+dfx+` parent command and its subcommands.
 
-[[net-ledger-id]]
-== Confirm your developer identity and ledger account
-
-All ICP token transactions are recorded in a ledger canister running on the Internet Computer.
-Before you can transfer any ICP tokens you hold in your ledger account, you need to send a secure and properly-signed message that verifies your identity to the ledger and authorizes your developer identity to complete the transaction.
-
-Depending on how you have set up custody for holding your ICP tokens, the hardware, software, and steps required to connect to the ledger and complete a transaction can vary.
-For example, you might connect to the ledger and start a transaction from a hardware wallet, using a hardware security module (HSM) appliance, through the Network Nervous System (NNS) front-end application, or using the {sdk-short-name} `+dfx+` command-line interface.
-Each approach presents a different interface for signing and sending messages to the ledger and representing your identity as an account holder.
-
-=== About your developer identity
-
-The first time you use the {sdk-short-name}, the `+dfx+` command-line tool creates a `+default+` developer identity for you. This identity is represented by a *principal* data type and a textual representation of the principal often referred to as your *principal identifier*.
-This representation of your identity is similar to a Bitcoin or Ethereum address.
-
-However, the principal associated with your developer identity is typically not the same as your *account identifier* in the ledger. The principal identifier and the account identifier are related—both provide a textual representation of your identity—but they use different formats.
-
-=== Connect to the ledger to get account information
-
-For the purposes of this tutorial—where there's no hardware wallet or external application to connect to the ledger—we'll use your developer identity to retrieve your ledger account identifier, then transfer ICP tokens from the ledger account identifier to a cycles wallet canister controller by your developer identity.
-
-To look up your account in the ledger:
-
-. Confirm the developer identity you are currently using by running the following command:
-+
-[source,bash]
-----
-dfx identity whoami
-----
-+
-In most cases, you should see that you are currently using +default+` developer identity.
-For example:
-+
-....
-default
-....
-. View the textual representation of the principal for your current identity by running the following command:
-+
-[source,bash]
-----
-dfx identity get-principal
-----
-+
-This command displays output similar to the following:
-+
-[source,bash]
-----
-tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
-----
-. Get the account identifier for your developer identity by running the following command:
-+
-[source,bash]
-----
-dfx ledger account-id
-----
-+
-This command displays the ledger account identifier associated with your developer identity.
-For example, you should see output similar to the following:
-+
-[source,bash]
-----
-03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223
-----
-. Check your account balance by running the following command:
-+
-[source,bash]
-----
-dfx ledger --network ic balance
-----
-This command displays the ICP token balance from the ledger account.
-For example, you should see output similar to the following:
-+
-[source,bash]
-----
-100.00000000 ICP
-----
-
-[[convert-icp]]
-== Convert ICP tokens to cycles
-
-Now that you have confirmed your account information and current ICP token balance, you can convert some of those ICP tokens to cycles and move them into a cycles wallet.
-
-To transfer ICP tokens to create a cycles wallet:
-
-. Create a new canister with cycles from ICP token by running the following command:
-+
-[source,bash]
-----
-dfx ledger --network ic create-canister --amount 1.25 --controller tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
-----
-+
-If the transaction is successful, the ledger records the event and you should see output similar to the following:
-+
-[source,bash]
-----
-Transfer sent at BlockHeight: 20
-Canister created with id: "53zcu-tiaaa-aaaaa-qaaba-cai"
-----
-. Install the cycles wallet code in the newly-created canister placeholder by running a command similar to the following:
-+
-[source,bash]
-----
-dfx identity --network ic deploy-wallet <canister-identifer>
-----
-+
-For example:
-+
-....
-dfx identity --network ic deploy-wallet 53zcu-tiaaa-aaaaa-qaaba-cai
-....
-+
-For example, you should see output similar to the following:
-+
-....
-Creating a wallet canister on the execution network.
-The wallet canister on the "ic" network for user "default" is "53zcu-tiaaa-aaaaa-qaaba-cai"
-....
-
 [[net-new-project]]
 == Create a new project
 
-Now that you have some cycles available, you can start creating applications by:
-
-* Creating *new projects* with a default set of template files.
-* Creating *empty canister placeholders* without any code or template files.
+Applications for the {IC} start as **projects**.
+You create projects using the `+dfx+` parent command and its subcommands.
 
 For this tutorial, we'll start with the default sample application to illustrate creating an application using the starter files in a project.
 When you create a new project, the `+dfx+` command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the link:../developers-guide/tutorials/explore-templates{outfilesuffix}[Explore the default project] tutorial.
@@ -260,23 +139,6 @@ To check your connection to the {IC} network:
 ----
 dfx ping ic
 ----
-+
-If the `+ic+` network alias for the {IC} network gateway is not configured in your project `+dfx.json+` file, you might see a `+ComputeNetworkNotFound+` error.
-To manually specify the network provider for the {IC} network, open the `+dfx.json+` file in a text editor and add the following under the `+networks+` key:
-+
-[source,json]
-----
-    "ic": {
-      "providers": [
-        "https://boundary.dfinity.network"
-      ],
-      "type": "persistent"
-    }  
-----
-+
-
-NOTE: If you are manually updating the `+dfx.json+` file, you need to add a comma after the brace (`+}+`) that separates the `+alpha+` network definition from the `+local+` network definition.
-
 . Verify that the `+dfx ping ic+` command returns information about the {IC} network to which you are connecting.
 +
 For example, you should see output similar to the following:
@@ -286,29 +148,136 @@ For example, you should see output similar to the following:
   "ic_api_version": "0.17.0"  "impl_hash": "f6ccc304526a28bbb91d0603e8c1ba549847eb0524351a822c5ad52ac941e207"  "impl_version": "0.1.0"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 181, 243, 155, 255, 186, 159, 221, 212, 218, 49, 250, 130, 50, 177, 148, 34, 24, 191, 102, 20, 93, 48, 182, 174, 80, 183, 210, 201, 0, 152, 175, 34, 176, 99, 112, 129, 94, 138, 24, 126, 210, 238, 209, 29, 65, 35, 149, 187, 0, 4, 52, 151, 90, 147, 7, 234, 23, 130, 9, 192, 108, 253, 219, 228, 119, 217, 93, 155, 186, 165, 182, 135, 219, 232, 158, 45, 235, 113, 37, 221, 105, 153, 203, 205, 133, 25, 109, 115, 164, 248, 120, 48, 230, 167, 118, 134]
 }
 ....
-. Verify your principal exists on the network by running the following command:
+
+[[net-ledger-id]]
+== Confirm your developer identity and ledger account
+
+All ICP token transactions are recorded in a ledger canister running on the Internet Computer.
+Before you can transfer any ICP tokens you hold in your ledger account, you need to send a secure and properly-signed message that verifies your identity to the ledger and authorizes your developer identity to complete the transaction.
+
+Depending on how you have set up custody for holding your ICP tokens, the hardware, software, and steps required to connect to the ledger and complete a transaction can vary.
+For example, you might connect to the ledger and start a transaction from a hardware wallet, using a hardware security module (HSM) appliance, through the Network Nervous System (NNS) front-end application, or using the {sdk-short-name} `+dfx+` command-line interface.
+Each approach presents a different interface for signing and sending messages to the ledger and representing your identity as an account holder.
+
+=== About your developer identity
+
+The first time you use the {sdk-short-name}, the `+dfx+` command-line tool creates a `+default+` developer identity for you. This identity is represented by a *principal* data type and a textual representation of the principal often referred to as your *principal identifier*.
+This representation of your identity is similar to a Bitcoin or Ethereum address.
+
+However, the principal associated with your developer identity is typically not the same as your *account identifier* in the ledger. The principal identifier and the account identifier are related—both provide a textual representation of your identity—but they use different formats.
+
+=== Connect to the ledger to get account information
+
+For the purposes of this tutorial—where there's no hardware wallet or external application to connect to the ledger—we'll use your developer identity to retrieve your ledger account identifier, then transfer ICP tokens from the ledger account identifier to a cycles wallet canister controlled by your developer identity.
+
+To look up your account in the ledger:
+
+. Confirm the developer identity you are currently using by running the following command:
 +
 [source,bash]
 ----
-dfx identity --network ic get-principal
+dfx identity whoami
 ----
 +
-The command should display a textual representation of your identity similar to the following:
+In most cases, you should see that you are currently using +default+` developer identity.
+For example:
++
+....
+default
+....
+. View the textual representation of the principal for your current identity by running the following command:
++
+[source,bash]
+----
+dfx identity get-principal
+----
++
+This command displays output similar to the following:
 +
 ....
 tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
 ....
+. Get the account identifier for your developer identity by running the following command:
 +
+[source,bash]
+----
+dfx ledger account-id
+----
++
+This command displays the ledger account identifier associated with your developer identity.
+For example, you should see output similar to the following:
++
+....
+03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223
+....
+. Check your account balance by running the following command:
++
+[source,bash]
+----
+dfx ledger --network ic balance
+----
+This command displays the ICP token balance from the ledger account.
+For example, you should see output similar to the following:
++
+....
+100.00000000 ICP
+....
 
-IMPORTANT: You should note that this principal is directly associated with a specific cycles wallet canister identifier. If you change or remove the identity associated with the principal, you also lose access to the cycles wallet it controls.
+[[convert-icp]]
+== Convert ICP tokens to cycles
+
+Now that you have confirmed your account information and current ICP token balance, you can convert some of those ICP tokens to cycles and move them into a cycles wallet.
+
+To transfer ICP tokens to create a cycles wallet:
+
+. Create a new canister with cycles by transferring ICP tokens from your ledger account by running a command similar to the following:
++
+[source,bash]
+----
+dfx ledger --network ic create-canister --amount <icp-tokens> --controller <principal-identifier>
+----
++
+This command converts the number of ICP tokens you specify for the `+--amount+` argument into cycles, and associates the cycles with a new canister identifier controlled by the principal you specify using the `+--controller+` argument.
++
+For example, the following command converts 1.25 ICP tokens into cycles and specifies the principal identifier for the default identity as the controller of the new canister:
++
+....
+dfx ledger --network ic create-canister --amount 1.25 --controller tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+....
++
+If the transaction is successful, the ledger records the event and you should see output similar to the following:
++
+....
+Transfer sent at BlockHeight: 20
+Canister created with id: "53zcu-tiaaa-aaaaa-qaaba-cai"
+....
+. Install the cycles wallet code in the newly-created canister placeholder by running a command similar to the following:
++
+[source,bash]
+----
+dfx identity --network ic deploy-wallet <canister-identifer>
+----
++
+For example:
++
+....
+dfx identity --network ic deploy-wallet 53zcu-tiaaa-aaaaa-qaaba-cai
+....
++
+This command displays output similar to the following:
++
+....
+Creating a wallet canister on the ic network.
+The wallet canister on the "ic" network for user "default" is "53zcu-tiaaa-aaaaa-qaaba-cai"
+....
 
 == Validate your cycles wallet
 
-After verifying your connection to the network and your current principal, you might want to validate the cycles wallet canister you deployed and your current cycles balance.
+After you convert ICP tokens to cycles, you might want to validate the cycles wallet canister and your current cycles balance.
 
 To validate your cycles wallet:
 
-. Verify the canister identifier for the cycles wallet you deployed on the {IC} network by running the following command:
+. Verify the canister identifier for the cycles wallet you deployed by running the following command:
 +
 [source.bash]
 ----
@@ -333,53 +302,22 @@ For example:
 ....
 15430122328028812 cycles.
 ....
-. Open a web browser and navigate to the wallet application front-end by using a URL similar to the following:
++
+You can also access your default cycles wallet in a web browser by using a URL similar to the following:
 +
 ....
 https://<WALLET-CANISTER-ID>.raw.ic0.app
 ....
 +
-The first time you access the application, you see a notice that you are using an Anonymous Device and are prompted to authenticate your identity, authorize access to the wallet, and register your device.
+The first time you access the cycles wallet in a browser, you are redirected to the Internet Identity service and asked to enter a User Number or register with the service as a new user. 
+For more information about the Internet Identity service and registering authentication devices, see link:../ic-identity-guide/auth-how-to{outfilesuffix}[How to use the Internet Identity service].
 +
-. Click *Authenticate* to continue then click *Create Profile*.
-+
-Use a security key or another form of authentication such as touch ID to create your profile.
-If prompted, click *Allow* to continue authentication using the method of your choice. 
-. Review the profile displayed, then click *Next* to continue.
-+
-For example:
-+
-
-image:your-profile.png[]
-After successfully creating the profile, you are prompted to authorize the session.
-For example: 
-+
-
-image:auth-session.png[]
-. Authorize access to the wallet application by clicking *Allow*, confirming your identity with your security key or other authentication method, then click *Finish*.
-. Register the device you are using for this session by copying the command displayed in the *Register Your device* page and running it in a terminal.
-+
-For example, call the `+authorize+` method for the cycles wallet canister with a command similar to the following:
-+
-....
-dfx canister --no-wallet --network alpha call "47ung-kiaaa-aaaaa-qaaha-cai" authorize '(principal "mkqvz-rnwpc-bsdyz-krgdo-f3yyo-fytfg-sv2y7-lnsua-at7lo-gtylc-2qe")'
-....
-+
-Be sure that the command you copy has the `+--no-wallet+` option and the correct network (`+alpha+`) alias.
-You should recognize the canister identifier—in this example, 47ung-kiaaa-aaaaa-qaaha-cai—as the cycles wallet associated with your identity.
-If this is your first wallet on the network, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
-+
-When the browser refreshes after running the `+authorize+` command, the cycles wallet for your principal account is displayed.
-. View your cycles balance and activity in the browser.
-+
-For example:
-+
-image::cycles-wallet.png[]
+For more information about the commands and methods available for working with the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
 
 [[net-deploy]]
 == Register, build, and deploy the application
 
-After you connect to the {IC} network and validate your wallet, you can register, build, and deploy your sample application.
+After you have validated your cycles wallet balance, you can register, build, and deploy your sample application.
 
 To deploy your first application on the {IC}:
 
@@ -439,7 +377,7 @@ Deployed canisters.
 +
 [source,bash]
 ----
-dfx canister --network ic call hello greet '("everyone")'
+dfx canister --network ic call hello greet everyone
 ----
 +
 Let's take a closer look at this example:
@@ -459,12 +397,7 @@ For example:
 ....
 ("Hello, everyone!")
 ....
-. Refresh the browser to see your new cycle balance and recent activity.
-+
-For example:
-+
-
-image:wallet-after-hello-deploy.png[]
+. Rerun the `+dfx wallet balance+` command or refresh the browser to see your new cycle balance and recent activity.
 
 [[quickstart-frontend]]
 == Test the application front-end
@@ -479,7 +412,7 @@ To access the application front-end:
 For example, the full URL should look similar to the following:
 +
 ....
-https://zeorx-myaaa-aaaaa-qaaya-cai.boundary.ic0.app
+https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app
 ....
 +
 Navigating to this URL displays the HTML entry page for the template application.
@@ -488,107 +421,6 @@ For example:
 image:net-front-end-prompt.png[HTML page with prompt]
 
 . Type a greeting, then click *Click Me* to return the greeting.
-+
-For example:
-+
-image:net-result.png[Hello, Everyone! greeting]
-. Return to the browser window or tab that displays the cycles wallet and refresh the browser to see how your recent activity affects the cycle balance.
-+
-image:cycles-wallet-new-balance.png[]
-////
-== Create a wallet for another identity
-
-. In your terminal shell, create a second identity by running the following command:
-+
-[source,bash]
-----
-dfx identity new sf-wallet
-----
-. Set the new identity to be your currently-active context by running the following command:
-+
-[source,bash]
-----
-dfx identity use sf-wallet
-----
-+
-The command displays output similar to the following:
-+
-....
-Using identity: "sf-wallet".
-....
-. Get the principal for the new `+sf_admin+` user identity by running the following command:
-+
-[source,bash]
-----
-dfx identity get-principal
-----
-The command displays output similar to the following:
-+
-....
-vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe
-....
-. In your cycles wallet, click the plus (*+*) icon to display the list of actions available, then click *Create a Wallet*.
-. Paste the principal for the new identity you created in the controller field, specify the number of cycles for the new wallet, then click *Create*.
-+
-image:create-wallet.png[]
-////
-. Copy the canister identifier for the new wallet, then click *Okay* to close the new canister confirmation pop-up.
-+
-
-image:new-id.png[]
-. Associate the new cycles wallet with the new identity by running a command similar to the following:
-+
-....
-dfx identity --network=alpha set-wallet h5aet-waaaa-aaaab-qaamq-cai
-....
-+
-In this example, the new identity is named `sf-wallet` and we are running the `set-wallet` command with `sf-wallet` as the current identity context, so the command displays output like this:
-+
-....
-Setting wallet for identity 'sf-wallet' on network 'alpha' to id 'h5aet-waaaa-aaaab-qaamq-cai'
-Checking availability of the canister on the network...
-....
-+
-You now have a new principal and a new cycles wallet canister that you can use for testing or share with someone else to give them cycles for a service.
-For example, you might want to register a new canister that has the new wallet as its controller.
-
-=== Explore other tasks from the cycles wallet
-
-You can register a new empty canister from the cycles wallet by clicking *Create a Canister*.
-You can send cycles to any canister for which you have an identifier by clicking *Send Cycles*.
-To perform other tasks, you can call your cycles wallet from the command line.
-For example, to add another principal as a controller, you can run a command similar to the following:
-
-[source,bash]
-----
-dfx canister --network=alpha --no-wallet call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe")'
-----
-
-For more information about the methods available in the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
-
-=== Create a wallet for someone else
-
-If you are creating a cycles wallet for someone else to help them get on the network, the steps are similar to creating a second wallet for yourself but you will need that person's principal identifier. 
-
-To create a wallet for someone else:
-
-. Ensure that the person you want to create a wallet for takes these steps:
-+
---
-
-* Downloads and installs the {sdk-short-name}.
-* Runs the `dfx identity get-principal` command.
-* Sends you the textual representation of his or her principal.
-
---
-+
-After you have the principal identifier, continue to the next step.
-. Use the cycles wallet application front-end or `+wallet_create_wallet+` method to create a wallet with the controller set to the principal identifier associated with the person you are creating the wallet for.
-. Use the `+dfx wallet controllers+` command to verify that the list of controllers for the new wallet includes the new principal identifier.
-. Use the `+dfx wallet remove_controller+` command to remove your principal identifier as a controller of the wallet you created for someone else.
-
-For more information about the commands and methods available for working with the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
-////
 
 [[next-steps]]
 == Next steps
@@ -603,5 +435,5 @@ Here are some suggestions for where to go next:
 
 * link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
 
-* link:../language-guide/language-manual{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using Motoko.
+* link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using Motoko.
 

@@ -13,7 +13,6 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 In this tutorial, you are going to create a project with multiple actors. 
 Currently, you can only define one actor in a {proglang} file and a single actor is always compiled to a single canister.
-In addition, you cannot yet define an actor class to support multiple actor instances in your {proglang} programs.
 You can, however, create **projects** that have multiple actors and can build multiple canisters from the same `+dfx.json+` configuration file.
 
 For this tutorial, you are going to create separate program files for three actors in the same project. 
@@ -21,7 +20,7 @@ This project defines the following unrelated actors:
 
 * The `+assistant+` actor provides functions to add and show tasks in a to-do list.
 +
-For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is available in the link:https://github.com/dfinity/examples/[examples] repository as link:https://github.com/dfinity/examples/tree/master/motoko/simple_to_do[Simple to-do checklist].
+For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program—with additional functions for marking items as complete and removing items from the list—is available in the link:https://github.com/dfinity/examples/[examples] repository as link:https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[Simple to-do checklist].
 
 * The `+rock_paper_scissors+` actor provides a function for determining a winner in a hard-coded rock-paper-scissors contest.
 +

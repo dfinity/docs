@@ -156,7 +156,7 @@ video::G6vUrC9lues[youtube,width=100%,height=480px]
 This video segment summarizes the resources available and how you can get involved. 
 
 For further inspiration, check out the sample applications in the link:https://github.com/dfinity/examples[examples] or link:https://github.com/dfinity/awesome-dfinity[awesome-dfinity] repositories. 
-To be part of the conversation, join the  link:forum.dfinity.org[Developer Forum] or follow @dfinitydev on Twitter.
+To be part of the conversation, join the  link:https://forum.dfinity.org/[Developer Forum] or follow link:https://twitter.com/dfinitydev[@dfinitydev] on Twitter.
 
 ++++
 <h1></h1>
@@ -189,7 +189,7 @@ If you want more hands-on experience creating programs that run on the {IC}, che
 
 * link:developers-guide/tutorials/my-contacts{outfilesuffix}[Add a stylesheet]
 
-* link:xdevelopers-guide/tutorials/intercanister-calls{outfilesuffix}[Make inter-canister calls]
+* link:developers-guide/tutorials/intercanister-calls{outfilesuffix}[Make inter-canister calls]
 
 * link:developers-guide/tutorials/scalability-cancan{outfilesuffix}[Create scalable apps]
 

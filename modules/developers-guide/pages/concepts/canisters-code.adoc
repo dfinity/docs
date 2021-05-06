@@ -72,7 +72,7 @@ As a modern, high-level programming language, {proglang} provides some key featu
 * A sound type system that statically checks each program to ensure it can execute without type errors on all possible inputs.
 * Support for function abstractions, user-defined type definitions, and user-defined actors.
 
-For more detailed information about the {proglang} programming language itself, including syntactical conventions and supported features, see the link:../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
+For more detailed information about the {proglang} programming language itself, including syntactical conventions and supported features, see the link:../../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
 
 The following diagram provides a simplified drill-down view of the development environment as part of the {IC} ecosystem.
 
@@ -145,6 +145,6 @@ If you are looking for more information about canisters, check out the following
 
 * link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
 
-* link:https://www.youtube.com/watch?v=60uHQfoA8D[What is the DFINITY Canister SDK? (video)]
+* link:https://www.youtube.com/watch?v=60uHQfoA8Dk[What is the DFINITY Canister SDK? (video)]
 
-* link:https://www.youtube.com/watch?v=yqIoiyuG[Deploying your first application (video)]
+* link:https://www.youtube.com/watch?v=yqIoiyuGYNA[Deploying your first application (video)]

@@ -24,9 +24,11 @@
 //*** xref:developers-guide:basic-syntax-rules.adoc[C and C++]
 ** xref:developers-guide:webpack-config.adoc[Add frontend assets]
 ** xref:developers-guide:working-with-canisters.adoc[Manage canisters]
+** xref:developers-guide:default-wallet.adoc[Use the default cycles wallet]
 ** xref:developers-guide:troubleshooting.adoc[Troubleshoot issues]
 
 .xref:developers-guide:tutorials-intro.adoc[Tutorials]
+** xref:developers-guide:tutorials/at-a-glance.adoc[Tutorials at a glance]
 ** xref:developers-guide:tutorials/explore-templates.adoc[Explore the default project]
 ** xref:developers-guide:tutorials/define-an-actor.adoc[Query using an actor]
 ** xref:developers-guide:tutorials/hello-location.adoc[Pass text arguments]
@@ -87,11 +89,13 @@
 ////
 ** xref:rust-guide:rust-asset-storage.adoc[Asset storage tutorial] 
 ** xref:rust-guide:rust-chess-autonomous.adoc[Autonomous game tutorial]
+////
 
 .Integration
 ** xref:integration:ledger-quick-start.adoc[Integrating with the Ledger]
-** xref:integration:nns-quick-start.adoc[Integrating with NNS]
+//** xref:integration:nns-quick-start.adoc[Integrating with NNS]
 
+////
 .xref:operators-guide:ops-guide.adoc[Operators]
 ** xref:operators-guide:ops-guide.adoc[Concepts]
 ** xref:operators-guide:ops-how-to.adoc[How to]
@@ -113,4 +117,5 @@
 ** xref:release-notes:0.6.22-rn.adoc[0.6.22]
 ** xref:release-notes:0.6.21-rn.adoc[0.6.21]
 ** xref:release-notes:0.6.20-rn.adoc[0.6.20]
-** link:https://github.com/dfinity/sdk/releases[Release history]
+** link:https://github.com/dfinity/docs/releases[Release history]
+//** link:https://github.com/dfinity/sdk/releases[Release history]

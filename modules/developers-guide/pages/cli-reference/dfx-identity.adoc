@@ -32,6 +32,8 @@ For reference information and examples that illustrate using `+dfx identity+` co
 
 |`+help+` |Displays this usage message or the help of the given subcommand(s).
 
+|<<dfx identity import,`+import+`>> | Creates a new identity by importing a PEM file that contains the key information or security certificate for a principal.
+
 |<<dfx identity list,`+list+`>> |Lists existing identities.
 
 |<<dfx identity new,`+new+`>> |Creates a new identity.
@@ -139,6 +141,40 @@ To display the canister identifier for the wallet canister associated with your 
 ----
 dfx identity --network=https://192.168.74.4 get-wallet
 ----
+
+== dfx identity import
+
+Use the `+dfx identity import+` command to create a user identity by importing the user's key information or security certificate from a PEM file.
+
+=== Basic usage
+
+[source,bash,subs=quotes]
+----
+dfx identity import [flag] _identity-name_ _pem_file-name_
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx identity import+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+|`+-h+`, `+--help+` |Displays usage information.
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Examples
+
+You can use the `+dfx identity import+` command to import a PEM file that contains the security certificate to use for an identity.
+For example, you can run the following command to import the `generated-id.pem` file to create the user identity `alice`:
+
+[source,bash]
+----
+dfx identity import alice generated-id.pem
+----
+
+The command adds the `generated-id.pem` file to the `~/.config/dfx/identity/alice` directory.
 
 == dfx identity list
 

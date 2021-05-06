@@ -31,16 +31,17 @@ Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
 
+* You have run at least one command that resulted in your `+default+` user identity being created. 
+Your default user identity is stored globally for all projects in the `+$HOME/.config/dfx/identity/+` directory.
+
 * You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
 
-* You have stopped any {IC} network processes running on the local
-computer.
+* You have stopped any {IC} network processes running on the local computer.
 
 == Create a new project
 
 To create a new project directory for testing access control and switching user identities:
 
-[arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
 . Change to the folder you are using for your {IC} projects, if you are using one.
 . Create a new project by running the following command:
@@ -89,7 +90,6 @@ Before you can build the `+access_hello+` project, you need to connect to the {I
 
 To start the network locally:
 
-[arabic]
 . Open a new terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
 . Start the {IC} network on your local computer by running the following command:
@@ -101,80 +101,64 @@ dfx start --background
 +
 After the local {IC} network completes its startup operations, you can continue to the next step.
 
-== Register canister identifiers
+== Register, build, and deploy the application
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application in a single step by running the link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy`] command.
+You can also perform each of these steps independently using separate link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_create[`+dfx canister create+`], link:../cli-reference/dfx-build{outfilesuffix}[`+dfx build+`], and link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_install[`+dfx canister install+`] commands.
 
-NOTE: You can register, build, and deploy your application in a single step by running the link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy`] command. This tutorial demonstrates performing each of these steps independently to illustrate creating a default identity, registering identifiers for local and network deployment, and deploying specific canisters instead of all canisters in a project.
-
-To register canister identifiers for the local network:
+To deploy the application locally:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register a unique canister identifier for the project by running the following command:
+. Register, build, and deploy the `+access_hello+` back-end program by running the following command:
 +
 [source,bash]
 ----
-dfx canister create access_hello
+dfx deploy access_hello
 ----
 +
-The first time you run this command, it creates a `+default+` user identity in the `+$HOME/.config/dfx/identity/+` directory.
-+
 ....
-Creating the "default" identity.
-  - migrating key from /Users/lisagunn/.dfinity/identity/creds.pem to /Users/lisagunn/.config/dfx/identity/default/identity.pem
-Created the "default" identity.
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Deploying: access_hello
+Creating canisters...
 Creating canister "access_hello"...
-"access_hello" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"access_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Building canisters...
+Installing canisters...
+Installing code for canister access_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Deployed canisters.
 ....
-+
-After creating the `+identity.pem+` key file for the `+default+` user identity, the command displays the network-specific canister identifier for the `+access_hello+` main program.
 
-== Build and deploy the program
+== Check the current identity context
 
-You are now ready to compile the program into a WebAssembly module and deploy it on your local network.
+Before we create any additional identities, let's review the principal identifiers associated with your `+default+` identity and the cycles wallet for your `+default+` identity.
+On the {IC}, a principal is the internal representative for a user, canister, node, or subnet. The textual representation for a principal is the external identifier you see displayed with working with the principal data type.
 
-Because this tutorial illustrates running the {IC} locally, the canister identifier is only valid on the local network.
-To deploy canisters on a remote network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
+To review your current identity and principle:
 
-To build and deploy the program:
-
-[arabic]
-. Check that you are still in your project directory, if needed.
-. Build the executable WebAssembly module by running the following command:
+. Verify the currently-active identity by running the following command:
 +
 [source,bash]
 ----
-dfx build access_hello
+dfx identity whoami
 ----
 +
 The command displays output similar to the following:
 +
 ....
-Building canisters...
-....
-. Deploy your `+access_hello+` project on the local network by running the following command:
-+
-[source,bash]
-----
-dfx canister install access_hello
-----
-+
-The command output displays output similar to the following:
-+
-....
-Installing code for canister access_hello, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+default
 ....
 . Check the principal for the `+default+` user identity by running the following command:
 +
 [source,bash]
 ----
-dfx canister call access_hello callerPrincipal
+dfx identity get-principal
 ----
 +
 The command displays output similar to the following:
 +
 ....
-(principal "nnuac-d26ja-o4tcm-mcr4i-qxgon-fkuqx-tshde-74bb4-6fead-hdnd6-5ae")
+zen7w-sjxmx-jcslx-ey4hf-rfxdq-l4soz-7ie3o-hti3o-nyoma-nrkwa-cqe
 ....
 . Check the role associated with the `+default+` user identity by running the following command:
 +
@@ -191,7 +175,7 @@ The command displays output similar to the following:
 
 == Create a new user identity
 
-To begin testing the access controls in our program, you need to create some new user identities and assign those users to different roles.
+To begin testing the access controls in our program, let's create some new user identities and assign those users to different roles.
 
 To create a new user identity:
 
@@ -219,36 +203,68 @@ dfx --identity ic_admin canister call access_hello my_role
 The command displays output similar to the following:
 +
 ....
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "ic_admin" is "ryjl3-tyaaa-aaaaa-aaaba-cai"
 (null)
 ....
-. Get the principal for the new `+ic_admin+` user identity by running the following command:
+. Switch your currently-active identity context to use the new `+ic_admin+` user identity and display the principal associated with the `+ic_admin+` user by running the following command:
 +
 [source,bash]
 ----
-dfx --identity ic_admin canister call access_hello callerPrincipal
+dfx identity use ic_admin && dfx identity get-principal
 ----
 +
 The command displays output similar to the following:
 +
 ....
-(principal "kenjo-txsrk-ctozi-gnls4-v4sf4-ndupc-wmrji-nuemy-7hp2y-kwkre-tae")
+Using identity: "ic_admin".
+c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae
 ....
-. Assign this principal the `+admin+` role by running a command similar to the following using Candid syntax:
+. Check the principal used to call the `+access_hello+` canister by running the following command:
++
+[source,bash]
+----
+dfx canister call access_hello callerPrincipal
+----
++
+The command displays output similar to the following:
 +
 ....
-dfx canister call access_hello assign_role '((principal "kenjo-txsrk-ctozi-gnls4-v4sf4-ndupc-wmrji-nuemy-7hp2y-kwkre-tae"),opt variant{admin})'
+(principal "ryjl3-tyaaa-aaaaa-aaaba-cai")
 ....
 +
+By default, the cycles wallet identifier is the principal used to call the methods in the `+access_hello+` canister.
+To illustrate access control, however, we want to use the principal associated with the user context, not the cycles wallet.
+Before we get to that step, though, let's assign a role to the `+ic_admin+` user. To do that, we need to switch to the `+default+` user identity that has the `+owner+` role.
 
-NOTE: Be sure to replace the `+principal+` hash with the one returned by the `+dfx identity callerPrincipal+` command.
+== Assign a role to an identity
+
+To assign the admin role to the ic_admin identity:
+
+. Switch your currently-active identity context to use the `+default+` user identity by running the following command:
++
+[source,bash]
+----
+dfx identity use default
+----
+. Assign the `+ic_admin+` principal the `+admin+` role by running a command similar to the following using Candid syntax:
++
+[source,bash]
+----
+dfx canister call access_hello assign_role '((principal "c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae"),opt variant{admin})'
+----
+
+NOTE: Be sure to replace the `+principal+` hash with the one returned by the `+dfx identity get-principal+` command for the `+ic_admin+` identity.
 
 +
 Optionally, you can rerun the command to call the `+my_role+` function to verify the role assignment.
 +
 [source,bash]
 ----
-dfx --identity ic_admin canister call access_hello my_role
+dfx --identity ic_admin canister --no-wallet call access_hello my_role
 ----
++
+The `+--no-wallet+` option is required to see the role assigned to the `+ic_admin+` identity instead of the cycles wallet. 
 The command displays output similar to the following:
 +
 ....
@@ -258,7 +274,7 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-dfx --identity ic_admin canister call access_hello greet "Internet Computer Admin"
+dfx --identity ic_admin canister --no-wallet call access_hello greet "Internet Computer Admin"
 ----
 +
 The command displays output similar to the following:
@@ -291,11 +307,17 @@ The command displays output similar to the following:
 Creating identity: "alice_auth".
 Created identity: "alice_auth".
 ....
-. Store the principal for the new user in an environment variable by running the following command:
+. Switch your currently-active identity context to use the new `+alice_auth+` user identity by running the following command:
 +
 [source,bash]
 ----
-ALICE_ID=$(dfx --identity alice_auth canister call access_hello callerPrincipal | sed 's/[\\(\\)]//g')
+dfx identity use alice_auth
+----
+. Store the principal for the `+alice_auth+` user in an environment variable by running the following command:
++
+[source,bash]
+----
+ALICE_ID=$(dfx canister --no-wallet call access_hello callerPrincipal | sed 's/[\\(\\)]//g')
 ----
 +
 You can verify the principal stored by running the following command:
@@ -308,21 +330,20 @@ echo $ALICE_ID
 The command displays output similar to the following:
 +
 ....
-principal "ixskg-luu4i-jxn6i-ie5v4-ynykj-6d2sz-l6ctg-r6524-yxoeb-taimb-rqe"
+principal "b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe"
 ....
 +
-Optionally, you can call the `+my_role+` function to verify that the principal role assignment is `+null+`.
 . Use the `+ic_admin+` identity to assign the `+authorized+` role to `+alice_auth+` by running the following command:
 +
 [source,bash]
 ----
-dfx --identity ic_admin canister call access_hello assign_role "($ALICE_ID, opt variant{authorized})"
+dfx --identity ic_admin canister --no-wallet call access_hello assign_role "($ALICE_ID, opt variant{authorized})"
 ----
 . Call the `+my_role+` function to verify the role assignment.
 +
 [source,bash]
 ----
-dfx --identity alice_auth canister call access_hello my_role
+dfx --identity alice_auth canister --no-wallet call access_hello my_role
 ----
 The command displays output similar to the following:
 +
@@ -333,7 +354,7 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-dfx --identity alice_auth canister call access_hello greet "Alice"
+dfx canister --no-wallet call access_hello greet "Alice"
 ----
 +
 The command displays output similar to the following:
@@ -352,6 +373,12 @@ The next step is to create a user identity that is not assigned to a role or giv
 To add an unauthorized user identity:
 
 . Check that you are still in your project directory, if needed.
+. Check your currently-active identity, if needed, by running the following command:
++
+[source,bash]
+----
+dfx identity whoami
+----
 . Create a new user identity by running the following command:
 +
 [source,bash]
@@ -365,29 +392,17 @@ The command displays output similar to the following:
 Creating identity: "bob_standard".
 Created identity: "bob_standard".
 ....
-. Call the `+my_role+` function to see that your new user identity has not been assigned to any role.
+. Store the principal for the `+bob_standard+` user in an environment variable by running the following command:
 +
 [source,bash]
 ----
-dfx --identity bob_standard canister call access_hello my_role
-----
-+
-The command displays output similar to the following:
-+
-....
-(null)
-....
-. Store the principal for the new user in an environment variable by running the following command:
-+
-[source,bash]
-----
-BOB_ID=$(dfx --identity bob_standard canister call access_hello callerPrincipal | sed 's/[\\(\\)]//g')
+BOB_ID=$(dfx --identity bob_standard canister --no-wallet call access_hello callerPrincipal | sed 's/[\\(\\)]//g')
 ----
 . Attempt to use the `+bob_standard+` identity to assign a role.
 +
 [source,bash]
 ----
-dfx --identity bob_standard canister call access_hello assign_role "($BOB_ID, opt variant{authorized})"
+dfx --identity bob_standard canister --no-wallet call access_hello assign_role "($BOB_ID, opt variant{authorized})"
 ----
 +
 This command returns an `+unauthorized+` error.
@@ -395,7 +410,7 @@ This command returns an `+unauthorized+` error.
 +
 [source,bash]
 ----
-dfx canister call access_hello assign_role "($BOB_ID, opt variant{owner})"
+dfx --identity default canister --no-wallet call access_hello assign_role "($BOB_ID, opt variant{owner})"
 ----
 +
 This command fails because users cannot be assigned the `+owner+` role.
@@ -403,7 +418,7 @@ This command fails because users cannot be assigned the `+owner+` role.
 +
 [source,bash]
 ----
-dfx --identity bob_standard canister call access_hello greet "Bob"
+dfx --identity bob_standard canister --no-wallet call access_hello greet "Bob"
 ----
 +
 The command displays output similar to the following:
@@ -427,7 +442,7 @@ To run multiple commands under one user identity:
 dfx identity list
 ----
 +
-The command displays output similar to the following with an asterisk indicating the currently active user identity.
+The command displays output similar to the following with an asterisk indicating the currently-active user identity.
 +
 ....
 alice_auth

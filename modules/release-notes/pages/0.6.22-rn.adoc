@@ -42,7 +42,7 @@ All of Motoko sample apps in the link:https://github.com/dfinity/examples/tree/m
 +
 There are also new sample apps to illustrate using arrays (link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort]) and building create/read/update/delete (CRUD) operations for a web application link:https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes].
 
-* The link:https://github.com/dfinity/linkedup:[LinkedUp] sample application has been updated to work with the latest release of Motoko and the SDK.
+* The link:https://github.com/dfinity/linkedup[LinkedUp] sample application has been updated to work with the latest release of Motoko and the SDK.
 
 === Candid
 

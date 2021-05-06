@@ -39,7 +39,7 @@ The errors and warnings issued by the `+npm+` package manager do not prevent you
 
 == Additional questions and feedback
 
-Joining the link:forum.dfinity.org[DFINITY Developer Forum] is an effective way to learn from community members, ask questions, solicit help from other developers, and provide insight and feedback about your experiences.
+Joining the link:https://forum.dfinity.org/[DFINITY Developer Forum] is an effective way to learn from community members, ask questions, solicit help from other developers, and provide insight and feedback about your experiences.
 
 If you have questions that aren't answered by the community, you might also want to check out link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] topics for information about common issues, workarounds for known issues, or help troubleshooting warnings or errors.
 

@@ -144,6 +144,12 @@ If the argument did not contain a space that required enclosing the text inside 
 ----
 dfx canister call location_hello location Paris
 ----
++
+Candid infers the data type as `Text` and returns the output from your program as text like this:
++
+....
+("Hello, Paris!")
+....
 . Call the `+location+` method in the program and pass your `+city+` argument explicitly using the Candid interface description language syntax for Text arguments:
 +
 [source,bash]
@@ -175,6 +181,8 @@ For example, you might want to modify the `+location+` function to return multip
 To experiment with modifying the source code for this tutorial:
 
 . Open the `+dfx.json+` configuration file in a text editor and change the default `+location_hello+` settings to `+favorite_cities+`.
++
+For this step, you should modify both the canister name and the path to the main program for the canister to use `+favorite_cities+`.
 . Save your changes and close the `+dfx.json+` file to continue.
 . Copy the `+location_hello+` source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
 +
@@ -209,6 +217,7 @@ public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
 ....
 +
 For information about the functions that perform operations on arrays, see the description of the Array module in the {proglang} base library or the _{proglang} Programming Language Reference_.
+For another example focused on the use of arrays, see link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort] in the link:https://github.com/dfinity/examples/[examples] repository.
 . Register, build, and deploy the application by running the following command:
 +
 [source,bash]

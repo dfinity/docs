@@ -409,6 +409,13 @@ To access the application front-end:
 . Open a browser.
 . Navigate to the front-end for the application using a URL that consists of the `+hello_assets+` identifier and the `+boundary.ic0.app+` suffix.
 +
+If you didn’t make a note of the canister identifier, you can look it up by running the following command:
++
+[source,bash]
+----
+dfx canister id hello_assets
+----
++
 For example, the full URL should look similar to the following:
 +
 ....

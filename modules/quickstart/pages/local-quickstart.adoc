@@ -211,7 +211,16 @@ A cycles wallet is a special type of canister that enables you to transfer link:
 dfx canister call hello greet everyone
 ----
 +
-This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
+Let's take a closer look at this example command:
++
+-- 
+
+* The `+dfx canister call+` command requires you to specify a canister name and a method—or function—to call.
+* `+hello+` specifies the name of the *canister* you want to call.
+* `+greet+` specifies the name of the *function* you want to call in the `+hello+` canister.
+* `+everyone+` is the text data type argument that you want to pass to the `+greet+` function.
+--
+
 +
 Remember, however, that if you created a project with a different name, the canister name will match your project name and you'll need to modify the command line to match the name you used instead of `+hello+`.
 . Verify the command displays the return value of the `+greet+` function.
@@ -279,17 +288,16 @@ dfx stop
 == Next steps
 
 This _Quick Start_ touched on only a few key steps to introduce the basic workflow for developing programs of your own.
-
-You cab find more detailed examples and tutorials to help you learn about how to use {proglang} and how to develop applications to run on the {IC} throughout the documentation.
+You can find more detailed examples and tutorials to help you learn about how to use {proglang} and how to develop applications to run on the {IC} throughout the documentation.
 
 Here are some suggestions for where to go next:
 
 * link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building simple applications using a local development environment.
 
-* link:convert-icp{outfilesuffix}[Convert ICP tokens to cycles] if you have ICP tokens that you want to convert to cycles to enable you to deploy applications to the {IC} network.
+* link:network-quickstart{outfilesuffix}#convert-icp[Convert ICP tokens to cycles] if you have ICP tokens that you want to convert to cycles to enable you to deploy applications to the {IC} network.
 
 * link:network-quickstart{outfilesuffix}[Network deployment] if you have cycles and are ready to deploy an application to the {IC} network.
 
 * link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
 
-* link:../language-guide/language-manual{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using {proglang}.
+* link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using {proglang}.

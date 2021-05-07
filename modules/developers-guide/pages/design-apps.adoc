@@ -8,7 +8,9 @@
 
 As you come up with ideas for applications, you are going to make many design decisions about how to structure and organize your project. 
 Most of these design decisions are independent of whether you deploy your app on a traditional cloud service or on the {IC}. 
-However, if you are going to deploy on the {IC}, there are a few design decisions that you should pay particular attention to as you plan the implementation for your app. 
+However, if you are going to deploy on the {IC}, there are a few design decisions that you should pay particular attention to as you plan the implementation for your app.
+
+CAUTION: This section is work-in-progress and incomplete. As best practices and design patterns evolve for building applications that run on the {IC}, the information included here will also evolve and change accordingly.
 
 == Single or multiple canister architecture
 
@@ -24,9 +26,25 @@ It is easy to imagine extending the application with a third canister, for examp
 
 == Segregating actors from types and utilities
 
+In planning the architecture for your project, one common practice is to place the code for the main actor in one file with separate additional files for defining the types you program uses and utility functions that don't require an actor.
+
+For example, you might set up the back-end logic for your application to consist of the following files:
+
+* `+Main.mo+` or `+main.rs+` with the functions that require an actor to send query and update calls.
+* `+Util.mo+` or `+util.rs+` with helper functions that can be imported for the actor to use.
+* `+Types.mo+` or `+types.rs+` with all of the data type definitions for your application.
 
 == Using query calls
 
+As discussed in link:./concepts/canister-code{outfilesuffix}#query-update[Query and update methods], queries return results faster than update calls. Therefore,explicitly marking a function as a `+query+` is an effective strategy for improving application performance. 
+In the planning and design phase, you should consider how best to use query calls instead of functions that can perform queries or updates. 
+
+That is a good general rule to follow and can be applied broadly to most categories of applications.
+However, you should also consider the security and performance trade-off that queries don’t go through consensus.  
+For some applications, that trade-off might be appropriate. For example, if you are developing a blogging platform, queries that retrieve articles matching a tag probably don’t warrant going through consensus to ensure that a majority of nodes agree on the results.  
+However, if your application is retrieving sensitive information—like financial data—you might want more assurance about your results than a basic query provides.  
+
+As an alternative to basic queries, the {IC} also supports *certified queries*. Certified queries enable you to receive *authenticated responses* that you can trust. Using certified queries is an advanced technique that is not covered in the tutorials or other developer-focused documentation, but you can learn about how the authentication works and what you need to do to configure your program to return certified data in response to queries in the link:../interface-spec/index{outfilesuffix}[Interface specification].
 
 == Data storage and retrieval
 

@@ -1,11 +1,9 @@
 = Local development
+:description: Download the DFINITY Canister SDK and deploy your first application locally.
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
-:toc:
-:toc: right
-:toc-title: QUICK START
-:toclevels: 3
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -17,7 +15,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 [[quick-start-intro]]
 This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and are running the {IC} as part of your *local development environment*.
 
-To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an alert pop-up window if you access the application in a browser.
+To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.
 
 [[before-you-begin]]
 == Before you begin
@@ -30,6 +28,7 @@ Currently, the {sdk-short-name} only runs on computers with a macOS or Linux ope
 
 * You have `+node.js+` installed if you want to include the default template files for front-end development in your project.
 
+This tutorial assumes you know how to perform common tasks—like opening a terminal and running commands—on your computer.
 If you aren’t sure how to open a new terminal shell on your local computer or how to install `node.js`, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
 If you are comfortable meeting the prerequisites without instructions, continue to <<Download and install>>.
 
@@ -75,7 +74,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.6.26
+dfx 0.7.0
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -86,14 +85,16 @@ dfx --help
 +
 The command displays usage information for the `+dfx+` parent command and its subcommands.
 
-include::example$vscode-plugin.adoc[]
+//include::example$vscode-plugin.adoc[]
 
 [[create-a-new-project]]
 == Create a new project
 
 Applications for the {IC} start as **projects**.
 You create projects using the `+dfx+` parent command and its subcommands.
-Creating a new project with `+dfx+` adds a default project directory structure to your development workspace with template files to get you started.
+
+For this tutorial, we'll start with the default sample application to illustrate creating an application using the starter files in a project.
+When you create a new project, the `+dfx+` command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the link:../developers-guide/tutorials/explore-templates{outfilesuffix}[Explore the default project] tutorial.
 
 To create a new project for your first application:
 
@@ -175,15 +176,13 @@ For example, this step registers two network-specific identifiers—one for the 
 Creating the "default" identity.
   - generating new key at /Users/pubs/.config/dfx/identity/default/identity.pem
 Created the "default" identity.
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 Deploying all canisters.
 Creating canisters...
 Creating canister "hello"...
-Creating the canister using the wallet canister...
-Creating a wallet canister on the local network.
-The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 "hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 Creating canister "hello_assets"...
-Creating the canister using the wallet canister...
 "hello_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
 Building canisters...
 Building frontend...
@@ -192,12 +191,22 @@ Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
 Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
 Authorizing our identity (default) to the asset canister...
 Uploading assets to asset canister...
+  /index.html 1/1 (472 bytes)
+  /index.js 1/1 (295480 bytes)
+  /main.css 1/1 (484 bytes)
+  /sample-asset.txt 1/1 (24 bytes)
+  /logo.png 1/1 (25397 bytes)
+  /index.js.map 1/1 (957052 bytes)
+  /index.js.LICENSE.txt 1/1 (499 bytes)
 Deployed canisters.
 ....
 +
 If you created a project with a different name, however, your canister names will match your project name instead of `+hello+` and `+hello_assets+`.
-You should also note that the first time you deploy, `+dfx+` creates a `+default+` identity and a local wallet controlled by your `+default+` identity.
-The wallet is required to enable you to transfer link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[cycles] to other canisters.
++
+You should also note that the *first time you deploy*, `+dfx+` creates a `+default+` identity and a local cycle wallet controlled by your `+default+` identity.
+A cycles wallet is a special type of canister that enables you to transfer link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[cycles] to other canisters.
++
+*To deploy this sample application locally*, you don't need to know anything about your default developer identity, using a cycles wallet, or managing cycles. We'll cover these topics later, but for now, just note that these are created for you automatically. 
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]
@@ -205,7 +214,16 @@ The wallet is required to enable you to transfer link:../developers-guide/concep
 dfx canister call hello greet everyone
 ----
 +
-This example uses the `+dfx canister call+` command to pass "everyone" as an argument to the `+greet+` function.
+Let's take a closer look at this example command:
++
+-- 
+
+* The `+dfx canister call+` command requires you to specify a canister name and a method—or function—to call.
+* `+hello+` specifies the name of the *canister* you want to call.
+* `+greet+` specifies the name of the *function* you want to call in the `+hello+` canister.
+* `+everyone+` is the text data type argument that you want to pass to the `+greet+` function.
+--
+
 +
 Remember, however, that if you created a project with a different name, the canister name will match your project name and you'll need to modify the command line to match the name you used instead of `+hello+`.
 . Verify the command displays the return value of the `+greet+` function.
@@ -219,28 +237,40 @@ For example:
 [[quickstart-frontend]]
 == Test the application front-end
 
-Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end pop-up window using your web browser.
+Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
 
 . Open a browser.
-. Navigate to the default address and port number `+127.0.0.1:8000+`, then append `+/?canisterId=+` and the `+hello_assets+` identifier to the URL.
+. Navigate to the default address and port number `+127.0.0.1:8000+`.
+. Append `+/?canisterId=+` and the `+hello_assets+` identifier to the URL.
++
+If you didn’t make a note of the canister identifier, you can look it up by running the following command:
++
+[source,bash]
+----
+dfx canister id hello_assets
+----
++
+Add the canister identifier returned to the URL using the following syntax:
+....
+?canisterId=<YOUR-ASSET-CANISTER-IDENTIFIER>
+....
 +
 For example, the full URL should look similar to the following:
 +
 ....
-http://127.0.0.1:8000/?canisterId=rrkah-fqaaa-aaaaa-aaaaq-cai
+http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
 ....
 +
-Navigating to this URL displays the prompt pop-up window.
+Navigating to this URL displays a simple HTML page with a sample asset image file, an input field, and a button.
 For example:
 +
-image:quickstart-prompt.png[Prompt pop-up window]
+image:front-end-prompt.png[Sample HTML page]
 
-. Type a greeting, then click *OK* to return the greeting.
+. Type a greeting, then click *Click Me* to return the greeting.
 +
 For example:
 +
-image:quickstart-return.png[Hello, everyone! greeting]
-. Click *OK* to close the alert pop-up window.
+image:front-end-result.png[Hello, everyone! greeting]
 
 == Stop the local network
 
@@ -260,9 +290,17 @@ dfx stop
 [[next-steps]]
 == Next steps
 
-This _Quick Start_ touched on only a few key steps to introduce the basic workflow you follow to develop programs of your own.
-There are more detailed examples and tutorials for you to explore in the link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] for {sdk-short-name} developers and in the link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
+This _Quick Start_ touched on only a few key steps to introduce the basic workflow for developing programs of your own.
+You can find more detailed examples and tutorials to help you learn about how to use {proglang} and how to develop applications to run on the {IC} throughout the documentation.
 
-* Have questions? mailto:support@dfinity.org?subject=Quickstart[Contact us].
-* Want to join the community? Visit our https://forum.dfinity.org/[community forum].
-* Want to stay informed about new features and updates? Sign up for https://dfinity.org/newsletter[Developer updates].
+Here are some suggestions for where to go next:
+
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building simple applications using a local development environment.
+
+* link:network-quickstart{outfilesuffix}#convert-icp[Convert ICP tokens to cycles] if you have ICP tokens that you want to convert to cycles to enable you to deploy applications to the {IC} network.
+
+* link:network-quickstart{outfilesuffix}[Network deployment] if you have cycles and are ready to deploy an application to the {IC} network.
+
+* link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
+
+* link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using {proglang}.

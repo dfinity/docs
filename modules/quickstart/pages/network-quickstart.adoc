@@ -273,7 +273,7 @@ The wallet canister on the "ic" network for user "default" is "53zcu-tiaaa-aaaaa
 
 == Validate your cycles wallet
 
-After you convert ICP tokens to cycles, you might want to validate the cycles wallet canister and your current cycles balance.
+After you convert ICP tokens to cycles, you can validate the cycles wallet canister and check your current cycles balance.
 
 To validate your cycles wallet:
 

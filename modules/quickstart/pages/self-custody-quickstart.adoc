@@ -1,5 +1,5 @@
-= Self-custody quick start
-:description: How you can use your ICP tokens.
+= Network deployment
+:description: Download the DFINITY Canister SDK and deploy your first application on the Internet Computer.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :experimental:
 // Define unicode for Apple Command key.

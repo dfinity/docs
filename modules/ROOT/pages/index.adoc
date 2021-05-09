@@ -10,7 +10,8 @@
 <div class="html-container">
 
     <div class="landing-hero">
-        <h1>The next generation of software engineering starts with you.</h1>
+        <h1>We are on a mission to reinvent the internet and bring it back to its truly open roots</h1>
+        <h2>Join us in building the future of the internet</h2>
         <div class="landing-cta">
         <p>To download the DFINITY Canister SDK, run the following command in your terminal.</p>
 ++++

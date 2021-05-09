@@ -80,37 +80,22 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
     </div>
 
-    <h1 class="intro">Let's get started...</h1>
+    <h1 class="intro">Start Building on The Internet Computer</h1>
 
     <div class="home-cards-grid">
-        <a class="home-card" href="developers-guide/concepts/concepts-intro.html">
-        <h3 class="home-card-header">Concepts</h3>
-            <p>Start here for key concepts and terminology.</p>
+        <a class="home-card" href="https://dfinity.org/grants/">
+        <h3 class="home-card-header">Developer Grants</h3>
+            <p>Building a compelling tool or service on the Internet Computer?</p>
         </a>
 
-        <a class="home-card" href="quickstart/quickstart-intro.html">
-        <h3 class="home-card-header">Quick Start</h3>
-            <p>Deploy your first app on the Internet Computer.</p>
+        <a class="home-card" href="https://forum.dfinity.org/t/welcome-to-the-dfinity-developer-forum/7">
+        <h3 class="home-card-header">Questions?</h3>
+            <p>Connect with fellow developers and find helpful resources in the forum.</p>
         </a>
 
-        <a class="home-card" href="https://github.com/dfinity/examples">
-        <h3 class="home-card-header">Examples</h3>
-            <p>Explore on your own in the examples repository.</p>
-        </a>
-
-        <a class="home-card" href="developers-guide/sdk-guide.html">
-        <h3 class="home-card-header">SDK Developer Tools</h3>
-            <p>Use DFINITY developer tool to create applications.</p>
-        </a>
-
-        <a class="home-card" href="languages/languages-overview.html">
-        <h3 class="home-card-header">Languages and API Guides</h3>
-            <p>Explore languages, reference manuals, and agent APIs.</p>
-        </a>
-
-        <a class="home-card" href="videos-tutorials.html">
-        <h3 class="home-card-header">Videos and Tutorials</h3>
-            <p>Learn more from videos and step-by-step tutorials.</p>
+        <a class="home-card" href="quickstart/quickstart-intro.html>
+        <h3 class="home-card-header">IC ABCs</h3>
+            <p>Learn the fundamentals of building on the Internet Computer in no time.</p>
         </a>
     </div>
 </div>

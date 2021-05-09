@@ -29,7 +29,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 <div class="home-pitches-grid">
 
     <div class="landing-pitch">
-        <a href="https://www.youtube.com/watch?v=XgsOKP224Zw"><img src="_images/HelloWorld.png" height="320" width="320" /></a>
+        <a href="https://www.youtube.com/watch?v=XgsOKP224Zw"><img src="_images/BlockchainForBuilders.png" height="320" width="320" /></a>
         <h2>The Blockchain for Builders</h2>
         <p>Internet Computer is a completely novel public blockchain that can run at web speed and scale without bounds.</p>
         <p>Just like the Internet is created by the IP protocol, the Internet Computer is created by a decentralized protocol (ICP) that weaves together the compute capacity of node machines running at independent data centers across the globe. By simply adding more node machines, the capacity of the Internet Computer blockchain can scale infinitely.</p>
@@ -37,7 +37,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     </div>
 
     <div class="landing-pitch">
-        <a href="https://wfcp4-viaaa-aaaab-aacia-cai.ic0.app/"><img src="_images/CorporateCloud.png" height="320" width="320" /></a>
+        <a href="https://wfcp4-viaaa-aaaab-aacia-cai.ic0.app/"><img src="_images/TokenizeEverything.png" height="320" width="320" /></a>
         <h2>Blockchain Built to Tokenize Everything</h2>
         <p>Internet Computer is the world’s first blockchain where web experiences can be built with smart contracts (canisters) and can be served directly to the end users in a browser.</p>
         <p>
@@ -47,15 +47,15 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     </div>
 
     <div class="landing-pitch">
-        <a href="developers-guide/webpack-config.html""><img src="_images/MotokoLogo.png" height="320" width="320" /></a>
-        <h2>True End to End Decentralization    </h2>
+        <a href="developers-guide/webpack-config.html""><img src="_images/EndtoEndDecentralization.png" height="320" width="320" /></a>
+        <h2>True End to End Decentralization</h2>
         <p>Why build decentralized software just to run your front end on monopolistic private platforms,  proprietary cloud hosting and database services? </p>
         <p>Simply build your front end in any framework (e.g., React, Angular, Vue, etc) and have the Internet Computer public network serve it directly into your users' web browsers — no plug-ins required. The Internet Computer serves experiences directly into web browsers, so you don’t need to rely on any intermediary cloud infrastructure. </p>
         <p class="link"><a href="developers-guide/webpack-config.html">Build Front End on the Internet Computer</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="https://medium.com/dfinity/candid-a-tool-for-interoperable-programming-languages-on-the-internet-computer-27e7085cd97f"><img src="_images/RustLogo.png" height="320" width="320" /></a>
+        <a href="https://medium.com/dfinity/candid-a-tool-for-interoperable-programming-languages-on-the-internet-computer-27e7085cd97f"><img src="_images/ExponentialPowerofOpenWeb.png" height="320" width="320" /></a>
         <h2>Exponential Power of the Open Web</h2>
         <p>Any service built on the Internet Computer can share functionality and data with others with the permission of the creator.</p>
         <p>As a developer, this bold new paradigm makes it possible for you to create entirely new services by combining two or more existing products –– creating a real “programmable web.” You can envision being able to create full-scale social networks in less than 1,000 lines of code</p>
@@ -63,7 +63,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     </div>
 
     <div class="landing-pitch">
-        <a href="developers-guide/concepts/concepts-intro.html"><img src="_images/DeleteDatabase.png" height="320" width="320" /></a>
+        <a href="developers-guide/concepts/concepts-intro.html"><img src="_images/DiscoverExcitingNewParadigm.png" height="320" width="320" /></a>
         <h2>Discover an Exciting New Paradigm</h2>
         <p>The radical rethinking baked into the Internet Computer means much of the typical complexity of software architecture melts away. </p>
         <p>You won't need a firewall, a VPN, usernames and passwords — and with Orthogonal Persistence your data persists automagically within your variables, objects and collections, as the memory pages that host them are persistent, making databases a thing of the past.</p>
@@ -71,7 +71,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     </div>
 
     <div class="landing-pitch">
-        <a href="https://sdk.dfinity.org/docs/language-guide/motoko.html"><img src="_images/VideoTutorial.png" height="320" width="320" /></a>
+        <a href="https://sdk.dfinity.org/docs/language-guide/motoko.html"><img src="_images/MotokoLogo2.png" height="320" width="320" /></a>
         <h2>Motoko — Build on the Internet Computer in Expert Mode</h2>
         <p>The Motoko language is optimized for authoring for the Internet Computer. It is so packed with familiar features — like async/await, randomness, time and date, and even floating point numbers — that you might just forget you're building directly on a new kind of blockchain computer.</p>
         <p>You won't need a firewall, a VPN, usernames and passwords — and with Orthogonal Persistence your data persists automagically within your variables, objects and collections, as the memory pages that host them are persistent, making databases a thing of the past.</p>
@@ -84,16 +84,19 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
     <div class="home-cards-grid">
         <a class="home-card" href="https://dfinity.org/grants/">
+        <img src="_images/DeveloperGrants.png" height="320" width="320" />
         <h3 class="home-card-header">Developer Grants</h3>
             <p>Building a compelling tool or service on the Internet Computer?</p>
         </a>
 
         <a class="home-card" href="https://forum.dfinity.org/t/welcome-to-the-dfinity-developer-forum/7">
+        <img src="_images/Forum.png" height="320" width="320" />
         <h3 class="home-card-header">Questions?</h3>
             <p>Connect with fellow developers and find helpful resources in the forum.</p>
         </a>
 
-        <a class="home-card" href="quickstart/quickstart-intro.html>
+        <a class="home-card" href="quickstart/quickstart-intro.html">
+        <img src="_images/ICABCs.png" height="320" width="320" />
         <h3 class="home-card-header">IC ABCs</h3>
             <p>Learn the fundamentals of building on the Internet Computer in no time.</p>
         </a>

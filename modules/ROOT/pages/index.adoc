@@ -43,7 +43,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
         This creates a completely novel playground to build hyperscale,
         mass-market services, all on-chain. The world’s most popular social apps, e-commerce sites, DeFi platforms, and even enterprise systems can all be reimagined as open services run with tokenized governance.
         </p>
-        <p class="link"><a href="https://www.youtube.com/watch?v=xiupEw4MfxY&t=6416s">Journey of an Entrepreneur</a></p>
+        <p class="link"><a href="https://www.youtube.com/watch?v=xiupEw4MfxY&t=6416s">Explore Tokenization with CanCan</a></p>
     </div>
 
     <div class="landing-pitch">

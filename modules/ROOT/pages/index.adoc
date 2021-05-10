@@ -82,19 +82,16 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
     <div class="home-cards-grid">
         <a class="home-card" href="https://dfinity.org/grants/">
-        <img src="_images/DeveloperGrants.png" height="320" width="320" />
         <h3 class="home-card-header">Developer Grants</h3>
             <p>Building a compelling tool or service on the Internet Computer?</p>
         </a>
 
         <a class="home-card" href="https://forum.dfinity.org/t/welcome-to-the-dfinity-developer-forum/7">
-        <img src="_images/Forum.png" height="320" width="320" />
         <h3 class="home-card-header">Questions?</h3>
             <p>Connect with fellow developers and find helpful resources in the forum.</p>
         </a>
 
         <a class="home-card" href="quickstart/quickstart-intro.html">
-        <img src="_images/ICABCs.png" height="320" width="320" />
         <h3 class="home-card-header">IC ABCs</h3>
             <p>Learn the fundamentals of building on the Internet Computer in no time.</p>
         </a>

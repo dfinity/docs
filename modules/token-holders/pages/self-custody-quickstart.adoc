@@ -239,7 +239,7 @@ ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406
 You should also see a sub-account similar to the following:
 +
 ....
-
+\c1_\8d\22/_\08\db\89\0c0\c6\a7C}\b5\9d=3\b92]1\1fHT\c9t\af\99\ad\fb
 ....
 . Transfer ICP tokens from the ledger account to the target account identifier returned in the previous step by running a command similar to the following:
 +

@@ -334,7 +334,7 @@ Send the signed message to the Genesis Token Canister to claim your neurons. As 
 
 [source,bash]
 ----
-RESULT="$(dfx canister --network=https://ic0.app --no-wallet send message.json)"
+RESULT="$(dfx canister --network=https://ic0.app --no-wallet send --output=raw message.json)"
 didc decode -t "(Result)" -d ~/Downloads/nns-ifaces-0.8.0/genesis_token.did $RESULT
 ----
 
@@ -452,7 +452,7 @@ Call the governance canister to dissolve your neuron.
 [source,bash]
 ----
 CANISTER=rrkah-fqaaa-aaaaa-aaaaq-cai
-RESULT="$(dfx canister --network=https://ic0.app --no-wallet call $CANISTER manage_neuron "record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Configure = record { operation = opt variant { StartDissolving = record {} } } } }")"
+RESULT="$(dfx canister --network=https://ic0.app --no-wallet call $CANISTER manage_neuron "(record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Configure = record { operation = opt variant { StartDissolving = record {} } } } })" --output=raw)"
 didc decode -t "(ManageNeuronResponse)" -d ~/Downloads/nns-ifaces-0.8.0/governance.did $RESULT
 ----
 
@@ -476,7 +476,7 @@ Recall the behavior of the `--expire-after` option to ensure that you deliver th
 [source,bash]
 ----
 CANISTER=rrkah-fqaaa-aaaaa-aaaaq-cai
-dfx canister --network=https://ic0.app --no-wallet sign --expire-after=1h $CANISTER manage_neuron "record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Configure = record { operation = opt variant { StartDissolving = record {} } } } }"
+dfx canister --network=https://ic0.app --no-wallet sign --expire-after=1h $CANISTER manage_neuron "(record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Configure = record { operation = opt variant { StartDissolving = record {} } } } })"
 ----
 
 The command above results in a `message.json` file in your current directory. You must copy that file from your air-gapped computer to your networked computer. How you do this will depend on your configuration.
@@ -494,7 +494,7 @@ Send the signed message to the governance canister to dissolve your neurons. As 
 
 [source,bash]
 ----
-RESULT="$(dfx canister --network=https://ic0.app --no-wallet send message.json)"
+RESULT="$(dfx canister --network=https://ic0.app --no-wallet send --output=raw message.json)"
 didc decode -t "(ManageNeuronResponse)" -d ~/Downloads/nns-ifaces-0.8.0/governance.did $RESULT
 ----
 
@@ -530,7 +530,7 @@ Disburse the ICP tokens locked in your neuron.
 [source,bash]
 ----
 CANISTER=rrkah-fqaaa-aaaaa-aaaaq-cai
-RESULT="$(dfx canister --network=https://ic0.app --no-wallet call $CANISTER manage_neuron "record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Disburse = record { to_account = opt record { hash = vec { $(printf $ACCOUNT_ID | sed 's/\(..\)/\1 /g' | xargs -I {} -d ' ' printf '%d; ' '0x{}') } }; amount = null } } }")"
+RESULT="$(dfx canister --network=https://ic0.app --no-wallet call $CANISTER manage_neuron "(record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Disburse = record { to_account = opt record { hash = vec { $(printf $ACCOUNT_ID | sed 's/\(..\)/\1 /g' | xargs -I {} -d ' ' printf '%d:nat8; ' '0x{}') } }; amount = null } } })")"
 didc decode -t "(ManageNeuronResponse)" -d ~/Downloads/nns-ifaces-0.8.0/governance.did $RESULT
 ----
 
@@ -559,7 +559,7 @@ Recall the behavior of the `--expire-after` option to ensure you that you delive
 [source,bash]
 ----
 CANISTER=rrkah-fqaaa-aaaaa-aaaaq-cai
-dfx canister --network=https://ic0.app --no-wallet sign --expire-after=1h $CANISTER manage_neuron "record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Disburse = record { to_account = opt record { hash = vec { $(printf $ACCOUNT_ID | sed 's/\(..\)/\1 /g' | xargs -I {} -d ' ' printf '%d; ' '0x{}') } }; amount = null } } }"
+dfx canister --network=https://ic0.app --no-wallet sign --expire-after=1h $CANISTER manage_neuron "(record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Disburse = record { to_account = opt record { hash = vec { $(printf $ACCOUNT_ID | sed 's/\(..\)/\1 /g' | xargs -I {} -d ' ' printf '%d:nat8; ' '0x{}') } }; amount = null } } })"
 ----
 
 The command above results in a `message.json` file in your current directory. You must copy that file from your air-gapped computer to your networked computer. How you do this will depend on your configuration.
@@ -577,6 +577,6 @@ Send the signed message to the governance canister to disburse the ICP tokens lo
 
 [source,bash]
 ----
-RESULT="$(dfx canister --network=https://ic0.app --no-wallet send message.json)"
+RESULT="$(dfx canister --network=https://ic0.app --no-wallet send --output=raw message.json)"
 didc decode -t "(ManageNeuronResponse)" -d ~/Downloads/nns-ifaces-0.8.0/governance.did $RESULT
 ----

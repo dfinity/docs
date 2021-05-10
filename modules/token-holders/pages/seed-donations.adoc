@@ -294,7 +294,7 @@ Call the Genesis Token Canister to claim your neurons.
 [source,bash]
 ----
 CANISTER=renrk-eyaaa-aaaaa-aaada-cai
-RESULT="$(dfx canister --network=https://ic0.app --no-wallet call $CANISTER claim_neurons '("'$PUBLIC_KEY'")')"
+RESULT="$(dfx canister --network=https://ic0.app --no-wallet call $CANISTER claim_neurons '("'$PUBLIC_KEY'")' --output=raw)"
 didc decode -t "(Result)" -d ~/Downloads/nns-ifaces-0.8.0/genesis_token.did $RESULT
 ----
 

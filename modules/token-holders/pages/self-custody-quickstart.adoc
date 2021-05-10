@@ -94,7 +94,7 @@ You should see output similar to the following:
 dfx identity whoami
 ----
 +
-In most cases, you should see that you are currently using +default+` developer identity.
+In most cases, you should see that you are currently using your `+default+` developer identity.
 For example:
 +
 ....
@@ -135,7 +135,7 @@ This command displays the ICP token balance from the ledger account.
 For example, you should see output similar to the following:
 +
 ....
-100.00000000 ICP
+10.00000000 ICP
 ....
 
 [[convert-icp]]
@@ -149,15 +149,15 @@ To convert ICP tokens to cycles:
 +
 [source,bash]
 ----
-dfx ledger --network ic create-canister --amount <icp-tokens> --controller <principal-identifier>
+dfx ledger --network ic create-canister <controller-principal-identifier> --amount <icp-tokens> 
 ----
 +
-This command converts the number of ICP tokens you specify for the `+--amount+` argument into cycles, and associates the cycles with a new canister identifier controlled by the principal you specify using the `+--controller+` argument.
+This command converts the number of ICP tokens you specify for the `+--amount+` argument into cycles, and associates the cycles with a new canister identifier controlled by the principal you specify.
 +
 For example, the following command converts 1.25 ICP tokens into cycles and specifies the principal identifier for the default identity as the controller of the new canister:
 +
 ....
-dfx ledger --network ic create-canister --amount 1.25 --controller tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 1.25 
 ....
 +
 If the transaction is successful, the ledger records the event and you should see output similar to the following:
@@ -196,21 +196,23 @@ To transfer ICP tokens to another account:
 +
 [source,bash]
 ----
-dfx ledger --network ic transfer --amount <ICP amount> --to <destination ledger account-id> --memo <numeric memo>
+dfx ledger --network ic transfer <destination-ledger-account-id> --amount <ICP-amount> --memo <numeric-memo>
 ----
 +
 For example: 
++
 ....
-dfx ledger --network ic transfer --amount 20 --to ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406 --memo 12345
+dfx ledger --network ic transfer ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406 --amount 20 --memo 12345
 ....
 
 == Lock ICP tokens by staking them in a neuron
 
 If you want to lock up ICP tokens to participate in governance and earn rewards, you must use the Network Nervous System (NNS) application or `+dfx canister call+` commands.
 
-Because locking up ICP tokens to create staked neurons is a slightly more complex process when using the {sdk-short-name} command-line interface, the steps aren't included in this guide.
+Because locking up ICP tokens to create staked neurons is a more complex process when using the {sdk-short-name} command-line interface than it is when using the Network Nervous System (NNS) application, the complete steps aren't included in this guide.
 
-//// Uncomment the DRAFT section temporarily ////
+The first step, however, is to transfer some ICP tokens from your ledger account to the `+governance+` canister to create a neuron.
+The following steps illustrate how you can do that.
 
 To create a neuron from ICP tokens:
 
@@ -218,7 +220,7 @@ To create a neuron from ICP tokens:
 +
 [source,bash]
 ----
-dfx canister --network ic call governance build_stake_transfer_targets "(<unique_memo> : Nat64)"
+dfx canister --network ic call governance build_stake_transfer_targets "(<unique-memo> : Nat64)"
 ----
 +
 For example:
@@ -243,13 +245,13 @@ You should also see a sub-account similar to the following:
 +
 [source,bash]
 ----
-dfx ledger --network ic transfer --amount <ICP amount> --to <destination-account-id> --memo <unique_memo>
+dfx ledger --network ic transfer <destination-account-id> --amount <ICP-amount> --memo <unique-memo>
 ----
 +
 For example:
 +
 ....
-dfx ledger --network ic transfer --amount 20 --to  --memo 0001
+dfx ledger --network ic transfer ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406 --amount 20 --memo 0001
 ....
 +
 If the transfer is successful, the command returns the block height for the transaction.

@@ -73,8 +73,8 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     <div class="landing-pitch">
         <a href="https://sdk.dfinity.org/docs/language-guide/motoko.html"><img src="_images/MotokoLogo2.png" height="320" width="320" /></a>
         <h2>Motoko — Build on the Internet Computer in Expert Mode</h2>
-        <p>The <b>Motoko</b> language is optimized for authoring for the Internet Computer.</p> 
-        <p>It is so packed with familiar features — like async/await, randomness, time and date, and even floating point numbers — that you might just forget you're building directly on a new kind of blockchain computer.</p>
+        <p>The <b>Motoko</b> language is optimized for authoring for the Internet Computer.</p>     
+        <p>It is so packed with familiar features — like async/await, randomness, time, and even infinite (arbitrary) precision — that you might just forget you're building directly on a new kind of blockchain computer.</p>
         <p class="link"><a href="language-guide/motoko.html>Explore the Motoko Programming Language</a></p>
     </div>
 

@@ -209,7 +209,9 @@ dfx ledger --network ic transfer ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27
 
 If you want to lock up ICP tokens to participate in governance and earn rewards, you must use the Network Nervous System (NNS) application or `+dfx canister call+` commands.
 
-Because locking up ICP tokens to create staked neurons is a more complex process when using the {sdk-short-name} command-line interface than it is when using the Network Nervous System (NNS) application, the complete steps aren't included in this guide.
+Because locking up ICP tokens to create staked neurons is a more complex process when using the {sdk-short-name} command-line interface than it is when using the Network Nervous System (NNS) application, the steps aren't included in this guide.
+
+////
 
 The first step, however, is to transfer some ICP tokens from your ledger account to the `+governance+` canister to create a neuron.
 The following steps illustrate how you can do that.
@@ -277,8 +279,8 @@ principal <new_hot_key_principal_id> }}}}}}"
 ....
 
 === Learning more about the Network Nervous System
-
-For additional details about the Network Nervous System, see link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the {IC}'s Network Nervous System, Neurons, and ICP Utility Tokens].
-
+////
+For information about the Network Nervous System, see link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the {IC}'s Network Nervous System, Neurons, and ICP Utility Tokens].
+////
 For additional details about setting the locked period and dissolve delay for a neuron, see link:xxx[Getting Started | The {IC} Network Nervous System Application & Wallet]
-
+////

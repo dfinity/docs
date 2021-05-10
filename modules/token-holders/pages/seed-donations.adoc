@@ -164,14 +164,14 @@ go get github.com/dfinity/keysmith
 
 === Install the DFINITY Canister SDK
 
-You can install the DFINITY Canister SDK by fetching the `v0.7.0-beta.6` release binary from our link:https://sdk.dfinity.org[website]. It is not yet possible to build the DFINITY Canister SDK from source.
+You can install the DFINITY Canister SDK by fetching the `v0.7.0-beta.7` release binary from our link:https://sdk.dfinity.org[website]. It is not yet possible to build the DFINITY Canister SDK from source.
 Note that this action can only be performed on a networked computer. If you are using an air-gapped computer, then you must copy the release binary from your networked computer to your air-gapped computer. How you do this will depend on your configuration.
 
 Run the following command to install the DFINITY Canister SDK.
 
 [source,bash]
 ----
-DFX_VERSION=0.7.0-beta.6 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.7.0-beta.7 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
 *Warning: Note that `dfx` will currently not install on M1-based Macs.*

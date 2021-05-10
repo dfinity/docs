@@ -77,7 +77,7 @@ echo '{}' > dfx.json
 +
 [source,bash]
 ----
-dfx ping https://ic0.app
+dfx ping ic
 ----
 +
 You should see output similar to the following:
@@ -129,7 +129,7 @@ For example, you should see output similar to the following:
 +
 [source,bash]
 ----
-dfx ledger --network https://ic0.app balance
+dfx ledger --network ic balance
 ----
 This command displays the ICP token balance from the ledger account.
 For example, you should see output similar to the following:
@@ -149,7 +149,7 @@ To convert ICP tokens to cycles:
 +
 [source,bash]
 ----
-dfx ledger --network https://ic0.app create-canister --amount <icp-tokens> --controller <principal-identifier>
+dfx ledger --network ic create-canister --amount <icp-tokens> --controller <principal-identifier>
 ----
 +
 This command converts the number of ICP tokens you specify for the `+--amount+` argument into cycles, and associates the cycles with a new canister identifier controlled by the principal you specify using the `+--controller+` argument.
@@ -157,7 +157,7 @@ This command converts the number of ICP tokens you specify for the `+--amount+` 
 For example, the following command converts 1.25 ICP tokens into cycles and specifies the principal identifier for the default identity as the controller of the new canister:
 +
 ....
-dfx ledger --network https://ic0.app create-canister --amount 1.25 --controller tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+dfx ledger --network ic create-canister --amount 1.25 --controller tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
 ....
 +
 If the transaction is successful, the ledger records the event and you should see output similar to the following:
@@ -170,20 +170,20 @@ Canister created with id: "53zcu-tiaaa-aaaaa-qaaba-cai"
 +
 [source,bash]
 ----
-dfx identity --network https://ic0.app deploy-wallet <canister-identifer>
+dfx identity --network ic deploy-wallet <canister-identifer>
 ----
 +
 For example:
 +
 ....
-dfx identity --network https://ic0.app deploy-wallet 53zcu-tiaaa-aaaaa-qaaba-cai
+dfx identity --network ic deploy-wallet 53zcu-tiaaa-aaaaa-qaaba-cai
 ....
 +
 This command displays output similar to the following:
 +
 ....
-Creating a wallet canister on the https://ic0.app network.
-The wallet canister on the "https://ic0.app" network for user "default" is "53zcu-tiaaa-aaaaa-qaaba-cai"
+Creating a wallet canister on the ic network.
+The wallet canister on the "ic" network for user "default" is "53zcu-tiaaa-aaaaa-qaaba-cai"
 ....
 
 == Transfer ICP tokens to another account
@@ -196,12 +196,12 @@ To transfer ICP tokens to another account:
 +
 [source,bash]
 ----
-dfx ledger --network https://ic0.app transfer --amount <ICP amount> --to <destination ledger account-id> --memo <numeric memo>
+dfx ledger --network ic transfer --amount <ICP amount> --to <destination ledger account-id> --memo <numeric memo>
 ----
 +
 For example: 
 ....
-dfx ledger --network https://ic0.app transfer --amount 20 --to ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406 --memo 12345
+dfx ledger --network ic transfer --amount 20 --to ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406 --memo 12345
 ....
 
 == Lock ICP tokens by staking them in a neuron
@@ -218,13 +218,13 @@ To create a neuron from ICP tokens:
 +
 [source,bash]
 ----
-dfx canister --network https://ic0.app call governance build_stake_transfer_targets "(<unique_memo> : Nat64)"
+dfx canister --network ic call governance build_stake_transfer_targets "(<unique_memo> : Nat64)"
 ----
 +
 For example:
 +
 ....
-dfx canister --network https://ic0.app call governance build_stake_transfer_targets "(0001 : Nat64)"
+dfx canister --network ic call governance build_stake_transfer_targets "(0001 : Nat64)"
 ....
 +
 This command uses the principal associated with your current identity and the value you specify for the _<unique_memo>_ field to return an account identifier and a sub-account for the transfer.
@@ -243,13 +243,13 @@ You should also see a sub-account similar to the following:
 +
 [source,bash]
 ----
-dfx ledger --network https://ic0.app transfer --amount <ICP amount> --to <destination-account-id> --memo <unique_memo>
+dfx ledger --network ic transfer --amount <ICP amount> --to <destination-account-id> --memo <unique_memo>
 ----
 +
 For example:
 +
 ....
-dfx ledger --network https://ic0.app transfer --amount 20 --to  --memo 0001
+dfx ledger --network ic transfer --amount 20 --to  --memo 0001
 ....
 +
 If the transfer is successful, the command returns the block height for the transaction.
@@ -267,7 +267,7 @@ You can set these properties for a neuron from the command line by calling the `
 For example, if you continue using the `+dfx+` command-line interface, you might configure a neuron to have a hot key by running a command similar to the following:
 
 ....
-dfx canister --network https://ic0.app governance manage_neuron \
+dfx canister --network ic governance manage_neuron \
 "( record {id = opt record { id = <neuron_id>; \
 command = opt variant { Configure = record { operation \
 = opt variant {AddHotKey = record { new_hot_key = \

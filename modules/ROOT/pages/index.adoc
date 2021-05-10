@@ -10,7 +10,8 @@
 <div class="html-container">
 
     <div class="landing-hero">
-        <h1>The next generation of software engineering starts with you.</h1>
+        <h1>We are on a mission to reinvent the internet and bring it back to its truly open roots</h1>
+        <h2>Join us in building the future of the internet</h2>
         <div class="landing-cta">
         <p>To download the DFINITY Canister SDK, run the following command in your terminal.</p>
 ++++
@@ -28,80 +29,76 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 <div class="home-pitches-grid">
 
     <div class="landing-pitch">
-        <a href="quickstart/quickstart-intro.html"><img src="_images/HelloWorld.png" height="320" width="320" /></a>
-        <h2>What can you imagine?</h2>
-        <p>Decentralized software that is automatically secure and unstoppable can do more than financial transactions. The Internet Computer is a <b>general purpose</b> platform and the developer community has built everything from video chat to mobile games to compilers.</p>
-        <p class="link"><a href="quickstart/quickstart-intro.html">Get started now</a></p>
+        <a href="https://www.youtube.com/watch?v=XgsOKP224Zw"><img src="_images/BlockchainForBuilders.png" height="320" width="320" /></a>
+        <h2>The Blockchain for Builders</h2>
+        <p>Internet Computer is a completely novel public blockchain that can run at web speed and scale without bounds.</p>
+        <p>Just like the Internet is created by the IP protocol, the Internet Computer is created by a decentralized protocol (ICP) that weaves together the compute capacity of node machines running at independent data centers across the globe. By simply adding more node machines, the capacity of the Internet Computer blockchain can scale infinitely.</p>
+        <p class="link"><a href="https://www.youtube.com/watch?v=XgsOKP224Zw">Overview of the Internet Computer</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="developers-guide/webpack-config.html"><img src="_images/CorporateCloud.png" height="320" width="320" /></a>
-        <h2>Escape the Corporate Cloud</h2>
-        <p>Why build decentralized software just to run your front-end on monopolistic private platforms like Amazon Web Services or Google Cloud?  Build your front-end in any framework (React, Angular, Vue, or even vanilla JavaScript) and have a public network serve it directly into your users' Web browsers — <b>no plug-ins required</b>.</p>
-        <p class="link"><a href="developers-guide/webpack-config.html">Read more about front-end development</a></p>
+        <a href="https://wfcp4-viaaa-aaaab-aacia-cai.ic0.app/"><img src="_images/TokenizeEverything.png" height="320" width="320" /></a>
+        <h2>Blockchain Built to Tokenize Everything</h2>
+        <p>Internet Computer is the world’s first blockchain where web experiences can be built with smart contracts (canisters) and can be served directly to the end users in a browser.</p>
+        <p>
+        This creates a completely novel playground to build hyperscale, mass-market services, all on-chain. From the world’s most popular social apps, e-commerce sites, DeFi platforms, and even enterprise systems can all be reimagined as open services run with tokenized governance.
+        </p>
+        <p class="link"><a href="https://wfcp4-viaaa-aaaab-aacia-cai.ic0.app/">Journey of an Entrepreneur</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="language-guide/motoko.html"><img src="_images/MotokoLogo.png" height="320" width="320" /></a>
-        <h2>Your new favorite language</h2>
-        <p>The <b>Motoko</b> language is optimized for authoring for the Internet Computer yet packed with familiar features—like async/await, randomness, time and date, and even floating point numbers—you might forget you're building directly on a new kind of blockchain.</p>
-        <p class="link"><a href="language-guide/motoko.html">Read more about Motoko</a></p>
+        <a href="developers-guide/webpack-config.html""><img src="_images/EndtoEndDecentralization.png" height="320" width="320" /></a>
+        <h2>True End to End Decentralization</h2>
+        <p>Why build decentralized software just to run your front end on monopolistic private platforms,  proprietary cloud hosting and database services? </p>
+        <p>Simply build your front end in any framework (e.g., React, Angular, Vue, etc) and have the Internet Computer public network serve it directly into your users' web browsers — no plug-ins required. The Internet Computer serves experiences directly into web browsers, so you don’t need to rely on any intermediary cloud infrastructure. </p>
+        <p class="link"><a href="developers-guide/webpack-config.html">Build Front End on the Internet Computer</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="candid-guide/candid-intro.html"><img src="_images/RustLogo.png" height="320" width="320" /></a>
-        <h2>On the shoulders of giants</h2>
-        <p>Thanks to the interface description language Candid, every service and actor object running on the Internet Computer is interoperable with every other (regardless of programming language). Your code can link in the functions of external services like static library code, extending open source coding with <b>Open Internet Services</b>.</p>
-        <p class="link"><a href="candid-guide/candid-intro.html">Read more about Candid</a></p>
+        <a href="https://medium.com/dfinity/candid-a-tool-for-interoperable-programming-languages-on-the-internet-computer-27e7085cd97f"><img src="_images/ExponentialPowerofOpenWeb.png" height="320" width="320" /></a>
+        <h2>Exponential Power of the Open Web</h2>
+        <p>Any service built on the Internet Computer can share functionality and data with others with the permission of the creator.</p>
+        <p>As a developer, this bold new paradigm makes it possible for you to create entirely new services by combining two or more existing products –– creating a real “programmable web.” You can envision being able to create full-scale social networks in less than 1,000 lines of code</p>
+        <p class="link"><a href="https://medium.com/dfinity/candid-a-tool-for-interoperable-programming-languages-on-the-internet-computer-27e7085cd97f"> Learn about the Interface Description language Candid</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="developers-guide/concepts/concepts-intro.html"><img src="_images/DeleteDatabase.png" height="320" width="320" /></a>
-        <h2>Go ahead, delete your database</h2>
-        <p>The radical rethinking baked into the Internet Computer means much of the typical complexity of software architecture melts away. You won't need a firewall, a VPN, usernames and passwords — and with <b>Orthogonal Persistence</b> your data persists automagically within your variables, objects and collections, as the memory pages that host them are persistent, making databases a thing of the past.</p>
+        <a href="developers-guide/concepts/concepts-intro.html"><img src="_images/DiscoverExcitingNewParadigm.png" height="320" width="320" /></a>
+        <h2>Discover an Exciting New Paradigm</h2>
+        <p>The radical rethinking baked into the Internet Computer means much of the typical complexity of software architecture melts away. </p>
+        <p>You won't need a firewall, a VPN, usernames and passwords — and with Orthogonal Persistence your data persists automagically within your variables, objects and collections, as the memory pages that host them are persistent, making databases a thing of the past.</p>
         <p class="link"><a href="developers-guide/concepts/concepts-intro.html">Read more about key concepts</a></p>
     </div>
 
     <div class="landing-pitch">
-        <a href="https://www.youtube.com/watch?v=jduSMHxdYD8&list=PLuhDt1vhGcrejCmYeB1uqgl9Y3f6MCyFp"><img src="_images/VideoTutorial.png" height="320" width="320" /></a>
-        <h2>A new foundation for software development</h2>
-        <p>We're admittedly a little impatient with the status quo of software development. We think every step in the legacy workflow—from how you write code to how users access it—could use some improvement. Developing on the Internet Computer is an exciting new frontier with a new set of <b>best practices</b>.</p>
-        <p class="link"><a href="https://www.youtube.com/watch?v=jduSMHxdYD8&list=PLuhDt1vhGcrejCmYeB1uqgl9Y3f6MCyFp">Watch the Fundamentals video series</a></p>
+        <a href="https://sdk.dfinity.org/docs/language-guide/motoko.html"><img src="_images/MotokoLogo2.png" height="320" width="320" /></a>
+        <h2>Motoko — Build on the Internet Computer in Expert Mode</h2>
+        <p>The <b>Motoko</b> language is optimized for authoring for the Internet Computer.</p>     
+        <p>It is so packed with familiar features — like async/await, randomness, time, and even infinite (arbitrary) precision — that you might just forget you're building directly on a new kind of blockchain computer.</p>
+        <p class="link"><a href="language-guide/motoko.html>Explore the Motoko Programming Language</a></p>
     </div>
 
     </div>
 
-    <h1 class="intro">Let's get started...</h1>
+    <h1 class="intro">Start Building on The Internet Computer</h1>
 
     <div class="home-cards-grid">
-        <a class="home-card" href="developers-guide/concepts/concepts-intro.html">
-        <h3 class="home-card-header">Concepts</h3>
-            <p>Start here for key concepts and terminology.</p>
+        <a class="home-card" href="https://dfinity.org/grants/">
+        <img src="_images/DeveloperGrants.png" height="320" width="320" />
+        <h3 class="home-card-header">Developer Grants</h3>
+            <p>Building a compelling tool or service on the Internet Computer?</p>
+        </a>
+
+        <a class="home-card" href="https://forum.dfinity.org/t/welcome-to-the-dfinity-developer-forum/7">
+        <img src="_images/Forum.png" height="320" width="320" />
+        <h3 class="home-card-header">Questions?</h3>
+            <p>Connect with fellow developers and find helpful resources in the forum.</p>
         </a>
 
         <a class="home-card" href="quickstart/quickstart-intro.html">
-        <h3 class="home-card-header">Quick Start</h3>
-            <p>Deploy your first app on the Internet Computer.</p>
-        </a>
-
-        <a class="home-card" href="https://github.com/dfinity/examples">
-        <h3 class="home-card-header">Examples</h3>
-            <p>Explore on your own in the examples repository.</p>
-        </a>
-
-        <a class="home-card" href="developers-guide/sdk-guide.html">
-        <h3 class="home-card-header">SDK Developer Tools</h3>
-            <p>Use DFINITY developer tool to create applications.</p>
-        </a>
-
-        <a class="home-card" href="languages/languages-overview.html">
-        <h3 class="home-card-header">Languages and API Guides</h3>
-            <p>Explore languages, reference manuals, and agent APIs.</p>
-        </a>
-
-        <a class="home-card" href="videos-tutorials.html">
-        <h3 class="home-card-header">Videos and Tutorials</h3>
-            <p>Learn more from videos and step-by-step tutorials.</p>
+        <img src="_images/ICABCs.png" height="320" width="320" />
+        <h3 class="home-card-header">IC ABCs</h3>
+            <p>Learn the fundamentals of building on the Internet Computer in no time.</p>
         </a>
     </div>
 </div>

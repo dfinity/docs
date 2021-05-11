@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 THANK YOU for being a Seed participant.
 
-You have been granted ICP at a rate of 30 tokens per Swiss Franc of value donated in 2017, which Genesis Unlock is disbursing in the form of a basket of 49 voting neurons. 
+You have been granted ICP at a rate of 30 tokens per Swiss Franc of value donated in 2017, which Genesis Unlock is disbursing in the form of a basket of 49 voting neurons.
 
 These neurons already exist inside the Network Nervous System, the completely open, tokenized governance system that controls the Internet Computer blockchain network. Your neurons contain the ICP you have been awarded, staked inside. Your neurons have been configured to vote automatically and are already earning voting rewards for you. You do not need to do anything to initialize your neurons in order to continue earning voting rewards.
 
@@ -393,6 +393,9 @@ The KYC form will also ask you for your principal. Derive it with Keysmith.
 ----
 echo $seed | keysmith principal -f -
 ----
+
+The command above will display your principal identifier, which should look something like this: `a56gn-wnhrl-i76df-ewgfe-23jfd-dfh03-ergrg-fesr1-1jhs9-reg2o-ure`
+You will be asked to enter your principal identifier on the KYC form.
 
 === Submit your information
 

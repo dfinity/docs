@@ -334,8 +334,7 @@ Send the signed message to the Genesis Token Canister to claim your neurons. As 
 
 [source,bash]
 ----
-RESULT="$(dfx canister --network=https://ic0.app --no-wallet send --output=raw message.json)"
-didc decode -t "(Result)" -d ~/Downloads/nns-ifaces-0.8.0/genesis_token.did $RESULT
+dfx canister --network=https://ic0.app --no-wallet send message.json
 ----
 
 === Neuron Identifiers
@@ -497,8 +496,7 @@ Send the signed message to the governance canister to dissolve your neurons. As 
 
 [source,bash]
 ----
-RESULT="$(dfx canister --network=https://ic0.app --no-wallet send --output=raw message.json)"
-didc decode -t "(ManageNeuronResponse)" -d ~/Downloads/nns-ifaces-0.8.0/governance.did $RESULT
+dfx canister --network=https://ic0.app --no-wallet send message.json
 ----
 
 == Disburse ICP from neurons that are fully dissolved
@@ -582,6 +580,5 @@ Send the signed message to the governance canister to disburse the ICP tokens lo
 
 [source,bash]
 ----
-RESULT="$(dfx canister --network=https://ic0.app --no-wallet send --output=raw message.json)"
-didc decode -t "(ManageNeuronResponse)" -d ~/Downloads/nns-ifaces-0.8.0/governance.did $RESULT
+dfx canister --network=https://ic0.app --no-wallet send message.json
 ----

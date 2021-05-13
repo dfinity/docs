@@ -8,16 +8,19 @@
 
 import Array "mo:base/Array";
 import List "mo:base/List";
-import Nat "../src/Nat";
+import Int "mo:base/Int";
+import NatUtil "NatUtil";
 import Prelude "mo:base/Prelude";
-
-type List<T> = List.List<T>;
-
-let natFromBits = Nat.Nat.natFromBits;
-let natToBits = Nat.Nat.natToBits;
-let natXor = Nat.Nat.natXor;
+import Debug "mo:base/Debug";
 
 module Galois {
+
+  type List<T> = List.List<T>;
+
+  let natFromBits = NatUtil.natFromBits;
+  let natToBits = NatUtil.natToBits;
+  let natXor = NatUtil.natXor;
+  let abs = Int.abs;
 
   public let logs = [
     000, 001, 025, 002, 050, 026, 198, 003, 223, 051,
@@ -51,7 +54,7 @@ module Galois {
   public func log(n : Nat) : Nat {
     let m = n % 256;
     if (m == 0) {
-      Prelude.printLn("Error: Logarithm of zero is undefined in GF(256)!");
+      Debug.print("Error: Logarithm of zero is undefined in GF(256)!");
       Prelude.unreachable()
     };
     logs[m - 1]
@@ -89,7 +92,7 @@ module Galois {
   public func alog(n : Nat) : Nat {
     let m = n % 256;
     if (m == 255) {
-      Prelude.printLn("Error: Antilogarithm of 255 is undefined in GF(256)!");
+      Debug.print("Error: Antilogarithm of 255 is undefined in GF(256)!");
       Prelude.unreachable()
     };
     alogs[m]
@@ -110,7 +113,7 @@ module Galois {
   };
 
   public func elemFromBit(bit : Bool) : Elem {
-    if bit { unbox = 1 } else { unbox = 0 }
+    if bit { { unbox = 1 } } else { { unbox = 0 } }
   };
 
   public func elemToBits(elem : Elem) : List<Bool> {
@@ -137,18 +140,18 @@ module Galois {
     switch (elem1.unbox, elem2.unbox) {
       case (0, _) { elem1 };
       case (_, 0) { elem2 };
-      case (a, b) { unbox = alog((log(a) + log(b)) % 255) }
+      case (a, b) { { unbox = alog((log(a) + log(b)) % 255) } }
     }
   };
 
   public func elemDiv(elem1 : Elem, elem2 : Elem) : Elem {
     switch (elem1.unbox, elem2.unbox) {
       case (_, 0) {
-        Prelude.printLn("Error: Division by zero is undefined in GF(256)!");
+        Debug.print("Error: Division by zero is undefined in GF(256)!");
         Prelude.unreachable()
       };
-      case (0, _) { unbox = 0 };
-      case (a, b) { unbox = alog((255 + log(a) - log(b)) % 255) }
+      case (0, _) { { unbox = 0 } };
+      case (a, b) { { unbox = alog((255 + log(a) - log(b)) % 255) } }
     }
   };
 
@@ -160,7 +163,8 @@ module Galois {
   public type Poly = { unbox : List<Elem> };
 
   public func polyNew(coeffs : [Nat]) : Poly {
-    { unbox = List.fromArray<Nat>(coeffs) }
+    { unbox = List.fromArray<Elem>(
+      Array.map<Nat, Elem>(coeffs, func c { { unbox = c } })); }
   };
 
   public func polyShow(poly : Poly) : Text {
@@ -168,7 +172,7 @@ module Galois {
       case (null, _) { "[]" };
       case (?head, tail) {
         let base = elemShow(head);
-        func step(elem : Elem, accum : Text) : Text {
+        func step(accum : Text, elem : Elem) : Text {
           accum # "," # elemShow(elem)
         };
         "[" # List.foldLeft<Elem, Text>(tail, base, step) # "]"
@@ -185,7 +189,7 @@ module Galois {
   };
 
   public func polyLen(poly : Poly) : Nat {
-    List.len<Elem>(poly.unbox)
+    List.size<Elem>(poly.unbox)
   };
 
   public func polyTrim(poly : Poly) : Poly {
@@ -205,7 +209,7 @@ module Galois {
   public func polyLeadCoeff(poly : Poly) : Elem {
     switch (List.pop<Elem>(polyTrim(poly).unbox).0) {
       case (?elem) { elem };
-      case (null) { unbox = 0 }
+      case (null) { { unbox = 0 } }
     }
   };
 
@@ -242,7 +246,7 @@ module Galois {
   };
 
   public func polyEq(poly1 : Poly, poly2 : Poly) : Bool {
-    List.isEq<Elem>(polyTrim(poly1).unbox, polyTrim(poly2).unbox, elemEq)
+    List.equal<Elem>(polyTrim(poly1).unbox, polyTrim(poly2).unbox, elemEq)
   };
 
   public func polyAdd(poly1 : Poly, poly2 : Poly) : Poly {

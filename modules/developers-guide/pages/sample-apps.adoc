@@ -81,7 +81,7 @@ This program performs polynomial long division for a Galois field GF(256) elemen
 In addition to standard libraries, this project uses two main {proglang} source code files.
 
 - The xref:galois[galois.mo] file contains the core programming logic.
-- The xref:nat[nat.mo] file contains additional functions that are imported for use in the `+galois.mo+` file.
+- The xref:nat[NatUtil.mo] file contains additional functions that are imported for use in the `+galois.mo+` file.
 
 [[galois]]
 ===== galois.mo
@@ -96,5 +96,5 @@ include::example$galois/galois.mo[]
 
 [source.copy,motoko,no-repl]
 ----
-include::example$galois/nat.mo[]
+include::example$galois/NatUtil.mo[]
 ----

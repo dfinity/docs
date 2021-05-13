@@ -337,6 +337,71 @@ Send the signed message to the Genesis Token Canister to claim your neurons. As 
 dfx canister --network=https://ic0.app --no-wallet send message.json
 ----
 
+Unlike `dfx canister call` in the section <<Claim in one step>>, the command `dfx canister send` does not return output that can be parsed by `didc`.
+Instead, it outputs only a request id.
+
+In order to see the effect of your `send` request, you have to do an additional step.
+Perform the following commands on your networked machine:
+
+[source,bash]
+----
+CANISTER=renrk-eyaaa-aaaaa-aaada-cai
+RESULT="$(dfx canister --network=https://ic0.app --no-wallet call $CANISTER get_account '("paste legacy address here")' --output=raw)"
+didc decode -t "(Result_2)" -d ~/Downloads/nns-ifaces-0.8.0/genesis_token.did $RESULT
+----
+
+The legacy address to paste here in the second line above is what was formerly called "DFN address" in the Chrome extension.
+Note that the legacy address must be pasted without the `0x` prefix and without the 8-character checksum at the end, i.e. it has exactly 40 characters in length.
+Furthermore, the legacy address must be in all lowercase.
+If you don't remember it then you can obtain your legacy address by running this on your air-gapped machine:
+
+[source,bash]
+----
+echo $seed | keysmith legacy-address -f -
+----
+
+What you want to look for in the output of the `get_account` request is `has_claimed = true` and your principal.
+For example, the output of the `get_account` command looks like this for an unclaimed account:
+
+....
+(
+  variant {
+    Ok = record {
+      authenticated_principal_id = null;
+      successfully_transferred_neurons = vec {};
+      has_donated = false;
+      failed_transferred_neurons = vec {};
+      neuron_ids = vec { record { id = 1_234_567_890_123_456_789 : nat64;}; ...
+		};
+      has_claimed = false;
+      has_forwarded = false;
+      icpts = 12345 : nat32;
+    }
+  },
+)
+....
+
+And like this for a successfully claimed account:
+
+....
+(
+  variant {
+    Ok = record {
+      authenticated_principal_id = opt principal "a56gn-wnhrl-i76df-ewgfe-23jfd-dfh03-ergrg-fesr1-1jhs9-reg2o-ure";
+      successfully_transferred_neurons = vec {};
+      has_donated = false;
+      failed_transferred_neurons = vec {};
+      neuron_ids = vec { record { id = 1_234_567_890_123_456_789 : nat64;}; ...
+		};
+      has_claimed = true;
+      has_forwarded = false;
+      icpts = 12345 : nat32;
+    }
+  },
+)
+....
+
+
 === Neuron Identifiers
 
 Regardless of whether you claimed your neurons in one step or two, the result should be a set of 31 or 49 neuron identifiers. Keep these handy! You will need to reference them when you <<Instruct the neurons you wish to unstake to dissolve>>, but before you can do that, you must <<Enable disbursal by passing the KYC process>>.

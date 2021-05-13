@@ -1,16 +1,17 @@
 /**
- * Module      : nat.mo
+ * Module      : NatUtil.mo
  * Copyright   : 2019 Enzo Haussecker
  * License     : Apache 2.0 with LLVM Exception
  * Maintainer  : Enzo Haussecker <enzo@dfinity.org>
  * Stability   : Experimental
  */
 
+import Nat8 "mo:base/Nat8";
 import List "mo:base/List";
 
-type List<T> = List.List<T>;
+module NatUtil {
 
-module Nat {
+  type List<T> = List.List<T>;
 
   public func natNot(a : Nat) : Nat {
     natMap(a, func (x) { ^ x })
@@ -28,45 +29,45 @@ module Nat {
     natZipWith(a, b, func (x, y) { x ^ y })
   };
 
-  public func natMap(a : Nat, f : Word8 -> Word8) : Nat {
-    natFromBytes(List.map<Word8, Word8>(natToBytes(a), f))
+  public func natMap(a : Nat, f : Nat8 -> Nat8) : Nat {
+    natFromBytes(List.map<Nat8, Nat8>(natToBytes(a), f))
   };
 
-  public func natZipWith(a : Nat, b : Nat, f : (Word8, Word8) -> Word8) : Nat {
+  public func natZipWith(a : Nat, b : Nat, f : (Nat8, Nat8) -> Nat8) : Nat {
     var xs = natToBytes(a);
     var ys = natToBytes(b);
-    let xsLen = List.len<Word8>(xs);
-    let ysLen = List.len<Word8>(ys);
+    let xsLen = List.size<Nat8>(xs);
+    let ysLen = List.size<Nat8>(ys);
     if (xsLen < ysLen) {
-      xs := List.append<Word8>(List.replicate<Word8>(ysLen - xsLen, 0), xs);
+      xs := List.append<Nat8>(List.replicate<Nat8>(ysLen - xsLen, 0), xs);
     };
     if (xsLen > ysLen) {
-      ys := List.append<Word8>(List.replicate<Word8>(xsLen - ysLen, 0), xs);
+      ys := List.append<Nat8>(List.replicate<Nat8>(xsLen - ysLen, 0), xs);
     };
-    let zs = List.zipWith<Word8, Word8, Word8>(xs, ys, f);
+    let zs = List.zipWith<Nat8, Nat8, Nat8>(xs, ys, f);
     let c = natFromBytes(zs);
     c
   };
 
-  public func natToBytes(n : Nat) : List<Word8> {
+  public func natToBytes(n : Nat) : List<Nat8> {
     var a = 0;
     var b = n;
-    var bytes = List.nil<Word8>();
+    var bytes = List.nil<Nat8>();
     var test = true;
     while test {
       a := b % 256;
       b := b / 256;
-      bytes := List.push<Word8>(natToWord8(a), bytes);
+      bytes := List.push<Nat8>(Nat8.fromNat(a), bytes);
       test := b > 0;
     };
     bytes
   };
 
-  public func natFromBytes(bytes : List<Word8>) : Nat {
+  public func natFromBytes(bytes : List<Nat8>) : Nat {
     var n = 0;
     var i = 0;
-    List.foldRight<Word8, ()>(bytes, (), func (byte, _) {
-      n += word8ToNat(byte) * 256 ** i;
+    List.foldRight<Nat8, ()>(bytes, (), func (byte, _) {
+      n += Nat8.toNat(byte) * 256 ** i;
       i += 1;
     });
     n

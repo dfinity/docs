@@ -207,9 +207,9 @@ dfx ledger --network ic transfer ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27
 
 == Lock ICP tokens by staking them in a neuron
 
-If you want to lock up ICP tokens to participate in governance and earn rewards, you must use the Network Nervous System (NNS) application or `+dfx canister call+` commands.
+If you want to lock up ICP tokens to participate in governance and earn rewards, you must use the link:https://nns.ic0.app[Network Nervous System (NNS) application] or `+dfx canister call+` commands.
 
-Because locking up ICP tokens to create staked neurons is a more complex process when using the {sdk-short-name} command-line interface than it is when using the Network Nervous System (NNS) application, the steps aren't included in this guide.
+Because locking up ICP tokens to create staked neurons is a more complex process when using the {sdk-short-name} command-line interface than it is when using the link:https://nns.ic0.app[Network Nervous System (NNS) application], the steps aren't included in this guide.
 
 ////
 

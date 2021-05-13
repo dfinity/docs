@@ -458,7 +458,7 @@ RESULT="$(dfx canister --network=https://ic0.app --no-wallet call $CANISTER mana
 didc decode -t "(ManageNeuronResponse)" -d ~/Downloads/nns-ifaces-0.8.0/governance.did $RESULT
 ----
 
-Note that if you want to dissolve all of your neurons, then you must repeate the above times; once for each neuron identifier.
+Note that if you want to dissolve all of your neurons, then you must repeat the above for each neuron identifier.
 
 === Dissolve in two steps
 

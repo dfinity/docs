@@ -17,7 +17,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 Sample code, applications, and microservices that have been developed by DFINITY or contributed by the community are available from the link:https://github.com/dfinity/examples[DFINITY public repository].
 
 By accessing the public repository, you can directly download, clone, fork, or share sample projects.
-You will also be able to contribute by suggesting updates or reporting issues for the published projects using the standard GitHub work flow. 
+You will also be able to contribute by suggesting updates or reporting issues for the published projects using the standard GitHub work flow.
 
 Sample projects provide a way for you to experiment and collaborate with other developers.
 The projects and sample code are not, however, intended to be used as commercial applications and do not provide any explicit or implied support or warranty of any kind.
@@ -41,13 +41,17 @@ For projects that use the {proglang} programming language, see link:https://gith
 * link:https://github.com/dfinity/examples/tree/master/motoko/factorial[Factorial]
 //* link:https://github.com/dfinity/examples/tree/master/motoko/favorite_cities[Favorite cities]
 * link:https://github.com/dfinity/examples/tree/master/motoko/hello-world[Hello, world]
+* link:https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[Hello, cycles]
 //* link:[Hex encoding and decoding]
+* link:https://github.com/dfinity/examples/tree/master/motoko/life[Game of Life - upgrades]
 * link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[Phone book]
 * link:https://github.com/dfinity/examples/tree/master/motoko/pub-sub[Publish/subscribe]
 * link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort]
+* link:https://github.com/dfinity/examples/tree/master/motoko/random_maze[Random maze - cryptographic randomness]
 * link:https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[To-do checklist]
 * link:https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes database]
 * link:https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami]
+
 
 == Additional sample applications
 
@@ -76,7 +80,7 @@ This program performs polynomial long division for a Galois field GF(256) elemen
 
 In addition to standard libraries, this project uses two main {proglang} source code files.
 
-- The xref:galois[galois.mo] file contains the core programming logic. 
+- The xref:galois[galois.mo] file contains the core programming logic.
 - The xref:nat[nat.mo] file contains additional functions that are imported for use in the `+galois.mo+` file.
 
 [[galois]]

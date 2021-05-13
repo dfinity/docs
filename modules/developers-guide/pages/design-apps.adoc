@@ -36,7 +36,7 @@ For example, you might set up the back-end logic for your application to consist
 
 == Using query calls
 
-As discussed in link:./concepts/canister-code{outfilesuffix}#query-update[Query and update methods], queries return results faster than update calls. Therefore,explicitly marking a function as a `+query+` is an effective strategy for improving application performance. 
+As discussed in link:../developers-guide/concepts/canisters-code{outfilesuffix}#query-update[Query and update methods], queries return results faster than update calls. Therefore,explicitly marking a function as a `+query+` is an effective strategy for improving application performance. 
 In the planning and design phase, you should consider how best to use query calls instead of functions that can perform queries or updates. 
 
 That is a good general rule to follow and can be applied broadly to most categories of applications.

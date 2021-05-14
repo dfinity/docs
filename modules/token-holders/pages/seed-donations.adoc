@@ -217,6 +217,7 @@ You can check your ICPT balance as follows:
 
 [source,bash]
 ----
+echo {} > dfx.json
 GTC=renrk-eyaaa-aaaaa-aaada-cai
 ADDR=$(echo $seed | keysmith legacy-address -f -)
 dfx canister --network=https://ic0.app --no-wallet call $GTC balance '("'$ADDR'")'
@@ -250,7 +251,7 @@ Import your private key(s) into the DFINITY Canister SDK and then remove it from
 [source,bash]
 ----
 dfx identity import <name> identity.pem
-rm -P identity.pem
+rm identity.pem
 ----
 
 Here, <name> is an alias that you can choose arbitrarily for your identity, e.g. "jane".
@@ -284,7 +285,7 @@ Each time you repeat you have to specify the key number (also called "index") wi
 ----
 echo $seed | keysmith private-key -f - -i 0 -o identity.pem
 dfx identity import jane0 identity.pem
-rm -P identity.pem
+rm identity.pem
 ----
 
 Then repeat the above with index 1, i.e. `-i 1` instead of `-i 0` and `jane1` instead of `jane0`, index 2, etc.

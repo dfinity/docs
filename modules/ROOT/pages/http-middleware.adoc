@@ -65,7 +65,7 @@ If any of these errors occur,  the `dfx` command-line interface provides additio
 == Revisiting the asset storage canister
 
 To make this transition easier, new and existing projects built with the newer version of `dfx` will include an improved asset canister that supports the `http_request()` method by default. This means that assets you upload—including binary assets like images—will be available directly from your browser using their URL.
-For example, in a new project, the `sample-asset.txt` file would be uploaded and available after publishing to the Internet Computer at https://CANISTER_ID.ic0.app/sample-asset.txt.
+For example, in a new project, the `sample-asset.txt` file would be uploaded and available after publishing to the Internet Computer at https://CANISTER_ID.raw.ic0.app/sample-asset.txt.
 
 In the future, we will also provide additional support for managing the asset canister cache, handling default assets, and providing HTTP-specific features.
 
@@ -111,8 +111,13 @@ If you have an existing project, chances are it will not work seamlessly after y
 Unfortunately, a direct migration path isn’t possible in this case. 
 The best way to migrate your current front-end is to create a new project and move your code manually to the new structure.
 
-=== Deprecation of bootstrap and the ic0.app suffix
+=== Certified and uncertified front-end assets
 
-For a limited period of time, the {IC} will continue to support the `bootstrap` code and the use of the `ic0.app` suffix to serve canister front-ends. 
-If, during this period, a request sent to a canister returns an error because the canister cannot return HTTP responses, the request will revert to using the `bootstrap` code.
-At network launch, the `bootstrap` static files will be removed from `ic0.app` entirely and all projects will need to use the new architecture moving forward. In the meantime, the {sdk-short-name} team will help developers make the transition to the new architecture through the link:https://forum.dfinity.org/[DFINITY Developer Forum].
+With the launch of the {IC} main network Beta, all projects serve front-end assets use the new HTTP query architecture. 
+In addition, the {IC} launch introduces a new capability to serve front-end assets as certified data that has been signed and can be considered authenticated and secure or as raw, uncertified data.
+Front-end assets that don't go through the certification process are served using the `+raw.ic0.app+` URL suffix.
+Certified front-end assets use the `+.ic0.app+` URL suffix.
+
+All of the current tutorials illustrate applications that serve uncertified front-end assets. 
+Learning how to build an application that uses certified query results for front-end assets is an advanced development topic.
+For information about how to return certified data in response to queries, see the link:../interface-spec/index{outfilesuffix}[Interface specification] and connect with other developers through the link:https://forum.dfinity.org/[DFINITY Developer Forum].

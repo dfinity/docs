@@ -184,7 +184,7 @@ To configure how you follow other neuron holders:
 . Click *Login* to connect to the Internet Identity service.
 . Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
 . Click *Proceed* to access to the Network Nervous System (NNS) application. 
-. Click *Neurons*, then click the link for a specific  neuron identifier to display its properties.
+. Click *Neurons*, then click the link for a specific neuron identifier to display its properties.
 . Click *Edit Followees*.
 . Choose a proposal topic.
 +
@@ -199,8 +199,18 @@ image:follow-ica.png[]
 The neuron holder is added to you Currently Following list.
 . Repeat for each topic where you want your neuron's votes to automatically follow the votes of one or more other neuron holders.
 
-== Disperse dissolved neurons into an account
+== Disburse dissolved neurons into an account
 
+When the dissolve delay timer for a neuron reaches zero, you can disburse the neuron’s stake and transfer its locked ICP token balance to the ledger account you specify.
+After you take this step, the neuron identifier and its ledger history are permanently removed from the governance canister.
+
+To disburse a neuron:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the Internet Identity service.
+. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application. 
+. Click *Neurons*, then click the link for a specific  neuron identifier to display its properties.
 
 == Spawn new neurons
 

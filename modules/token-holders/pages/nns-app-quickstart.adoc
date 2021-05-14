@@ -20,6 +20,8 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 == Before you begin
 
+
+
 == Connect to the {IC}
 
 To connect to the {IC} using the Network Nervous System (NNS) application:
@@ -27,17 +29,186 @@ To connect to the {IC} using the Network Nervous System (NNS) application:
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
 . Click *Login* to connect to the link:https://identity.ic0.app[Internet Identity service].
 +
-If you haven't previously registered and received a user number, you can click <> to register.
+If you haven't previously registered and received a user number, you can click *Register with Internet Identity* to register.
++
 For more information about creating an identity using the Internet Identity service, see link:../integration/ic-identity-guide/auth-how-to{outfilesuffix}[How to use the Internet Identity service].
 +
-After you have registered, you can click *Login* to authenticate using the authentication method you select.
-. Click *Proceed* to continue by authorizing access to the Network Nervous System (NNS)] application.
+After you have registered, you can click *Login* to authenticate using your user number and the authentication method—for example, a security key or fingerprint—you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application.
 
 == Add an account
 
-. Click *Add Account*.
+Logging on through the Internet Identity service creates a Main account for you in the {IC} ledger.
+If your ICP tokens are associated with your developer identity—that is, the identity created by the {sdk-short-name} `+dfx+` command-line interface—your Main account displays 0.00 for your ICP token balance.
+For example:
+
+image:nns-app-main.png[]
+
+Before transferring any tokens, you can create one or more linked subaccounts or attach a hardware wallet to your account.
+
+To add an account for managing ICP tokens:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the Internet Identity service.
+. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application.
+. On the default ICP tab, click *Add Account*.
 . Select the type of account to add.
 +
 --
-* *New Linked Account* creates a new subaccount linked to your main account address in the ledger.
-* *Attach Hardware Wallet* 
+* *New Linked Account* creates a new subaccount linked to your Main account address in the ledger.
+* *Attach Hardware Wallet* adds a hardware wallet to your main account address in the ledger. (Support for the Ledger Nano hardware wallet is coming soon, but not available yet.)
+--
+. Click *New Linked Account*, type an Account Name, then click *Create*.
++
+
+image:new-linked-account.png[]
+
+== Transfer ICP tokens between accounts
+
+If you have selected self-custody for holding your ICP tokens and the tokens are associated with your developer identity instead of your registered Internet Identity, you need to transfer ICP tokens to your accounts if you want to manage them using the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+
+To transfer ICP tokens controlled by your developer identity:
+
+. Open a terminal shell on your local computer.
+. Check that you are using an identity with control over the ledger account by running the following command:
++
+[source,bash]
+----
+dfx identity whoami
+----
+In most cases, you should see that you are currently using your `+default+` developer identity.
+For example:
++
+....
+default
+....
+. View the textual representation of the principal for your current identity by running the following command:
++
+[source,bash]
+----
+dfx identity get-principal
+----
++
+This command displays output similar to the following:
++
+....
+tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+....
++
+Note that this identifier should be the same as the identifier you specified in the Know Your Customer (KYC) process if you were required to pass KYC verification to receive your ICP tokens.
+. Check the current balance in the ledger account associated with your identity by running the following command:
++
+[source,bash]
+----
+dfx ledger --network ic balance
+----
+. Transfer ICP tokens to your Main account or a linked subaccount you create by running a command similar to the following:
++
+[source,bash]
+----
+dfx ledger --network ic transfer <destination-account-id> --icp <ICP-amount> --memo <numeric-memo>
+----
++
+For example, assume you have the following accounts:
++
+
+image:accounts.png[]
++
+If you want to transfer one ICP token to the `+Main+` account, you can run the following command:
++
+....
+dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb85b9b9850bd60766f --memo 12345 --icp 1
+....
++
+If you also want to transfer one ICP token to the `+pubs+` account, you can run the following command:
++
+....
+dfx ledger --network ic transfer 183a04888eb20e73766f082bae01587830bd3cd912544f63fda515e9d77a96dc --icp 1 --memo 12346
+....
++
+This example illustrates how to transfer ICP tokens to using a whole number with the `+--icp+` command-line option.
++
+--
+
+* You can also specify fractional units of ICP tokens—called *e8s*—using the `+--e8s+` option, either on its own or in conjunction with the `+--icp+` option.
+
+* Alternatively, you can use the `+--amount+` to  specify the number of ICP tokens to transfer with fractional units up to 8 decimal places, for example, as `+5.00000025+`.
+--
+
++
+The destination address can be an address in the ledger canister running on the {IC} network, an account you have added using the link:https://nns.ic0.app[Network Nervous System application], or the address for a wallet you have on an exchange.
++
+If you transfer the ICP tokens to an account in the link:https://nns.ic0.app[Network Nervous System application], you might need to refresh the browser to see the transaction reflected.
++
+For more information about using the `+dfx ledger+` command-line options, see link:../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger].
+
+== Stake ICP tokens in a neuron
+
+After you transfer ICP tokens to the Network Nervous System application, you can use the Network Nervous System application to create and manage neurons, vote on proposals, and create canisters on the {IC}.
+
+Neurons are required to participate in governance and earn rewards.
+To create a neuron, you must lock up some number of ICP tokens for a period of time. The minimum stake required to create a neuron is one ICP token. 
+You can configure the period of time the stake is locked from six months up to a maximum of eight years.
+
+To stake ICP tokens:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the Internet Identity service.
+. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application. 
+. Click *Neurons*, then click *Stake Neuron*.
+. Type the number of ICP tokens to stake, then click *Create*.
+. Set the dissolve delay for the neuron to control the length of time the stake is locked, then click *Update Delay*.
++
+For example:
++
+
+image:dissolve-delay.png[]
+. Click *Yes, I'm sure* to confirm the lock up period, then close the window to review the newly-created neuron properties.
++
+
+image:neuron-properties.png[]
+
+After you have locked the stake and created a neuron, you can:
+
+* Start the dissolve delay timer by clicking *Start Unlock*.
+* Increase the dissolve delay period by clicking *Increase Dissolve Delay*.
+* Stop the dissolve delay after starting the unlock countdown by clicking *Lockup*.
+
+== Configure following rules
+
+To configure how you follow other neuron holders:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the Internet Identity service.
+. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application. 
+. Click *Neurons*, then click the link for a specific  neuron identifier to display its properties.
+. Click *Edit Followees*.
+. Choose a proposal topic.
++
+For example, expand the Governance topic, then click *Enter Followee*.
+. Select a neuron holder to follow, then click *Follow*.
++
+For example, click *Follow* for the Internet Computer Association.
++
+
+image:follow-ica.png[]
++
+The neuron holder is added to you Currently Following list.
+. Repeat for each topic where you want your neuron to automatically follow the votes of another neuron holders.
+
+== Disperse dissolved neurons into an account
+
+== Spawn new neurons
+
+== Collect rewards
+
+
+== Vote on proposals
+
+== Submit a proposal
+
+== Deploy a canister with cycles
+

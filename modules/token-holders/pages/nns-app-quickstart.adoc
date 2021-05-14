@@ -197,18 +197,22 @@ For example, click *Follow* for the Internet Computer Association.
 image:follow-ica.png[]
 +
 The neuron holder is added to you Currently Following list.
-. Repeat for each topic where you want your neuron to automatically follow the votes of another neuron holders.
+. Repeat for each topic where you want your neuron's votes to automatically follow the votes of one or more other neuron holders.
 
 == Disperse dissolved neurons into an account
 
+
 == Spawn new neurons
+
 
 == Collect rewards
 
 
 == Vote on proposals
 
+
 == Submit a proposal
+
 
 == Deploy a canister with cycles
 

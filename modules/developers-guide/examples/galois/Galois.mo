@@ -1,26 +1,22 @@
 /**
- * Module      : galois.mo
- * Copyright   : 2019 Enzo Haussecker
- * License     : Apache 2.0 with LLVM Exception
- * Maintainer  : Enzo Haussecker <enzo@dfinity.org>
- * Stability   : Experimental
+ * Module     : Galois.mo
+ * Copyright  : 2020 DFINITY Stiftung
+ * License    : Apache 2.0 with LLVM Exception
+ * Maintainer : Enzo Haussecker <enzo@dfinity.org>
+ * Stability  : Stable
  */
 
 import Array "mo:base/Array";
-import List "mo:base/List";
-import Int "mo:base/Int";
-import NatUtil "NatUtil";
-import Prelude "mo:base/Prelude";
 import Debug "mo:base/Debug";
+import List "mo:base/List";
+import Nat "Nat";
+import Prelude "mo:base/Prelude";
+import Int "mo:base/Int";
+import Util "Util"
 
-module Galois {
+module {
 
   type List<T> = List.List<T>;
-
-  let natFromBits = NatUtil.natFromBits;
-  let natToBits = NatUtil.natToBits;
-  let natXor = NatUtil.natXor;
-  let abs = Int.abs;
 
   public let logs = [
     000, 001, 025, 002, 050, 026, 198, 003, 223, 051,
@@ -113,15 +109,19 @@ module Galois {
   };
 
   public func elemFromBit(bit : Bool) : Elem {
-    if bit { { unbox = 1 } } else { { unbox = 0 } }
+    if bit {
+      { unbox = 1 }
+    } else {
+      { unbox = 0 }
+    }
   };
 
   public func elemToBits(elem : Elem) : List<Bool> {
-    natToBits(elem.unbox)
+    Util.padLeftTo(8, Nat.natToBits(elem.unbox))
   };
 
   public func elemFromBits(bits : List<Bool>) : Elem {
-    elemNew(natFromBits(bits))
+    elemNew(Nat.natFromBits(bits))
   };
 
   public func elemEq(elem1 : Elem, elem2 : Elem) : Bool {
@@ -129,7 +129,7 @@ module Galois {
   };
 
   public func elemAdd(elem1 : Elem, elem2 : Elem) : Elem {
-    { unbox = natXor(elem1.unbox, elem2.unbox) }
+    { unbox = Nat.natXor(elem1.unbox, elem2.unbox) }
   };
 
   public func elemSub(elem1 : Elem, elem2 : Elem) : Elem {
@@ -140,7 +140,9 @@ module Galois {
     switch (elem1.unbox, elem2.unbox) {
       case (0, _) { elem1 };
       case (_, 0) { elem2 };
-      case (a, b) { { unbox = alog((log(a) + log(b)) % 255) } }
+      case (a, b) {
+        { unbox = alog((log(a) + log(b)) % 255) }
+      }
     }
   };
 
@@ -150,8 +152,12 @@ module Galois {
         Debug.print("Error: Division by zero is undefined in GF(256)!");
         Prelude.unreachable()
       };
-      case (0, _) { { unbox = 0 } };
-      case (a, b) { { unbox = alog((255 + log(a) - log(b)) % 255) } }
+      case (0, _) {
+        { unbox = 0 }
+      };
+      case (a, b) {
+        { unbox = alog((255 + log(a) - log(b)) % 255) }
+      }
     }
   };
 
@@ -163,8 +169,11 @@ module Galois {
   public type Poly = { unbox : List<Elem> };
 
   public func polyNew(coeffs : [Nat]) : Poly {
-    { unbox = List.fromArray<Elem>(
-      Array.map<Nat, Elem>(coeffs, func c { { unbox = c } })); }
+    func step(n : Nat, accum : List<Elem>) : List<Elem> {
+      List.push<Elem>(elemNew(n), accum)
+    };
+    let base = List.nil<Elem>();
+    { unbox = Array.foldRight<Nat, List<Elem>>(coeffs, base, step) }
   };
 
   public func polyShow(poly : Poly) : Text {
@@ -203,13 +212,15 @@ module Galois {
   };
 
   public func polyOrder(poly : Poly) : Int {
-    abs(polyLen(polyTrim(poly))) - 1
+    Int.abs(polyLen(polyTrim(poly))) - 1
   };
 
   public func polyLeadCoeff(poly : Poly) : Elem {
     switch (List.pop<Elem>(polyTrim(poly).unbox).0) {
       case (?elem) { elem };
-      case (null) { { unbox = 0 } }
+      case (null) {
+        { unbox = 0 }
+      }
     }
   };
 
@@ -265,12 +276,12 @@ module Galois {
   public type Term = { coeff : Elem; order : Int };
 
   public func polyAddTerm(poly : Poly, term : Term) : Poly {
-    let n = if (term.order <= 0) 0 else abs(term.order);
+    let n = if (term.order <= 0) 0 else Int.abs(term.order);
     polyAdd(poly, polyPadRight(n, polyNew([term.coeff.unbox])))
   };
 
   public func polyMulTerm(poly : Poly, term : Term) : Poly {
-    let n = if (term.order <= 0) 0 else abs(term.order);
+    let n = if (term.order <= 0) 0 else Int.abs(term.order);
     polyScale(term.coeff, polyPadRight(n, poly))
   };
 

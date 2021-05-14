@@ -200,6 +200,45 @@ If you prefer to not have your seed phrase displayed as you type then use this c
 read -s seed
 ----
 
+=== Check your legacy address and balance (optional)
+
+At this point you can already verify your legacy address and ICPT balance.
+The legacy address matches to what was formerly called "DFN address" in the Dfinity Chrome extension.
+You may have copied it from the Chrome extension for your records back when you used the extension.
+
+[source,bash]
+----
+echo $seed | keysmith legacy-address -f -
+----
+
+The output is a 40 character hex string. It looks something like this:
+
+...
+2d89d96b10f7a9456a9154b2f5309ee70df5bce1
+...
+
+You can check your ICPT balance as follows:
+
+[source,bash]
+----
+GTC=renrk-eyaaa-aaaaa-aaada-cai
+ADDR=$(echo $seed | keysmith legacy-address -f -)
+dfx canister --network=https://ic0.app --no-wallet call $GTC balance '("'$ADDR'")'
+----
+
+The output is the number of ICPT associated with your address.
+
+If you are an early contributor then you may have multiple addresses, all derived from your one seed phrase. To check the balance in each of them you do the following commands:
+
+[source,bash]
+----
+GTC=renrk-eyaaa-aaaaa-aaada-cai
+ADDR=$(echo $seed | keysmith legacy-address -f - -i 0)
+dfx canister --network=https://ic0.app --no-wallet call $GTC balance '("'$ADDR'")'
+----
+
+Then you repeat the last two lines with `-i 1`, `-i 2`, etc.
+
 === Derive and import your private key
 
 Derive your private key from your seed phrase.

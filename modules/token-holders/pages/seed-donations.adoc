@@ -182,10 +182,6 @@ Once you have installed Keysmith and the DFINITY Canister SDK, and you are [.und
 For the duration of your session, you store your seed phrase in an environment variable.
 It will be eliminated from your system when you turn your computer off.
 
-Check your balance (optional)
-
-Enter your seed phrase.
-
 [source,bash]
 ----
 read seed
@@ -213,9 +209,9 @@ echo $seed | keysmith legacy-address -f -
 
 The output is a 40 character hex string. It looks something like this:
 
-...
+....
 2d89d96b10f7a9456a9154b2f5309ee70df5bce1
-...
+....
 
 You can check your ICPT balance as follows:
 
@@ -257,13 +253,26 @@ dfx identity import <name> identity.pem
 rm -P identity.pem
 ----
 
-Here, <name> is an alias that you can choose arbitrarily for your identity, e.g. "jane" or "id-0", "id-1", "id-2", ...
+Here, <name> is an alias that you can choose arbitrarily for your identity, e.g. "jane".
 
 The command above displays output similar to the following:
 
 ....
 Creating identity: "jane".
 Created identity: "jane".
+....
+
+Make your new identity the currently-active one.
+
+[source,bash]
+----
+dfx identity use <name>
+----
+
+The command above displays output similar to the following:
+
+....
+Using identity: "jane".
 ....
 
 If you are an early contributor, then you may have more than one key derived from your one seed.
@@ -279,25 +288,18 @@ rm -P identity-*.pem
 ----
 
 Then repeat the above with all four occurences of `0` replaced by `1`, then by `2`, etc.
-
-Set a new currently-active identity.
-
-[source,bash]
-----
-dfx identity use <name>
-----
-
-The command above displays output similar to the following:
-
-....
-Using identity: "jane".
-....
-
-You can list all available identities with
+After this, you can list all available identities with
 
 [source,bash]
 ----
 dfx identity list
+----
+
+Choose one, for example
+
+[source,bash]
+----
+dfx identity use jane0
 ----
 
 == Take control of your neurons

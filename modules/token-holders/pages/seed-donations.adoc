@@ -282,12 +282,12 @@ Each time you repeat you have to specify the key number (also called "index") wi
 
 [source,bash]
 ----
-echo $seed | keysmith private-key -f - -i 0 -o identity-0.pem
-dfx identity import jane0 identity-0.pem
-rm -P identity-*.pem
+echo $seed | keysmith private-key -f - -i 0 -o identity.pem
+dfx identity import jane0 identity.pem
+rm -P identity.pem
 ----
 
-Then repeat the above with all four occurences of `0` replaced by `1`, then by `2`, etc.
+Then repeat the above with index 1, i.e. `-i 1` instead of `-i 0` and `jane1` instead of `jane0`, index 2, etc.
 After this, you can list all available identities with
 
 [source,bash]
@@ -356,7 +356,7 @@ Derive your public key. If you are an early contributor, then be sure to specify
 
 [source,bash]
 ----
-PUBLIC_KEY="$(echo $seed | keysmith public-key -f - -i 0)"
+PUBLIC_KEY="$(echo $seed | keysmith public-key -f -)"
 ----
 
 Call the Genesis Token Canister to claim your neurons.
@@ -376,7 +376,7 @@ Derive your public key. If you are an early contributor, then be sure to specify
 
 [source,bash]
 ----
-PUBLIC_KEY="$(echo $seed | keysmith public-key -f - -i 0)"
+PUBLIC_KEY="$(echo $seed | keysmith public-key -f -)"
 ----
 
 Sign a message to claim your neurons.

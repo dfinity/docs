@@ -196,18 +196,19 @@ If you prefer to not have your seed phrase displayed as you type then use this c
 read -s seed
 ----
 
-Derive your private key from your seed phrase. If you are an early contributor, then you will need to derive multiple private keys; one for each derivation index. Use the `-i` flag to specify which private key you want to derive. If you are a seed round donor, then you only have one private key at derivation index `0`.
+Derive your private key from your seed phrase.
 
 [source,bash]
 ----
-echo $seed | keysmith private-key -f - -i 0 -o identity-0.pem
+echo $seed | keysmith private-key -f -
 ----
 
+This creates a file `identity.pem` containing your private key.
 Import your private key(s) into the DFINITY Canister SDK.
 
 [source,bash]
 ----
-dfx identity import <name> identity-0.pem
+dfx identity import <name> identity.pem
 ----
 
 Here, <name> is an alias that you can choose arbitrarily for your identity, e.g. "jane" or "id-0", "id-1", "id-2", ...
@@ -219,7 +220,18 @@ Creating identity: "jane".
 Created identity: "jane".
 ....
 
-Make this identity your currently-active identity.
+If you are an early contributor, then you may have more than one key derived from your one seed.
+You should import all of them for use with dfx.
+To do that you will have to repeat the two commands above for each key.
+Each time you repeat you have to specify the key number (also called "index") with the `-i` option to `keysmith` as follows.
+
+[source,bash]
+----
+echo $seed | keysmith private-key -f - -i 0 -o identity-0.pem
+dfx identity import <name> identity-0.pem
+----
+
+Make the new identity your currently-active identity.
 
 [source,bash]
 ----
@@ -231,6 +243,13 @@ The command above displays output similar to the following:
 ....
 Using identity: "jane".
 ....
+
+You can list all available identities with
+
+[source,bash]
+----
+dfx identity list
+----
 
 == Take control of your neurons
 

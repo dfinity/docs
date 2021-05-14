@@ -92,7 +92,7 @@ include::example$galois/Galois.mo[]
 ----
 
 [[nat]]
-===== nat.mo
+===== Nat.mo
 
 [source.copy,motoko,no-repl]
 ----

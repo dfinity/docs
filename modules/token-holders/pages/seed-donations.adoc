@@ -176,9 +176,13 @@ DFX_VERSION=0.7.0-beta.8 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh
 
 *Warning: Note that `dfx` will currently not install on M1-based Macs.*
 
-=== Derive and import your private key
+=== Set your seed phrase for use with keysmith
 
-Once you have installed Keysmith and the DFINITY Canister SDK, and you are [.underline]#confident that your environment is secure#, then you are ready to derive and import your private key.
+Once you have installed Keysmith and the DFINITY Canister SDK, and you are [.underline]#confident that your environment is secure#, then you are ready to enter your seed for use with `keysmith`.
+For the duration of your session, you store your seed phrase in an environment variable.
+It will be eliminated from your system when you turn your computer off.
+
+Check your balance (optional)
 
 Enter your seed phrase.
 
@@ -195,6 +199,8 @@ If you prefer to not have your seed phrase displayed as you type then use this c
 ----
 read -s seed
 ----
+
+=== Derive and import your private key
 
 Derive your private key from your seed phrase.
 

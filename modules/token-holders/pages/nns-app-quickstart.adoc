@@ -1,0 +1,43 @@
+= Network nervous system (NNS) quick start
+:description: How to create and manage staked ICP tokens.
+:keywords: Internet Computer,neurons,blockchain,governance,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+== What is the network nervous system (NNS)?
+
+== What are neurons?
+
+== Why create neurons?
+
+== Before you begin
+
+== Connect to the {IC}
+
+To connect to the {IC} using the Network Nervous System (NNS) application:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the link:https://identity.ic0.app[Internet Identity service].
++
+If you haven't previously registered and received a user number, you can click <> to register.
+For more information about creating an identity using the Internet Identity service, see link:../integration/ic-identity-guide/auth-how-to{outfilesuffix}[How to use the Internet Identity service].
++
+After you have registered, you can click *Login* to authenticate using the authentication method you select.
+. Click *Proceed* to continue by authorizing access to the Network Nervous System (NNS)] application.
+
+== Add an account
+
+. Click *Add Account*.
+. Select the type of account to add.
++
+--
+* *New Linked Account* creates a new subaccount linked to your main account address in the ledger.
+* *Attach Hardware Wallet* 

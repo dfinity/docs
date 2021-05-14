@@ -229,11 +229,13 @@ Each time you repeat you have to specify the key number (also called "index") wi
 [source,bash]
 ----
 echo $seed | keysmith private-key -f - -i 0 -o identity-0.pem
-dfx identity import <name> identity-0.pem
+dfx identity import jane0 identity-0.pem
 rm -P identity-*.pem
 ----
 
-Make the new identity your currently-active identity.
+Then repeat the above with all four occurences of `0` replaced by `1`, then by `2`, etc.
+
+Set a new currently-active identity.
 
 [source,bash]
 ----

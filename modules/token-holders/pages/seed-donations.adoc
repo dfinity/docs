@@ -176,11 +176,11 @@ DFX_VERSION=0.7.0-beta.8 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh
 
 *Warning: Note that `dfx` will currently not install on M1-based Macs.*
 
-=== Derive and import your private key
+=== Set your seed phrase for use with keysmith
 
-Once you have installed Keysmith and the DFINITY Canister SDK, and you are [.underline]#confident that your environment is secure#, then you are ready to derive and import your private key.
-
-Enter your seed phrase.
+Once you have installed Keysmith and the DFINITY Canister SDK, and you are [.underline]#confident that your environment is secure#, then you are ready to enter your seed for use with `keysmith`.
+For the duration of your session, you store your seed phrase in an environment variable.
+It will be eliminated from your system when you turn your computer off.
 
 [source,bash]
 ----
@@ -196,21 +196,65 @@ If you prefer to not have your seed phrase displayed as you type then use this c
 read -s seed
 ----
 
-Derive your private key from your seed phrase. If you are an early contributor, then you will need to derive multiple private keys; one for each derivation index. Use the `-i` flag to specify which private key you want to derive. If you are a seed round donor, then you only have one private key at derivation index `0`.
+=== Check your legacy address and balance (optional)
+
+At this point you can already verify your legacy address and ICPT balance.
+The legacy address matches to what was formerly called "DFN address" in the Dfinity Chrome extension.
+You may have copied it from the Chrome extension for your records back when you used the extension.
 
 [source,bash]
 ----
-echo $seed | ./keysmith private-key -f - -i 0 -o identity-0.pem
+echo $seed | keysmith legacy-address -f -
 ----
 
-Import your private key(s) into the DFINITY Canister SDK.
+The output is a 40 character hex string. It looks something like this:
+
+....
+2d89d96b10f7a9456a9154b2f5309ee70df5bce1
+....
+
+You can check your ICPT balance as follows:
 
 [source,bash]
 ----
-dfx identity import <name> identity-0.pem
+echo {} > dfx.json
+GTC=renrk-eyaaa-aaaaa-aaada-cai
+ADDR=$(echo $seed | keysmith legacy-address -f -)
+dfx canister --network=https://ic0.app --no-wallet call $GTC balance '("'$ADDR'")'
 ----
 
-Here, <name> is an alias that you can choose arbitrarily for your identity, e.g. "jane" or "id-0", "id-1", "id-2", ...
+The output is the number of ICPT associated with your address.
+
+If you are an early contributor then you may have multiple addresses, all derived from your one seed phrase. To check the balance in each of them you do the following commands:
+
+[source,bash]
+----
+GTC=renrk-eyaaa-aaaaa-aaada-cai
+ADDR=$(echo $seed | keysmith legacy-address -f - -i 0)
+dfx canister --network=https://ic0.app --no-wallet call $GTC balance '("'$ADDR'")'
+----
+
+Then you repeat the last two lines with `-i 1`, `-i 2`, etc.
+
+=== Derive and import your private key
+
+Derive your private key from your seed phrase.
+
+[source,bash]
+----
+echo $seed | keysmith private-key -f -
+----
+
+This creates a file `identity.pem` containing your private key.
+Import your private key(s) into the DFINITY Canister SDK and then remove it from the filesystem.
+
+[source,bash]
+----
+dfx identity import <name> identity.pem
+rm identity.pem
+----
+
+Here, <name> is an alias that you can choose arbitrarily for your identity, e.g. "jane".
 
 The command above displays output similar to the following:
 
@@ -219,7 +263,7 @@ Creating identity: "jane".
 Created identity: "jane".
 ....
 
-Make this identity your currently-active identity.
+Make your new identity the currently-active one.
 
 [source,bash]
 ----
@@ -231,6 +275,33 @@ The command above displays output similar to the following:
 ....
 Using identity: "jane".
 ....
+
+If you are an early contributor, then you may have more than one key derived from your one seed.
+You should import all of them for use with dfx.
+To do that you will have to repeat the two commands above for each key.
+Each time you repeat you have to specify the key number (also called "index") with the `-i` option to `keysmith` as follows.
+
+[source,bash]
+----
+echo $seed | keysmith private-key -f - -i 0 -o identity.pem
+dfx identity import jane0 identity.pem
+rm identity.pem
+----
+
+Then repeat the above with index 1, i.e. `-i 1` instead of `-i 0` and `jane1` instead of `jane0`, index 2, etc.
+After this, you can list all available identities with
+
+[source,bash]
+----
+dfx identity list
+----
+
+Choose one, for example
+
+[source,bash]
+----
+dfx identity use jane0
+----
 
 == Take control of your neurons
 
@@ -286,7 +357,7 @@ Derive your public key. If you are an early contributor, then be sure to specify
 
 [source,bash]
 ----
-PUBLIC_KEY="$(echo $seed | keysmith public-key -f - -i 0)"
+PUBLIC_KEY="$(echo $seed | keysmith public-key -f -)"
 ----
 
 Call the Genesis Token Canister to claim your neurons.
@@ -306,7 +377,7 @@ Derive your public key. If you are an early contributor, then be sure to specify
 
 [source,bash]
 ----
-PUBLIC_KEY="$(echo $seed | keysmith public-key -f - -i 0)"
+PUBLIC_KEY="$(echo $seed | keysmith public-key -f -)"
 ----
 
 Sign a message to claim your neurons.

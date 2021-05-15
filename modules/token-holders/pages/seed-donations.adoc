@@ -572,6 +572,10 @@ Your neurons have dissolve delays of 0,1,2,...,30 or 48 months.
 
 To start the dissolution of one of your neurons, you must sign and send a message to the *governance* canister. You can accomplish this in one step on a networked computer using `dfx canister call`, or as two separate steps, one on an air-gapped computer using `dfx canister sign`, and another on a networked computer using `dfx canister send`. We strongly recommend the latter approach to reduce the risk of having your private key compromised.
 
+Note: Having a dissolve delay of 0 is the same as being dissolved.
+This means that for your neuron with dissolve delay 0 you can go straight to the disburse step if that's what you want to do.
+You do not have to call `StartDissolving` on a neuron which already has a dissolve delay of 0.
+
 === Dissolve in one step (not recommended)
 
 Verify that you can connect to the Internet Computer.

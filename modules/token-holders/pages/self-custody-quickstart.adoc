@@ -21,13 +21,13 @@ This _Self-Custody Quick Start_ scenario assumes:
 * You want to understand what you can do with your ICP tokens.
 * You want to know how to convert, transfer, or lock your ICP tokens using the {sdk-short-name} command-line interface DFX.
 
-If you are using another application—such as the Network Nervous System (NNS) or the user interface provided by a hardware wallet—to interact with your ICP tokens, you should refer to the documentation for that application.
+If you are using another application—such as the link:https://nns.ic0.app[Network Nervous System (NNS) application] or the user interface provided by a hardware wallet—to interact with your ICP tokens, you should refer to the documentation for that application.
 
 This _Self-Custody Quick Start_ focuses solely on interacting with ICP tokens using the {sdk-short-name} command-line interface DFX.
 
 == How you can use ICP tokens
 
-The following diagram provides a simplified overview the three most common ways you can use tokens.
+The following diagram provides a simplified overview of the three most common ways you can use tokens.
 
 image:developers-guide:icp-tokens-how-to-use.svg[]
 
@@ -54,6 +54,13 @@ To get started, verify the following:
 ----
 DFX_VERSION=0.7.0-beta.8 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
+
+* You have a secure environment in which to perform operations involving ICP tokens.
++
+As a security best practice, any operations that involve the transfer of ICP tokens would require both an air-gapped computer with minimal hardware and software and a computer connected to the network. 
+In practice, this requires moving files between two computers and taking other precautions to minimize risks.
++
+For simplicity, this _{doctitle}_ describes how to complete key tasks using a single computer connected to the network.
 
 == Connect to the ledger and get your account identifier
 

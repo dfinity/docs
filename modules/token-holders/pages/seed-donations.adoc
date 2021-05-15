@@ -403,11 +403,31 @@ And like this for a successfully claimed account:
 ....
 
 
-=== Neuron Identifiers
+=== Get you neuron identifiers
 
-Regardless of whether you claimed your neurons in one step or two, the result should be a set of 31 or 49 neuron identifiers. Keep these handy! You will need to reference them when you <<Instruct the neurons you wish to unstake to dissolve>>, but before you can do that, you must <<Enable disbursal by passing the KYC process>>.
+After you have claimed your neurons (in one step or two) you should look at your neuron identifier and keep them handy for the future.
+You will need to reference them when you <<Instruct the neurons you wish to unstake to dissolve>>.
 
-If you want to query one of your neurons to learn more about it, enter the following commands while substituting `...` for the neuron identifier.
+You can see your neuron identifiers in the output of the `get_account` of which you saw an example just above.
+The neuron identifiers are the numbers that look like this: `1_234_567_890_123_456_789`.
+You could just copy paste them from the output of `get_account`.
+
+A better alternative is to extract the neuron identifiers more conveniently into an one-per-line output as follows. On your networked computer do:
+
+[source,bash]
+----
+ADDR="write your legacy address here"
+GTC=renrk-eyaaa-aaaaa-aaada-cai
+dfx canister --network=https://ic0.app --no-wallet call $GTC get_account '("'$ADDR'")' | grep 2_024_218_412 | awk '$1=$1' RS=";" | grep = | sed -e 's/.*= //'
+----
+
+The result should be a list of 31 or 49 neuron identifiers.
+If you are not in an airgapped setup you can do `ADDR=$(echo $seed | keysmith legacy-address -f -)` and don't have to type your legacy address.
+
+You can query individual neurons to learn more about them such as the dissolve delay, its age, its voting power, its state (locked, dissolving, dissolved).
+To do that, issue the following commands on your networked computer.
+Substitute `...` by the identifier of the neuron you are querying.
+These commands query the governance canister.
 
 [source,bash]
 ----
@@ -418,6 +438,10 @@ didc decode -t "(Result_2)" -d ~/Downloads/nns-ifaces-0.8.0/governance.did $RESU
 ----
 
 == Enable disbursal by passing the KYC process
+
+Before you can disburse ICPT from your dissolved genesis neuron you must pass KYC.
+Note that this applies only to genesis neurons such as the ones given to seed donors.
+It does not apply to neurons that you later create by staking already-liquid ICPT.
 
 === Derive your DFN address
 

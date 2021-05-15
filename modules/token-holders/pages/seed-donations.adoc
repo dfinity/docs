@@ -196,22 +196,23 @@ If you prefer to not have your seed phrase displayed as you type then use this c
 read -s seed
 ----
 
-Derive your private key from your seed phrase. If you are an early contributor, then you will need to derive multiple private keys; one for each derivation index. Use the `-i` flag to specify which private key you want to derive. If you are a seed round donor, then you only have one private key at derivation index `0`.
+Derive your private key from your seed phrase.
 
 [source,bash]
 ----
-echo $seed | ./keysmith private-key -f - -i 0 -o identity-0.pem
+rm -f identity.pem
+echo $seed | ./keysmith private-key -f -
 ----
 
+This creates a file `identity.pem` containing your private key.
 Import your private key(s) into the DFINITY Canister SDK.
 
 [source,bash]
 ----
-dfx identity import <name> identity-0.pem
+dfx identity import <name> identity.pem
 ----
 
-Here, <name> is an alias that you can choose arbitrarily for your identity, e.g. "jane" or "id-0", "id-1", "id-2", ...
-
+Here, <name> is an alias that you can choose arbitrarily for your identity, e.g. "jane".
 The command above displays output similar to the following:
 
 ....
@@ -282,11 +283,11 @@ Verify that you can connect to the Internet Computer.
 dfx ping https://ic0.app
 ----
 
-Derive your public key. If you are an early contributor, then be sure to specify the derivation index that matches your Internet computer identity.
+Derive your public key.
 
 [source,bash]
 ----
-PUBLIC_KEY="$(echo $seed | keysmith public-key -f - -i 0)"
+PUBLIC_KEY="$(echo $seed | keysmith public-key -f -)"
 ----
 
 Call the Genesis Token Canister to claim your neurons.
@@ -302,11 +303,11 @@ didc decode -t "(Result)" -d ~/Downloads/nns-ifaces-0.8.0/genesis_token.did $RES
 
 ==== On your air-gapped computer
 
-Derive your public key. If you are an early contributor, then be sure to specify the derivation index that matches your Internet computer identity.
+Derive your public key.
 
 [source,bash]
 ----
-PUBLIC_KEY="$(echo $seed | keysmith public-key -f - -i 0)"
+PUBLIC_KEY="$(echo $seed | keysmith public-key -f -)"
 ----
 
 Sign a message to claim your neurons.

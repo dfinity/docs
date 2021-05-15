@@ -621,7 +621,7 @@ Disburse the ICP tokens locked in your neuron.
 [source,bash]
 ----
 CANISTER=rrkah-fqaaa-aaaaa-aaaaq-cai
-ACCOUNT_ID_WITHOUT_CHECKSUM_BYTES="$(printf ${ACCOUNT_ID:8} | sed 's/\(..\)/\1 /g' | xargs -I {} -d ' ' printf '%d:nat8; ' '0x{}')"
+ACCOUNT_ID_WITHOUT_CHECKSUM_BYTES="$(printf ${ACCOUNT_ID:8} | fold -w 2 | xargs -I {} printf '%d:nat8; ' '0x{}')"
 RESULT="$(dfx canister --network=https://ic0.app --no-wallet call $CANISTER manage_neuron "(record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Disburse = record { to_account = opt record { hash = vec { $ACCOUNT_ID_WITHOUT_CHECKSUM_BYTES } }; amount = null } } })" --output=raw)"
 didc decode -t "(ManageNeuronResponse)" -d ~/Downloads/nns-ifaces-0.8.0/governance.did $RESULT
 ----
@@ -651,7 +651,7 @@ Recall the behavior of the `--expire-after` option to ensure you that you delive
 [source,bash]
 ----
 CANISTER=rrkah-fqaaa-aaaaa-aaaaq-cai
-ACCOUNT_ID_WITHOUT_CHECKSUM_BYTES="$(printf ${ACCOUNT_ID:8} | sed 's/\(..\)/\1 /g' | xargs -I {} -d ' ' printf '%d:nat8; ' '0x{}')"
+ACCOUNT_ID_WITHOUT_CHECKSUM_BYTES="$(printf ${ACCOUNT_ID:8} | fold -w 2 | xargs -I {} printf '%d:nat8; ' '0x{}')"
 dfx canister --network=https://ic0.app --no-wallet sign --expire-after=1h $CANISTER manage_neuron "(record { id = opt record { id = $NEURON_ID:nat64 }; command = opt variant { Disburse = record { to_account = opt record { hash = vec { $ACCOUNT_ID_WITHOUT_CHECKSUM_BYTES } }; amount = null } } })"
 ----
 

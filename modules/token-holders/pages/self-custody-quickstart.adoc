@@ -225,7 +225,7 @@ For example:
 dfx ledger --network ic transfer ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406 --icp 5 --memo 12345
 ....
 +
-This example illustrates how to transfer ICP tokens to using a whole number with the `+--icp+` command-line option.
+This example illustrates how to transfer ICP tokens to the specified account using a whole number with the `+--icp+` command-line option.
 +
 --
 

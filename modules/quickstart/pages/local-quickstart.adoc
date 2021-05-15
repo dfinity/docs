@@ -177,7 +177,7 @@ Creating the "default" identity.
   - generating new key at /Users/pubs/.config/dfx/identity/default/identity.pem
 Created the "default" identity.
 Creating a wallet canister on the local network.
-The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+The wallet canister on the "local" network for user "pubs_user_id" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 Deploying all canisters.
 Creating canisters...
 Creating canister "hello"...
@@ -187,17 +187,24 @@ Creating canister "hello_assets"...
 Building canisters...
 Building frontend...
 Installing canisters...
+Creating UI canister on the local network.
+The UI canister on the "local" network is "r7inp-6aaaa-aaaaa-aaabq-cai"
 Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
 Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
-Authorizing our identity (default) to the asset canister...
+Authorizing our identity (pubs_user_id) to the asset canister...
 Uploading assets to asset canister...
   /index.html 1/1 (472 bytes)
-  /index.js 1/1 (295480 bytes)
+  /index.html (gzip) 1/1 (314 bytes)
+  /index.js 1/1 (260229 bytes)
+  /index.js (gzip) 1/1 (87771 bytes)
   /main.css 1/1 (484 bytes)
+  /main.css (gzip) 1/1 (263 bytes)
   /sample-asset.txt 1/1 (24 bytes)
   /logo.png 1/1 (25397 bytes)
-  /index.js.map 1/1 (957052 bytes)
+  /index.js.map 1/1 (842559 bytes)
+  /index.js.map (gzip) 1/1 (228432 bytes)
   /index.js.LICENSE.txt 1/1 (499 bytes)
+  /index.js.LICENSE.txt (gzip) 1/1 (285 bytes)
 Deployed canisters.
 ....
 +
@@ -216,7 +223,7 @@ dfx canister call hello greet everyone
 +
 Let's take a closer look at this example command:
 +
--- 
+--
 
 * The `+dfx canister call+` command requires you to specify a canister name and a method—or function—to call.
 * `+hello+` specifies the name of the *canister* you want to call.

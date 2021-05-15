@@ -192,20 +192,47 @@ If you want to transfer ICP tokens to another account in the ledger, you need to
 
 To transfer ICP tokens to another account:
 
+. Check that you are using an identity with control over the ledger account by running the following command:
++
+[source,bash]
+----
+dfx identity whoami
+----
+. Check the current balance in the ledger account associated with your identity by running the following command:
++
+[source,bash]
+----
+dfx ledger --network ic balance
+----
+ 
 . Transfer ICP tokens to another account by running a command similar to the following:
 +
 [source,bash]
 ----
-dfx ledger --network ic transfer <destination-ledger-account-id> --amount <ICP-amount> --memo <numeric-memo>
+dfx ledger --network ic transfer <destination-ledger-account-id> --icp <ICP-amount> --memo <numeric-memo>
 ----
 +
 For example: 
 +
 ....
-dfx ledger --network ic transfer ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406 --amount 20 --memo 12345
+dfx ledger --network ic transfer ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406 --icp 5 --memo 12345
 ....
 +
-The destination address can be an address in the ledger canister running on the {IC} network or the address for a wallet you have on an exchange.
+This example illustrates how to transfer ICP tokens to using a whole number with the `+--icp+` command-line option.
++
+--
+
+* You can also specify fractional units of ICP tokens—called *e8s*—using the `+--e8s+` option, either on its own or in conjunction with the `+--icp+` option.
+
+* Alternatively, you can use the `+--amount+` to  specify the number of ICP tokens to transfer with fractional units up to 8 decimal places, for example, as `+5.00000025+`.
+--
+
++
+The destination address can be an address in the ledger canister running on the {IC} network, an account you have added using the link:https://nns.ic0.app[Network Nervous System application], or the address for a wallet you have on an exchange.
++
+If you transfer the ICP tokens to an account in the link:https://nns.ic0.app[Network Nervous System application], you might need to refresh the browser to see the transaction reflected.
++
+For more information about using the `+dfx ledger+` command-line options, see link:../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger].
 
 == Lock ICP tokens by staking them in a neuron
 

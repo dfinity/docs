@@ -2,27 +2,31 @@
 == Test functions in a browser
 
 The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common language for specifying the signature of a canister service.
-The language provides a unified way of interacting with canisters in various languages and tools, such as the `+dfx+` command-line interface, JavaScript, and {proglang}.
+Candid provides a unified way for you to interact with canisters that are written in different languages or accessed using different tools.
+For example, Candid provides a consistent view of a service whether the underlying program is native Rust, JavaScript, or {proglang}. 
+Candid also enables different tools—such as the `+dfx+` command-line interface and the Network Nervous System application—to share a common description for a service.
 
 Based on the type signature of the actor, Candid also provides a web interface that allows you to call canister functions for testing and debugging.
 
-NOTE: If you have upgraded to a `0.7.0-beta` version of the {sdk-short-name}, you cannot yet use the Candid web interface to test functions in a browser. To use the Candid web interface, you can install a previous version of the {sdk-short-name} for your project. 
-
-After you have deployed your project locally using the `+dfx deploy+` or `+dfx canister install+` command, you can access the Candid web interface endpoint in a browser. Accessing the Candid web interface endpoint enables you to view and test canister functions without writing any front-end code.
+After you have deployed your project locally using the `+dfx deploy+` or `+dfx canister install+` command, you can access the Candid web interface endpoint in a browser. 
+This web interface—the Candid UI—exposes the service description in a form, enabling you to quickly view and test functions and experiment with entering different data types without writing any front-end code.
 
 To use the Candid web interface to test canister functions:
 
-. Copy the canister identifier associated with the *main actor* for your application.
+. Copy the Candid UI canister identifier for your application.
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
 +
 By default, the `+local+` network binds to the `+127.0.0.1:8000+` address and port number.
-. Add the `+candid+` endpoint to access the Candid web interface followed by the required `canisterId` parameter and canister identifier.
+. Add the required `+canisterId+` and UI canister identifier to the URL.
 +
-For example, the full URL should look similar to the following but with the `+canister_identifier+` that was returned by the `+dfx canister install+` command:
+For example, the full URL should look similar to the following but with the `+canister_identifier+` that was returned by the `+dfx deploy+` or `+dfx canister install+` command:
 +
 ....
-http://127.0.0.1:8000/candid?canisterId=<YOUR-CANISTER-IDENTIFIER>
+http://127.0.0.1:8000/?canisterId=<YOUR-UI-CANISTER-IDENTIFIER>
 ....
++
+In the form displayed, you can provide a canister identifier or choose a Candid description (`+.did+`) file to display.
+. Paste the `+<project-name>_assets+` canister identifier for your application into the *Provide a canister ID* field, then click *Go*.
 . Review the list of function calls and types defined in the program.
 . Type a value of the appropriate type for a function or click *Random* to generate a value, then click *Call* or *Query* to see the result.
 +

@@ -170,11 +170,23 @@ image:dissolve-delay.png[]
 
 image:neuron-properties.png[]
 
+=== What you can do after creating a neuron
+
 After you have locked the stake and created a neuron, you can:
 
 * Start the dissolve delay timer by clicking *Start Unlock*.
 * Increase the dissolve delay period by clicking *Increase Dissolve Delay*.
 * Stop the dissolve delay after starting the unlock countdown by clicking *Lockup*.
+
+=== Starting and stopping the dissolve delay
+
+Creating a new neuron does not automatically start the dissolve delay timer. 
+You must explicitly start the timer countdown by clicking *Start Unlock*.
+
+For example, if you set a dissolve delay of one year and want to immediately begin the countdown, you should click *Start Unlock* as part of the process of creating the neuron.
+If you change your mind and want to stop a current countdown in progress, you can click *Lockup*, 
+After you click *Lockup* to stop the dissolve delay, you can click *Start Unlock* to resume the countdown without changing the existing dissolve delay period.
+If you want to continue a countdown already in progress but extend the lock up period, you can click *Increase Dissolve Delay* then select a longer dissolve delay. 
 
 == Configure following rules
 
@@ -204,13 +216,47 @@ The neuron holder is added to you Currently Following list.
 When the dissolve delay timer for a neuron reaches zero, you can disburse the neuron’s stake and transfer its locked ICP token balance to the ledger account you specify.
 After you take this step, the neuron identifier and its ledger history are permanently removed from the governance canister.
 
-To disburse a neuron:
+To disburse a neuron and return its ICP tokens:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
 . Click *Login* to connect to the Internet Identity service.
 . Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
 . Click *Proceed* to access to the Network Nervous System (NNS) application. 
-. Click *Neurons*, then click the link for a specific  neuron identifier to display its properties.
+. Click *Neurons*, then click Unlocked neuron that has reach the ended of its dissolve delay period.
++
+For example:
++
+
+image:unlocked-neuron.png[]
+. Click *Disburse*.
++
+For example:
++
+
+image:disburse.png[]
+. Type an address or select an account to receive the ICP tokens.
++
+For example, you might select the `+dev-projects+` linked account:
++
+
+image:select-account.png[]
+. Verify the transaction information, then click *Confirm and Send*.
++
+For example, check that the Destination address matches the intended address of the `+dev-projects+` linked account:
++
+
+image:confirm-send.png[]
+. Verify the completed transaction, then click *Close*.
++
+For example:
+
+image:confirmation.png[]
++
+If you transferred the ICP tokens to one of your accounts in the {IC} ledger canister, you can click the ICP tab and see your new balance reflected.
+For example:
++
+
+image:updated-icp.png[]
 
 == Spawn new neurons
 

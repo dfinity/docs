@@ -108,7 +108,13 @@
 ** link:https://github.com/dfinity/examples[Examples repository]
 ** link:https://github.com/dfinity/awesome-dfinity[Awesome DFINITY]
 ** link:https://github.com/dfinity/linkedup[LinkedUp]
-//** link:https://github.com/dfinity/cancan[CanCan]//
+** link:https://github.com/dfinity/cancan[CanCan]//
+
+.xref:token-holders:icp-tokens.adoc[Token holders]
+** xref:token-holders:self-custody-quickstart.adoc[Self-custody quick start]
+** xref:token-holders:nns-app-quickstart.adoc[Network nervous sytem application quick start]
+//** xref:token-holders:sign-send-steps.adoc[How to sign and send ICP token transfers]
+
 
 .xref:release-notes:sdk-release-notes.adoc[Release notes]
 ** xref:release-notes:0.6.26-rn.adoc[0.6.26]

@@ -57,7 +57,7 @@ For example, open Applications, Utilities, then double-click *Terminal* or press
 +
 [source,bash]
 ----
-DFX_VERSION=0.7.0-beta.8 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.7.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 +
 This command prompts you to read and accept the license agreement before installing the {company-id} execution command-line interface (CLI) and its dependencies on your local computer.
@@ -83,7 +83,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.7.0-beta.8
+dfx 0.7.0
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +

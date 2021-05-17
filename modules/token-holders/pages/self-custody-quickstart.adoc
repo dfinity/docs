@@ -52,7 +52,7 @@ To get started, verify the following:
 +
 [source,bash]
 ----
-DFX_VERSION=0.7.0-beta.8 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.7.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
 * You have a secure environment in which to perform operations involving ICP tokens.

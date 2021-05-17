@@ -12,16 +12,58 @@
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-== What is the network nervous system (NNS)?
+As a decentralized platform, all changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS). 
+The NNS controls all aspects of the {IC} network configuration and is responsible for performing many network management operations. For example, the Network Nervous System (NNS) is responsible for:
+
+* Upgrading the protocol and guest operating system software used by the nodes that provide computing capacity to the network.
+* Inducting new node operators and machines into the network.
+* Creating new subnets to increase network capacity.
+* Splitting subnets to balance network load.
+* Configuring parameters that control how much must be paid by users for compute capacity.
+* Monitoring canister activity and node performance for
+malicious behavior and statistical deviations.
+* De-activating malicious software or under-performing nodes to protect the network.
+
+The requests for changes and updates to the network are submitted to the NNS in the form of **proposals**.
+The NNS decides to adopt or reject proposals based on voting activity by certain network participants.
 
 == What are neurons?
 
+For network participants to be able to vote on proposals, they need to lock up a stake of ICP tokens for a given period of time to create a representative called a **neuron**.
+
+Because neurons represent a stake of ICP tokens, they also represent an identity with a **ledger canister account** and a principal that controls the ledger account.
+
+Neurons provide the stability required for responsible governance of the {IC} by ensuring that the ICP tokens they represent cannot be exchanged for a specific period of time referred to as the **lock-up** period.
+
+The following diagram provides a simplified view of the workflow for creating a neuron and the relationship between the neuron and ledger canisters.
+
+image:create-dissolve-neuron-api.svg[]
+
+=== Governance and voting rewards
+
+When a person or organization has ICP tokens locked up in a neuron, the neuron holder can propose and vote on governance issues.
+To encourage participation, neuron holders are also paid for voting in proportion to the number of ICP tokens they have locked up and the length of the lock-up period up to a maximum of eight years.
+
+The incentive paid to neuron holders for voting is called a voting **reward**.
+
+=== Unlocking the stake held by a neuron
+
+After network participants create a neuron, the locked balance of ICP tokens can only be unlocked by fully *dissolving* the neuron.
+In its **locked** state, the neuron has a fixed non-zero **dissolve delay** equivalent to the lock-up period.
+For example, assume you have a stake of 100 ICP tokens locked up for a period of five years. 
+After successfully created the neuron with these settings, your dissolve delay is five years.
+
+Based on the dissolve delay that decreases as time progresses, a **dissolve timer** determines how long it will take to completely dissolve a neuron.
+
+When the dissolve timer reaches zero, the neuron owner—the ICP token holder who created the neuron or an authenticated custodian—can dissolve the neuron and unlock the balance of ICP tokens.
+
+The dissolved neuron ceases to exist and the stake of ICP tokens that the neuron represented is released to the appropriate ledger canister account.
+
+////
 == Why create neurons?
 
 == Before you begin
-
-
-
+////
 == Connect to the {IC}
 
 To connect to the {IC} using the Network Nervous System (NNS) application:
@@ -30,6 +72,9 @@ To connect to the {IC} using the Network Nervous System (NNS) application:
 . Click *Login* to connect to the link:https://identity.ic0.app[Internet Identity service].
 +
 If you haven't previously registered and received a user number, you can click *Register with Internet Identity* to register.
++
+
+NOTE: We strongly recommend you add multiple devices and authentication methods to your Internet Identity profile. For example, register multiple physical devices like your computer and phone with a security key and using the authentication options that those devices—and browsers running on them—support.
 +
 For more information about creating an identity using the Internet Identity service, see link:../integration/ic-identity-guide/auth-how-to{outfilesuffix}[How to use the Internet Identity service].
 +
@@ -260,15 +305,32 @@ image:updated-icp.png[]
 
 == Spawn new neurons
 
+Information coming soon ...
+
+In the meantime, for information about maturity and spawning new neurons, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
 == Collect rewards
 
+Information coming soon ...
+
+In the meantime, for information about maturity and rewards, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
 == Vote on proposals
 
+Information coming soon ...
+
+In the meantime, for information about voting, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11#6007[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
 == Submit a proposal
 
+Information coming soon ...
+
+In the meantime, for information about voting, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11#6007[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
 == Deploy a canister with cycles
 
+Because application subnets are not yet widely available to the general public, you should not convert ICP tokens to cycles on the {IC}.
+
+For an introduction to developing applications locally, see the link:../quickstart/local-network{outfilesuffix}[Local development] quick start and link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials].
+
+[TBD]

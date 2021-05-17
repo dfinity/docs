@@ -130,6 +130,7 @@ Can be specified as a Decimal with the fractional portion up to 8 decimal places
 |`+--fee <fee>+` |Transaction fee, default is 10000 e8s.
 |`+--icp <icp>+` |Specify ICP as a whole number, helpful for use in conjunction with `+--e8s+`.
 |`+--max-fee <max-fee>+` |Maximum transaction fee, default is 10000 e8s.
+|===
 
 === Examples
 
@@ -242,6 +243,7 @@ Can be specified as a Decimal with the fractional portion up to 8 decimal places
 |`+--fee <fee>+` |Transaction fee, default is 10000 e8s.
 |`+--icp <icp>+` |Specify ICP as a whole number, helpful for use in conjunction with `+--e8s+`.
 |`+--max-fee <max-fee>+` |Maximum transaction fee, default is 10000 e8s.
+|===
 
 === Examples
 

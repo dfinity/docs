@@ -19,21 +19,21 @@ Depending on the `+dfx ledger+` subcommand you specify, additional arguments, op
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Command |Description
-|`+account-id+` |Prints the selected identity's AccountIdentifier.
+|`+account-id+` |Prints the selected identity's Account Identifier.
 |<<dfx ledger balance,`+balance+`>> |Prints the account balance of the user.
-|<<dfx ledger create-canister,`+create-canister+`>> |Create a canister from ICP
+|<<dfx ledger create-canister,`+create-canister+`>> |Creates a canister from ICP.
 |`+help+` |Displays usage information message for a specified subcommand.
-|<<dfx ledger notify,`+notify+`>> |Notify the ledger about a send transaction to the cycles minting canister.
-|<<dfx ledger top-up,`+top-up+`>> |Top up a canister with cycles minted from ICP
-|<<dfx ledger transfer,`+transfer+`>> |Transfer ICP from the user to the destination AccountIdentifier
+|<<dfx ledger notify,`+notify+`>> |Notifies the ledger when there is a send transaction to the cycles minting canister.
+|<<dfx ledger top-up,`+top-up+`>> |Tops up a canister with cycles minted from ICP.
+|<<dfx ledger transfer,`+transfer+`>> |Transfers ICP from the user to the destination Account Identifier.
 
 To view usage information for a specific subcommand, specify the subcommand and the `+--help+` flag.
 For example, to see usage information for `+dfx ledger transfer+`, you can run the following command:
 
-[source,bash]
-----
-dfx ledger transfer --help
-----
+
+`+dfx ledger transfer --help+`
+
+|===
 
 [[balance]]
 == dfx ledger balance
@@ -44,7 +44,7 @@ Use the `+dfx ledger balance+` command to print your account balance or that of 
 
 [source,bash]
 ----
-dfx ledger balance --network ic [of] [flag]
+dfx ledger --network ic balance [of] [flag]
 ----
 
 === Flags

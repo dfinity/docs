@@ -1,0 +1,336 @@
+= Network nervous system (NNS) quick start
+:description: How to create and manage staked ICP tokens.
+:keywords: Internet Computer,neurons,blockchain,governance,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+As a decentralized platform, all changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS). 
+The NNS controls all aspects of the {IC} network configuration and is responsible for performing many network management operations. For example, the Network Nervous System (NNS) is responsible for:
+
+* Upgrading the protocol and guest operating system software used by the nodes that provide computing capacity to the network.
+* Inducting new node operators and machines into the network.
+* Creating new subnets to increase network capacity.
+* Splitting subnets to balance network load.
+* Configuring parameters that control how much must be paid by users for compute capacity.
+* Monitoring canister activity and node performance for
+malicious behavior and statistical deviations.
+* De-activating malicious software or under-performing nodes to protect the network.
+
+The requests for changes and updates to the network are submitted to the NNS in the form of **proposals**.
+The NNS decides to adopt or reject proposals based on voting activity by certain network participants.
+
+== What are neurons?
+
+For network participants to be able to vote on proposals, they need to lock up a stake of ICP tokens for a given period of time to create a representative called a **neuron**.
+
+Because neurons represent a stake of ICP tokens, they also represent an identity with a **ledger canister account** and a principal that controls the ledger account.
+
+Neurons provide the stability required for responsible governance of the {IC} by ensuring that the ICP tokens they represent cannot be exchanged for a specific period of time referred to as the **lock-up** period.
+
+The following diagram provides a simplified view of the workflow for creating a neuron and the relationship between the neuron and ledger canisters.
+
+image:create-dissolve-neuron-api.svg[]
+
+=== Governance and voting rewards
+
+When a person or organization has ICP tokens locked up in a neuron, the neuron holder can propose and vote on governance issues.
+To encourage participation, neuron holders are also paid for voting in proportion to the number of ICP tokens they have locked up and the length of the lock-up period up to a maximum of eight years.
+
+The incentive paid to neuron holders for voting is called a voting **reward**.
+
+=== Unlocking the stake held by a neuron
+
+After network participants create a neuron, the locked balance of ICP tokens can only be unlocked by fully *dissolving* the neuron.
+In its **locked** state, the neuron has a fixed non-zero **dissolve delay** equivalent to the lock-up period.
+For example, assume you have a stake of 100 ICP tokens locked up for a period of five years. 
+After successfully created the neuron with these settings, your dissolve delay is five years.
+
+Based on the dissolve delay that decreases as time progresses, a **dissolve timer** determines how long it will take to completely dissolve a neuron.
+
+When the dissolve timer reaches zero, the neuron owner—the ICP token holder who created the neuron or an authenticated custodian—can dissolve the neuron and unlock the balance of ICP tokens.
+
+The dissolved neuron ceases to exist and the stake of ICP tokens that the neuron represented is released to the appropriate ledger canister account.
+
+////
+== Why create neurons?
+
+== Before you begin
+////
+== Connect to the {IC}
+
+To connect to the {IC} using the Network Nervous System (NNS) application:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the link:https://identity.ic0.app[Internet Identity service].
++
+If you haven't previously registered and received a user number, you can click *Register with Internet Identity* to register.
++
+
+NOTE: We strongly recommend you add multiple devices and authentication methods to your Internet Identity profile. For example, register multiple physical devices like your computer and phone with a security key and using the authentication options that those devices—and browsers running on them—support.
++
+For more information about creating an identity using the Internet Identity service, see link:../integration/ic-identity-guide/auth-how-to{outfilesuffix}[How to use the Internet Identity service].
++
+After you have registered, you can click *Login* to authenticate using your user number and the authentication method—for example, a security key or fingerprint—you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application.
+
+== Add an account
+
+Logging on through the Internet Identity service creates a Main account for you in the {IC} ledger.
+If your ICP tokens are associated with your developer identity—that is, the identity created by the {sdk-short-name} `+dfx+` command-line interface—your Main account displays 0.00 for your ICP token balance.
+For example:
+
+image:nns-app-main.png[]
+
+Before transferring any tokens, you can create one or more linked subaccounts or attach a hardware wallet to your account.
+
+To add an account for managing ICP tokens:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the Internet Identity service.
+. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application.
+. On the default ICP tab, click *Add Account*.
+. Select the type of account to add.
++
+--
+* *New Linked Account* creates a new subaccount linked to your Main account address in the ledger.
+* *Attach Hardware Wallet* adds a hardware wallet to your main account address in the ledger. (Support for the Ledger Nano hardware wallet is coming soon, but not available yet.)
+--
+. Click *New Linked Account*, type an Account Name, then click *Create*.
++
+
+image:new-linked-account.png[]
+
+== Transfer ICP tokens between accounts
+
+If you have selected self-custody for holding your ICP tokens and the tokens are associated with your developer identity instead of your registered Internet Identity, you need to transfer ICP tokens to your accounts if you want to manage them using the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+
+To transfer ICP tokens controlled by your developer identity:
+
+. Open a terminal shell on your local computer.
+. Check that you are using an identity with control over the ledger account by running the following command:
++
+[source,bash]
+----
+dfx identity whoami
+----
+In most cases, you should see that you are currently using your `+default+` developer identity.
+For example:
++
+....
+default
+....
+. View the textual representation of the principal for your current identity by running the following command:
++
+[source,bash]
+----
+dfx identity get-principal
+----
++
+This command displays output similar to the following:
++
+....
+tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+....
++
+Note that this identifier should be the same as the identifier you specified in the Know Your Customer (KYC) process if you were required to pass KYC verification to receive your ICP tokens.
+. Check the current balance in the ledger account associated with your identity by running the following command:
++
+[source,bash]
+----
+dfx ledger --network ic balance
+----
+. Transfer ICP tokens to your Main account or a linked subaccount you create by running a command similar to the following:
++
+[source,bash]
+----
+dfx ledger --network ic transfer <destination-account-id> --icp <ICP-amount> --memo <numeric-memo>
+----
++
+For example, assume you have the following accounts:
++
+
+image:accounts.png[]
++
+If you want to transfer one ICP token to the `+Main+` account, you can run the following command:
++
+....
+dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb85b9b9850bd60766f --memo 12345 --icp 1
+....
++
+If you also want to transfer one ICP token to the `+pubs+` account, you can run the following command:
++
+....
+dfx ledger --network ic transfer 183a04888eb20e73766f082bae01587830bd3cd912544f63fda515e9d77a96dc --icp 1 --memo 12346
+....
++
+This example illustrates how to transfer ICP tokens to using a whole number with the `+--icp+` command-line option.
++
+--
+
+* You can also specify fractional units of ICP tokens—called *e8s*—using the `+--e8s+` option, either on its own or in conjunction with the `+--icp+` option.
+
+* Alternatively, you can use the `+--amount+` to  specify the number of ICP tokens to transfer with fractional units up to 8 decimal places, for example, as `+5.00000025+`.
+--
+
++
+The destination address can be an address in the ledger canister running on the {IC} network, an account you have added using the link:https://nns.ic0.app[Network Nervous System application], or the address for a wallet you have on an exchange.
++
+If you transfer the ICP tokens to an account in the link:https://nns.ic0.app[Network Nervous System application], you might need to refresh the browser to see the transaction reflected.
++
+For more information about using the `+dfx ledger+` command-line options, see link:../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger].
+
+== Stake ICP tokens in a neuron
+
+After you transfer ICP tokens to the Network Nervous System application, you can use the Network Nervous System application to create and manage neurons, vote on proposals, and create canisters on the {IC}.
+
+Neurons are required to participate in governance and earn rewards.
+To create a neuron, you must lock up some number of ICP tokens for a period of time. The minimum stake required to create a neuron is one ICP token. 
+You can configure the period of time the stake is locked from six months up to a maximum of eight years.
+
+To stake ICP tokens:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the Internet Identity service.
+. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application. 
+. Click *Neurons*, then click *Stake Neuron*.
+. Type the number of ICP tokens to stake, then click *Create*.
+. Set the dissolve delay for the neuron to control the length of time the stake is locked, then click *Update Delay*.
++
+For example:
++
+
+image:dissolve-delay.png[]
+. Click *Yes, I'm sure* to confirm the lock up period, then close the window to review the newly-created neuron properties.
++
+
+image:neuron-properties.png[]
+
+=== What you can do after creating a neuron
+
+After you have locked the stake and created a neuron, you can:
+
+* Start the dissolve delay timer by clicking *Start Unlock*.
+* Increase the dissolve delay period by clicking *Increase Dissolve Delay*.
+* Stop the dissolve delay after starting the unlock countdown by clicking *Lockup*.
+
+=== Starting and stopping the dissolve delay
+
+Creating a new neuron does not automatically start the dissolve delay timer. 
+You must explicitly start the timer countdown by clicking *Start Unlock*.
+
+For example, if you set a dissolve delay of one year and want to immediately begin the countdown, you should click *Start Unlock* as part of the process of creating the neuron.
+If you change your mind and want to stop a current countdown in progress, you can click *Lockup*, 
+After you click *Lockup* to stop the dissolve delay, you can click *Start Unlock* to resume the countdown without changing the existing dissolve delay period.
+If you want to continue a countdown already in progress but extend the lock up period, you can click *Increase Dissolve Delay* then select a longer dissolve delay. 
+
+== Configure following rules
+
+To configure how you follow other neuron holders:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the Internet Identity service.
+. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application. 
+. Click *Neurons*, then click the link for a specific neuron identifier to display its properties.
+. Click *Edit Followees*.
+. Choose a proposal topic.
++
+For example, expand the Governance topic, then click *Enter Followee*.
+. Select a neuron holder to follow, then click *Follow*.
++
+For example, click *Follow* for the Internet Computer Association.
++
+
+image:follow-ica.png[]
++
+The neuron holder is added to you Currently Following list.
+. Repeat for each topic where you want your neuron's votes to automatically follow the votes of one or more other neuron holders.
+
+== Disburse dissolved neurons into an account
+
+When the dissolve delay timer for a neuron reaches zero, you can disburse the neuron’s stake and transfer its locked ICP token balance to the ledger account you specify.
+After you take this step, the neuron identifier and its ledger history are permanently removed from the governance canister.
+
+To disburse a neuron and return its ICP tokens:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click *Login* to connect to the Internet Identity service.
+. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
+. Click *Proceed* to access to the Network Nervous System (NNS) application. 
+. Click *Neurons*, then click Unlocked neuron that has reach the ended of its dissolve delay period.
++
+For example:
++
+
+image:unlocked-neuron.png[]
+. Click *Disburse*.
++
+For example:
++
+
+image:disburse.png[]
+. Type an address or select an account to receive the ICP tokens.
++
+For example, you might select the `+dev-projects+` linked account:
++
+
+image:select-account.png[]
+. Verify the transaction information, then click *Confirm and Send*.
++
+For example, check that the Destination address matches the intended address of the `+dev-projects+` linked account:
++
+
+image:confirm-send.png[]
+. Verify the completed transaction, then click *Close*.
++
+For example:
+
+image:confirmation.png[]
++
+If you transferred the ICP tokens to one of your accounts in the {IC} ledger canister, you can click the ICP tab and see your new balance reflected.
+For example:
++
+
+image:updated-icp.png[]
+
+== Spawn new neurons
+
+Information coming soon ...
+
+In the meantime, for information about maturity and spawning new neurons, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+
+== Collect rewards
+
+Information coming soon ...
+
+In the meantime, for information about maturity and rewards, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+
+== Vote on proposals
+
+Information coming soon ...
+
+In the meantime, for information about voting, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11#6007[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+
+== Submit a proposal
+
+Information coming soon ...
+
+In the meantime, for information about voting, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11#6007[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+
+== Deploy a canister with cycles
+
+Because application subnets are not yet widely available to the general public, you should not convert ICP tokens to cycles on the {IC}.
+
+For an introduction to developing applications locally, see the link:../quickstart/local-network{outfilesuffix}[Local development] quick start and link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials].
+
+[TBD]

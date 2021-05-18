@@ -114,10 +114,9 @@ dfx ledger --network ic balance 03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8f
 ----
 This command displays an ICP amount similar to the following:
 
-[source,bash]
-----
+....
 2.49798000 ICP
-----
+....
 
 [[create-canister]]
 == dfx ledger create-canister
@@ -181,11 +180,10 @@ In this example, the command converts 1.25 ICP tokens into cycles and specifies 
 
 If the transaction is successful, the ledger records the event and you should see output similar to the following:
 
-[source,bash]
-----
+....
 Transfer sent at BlockHeight: 20
 Canister created with id: "53zcu-tiaaa-aaaaa-qaaba-cai"
-----
+....
 
 You can create a new canister by specifying separate values for ICP tokens and e8s by running a command similar to the following:
 
@@ -301,11 +299,10 @@ dfx ledger --network ic top-up --icp 1 5a46r-jqaaa-aaaaa-qaadq-cai
 ----
 This command displays output similar to the following:
 
-[source,bash]
-----
+....
 Transfer sent at BlockHeight: 59482
 Canister was topped up!
-----
+....
 
 [[transfer]]
 == dfx ledger transfer
@@ -396,9 +393,8 @@ dfx ledger --network ic transfer dfx ledger --network ic transfer dd81336dbfef5c
 
 This command displays output similar to the following:
 
-[source,bash]
-----
+....
 Transfer sent at BlockHeight: 59513
-----
+....
 
 You can then use the `+dfx ledger --network ic balance+` command to check your account balance reflects the transaction you just made.

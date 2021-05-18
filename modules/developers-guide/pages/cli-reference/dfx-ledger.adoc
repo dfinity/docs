@@ -55,6 +55,21 @@ You can use the following optional flags with the `+dfx ledger account-id+` comm
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
+=== Examples
+
+If you have created more than one identity, check the identity you are currently using by running the `+dfx identity whoami+` command or the `+dfx identity get-principal+` command. You can then check the account identifier for your currently-selected developer identity by running the following command:
+
+[source,bash]
+----
+dfx ledger account-id
+----
+
+The command displays output similar to the following:
+
+....
+03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223
+....
+
 [[balance]]
 == dfx ledger balance
 

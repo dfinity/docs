@@ -1,0 +1,178 @@
+= dfx wallet
+:sdk-short-name: DFINITY Canister SDK
+
+Use the `+dfx wallet+` command with flags and subcommands to manage a user's cycles wallet with the {platform}.
+In most cases, you use `+dfx wallet+` subcommands after you compile a program to manage a wallet's controllers and custodians. You can also send cycles to another cycles wallet. 
+
+The basic syntax for running `+dfx canister+` commands is:
+
+[source,bash]
+----
+dfx wallet [option] <subcommand> [flag]
+----
+
+Depending on the `+dfx wallet+` subcommand you specify, additional arguments, options, and flags might apply or be required.
+To view usage information for a specific `+dfx wallet+` subcommand, specify the subcommand and the `+--help+` flag.
+For example, to see usage information for `+dfx wallet send+`, you can run the following command:
+
+[source,bash]
+----
+dfx wallet send --help
+----
+
+For reference information and examples that illustrate using `+dfx wallet+` commands, select an appropriate command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Command |Description
+|<<dfx wallet add-controller,`+controller+`>> |Add a wallet controller using the controller's principal.
+
+|<<dfx wallet addresses,`+addresses+`>> |Displays a wallet's address book. The address entries contain the principal and `+role+` (`+Contact+`, `+Custodian+`, or `+Controller+`), and might contain a `+name+`, and `+kind+` (`+Unknown+`, `+User+`, or `+Canister+`) of the address.
+
+|<<dfx wallet authorize,`+authorize+`>> |Authorize wallet custodian using the custodian's principal. For example: `+dfx wallet authorize <principal>+`.
+
+|<<dfx wallet balance,`+balance+`>> |Displays the cycle balance of the current Identity's cycles wallet.
+
+|<<dfx wallet controllers, `+controllers+`>> |Displays the list of the current wallet's controllers by prinicpal. 
+
+|<<dfx wallet custodians, `+custodians+`>> |Displays the list of the current wallet's custodians by prinicpal.
+
+|<<dfx wallet deauthorize,`+deauthorize+`>> |Removes wallet authorization for a specified custodian.
+
+|`+help+` |Displays usage information message for a specified subcommand.
+
+|<<dfx wallet name,`+name+`>> |Displays the name of the current wallet, if one was defined.
+
+|<<dfx wallet remove-controller,`+remove-controller+`>> |Removes a controller, specified by principal. 
+
+|<<dfx wallet send,`+send+`>> |Sends a specified number of cycles to a specfied wallet, by canister ID. For example: `+dfx wallet authorize <destinationCanister><amount>+`.
+
+|<<dfx wallet set-name,`+set-name+`>> |Specify a name for the wallet. 
+
+|<<dfx wallet upgrade,`+upgrade+`>> |Upgrades the wallet's Wasm module to the current Wasm bundled with the {platform}.
+
+|===
+
+== dfx wallet add-controller
+
+Use the `+dfx wallet add-controller+` to add a controller to the wallet.
+
+=== Basic usage
+
+[source,bash,subs="quotes"]
+----
+dfx wallet add-controller [option] <controller> [flag]
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx wallet add-controller+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Options
+
+You can use the following options with the `+dfx canister call+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Option |Description
+
+|`+--network <network>+` |Specifies the network of the controller you want to add.
+|===
+
+=== Arguments
+
+You can specify the following arguments for the `+dfx wallet add-controller+` command.
+
+[width="100%",cols="<31%,<69%",options="header",]
+|===
+|Argument |Description
+|`+controller+` |Specifies the principal of the controller to add to the wallet. 
+|===
+
+=== Examples
+
+You can use the `+dfx wallet add-controller+` command to add a controller to your wallet. If the controller you want to add is on a different network on the {IC}, specify the network using the `+--network+` option. For example:
+
+[source,bash]
+----
+dfx wallet --network=https://192.168.74.4 add-controller hpff-grjfd-tg7cj-hfeuj-olrjd-vbego-lpcax-ou5ld-oh7kr-kl9kt-yae
+----
+
+== dfx wallet addresses
+
+Use the `+dfx wallet addresses+` command to display the wallet's address book.The address entries contain the principal and `+role+` (`+Contact+`, `+Custodian+`, or `+Controller+`), and might contain a `+name+`, and `+kind+` (`+Unknown+`, `+User+`, or `+Canister+`) associated with the address.
+
+=== Basic usage
+
+[source,bash,subs="quotes"]
+----
+dfx wallet addresses
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx wallet add-controller+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+
+|===
+
+=== Examples
+
+You can use the `+dfx wallet addresses+` command to retrieve information on the addresses in your wallet's address book. For example:
+
+[source,bash]
+----
+dfx wallet addresses
+Id: hpff-grjfd-tg7cj-hfeuj-olrjd-vbego-lpcax-ou5ld-oh7kr-kl9kt-yae, Kind: Unknown, Role: Controller, Name: ic_admin.
+Id: e7ptl-4x43t-zxcvh-n6s6c-k2dre-doy7l-bbo6h-ok8ik-msiz3-eoxhl-6qe, Kind: Unknown, Role: Custodian, Name: alice_auth.
+----
+
+== dfx wallet authorize
+
+Use the `+dfx wallet authorize+` command to authorize a custodian for the wallet. 
+
+=== Basic usage
+
+[source,bash,subs="quotes"]
+----
+dfx wallet authorize _custodian_
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx wallet authorize+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
+
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+
+|===
+
+=== Examples
+
+You can use the `+dfx wallet authorize+` command to add principals as custodians to your wallet. For example, to add `+alice_auth+` as a custodian run the following command using her principal:
+
+[source,bash]
+----
+dfx wallet authorize e7ptl-4x43t-zxcvh-n6s6c-k2dre-doy7l-bbo6h-ok8ik-msiz3-eoxhl-6qe
+----

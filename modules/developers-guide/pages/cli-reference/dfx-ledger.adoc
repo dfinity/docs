@@ -365,10 +365,9 @@ dfx ledger account-id
 
 This command displays output similar to the following:
 
-[source,bash]
-----
+....
 30e596fd6c5ff5ad7b7d70bbbda1187c833e646c6251464da7f82bc217bba397
-----
+....
 
 You can check the balance of this account by running the following command:
 
@@ -379,10 +378,9 @@ dfx ledger --network ic balance
 
 This command displays output similar to the following:
 
-[source,bash]
-----
+....
 64.89580000 ICP
-----
+....
 
 Use the `+dfx ledger transfer+` command to send some of your ICP balance to another known destination using the following command:
 

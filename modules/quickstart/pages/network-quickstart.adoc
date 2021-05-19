@@ -36,6 +36,7 @@ Currently, the {sdk-short-name} only runs on computers with a macOS or Linux ope
 You must have *cycles* available to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
 +
 For information about how to get ICP tokens, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
+For an introduction to using the Network Nervous System application to manage ICP tokens, see link:../token-holders/nns-app-quickstart{outfilesuffix}[Network nervous system application quick start].
 For information about using your default cycles wallet after you have created it, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
 
 This tutorial assumes you know how to perform common tasks—like opening a terminal and running commands—on your computer.

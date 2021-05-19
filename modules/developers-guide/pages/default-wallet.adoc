@@ -17,11 +17,64 @@ Because only canisters require and consume cycles—to perform operations and to
 For the purposes of local development, the {sdk-short-name} automatically creates a default cycles wallet for you in every project and most of the operations performed using the cycles wallet happen behind the scenes.
 For example, the cycles wallet acts on your behalf to register canister identifiers and deploy canisters on the local network.
 
-In a production environment, however, you often need to explicitly register and transfer cycles to new canisters, specify the principals that can act as custodians, and manage the principals with ownership rights. 
-You can perform these types of tasks using the methods in the default cycles wallet.
+In a production environment, however, you often need to explicitly register and transfer cycles to new canisters, specify the principals that can act as custodians, and manage the principals with ownership rights.
+You can perform some of these tasks using the default cycles wallet application running in a web browser. 
+Depending on the specific action you want to take, you can also perform these cycle and canister management tasks by running `+dfx wallet+` commands in a terminal or by calling methods in the default cycles wallet canister.
 
 You should keep in mind, however, that calls to the cycles wallet canister are executed using the cycles wallet identifier associated with the currently-selected user identity.
 Depending on your currently-selected identity and whether the principal associated with that identity has been added as a controller or a custodian for a wallet, you might see different results or be denied access to a specific method.
+
+To check the identity you are currently using, run the following command:
+
+[source,bash]
+----
+dfx identity whoami
+----
+
+[[wallet-check-balance]]
+== Check the cycle balance
+
+If you are doing local development, your cycles wallet is created when you register a new canister identifier using `+dfx canister create+` or when you register, build, and deploy a canister with `+dfx deploy+`.
+
+If you are deploying on the {IC}, you typically create your cycles wallet by converting ICP tokens to cycles, transferring the cycles to a new canister identifier, and updating the canister with the default cycles wallet WebAssembly module.
+
+After you have a cycles wallet on the local or remote network, you can use the  `+dfx wallet balance+` command or the `+wallet_balance+` method to check the current cycle balance.
+
+To check the cycles balance in a local project:
+
+. Open a terminal and navigate to the root directory of the project.
+. Start the {IC} locally by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
+. Display the cycle balance from the cycles wallet associated with the currently-selected identity by running the following command:
++
+[source,bash]
+----
+dfx wallet balance
+----
++
+The command displays output similar to the following:
++
+....
+78000000000000 cycles.
+....
+
+
+For example, if your principal is a controller for the `h5aet-waaaa-aaaab-qaamq-cai` cycles wallet, you check check the current cycle balance by running the following command:
+
+....
+dfx canister --network ic call h5aet-waaaa-aaaab-qaamq-cai wallet_balance
+....
+
+The command returns the balance using Candid format as a record with an amount field (represented by the hash 3_573_748_184) and a balance of
+6,895,656,625,450 cycles like this:
+
+....
+(record { 3_573_748_184 = 6_895_656_625_450 })
+....
 
 [[wallet-create-wallets]]
 == Create a new cycles wallet
@@ -60,29 +113,6 @@ The command returns the principal for the new canister you created:
 (record { 1_313_628_723 = principal "dxqg5-iyaaa-aaaab-qaawa-cai" })
 ....
 
-
-[[wallet-get-controllers]]
-== List the current controllers
-
-Use the `get_controllers` method to list the principals that have full control over a specified cycles wallet canister.
-
-For example:
-
-....
-dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai get_controllers
-....
-
-The command returns a list of principals similar to the following:
-
-....
-(
-  vec {
-    principal "zen7w-sjxmx-jcslx-ey4hf-rfxdq-l4soz-7ie3o-hti3o-nyoma-nrkwa-cqe";
-    principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe";
-  },
-)
-....
-
 [[wallet-add-controller]]
 == Add a controller
 
@@ -101,6 +131,55 @@ To make the cycles wallet a controller of itself, you would run a command simila
 ....
 dfx canister --network ic --no-wallet call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "f3yw6-7qaaa-aaaab-qaabq-cai")'
 ....
+
+[[wallet-get-controllers]]
+== List the current controllers
+
+If you are doing local development, your cycles wallet is created when you register a new canister identifier using `+dfx canister create+` or when you register, build, and deploy a canister with `+dfx deploy+`.
+
+If you are deploying on the {IC}, you typically create your cycles wallet by converting ICP tokens to cycles and transferring the cycles to a new canister identifier.
+
+After you have a cycles wallet on the local or remote network, you can use the  `+dfx wallet controllers+` command or the `get_controllers` method to list the principals that have full control over a specified cycles wallet canister.
+
+To list the controllers for a cycles wallet in a local project:
+
+. Open a terminal and navigate to the root directory of the project.
+. Start the {IC} locally by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
+. List the principal identifiers that have full control over the cycles wallet for the current project by running the following command:
++
+[source,bash]
+----
+dfx wallet controllers
+----
++
+The command displays the textual representation of the principals that have control over the cycles wallet with output similar to the following:
++
+....
+tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+....
+
+For example:
+
+....
+dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai get_controllers
+....
+
+The command returns a list of principals similar to the following:
+
+....
+(
+  vec {
+    principal "zen7w-sjxmx-jcslx-ey4hf-rfxdq-l4soz-7ie3o-hti3o-nyoma-nrkwa-cqe";
+    principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe";
+  },
+)
+....
+
 
 [[wallet-remove-controller]]
 == Remove a controller
@@ -156,23 +235,6 @@ For example:
 dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai deauthorize '(principal "zdm3q-uxmkz-lsghp-r737v-dgwav-rinn2-hs3zf-fnib3-2rylb-3kuek-hae")'
 ....
 
-[[wallet-check-balance]]
-== Check the cycle balance
-
-Use the `wallet_balance` method to check the current cycle balance.
-
-For example, if your principal is a controller for the `h5aet-waaaa-aaaab-qaamq-cai` cycles wallet, you check check the current cycle balance by running the following command:
-
-....
-dfx canister --network ic call h5aet-waaaa-aaaab-qaamq-cai wallet_balance
-....
-
-The command returns the balance using Candid format as a record with an amount field (represented by the hash 3_573_748_184) and a balance of
-6,895,656,625,450 cycles like this:
-
-....
-(record { 3_573_748_184 = 6_895_656_625_450 })
-....
 
 [[wallet-send]]
 == Send cycles to a canister

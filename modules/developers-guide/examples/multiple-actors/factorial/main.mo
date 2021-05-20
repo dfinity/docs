@@ -1,6 +1,7 @@
 actor Factorial {
-  public func fac(n: Nat) : async Nat {
-    func go(m: Nat) : Nat {
+
+  public func fac(n : Nat) : async Nat {
+    func go(m : Nat) : Nat {
       if (m == 0) {
         1
       } else {
@@ -9,4 +10,5 @@ actor Factorial {
     };
     go(n)
   }
+
 }

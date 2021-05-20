@@ -91,7 +91,13 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
     <h1 class="intro">Start Building on the Internet Computer</h1>
 
     <div class="home-cards-grid">
-        <a class="home-card" href="https://dfinity.org/grants/">
+       
+       <a class="home-card" href="https://sdk.dfinity.org/docs/quickstart/quickstart-intro.html">
+        <h3 class="home-card-header">Quick Start</h3>
+            <p>Get started with coding on the Internet Computer</p>
+       </a>
+      
+      <a class="home-card" href="https://dfinity.org/grants/">
         <h3 class="home-card-header">Developer Grant</h3>
             <p>Building a compelling tool or service on the Internet Computer?</p>
         </a>
@@ -106,6 +112,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
         <h3 class="home-card-header">IC ABCs</h3>
             <p>Learn the fundamentals of building on the Internet Computer in no time.</p>
         </a>
+        
     </div>
 </div>
 

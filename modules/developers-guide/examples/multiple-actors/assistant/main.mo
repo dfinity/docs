@@ -4,15 +4,15 @@ import Nat "mo:base/Nat";
 // Define the actor
 actor Assistant {
 
-	stable var todos : [ToDo] = [];
-	stable var nextId : Nat = 1;
+  stable var todos : [ToDo] = [];
+  stable var nextId : Nat = 1;
 
-// Define to-do item properties
-type ToDo = {
-	id: Nat;
-	description: Text;
-	completed: Bool;
-};
+  // Define to-do item properties
+  type ToDo = {
+    id : Nat;
+    description : Text;
+    completed : Bool;
+  };
 
   // Add to-do item utility
   func add(todos : [ToDo], desc : Text, nextId : Nat) : [ToDo] {
@@ -21,7 +21,7 @@ type ToDo = {
       description = desc;
       completed = false;
     };
-    Array.append<ToDo>(todos, [todo])
+    Array.append(todos, [todo])
 };
 
   // Show to-do item utility

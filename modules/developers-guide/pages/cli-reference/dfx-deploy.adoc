@@ -9,7 +9,7 @@ This command simplifies the developer workflow by enabling you to run one comman
 ....
 dfx canister create --all
 dfx build
-dfx canister install -all
+dfx canister install --all
 ....
 
 Note that you can only run this command from within the project directory structure.

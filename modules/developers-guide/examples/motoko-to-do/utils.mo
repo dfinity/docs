@@ -7,7 +7,6 @@ import Types "./types";
 
 module {
 
-
   // abbreviate Types.ToDo
   type ToDo = Types.ToDo; 
 

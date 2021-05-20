@@ -14,7 +14,7 @@ actor RockPaperScissors {
   };
 
   public func contest() : async Text {
-    for (i in I.range(0,99)) {
+    for (i in I.range(0, 99)) {
       battle_round();
     };
     var winner = "The contest was a draw";
@@ -46,11 +46,11 @@ actor RockPaperScissors {
   };
   
   // Hard-coded players and choices
-  func bob(last: Choice) : Choice {
+  func bob(last : Choice) : Choice {
     return #paper;
   };
 
-  func alice(last: Choice) : Choice {
+  func alice(last : Choice) : Choice {
     return #rock;
   };
 };

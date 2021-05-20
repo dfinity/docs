@@ -1,6 +1,10 @@
-// Define to-do item properties
-type ToDo = {
-     id: Nat;
-     description: Text;
-     completed: Bool;
-};
+module { 
+  
+  // ToDo item properties
+  public type ToDo = {
+    id : Nat;
+    description : Text;
+    completed : Bool;
+  };
+
+}

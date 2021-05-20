@@ -1,32 +1,33 @@
-import utils "utils";
-import types "types";
+import Utils "utils";
+import Types "types";
 
-type ToDo = types.ToDo;
 
 // Define the actor
 actor Assistant {
 
-    var todos : [ToDo] = [];
-    var nextId : Nat = 1;
+  type ToDo = Types.ToDo;
 
-    public query func getTodos () : async [ToDo] {
-        todos
-    };
+  var todos : [ToDo] = [];
+  var nextId : Nat = 1;
 
-    public func addTodo (description : Text) : async () {
-        todos := utils.add(todos, description, nextId);
-        nextId += 1;
-    };
+  public query func getTodos() : async [ToDo] {
+    todos
+  };
 
-    public func completeTodo (id : Nat) : async () {
-        todos := utils.complete(todos, id);
-    };
+  public func addTodo(description : Text) : async () {
+    todos := Utils.add(todos, description, nextId);
+    nextId += 1;
+  };
 
-    public query func showTodos () : async Text {
-        utils.show(todos)
-    };
+  public func completeTodo(id : Nat) : async () {
+    todos := Utils.complete(todos, id);
+  };
 
-    public func clearCompleted () : async () {
-        todos := utils.clear(todos);
-    };
+  public query func showTodos() : async Text {
+    Utils.show(todos)
+  };
+
+  public func clearCompleted() : async () {
+    todos := Utils.clear(todos);
+  };
 };

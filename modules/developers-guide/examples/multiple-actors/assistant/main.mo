@@ -15,10 +15,10 @@ actor Assistant {
   };
 
   // Add to-do item utility
-  func add(todos : [ToDo], desc : Text, nextId : Nat) : [ToDo] {
+  func add(todos : [ToDo], description : Text, id : Nat) : [ToDo] {
     let todo : ToDo = {
-      id = nextId;
-      description = desc;
+      id = id;
+      description = description;
       completed = false;
     };
     Array.append(todos, [todo])

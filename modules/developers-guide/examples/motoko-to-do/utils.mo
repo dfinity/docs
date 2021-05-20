@@ -48,7 +48,7 @@ module {
   };
 
   // Clear to-do item utility
-  public func clear(todos: [ToDo]) : [ToDo] {
+  public func clear(todos : [ToDo]) : [ToDo] {
     var updated : [ToDo] = [];
     for (todo : ToDo in todos.vals()) {
       if (not todo.completed) {

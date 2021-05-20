@@ -395,4 +395,4 @@ This command displays output similar to the following:
 Transfer sent at BlockHeight: 59513
 ....
 
-You can then use the `+dfx ledger --network ic balance+` command to check your account balance reflects the transaction you just made.
+You can then use the `+dfx ledger --network ic balance+` command to check that your account balance reflects the transaction you just made.

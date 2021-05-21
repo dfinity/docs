@@ -1,7 +1,7 @@
 = dfx wallet
 :sdk-short-name: DFINITY Canister SDK
 
-Use the `+dfx wallet+` command with subcommands and flags to manage the wallets of your identities and to send cycles to the wallets of other account wallet canisters.
+Use the `+dfx wallet+` command with subcommands and flags to manage the cycles wallets of your identities and to send cycles to the wallets of other account cycles wallet canisters.
 
 The basic syntax for running the `+dfx wallet+` commands is:
 
@@ -27,38 +27,38 @@ For reference information and examples that illustrate using `+dfx wallet+` comm
 
 |<<dfx wallet add-controller,`+add-controller+`>> | Add a controller using the selected identity's principal. 
 
-|<<dfx wallet addresses,`+addresses+`>> |Displays the address book of the wallet.
+|<<dfx wallet addresses,`+addresses+`>> |Displays the address book of the cycles wallet.
 
-|<<dfx wallet authorize,`+authorize+`>> |Authorize a custodian by principal for the selected identity's wallet
+|<<dfx wallet authorize,`+authorize+`>> |Authorize a custodian by principal for the selected identity's cycles wallet
 
-|<<dfx wallet balance,`+balance+`>> |Displays the cycles balance of the selected identity.
+|<<dfx wallet balance,`+balance+`>> |Displays the cycles wallet balance of the selected identity.
 
-|<<dfx wallet controllers,`+controllers+`>> |Displays a list of the selected identity's wallet controllers. 
+|<<dfx wallet controllers,`+controllers+`>> |Displays a list of the selected identity's cycles wallet controllers. 
 
-|<<dfx wallet custodians,`+custodians+`>> |Displays a list of the selected identity's wallet custodians.
+|<<dfx wallet custodians,`+custodians+`>> |Displays a list of the selected identity's cycles wallet custodians.
 
-|<<dfx wallet deauthorize,`+deauthorize+`>> | Deauthorize a wallet custodian using the custodian's principal.
+|<<dfx wallet deauthorize,`+deauthorize+`>> | Deauthorize a cycles wallet custodian using the custodian's principal.
 
 |`+help+` |Displays a usage message and the help of the given subcommand(s).
 
-|<<dfx wallet name,`+name+`>> |Returns the name of the wallet if you've used the `+dfx wallet set-name+` command.
+|<<dfx wallet name,`+name+`>> |Returns the name of the cycles wallet if you've used the `+dfx wallet set-name+` command.
 
-|<<dfx wallet remove-controller,`+remove-controller+`>> |Removes a specified controller from the selected identity's wallet. 
+|<<dfx wallet remove-controller,`+remove-controller+`>> |Removes a specified controller from the selected identity's cycles wallet. 
 
-|<<dfx wallet send,`+send+`>> |Sends a specified amount of cyles from the selected identity's wallet to another cycles wallet using the destination wallet canister ID. 
+|<<dfx wallet send,`+send+`>> |Sends a specified amount of cyles from the selected identity's cycles wallet to another cycles wallet using the destination wallet canister ID. 
 
-|<<dfx wallet set-name,`+set-name+`>> |Specify a name for your wallet. 
+|<<dfx wallet set-name,`+set-name+`>> |Specify a name for your cycles wallet. 
 
-|<<dfx wallet upgrade,`+upgrade+`>> |Upgrade the wallet's Wasm module to the current Wasm bundled with DFX.
+|<<dfx wallet upgrade,`+upgrade+`>> |Upgrade the cycles wallet's Wasm module to the current Wasm bundled with DFX.
 |===
 
 == Using your wallet
 
-After you have used the `+dfx identity deploy-wallet+` command to create a wallet canister tied to an identity, you can use `+dfx wallet+` commands to modify your wallet settings, send cycles to other wallets, and add or remove controllers and custodians. 
+After you have used the `+dfx identity deploy-wallet+` command to create a cycles wallet canister tied to an identity, you can use `+dfx wallet+` commands to modify your cycles wallet settings, send cycles to other cycles wallets, and add or remove controllers and custodians. 
 
 == dfx wallet add-controller
 
-Use the `+dfx wallet add-controller+` command to add controllers using their principals. 
+Use the `+dfx wallet add-controller+` command to add controllers to the selected identity's cycles wallet using their principals. 
 
 === Basic usage
 
@@ -85,12 +85,12 @@ Use the following necessary argument with the `+dfx wallet add-controller+` comm
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Argument |Description
-|`+<controller>+` | Specify the principal of the identity you would like to add as a controller.
+|`+<controller>+` | Specify the principal of the identity you would like to add as a controller to the selected identity's cycles wallet.
 |===
 
 === Example
 
-For example, to add alice_auth as a controller, specify her principal in the following command
+For example, to add alice_auth as a controller, specify her principal in the following command:
 
 [source,bash]
 ----
@@ -104,7 +104,7 @@ This command returns the information of identities that are associated with the 
 * An identity's principal (`+Id+`).
 * `+Kind+` which can be one of `+User+`,`+Canister+`, or `+Unknown+`. 
 * `+Role+` which can be one of `+Contact+`,`+Controller+`, or `+Custodian+`. 
-* `+Name+` if the wallet's name is set. 
+* `+Name+` if the cycle wallet's name is set. 
 
 === Basic usage
 
@@ -142,7 +142,7 @@ Id: hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae, Kind: Unkno
 
 == dfx wallet authorize 
 
-Use the `+dfx wallet authorize+` command to authorize a wallet custodian.
+Use the `+dfx wallet authorize+` command to authorize a cycles wallet custodian.
 
 === Basic usage
 
@@ -169,7 +169,7 @@ Use the following necessary argument with the `+dfx wallet authorize+` command.
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Argument |Description
-|`+<custodian>+` | Specify the principal of the identity you would like to add as a custodian.
+|`+<custodian>+` | Specify the principal of the identity you would like to add as a custodian to the selected identity's cycles wallet.
 |===
 
 === Example
@@ -205,7 +205,7 @@ You can use the following optional flags with the `+dfx wallet balance+` command
 
 === Examples
 
-Check your wallet balance
+Check the balance of the selected identity's cycles wallet.
 
 [source,bash]
 ----
@@ -220,7 +220,7 @@ This command displays the number of cycles in your cycles wallet. For example:
 
 == dfx wallet controllers
 
-Use the `+dfx wallet controllers+` command to list the principals of the identities that are controllers of the selected identity's wallet. 
+Use the `+dfx wallet controllers+` command to list the principals of the identities that are controllers of the selected identity's cycles wallet. 
 
 === Basic usage
 
@@ -242,7 +242,7 @@ You can use the following optional flags with the `+dfx wallet controllers+` com
 
 === Examples
 
-List the controllers of your identity's wallet. 
+List the controllers of your selected identity's cycles wallet. 
 
 [source,bash]
 ----
@@ -258,7 +258,7 @@ hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae
 
 == dfx wallet custodians
 
-Use the `+dfx wallet custodians+` command to list the principals of the identities that are custodians of the selected identity's wallet. Identities that are added as controllers are also listed as custodians
+Use the `+dfx wallet custodians+` command to list the principals of the identities that are custodians of the selected identity's cycles wallet. Identities that are added as controllers are also listed as custodians.
 
 === Basic usage
 
@@ -280,7 +280,7 @@ You can use the following optional flags with the `+dfx wallet custodians+` comm
 
 === Examples
 
-List the custodians of your identity's wallet. 
+List the custodians of your selected identity's cycles wallet. 
 
 [source,bash]
 ----
@@ -297,7 +297,7 @@ hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae
 
 == dfx wallet deauthorize
 
-Use the `+dfx wallet deauthorize+` command to remove a wallet custodian.
+Use the `+dfx wallet deauthorize+` command to remove a custodian from the cycles wallet.
 
 === Basic usage
 
@@ -338,7 +338,7 @@ dfx wallet deauthorize dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em2
 
 == dfx wallet name
 
-Use the `+dfx wallet name+` command to display the name of the selected identity's wallet if it has ben set using the `+dfx wallet set-name+` command. 
+Use the `+dfx wallet name+` command to display the name of the selected identity's cycles wallet if it has ben set using the `+dfx wallet set-name+` command. 
 
 === Basic usage
 
@@ -360,7 +360,7 @@ You can use the following optional flags with the `+dfx wallet name+` command.
 
 === Example
 
-If the name of your wallet is "Terrances_wallet", then the command would return the following:
+If you have named your cycles wallet "Terrances_wallet", then the command would return the following:
 
 ....
 Terrances_wallet
@@ -368,7 +368,7 @@ Terrances_wallet
 
 == dfx wallet remove-controller
 
-Use the `+dfx wallet remove-controller+` command to remove a wallet controller.
+Use the `+dfx wallet remove-controller+` command to remove a controller of your selected identity's cycles wallet.
 
 === Basic usage
 
@@ -409,7 +409,7 @@ dfx wallet remove-controller dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfp
 
 == dfx wallet send
 
-Use the `+dfx wallet send+` command to send cycles from the selected identity's wallet to another cycles wallet using the destination wallet's Canister ID. 
+Use the `+dfx wallet send+` command to send cycles from the selected identity's cycles wallet to another cycles wallet using the destination cycle wallet's Canister ID. 
 
 === Basic usage
 
@@ -447,14 +447,15 @@ You must specify the following arguments for the `+dfx wallet send+` command.
 |===
 |Argument |Description
 
-|`+<destination>+` |Specify the destination wallet's Canister ID.
+|`+<destination>+` |Specify the destination cycle wallet using its Canister ID.
 |`+<amount>+` |Specify the number of cycles to send.
 |===
 
 === Examples
 
-Send cycles from the selected identity's wallet to another cycles wallet.
-For example, to send 2,000,000,000 cycles from the wallet of the selected identity, `+<ic_admin>+`, to the wallet of the destination identity, `+<buffy_standard>+` with a wallet address `+r7inp-6aaaa-aaaaa-aaabq-cai+`, run the following command:
+Send cycles from the selected identity's cycles wallet to another cycles wallet.
+
+For example, to send 2,000,000,000 cycles from the cycles wallet of the selected identity, `+<ic_admin>+`, to the cycles wallet of the destination identity, `+<buffy_standard>+` with a wallet address `+r7inp-6aaaa-aaaaa-aaabq-cai+`, run the following command:
 
 [source,bash]
 ----
@@ -463,7 +464,7 @@ dfx wallet send r7inp-6aaaa-aaaaa-aaabq-cai 2000000000
 
 == dfx wallet set-name
 
-Use the `+dfx wallet set-name+` command to assign a name to the selected identity's wallet.
+Use the `+dfx wallet set-name+` command to assign a name to the selected identity's cycles wallet.
 
 === Basic usage
 
@@ -479,7 +480,7 @@ You must specify the following arguments for the `+dfx wallet set-name+` command
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Argument |Description
-|`+<name>+` |Specify a name for the wallet.
+|`+<name>+` |Specify a name for the cycles wallet.
 |===
 
 === Flags
@@ -495,7 +496,7 @@ You can use the following optional flags with the `+dfx wallet set-name+` comman
 
 === Example
 
-If you want to set the name of the current wallet to "Terrances_wallet" you can run the following command:
+If you want to set the name of the current identity's cycles wallet to "Terrances_wallet" you can run the following command:
 
 [source,bash]
 ----
@@ -504,7 +505,7 @@ dfx wallet set-name Terrances_wallet
 
 == dfx wallet upgrade
 
-Use the `+dfx wallet upgrade+` command to upgrade the wallet's Wasm module to the current Wasm bundled with DFX.
+Use the `+dfx wallet upgrade+` command to upgrade the cycle wallet's Wasm module to the current Wasm bundled with DFX.
 
 === Basic usage
 

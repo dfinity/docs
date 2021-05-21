@@ -200,7 +200,7 @@ To start the network locally:
 +
 [source,bash]
 ----
-dfx start
+dfx start --background
 ----
 +
 Depending on your platform and local security settings, you might see a warning displayed.

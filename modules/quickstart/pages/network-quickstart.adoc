@@ -36,6 +36,7 @@ Currently, the {sdk-short-name} only runs on computers with a macOS or Linux ope
 You must have *cycles* available to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
 +
 For information about how to get ICP tokens, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
+For an introduction to using the Network Nervous System application to manage ICP tokens, see link:../token-holders/nns-app-quickstart{outfilesuffix}[Network nervous system application quick start].
 For information about using your default cycles wallet after you have created it, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
 
 This tutorial assumes you know how to perform common tasks—like opening a terminal and running commands—on your computer.
@@ -249,7 +250,7 @@ If the transaction is successful, the ledger records the event and you should se
 +
 ....
 Transfer sent at BlockHeight: 20
-Canister created with id: "53zcu-tiaaa-aaaaa-qaaba-cai"
+Canister created with id: "gastn-uqaaa-aaaae-aaafq-cai"
 ....
 . Install the cycles wallet code in the newly-created canister placeholder by running a command similar to the following:
 +
@@ -261,14 +262,14 @@ dfx identity --network ic deploy-wallet <canister-identifer>
 For example:
 +
 ....
-dfx identity --network ic deploy-wallet 53zcu-tiaaa-aaaaa-qaaba-cai
+dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai
 ....
 +
 This command displays output similar to the following:
 +
 ....
 Creating a wallet canister on the ic network.
-The wallet canister on the "ic" network for user "default" is "53zcu-tiaaa-aaaaa-qaaba-cai"
+The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae-aaafq-cai"
 ....
 
 == Validate your cycles wallet
@@ -287,7 +288,7 @@ dfx identity --network ic get-wallet
 The command displays the canister identifier for your cycles wallet with output similar to the following:
 +
 ....
-53zcu-tiaaa-aaaaa-qaaba-cai
+gastn-uqaaa-aaaae-aaafq-cai
 ....
 . Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
 +
@@ -309,8 +310,32 @@ You can also access your default cycles wallet in a web browser by using a URL s
 https://<WALLET-CANISTER-ID>.raw.ic0.app
 ....
 +
-The first time you access the cycles wallet in a browser, you are redirected to the Internet Identity service and asked to enter a User Number or register with the service as a new user. 
-For more information about the Internet Identity service and registering authentication devices, see link:../ic-identity-guide/auth-how-to{outfilesuffix}[How to use the Internet Identity service].
+The first time you access the application, you see a notice that you are using an Anonymous Device and are prompted to authenticate your identity, authorize access to the wallet, and register your device.
+. Click *Authenticate* to continue to the Internet Identity service.
+. Enter your *User Number* if you have previously registered an identity or register with the service as a new user.
++
+For more information about the Internet Identity service and how to register multiple authentication devices and methods, see link:../ic-identity-guide/auth-how-to{outfilesuffix}[How to use the Internet Identity service].
+. Authenticate using your user number and the authentication method—for example, a security key or fingerprint—you have registered.
+. Click *Proceed* to access to the default cycles wallet application. 
+. Register the device you are using for this session by copying the command displayed in the *Register Device* page and running it in a terminal.
++
+For example, call the `+authorize+` method for the cycles wallet canister with a command similar to the following:
++
+....
+dfx canister --no-wallet --network ic call "gastn-uqaaa-aaaae-aaafq-cai" authorize '(principal "ejta3-neil3-qek6c-i7rdw-sxreh-lypfe-v6hjg-6so7x-5ugze-3iohr-2qe")'
+....
++
+Be sure that the command you copy has the `+--no-wallet+` option and the correct network (`+ic+`) alias.
+You should recognize the canister identifier—in this example, `+gastn-uqaaa-aaaae-aaafq-cai+`—as the cycles wallet associated with your identity.
+If this is your first wallet on the network, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
++
+When the browser refreshes after running the `+authorize+` command, the cycles wallet for your principal account is displayed.
+. View your cycles balance and activity in the browser.
++
+For example:
++
+
+image::cycles-wallet.png[]
 +
 For more information about the commands and methods available for working with the default cycles wallet, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
 
@@ -330,7 +355,6 @@ npm install
 ----
 +
 For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
-
 . Register, build, and deploy your first application by running the following command:
 +
 [source,bash]
@@ -373,6 +397,20 @@ Uploading assets to asset canister...
   /index.js.LICENSE.txt (gzip) 1/1 (285 bytes)
 Deployed canisters.
 ....
++
+If you didn't convert enough ICP tokens to cycles to complete the operation, you can add cycles to your cycles wallet by running a command similar to the following:
++
+....
+dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005
+....
++
+This command converts an additional `+1.005+` ICP tokens to cycles for the `+gastn-uqaaa-aaaae-aaafq-cai+` cycles wallet identifier.
+The command returns output similar to the following:
++
+....
+Transfer sent at BlockHeight: 81520
+Canister was topped up!
+....
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]
@@ -413,13 +451,13 @@ If you didn’t make a note of the canister identifier, you can look it up by ru
 +
 [source,bash]
 ----
-dfx canister id hello_assets
+dfx canister --network ic id hello_assets
 ----
 +
 For example, the full URL should look similar to the following:
 +
 ....
-https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app
+https://gsueu-yaaaa-aaaae-aaagq-cai.raw.ic0.app
 ....
 +
 Navigating to this URL displays the HTML entry page for the template application.

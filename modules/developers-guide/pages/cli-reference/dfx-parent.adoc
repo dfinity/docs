@@ -86,6 +86,8 @@ By default, all canisters are deployed.
 
 |link:dfx-identity{outfilesuffix}[`+identity+`] |Enables you to create and manage the identities used to communicate with the Internet Computer network.
 
+|link:dfx-ledger{outfilesuffix}[`+ledger+`] |Enables you to interact with accounts in the ledger canister running on the {IC}.
+
 |link:dfx-new{outfilesuffix}[`+new+`] |Creates a new project.
 
 |link:dfx-ping{outfilesuffix}[`+ping+`] |Sends a response request to a specified {IC} network to determine network connectivity.
@@ -98,6 +100,9 @@ If the connection is successful, the {IC} replies with its status.
 |link:dfx-stop{outfilesuffix}[`+stop+`] |Stops the local network replica.
 
 |link:dfx-upgrade{outfilesuffix}[`+upgrade+`] |Upgrades the version of `+dfx+` installed on the local computer to the latest version available.
+
+|link:dfx-wallet{outfilesuffix}[`+dfx wallet+`] |Enables you to manage cycles, controllers, custodians, and addresses for the default cycles wallet associated with the currently-selected identity.
+
 |===
 
 == Examples

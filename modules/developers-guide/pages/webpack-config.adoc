@@ -151,7 +151,7 @@ There are a few simple shortcuts you can use to iterate faster in your developme
 For example, you can choose to build and deploy only specific canisters instead of all canisters in a project.
 
 If most of your changes are in the front-end for your application, one of the most effective ways you can iterate faster is by installing and configuring the webpack development server.
-THe webpack development server—`+webpack-dev-server+`—provides in-memory access to the webpack assets, enabling you to make changes and see them reflected in the browser right away using live reloading.
+The webpack development server—`+webpack-dev-server+`—provides in-memory access to the webpack assets, enabling you to make changes and see them reflected in the browser right away using live reloading.
 
 To install and configure `+webpack-dev-server+`:
 

@@ -31,6 +31,28 @@ To check the identity you are currently using, run the following command:
 dfx identity whoami
 ----
 
+== Controller and custodian roles
+
+A user principal or canister identifier can be assigned to a *controller* or *custodian* role.
+
+A *controller* is the most privileged role and a principal assigned to the controller role can perform privileged tasks including the following:
+
+* Add and remove other principals as controllers.
+* Authorize and deauthorize other principals as custodians.
+* Add entries to the cycles wallet address book.
+* Access the cycles wallet balance and all other information.
+* Send cycles to other canisters.
+* Act as the message calling principal in calls to other canisters.
+* Create canisters and additional cycles wallets.
+* Rename the wallet.
+
+A principal assigned to the *custodian* role can only perform a subset of cycles wallet management tasks, including the following:
+
+* Access the wallet information.
+* Send cycles to other canisters.
+* Act as the message calling principal in calls to other canisters.
+* Create canisters.
+
 [[wallet-check-balance]]
 == Check the cycle balance
 

@@ -38,20 +38,22 @@ A user principal or canister identifier can be assigned to a *controller* or *cu
 A *controller* is the most privileged role and a principal assigned to the controller role can perform privileged tasks including the following:
 
 * Add and remove other principals as controllers.
-* Authorize and deauthorize other principals as custodians.
+* Authorize and de-authorize other principals as custodians.
 * Add entries to the cycles wallet address book.
 * Access the cycles wallet balance and all other information.
 * Send cycles to other canisters.
-* Act as the message calling principal in calls to other canisters.
+* Act as the "message-caller" principal in calls to other canisters.
 * Create canisters and additional cycles wallets.
 * Rename the wallet.
 
 A principal assigned to the *custodian* role can only perform a subset of cycles wallet management tasks, including the following:
 
-* Access the wallet information.
+* Access the cycles wallet balance and all other information.
 * Send cycles to other canisters.
-* Act as the message calling principal in calls to other canisters.
+* Act as the "message-caller" principal in calls to other canisters.
 * Create canisters.
+
+NOTE: Authorizing a principal as a custodian does not automatically grant the principal access to a cycles wallet. The identity assigned to the custodian role must also be assigned a cycles wallet canister identifier. For example, if you authorize the identity `+alice_custodian+` as a custodian of a cycles wallet (`+rwlgt-iiaaa-aaaaa-aaaaa-cai+`) in a local project, that user would also need to be assigned to use that wallet with the `+dfx identity set-wallet rwlgt-iiaaa-aaaaa-aaaaa-cai+` command. 
 
 [[wallet-check-balance]]
 == Check the cycle balance
@@ -62,6 +64,10 @@ If you are deploying on the {IC}, you typically create your cycles wallet by con
 
 After you have a cycles wallet on the local or remote network, you can use the  `+dfx wallet balance+` command or the `+wallet_balance+` method to check the current cycle balance.
 
+=== Check you cycles balance when developing locally
+
+If you are doing local development, you can use the  `+dfx wallet balance+` command to check the current cycles balance on a project-by-project basis.
+
 To check the cycles balance in a local project:
 
 . Open a terminal and navigate to the root directory of the project.
@@ -71,7 +77,7 @@ To check the cycles balance in a local project:
 ----
 dfx start --background
 ----
-. Display the cycle balance from the cycles wallet associated with the currently-selected identity by running the following command:
+. Display the cycles balance from the cycles wallet associated with the currently-selected identity by running the following command:
 +
 [source,bash]
 ----
@@ -84,7 +90,35 @@ The command displays output similar to the following:
 78000000000000 cycles.
 ....
 
+=== Check the cycles balance on the {IC}
 
+If you have deployed a cycles wallet on the {IC} main network, you can use the  `+dfx wallet balance+` command to check the current cycles balance on the network.
+
+To check the cycles balance on the {IC}:
+
+. Open a terminal and navigate to a directory that contains a `+dfx.json+` configuration file.
+. Check your connection to the {IC} by running the following command:
++
+[source,bash]
+----
+dfx ping ic
+----
+. Display the cycle balance from the cycles wallet associated with the currently-selected identity by running the following command:
++
+[source,bash]
+----
+dfx wallet --network ic balance
+----
++
+The command displays output similar to the following:
++
+....
+67991783875995 cycles.
+....
+
+=== Call the cycles wallet_balance method
+
+You can also check the cycles balance by calling the `+wallet_balance+` method in the cycles wallet canister directly.
 For example, if your principal is a controller for the `h5aet-waaaa-aaaab-qaamq-cai` cycles wallet, you check check the current cycle balance by running the following command:
 
 ....
@@ -98,45 +132,40 @@ The command returns the balance using Candid format as a record with an amount f
 (record { 3_573_748_184 = 6_895_656_625_450 })
 ....
 
-[[wallet-create-wallets]]
-== Create a new cycles wallet
-
-Use the `wallet_create_wallet` method to create a new cycles wallet canister with an initial cycle balance and, optionally, with a specific principal as its controller.
-If you don't specify a controlling principal, the cycles wallet you use to create the new wallet will be the new wallet's controller.
-
-For example, you can run a command similar to the following to create a new wallet and assign a principal as a controller:
-
-....
-dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_wallet '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
-....
-
-The command returns the principal for the new wallet:
-
-....
-(record { 1_313_628_723 = principal "dcxxq-jqaaa-aaaab-qaavq-cai" })
-....
-
-[[wallet-create-canister]]
-== Register a new canister identifier
-
-Use the `wallet_create_canister` method to register a new canister identifier on the {IC}. 
-This method creates a new "empty" canister placeholder with an initial cycle balance and, optionally, with a specific principal as its controller.
-After you have registered the canister identifier, you can install code for your application as a separate step.
-
-For example, you can run a command similar to the following to create a new wallet and assign a principal as a controller:
-
-....
-dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_canister '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
-....
-
-The command returns the principal for the new canister you created:
-
-....
-(record { 1_313_628_723 = principal "dxqg5-iyaaa-aaaab-qaawa-cai" })
-....
-
 [[wallet-add-controller]]
 == Add a controller
+
+If you are the controller of a cycles wallet, you can add other principals or canister identifiers to the controller role.
+
+To add a controller to a cycles wallet in a local project:
+
+. Open a terminal and navigate to the root directory of the project.
+. Start the {IC} locally by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
+. Display the cycles balance from the cycles wallet associated with the currently-selected identity by running a command similar to the following:
++
+[source,bash]
+----
+dfx wallet add-controller <controller-principal-identifier>
+----
++
+For example, you would run the following command to add the user represented by the principal identifier b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe as a controller of the local cycles wallet:
++
+....
+dfx wallet add-controller b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe
+....
++
+The command displays output similar to the following:
++
+....
+Added b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe as a controller.
+....
+
+=== Call the add_controllers method
 
 Use the `add_controllers` method to add a principal as a controller of the cycles wallet.
 
@@ -310,3 +339,40 @@ Use the following methods to retrieve event and chart information.
 
 * `get_events`: (opt record { from: opt nat32; to: opt nat32; }) -> (vec Event) query;
 * `get_chart`: (opt record { count: opt nat32; precision: opt nat64; } ) -> (vec record { nat64; nat64; }) query;
+
+[[wallet-create-wallets]]
+== Create a new cycles wallet
+
+Use the `wallet_create_wallet` method to create a new cycles wallet canister with an initial cycle balance and, optionally, with a specific principal as its controller.
+If you don't specify a controlling principal, the cycles wallet you use to create the new wallet will be the new wallet's controller.
+
+For example, you can run a command similar to the following to create a new wallet and assign a principal as a controller:
+
+....
+dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_wallet '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
+....
+
+The command returns the principal for the new wallet:
+
+....
+(record { 1_313_628_723 = principal "dcxxq-jqaaa-aaaab-qaavq-cai" })
+....
+
+[[wallet-create-canister]]
+== Register a new canister identifier
+
+Use the `wallet_create_canister` method to register a new canister identifier on the {IC}. 
+This method creates a new "empty" canister placeholder with an initial cycle balance and, optionally, with a specific principal as its controller.
+After you have registered the canister identifier, you can install code for your application as a separate step.
+
+For example, you can run a command similar to the following to create a new wallet and assign a principal as a controller:
+
+....
+dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_canister '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
+....
+
+The command returns the principal for the new canister you created:
+
+....
+(record { 1_313_628_723 = principal "dxqg5-iyaaa-aaaab-qaawa-cai" })
+....

@@ -12,6 +12,8 @@
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
+WARNING: Because of high demand and hardware and software upgrades to increase capacity, general availability of the {IC} network is taking longer than expected. More nodes are coming online daily and we hope to accommodate all interested developers soon. In the meantime, you can continue to develop and deploy projects locally and we encourage you to monitor our progress and stay tuned for updates on the Developer Forum.
+
 [[net-quick-start]]
 This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the {IC} network **running remotely**.
 

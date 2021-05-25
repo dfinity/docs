@@ -116,11 +116,16 @@ Io(
 )
 -----
 
-== Handling orphan processes
+== Address in use error or orphan processes
 
-The dfx execution tool runs multiple processes.
-Sometimes the processes do not get properly terminated.
-If you encounter an issue where you suspect or you receive a message that a process is already running in the background, run the following command:
+If you are developing projects locally, you often have a local version of core {IC} processes—collectively referred to as the `+replica+`—also running either is a separate terminal or in the background.
+If the runnning {IC} processes do not get properly terminated, you might see operating system errors indicating that an address is already in use or or be unable to stop processes normally using the `+dfx stop+` command.
+
+There are several scenarios in which you might encounter this issue. For example, if you run `+dfx start+` in a local project directory then change to a different local project directory without first stopping {IC} processes, you might see this issue.
+
+If you encounter an issue where you suspect or you receive a message that an address is already in use or that a process is already running in the background, perform the following steps:
+
+.
 
 [source,bash]
 ----

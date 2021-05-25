@@ -22,6 +22,8 @@ If you are only deploying projects in a local development environment, see the l
 To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. 
 The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.
 
+CAUTION: Because application subnets are not yet widely available to the general public, canister deployment on the mainnet is currently disabled. Trying to do it will fail and cost you some ICP tokens.
+
 [[net-before]]
 == Before you begin
 

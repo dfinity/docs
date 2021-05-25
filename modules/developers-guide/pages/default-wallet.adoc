@@ -433,6 +433,10 @@ For example:
 dfx wallet --network ic send gastn-uqaaa-aaaae-aaafq-cai 10000000000
 ....
 If the transfer is successful, the command does not displays any output.
++
+
+NOTE: The maximum number of cycles that can be stored in a cycles wallet is 
+two to the power of sixty-four (2^64^ or 18,446,744,073,709,551,616 cycles).
 . Check the cycles wallet balance to see the updated number of cycles available by running the following command:
 +
 [source,bash]

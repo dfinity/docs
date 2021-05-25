@@ -20,8 +20,8 @@ If you are only deploying projects in a local development environment, see the l
 To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. 
 The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.
 
-WARNING: Because of high demand and hardware and software upgrades to increase capacity, general availability of the {IC} network is taking longer than expected. More nodes are coming online daily and we hope to accommodate all interested developers soon. In the meantime, you can continue to develop and deploy projects locally and we encourage you to monitor our progress and stay tuned for updates on the Developer Forum.
-If you attempt to deploy before there are application subnets available, the operation will fail and result in a fractional unit (e8s) loss.
+CAUTION: Capacity for the {IC} continues to expand through proposals to the Network Nervous System (NNS). At this time, subnet capacity is limited to systems canisters and applications that are approved by proposals submitted to the NNS. In the coming weeks, additional application subnets will be added through NNS proposals for general use by the developer community. 
+In the meantime, we encourage you to develop and deploy projects locally. If you attempt to deploy before there are application subnets available, the operation will fail and result in a fractional unit (e8s) loss.
 
 [[net-before]]
 == Before you begin

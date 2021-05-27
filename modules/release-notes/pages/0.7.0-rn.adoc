@@ -1,0 +1,26 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+:release: 0.7.0
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
+
+== New features and capabilities
+
+
+== Issues fixed in this release
+
+This section covers any reported issues that have been fixed in this release.
+
+
+
+== Known issues and limitations
+
+This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+

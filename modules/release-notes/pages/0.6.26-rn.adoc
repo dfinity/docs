@@ -57,4 +57,4 @@ If you want to experiment with access control using the link:../developers-guide
 
 If you access the `@dfinity/agent` JavaScript agent directly in a project—that is, without going through the bootstrap server—you will not be able to import the `bls` certification scheme with the `agent-js` release. 
 
-If your application uses the JavaScript agent directly, you should use the latest beta version (`@dfinity/agent@0.6.26-beta.1`) of the agent instead of the published version.
+If your application uses the JavaScript agent directly, you should use the latest version of the agent.

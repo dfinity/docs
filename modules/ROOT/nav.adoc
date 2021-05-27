@@ -86,6 +86,7 @@
 ** xref:rust-guide:rust-counter.adoc[Simple counter tutorial]
 ** xref:rust-guide:multiply-dependency.adoc[Basic dependency tutorial]
 ** xref:rust-guide:rust-profile.adoc[Profile tutorial]
+** xref:rust-guide:rust-optimize.adoc[Optimize a Rust program]
 ////
 ** xref:rust-guide:rust-asset-storage.adoc[Asset storage tutorial] 
 ** xref:rust-guide:rust-chess-autonomous.adoc[Autonomous game tutorial]

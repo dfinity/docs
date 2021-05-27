@@ -12,7 +12,9 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
 
 == New features and capabilities
-The most significant new features and capabilities include the following updates:
+The most significant new features and capabilities are updates to `+dfx+`.
+
+=== DFX
 
 * Addition of ledger subcommands
 +
@@ -56,7 +58,13 @@ A dedicated candid UI canister is installed on a local network when using `+dfx 
 
 This section covers any reported issues that have been fixed in this release.
 
+=== Deleting a canister on a network removes entries for other networks
 
+This change fixes a bug where deleting a canister on a network removed all other entries for the canister in the `+canister_ids.json+` file.
+
+=== Error message: already in use (os error 48) when issuing dfx start
+
+This fixes an error which occurred when starting a replica right after stopping it.
 
 == Known issues and limitations
 

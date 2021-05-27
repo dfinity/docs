@@ -12,6 +12,44 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
 
 == New features and capabilities
+The most significant new features and capabilities include the following updates:
+
+* Addition of ledger subcommands
++
+`+dfx+` now supports a dedicated `dfx ledger` subcommand. This allows you to interact with the ledger
+canister installed on the Internet Computer. Example commands include `dfx ledger account-id` which
+prints the Account Identifier associated with your selected identity, `dfx ledger transfer` which
+allows you to transfer ICP from your ledger account to another, and `dfx ledger create-canister` which
+allows you to create a canister from ICP.
+For more information on `+dfx ledger+` subcommands, see link:
+
+* Addition of wallet subcommands
++
+`+dfx+` now supports a dedicated `dfx wallet` subcommand. This allows you to interact with the cycles wallet associated with your selected identity. 
++
+The following are just some of the available commands:
++
+** `+dfx wallet balance+` returns the selected identity's cycles wallet balance.
++
+** `+dfx wallet list-addresses+` displays the assigned controllers & custodians of the cycles wallet.
++ 
+You can use `dfx wallet send <destination> <amount>`
+to send cycles to another wallet.
++
+For more information on `+dfx wallet+` see link:
+
+* Add an output type to the `+request-status+` subcommand.
++
+This change allows you to specify the format for the return result for `+dfx canister request-status+`. Formatting options include `+idl+`, `+raw+`, and `+pp+`. 
+
+* The default network for projects is now `ic`
++
+The default network is now the mainnet `+ic` unless otherwise specified.  Additionally, `+--network ic+` now points to the mainnet IC (Sodium has been deprecated.)
+
+* Automatic creation of a candid UI canister
++
+A dedicated candid UI canister is installed on a local network when using `+dfx canister install+` or `+dfx deploy+`.
+
 
 
 == Issues fixed in this release

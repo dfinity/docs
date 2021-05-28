@@ -11,8 +11,12 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
 
+The most significant new features and capabilities are updates to the following:
+
+* <<DFX,DFX>>
+* <<Motoko,Motoko>>
+
 == New features and capabilities
-The most significant new features and capabilities are updates to `+dfx+`.
 
 === DFX
 
@@ -103,32 +107,51 @@ This does not support encodings other than `+identity+`, and doesn't return any 
 
 This also upgrades tokio and reqwest in order to work correctly. There are some performance issues to note (this is slower than the icx-http-server).
 
+=== Motoko
+
+* Reformat to style guidelines.
+
+* Add type bindings 
++
+Add `+Nat.Nat+`, `+Nat8.Nat8+`, etc. to libraries for primitive types.
 
 
 == Issues fixed in this release
 
 This section covers any reported issues that have been fixed in this release.
 
-=== Deleting a canister on a network removes entries for other networks
+=== DFX
 
+* Deleting a canister on a network removes entries for other networks
++
 This change fixes a bug where deleting a canister on a network removed all other entries for the canister in the `+canister_ids.json+` file.
 
-=== Error message: already in use (os error 48) when issuing dfx start
-
+* Error message: already in use (os error 48) when issuing dfx start.
++
 This fixes an error which occurred when starting a replica soon after stopping it.
 
-=== The `+dfx new+` command should not require node
-
+* The `+dfx new+` command should not require node
++
 This fixes the inability to use the `+dfx new+` command to create projects on machines that do not have node installed. 
 
-=== Missing webpack.config plugin
-
+* Missing webpack.config plugin
++
 This adds the missing ProvidePlugin to webpack.config for new projects. 
 
-=== Allow new projects assets to contain non-utf8 files
+* Allow new projects assets to contain non-utf8 files
++
 Previously assets were forced to be valid UTF-8 strings. After this change if a string cannot be converted, in-place variable replacements are ignored.
 
-== Known issues and limitations
+=== Motoko
 
-This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+* No longer confused by distinct, but eponymous, type definitions.
+
+* Numbers of eponymous types and specializations from 1 (not 2)
+
+* Avoids long chains of type equalities by normalizing before translation
+
+//== Known issues and limitations
+
+//This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+
 

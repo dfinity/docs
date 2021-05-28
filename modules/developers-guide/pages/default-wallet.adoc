@@ -62,7 +62,7 @@ NOTE: Authorizing a principal as a custodian does not automatically grant the pr
 
 If you are doing local development, your cycles wallet is created when you register a new canister identifier using `+dfx canister create+` or when you register, build, and deploy a canister with `+dfx deploy+`.
 
-If you are deploying on the {IC}, you typically create your cycles wallet by converting ICP tokens to cycles, transferring the cycles to a new canister identifier, and updating the canister with the default cycles wallet WebAssembly module.
+If you are deploying on the {IC}, you typically create your cycles wallet by converting ICP tokens to cycles, transferring the cycles to a new canister identifier, and updating the canister with the default cycles wallet WebAssembly module (WASM).
 
 After you have a cycles wallet on the local or remote network, you can use the  `+dfx wallet balance+` command or the `+wallet_balance+` method to check the current cycle balance.
 
@@ -137,7 +137,8 @@ The command returns the balance using Candid format as a record with an amount f
 [[wallet-add-controller]]
 == Add a controller
 
-If you are the controller of a cycles wallet, you can add other principals or canister identifiers to the controller role.
+If you are the controller of a cycles wallet, you can add other principals or canister identifiers to the controller role. 
+Adding a principal to the controller role also automatically adds the principal to the custodian role.
 
 To add a controller to a cycles wallet in a local project:
 
@@ -358,6 +359,7 @@ The command returns a list of principals similar to the following:
 == Remove authorization for a custodian
 
 You can use the `+dfx wallet deauthorize+` command or the `+deauthorize+` method to remove a principal as a custodian for a cycles wallet.
+De-authorizing a principal that was previously added as a controller also automatically removes the principal from the controller role.
 
 To remove a custodian for a cycles wallet in a local project:
 

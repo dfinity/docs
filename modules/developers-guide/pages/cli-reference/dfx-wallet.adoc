@@ -58,91 +58,124 @@ After you have used the `+dfx identity deploy-wallet+` command to create a cycle
 
 == dfx wallet add-controller
 
-Use the `+dfx wallet add-controller+` command to add controllers to the selected identity's cycles wallet using their principals. 
+Use the `+dfx wallet add-controller+` to add a controller to the wallet. An identity assigned the role of Controller has the most priviledges and can perform the flowing actions on the selected identity's cycels wallet:
+
+* Rename the cycles wallet.
+
+* Add entries to the address book.
+
+* Add and remove controllers.
+
+* Authorize and deauthorize custodians.
+
+A controller is also a custodian and can perform the following actions associated with that role:
+
+* Access wallet information.
+
+* Send cycles.
+
+* Forward calls.
+
+* Create canisters. 
+
 
 === Basic usage
 
-[source,bash]
+[source,bash,subs="quotes"]
 ----
-dfx wallet add-controller [flag]
+dfx wallet add-controller [option] <controller> [flag]
 ----
 
 === Flags
 
 You can use the following optional flags with the `+dfx wallet add-controller+` command.
 
-[width="100%",cols="<32%,<68%",options="header"]
+[width="100%",cols="<31%,<69%",options="header"]
 |===
 |Flag |Description
+
 |`+-h+`, `+--help+` |Displays usage information.
+
 |`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Options
+
+You can use the following options with the `+dfx canister call+` command.
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Option |Description
+
+|`+--network <network>+` |Specifies the network of the controller you want to add.
 |===
 
 === Arguments
 
-Use the following necessary argument with the `+dfx wallet add-controller+` command.
+You can specify the following arguments for the `+dfx wallet add-controller+` command.
 
-[width="100%",cols="<32%,<68%",options="header"]
+[width="100%",cols="<31%,<69%",options="header",]
 |===
 |Argument |Description
-|`+<controller>+` | Specify the principal of the identity you would like to add as a controller to the selected identity's cycles wallet.
+|`+controller+` |Specifies the principal of the controller to add to the wallet. 
 |===
 
-=== Example
+=== Examples
 
-For example, to add alice_auth as a controller, specify her principal in the following command:
+You can use the `+dfx wallet add-controller+` command to add a controller to your wallet. If the controller you want to add is on a different network on the {IC}, specify the network using the `+--network+` option. For example:
 
 [source,bash]
 ----
-dfx wallet add-controller dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
+dfx wallet --network=https://192.168.74.4 add-controller hpff-grjfd-tg7cj-hfeuj-olrjd-vbego-lpcax-ou5ld-oh7kr-kl9kt-yae
 ----
 
 == dfx wallet addresses
 
-This command returns the information of identities that are associated with the selected identity's wallet. When you use the command, the information returned is the following:
-
-* An identity's principal (`+Id+`).
-* `+Kind+` which can be one of `+User+`,`+Canister+`, or `+Unknown+`. 
-* `+Role+` which can be one of `+Contact+`,`+Controller+`, or `+Custodian+`. 
-* `+Name+` if the cycle wallet's name is set. 
+Use the `+dfx wallet addresses+` command to display the wallet's address book.The address entries contain the principal and `+role+` (`+Contact+`, `+Custodian+`, or `+Controller+`), and might contain a `+name+`, and `+kind+` (`+Unknown+`, `+User+`, or `+Canister+`) associated with the address.
 
 === Basic usage
 
-[source,bash]
-----
-dfx wallet addresses [flag]
-----
-
-=== Flags
-
-You can use the following optional flags with the `+dfx wallet get-wallet+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Example
-
-Running the following command:
-
-[source,bash]
+[source,bash,subs="quotes"]
 ----
 dfx wallet addresses
 ----
 
-Will return information similar to the following:
+=== Flags
 
-....
-Id: dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae, Kind: Unknown, Role: Controller, Name: No name set.
-Id: hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae, Kind: Unknown, Role: Controller, Name: No name set.
-....
+You can use the following optional flags with the `+dfx wallet add-controller+` command.
 
-== dfx wallet authorize 
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|Flag |Description
 
-Use the `+dfx wallet authorize+` command to authorize a cycles wallet custodian.
+|`+-h+`, `+--help+` |Displays usage information.
+
+|`+-V+`, `+--version+` |Displays version information.
+
+|===
+
+=== Examples
+
+You can use the `+dfx wallet addresses+` command to retrieve information on the addresses in your wallet's address book. For example:
+
+[source,bash]
+----
+dfx wallet addresses
+Id: hpff-grjfd-tg7cj-hfeuj-olrjd-vbego-lpcax-ou5ld-oh7kr-kl9kt-yae, Kind: Unknown, Role: Controller, Name: ic_admin.
+Id: e7ptl-4x43t-zxcvh-n6s6c-k2dre-doy7l-bbo6h-ok8ik-msiz3-eoxhl-6qe, Kind: Unknown, Role: Custodian, Name: alice_auth.
+----
+
+== dfx wallet authorize
+
+Use the `+dfx wallet authorize+` command to authorize a custodian for the wallet. An identity assigned the role of custodian can perform the following actions on the cycles wallet:
+
+* Access wallet information.
+
+* Send cycles.
+
+* Forward calls.
+
+* Create canisters. 
 
 === Basic usage
 
@@ -297,7 +330,9 @@ hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae
 
 == dfx wallet deauthorize
 
-Use the `+dfx wallet deauthorize+` command to remove a custodian from the cycles wallet.
+Use the `+dfx wallet deauthorize+` command to remove a custodian from the cycles wallet. 
+
+NOTE:  that this will also remove the role of controller if the custodian is also a controller.
 
 === Basic usage
 

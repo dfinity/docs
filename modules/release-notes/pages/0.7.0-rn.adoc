@@ -23,7 +23,7 @@ canister installed on the Internet Computer. Example commands include `dfx ledge
 prints the Account Identifier associated with your selected identity, `dfx ledger transfer` which
 allows you to transfer ICP from your ledger account to another, and `dfx ledger create-canister` which
 allows you to create a canister from ICP.
-For more information on `+dfx ledger+` subcommands, see link:
+For more information on `+dfx ledger+` subcommands, see link:../developers-guide/cli-reference{outfilesuffix}#dfx-ledger[dfx ledger].
 
 * Addition of wallet subcommands
 +
@@ -38,7 +38,7 @@ The following are just some of the available commands:
 You can use `dfx wallet send <destination> <amount>`
 to send cycles to another wallet.
 +
-For more information on `+dfx wallet+` see link:
+For more information on `+dfx wallet+` see link:../developers-guide/cli-reference{outfilesuffix}#dfx-wallet[dfx wallet].
 
 * Add an output type to the `+request-status+` subcommand.
 +

@@ -7,7 +7,7 @@
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-If you are installing any 0.7.0-beta version of the {sdk-short-name}, you might have noticed that those versions have introduced some major improvements for handling HTTP queries and front-end assets.
+If you are installing any 0.7.0 version of the {sdk-short-name}, you might have noticed that those versions have introduced some major improvements for handling HTTP queries and front-end assets.
 When these changes are officially rolled into the next publicly-available release of the {sdk-short-name}, they will change how you build and deploy applications on the Internet Computer.
 
 If you are creating new projects, the changes to the underlying architecture will have little, if any, effect on your development workflow. In fact, you might find that the new architecture makes building applications that run on the {IC} a more familiar experience. 
@@ -42,7 +42,7 @@ Over the last year, the {sdk-short-name} team has been gathering and evaluating 
 
 == Enabling canisters to respond to HTTP requests
 
-After considering the advantages and disadvantages of different  proposals, the team decided on an architecture that would allow canisters to answer HTTP requests directly. 
+After considering the advantages and disadvantages of different  proposals, the team decided on an architecture that would allow canisters to answer HTTP requests directly.
 With this new approach, the {sdk-short-name} implements an HTTP middleware server.
 
 The HTTP middleware server handles the processing for the HTTP request by doing the following:
@@ -65,7 +65,7 @@ If any of these errors occur,  the `dfx` command-line interface provides additio
 == Revisiting the asset storage canister
 
 To make this transition easier, new and existing projects built with the newer version of `dfx` will include an improved asset canister that supports the `http_request()` method by default. This means that assets you upload—including binary assets like images—will be available directly from your browser using their URL.
-For example, in a new project, the `sample-asset.txt` file would be uploaded and available after publishing to the Internet Computer at https://CANISTER_ID.raw.ic0.app/sample-asset.txt.
+For example, in a new project, the `sample-asset.txt` file would be uploaded and available after publishing to the Internet Computer at https://<CANISTER_ID>.raw.ic0.app/sample-asset.txt.
 
 In the future, we will also provide additional support for managing the asset canister cache, handling default assets, and providing HTTP-specific features.
 

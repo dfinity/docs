@@ -130,9 +130,9 @@ This change fixes a bug where deleting a canister on a network removed all other
 +
 This fixes an error which occurred when starting a replica soon after stopping it.
 
-* The `+dfx new+` command should not require node
+* The `+dfx new+` command should not require `+node+`
 +
-This fixes the inability to use the `+dfx new+` command to create projects on machines that do not have node installed. 
+This fixes the inability to use the `+dfx new+` command to create projects on machines that do not have `+node.js+` installed. 
 
 * Missing webpack.config plugin
 +

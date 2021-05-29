@@ -50,7 +50,7 @@ This change allows you to specify the format for the return result for `+dfx can
 
 * The default network for projects is now `ic`.
 +
-The default network is now the mainnet `+ic` unless otherwise specified.  Additionally, `+--network ic+` now points to the mainnet IC (Sodium has been deprecated.)
+The default network is now the mainnet `+ic+` unless otherwise specified.  Additionally, `+--network ic+` now points to the mainnet IC (Sodium has been deprecated.)
 
 * Automatic creation of a candid UI canister
 +
@@ -64,11 +64,11 @@ You can now store `+gzip+` content encodings of assets with media types if the e
 +
 Now when assets are listed, a new `+length+` field returns the size of encodings. 
 
-* Add new command `+dfx+ canister info+`
+* Add new command `+dfx canister info+`
 +
 This allows you to retrieve certified canister information. Access to this information is limited to the controller of the canister and the SHA256 hash of its WASM module. If there is no WASM module installed, the hash will be `+None+`.
 
-* New method deletes asset canister assests that no longer exist in a project—*breaking change*
+* New method deletes asset canister assets that no longer exist in a project—*breaking change*
 +
 The `+keys()+` method is no longer supported. Use the `+list()+` method to delete missing project assets. For example:
 +
@@ -85,7 +85,7 @@ To run a `+dfx+` project using an emulator instead of the replica, you can now r
 +
 This decouples the version of `+dfx+` from the release version of `+agent-js+`. Additionally, it allows for debug builds to install properly (as `+dfx+` has a non-release version).
 * You can now install the DFINITY Canister SDK on for M1 Macs running Darwin. 
-* Allow upload of assests of any size from the asset canister
+* Allow upload of assets of any size from the asset canister
 + The following asset canister call methods are added:
 ** create_batch()
 ** create_chunk()
@@ -105,7 +105,7 @@ Ads support for http requests in the base storage canister (with a default to `+
 
 This does not support encodings other than `+identity+`, and doesn't return any headers. 
 
-This also upgrades tokio and reqwest in order to work correctly. There are some performance issues to note (this is slower than the icx-http-server).
+This also upgrades `+tokio+` and `+reqwest+` in order to work correctly. There are some performance issues to note (this is slower than the icx-http-server).
 
 === Motoko
 

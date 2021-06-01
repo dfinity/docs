@@ -5,7 +5,7 @@
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-Self-custody is a token distribution option that enables you to have sole responsibility over your digital assets and over the management of your private keys. 
+Self-custody is a token distribution option that enables you to have sole responsibility over your digital assets and over the management of your private keys, without the need of a third party to act on your behalf. 
 With self-custody, you have complete and direct control over access to your digital assets, rather than using a third-party to act on your behalf.
 
 If you have made the choice to control your digital assets yourself, you should be aware that there are different kinds of *self-custody solutions* and that those solutions vary in their security and ease of use. 

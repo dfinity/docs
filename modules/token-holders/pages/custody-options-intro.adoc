@@ -76,7 +76,7 @@ Regardless of the type of self-custody solution you select, it is also your resp
 With this in mind, you should take note of the following general recommendations:
 
 * Do not use a work computer to configure a digital asset storage solution. Your private personal data could be lost or 
-compromised while hosted on a work computer especially if that computer is routinely connected to the internet. 
+compromised while hosted on a work computer, especially if that computer is routinely connected to the internet. 
 
 * Do not leave your cold storage wallet or any private information in a public place where it could be compromised.
 

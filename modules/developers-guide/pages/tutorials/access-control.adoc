@@ -164,7 +164,7 @@ zen7w-sjxmx-jcslx-ey4hf-rfxdq-l4soz-7ie3o-hti3o-nyoma-nrkwa-cqe
 +
 [source,bash]
 ----
-dfx canister call access_hello my_role
+dfx canister --wallet=$(dfx identity get-wallet) call access_hello my_role
 ----
 +
 The command displays output similar to the following:
@@ -251,7 +251,7 @@ dfx identity use default
 +
 [source,bash]
 ----
-dfx canister call access_hello assign_role '((principal "c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae"),opt variant{admin})'
+dfx canister --wallet=$(dfx identity get-wallet) call access_hello assign_role '((principal "c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae"),opt variant{admin})'
 ----
 
 NOTE: Be sure to replace the `+principal+` hash with the one returned by the `+dfx identity get-principal+` command for the `+ic_admin+` identity.
@@ -261,10 +261,9 @@ Optionally, you can rerun the command to call the `+my_role+` function to verify
 +
 [source,bash]
 ----
-dfx --identity ic_admin canister --no-wallet call access_hello my_role
+dfx --identity ic_admin canister call access_hello my_role
 ----
 +
-The `+--no-wallet+` option is required to see the role assigned to the `+ic_admin+` identity instead of the cycles wallet. 
 The command displays output similar to the following:
 +
 ....
@@ -274,7 +273,7 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-dfx --identity ic_admin canister --no-wallet call access_hello greet "Internet Computer Admin"
+dfx --identity ic_admin canister call access_hello greet "Internet Computer Admin"
 ----
 +
 The command displays output similar to the following:
@@ -317,7 +316,7 @@ dfx identity use alice_auth
 +
 [source,bash]
 ----
-ALICE_ID=$(dfx canister --no-wallet call access_hello callerPrincipal | sed 's/[\\(\\)]//g')
+ALICE_ID=$(dfx identity get-principal)
 ----
 +
 You can verify the principal stored by running the following command:
@@ -330,20 +329,20 @@ echo $ALICE_ID
 The command displays output similar to the following:
 +
 ....
-principal "b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe"
+b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe
 ....
 +
 . Use the `+ic_admin+` identity to assign the `+authorized+` role to `+alice_auth+` by running the following command:
 +
 [source,bash]
 ----
-dfx --identity ic_admin canister --no-wallet call access_hello assign_role "($ALICE_ID, opt variant{authorized})"
+dfx --identity ic_admin canister call access_hello assign_role "(principal \"$ALICE_ID\", opt variant{authorized})"
 ----
 . Call the `+my_role+` function to verify the role assignment.
 +
 [source,bash]
 ----
-dfx --identity alice_auth canister --no-wallet call access_hello my_role
+dfx --identity alice_auth canister call access_hello my_role
 ----
 The command displays output similar to the following:
 +
@@ -354,7 +353,7 @@ The command displays output similar to the following:
 +
 [source,bash]
 ----
-dfx canister --no-wallet call access_hello greet "Alice"
+dfx canister call access_hello greet "Alice"
 ----
 +
 The command displays output similar to the following:
@@ -396,13 +395,13 @@ Created identity: "bob_standard".
 +
 [source,bash]
 ----
-BOB_ID=$(dfx --identity bob_standard canister --no-wallet call access_hello callerPrincipal | sed 's/[\\(\\)]//g')
+BOB_ID=$(dfx --identity bob_standard identity get-principal)
 ----
 . Attempt to use the `+bob_standard+` identity to assign a role.
 +
 [source,bash]
 ----
-dfx --identity bob_standard canister --no-wallet call access_hello assign_role "($BOB_ID, opt variant{authorized})"
+dfx --identity bob_standard canister call access_hello assign_role "(principal \"$BOB_ID\", opt variant{authorized})"
 ----
 +
 This command returns an `+unauthorized+` error.
@@ -410,7 +409,7 @@ This command returns an `+unauthorized+` error.
 +
 [source,bash]
 ----
-dfx --identity default canister --no-wallet call access_hello assign_role "($BOB_ID, opt variant{owner})"
+dfx --identity default canister --wallet=$(dfx --identity default identity get-wallet) call access_hello assign_role "(principal \"$BOB_ID\", opt variant{owner})"
 ----
 +
 This command fails because users cannot be assigned the `+owner+` role.

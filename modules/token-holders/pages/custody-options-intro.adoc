@@ -42,7 +42,7 @@ Private keys are stored in a secure part of the device that does not come into c
 The partitioned storage on the physical device reduces the risks that are associated with devices connected to the internet. 
 Because you are relying on a physical device, however, losing the device also means losing access to your digital assets.
 
-In most cases, you can recover from the loss of a hardware wallet because the assets stored on a hardware wallets are secured using a secret seed phase
+In most cases, you can recover from the loss of a hardware wallet because the assets stored on hardware wallets are secured using a secret seed phrase.
 . If you copy and secure the seed phrase—for example, by storing it in the form of a <<Paper wallets,paper wallet>>—you can initialize a new device with the seed phrase and regain access to your digital assets.
 
 For more information, see

@@ -12,7 +12,7 @@ actor::
 
 [[g-canister]]
 canister::
-  A canister is a conceptual object with a universally-unique identifier and an owner that defines the boundaries of a specific application, service, or micro-site. 
+  A canister is a conceptual object similar to a smart contract with a universally-unique identifier and an owner that defines the boundaries of a specific application, service, or micro-site. 
   A canister encapsulates all of the programming logic, public entry methods, the interface description for the provided message types, and state information for the application, service, or micro-service it describes.
 
 [[g-replica]]

@@ -1,6 +1,6 @@
 = Self-custody quick start
 :description: How you can use your ICP tokens.
-:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software,smart contract,canister,developer onboarding
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;

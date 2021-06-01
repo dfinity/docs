@@ -1,5 +1,5 @@
 = Tokens and cycles
-:keywords: Internet Computer,blockchain,ICP tokens,smart contracts,cycles,wallet,software canister,developer
+:keywords: Internet Computer,blockchain,ICP tokens,smart contracts,cycles,wallet,software,smart contract,canister,developer
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -36,7 +36,7 @@ If you are a member of the community interested in participating in governance a
 
 For developers, ICP tokens are important because they can be converted to cycles that, in turn, are used to pay for computation and resource consumption.
 
-As an example, imagine you have a house where propane is used for a water heater, kitchen stove, dryer, and space heater. As you use these appliances, you deplete the supply of gas you have on hand, so periodically you contact a provider to refill your supply so you can continue to use your appliances without interruption. This is similar to canisters in that each canister must have an account with cycles available to pay for the communication, computation, and storage that the canister’s application consumes.
+As an example, imagine you have a house where propane is used for a water heater, kitchen stove, dryer, and space heater. As you use these appliances, you deplete the supply of gas you have on hand, so periodically you contact a provider to refill your supply so you can continue to use your appliances without interruption. This is similar to smart contract canisters in that each canister must have an account with cycles available to pay for the communication, computation, and storage that the canister’s application consumes.
 
 Internet Computer Protocol token holders can exchange tokens when they need to replenish the cycles available in each canister's account.
 

@@ -20,7 +20,7 @@ Migration to the new architecture doesn’t have to be completed immediately, bu
 Before we describe the new architecture, it’s useful to have some context about the old approach that we are replacing and how the code has worked up to this point. 
 Previously, developing a front-end on the Internet Computer involved adding a front-end assets canister with a `retrieve()` function. 
 The `retrieve()` function would take a path and return a blob. The blob returned by the `retrieve()` function would then have an `index.js` file that contained some JavaScript and static HTML called the `bootstrap` code. 
-After you deployed a canister on the Internet Computer, accessing the canister using the `<CANISTER_ID>.ic0.app` URL executed the `bootstrap` code, which in turn, performed the following steps:
+After you deployed a smart contract canister on the Internet Computer, accessing the canister using the `<CANISTER_ID>.ic0.app` URL executed the `bootstrap` code, which in turn, performed the following steps:
 
 * Created a secure worker to contain your private key.
 * Polyfilled the `window.ic` to provide some mechanics to the running application so that it can communicate with the Internet Computer.

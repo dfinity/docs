@@ -15,7 +15,7 @@ A simple, useful language for {company-id} and the {platform}.
 
 * Familiar syntax
 * Safe by default
-* Incorporates the *canister* model
+* Incorporates smart contracts using the *canister* model
 * Provides seamless integration of {company-id} and the {platform} features
 * Makes the most of present and future WebAssembly
 

@@ -361,7 +361,7 @@ PUBLIC_KEY="$(echo $seed | keysmith public-key -f -)"
 
 Sign a message to claim your neurons.
 
-Note that the time alloted to send a signed message is a fixed *5-minute window*. The `--expire-after` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `--expire-after` option to one hour (`1h`), then you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute. Hence, you would need to send the message after 55 minutes and before 60 minutes for the message to be recognized as valid. If you don't specify the `--expire-after` option, then the default expiration is five minutes.
+Note that the time allotted to send a signed message is a fixed *5-minute window*. The `--expire-after` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `--expire-after` option to one hour (`1h`), then you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute. Hence, you would need to send the message after 55 minutes and before 60 minutes for the message to be recognized as valid. If you don't specify the `--expire-after` option, then the default expiration is five minutes.
 
 [source,bash]
 ----

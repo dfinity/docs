@@ -138,7 +138,7 @@ You can use the following optional flags with the `+dfx cache list+` command.
 === Examples
 
 You can use the `+dfx cache list+` command to list the `+dfx+` versions you have currently installed and used in projects.
-For example, you can run the following command to list versions of `+dfx+` found in te cache:
+For example, you can run the following command to list versions of `+dfx+` found in the cache:
 
 [source,bash]
 ----

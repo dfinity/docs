@@ -45,7 +45,7 @@ For reference information and examples that illustrate using `+dfx wallet+` comm
 
 |<<dfx wallet remove-controller,`+remove-controller+`>> |Removes a specified controller from the selected identity's cycles wallet. 
 
-|<<dfx wallet send,`+send+`>> |Sends a specified amount of cyles from the selected identity's cycles wallet to another cycles wallet using the destination wallet canister ID. 
+|<<dfx wallet send,`+send+`>> |Sends a specified amount of cycles from the selected identity's cycles wallet to another cycles wallet using the destination wallet canister ID.
 
 |<<dfx wallet set-name,`+set-name+`>> |Specify a name for your cycles wallet. 
 
@@ -58,7 +58,7 @@ After you have used the `+dfx identity deploy-wallet+` command to create a cycle
 
 == dfx wallet add-controller
 
-Use the `+dfx wallet add-controller+` to add a controller to the wallet. An identity assigned the role of Controller has the most priviledges and can perform the flowing actions on the selected identity's cycels wallet:
+Use the `+dfx wallet add-controller+` to add a controller to the wallet. An identity assigned the role of Controller has the most priviledges and can perform the flowing actions on the selected identity's cycles wallet:
 
 * Rename the cycles wallet.
 

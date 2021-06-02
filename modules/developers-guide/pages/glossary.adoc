@@ -24,6 +24,14 @@ replica::
 node::
   A physical computer that is a registered member of the {platform} network and running the {IC} replica processes.
 
+[[g-smart-contract]]
+smart contract::
+  A smart contract is software that enables trusted transactions and agreements to be carried out across a distributed, decentralized blockchain network without the need for any central authority or legal system. 
+  
+  With a smart contract, the terms of a transaction or agreement are written directly into lines of code that are executed on the blockchain network. The code controls the execution, and the transactions are tamper-proof, traceable, and irreversible.
+  
+  On the {IC}, smart contracts are deployed as <<g-canister,canisters>>.
+
 [[g-wallet]]
 wallet::
   On the {IC}, a wallet is a specialized application that allows you to store and retrieve your digital assets.

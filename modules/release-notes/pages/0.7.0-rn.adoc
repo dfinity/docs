@@ -86,7 +86,8 @@ To run a `+dfx+` project using an emulator instead of the replica, you can now r
 This decouples the version of `+dfx+` from the release version of `+agent-js+`. Additionally, it allows for debug builds to install properly (as `+dfx+` has a non-release version).
 * You can now install the DFINITY Canister SDK on for M1 Macs running Darwin. 
 * Allow upload of assets of any size to the asset canister
-+ The following asset canister call methods are added:
++
+The following asset canister call methods are added:
 ** create_batch()
 ** create_chunk()
 ** commit_batch()

@@ -1,9 +1,6 @@
 = Self-custody quick start
 :description: How you can use your ICP tokens.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
-:experimental:
-// Define unicode for Apple Command key.
-:commandkey: &#8984;
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -20,6 +17,8 @@ This _Self-Custody Quick Start_ scenario assumes:
 * You are a new ICP token holder.
 * You want to understand what you can do with your ICP tokens.
 * You want to know how to convert, transfer, or lock your ICP tokens using the {sdk-short-name} command-line interface DFX.
+
+If you aren't yet a token holder, you'll need to purchase ICP tokens from an exchange or receive a token grant before you can take custody. For an overview of how to get ICP tokens and custody options, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens] and link:custody-options-intro{outfilesuffix}[Choosing self-custody for digital assets].
 
 If you are using another application—such as the link:https://nns.ic0.app[Network Nervous System (NNS) application] or the user interface provided by a hardware wallet—to interact with your ICP tokens, you should refer to the documentation for that application.
 
@@ -52,8 +51,13 @@ To get started, verify the following:
 +
 [source,bash]
 ----
-DFX_VERSION=0.7.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
+
+* You have created a backup copy of the public/private key for the identity you are using for self-custody.
++
+For example, if you are using the default developer identity created using the {sdk-long-name} `+dfx+` command-line interface,
+you should have a backup of the `+~/.config/dfx/identity/default/identity.pem+` file stored in a secure location.
 
 * You have a secure environment in which to perform operations involving ICP tokens.
 +

@@ -6,7 +6,7 @@
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 
-{IC} *sub-networks* provide physical hardware and resources—like CPU and memory—for performing software operations. Each sub-network blockchain consists of some number of individual machines—connected peer computers called *nodes*—that run the software components of the {IC} protocol. 
+{IC} *sub-networks* provide physical hardware and resources—like CPU and memory—for performing software operations. Each sub-network is a blockchain that consists of some number of individual machines—connected peer computers called *nodes*—that run the software components of the {IC} protocol. 
 
 The {IC} software components that run on each node are called a *replica* because they replicate state and computation across all of the nodes in a sub-network blockchain.
 

@@ -42,7 +42,7 @@ A simple, useful language for {company-id} and the {platform}.
 
 == Implementations
 
-* implemented in OCaml (leverages `wasm` libary)
+* implemented in OCaml (leverages `wasm` library)
 * simple reference interpreter
 * less simple compiler to WebAssembly
   * multipass with typed IR in each pass

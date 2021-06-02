@@ -50,7 +50,7 @@ This change allows you to specify the format for the return result for `+dfx can
 
 * The default network for projects is now `ic`.
 +
-The default network is now the mainnet `+ic+` unless otherwise specified.  Additionally, `+--network ic+` now points to the mainnet IC (Sodium has been deprecated.)
+The default network is now the mainnet `+ic+` unless otherwise specified.  Additionally, `+--network ic+` now points to the mainnet {IC} (Sodium has been deprecated.)
 
 * Automatic creation of a candid UI canister
 +
@@ -153,4 +153,3 @@ Previously assets were forced to be valid UTF-8 strings. After this change if a 
 //== Known issues and limitations
 
 //This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
-

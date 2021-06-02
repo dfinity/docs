@@ -102,7 +102,7 @@ Reworks the asset installer in `+dfx+` to use these methods. It can therefore up
 `+--wallet+` allows users to specify a particular wallet to use for calls. 
 * Implement the HTTP request proposal in `+dfx+` bootstrap webserver
 +
-Ads support for http requests in the base storage canister (with a default to `+/index.html+`).
+Adds support for http requests in the base storage canister (with a default to `+/index.html+`).
 
 This does not support encodings other than `+identity+`, and doesn't return any headers. 
 

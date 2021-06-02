@@ -1,5 +1,5 @@
 = Neurons and governance
-:keywords: Internet Computer,blockchain,proposals,voting,Neuron Nervous System,NNS,platform management
+:keywords: Internet Computer,blockchain,proposals,voting,Neuron Nervous System,NNS,platform management,configuration management,network management,smart contract,canister
 :proglang: Motoko
 :platform: Internet Computer platform
 :IC: Internet Computer
@@ -11,7 +11,7 @@ As a decentralized platform, all changes to the configuration and behavior of th
 - which data center providers participate in the network
 - the number, location, and ownership of the nodes accepted from a data center provider
 - assignment of nodes to subnets
-- whether upgrades to canister software or management services are allowed or not
+- whether upgrades to smart contract canister software or management services are allowed or not
 
 In addition, only members of the governance body can vote to approve or deny requests to upgrade Internet Computer replicas or modify the Internet Computer protocol.
 

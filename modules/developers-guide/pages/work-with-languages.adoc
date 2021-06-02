@@ -10,7 +10,7 @@ This section provides some high-level guidance for writing programs in different
 
 You can create Rust projects to run on the {IC} by using Cargo and compiling your program to use WebAssembly as the target output.
 
-This section provides a summary of the key steps involved in deploying a Rust program as a canister on the {IC}.
+This section provides a summary of the key steps involved in deploying a Rust program as a smart contract canister on the {IC}.
 You should note, however, that the steps described here only illustrate one approach. 
 Other implementation approaches are also possible. 
 

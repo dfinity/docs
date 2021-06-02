@@ -1,6 +1,6 @@
 = Network nervous system application quick start
 :description: How to create and manage staked ICP tokens.
-:keywords: Internet Computer,neurons,blockchain,governance,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:keywords: Internet Computer,neurons,blockchain,governance,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software,smart contract,canister,developer onboarding
 :experimental:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;

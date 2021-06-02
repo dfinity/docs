@@ -735,7 +735,7 @@ You can use the following optional flags with the `+dfx canister sign+` command.
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
 |`+--query+` |Sends a query request to a canister.
-|`+--update+` |Sends an update request to the canister. This is the defualt method if the `+--query+` method is not used.
+|`+--update+` |Sends an update request to the canister. This is the default method if the `+--query+` method is not used.
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
@@ -787,7 +787,7 @@ Currently, the `+--no-wallet+` command must be used to execute the command using
 
 This command illustrates how to creates a `+message.json+` file to create neurons on the network stpecified by the `+ic+` alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
 
-Note that the time alloted to send a signed message is a fixed 5-minute window. The `+--expire-after+` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `+--expire-after+` option to one hour (`+1h+`), you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute.
+Note that the time allotted to send a signed message is a fixed 5-minute window. The `+--expire-after+` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `+--expire-after+` option to one hour (`+1h+`), you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute.
 
 In this example, therefore, you would need to send the message after 55 minutes and before 60 minutes for the message to be recognized as valid.
 

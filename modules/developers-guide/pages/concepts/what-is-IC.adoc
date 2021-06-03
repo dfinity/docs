@@ -11,24 +11,22 @@
 The *{IC}* is a computing infrastructure that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof software programs.
 Unlike most cloud-based or distributed architectures, however, the {IC} provides an open platform where software and services run directly on the internet itself rather than on a proprietary infrastructure or a specific hosting service.
 
-As an application developer, you might find it useful to think of the {IC} as providing the following key infrastructure elements:
+As an application developer, you might find it useful to think of the {IC} as providing the following key elements:
 
 * An *open communication protocol* that enables general-purpose computations to run transparently directly on the internet
 * A *network* that runs the protocol to provide computing capacity—for example, the hardware, CPU, and memory required to run programs—through *independent data centers*.
-* A *globally-accessible and scalable platform* for running software applications.
+* A *globally-accessible and scalable blockchain platform* for running software applications.
 
-== Open infrastructure platform
+== Open blockchain platform
 
 The {IC} is not physical hardware that exists in any physical location. 
 Instead, the {IC} combines computing resources provided by independent data centers around the world to give users and organizations secure access to applications and transaction processing services. 
 
-If you think of the {IC} as an infrastructure platform, it is similar to a public cloud provider, like Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure, or to a private cloud managed internally by a private organization. 
-
-Unlike a public or private cloud, however, the {platform} is not owned and operated by a single private company. 
-Instead, platform updates and operations are managed through a decentralized governance system defined in the protocol.
+The {platform} is not owned and operated by a single private company. 
+Instead, all {platform} updates and operations are managed through a decentralized governance system defined in the protocol.
 Its architecture enables multiple computers to operate like one, very powerful, virtual machine.
 
-The computers that make up the virtual machine are organized into sub-networks of data centers around the globe. 
+The computers that make up the virtual machine are organized into sub-network blockchains with data centers around the globe. 
 The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
 Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.
 

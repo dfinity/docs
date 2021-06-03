@@ -1,7 +1,7 @@
 = Concepts
 :keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
 :proglang: Motoko
-:platform: Internet Computer platform
+:platform: Internet Computer blockchain
 :IC: Internet Computer
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK

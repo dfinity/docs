@@ -35,7 +35,7 @@ Independent data centers receive remuneration for contributing computing capacit
 
 The {IC} protocol reduces platform-based risks and paves the way for innovation by re-imagining how software is built, deployed, and accessed. 
 
-For example, with the {IC}, developers can focus on writing code without environment-related distractions such as:
+For example, with the {IC}, developers can focus on writing code using smart contracts without environment-related distractions such as:
 
 * physical or virtual network configuration requirements
 * load balancing services

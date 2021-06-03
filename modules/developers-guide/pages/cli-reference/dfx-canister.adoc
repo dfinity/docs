@@ -435,8 +435,7 @@ You can use `+raw+` as the argument type if you want to pass raw bytes to a cani
 You can set this value as a percentage in the range of 0 to 100.
 
 |`+--memory-allocation <memory-allocation>+` |Specifies how much memory the canister is allowed to use in total.
-You can set this value in the range of 0 to 256 TB.
-The default is 8GB.
+You can set this value in the range of 0 to 8MB.
 
 |`+-m+`, `+--mode <mode>+` |Specifies whether you want to `+install+`, `+reinstall+`, or `+upgrade+` canisters.
 For more information about installation modes and canister management, see link:../working-with-canisters{outfilesuffix}[Managing canisters].

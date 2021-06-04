@@ -120,7 +120,7 @@
 
 
 .xref:release-notes:sdk-release-notes.adoc[Release notes]
-** xref:release-notes:0.7.0-rn.adoc[0.7.1]
+** xref:release-notes:0.7.1-rn.adoc[0.7.1]
 ** xref:release-notes:0.7.0-rn.adoc[0.7.0]
 ** xref:release-notes:0.6.26-rn.adoc[0.6.26]
 ** xref:release-notes:0.6.25-rn.adoc[0.6.25]

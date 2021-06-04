@@ -93,9 +93,11 @@
 ////
 
 .Integration
-** xref:ic-identity-guide:what-is-ic-identity.adoc[Authenticating using internet identity service]
-*** xref:ic-identity-guide:auth-how-to.adoc[How to use the Internet Identity service]
-** xref:integration:ledger-quick-start.adoc[Integrating with the Ledger]
+** xref:ic-identity-guide:authentication.adoc[Authentication quick start]
+*** xref:ic-identity-guide:what-is-ic-identity.adoc[What is Internet Identity?]
+
+*** xref:ic-identity-guide:auth-how-to.adoc[How to use Internet Identity]
+** xref:integration:ledger-quick-start.adoc[Ledger quick start]
 //** xref:integration:nns-quick-start.adoc[Integrating with NNS]
 
 ////
@@ -120,7 +122,7 @@
 
 
 .xref:release-notes:sdk-release-notes.adoc[Release notes]
-** xref:release-notes:0.7.0-rn.adoc[0.7.1]
+** xref:release-notes:0.7.1-rn.adoc[0.7.1]
 ** xref:release-notes:0.7.0-rn.adoc[0.7.0]
 ** xref:release-notes:0.6.26-rn.adoc[0.6.26]
 ** xref:release-notes:0.6.25-rn.adoc[0.6.25]

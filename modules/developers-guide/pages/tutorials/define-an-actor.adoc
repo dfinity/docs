@@ -229,6 +229,7 @@ You now have a program deployed as a *canister* on your local {IC} network and c
 To test the program you have deployed on the local network:
 
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file. By default, the local network binds to the following address and port number: `+127.0.0.1:8000+`.
+
 . Add your project's `+UI canister+` ID to the URL. The full URL should look similar to the following but with the `+UI canister+` identifier that was returned by dfx canister install command: 
 +
 [source, bash]
@@ -242,13 +243,13 @@ For example:
 http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
 ----
 
-. Enter your project canister identifier for your application into the **Provide a canister ID** field, then click **Go**.
+. You can choose to open a `+.did+` file, or you can enter your project canister identifier for your application into the **Provide a canister ID** field, then click **Go**.
 +
 This is where you would review the list of function calls and types defined in the program, however this program only allows a `+query+` call. 
 
-. Click **RANDOM** to generate a value, then click **QUERY** to see the result.
+. In this simple case, clicking either **RANDOM** or **QUERY** will retun the same result.
 +
-For example, in the METHODS section of the webpage, the program displays `+hello+`, while in the terminal, the display might read, `+"Hello, World from DFINITY"+` in output similar to the following:
+For example, in the OUTPUT LOG section of the webpage, the program displays `+hello()+`, while in the terminal, the display returns, `+"Hello, World from DFINITY"+` in output similar to the following:
 +
 ....
 [Canister rrkah-fqaaa-aaaaa-aaaaq-cai] Hello, World from DFINITY 

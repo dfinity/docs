@@ -173,7 +173,7 @@ To deploy this project locally:
 +
 [source,bash]
 ----
-dfx start --background
+dfx start --background --clean
 ----
 +
 For this tutorial, you can use the `+--background+` option to start the {IC} network as background processes.
@@ -215,24 +215,39 @@ dfx canister install actor_hello
 The command displays output similar to the following:
 +
 ....
+Creating UI canister on the local network.
+The UI canister on the "local" network is "ryjl3-tyaaa-aaaaa-aaaba-cai"
 Installing code for canister actor_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Deployed canisters.
 ....
+. Make note of the `+UI canister+` identifier, as well as the `+actor_hello+` canister_id.
 
-== Query the canister
+== Query the canister 
 
-You now have a program deployed as a *canister* on your local {IC} network and can test your program by using the `+dfx canister call+` command.
+You now have a program deployed as a *canister* on your local {IC} network and can test your program by using the local URL.
 
 To test the program you have deployed on the local network:
 
-. Use `+dfx canister call+` to call the `+hello+` function by running the following command:
+. Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file. By default, the local network binds to the following address and port number: `+127.0.0.1:8000+`.
+. Add your project's `+UI canister+` ID to the URL. For example, the full URL should look similar to the following but with the `+UI canister+` identifier that was returned by dfx canister install command: 
 +
-[source,bash]
+[source, bash]
 ----
-dfx canister call actor_hello hello
+http://127.0.0.1:8000/?canisterId=<YOUR-UI-CANISTER-IDENTIFIER>
 ----
-. Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local network process.
++ 
+For example:
 +
-For example, the program displays "Hello, World from DFINITY" in output similar to the following:
+----
+http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
+----
+
+. Enter your project canister identifier for your application into the **Provide a canister ID** field, then click **Go**.
+Review the list of function calls and types defined in the program. This program only allows a `+query+` call. 
+
+. Click **RANDOM** to generate a value, then click **QUERY** to see the result.
++
+For example, in the METHODS section of the webpage, the program displays `+hello+`, while in the terminal, the display might read, `+"Hello, World from DFINITY"+` in output similar to the following:
 +
 ....
 [Canister rrkah-fqaaa-aaaaa-aaaaq-cai] Hello, World from DFINITY 

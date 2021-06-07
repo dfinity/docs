@@ -224,12 +224,12 @@ Deployed canisters.
 
 == Query the canister 
 
-You now have a program deployed as a *canister* on your local {IC} network and can test your program by using the local URL.
+You now have a program deployed as a *canister* on your local {IC} network and can test your program by using the local default URL.
 
 To test the program you have deployed on the local network:
 
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file. By default, the local network binds to the following address and port number: `+127.0.0.1:8000+`.
-. Add your project's `+UI canister+` ID to the URL. For example, the full URL should look similar to the following but with the `+UI canister+` identifier that was returned by dfx canister install command: 
+. Add your project's `+UI canister+` ID to the URL. The full URL should look similar to the following but with the `+UI canister+` identifier that was returned by dfx canister install command: 
 +
 [source, bash]
 ----
@@ -243,7 +243,8 @@ http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
 ----
 
 . Enter your project canister identifier for your application into the **Provide a canister ID** field, then click **Go**.
-Review the list of function calls and types defined in the program. This program only allows a `+query+` call. 
++
+This is where you would review the list of function calls and types defined in the program, however this program only allows a `+query+` call. 
 
 . Click **RANDOM** to generate a value, then click **QUERY** to see the result.
 +

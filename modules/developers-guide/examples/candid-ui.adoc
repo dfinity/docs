@@ -13,20 +13,41 @@ This web interface—the Candid UI—exposes the service description in a form, 
 
 To use the Candid web interface to test canister functions:
 
-. Copy the Candid UI canister identifier for your application.
+. Find the Candid UI canister identifier associated with the current project using the `+dfx canister id __Candid_UI+` command.
++
+[source,bash]
+----
+dfx canister id __Candid_UI
+----
++
+The command displays the canister identifier for the Candid UI with output similar to the following:
++
+....
+r7inp-6aaaa-aaaaa-aaabq-cai
+....
++
+. Copy the Candid UI canister identifier so that it is available in the clipboard.
+. Start the {IC} locally by running the following command:
++
+[source,bash]
+----
+dfx start --background
+----
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
 +
 By default, the `+local+` network binds to the `+127.0.0.1:8000+` address and port number.
-. Add the required `+canisterId+` and UI canister identifier to the URL.
+. Add the required `+canisterId+` parameter and the Candid UI canister identifier returned by the `+dfx canister id+` command to the URL.
 +
-For example, the full URL should look similar to the following but with the `+canister_identifier+` that was returned by the `+dfx deploy+` or `+dfx canister install+` command:
+For example, the full URL should look similar to the following but with the `+CANDID-UI-CANISTER-IDENTIFIER+` that was returned by the `+dfx canister id+` command:
 +
 ....
-http://127.0.0.1:8000/?canisterId=<YOUR-UI-CANISTER-IDENTIFIER>
+http://127.0.0.1:8000/?canisterId=<CANDID-UI-CANISTER-IDENTIFIER>
 ....
 +
-In the form displayed, you can provide a canister identifier or choose a Candid description (`+.did+`) file to display.
-. Paste the `+<project-name>_assets+` canister identifier for your application into the *Provide a canister ID* field, then click *Go*.
+The browser displays a form for you to specify a canister identifier or choose a Candid description (`+.did+`) file.
++
+If you aren't sure which canister identifier to use, you can run the `+dfx canister id+` command to look up the identifier for a specific canister name.
+. Specify the canister identifier or description file for your application into the *Provide a canister ID* field, then click *Go* to display the service description.
 . Review the list of function calls and types defined in the program.
 . Type a value of the appropriate type for a function or click *Random* to generate a value, then click *Call* or *Query* to see the result.
 +

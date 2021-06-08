@@ -69,21 +69,21 @@ The dissolved neuron ceases to exist and the stake of ICP tokens that the neuron
 To connect to the {IC} using the Network Nervous System (NNS) application:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
-. Click *Login* to connect to the link:https://identity.ic0.app[Internet Identity service].
+. Click *Login* to connect to link:https://identity.ic0.app[Internet Identity].
 +
 If you haven't previously registered and received a user number, you can click *Register with Internet Identity* to register.
 +
 
-NOTE: We strongly recommend you add multiple devices and authentication methods to your Internet Identity profile. For example, register multiple physical devices like your computer and phone with a security key and using the authentication options that those devices—and browsers running on them—support.
+NOTE: We strongly recommend you add multiple devices and authentication methods to your Internet Identity. For example, register multiple physical devices like your computer and phone with a security key and using the authentication options that those devices—and browsers running on them—support.
 +
-For more information about creating an identity using the Internet Identity service, see link:../integration/ic-identity-guide/auth-how-to{outfilesuffix}[How to use the Internet Identity service].
+For more information about creating an Internet Identity, see link:../ic-identity-guide/auth-how-to{outfilesuffix}[How to use Internet Identity].
 +
 After you have registered, you can click *Login* to authenticate using your user number and the authentication method—for example, a security key or fingerprint—you have registered.
 . Click *Proceed* to access to the Network Nervous System (NNS) application.
 
 == Add an account
 
-Logging on through the Internet Identity service creates a Main account for you in the {IC} ledger.
+Logging on using an Internet Identity creates a Main account for you in the {IC} ledger.
 If your ICP tokens are associated with your developer identity—that is, the identity created by the {sdk-short-name} `+dfx+` command-line interface—your Main account displays 0.00 for your ICP token balance.
 For example:
 
@@ -94,7 +94,7 @@ Before transferring any tokens, you can create one or more linked subaccounts or
 To add an account for managing ICP tokens:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
-. Click *Login* to connect to the Internet Identity service.
+. Click *Login* to connect using your Internet Identity.
 . Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
 . Click *Proceed* to access to the Network Nervous System (NNS) application.
 . On the default ICP tab, click *Add Account*.
@@ -199,7 +199,7 @@ You can configure the period of time the stake is locked from six months up to a
 To stake ICP tokens:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
-. Click *Login* to connect to the Internet Identity service.
+. Click *Login* to connect using your Internet Identity.
 . Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
 . Click *Proceed* to access to the Network Nervous System (NNS) application. 
 . Click *Neurons*, then click *Stake Neuron*.
@@ -238,7 +238,7 @@ If you want to continue a countdown already in progress but extend the lock up p
 To configure how you follow other neuron holders:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
-. Click *Login* to connect to the Internet Identity service.
+. Click *Login* to connect using your Internet Identity.
 . Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
 . Click *Proceed* to access to the Network Nervous System (NNS) application. 
 . Click *Neurons*, then click the link for a specific neuron identifier to display its properties.
@@ -264,7 +264,7 @@ After you take this step, the neuron identifier and its ledger history are perma
 To disburse a neuron and return its ICP tokens:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
-. Click *Login* to connect to the Internet Identity service.
+. Click *Login* to connect using your Internet Identity.
 . Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
 . Click *Proceed* to access to the Network Nervous System (NNS) application. 
 . Click *Neurons*, then click Unlocked neuron that has reach the ended of its dissolve delay period.

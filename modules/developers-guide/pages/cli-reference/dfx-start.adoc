@@ -38,7 +38,7 @@ You can use the following option with the `+dfx start+` command.
 [width="100%",cols="<32%,<68%",options="header",]
 |===
 |Option |Description
-|`+--host host+` |Specifies the host name and port number to bind the frontend to.
+|`+--host host+` |Specifies the host interface IP address and port number to bind the frontend to. The default is `127.0.0.1:8000`.
 |===
 
 == Examples

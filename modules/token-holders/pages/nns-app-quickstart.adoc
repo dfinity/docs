@@ -5,14 +5,14 @@
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
 :proglang: Motoko
-:platform: Internet Computer platform
+:platform: Internet Computer blockchain
 :IC: Internet Computer
 :company-id: DFINITY
 :sdk-short-name: DFINITY Canister SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-As a decentralized platform, all changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS). 
+As a decentralized blockchain, all changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS). 
 The NNS controls all aspects of the {IC} network configuration and is responsible for performing many network management operations. For example, the Network Nervous System (NNS) is responsible for:
 
 * Upgrading the protocol and guest operating system software used by the nodes that provide computing capacity to the network.
@@ -69,17 +69,17 @@ The dissolved neuron ceases to exist and the stake of ICP tokens that the neuron
 To connect to the {IC} using the Network Nervous System (NNS) application:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
-. Click *Login* to connect to the link:https://identity.ic0.app[Internet Identity service].
+. Click **Login** to connect to the link:https://identity.ic0.app[Internet Identity service].
 +
-If you haven't previously registered and received a user number, you can click *Register with Internet Identity* to register.
+If you haven't previously registered and received an identification number, you can click **Register with Internet Identity** to register.
 +
 
-NOTE: We strongly recommend you add multiple devices and authentication methods to your Internet Identity profile. For example, register multiple physical devices like your computer and phone with a security key and using the authentication options that those devices—and browsers running on them—support.
+NOTE: We strongly recommend you add multiple devices and authentication methods to your Internet Identity. For example, register multiple physical devices like your computer and phone with a security key and using the authentication options that those devices—and browsers running on them—support.
 +
 For more information about creating an identity using the Internet Identity service, see link:../integration/ic-identity-guide/auth-how-to{outfilesuffix}[How to use the Internet Identity service].
 +
-After you have registered, you can click *Login* to authenticate using your user number and the authentication method—for example, a security key or fingerprint—you have registered.
-. Click *Proceed* to access to the Network Nervous System (NNS) application.
+After you have registered, you can click **Login** to authenticate using your user number and the authentication method—for example, a security key or fingerprint—you have registered.
+. Click **Proceed** to access to the Network Nervous System (NNS) application.
 
 == Add an account
 
@@ -94,17 +94,17 @@ Before transferring any tokens, you can create one or more linked subaccounts or
 To add an account for managing ICP tokens:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
-. Click *Login* to connect to the Internet Identity service.
-. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
-. Click *Proceed* to access to the Network Nervous System (NNS) application.
-. On the default ICP tab, click *Add Account*.
+. Click **Login** to connect to the Internet Identity service.
+. Verify your user number, then click **Login** to authenticate using the device and authentication method you have registered.
+. Click **Proceed** to access to the Network Nervous System (NNS) application.
+. On the default ICP tab, click **Add Account**.
 . Select the type of account to add.
 +
 --
-* *New Linked Account* creates a new subaccount linked to your Main account address in the ledger.
-* *Attach Hardware Wallet* adds a hardware wallet to your main account address in the ledger. (Support for the Ledger Nano hardware wallet is coming soon, but not available yet.)
+* **New Linked Account** creates a new subaccount linked to your Main account address in the ledger.
+* **Attach Hardware Wallet** adds a hardware wallet to your main account address in the ledger. (Support for the Ledger Nano hardware wallet is coming soon, but not available yet.)
 --
-. Click *New Linked Account*, type an Account Name, then click *Create*.
+. Click **New Linked Account**, type an Account Name, then click **Create**.
 +
 
 image:new-linked-account.png[]
@@ -199,18 +199,18 @@ You can configure the period of time the stake is locked from six months up to a
 To stake ICP tokens:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
-. Click *Login* to connect to the Internet Identity service.
-. Verify your user number, then click *Login* to authenticate using the device and authentication method you have registered.
-. Click *Proceed* to access to the Network Nervous System (NNS) application. 
-. Click *Neurons*, then click *Stake Neuron*.
-. Type the number of ICP tokens to stake, then click *Create*.
-. Set the dissolve delay for the neuron to control the length of time the stake is locked, then click *Update Delay*.
+. Click **Login** to connect to the Internet Identity service.
+. Verify your user number, then click **Login** to authenticate using the device and authentication method you have registered.
+. Click **Proceed** to access to the Network Nervous System (NNS) application. 
+. Click **Neurons**, then click **Stake Neuron**.
+. Type the number of ICP tokens to stake, then click **Create**.
+. Set the dissolve delay for the neuron to control the length of time the stake is locked, then click **Update Delay**.
 +
 For example:
 +
 
 image:dissolve-delay.png[]
-. Click *Yes, I'm sure* to confirm the lock up period, then close the window to review the newly-created neuron properties.
+. Click **Yes, I'm sure** to confirm the lock up period, then close the window to review the newly-created neuron properties.
 +
 
 image:neuron-properties.png[]
@@ -219,19 +219,29 @@ image:neuron-properties.png[]
 
 After you have locked the stake and created a neuron, you can:
 
-* Start the dissolve delay timer by clicking *Start Unlock*.
-* Increase the dissolve delay period by clicking *Increase Dissolve Delay*.
-* Stop the dissolve delay after starting the unlock countdown by clicking *Lockup*.
+* Start the dissolve delay timer by clicking **Start Unlock**.
+* Increase the dissolve delay period by clicking **Increase Dissolve Delay**.
+* Stop the dissolve delay after starting the unlock countdown by clicking **Lockup**.
+* Increase the number of ICP tokens you have staked.
 
 === Starting and stopping the dissolve delay
 
 Creating a new neuron does not automatically start the dissolve delay timer. 
-You must explicitly start the timer countdown by clicking *Start Unlock*.
+You must explicitly start the timer countdown by clicking **Start Unlock**.
 
-For example, if you set a dissolve delay of one year and want to immediately begin the countdown, you should click *Start Unlock* as part of the process of creating the neuron.
-If you change your mind and want to stop a current countdown in progress, you can click *Lockup*, 
-After you click *Lockup* to stop the dissolve delay, you can click *Start Unlock* to resume the countdown without changing the existing dissolve delay period.
-If you want to continue a countdown already in progress but extend the lock up period, you can click *Increase Dissolve Delay* then select a longer dissolve delay. 
+For example, if you set a dissolve delay of one year and want to immediately begin the countdown, you should click **Start Unlock** as part of the process of creating the neuron.
+If you change your mind and want to stop a current countdown in progress, you can click **Lockup**, 
+After you click **Lockup** to stop the dissolve delay, you can click **Start Unlock** to resume the countdown without changing the existing dissolve delay period.
+If you want to continue a countdown already in progress but extend the lock up period, you can click **Increase Dissolve Delay** then select a longer dissolve delay. 
+
+=== Adding ICP tokens to an existing neuron
+
+After you create a neuron, you can increase the number of ICP tokens you have staked in that neuron to increase your voting power and rewards.
+For example, if you initially stake a small number of ICP tokens, then decide to purchase additional tokens, you have the option to create a new neuron or "top-up" your existing neuron.
+
+To increase the stake in an existing neuron:
+
+
 
 == Configure following rules
 

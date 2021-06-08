@@ -2,11 +2,8 @@
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 Cascading stylesheets represent one of the most common ways to customize the user experience for an application.
 This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project.
@@ -217,7 +214,7 @@ cd ../../..
 
 == Start the local network
 
-Before you can build the `+contacts+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build the `+contacts+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 
 To start the network locally:
 

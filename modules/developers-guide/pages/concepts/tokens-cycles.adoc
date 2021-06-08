@@ -1,10 +1,8 @@
 = Tokens and cycles
 :keywords: Internet Computer,blockchain,ICP tokens,smart contracts,cycles,wallet,software,smart contract,canister,developer
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 
 Within the Internet Computer ecosystem, Internet Computer Protocol tokens (ICP tokens) are a native utility token with a value determined on the open market.
 ICP tokens play a key role in both the governance and economics of the {IC}. 

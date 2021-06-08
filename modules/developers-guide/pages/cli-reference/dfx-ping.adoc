@@ -1,5 +1,4 @@
 = dfx ping
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx ping+` command to check connectivity between a local computer and an {IC} network provider.
 This command enables you to verify that you can connect to a specific {IC} network and that the remote network services are running.

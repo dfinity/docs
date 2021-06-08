@@ -1,10 +1,8 @@
 = Canisters and code
 :keywords: Internet Computer,blockchain,protocol,smart contracts,canister,developer
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 
 One of the most important principles to keep in mind is that the {IC} is primarily a distributed and decentralized platform for running software. 
 

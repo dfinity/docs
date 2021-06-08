@@ -1,5 +1,4 @@
 = dfx replica
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx replica+` command to start a {IC} replica process (without a web server) locally.
 This command enables you to deploy canisters locally to simulate network deployment and to test your programs during development.

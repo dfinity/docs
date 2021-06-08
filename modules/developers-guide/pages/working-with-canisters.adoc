@@ -2,12 +2,8 @@
 March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 If you have experimented with using the {sdk-long-name} by following the tutorials in the link:tutorials-intro{outfilesuffix}[Tutorials] section or by cloning examples from the link:https://github.com/dfinity/examples[examples] repository, you are already familiar with how to build and deploy programs as **canisters**.
 This section provides additional information about the canister lifecycle and how to manage canisters.
@@ -16,7 +12,7 @@ This section provides additional information about the canister lifecycle and ho
 == Register a canister identifier
 
 Depending on your preferred development workflow, you can register a unique canister identifier before or after you have a program ready to compile.
-For example, if you want to reserve a unique identifier for your program on a sub-network before you have written any code, you can do so by running the `+dfx canister create+` command.
+For example, if you want to reserve a unique identifier for your program on a subnet before you have written any code, you can do so by running the `+dfx canister create+` command.
 This command essentially creates an empty canister placeholder into which you can later install your code.
 
 To register a unique identifier for a canister:

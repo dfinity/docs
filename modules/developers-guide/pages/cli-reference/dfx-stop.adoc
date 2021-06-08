@@ -1,5 +1,4 @@
 = dfx stop
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx stop+` command to stop the {IC} processes that you currently have running on your local computer.
 In most cases, you run the {IC} locally so that you can deploy canisters and test your programs during development.

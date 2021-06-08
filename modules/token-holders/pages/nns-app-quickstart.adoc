@@ -5,11 +5,8 @@
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 As a decentralized platform, all changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS). 

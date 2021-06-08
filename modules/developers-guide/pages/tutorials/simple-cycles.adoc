@@ -2,11 +2,8 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 //:!page-repl:
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 When you are doing local development, you can use the default wallet in your project to send cycles and check your cycle balance. 
 But what about the programs that need to receive and burn those cycles to execute their functions and provide services to users?
@@ -76,7 +73,7 @@ Let's take a look at a few key elements of this program:
 
 == Start the local network
 
-Before you can build the `+access_hello+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build the `+access_hello+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 
 To start the network locally:
 

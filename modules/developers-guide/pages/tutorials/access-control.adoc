@@ -2,11 +2,8 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 //:!page-repl:
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 Applications often require role-based permissions to control the operations different users can perform.
 
@@ -86,7 +83,7 @@ In this program, however, the `+greet+` function uses a message caller to determ
 
 == Start the local network
 
-Before you can build the `+access_hello+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build the `+access_hello+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 
 To start the network locally:
 

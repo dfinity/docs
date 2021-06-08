@@ -1,7 +1,6 @@
 = At a glance
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 
 The link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start] provides a fast path to deploying a simple default application without stopping to admire the scenery along the way. 
 Individual link:../tutorials-intro{outfilesuffix}[tutorials] walk through specific scenarios, pointing out details about what you're doing in each step. 

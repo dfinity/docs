@@ -1,10 +1,7 @@
 = Introducing a new approach to handling HTTP requests and serving assets 
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 If you are installing any 0.7.0 version of the {sdk-short-name}, you might have noticed that those versions have introduced some major improvements for handling HTTP queries and front-end assets.

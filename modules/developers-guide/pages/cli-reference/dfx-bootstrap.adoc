@@ -1,11 +1,8 @@
 = dfx bootstrap
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 Use the `+dfx bootstrap+` command to start the bootstrap web server defined in the `+dfx.json+` configuration file or specified using command-line options.
 

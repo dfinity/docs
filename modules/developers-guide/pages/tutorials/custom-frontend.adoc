@@ -1,11 +1,8 @@
 = Customize the front-end
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 Now that you have a basic understanding of how to create, build, and deploy a simple program and are familiar with the default project files and sample front-end, you might want to start experimenting with different ways to customize the front-end user experience for your project.
 
@@ -255,7 +252,7 @@ For example:
 
 == Start the local network
 
-Before you can build the `+custom_greeting+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build the `+custom_greeting+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 
 To start the network locally:
 

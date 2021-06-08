@@ -1,5 +1,4 @@
 = dfx help
-:sdk-short-name: DFINITY Canister SDK
 
 Use this command to view usage information for the `+dfx+` parent command or for any specified subcommand.
 

@@ -1,5 +1,4 @@
 = dfx canister
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx canister+` command with flags and subcommands to manage canister operations and interaction with the {platform}.
 In most cases, you use `+dfx canister+` subcommands after you compile a program to manage the canister lifecycle and to perform key tasks such as calling program functions.

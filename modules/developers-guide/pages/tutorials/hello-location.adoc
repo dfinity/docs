@@ -2,11 +2,8 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 //:!page-repl:
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 This tutorial provides a simple variation on the default program that lets you pass a single text argument to a single actor, compile the code to create a canister, then retrieve the argument.
 
@@ -77,7 +74,7 @@ include::example$location_hello.mo[]
 
 == Start the local network
 
-Before you can build your project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build your project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 
 Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.

@@ -1,10 +1,8 @@
 = Decentralized data centers
 :keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 
 The {IC} is not physical hardware that exists in any physical location. 
 Instead, the {IC} combines computing resources provided by independently-operated data centers around the world. 

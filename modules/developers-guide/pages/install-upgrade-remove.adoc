@@ -1,11 +1,8 @@
 = Install, upgrade, or remove software
 :experimental:
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 As described in the link:../quickstart/quickstart-intro{outfilesuffix}[Quick start], you can download and install the latest version of the {sdk-short-name} package by running a command in a terminal shell.
 The topics in this section provide additional information about installing, upgrading, and removing the {sdk-short-name}.

@@ -1,5 +1,4 @@
 = dfx deploy
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx deploy+` command to register, build, and deploy an application locally or on a specified network.
 By default, all canisters defined in the project `+dfx.json+` configuration file are deployed.

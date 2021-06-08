@@ -2,9 +2,7 @@
 :keywords: Motoko,programming language,Internet Computer,developers
 :proglang: Motoko
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:platform: Internet Computer platform
 :IC: Internet Computer
 
 This summary provides a simple but comprehensive overview of {proglang} with examples of key features to help you identify operations and patterns that you might know in other languages and what they look like in {proglang}. 

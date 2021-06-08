@@ -1,15 +1,12 @@
 = What is the {IC}?
 :keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
 :proglang: Motoko
-:platform: Internet Computer blockchain
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 
 [[ic-overview]]
 
-The *{IC}* is a computing infrastructure that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof software programs.
-Unlike most cloud-based or distributed architectures, however, the {IC} provides an open platform where software and services run directly on the internet itself rather than on a proprietary infrastructure or a specific hosting service.
+The *{IC}* is a blockchain that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof software programs.
 
 As an application developer, you might find it useful to think of the {IC} as providing the following key elements:
 
@@ -22,11 +19,8 @@ As an application developer, you might find it useful to think of the {IC} as pr
 The {IC} is not physical hardware that exists in any physical location. 
 Instead, the {IC} combines computing resources provided by independent data centers around the world to give users and organizations secure access to applications and transaction processing services. 
 
-The {platform} is not owned and operated by a single private company. 
-Instead, all {platform} updates and operations are managed through a decentralized governance system defined in the protocol.
-Its architecture enables multiple computers to operate like one, very powerful, virtual machine.
-
-The computers that make up the virtual machine are organized into sub-network blockchains with data centers around the globe. 
+The {platform} enables multiple computers to operate like one, very powerful, virtual machine.
+The computers that make up the virtual machine are organized into sub-networks—subnet blockchains—with data centers around the world. 
 The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
 Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.
 

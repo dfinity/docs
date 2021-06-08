@@ -1,11 +1,7 @@
 :title:  Canister SDK - Developer Tools
-= DFINITY Developer Center
-April 2019 (Alpha)
+= Developer Center
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
-:sdk-short-name: DFINITY Canister SDK
-:ext: .mo
 :company-id: DFINITY
 :page-layout: home
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]

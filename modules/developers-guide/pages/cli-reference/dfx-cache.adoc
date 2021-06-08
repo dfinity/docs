@@ -1,5 +1,4 @@
 = dfx cache
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx cache+` command with flags and subcommands to manage the `+dfx+` version cache.
 

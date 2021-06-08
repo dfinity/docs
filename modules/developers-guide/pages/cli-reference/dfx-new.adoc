@@ -1,5 +1,4 @@
 = dfx new
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx new+` command to create a new project for the {platform}.
 This command creates a default project structure with template files that you can modify to suit your application.

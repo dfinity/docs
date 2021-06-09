@@ -14,7 +14,7 @@ canister::
 
 [[g-replica]]
 replica:: 
-  In the context of the {platform}, a replica refers to the {IC} processes (for example, the `+replica+`, `+nodemanager+`, and other lower-level {IC} protocol processes) running on a physical computer node in the network.
+  In the context of the {platform}, a replica refers to the {IC} processes (for example, the `+replica+`, `+nodemanager+`, and other lower-level {IC} protocol processes) running on a physical computer node in the network topology.
   For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop the `+replica+` process locally to provide a local network for development.
 
 [[g-node]]

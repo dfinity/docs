@@ -177,7 +177,7 @@ As you write your program, keep in mind that there are two types of calls—upda
 
 Before you can deploy and test your program, you need to do the following:
 
-* Connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+* Connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 * Register a network-specific identifier for the application
 * Compile the program with a target output of WebAssembly.
 
@@ -346,7 +346,7 @@ service : {
 
 Before you can deploy and test your program, you need to do the following:
 
-* Connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+* Connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 * Register a network-specific identifier for the application.
 
 To deploy and test the application locally:

@@ -52,14 +52,14 @@ Internet Computer Protocol token holders can exchange tokens when they need to r
 [[volatility]]
 == Token value and volatility
 
-- Tokens reflect the value of the network and can fluctuate. To prevent the token value from affecting the number of messages a canister can process, tokens are not used to pay for network resources directly.
+- Tokens reflect the value of the {IC} and can fluctuate. To prevent the token value from affecting the number of messages a canister can process, tokens are not used to pay for resources directly.
 - Tokens can be exchanged between token holders or locked up in **neurons** to secure voting rights as part of the platform governance system.
-- Tokens are used to reward data centers for providing compute capacity and platform stakeholders for participating in secure operation of the network by voting on proposals submitted to the governance system.
+- Tokens are used to reward data centers for providing compute capacity and platform stakeholders for participating in secure operation of the {IC} by voting on proposals submitted to the governance system.
 
 [[data-centers]]
 == Payment to data centers and node providers
 
-With this model, the Internet Computer platform provides data center providers with a predictable economic model for computing power capacity to ensure resources are available when and where they are needed. Data center providers receive compensation for both active and spare nodes so that the network has capacity to handle both normal traffic and workload spikes.
+With this model, the Internet Computer platform provides data center providers with a predictable economic model for computing power capacity to ensure resources are available when and where they are needed. Data center providers receive compensation for both active and spare nodes so that the {IC} has capacity to handle both normal traffic and workload spikes.
 
 If the Internet Computer network requires additional capacity, it can request bids from potential data center providers. If a bid is accepted, a data center provider might be contracted to provide a given number of servers with an acceptable level of service availability for a specific period of time. For example, a data center provider might be contracted to provide ten servers with 99% uptime for 30 days. Even if those nodes do not host any canisters and are only used as spare nodes, the data center provider receives compensation for availability as part of the network.
 

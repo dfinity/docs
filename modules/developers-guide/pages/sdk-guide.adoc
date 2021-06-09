@@ -8,7 +8,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {platform} is poised to help you start a revolution with a new way to design, build, and release software.
 
-== Developing open internet services
+== Developing open internet applications
 
 Conceptually, the Internet Computer is an extension of the existing internet that enables a global network of computers to provide the computing power for running application software.
 

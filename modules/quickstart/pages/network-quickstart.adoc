@@ -153,7 +153,9 @@ For example, you should see output similar to the following:
 [[net-ledger-id]]
 == Confirm your developer identity and ledger account
 
-All ICP token transactions are recorded in a ledger canister running on the Internet Computer.
+All ICP token transactions are recorded in a link:../developers-guide/glossary{outfilesuffix}#g-ledger[ledger canister] running on the Internet Computer.
+The ledger canister consists of *account identifiers* and *balances* for all ICP token holders.
+
 Before you can transfer any ICP tokens you hold in your ledger account, you need to send a secure and properly-signed message that verifies your identity to the ledger and authorizes your developer identity to complete the transaction.
 
 Depending on how you have set up custody for holding your ICP tokens, the hardware, software, and steps required to connect to the ledger and complete a transaction can vary.
@@ -235,7 +237,7 @@ To transfer ICP tokens to create a cycles wallet:
 +
 [source,bash]
 ----
-dfx ledger --network ic create-canister <controller-principal-identifier> --amount <icp-tokens>
+dfx ledger --network ic create-canister <principal-identifier> --amount <icp-tokens>
 ----
 +
 This command converts the number of ICP tokens you specify for the `+--amount+` argument into cycles, and associates the cycles with a new canister identifier controlled by the principal you specify.

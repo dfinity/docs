@@ -40,7 +40,6 @@ smart contract::
   The code controls the execution, and the transactions are tamper-proof, traceable, and irreversible.
   On the {IC}, smart contracts are deployed as <<g-canister,canisters>>.
 
-
 [[g-wallet]]
 wallet::
   On the {IC}, a wallet is a specialized application that allows you to store and retrieve your digital assets.

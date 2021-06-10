@@ -337,14 +337,6 @@ For example, if you have a neuron that contains 100 ICP tokens and it has a matu
 
 After you spawn a new neuron from an existing neuron, the maturity for the existing neuron falls to zero.
 
-For more information about maturity and spawning new neurons, see the following articles:
-
-* link:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
-
-* link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
-
-* link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
-
 To spawn new neurons from an existing neuron:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
@@ -355,6 +347,14 @@ To spawn new neurons from an existing neuron:
 Click **Spawn Neuron**.
 +
 Keep in mind that the dissolve delay for a newly-spawned neurons is one day, giving you the option to collect value from the ICP tokens by unlocking them or to increase the dissolve delay to collect additional rewards.
+
+For more information about maturity and spawning new neurons, see the following articles:
+
+* link:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
+
+* link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
+
+* link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
 ////
 == Collect rewards
@@ -376,7 +376,8 @@ To manually vote on proposals:
 . Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
 . Click **Proceed** to access to the Network Nervous System (NNS) application. 
 . Click **Voting**.
-. Click any of the proposals listed to view information about the proposal, voting results, and the number of votes that were cast to adopt or reject the proposal.
++
+You can click any of the proposals listed to view information about the proposal, includinga brief description of the proposal, a link for viewing additional information about the proposal, the number of votes that were cast to adopt or reject the proposal, and the votes cast by your neurons.
 . Use the Topics, Reward Status, and Proposal Status filters to control the list of proposals displayed.
 +
 For example, open the Topics list to see if there are any proposal topics that you want to include in the proposal list that are not currently displayed and open the Proposal Status to verify that you are viewing all open proposals.

@@ -1,4 +1,5 @@
-.xref:index.adoc[Developer Center]
+.Developer Center
+//.xref:index.adoc[Developer Center]
 
 .xref:quickstart:quickstart-intro.adoc[Quick start]
 ** xref:quickstart:local-quickstart.adoc[Local development]
@@ -112,7 +113,7 @@
 ** link:https://github.com/dfinity/examples[Examples repository]
 ** link:https://github.com/dfinity/awesome-dfinity[Awesome DFINITY]
 ** link:https://github.com/dfinity/linkedup[LinkedUp]
-** link:https://github.com/dfinity/cancan[CanCan]//
+** link:https://github.com/dfinity/cancan[CanCan]
 
 .xref:token-holders:icp-tokens.adoc[Token holders]
 ** xref:token-holders:custody-options-intro.adoc[Choosing self-custody for digital assets]

@@ -1,4 +1,4 @@
-:title:  Canister SDK - Developer Tools
+:title:  {IC} SDK - Developer Tools
 = Developer Center
 :proglang: Motoko
 :IC: Internet Computer

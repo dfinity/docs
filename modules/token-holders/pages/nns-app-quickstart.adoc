@@ -254,7 +254,7 @@ Active participation in governance is an important factor in the long-term healt
 Voting on proposals is also an important factor in calculating the rewards you receive in return for locking up ICP tokens in neurons.
 
 However, voting directly on every proposal submitted to the NNS presents several challenges. 
-For example, proposals might be submitted and require a vite when you are unavailable or propose changes that you lack the expertise to evaluate. 
+For example, proposals might be submitted and require a vote when you are unavailable or propose changes that you lack the expertise to evaluate. 
 To address these challenges, you can configure neurons to vote automatically to adopt or reject proposals by following the votes of a group of neurons.
 
 To maximize your rewards, you should vote on as many proposals as possible by following the active neuron holders who have interests aligned with your own. For example, you might follow the Internet Computer Association (ICA) on some topics such **SubnetManagement** and other neuron holders on topics such as **Governance**.
@@ -337,7 +337,7 @@ For example, if you have a neuron that contains 100 ICP tokens and it has a matu
 
 After you spawn a new neuron from an existing neuron, the maturity for the existing neuron falls to zero.
 
-For information about maturity and spawning new neurons, see the following articles:
+For more information about maturity and spawning new neurons, see the following articles:
 
 * link:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
 
@@ -345,13 +345,14 @@ For information about maturity and spawning new neurons, see the following artic
 
 * link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
-To disburse a neuron and return its ICP tokens:
+To spawn new neurons from an existing neuron:
 
 . Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
 . Click **Login** to connect using your Internet Identity.
 . Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
 . Click **Proceed** to access to the Network Nervous System (NNS) application. 
-. Click **Neurons**, then click **Spawn Neuron**.
+. Click **Neurons**, then click the neuron that has reached the minimum maturity required to spawn a new neuron.
+Click **Spawn Neuron**.
 +
 Keep in mind that the dissolve delay for a newly-spawned neurons is one day, giving you the option to collect value from the ICP tokens by unlocking them or to increase the dissolve delay to collect additional rewards.
 
@@ -365,9 +366,31 @@ In the meantime, for information about maturity and rewards, see link:https://me
 
 == Vote on proposals
 
-Information coming soon ...
+You can choose the proposal types and proposal topics that you see and vote on—either directly or by following other neuron stakeholders—using filters in the Network Nervous System application.
+For example, if you want to review and vote on all proposals that involve network participants such as data center identities and node operators, but aren't interested in viewing proposals related to the current market value of ICP, as measured by an International Monetary Fund (IMF) Special Drawing Right (SDR), you can select the **ParticipantManagement** topic filter and deselect the *ExchangeRate* topic filter.
 
-In the meantime, for information about voting, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11#6007[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+To manually vote on proposals:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click **Login** to connect using your Internet Identity.
+. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
+. Click **Proceed** to access to the Network Nervous System (NNS) application. 
+. Click **Voting**.
+. Click any of the proposals listed to view information about the proposal, voting results, and the number of votes that were cast to adopt or reject the proposal.
+. Use the Topics, Reward Status, and Proposal Status filters to control the list of proposals displayed.
++
+For example, open the Topics list to see if there are any proposal topics that you want to include in the proposal list that are not currently displayed and open the Proposal Status to verify that you are viewing all open proposals.
+. Click any Open proposal to see its details and the voting power for the neurons associated with your identity.
+. Select the neuron identifiers with voting power that you want to use to cast your vote.
+. Click **Adopt** or **Reject** to cast your vote.
++
+For more information about voting and voting rewards, see the following articles:
+
+* link:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
+
+* link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
+
+* link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
 == Submit a proposal
 

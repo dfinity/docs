@@ -1,18 +1,9 @@
 = Sample code, applications, and microservices
 May 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:linkedcss:
-:toc:
-:toc: right
-:toc-title: SAMPLE PROJECTS
-:toclevels: 1
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 Sample code, applications, and microservices that have been developed by DFINITY or contributed by the community are available from the link:https://github.com/dfinity/examples[DFINITY public repository].
 

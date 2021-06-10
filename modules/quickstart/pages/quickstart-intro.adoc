@@ -2,15 +2,12 @@
 :description: Download the DFINITY Canister SDK and learn how to deploy your first application.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on the {IC} network.
+This {sdk-long-name} provides tools, sample code, and documentation to help you create programs to run on the {IC}.
 The _Quick Start_ tutorial assumes that you are installing the {sdk-short-name} for the first time and illustrates how to create, build, and deploy your first application. 
 
 To keep the instructions simple and focused on the task at hand, the _Quick start_ is split into two scenarios:

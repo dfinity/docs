@@ -4,8 +4,6 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 As discussed in link:concepts/tokens-cycles{outfilesuffix}[Tokens and cycles], ICP tokens can be converted into *cycles* to power canister operations. 
 Cycles provide a largely stable value proposition and represent the operational cost of communication, computation, and storage that applications consume. 

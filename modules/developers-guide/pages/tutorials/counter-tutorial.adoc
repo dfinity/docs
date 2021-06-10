@@ -1,11 +1,8 @@
 = Increment a natural number
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 In this tutorial, you are going to write a program that creates a single actor and provides a few basic functions to increment a counter and illustrate persistence of a value.
 
@@ -116,7 +113,7 @@ For more information about the differences between a query and an update, see li
 
 == Start the local network
 
-Before you can build the `+my_counter+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build the `+my_counter+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 
 Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.

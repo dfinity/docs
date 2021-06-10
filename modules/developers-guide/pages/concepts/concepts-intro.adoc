@@ -1,10 +1,9 @@
 = Concepts
 :keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
 :proglang: Motoko
-:platform: Internet Computer blockchain
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
+
 
 You don’t need to know much about the inner workings of the {platform} to write programs that run successfully on it.
 However, learning a few key concepts will help you get the most out of the unique features that the {IC} provides.

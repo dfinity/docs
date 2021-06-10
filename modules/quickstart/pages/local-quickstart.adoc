@@ -5,11 +5,8 @@
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
@@ -120,7 +117,7 @@ cd hello
 [[start-the-local-network]]
 == Start the local network
 
-Before you can build your first project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build your first project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 
 These instructions assume you are running the {IC} locally. If you are connecting to an external {IC} network, you can skip this section. 
 

@@ -1,5 +1,4 @@
 = dfx build
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx build+` command to compile your program into a WebAssembly module that can be deployed on the {IC}.
 You can use this command to compile all of the programs that are defined for a project in the project's `+dfx.json+` configuration file or a specific canister.

@@ -1,15 +1,8 @@
 = Use multiple actors
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - MULTIPLE ACTORS
-:toclevels: 3
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 In this tutorial, you are going to create a project with multiple actors. 
 Currently, you can only define one actor in a {proglang} file and a single actor is always compiled to a single canister.
@@ -145,7 +138,7 @@ include::example$multiple-actors/daemon/main.mo[]
 
 == Start the local network
 
-Before you can build the `+multiple_actors+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build the `+multiple_actors+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 
 To start the network locally:
 

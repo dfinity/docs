@@ -1,11 +1,8 @@
 = Import library modules
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 In this tutorial, you are going to write a simple program that enables you to store and look up telephone numbers.
 This tutorial illustrates how to import and use a few basic {proglang} library functions.
@@ -77,7 +74,7 @@ Creating user-defined types improves the readability of the code.
 
 == Start the local network
 
-Before you can build the `+phonebook+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can build the `+phonebook+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
 
 Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.

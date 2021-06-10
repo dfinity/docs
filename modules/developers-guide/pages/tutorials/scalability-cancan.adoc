@@ -1,11 +1,8 @@
 = Create scalable apps
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 The CanCan sample application is a simplified video-sharing service that demonstrates several features that you can use as models for your own applications.
 For example, here are a few things you can learn by exploring the CanCan sample application:
@@ -35,7 +32,7 @@ In addition, the original implementation of the distributed hash table back-end 
 
 === Simplifying scalability
 
-Because the {IC} protocol relies on replicated state across nodes in a sub-network, it provides certain guarantees about fault tolerance and failover natively that are not generally available to applications running on other platforms or protocols. 
+Because the {IC} protocol relies on replicated state across nodes in a subnet, it provides certain guarantees about fault tolerance and failover natively that are not generally available to applications running on other platforms or protocols. 
 
 With the realization that the {IC} could ensure that canisters were available to receive and respond to requests,the original distributed hash table back-end service was replaced with a simpler but more scalable back-end service called BigMap.
 

@@ -1,10 +1,7 @@
 = Design apps
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-
 
 As you come up with ideas for applications, you are going to make many design decisions about how to structure and organize your project. 
 Most of these design decisions are independent of whether you deploy your app on a traditional cloud service or on the {IC}. 

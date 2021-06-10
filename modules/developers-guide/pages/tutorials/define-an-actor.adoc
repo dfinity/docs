@@ -1,11 +1,8 @@
 = Query using an actor
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 In the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], you had your first look at a simple program for the {IC} involving an actor object and asynchronous messaging.
 As the next step in learning to write programs that take advantage of actor-based messaging, this tutorial illustrates how to modify a traditional `+Hello, World!+` program to define an actor, then deploy and test your program on a local network.
@@ -109,7 +106,7 @@ Therefore, there's no need to reserve a unique canister identifier on the {IC} n
 In this scenario, you can compile the program without connecting to an {IC} network at all.
 Instead, the `+dfx build+` command creates a local, hard-coded canister identifier for you to use.
 
-You can use this local identifier while you are testing your program or any time you want to compile your program without starting the {IC} replica process locally or connecting to a replica on a remote sub-network.
+You can use this local identifier while you are testing your program or any time you want to compile your program without starting the {IC} replica process locally or connecting to a replica on a remote subnet.
 
 To build the program executable:
 
@@ -162,7 +159,7 @@ If you wanted to deploy this project, you would need to do the following:
 * Deploy the canister.
 
 Let's consider these steps in a bit more detail.
-Before you can deploy this project, you must connect to the {IC} network either running *locally* in your development environment or running *remotely* on a sub-network that you can access.
+Before you can deploy this project, you must connect to the {IC} network either running *locally* in your development environment or running *remotely* on a subnet that you can access.
 After you connect to a local or remote network, you must also generate a unique, *network-specific* canister identifier to replace your locally-defined identifier.
 To see the steps involved for yourself, let's deploy the project locally.
 

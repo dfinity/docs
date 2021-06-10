@@ -1,18 +1,14 @@
-:title:  Canister SDK - Developer Tools
-= DFINITY Developer Center
-April 2019 (Alpha)
+:title:  {IC} SDK - Developer Tools
+= Developer Center
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
-:sdk-short-name: DFINITY Canister SDK
-:ext: .mo
 :company-id: DFINITY
 :page-layout: home
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {platform} is poised to help you start a revolution with a new way to design, build, and release software.
 
-== Developing open internet services
+== Developing open internet applications
 
 Conceptually, the Internet Computer is an extension of the existing internet that enables a global network of computers to provide the computing power for running application software.
 

@@ -1,10 +1,8 @@
 = Neurons and governance
 :keywords: Internet Computer,blockchain,proposals,voting,Neuron Nervous System,NNS,platform management,configuration management,network management,smart contract,canister
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 
 As a decentralized platform, all changes to the configuration and behavior of the Internet Computer are controlled by a governance body called the Network Nervous System (NNS). The NNS controls many aspects of the Internet Computer platform including the following:
 

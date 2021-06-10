@@ -1,5 +1,4 @@
 = dfx start
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx start+` command to start a local {IC} replica process and web server processes for the current project.
 This command enables you to deploy canisters to the local {IC} network to test your programs during development.

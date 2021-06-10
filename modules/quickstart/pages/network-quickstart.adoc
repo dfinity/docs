@@ -5,11 +5,8 @@
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[net-quick-start]]
@@ -130,7 +127,7 @@ cd hello
 [[ping-the-network]]
 == Check the connection to the network
 
-Before you can deploy your first project on the {IC}, you need to connect to the network gateway running remotely on a sub-network that you can access.
+Before you can deploy your first project on the {IC}, you need to connect to the network gateway running remotely on a subnet that you can access.
 There is a reserved network alias that you can use to access the {IC} running remotely on nodes in data centers. The network alias is a system setting that's defined internally, so there's nothing you need to configure in your projects by default.
 
 To check your connection to the {IC} network:

@@ -1,10 +1,7 @@
 = Glossary
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 
 [[g-actor]]
 actor::

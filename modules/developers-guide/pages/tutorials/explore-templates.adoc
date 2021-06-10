@@ -1,10 +1,7 @@
 = Explore the default project
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 If you started your tour of the {sdk-long-name} with the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], you have already seen the basic work flow for creating applications that run on the {IC}.
 Now, let's take a closer look at that work flow by exploring the default files and folders that are added to your workspace when you create a new project.
@@ -181,7 +178,7 @@ For now, you can continue to the next section.
 [[start-the-local-network]]
 == Start the local network
 
-Before you can build the default project, you need to connect to the {IC} network either running *locally* in your development environment or running *remotely* on a sub-network that you can access.
+Before you can build the default project, you need to connect to the {IC} network either running *locally* in your development environment or running *remotely* on a subnet that you can access.
 
 Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.

@@ -1,10 +1,8 @@
 = Decentralized data centers
 :keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 
 The {IC} is not physical hardware that exists in any physical location. 
 Instead, the {IC} combines computing resources provided by independently-operated data centers around the world. 
@@ -19,7 +17,7 @@ Independent data centers receive remuneration for contributing computing capacit
 
 == Subnets and data centers
 
-To provide a truly decentralized network that can withstand potential service disruptions, the physical nodes that make up any given subnet are distributed across data centers in diverse locations.
+To provide a truly decentralized blockchain that can withstand potential service disruptions, the physical nodes that make up any given subnet are distributed across data centers in diverse locations.
 The nodes themselves might be owned or provided by different parties in partnership or unaffiliated with the data center location where they operate.
 
 The following diagram provides a simplified view of a subnet with nodes in four data centers.

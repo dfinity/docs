@@ -1,11 +1,8 @@
 = Highlights of what's new in {release}
 :description: DFINITY Canister Software Development Kit Release Notes
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 :release: 0.7.0
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 

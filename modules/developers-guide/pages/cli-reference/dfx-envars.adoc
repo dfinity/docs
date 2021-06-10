@@ -1,7 +1,5 @@
 = Environment variables
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 You can configure certain properties for your {sdk-short-name} execution environment using environment variables.
 

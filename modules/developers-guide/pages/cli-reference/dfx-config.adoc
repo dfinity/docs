@@ -1,5 +1,4 @@
 = dfx config
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx config+` command to view or configure settings in the configuration file for a current project.
 Note that you can only run this command from within the project directory structure.

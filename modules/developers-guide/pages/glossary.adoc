@@ -15,21 +15,29 @@ canister::
   A canister is a conceptual object similar to a smart contract with a universally-unique identifier and an owner that defines the boundaries of a specific application, service, or micro-site. 
   A canister encapsulates all of the programming logic, public entry methods, the interface description for the provided message types, and state information for the application, service, or micro-service it describes.
 
-[[g-replica]]
-replica:: 
-  In the context of the {platform}, a replica refers to the {IC} processes (for example, the `+replica+`, `+nodemanager+`, and other lower-level {IC} protocol processes) running on a physical computer node in the network.
-  For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop the `+replica+` process locally to provide a local network for development.
+[[g-ledger]]
+ledger::
+  The Internet Computer records all transactions involving ICP tokens  in a specialized management canister, called the **ledger canister**.The ledger canister is a simplified parallel blockchain that runs on the Internet Computer in a subnet with other network management canisters.
+  The ledger canister implements a smart contract that holds **accounts** and **balances** and keeps a history of the *transactions* that affect accounts and balances. The transactions are recorded to track the following specific events:
+  
+  * **Mint ICP tokens** for accounts.
+  * **Transfer ICP tokens** from one account to another.
+  * **Burn ICP tokens** to eliminate them from existence.
 
 [[g-node]]
 node::
   A physical computer that is a registered member of the {platform} network and running the {IC} replica processes.
 
+[[g-replica]]
+replica:: 
+  In the context of the {platform}, a replica refers to the {IC} processes (for example, the `+replica+`, `+nodemanager+`, and other lower-level {IC} protocol processes) running on a physical computer node in the network.
+  For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop the `+replica+` process locally to provide a local network for development.
+
 [[g-smart-contract]]
-smart contract::
-  A smart contract is software that enables trusted transactions and agreements to be carried out across a distributed, decentralized blockchain network without the need for any central authority or legal system. 
-  
-  With a smart contract, the terms of a transaction or agreement are written directly into lines of code that are executed on the blockchain network. The code controls the execution, and the transactions are tamper-proof, traceable, and irreversible.
-  
+smart contract:: 
+  A smart contract is software that enables trusted transactions and agreements to be carried out across a distributed, decentralized blockchain network without the need for any central authority or legal system.
+  With a smart contract, the terms of a transaction or agreement are written directly into lines of code that are executed on the blockchain network. 
+  The code controls the execution, and the transactions are tamper-proof, traceable, and irreversible.
   On the {IC}, smart contracts are deployed as <<g-canister,canisters>>.
 
 [[g-wallet]]

@@ -8,9 +8,9 @@
 ++++
 <div class="html-container">
    <div class="landing-hero">
-     <div class="dev">
+     <!--<div class="dev">
      <a href=https://dfinity.org/developers>Developers</a>
-     </div>
+     </div>-->
         <h1>Build applications on-chain using smart contracts.</h1>
         <div class="landing-cta">
         <p>To download the Internet Computer SDK, run the following command in your terminal.</p>

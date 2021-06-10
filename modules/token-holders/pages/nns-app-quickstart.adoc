@@ -5,11 +5,8 @@
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
 :proglang: Motoko
-:platform: Internet Computer blockchain
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 As a decentralized blockchain, all changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS). 
@@ -332,15 +329,39 @@ image:updated-icp.png[]
 
 == Spawn new neurons
 
-Information coming soon ...
+As you vote on proposals—either directly or by following the votes of other neurons—the maturity associated with your neuron increases, which in turn increases the rewards you earn for participating in governance. 
+When the maturity for a locked stake reaches a minimum threshold of one ICP, you can spawn a new neuron. 
+The spawn operation creates a new neuron that locks a new balance of ICP on the ledger. 
 
-In the meantime, for information about maturity and spawning new neurons, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+For example, if you have a neuron that contains 100 ICP tokens and it has a maturity of 10 percent, you can spawn a new neuron that contains approximately 10 new ICP tokens. For the neuron with 100 ICP tokens to reach the minimum threshold for spawning, its maturity would need to be greater than one percent.
 
+After you spawn a new neuron from an existing neuron, the maturity for the existing neuron falls to zero.
+
+For information about maturity and spawning new neurons, see the following articles:
+
+* link:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
+
+* link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
+
+* link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+
+To disburse a neuron and return its ICP tokens:
+
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click **Login** to connect using your Internet Identity.
+. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
+. Click **Proceed** to access to the Network Nervous System (NNS) application. 
+. Click **Neurons**, then click **Spawn Neuron**.
++
+Keep in mind that the dissolve delay for a newly-spawned neurons is one day, giving you the option to collect value from the ICP tokens by unlocking them or to increase the dissolve delay to collect additional rewards.
+
+////
 == Collect rewards
 
 Information coming soon ...
 
 In the meantime, for information about maturity and rewards, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+////
 
 == Vote on proposals
 

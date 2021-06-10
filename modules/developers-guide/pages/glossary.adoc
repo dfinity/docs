@@ -18,14 +18,11 @@ canister::
 [[g-ledger]]
 ledger::
   The Internet Computer records all transactions involving ICP tokens  in a specialized management canister, called the **ledger canister**.The ledger canister is a simplified parallel blockchain that runs on the Internet Computer in a subnet with other network management canisters.
-  
   The ledger canister implements a smart contract that holds **accounts** and **balances** and keeps a history of the *transactions* that affect accounts and balances. The transactions are recorded to track the following specific events:
   
   * **Mint ICP tokens** for accounts.
   * **Transfer ICP tokens** from one account to another.
   * **Burn ICP tokens** to eliminate them from existence.
-
-  The ledger canister maintains a traceable history for all of these transactions starting from its initial state.
 
 [[g-node]]
 node::
@@ -37,12 +34,12 @@ replica::
   For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop the `+replica+` process locally to provide a local network for development.
 
 [[g-smart-contract]]
-smart contract::
-  A smart contract is software that enables trusted transactions and agreements to be carried out across a distributed, decentralized blockchain network without the need for any central authority or legal system. 
-  
-  With a smart contract, the terms of a transaction or agreement are written directly into lines of code that are executed on the blockchain network. The code controls the execution, and the transactions are tamper-proof, traceable, and irreversible.
-  
+smart contract:: 
+  A smart contract is software that enables trusted transactions and agreements to be carried out across a distributed, decentralized blockchain network without the need for any central authority or legal system.
+  With a smart contract, the terms of a transaction or agreement are written directly into lines of code that are executed on the blockchain network. 
+  The code controls the execution, and the transactions are tamper-proof, traceable, and irreversible.
   On the {IC}, smart contracts are deployed as <<g-canister,canisters>>.
+
 
 [[g-wallet]]
 wallet::

@@ -1,4 +1,4 @@
-= Write code for the {IC}
+= Developer Center | DFINITY
 :idprefix:
 :idseparator: -
 :!example-caption:

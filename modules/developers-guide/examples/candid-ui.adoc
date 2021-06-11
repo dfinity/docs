@@ -27,7 +27,7 @@ r7inp-6aaaa-aaaaa-aaabq-cai
 ....
 +
 . Copy the Candid UI canister identifier so that it is available in the clipboard.
-. Start the {IC} locally by running the following command:
+. If you've stopped the {IC}, restart it locally by running the following command:
 +
 [source,bash]
 ----

@@ -1,4 +1,4 @@
-= Write code for the {IC}
+= Developer Center | DFINITY
 :idprefix:
 :idseparator: -
 :!example-caption:
@@ -6,11 +6,15 @@
 :page-layout: landing
 
 ++++
+<script>
+// Simulate HTTP Redirect to marketing /developers site
+window.location.replace("https://dfinity.org/developers");
+</script>
+++++
+
+++++
 <div class="html-container">
    <div class="landing-hero">
-     <!--<div class="dev">
-     <a href=https://dfinity.org/developers>Developers</a>
-     </div>-->
         <h1>Build applications on-chain using smart contracts.</h1>
         <div class="landing-cta">
         <p>To download the Internet Computer SDK, run the following command in your terminal.</p>

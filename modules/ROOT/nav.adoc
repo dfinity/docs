@@ -3,6 +3,7 @@
 
 .xref:quickstart:quickstart-intro.adoc[Quick start]
 ** xref:quickstart:local-quickstart.adoc[Local development]
+** xref:quickstart:cycles-quickstart.adoc[Free cycles available for trial]
 ** xref:quickstart:network-quickstart.adoc[Network deployment]
 
 .xref:developers-guide:concepts/concepts-intro.adoc[Concepts]

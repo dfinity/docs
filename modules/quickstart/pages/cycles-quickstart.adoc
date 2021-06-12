@@ -1,4 +1,4 @@
-= Free cycles quick start
+= Free cycles available for trial
 :description: Download the DFINITY Canister SDK and deploy your first application on the Internet Computer.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :experimental:
@@ -10,7 +10,9 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[net-quick-start]]
-This _Quick Start_ scenario assumes that you are a new developer signing up for free cycles so that you can try out building the {IC}.
+This _Quick Start_ scenario assumes that you are a new developer signing up for free cycles so that you can try out building on the {IC}.
+
+NOTE: The free cycles program is only available for a limited time and the number of cycles you receive is limited to the equivalent of $100 USD for each principal account.  
 
 [[cycles-before]]
 == Before you begin
@@ -18,8 +20,6 @@ This _Quick Start_ scenario assumes that you are a new developer signing up for 
 Before you sign up to receive free cycles, verify the following:
 
 * You have an internet connection and access to a shell terminal on your local **macOS** or **Linux** computer.
-+
-Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.
 
 * You know how to perform common tasks—like opening a terminal and running commands—on your computer.
 
@@ -31,10 +31,6 @@ Currently, the {sdk-short-name} only runs on computers with a macOS or Linux ope
 ----
 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
-+
-For more information about downloading and installing the {sdk-short-name}, see link:../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-
-If you aren’t sure how to open a new terminal shell or how to install software  on your computer, see link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
 
 == Get the principal for your {IC} identity
 
@@ -160,17 +156,6 @@ The `+dfx deploy+` command output displays information about the operations it p
 ----
 dfx canister --network ic call hello greet everyone
 ----
-+
-Let's take a closer look at this example:
-+
--- 
-
-* Using the `+--network ic+` option indicates that the canister you want to call is deployed on the `+ic+` network. The `+ic+` network alias is an internally-reserved alias for accessing the {IC}.
-* Note that the `+--network ic+` option must precede the operation subcommand, which, in this case, is the `+dfx canister call+` command.
-* The `+hello+` argument specifies the name of the canister you want to call.
-* The `+greet+` argument specifies the name of the function you want to call in the `+hello+` canister.
-* The text string `+everyone+` is the argument that you want to pass to the `+greet+` function.
---
 . Verify the command displays the return value of the `+greet+` function.
 +
 For example:
@@ -195,4 +180,4 @@ Here are some suggestions for where to go next:
 
 * link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using Motoko.
 
-To continue deploying and managing smart contract on the {IC} after using your supply of free cycles, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
+To continue deploying and managing smart contract canisters on the {IC} after using your supply of free cycles, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].

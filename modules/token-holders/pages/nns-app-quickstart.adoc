@@ -397,10 +397,13 @@ For more information about voting and voting rewards, see the following articles
 
 Currently, you can only submit proposals to the network nervous system by using the {sdk-short-name} command-line interface (`+dfx+`) using calls to the `+governance+` canister.
 
-A separate command-line tool (ics-nns) for working with the governance canister is in development and this functionality will also be available in the link:https://nns.ic0.app[Network Nervous System (NNS)] application soon.
+A separate command-line tool (`+icx-nns+`) for working with the `+governance+` canister is in development and this functionality will also be available in the link:https://nns.ic0.app[Network Nervous System (NNS)] application soon.
 
-In the meantime, for information about voting, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11#6007[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+You can access a preliminary version of the `+icx-nns+` command-line tool by downloading a release from th link:https://github.com/dfinity/icx-nns/releases[icx-nns] repository. For information about how to download `+icx-nns+` command-line tool and how to use the submit proposals, see https://www.internetcomputer.org/governance/submit-proposal[How to submit proposals to the Network Nervous System].
 
+////
+For information about voting, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11#6007[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+////
 == Deploy a canister with cycles
 
 You must have *cycles* available to create and manage link:../developers-guide/glossary{outfilesuffix}#g-canister[canisters], a evoluation of smart contract software.

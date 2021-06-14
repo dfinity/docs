@@ -407,7 +407,7 @@ For information about voting, see link:https://medium.com/dfinity/getting-starte
 ////
 == Deploy a canister with cycles
 
-You must have *cycles* available to create and manage link:../developers-guide/glossary{outfilesuffix}#g-canister[canisters], a evoluation of smart contract software.
+You must have *cycles* available to create and manage link:../developers-guide/glossary{outfilesuffix}#g-canister[canisters], which are similar to smart contracts.
 The link:https://nns.ic0.app[Network Nervous System (NNS)] application provides a convenient way for you to create and manage canisters by enabling you to convert ICP tokens into cycles and attach cycles to specific canister identifiers. 
 
 To create a new canister:

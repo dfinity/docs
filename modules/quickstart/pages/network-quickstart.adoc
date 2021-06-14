@@ -10,15 +10,15 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[net-quick-start]]
-This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the {IC} network **running remotely**.
+This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the {IC} **running remotely**.
 
 If you are only deploying projects in a local development environment, see the link:local-quickstart{outfilesuffix}[Local development] scenario.
 
 To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. 
 The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.
 
-CAUTION: Capacity for the {IC} continues to expand through proposals to the Network Nervous System (NNS). At this time, subnet capacity is limited to systems canisters and applications that are approved by proposals submitted to the NNS. In the coming weeks, additional application subnets will be added through NNS proposals for general use by the developer community. 
-In the meantime, we encourage you to develop and deploy projects locally. If you attempt to deploy before there are application subnets available, the operation will fail and result in a fractional unit (e8s) loss.
+NOTE: There are now application subnets available for general use by the developer community. 
+At this time, however, you can only deploy new canisters using the {sdk-short-name} command-line interface (`+dfx+`) as described in this tutorial. If you attempt to deploy a new canister using the Network Nervous System (NNS) application, the operation will fail and result in a fractional unit (e8s) loss.
 
 [[net-before]]
 == Before you begin

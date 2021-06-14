@@ -32,7 +32,7 @@ After the agent and the actor are created for the project, the `+index.js+` file
 
 === Modifying the webpack configuration
 
-Because webpack is a popular and highly-configurable module bundler for JavaScript-based applications, new projects new a default `+webpack.config.js+` file that makes it easy to add the specific modules—such as `react` and `markdown`—that you want to use.
+Because webpack is a popular and highly-configurable module bundler for JavaScript-based applications, new projects create a default `+webpack.config.js+` file that makes it easy to add the specific modules—such as `react` and `markdown`—that you want to use.
 
 If you review the code in the template `+webpack.config.js+` file, you see that it constructs aliases for the canisters defined in your project's `+dfx.json+` file. The aliases can then be used to reference the canisters when imported as modules by the front-end.
 

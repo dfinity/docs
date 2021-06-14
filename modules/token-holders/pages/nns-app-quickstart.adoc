@@ -344,7 +344,7 @@ To spawn new neurons from an existing neuron:
 . Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
 . Click **Proceed** to access to the Network Nervous System (NNS) application. 
 . Click **Neurons**, then click the neuron that has reached the minimum maturity required to spawn a new neuron.
-Click **Spawn Neuron**.
+. Click **Spawn Neuron**.
 +
 Keep in mind that the dissolve delay for a newly-spawned neurons is one day, giving you the option to collect value from the ICP tokens by unlocking them or to increase the dissolve delay to collect additional rewards.
 
@@ -377,7 +377,7 @@ To manually vote on proposals:
 . Click **Proceed** to access to the Network Nervous System (NNS) application. 
 . Click **Voting**.
 +
-You can click any of the proposals listed to view information about the proposal, includinga brief description of the proposal, a link for viewing additional information about the proposal, the number of votes that were cast to adopt or reject the proposal, and the votes cast by your neurons.
+You can click any of the proposals listed to view information about the proposal, including a brief description of the proposal, a link for viewing additional information about the proposal, the number of votes that were cast to adopt or reject the proposal, and the votes cast by your neurons.
 . Use the Topics, Reward Status, and Proposal Status filters to control the list of proposals displayed.
 +
 For example, open the Topics list to see if there are any proposal topics that you want to include in the proposal list that are not currently displayed and open the Proposal Status to verify that you are viewing all open proposals.
@@ -395,14 +395,53 @@ For more information about voting and voting rewards, see the following articles
 
 == Submit a proposal
 
-Information coming soon ...
+Currently, you can only submit proposals to the network nervous system by using the {sdk-short-name} command-line interface (`+dfx+`) using calls to the `+governance+` canister.
 
-In the meantime, for information about voting, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11#6007[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+A separate command-line tool (`+icx-nns+`) for working with the `+governance+` canister is in development and this functionality will also be available in the link:https://nns.ic0.app[Network Nervous System (NNS)] application soon.
 
+If you want to start submitting proposals right away, however, you can access a preliminary version of the `+icx-nns+` command-line tool by downloading a release from the link:https://github.com/dfinity/icx-nns/releases[icx-nns] repository. 
+For information about how to download the `+icx-nns+` command-line tool and how to use it to submit proposals, see https://www.internetcomputer.org/governance/submit-proposal[How to submit proposals to the Network Nervous System].
+
+////
+For information about voting, see link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11#6007[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+////
 == Deploy a canister with cycles
 
-Because application subnets are not yet widely available to the general public, you should not convert ICP tokens to cycles on the {IC}.
+You must have *cycles* available to create and manage link:../developers-guide/glossary{outfilesuffix}#g-canister[canisters], which are similar to smart contracts.
+The link:https://nns.ic0.app[Network Nervous System (NNS)] application provides a convenient way for you to create and manage canisters by enabling you to convert ICP tokens into cycles and attach cycles to specific canister identifiers. 
 
-For an introduction to developing applications locally, see the link:../quickstart/local-network{outfilesuffix}[Local development] quick start and link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials].
+To create a new canister:
 
-[TBD]
+. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Click **Login** to connect using your Internet Identity.
+. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
+. Click **Proceed** to access to the Network Nervous System (NNS) application. 
+. Click **Canisters**, then click **Create or Link Canister**.
+. Click **Create New Canister** to create a new cycles wallet canister.
++
+If you already have a cycles wallet canister, you can click **Link Canister to Account** to link an existing canister identifier to your account in the link:https://nns.ic0.app[Network Nervous System (NNS)] application.
+. Select one of your accounts that holds ICP tokens as the source account.
++
+For example, if you have both a **Main** account and a **Dev-Projects** account, you might select **Dev-Projects** account if that account holds the ICP tokens that you want converted into cycles.
+. Click **Amount** and type the number of ICP tokens or e8s that you want to convert into cycles, then click **Review Cycles Purchase**.
++
+The amount you specify must convert to a value greater than the 2T (two trillion) cycles minimum required to create a new canister identifier.
+For example:
++
+image:convert-to-cycles.png[]
+. Review the ICP tokens to cycles details, then click **Confirm** to continue.
++
+After you click Confirm, you can review:
+--
+- the new canister identifier
+- the number of cycles available for the canister to use
+- the controlling principal that currently has full management rights for the new canister
+--
++
+To change, the principal used as the controller of the canister, click **Change Controllers**.
+To add cycles to the canister, click **Add Cycles**.
+. Return to the **Canisters** tab to see the canisters you have created.
++
+For example:
++
+image:canister-list.png[]

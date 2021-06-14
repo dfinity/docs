@@ -46,8 +46,8 @@ Internet Computer Protocol token holders can exchange tokens when they need to r
 - Programs must be able to pay for complete execution (all or nothing), but the platform sets limits on how many cycles a canister can hold and consume to prevent malicious code from draining resources.
 - The relative stability of operational costs makes it easier to predict the cycles required to process, for example, a million messages.
 - The costs associated with communication, computation, and storage are more likely to decrease than to increase over time—for example, because disk space becomes cheaper or hardware more efficient.
-- Although Internet Computer Protocol tokens can be used to add cycles to canisters, cycles themselves are not currency and have no liquidity or as an asset.
-- Cycles cannot be converted back to value in the form of Internet Computer Protocol tokens, but can be transferred between canisters to enable canisters to pay for operations.
+- Although Internet Computer Protocol tokens can be used to add cycles to canisters, cycles themselves are not currency and have no liquidity or value as an asset.
+- Cycles cannot be converted back to value in the form of Internet Computer Protocol tokens, but they can be transferred between canisters to enable canisters to pay for operations.
 
 [[volatility]]
 == Token value and volatility

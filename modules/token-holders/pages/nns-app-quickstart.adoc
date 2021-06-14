@@ -401,7 +401,10 @@ In the meantime, for information about voting, see link:https://medium.com/dfini
 
 == Deploy a canister with cycles
 
-Because application subnets are not yet widely available to the general public, you should not convert ICP tokens to cycles on the {IC}.
+There are now application subnets available for general use by the developer community. 
+However, there is currently an issue in the Network Nervous System (NNS) application workflow that causes the creation of a new canister to fail and results in a fractional unit (e8s) loss.
+
+You can deploy new canisters on the {IC} by using the {sdk-short-name} command-line interface (`+dfx+`) as described in link:../quickstart/network-quickstart{outfilesuffix}[Network deployment].
 
 For an introduction to developing applications locally, see the link:../quickstart/local-network{outfilesuffix}[Local development] quick start and link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials].
 

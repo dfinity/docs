@@ -17,9 +17,6 @@ If you are only deploying projects in a local development environment, see the l
 To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. 
 The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.
 
-NOTE: There are now application subnets available for general use by the developer community. 
-At this time, however, you can only deploy new canisters using the {sdk-short-name} command-line interface (`+dfx+`) as described in this tutorial. If you attempt to deploy a new canister using the Network Nervous System (NNS) application, the operation will fail and result in a fractional unit (e8s) loss.
-
 [[net-before]]
 == Before you begin
 

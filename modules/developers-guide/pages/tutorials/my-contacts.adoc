@@ -80,6 +80,8 @@ NOTE: As an alternative to installing these modules, you can edit the default `+
 ....
 include::example$add-stylesheet-package.json[]
 ....
++
+The version of the JavaScript agent in this example `+package.json+` file is `+0.7.2+`. In most cases, however, you would want to use the latest version of the agent available. When you create a new project, the `+dfx new+` command automatically retrieves the latest version of the JavaScript agent for you. You can also manually retrieve the latest version after creating a project by running the `+npm install --save @dfinity/agent+` command.
 
 == Modify the default program
 

@@ -14,4 +14,4 @@ The most significant changes in this release include the following:
 
 * The availability of new application subnets enable you to now deploy projects on the {IC}.
 
-* The default cycle balance for new cycles wallet canisters is now set to 3T (three trillion) cycles.
+* The default cycle balance for new cycles wallet canisters is now set to 3T (three trillion) cycles on application subnets and 4T (four trillion) on verified application subnets.

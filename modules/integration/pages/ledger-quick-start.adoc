@@ -42,7 +42,7 @@ An account owner may control more than one account. In this case, each account c
 
 An account on the ledger is identified by its address, which is derived from the principal ID and sub-account identifier.
 
-In this context, you can think of principal identifiers as a rough equivalent to the hash of a user's public key for Bitcoin or Ethereum. You use the corresponding secret key to sign messages and therefore authenticate to the ledger canister and operate on the principal's account. Canisters can also have accounts in the ledger canister, but the related details are beyond the scope of this document.
+In this context, you can think of principal identifiers as a rough equivalent to the hash of a user's public key for Bitcoin or Ethereum. You use the corresponding secret key to sign messages and therefore authenticate to the ledger canister and operate on the principal's account. Canisters can also have accounts in the ledger canister, but currently the functionality of such accounts is limited.
 The ledger canister is initialized using administrative operations that are internal to the Internet Computer.
 As part of the initialization process, the canister is created with the set of accounts and associated ICP token balances.
 
@@ -56,24 +56,24 @@ There are three operations that can change the internal state of the ledger cani
 
 All operations are recorded as transactions in the ledger canister. 
 
-The transactions in the ledger are maintained as a hashed blockchain.
+The ledger maintains the transactions as a hashed blockchain.
 As state changes are recorded, each new transaction is placed in a block and assigned a unique index.
-Queries can use the index to retrieve transaction details.
-The entire chain is regularly authenticated by signing the latest chain link. The signature used to authenticate a transaction can be verified by any third party who has access to the root public key of the Internet Computer.
+The entire chain is regularly authenticated by signing the latest chain link. The signature used to authenticate the chain can be verified by any third party who has access to the root public key of the Internet Computer.
+Specific transactions can be retrieved by querying the ledger.
 
 == Integrate with the {IC} ledger canister using the Rosetta API
 
-The integration that you build can interact with the Internet Computer and ledger canister in several ways. 
+One can interact with the Internet Computer and ledger canister in several ways.
 This document outlines how to integrate with the ledger canister using the https://www.rosetta-api.org/[Rosetta application programming interface]. This is a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] designed to support multiple blockchain data formats and structured communication for exchange transactions.
 
-The integration software—`+dfinity/rosetta-api+`—enables you to deploy a passive Rosetta node outside of the Internet Computer network that can communicate with the ledger canister running on the Internet Computer.
+The interface is implemented by the integration software—`+dfinity/rosetta-api+. This piece of software enables you to deploy a passive Rosetta node outside of the Internet Computer network and use the node to communicate with the ledger canister running on the Internet Computer.
 
 The following diagram provides a simplified view of the communication between the Rosetta node and the Internet Computer using the `+dfinity/rosetta-api+` integration software.
 
 image:basic-rosetta-api-integration.svg[]
 
 As this diagram suggests, the Rosetta node maintains a local copy of the {IC} ledger canister. 
-Periodically, the `+dfinity/rosetta-api+` software running on the Rosetta node updates its local view of the ledger by querying the ledger canister for the latest link of the ledger chain, then querying for any missing ledger blocks.
+Periodically, the `+dfinity/rosetta-api+` software running on the Rosetta node updates its local view of the ledger by querying the ledger canister for the latest block of the ledger chain, then querying for any missing ledger blocks.
 The Rosetta node uses the root key of the Internet Computer to ensure that the local copy of the ledger is genuine.
 The integration software also allows you to use the Rosetta node to submit transactions to the {IC} ledger. 
 
@@ -85,10 +85,10 @@ After a user submits a request to the Rosetta node to make a transaction, the re
 
 . It reads from the local copy of the ledger to determine the state of the latest transaction index and block height identified by the `+latest_index+` label.
 . It generates a random `+nonce+` value -- used to ensure transactions are unique.
-. It creates an ingress message for the ledger canister that invokes the `+transfer+` function and specifies the amount and the destination for the transaction:
+. It creates an ingress message for the ledger canister that invokes the `+send+` function and specifies the amount and the destination for the transaction:
 +
 ....
-transfer(nonce, latest_index, dst, amount)
+send(nonce, latest_index, dst, amount)
 ....
 . It signs the ingress message using the key stored in the wallet to identify the principal ID for the owner.
 . It forwards the message to the ledger canister on the Internet Computer.
@@ -96,10 +96,10 @@ transfer(nonce, latest_index, dst, amount)
 === Set up a Rosetta node
 
 You can set up a Rosetta API-compliant node to interact with the Internet Computer and exchange Internet Computer Protocol (ICP) tokens.
-To keep the instructions simple, we use a Docker image to create the integration with the Rosetta API.
+To keep the instructions simple, we use a Docker image to create the integration with the Rosetta API  -- one can also build and run binary using the source code.
 If you don't already have Docker on your local computer, download and install the latest version.
 
-To set up a Rosetta node for exchanging ICP tokens:
+To set up a Rosetta node (which connects to a testnet):
 
 . https://docs.docker.com/get-docker/[Install Docker] and https://docs.docker.com/config/daemon/[start the Docker daemon].
 +
@@ -131,7 +131,7 @@ Listening on 0.0.0.0:8080
 Starting Rosetta API server
 ....
 +
-By default, the software connects to the ledger canister running on the Internet Computer production network.
+By default, the software *does not* connect to the ledger canister running on the Internet Computer production network, but rather it connects to one of the testnets.
 +
 If you have been assigned a test network and corresponding ledger canister identifier, you can run the command against that network by specifying an additional `+canister+` argument. For example, the following command illustrates connecting to the ledger canister on a test network by setting the `+canister+` argument to `+2xh5f-viaaa-aaaab-aae3q-cai+`.
 +
@@ -167,6 +167,9 @@ When you are finished testing, you should run the Docker image in production mod
 These command-line options are used to attach an interactive terminal session and remove the container, and are primarily intended for testing purposes.
 
 To run the software in a production environment, you can start the Docker image using the `+--detach+` option to run the container in the background and, optionally, specify the `+--volume+` command for storing blocks.
+
+To connect the Rosetta node instance to the mainnet, add flags:
+`+--mainnet+` and `+--not-whitelisted+`.
 
 For more information about Docker command-line options, see the link:https://docs.docker.com/engine/reference/commandline/run/[Docker reference documentation].
 
@@ -204,6 +207,10 @@ The following questions are taken from the most commonly reported questions and 
 ==== How to I run an instance of the Rosetta node?
 
 An easy way to accomplish this is to use the [`dfinity/rosetta-api`](https://hub.docker.com/r/dfinity/rosetta-api/tags?page=1&ordering=last_updated) Docker image. Once the node initializes and syncs all blocks, you can perform queries and submit transactions by invoking the Rosetta API on the node. The node listens on the `8080` port.
+
+==== How do I connect the Rosetta node to the mainnet?
+
+Use flags `+--mainnet+` and `+--not-whitelisted+`
 
 ==== How do I know if the node has caught up with the test net?
 

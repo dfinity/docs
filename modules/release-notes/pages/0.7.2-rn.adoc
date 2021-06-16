@@ -1,0 +1,17 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+:release: 0.7.2
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The {release} release includes updates and fixes that are primarily internal to improve existing features and functions rather than user-visible.
+
+The most significant changes in this release include the following:
+
+* Support for the latest version of the {IC} specification and replica.
+
+* The availability of new application subnets enable you to now deploy projects on the {IC}.
+
+* The default cycle balance for new cycles wallet canisters is now set to 3T (three trillion) cycles on application subnets and 4T (four trillion) on verified application subnets.

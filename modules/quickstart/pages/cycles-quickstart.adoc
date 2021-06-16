@@ -1,0 +1,183 @@
+= Free cycles available for trial
+:description: Download the DFINITY Canister SDK and deploy your first application on the Internet Computer.
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[net-quick-start]]
+This _Quick Start_ scenario assumes that you are a new developer signing up for free cycles so that you can try out building on the {IC}.
+
+NOTE: The free cycles program is only available for a limited time and the number of cycles you receive is limited to the equivalent of $100 USD for each principal account.  
+
+[[cycles-before]]
+== Before you begin
+
+Before you sign up to receive free cycles, verify the following:
+
+* You have an internet connection and access to a shell terminal on your local **macOS** or **Linux** computer.
+
+* You know how to perform common tasks—like opening a terminal and running commands—on your computer.
+
+* You have a valid GitHub account to authenticate your identity.
+
+* You have downloaded and installed the {sdk-long-name} by running the following command in a terminal:
++
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
+
+== Get the principal for your {IC} identity
+
+The first time you use the {sdk-short-name}, the `+dfx+` command-line tool creates a `+default+` developer identity for you. This identity is represented by a *principal* data type and a textual representation of the principal often referred to as your *principal identifier*.
+
+You'll need this principal identifier to get your free cycles.
+
+To get your principal identifier:
+
+. Open a terminal shell on your local computer, if you don’t already have one open.
+
+. Verify that you have the {sdk-short-name} installed and it is in your PATH by running the following command:
++
+[source,bash]
+----
+dfx --version
+----
++
+If the command displays the version number, you're all set.
+. Display the textual representation of the principal for your current identity by running the following command:
++
+[source,bash]
+----
+dfx identity get-principal
+----
++
+This command displays output similar to the following:
++
+....
+tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+....
+. Copy the principal identifier so you have it available in the clipboard.
+
+== Sign up for free cycles
+
+To get your free cycles:
+
+. Open a web brwoser and navigate to the link:https://dfinity-faucet-dev-demo.on.fleek.co[Cycles Faucet] URL.
+
+. Click **Connect to GitHub** to authenticate your identity using your GitHub user name or your email address.
+
+. Sign in to your GitHub account, then click **Authorize** to authorize the Cycles Faucet application.
+
+. Paste your developer identity principal, then click **Continue**.
+
+. Select the **Cycles Wallet** or **Dank Account** cycles management option, then click **Claim $100 worth of free cycles**.
++
+When the cycles are transferred to the cycles wallet or the Dank account, the **Congrats!** page confirms the free cycles associated with your principal identifier.
++
+For example
++
+image:congrats.png[]
++
+If you selected the **Dank Account** option, your cycles are deposited in the account on your behalf. No additional steps are necessary.
++
+If you selected the **Cycles Wallet** option, continue to the next step to associate your new cycles wallet identifier with your developer identity principal.
+. Copy the command displayed in the Cycles Faucet and paste it into the terminal to associate your principal identifier with your new cycles wallet canister on the network.
++
+For example, run a command similar to the following in the terminal:
++
+[source,bash]
+----
+dfx identity --network ic set-wallet 5fiwd-laaaa-aaaad-qaeyq-cai:
+----
++
+You are now ready to start building and deploying smart contracts on the {IC}.
+
+== Build your first application
+
+To try things out, you can deploy the default Hello application. 
+The Hello application has just one function—called `+greet+`. 
+The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.
+
+To deploy your first application:
+
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Check that you can connect to the {IC} by running the following command:
++
+[source,bash]
+----
+dfx ping ic
+----
++
+If the connection is successful, you should see output similar to the following:
++
+....
+{
+  "ic_api_version": "0.17.0"  "impl_hash": "029b46fa3385c17f9a33f1616156f5be956701ea7109fe94d22b6ff828514461"  "impl_version": "8a560f9510b0df9e747ffaede3b731f2ade9c0b7"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 129, 76, 14, 110, 199, 31, 171, 88, 59, 8, 189, 129, 55, 60, 37, 92, 60, 55, 27, 46, 132, 134, 60, 152, 164, 241, 224, 139, 116, 35, 93, 20, 251, 93, 156, 12, 213, 70, 217, 104, 95, 145, 58, 12, 11, 44, 197, 52, 21, 131, 191, 75, 67, 146, 228, 103, 219, 150, 214, 91, 155, 180, 203, 113, 113, 18, 248, 71, 46, 13, 90, 77, 20, 80, 95, 253, 116, 132, 176, 18, 145, 9, 28, 95, 135, 185, 136, 131, 70, 63, 152, 9, 26, 11, 170, 174]
+}
+....
+. Create a new project named `+hello+` and chnage to the project directory by running the following command:
++
+[source,bash]
+----
+dfx new hello && cd hello
+----
++
+If you use a different project name instead of `+hello+`, make note of the name you used. You'll need to use that project name in place of the `+hello+` project name throughout these instructions.
+. Check that your cycles wallet balance by running the following command:
++
+[source,bash]
+----
+dfx wallet --network ic balance
+----
++
+The command returns the balance for the your cycles wallet.
+For example:
++ 
+....
+15430122328028812 cycles.
+....
+. Register, build, and deploy your first application by running the following command:
++
+[source,bash]
+----
+dfx deploy --network ic
+----
++
+The `+dfx deploy+` command output displays information about the operations it performs.
+. Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
++
+[source,bash]
+----
+dfx canister --network ic call hello greet everyone
+----
+. Verify the command displays the return value of the `+greet+` function.
++
+For example:
++
+....
+("Hello, everyone!")
+....
+. Rerun the `+dfx wallet balance+` command or refresh the browser to see your new cycle balance and recent activity.
+
+[[next-steps]]
+== Next steps
+
+Now that you have seen how to get free cycles to an {IC} trial and how to deploy an application on the {IC} network, you are ready to develop and deploy programs of your own.
+
+You can find more detailed examples and tutorials to help you learn about how to use Motoko and how to develop applications for the Internet Computer throughout the documentation.
+
+Here are some suggestions for where to go next:
+
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building front-end and back-end applications in a local development environment.
+
+* link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
+
+* link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using Motoko.
+
+To continue deploying and managing smart contract canisters on the {IC} after using your supply of free cycles, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].

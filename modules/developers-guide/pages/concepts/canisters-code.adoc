@@ -101,7 +101,7 @@ The {proglang} language offers many of the features that are common to other hig
 In addition, {proglang} provides built-in support for defining messaging services using actors in a way that is especially well-suited to the {platform} and is easy to learn whether you are a new or experienced programmer.
 
 This guide provides an introduction to the basic features of the {proglang} programming language in the context of writing programs using the SDK. 
-For more detailed information about the {proglang} programming language itself, see the link:../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
+For more detailed information about the {proglang} programming language itself, see the link:../../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
 
 [[auth-intro]]
 == Identities and authentication

@@ -80,14 +80,14 @@ To start the network locally:
 [arabic]
 . Open a new terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
-. Start the {IC} network on your local computer by running the following command:
+. Start the {IC} network on your local computer by running the following command in a second terminal, in the root directory of your project:
 +
 [source,bash]
 ----
-dfx start --clean --background
+dfx start 
 ----
 +
-After the local {IC} network completes its startup operations, you can continue to the next step.
+After the local {IC} network completes its startup operations, return to your first terminal and continue to the next step.
 
 == Register, build, and deploy the application
 
@@ -168,6 +168,10 @@ You haven't sent any cycles to the canister, so the command displays the followi
 ----
 dfx canister call rwlgt-iiaaa-aaaaa-aaaaa-cai wallet_send '(record { canister = principal "rrkah-fqaaa-aaaaa-aaaaq-cai"; amount = (256000000000:nat64); } )'
 ----
+This command might return something similar to the following:
++
+`+(variant { 17_724 })+`
+
 . Call the `+wallet_balance+` function to see that the `cycles_hello` canister has the number of cycles you transferred, if you specified an amount under the allowed capacity, or the `capacity` you specified when you ran the `dfx deploy` command.
 +
 [source,bash]
@@ -194,14 +198,14 @@ For example, the command might display a record with an `+amount+` field (repres
 (record { 3_573_748_184 = 97_738_624_621_042 })
 ....
 +
-For this simple tutorial, cycles are only consumed from the balance in the default wallet canister, not from the `+cycles_hello+` canister.
+For this simple tutorial, no cycles are only consumed from the balance in the default wallet canister when running in a local environment.
 . Call the `+greet+` function by running a command similar to the following:
 +
 [source,bash]
 ----
 dfx canister call cycles_hello greet '("from DFINITY")'
 ----
-. Rerun the call to the `+wallet_balance+` function to see the number of cycles deducted from your default wallet:
+. Rerun the call to the `+wallet_balance+` function to see the number of cycles in your default wallet. In a local environment, no cycles are consumed, but if you were to deploy the project to the network, you would see that cycles have been deducted from the default cycles wallet. 
 +
 [source,bash]
 ----

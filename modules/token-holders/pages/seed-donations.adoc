@@ -16,13 +16,11 @@ A neuron is like a savings account where you must provide notice of withdrawals.
 
 We are pleased to inform you that your neurons have been pre-aged! At the moment of Genesis Unlock, their age was already set to 18 months old. This is important, because neuron age significantly increases your voting power and the voting rewards you receive.
 
-WARNING: When you start dissolving a neuron, the blockchain will reset its age to zero immediately. Therefore, be very careful to only begin dissolving neurons when you wish to unstake the ICP inside.
+WARNING: When you start dissolving a neuron, the blockchain will reset its age to zero immediately, which removes any additional bonus that has accrued due to its being in the non-dissolving state. Therefore, be very careful to only begin dissolving neurons when you wish to unstake the ICP inside. You may also use the `quill neuron-manage --split` command if you only wish to begin dissolving a portion of your neuron, as this will leave all bonuses intact on the parent neuron.
 
 Genesis Unlock created 49 neurons for you. They have dissolve delays of 0 days, 30 days, 60 days, 90 days and so on. Apart from the first neuron which has a dissolve delay of 0 days (which can be dissolved immediately), the other dissolve delays may have a small random number of days either added or removed.
 
 To configure one of your neurons, for example to change how it votes, or to place it into dissolving mode, follow these steps:
-
-WARNING: This process is not currently possible on macOS computers with M1 chips. You can only install the {sdk-short-name} `+dfx+` on Intel-based macOS and Linux computers.
 
 . <<Derive a native Internet Computer principal from your Ethereum seed>>
 . <<Take control of your neurons>>

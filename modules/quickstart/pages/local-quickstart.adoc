@@ -71,7 +71,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.7.2
+dfx 0.7.7
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -170,11 +170,8 @@ The `+dfx deploy+` command output displays information about the operations it p
 For example, this step registers two network-specific identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
 +
 ....
-Creating the "default" identity.
-  - generating new key at /Users/pubs/.config/dfx/identity/default/identity.pem
-Created the "default" identity.
 Creating a wallet canister on the local network.
-The wallet canister on the "local" network for user "pubs_user_id" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 Deploying all canisters.
 Creating canisters...
 Creating canister "hello"...
@@ -188,20 +185,18 @@ Creating UI canister on the local network.
 The UI canister on the "local" network is "r7inp-6aaaa-aaaaa-aaabq-cai"
 Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
 Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
-Authorizing our identity (pubs_user_id) to the asset canister...
+Authorizing our identity (default) to the asset canister...
 Uploading assets to asset canister...
-  /index.html 1/1 (472 bytes)
-  /index.html (gzip) 1/1 (314 bytes)
-  /index.js 1/1 (260229 bytes)
-  /index.js (gzip) 1/1 (87771 bytes)
+  /index.html 1/1 (573 bytes)
+  /index.html (gzip) 1/1 (342 bytes)
+  /index.js 1/1 (605692 bytes)
+  /index.js (gzip) 1/1 (143882 bytes)
   /main.css 1/1 (484 bytes)
   /main.css (gzip) 1/1 (263 bytes)
   /sample-asset.txt 1/1 (24 bytes)
   /logo.png 1/1 (25397 bytes)
-  /index.js.map 1/1 (842559 bytes)
-  /index.js.map (gzip) 1/1 (228432 bytes)
-  /index.js.LICENSE.txt 1/1 (499 bytes)
-  /index.js.LICENSE.txt (gzip) 1/1 (285 bytes)
+  /index.js.map 1/1 (649485 bytes)
+  /index.js.map (gzip) 1/1 (149014 bytes)
 Deployed canisters.
 ....
 +
@@ -243,28 +238,10 @@ For example:
 
 Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
 
+. Start the development server with `+npm start+`
 . Open a browser.
-. Navigate to the default address and port number `+127.0.0.1:8000+`.
-. Append `+/?canisterId=+` and the `+hello_assets+` identifier to the URL.
-+
-If you didn’t make a note of the canister identifier, you can look it up by running the following command:
-+
-[source,bash]
-----
-dfx canister id hello_assets
-----
-+
-Add the canister identifier returned to the URL using the following syntax:
-....
-?canisterId=<YOUR-ASSET-CANISTER-IDENTIFIER>
-....
-+
-For example, the full URL should look similar to the following:
-+
-....
-http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
-....
-+
+. Navigate to http://localhost:8080/
+
 Navigating to this URL displays a simple HTML page with a sample asset image file, an input field, and a button.
 For example:
 +
@@ -281,6 +258,8 @@ image:front-end-result.png[Hello, everyone! greeting]
 After testing the application in the browser, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
 
 To stop the local network:
+
+. In the terminal that displays development server, press Control-C to interrupt the development server process.
 
 . In the terminal that displays network operations, press Control-C to interrupt the local network process.
 

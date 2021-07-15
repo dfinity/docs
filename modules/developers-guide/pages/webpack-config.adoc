@@ -132,7 +132,7 @@ For example, if you have experimented with the link:tutorials/custom-frontend{ou
 
 If your application does not use `+dfx+` to run your build script, you can provide the variables yourself. For example:
 
-[source,js]
+[source,bash]
 ----
 DFX_NETWORK=staging NODE_ENV=production HELLO_CANISTER_ID=rrkah... npm run build
 ----
@@ -248,7 +248,7 @@ When you are done working on the front-end for your project, you can stop the we
 
 You may want to use a bundler other than webpack. Per-bundler instructions are not ready yet, but if you are familiar with your bundler, the following steps should get you going:
 
-. Remove the `copy:types` and `prebuild` scripts from `package.json`
+. Remove the `copy:types`, `prestart`, and `prebuild` scripts from `package.json`
 . Run `dfx deploy` to generate the local bindings for your canisters
 . Copy the generated bindings to a directory where you would like to keep them
 . Modify `declarations/<canister_name>/index.js` and replace `process.env.<CANISTER_NAME>_CANISTER_ID` with the equivalent pattern for environment variables for your bundler

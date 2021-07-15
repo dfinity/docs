@@ -414,7 +414,7 @@ Canister was topped up!
 +
 [source,bash]
 ----
-dfx canister --network ic call hello greet everyone
+dfx canister --network ic call hello greet '("everyone": text)'
 ----
 +
 Let's take a closer look at this example:

@@ -78,7 +78,7 @@ npm install --save react react-dom
 +
 [source,bash]
 ----
-npm install --save typescript ts-loader
+npm install --save-dev typescript ts-loader
 ----
 +
 NOTE: As an alternative to installing these modules, you can edit the default `+package.json+` file to add dependencies for your project.
@@ -277,14 +277,6 @@ dfx deploy
 ----
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
-. Copy the canister identifier for the `+custom_greeting_assets+` canister to the clipboard or a notepad application.
-+
-If you didn't make a note of the canister identifier, you can look it up by running the following command:
-+
-[source,bash]
-----
-dfx canister id custom_greeting_assets
-----
 
 == View the new front-end
 

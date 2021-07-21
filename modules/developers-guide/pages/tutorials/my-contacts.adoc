@@ -108,10 +108,9 @@ You are now ready to create a new front-end for your program.
 [source,js]
 ----
 entry: {
-  // The frontend.entrypoint points to the HTML file for this build.
-  // Use the next line to change the extension. For example, the
-  // default configuration changes the extension to `.js`.
-  index: path.join(__dirname, info.frontend.entrypoint).replace(/\.html$/, ".jsx"),
+  // The frontend.entrypoint points to the HTML file for this build, so we need
+  // to replace the extension to `.js`.
+  index: path.join(__dirname, asset_entry).replace(/\.html$/, ".jsx"),
 },
 ----
 . Locate the commented example for the `+module+` key above the `+plugins+` section, then uncomment the following lines:

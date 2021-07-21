@@ -1,9 +1,7 @@
-// Insert these lines after the import statement on line 1
 import * as React from "react";
 import { render } from "react-dom";
+import { custom_greeting } from "../../declarations/custom_greeting";
 
-// Replace the default index.js content with
-// React JavaScript
 const MyHello = () => {
   const [name, setName] = React.useState('');
   const [message, setMessage] = React.useState('');

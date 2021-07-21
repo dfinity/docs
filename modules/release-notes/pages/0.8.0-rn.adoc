@@ -1,4 +1,17 @@
-= Instructions on migrating to dfx 0.8.0
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+:release: 0.8.0
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The {release} release includes updates and fixes that are primarily internal to improve existing features and functions rather than user-visible, as well as potentially breaking changes to some frontend projects.
+
+. improvements to codegen from 0.7.7
+. set-wallet command no longer requires `--force` flag
+
+## Instructions on migrating to dfx 0.8.0
 
 If your project does not have a frontend that relies on the JavaScript files that have been generated under `.dfx/local`, you should not expect to have any issues with dfx 0.8.0.
 
@@ -76,4 +89,4 @@ And you can modify the `aliases` reducer to point to the path, rather than hardc
 ["dfx-generated/" + name]: path.join(outputRoot),
 ```
 
-Then, you can simply `dfx deploy` like normal and visit your working site with [http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai](http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai).
+Then, you can `dfx deploy` like normal and visit your working site with [http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai](http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai).

@@ -48,7 +48,7 @@
 
 **** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
 **** xref:language-guide:motoko.adoc[Motoko]
-***** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground]
+***** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
 ***** xref:base-libraries:stdlib-intro.adoc[Motoko Base Library]
 ***** Motoko Guide
 ****** xref:language-guide:about-this-guide.adoc[About the language guide]
@@ -109,37 +109,37 @@
 
 * Additional Resources
 ** Developer videos
-*** link:https://www.youtube.com/watch?v=oxEr8UzGeBo&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=11&ab_channel=DFINITY[Internet Identity]
-*** link:https://www.youtube.com/watch?v=4eSceDOS-Ms&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=21&ab_channel=DFINITY[Motoko]
-*** link:https://www.youtube.com/watch?v=GzkRsbqPaA0&ab_channel=DFINITY[Building a multiplayer game for the Internet Computer]
-*** link:https://www.youtube.com/watch?v=b_nc6yx5_DQ&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=7&ab_channel=DFINITY[Deploying static sites to the Internet Computer]
-*** link:https://www.youtube.com/watch?v=2miweY9-vZc&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=6&ab_channel=DFINITY[Zero to fullstack: web apps on the Internet Computer ]
+*** link:https://www.youtube.com/watch?v=oxEr8UzGeBo&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=11&ab_channel=DFINITY[Internet Identity^]
+*** link:https://www.youtube.com/watch?v=4eSceDOS-Ms&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=21&ab_channel=DFINITY[Motoko^]
+*** link:https://www.youtube.com/watch?v=GzkRsbqPaA0&ab_channel=DFINITY[Building a multiplayer game for the Internet Computer^]
+*** link:https://www.youtube.com/watch?v=b_nc6yx5_DQ&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=7&ab_channel=DFINITY[Deploying static sites to the Internet Computer^]
+*** link:https://www.youtube.com/watch?v=2miweY9-vZc&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=6&ab_channel=DFINITY[Zero to fullstack: web apps on the Internet Computer ^]
 
 ** Protocol videos
-*** link:https://dfinity.org/technicals/[Technical library]
+*** link:https://dfinity.org/technicals/[Technical library^]
 
 ** Developer tooling
 *** xref:ROOT:download.adoc[DFINITY Canister SDK]
-*** link:https://github.com/dfinity/cdk-rs[Rust CDK]
-*** link:https://github.com/kritzcreek/vessel[Vessel Package Manager]
-*** link:https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko[Motoko VS Code Extension]
-*** link:https://github.com/dfinity/agent-js[Agent JS]
-*** link:https://github.com/sudograph/sudograph[Sudograph]
-*** link:https://github.com/dfinity/cycles-wallet[Cycles Wallet]
-*** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground]
-*** link:https://github.com/dfinity/quill[Quill]
+*** link:https://github.com/dfinity/cdk-rs[Rust CDK^]
+*** link:https://github.com/kritzcreek/vessel[Vessel Package Manager^]
+*** link:https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko[Motoko VS Code Extension^]
+*** link:https://github.com/dfinity/agent-js[Agent JS^]
+*** link:https://github.com/sudograph/sudograph[Sudograph^]
+*** link:https://github.com/dfinity/cycles-wallet[Cycles Wallet^]
+*** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
+*** link:https://github.com/dfinity/quill[Quill^]
 
 ** Examples
-*** link:https://github.com/dfinity/awesome-dfinity[Awesome DFINITY]
-*** link:https://github.com/dfinity/cancan[CanCan]
-*** link:https://github.com/dfinity/examples[Mini Motoko examples]
+*** link:https://github.com/dfinity/awesome-dfinity[Awesome DFINITY^]
+*** link:https://github.com/dfinity/cancan[CanCan^]
+*** link:https://github.com/dfinity/examples[Mini Motoko examples^]
 
 ** Community created resources
-*** link:https://ic.rocks/[ic.rocks (Block explorer)]
-*** link:https://plugwallet.ooo/[Plug (Browser-based wallet extension)]
-*** link:https://fleek.co/[Fleek (Netlify for the open web)]
+*** link:https://ic.rocks/[ic.rocks (Block explorer)^]
+*** link:https://plugwallet.ooo/[Plug (Browser-based wallet extension)^]
+*** link:https://fleek.co/[Fleek (Netlify for the open web)^]
 *** Cycles Faucet (coming soon!)
 
 * Community
-** link:https://discord.gg/aGVFEPxs[Developer Discord]
-** link:https://forum.dfinity.org/[Developer Forum]
+** link:https://discord.gg/aGVFEPxs[Developer Discord^]
+** link:https://forum.dfinity.org/[Developer Forum^]

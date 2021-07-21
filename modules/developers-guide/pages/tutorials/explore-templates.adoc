@@ -412,21 +412,8 @@ drwxr-xr-x  9 pubs  staff     288 Apr  6 14:25 assets
 ....
 +
 These files were generated automatically by the `+dfx build+` command using node modules and the template `+index.js+` file.
-. Open a browser and navigate to the `+local+` network address and port number—`+127.0.0.1:8000/+`—specified in the `+dfx.json+` configuration file.
-+
-To specify the canister you want the web server to display, add the `+canisterId+` parameter and the  `+explore_hello_assets+` canister identifier to the URL using the following syntax:
-+
-....
-?canisterId=<YOUR-CANISTER-IDENTIFIER>
-....
-+
-For example, the full URL should look similar to the following:
-+
-....
-http://127.0.0.1:8000/?canisterId=rrkah-fqaaa-aaaaa-aaaaq-cai
-....
-+
-NOTE: You must use the case-sensitive `+canisterId+` parameter before the canister identifier.
+. Start a development server with `npm start`.
+. Open a browser and navigate to the `+local+` network address and port number—`+127.0.0.1:8080`
 
 . Verify that you see the HTML page for the sample application.
 +

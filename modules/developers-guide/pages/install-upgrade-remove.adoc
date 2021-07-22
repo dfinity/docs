@@ -96,7 +96,7 @@ If a newer version of `+dfx+` is available, the `+dfx upgrade+` command automati
 Note that you don't need to uninstall the software before installing the new version.
 However, if you want to perform a clean installation rather than an upgrade, you can first uninstall the software as described in xref:remove[Removing the software], then re-run the download and installation command.
 
-For information about the features and fixes in the latest release, see the link:../../release-notes/sdk-release-notes{outfilesuffix}[Release notes].
+For information about the features and fixes in the latest release, see the xref:release-notes:sdk-release-notes.adoc[Release notes].
 
 [[remove]]
 == Removing the software

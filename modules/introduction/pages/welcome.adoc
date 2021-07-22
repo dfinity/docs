@@ -1,5 +1,5 @@
 = Introducing the Internet Computer
-:description: Lorem ipsum
+:description: Start coding on the Internet Computer. Find documentation, walk-throughs, and tutorials to start building decentralized apps, DeFi and novel blockchain-based services
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :proglang: Motoko
 :IC: Internet Computer

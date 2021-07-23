@@ -1,0 +1,32 @@
+= Computation and Storage Costs
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+
+The {IC} requires computation operations and storage to be funded by cycles. Cycles are generated from the conversion of Internet Computer (ICP) utility tokens.  
+
+
+== The Role of the Network Nervous System (NNS) in Defining Costs
+
+The {IC} is a decentralized public utility, controlled by the NNS –– the network’s open, algorithmic governance system. The NNS fundamentally controls how many cycles are required for low-level computation actions for computation and storage. The number of cycles needed for individual computations will vary based on a number of factors considered by the NNS, including proposals from the community.  
+
+
+== Details: Cost of Compute and Storage Transactions on the {IC}
+
+See below for details on the cost of compute and storage transactions on the {IC} as of July 23, 2021.
+
+.Cycles Cost per Transaction (as of July 20, 2021)
+[cols="1,1,>1"]
+|===
+|Transaction|Description|All Application Subnets
+
+|Canister Created|For creating canisters on a subnet|100,000,000,000
+|Compute Percent Allocated Per Second |For each percent of the reserved compute allocation (a scarce resource).|100,000
+|Update Message Execution|For every update message executed|590,000
+|Ten Update Instructions Execution|For every 10 instructions executed when executing update type messages|4
+|Xnet Call |For every inter-canister call performed (includes the cost for sending the request and receiving the response)|260,000
+|Xnet Byte Transmission |For every byte sent in an inter-canister call (for bytes sent in the request and response)|1,000
+|Ingress Message Reception|For every ingress message received|1,200,000
+|Ingress Byte Reception |For every byte received in an ingress message|2,000
+|GB Storage Per Second |For storing a GB of data per second|127,000
+|=== 

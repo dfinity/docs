@@ -64,13 +64,13 @@ npm install --save react react-dom
 +
 [source,bash]
 ----
-npm install --save typescript ts-loader
+npm install --save-dev typescript ts-loader
 ----
 . Install the required style loaders by running the following command:
 +
 [source,bash]
 ----
-npm install --save style-loader css-loader
+npm install --save-dev style-loader css-loader
 ----
 +
 If the `+npm install+` command reports a vulnerability, you might also want to run the `+npm audit fix+` command to attempt to fix the vulnerability reported before continuing.
@@ -81,7 +81,7 @@ NOTE: As an alternative to installing these modules, you can edit the default `+
 include::example$add-stylesheet-package.json[]
 ....
 +
-The version of the JavaScript agent in this example `+package.json+` file is `+0.7.2+`. In most cases, however, you would want to use the latest version of the agent available. When you create a new project, the `+dfx new+` command automatically retrieves the latest version of the JavaScript agent for you. You can also manually retrieve the latest version after creating a project by running the `+npm install --save @dfinity/agent+` command.
+The version of the JavaScript agent in this example `+package.json+` file is `+0.9.2+`. In most cases, however, you would want to use the latest version of the agent available. When you create a new project, the `+dfx new+` command automatically retrieves the latest version of the JavaScript agent for you. You can also manually retrieve the latest version after creating a project by running the `+npm install --save @dfinity/agent+` command.
 
 == Modify the default program
 
@@ -108,10 +108,9 @@ You are now ready to create a new front-end for your program.
 [source,js]
 ----
 entry: {
-  // The frontend.entrypoint points to the HTML file for this build.
-  // Use the next line to change the extension. For example, the
-  // default configuration changes the extension to `.js`.
-  index: path.join(__dirname, info.frontend.entrypoint).replace(/\.html$/, ".jsx"),
+  // The frontend.entrypoint points to the HTML file for this build, so we need
+  // to replace the extension to `.js`.
+  index: path.join(__dirname, asset_entry).replace(/\.html$/, ".jsx"),
 },
 ----
 . Locate the commented example for the `+module+` key above the `+plugins+` section, then uncomment the following lines:
@@ -149,13 +148,7 @@ To add a stylesheet:
 ----
 cd src/contacts_assets/assets/
 ----
-. Rename the `+main.css+` file to create a new file named `+mycontacts.css+`.
-+
-[source.bash]
-----
-mv main.css mycontacts.css
-----
-. Open the `+mycontacts.css+` file in a text editor and delete the existing content.
+. Open the `+main.css+` file in a text editor and delete the existing content.
 . Define some style properties for the front-end.
 +
 For example, copy and paste the following sample styles into the file:
@@ -164,7 +157,7 @@ For example, copy and paste the following sample styles into the file:
 ----
 include::example$mycontacts/mycontacts.css[]
 ----
-. Save your changes and close the `+mycontacts.css+` file to continue.
+. Save your changes and close the `+main.css+` file to continue.
 . Change to the `+src/contacts_assets/src+` directory.
 +
 [source,bash]
@@ -190,19 +183,21 @@ For example:
 +
 [source,bash]
 ----
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>contacts</title>
-    <base href="/">
+    <base href="/" />
 
-    <link type="text/css" rel="stylesheet" href="mycontacts.css" />
-</head>
-<body>
-    <div id="contacts"></div>
-</body>
+    <link type="text/css" rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <main>
+      <div id="contacts"></div>
+    </main>
+  </body>
 </html>
 ----
 . Navigate back to the root of your project directory.
@@ -256,13 +251,11 @@ For example, to deploy on the {IC} using the reserve network alias `+ic+`, you w
 ----
 dfx deploy --network=ic
 ----
-. Copy the canister identifier for the `+contacts_assets+` canister to the clipboard or a notepad application.
-+
-If you didn't make a note of the canister identifier, you can look it up by running the following command:
+. Start the Webpack development server:
 +
 [source,bash]
 ----
-dfx canister id contacts_assets
+npm start
 ----
 
 == View the front-end
@@ -271,21 +264,7 @@ You can now access the front-end for the `+contacts+` program by entering the ca
 
 To view the front-end:
 
-. Open a browser and navigate to the `+local+` network address and port number specified in the `+dfx.json+` configuration file.
-+
-For example, if you are using the default binding for the local network, navigate to `+127.0.0.1:8000/+`.
-+
-To specify the canister you want the web server to display, add the `+canisterId+` parameter and the  `+contacts_assets+` canister identifier to the URL using the following syntax:
-+
-....
-?canisterId=<YOUR-CANISTER-IDENTIFIER>
-....
-+
-For example, the full URL should look similar to the following but with the `+canister_identifier+` that was returned by the `+dfx deploy+` command for the `+contacts_assets+`:
-+
-....
-http://127.0.0.1:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-....
+. Open a browser and navigate to the `http://localhost:8080`.
 . Verify that you are prompted with a **My Contacts** form.
 +
 For example:
@@ -306,19 +285,8 @@ To change stylesheet properties:
 . Open the `+src/contacts_assets/public/mycontacts.css+` file in a text editor and modify its style settings.
 +
 For example, you might want to change the background color or style the input form.
-. Rebuild the project with your changes by running the following command.
 +
-[source,bash]
-----
-dfx build
-----
-. Deploy your project changes by running the following command:
-+
-[source,bash]
-----
-dfx canister install --all --mode upgrade
-----
-. View the results in the browser by refreshing or re-entering the canister URL.
+You should see the changes update immediately in your open browser window.
 
 == Modify the front-end or back-end code
 
@@ -326,7 +294,7 @@ If you want to explore further, you might want to experiment with modifying the 
 For example, you might want try modifying the tutorial to do the following:
 
 - Change the front-end code to clear the input fields after adding a new contact, for example, as part of an `+onClick+` event.
-- Change the {proglang} program functions to do partial instead of exact string matching on the `+Name+` field.
+- Change the {proglang} program functions to do partial instead of exact string matching on the `+Name+` field. (You will need to run `dfx deploy` to test your changes on the local replica)
 - Change the {proglang} program to allow lookups based on a different field.
 
 == Stop the local network
@@ -335,7 +303,7 @@ After you finish experimenting with your program, you can stop the local Interne
 
 To stop the local network:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal that displays your webpack dev server, press Control-C to interrupt the development server.
 
 . Stop the {IC} network by running the following command:
 +

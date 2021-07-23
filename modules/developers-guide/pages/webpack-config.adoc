@@ -69,7 +69,7 @@ document.getElementById("clickMeBtn").addEventListener("click", async () => {
 });
 ----
 
-In many projects, you will be able to ignore the code under `+declarations+` for the most part, and make your changes in `hello_assets/src`. However, if your project as additional requirements, continue reading below.
+In many projects, you will be able to ignore the code under `+declarations+` for the most part, and make your changes in `hello_assets/src`. However, if your project has additional requirements, continue reading below.
 
 === Modifying the webpack configuration
 

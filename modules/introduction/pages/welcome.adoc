@@ -6,12 +6,12 @@
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-Hello there! 👋 
+Hello there!
 
-If you’ve landed here, you’re interested in learning more about the Internet Computer. You’re in the right place — take a look below for where to get started! 👍
+If you’ve landed here, you’re interested in learning more about the Internet Computer. You’re in the right place — take a look below for where to get started!
 
 [[for-first-timers]]
-== 🎉 For: First-Timers
+== For: First-Timers
 The Internet Computer is a blockchain that runs at web speed with unbounded capacity. 
 
 As a crash course in blockchain history, Bitcoin created digital gold. Then, in the next step of the evolution, Ethereum developed smart contracts and pioneered DeFi and NFT use cases. 
@@ -28,7 +28,7 @@ Follow us on the official link:https://twitter.com/dfinity[DFINITY Twitter] for 
 
 
 [[for-developers]]
-== 💡 For: Developers
+== For: Developers
 The Internet Computer hosts special smart contracts, called link:https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[canisters]. A canister is a bundle of link:https://webassembly.org/[WebAssembly] bytecode logic and memory pages. Apps on the Internet Computer are created from one or more canisters. 
 
 Canisters can serve web content directly to end-users, and users can interact with blockchain services without holding tokens. When building on the Internet Computer, you can deploy code directly to the Internet. 
@@ -48,7 +48,7 @@ You can follow us on the link:https://twitter.com/dfinitydev[DFINITY Developer T
 
 
 [[for-protocol-enthusiasts]]
-== 🧠 For: Protocol Enthusiasts
+== For: Protocol Enthusiasts
 
 The Internet Computer is created by the Internet Computer Protocol (“ICP”), which has formed the world’s first web-speed, web-serving public blockchain network. The Internet Computer can grow its capacity with demand and is self-governing. It combines special node machines run en masse by independent data centers all around the world. Like all blockchains, it is unstoppable, and the code it hosts is tamperproof. 
 

@@ -1,43 +1,40 @@
-// Insert these lines after the import statements for
-// importing an agent and an actor
-import * as React from 'react';
-import { render } from 'react-dom';
+import * as React from "react";
+import { render } from "react-dom";
+import { custom_greeting } from "../../declarations/custom_greeting";
 
-// Replace the default index.js content with 
-// React JavaScript
-class MyHello extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'Name',
-      message: '',
-    };
+const MyHello = () => {
+  const [name, setName] = React.useState('');
+  const [message, setMessage] = React.useState('');
+
+  async function doGreet() {
+    const greeting = await custom_greeting.greet(name);
+    setMessage(greeting);
   }
 
-  async doGreet() {
-    const greeting = await custom_greeting.greet(this.state.name);
-    this.setState({ ...this.state, message: greeting });
-  }
-
-  onNameChange(ev) {
-    this.setState({ ...this.state, name: ev.target.value });
-  }
-
-  render() {
-    return (
-      <div style={{ "font-size": "30px" }}>
-        <div style={{ "background-color": "yellow" }}>
-          <p>Greetings, from DFINITY!</p>
-          <p> Type your message in the Name input field, then click <b> Get Greeting</b> to display the result.</p>
-        </div>
-        <div style={{ "margin": "30px" }}>
-          <input id="name" value={this.state.name} onChange={ev => this.onNameChange(ev)}></input>
-          <button onClick={() => this.doGreet()}>Get Greeting!</button>
-        </div>
-        <div>Greeting is: "<span style={{ "color": "blue" }}>{this.state.message}</span>"</div>
+  return (
+    <div style={{ "fontSize": "30px" }}>
+      <div style={{ "backgroundColor": "yellow" }}>
+        <p>Greetings, from DFINITY!</p>
+        <p>
+          {" "}
+          Type your message in the Name input field, then click{" "}
+          <b> Get Greeting</b> to display the result.
+        </p>
       </div>
-    );
-  }
-}
+      <div style={{ margin: "30px" }}>
+        <input
+          id="name"
+          value={name}
+          onChange={(ev) => setName(ev.target.value)}
+        ></input>
+        <button onClick={doGreet}>Get Greeting!</button>
+      </div>
+      <div>
+        Greeting is: "
+        <span style={{ color: "blue" }}>{message}</span>"
+      </div>
+    </div>
+  );
+};
 
-render(<MyHello />, document.getElementById('app'));
+render(<MyHello />, document.getElementById("app"));

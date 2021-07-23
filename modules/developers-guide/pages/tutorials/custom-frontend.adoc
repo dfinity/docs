@@ -78,7 +78,7 @@ npm install --save react react-dom
 +
 [source,bash]
 ----
-npm install --save typescript ts-loader
+npm install --save-dev typescript ts-loader
 ----
 +
 NOTE: As an alternative to installing these modules, you can edit the default `+package.json+` file to add dependencies for your project.
@@ -156,14 +156,11 @@ This is the same default front-end you saw in link:explore-templates{outfilesuff
 . Open the `+src/custom_greeting_assets/src/index.js+` file in a text editor.
 +
 ....
-import { Actor, HttpAgent } from '@dfinity/agent';
-import { idlFactory as custom_greeting_idl, canisterId as custom_greeting_id } from 'dfx-generated/custom_greeting';
-
-const agent = new HttpAgent();
-const custom_greeting = Actor.createActor(custom_greeting_idl, { agent, canisterId: custom_greeting_id });
+import { custom_greeting } from "../../declarations/custom_greeting";
 
 document.getElementById("clickMeBtn").addEventListener("click", async () => {
   const name = document.getElementById("name").value.toString();
+  // Interact with custom_greeting actor, calling the greet method
   const greeting = await custom_greeting.greet(name);
 
   document.getElementById("greeting").innerText = greeting;
@@ -171,10 +168,8 @@ document.getElementById("clickMeBtn").addEventListener("click", async () => {
 ....
 +
 --
-* The first `import` statement in the default `index.js` file creates an actor and an agent instance using the JavaScript agent library.
-* The second `import` statement prepares the `custom_greeting` canister for the actor object to be constructed.
-* The next two statements construct the agent and actor objects.
-* The remaining lines provide the document object handling for the default application.
+* The `import` statement points to an actor that will allow us to make calls to our `custom_greeting` canister from `"../declarations"`
+* The declarations haven't been created yet, but we will come back to that.
 --
 . Close the `+index.js+` file to continue.
 
@@ -192,7 +187,7 @@ To prepare the front-end files:
 entry: {
   // The frontend.entrypoint points to the HTML file for this build, so we need
   // to replace the extension to `.js`.
-  index: path.join(__dirname, info.frontend.entrypoint).replace(/\.html$/, ".jsx"),
+  index: path.join(__dirname, asset_entry).replace(/\.html$/, ".jsx"),
 },
 ----
 . Add the following `+module+` key above the `+plugins+` section:
@@ -216,7 +211,7 @@ Note that there's a commented section in the default `webpack.config.js` file th
 include::example$sample-tsconfig.json[]
 ----
 . Save your changes and close the `+tsconfig.json+` file to continue.
-. Open the default `+src/custom_greeting_assets/src/index.js+` file in a text editor and delete lines 7 to 12.
+. Open the default `+src/custom_greeting_assets/src/index.js+` file in a text editor and delete lines 2 to 9.
 . Copy and paste the following sample code into the `+index.js+` file:
 +
 [source,react]
@@ -282,14 +277,6 @@ dfx deploy
 ----
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
-. Copy the canister identifier for the `+custom_greeting_assets+` canister to the clipboard or a notepad application.
-+
-If you didn't make a note of the canister identifier, you can look it up by running the following command:
-+
-[source,bash]
-----
-dfx canister id custom_greeting_assets
-----
 
 == View the new front-end
 
@@ -297,21 +284,14 @@ You can now access the new front-end for the default program by entering the can
 
 To view the custom front-end:
 
-. Open a browser and navigate to the `+local+` network address and port number specified in the `+dfx.json+` configuration file.
+. Open a new tab or window of your terminal and run
 +
-For example, if you are using the default binding for the local network, navigate to `+127.0.0.1:8000/+`.
-+
-To specify the canister you want the web server to display, add the `+canisterId+` parameter and the  `+custom_greeting_assets+` canister identifier to the URL using the following syntax:
-+
-....
-?canisterId=<YOUR-ASSET-CANISTER-IDENTIFIER>
-....
-+
-For example, the full URL should look similar to the following but with the `+_canister_identifier_+` that was returned for the `+custom_greeting_assets+` canister when you deployed the canister:
-+
-....
-http://127.0.0.1:8000/?canisterId=cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-....
+[source,bash]
+----
+npm start
+----
+. Open a browser and navigate to http://localhost:8080.
+
 . Verify that you are prompted to type a greeting.
 +
 For example:
@@ -336,19 +316,7 @@ For example, you might want to change the font family and use a placeholder for 
 ....
 include::example$react-revised-index.jsx[]
 ....
-. Rebuild the project with your changes by running the following command.
-+
-[source,bash]
-----
-dfx build
-----
-. Deploy your project changes by running the following command:
-+
-[source,bash]
-----
-dfx canister install --all --mode reinstall
-----
-. View the results in the browser by reloading the page that displays the `+custom_greeting_assets+` canister.
+. Save the file and view the updated page in your browser.
 +
 For example:
 +
@@ -363,6 +331,8 @@ image:modified-result.png[Modified greeting result]
 After you finish experimenting with the front-end for your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
 
 To stop the local network:
+
+. In the terminal that displays the webpack development server, press Control-C to interrupt the dev-server.
 
 . In the terminal that displays network operations, press Control-C to interrupt the local network process.
 

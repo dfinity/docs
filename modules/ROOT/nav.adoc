@@ -4,6 +4,9 @@
 ** xref:introduction:welcome.adoc#for-developers[For: Developers]
 ** xref:introduction:welcome.adoc#for-protocol-enthusiasts[For: Protocol Enthusiasts]
 
+* xref:quickstart:quickstart-intro.adoc[Quick start]
+** xref:quickstart:local-quickstart.adoc[Local development]
+** xref:quickstart:network-quickstart.adoc[Network deployment]
 
 * Developer Docs
 ** Getting Started
@@ -24,7 +27,6 @@
 **** xref:developers-guide:cli-reference.adoc[DFX commands]
 **** xref:developers-guide:cli-reference/dfx-envars.adoc[DFX environment variables]
 **** xref:developers-guide:glossary.adoc[Glossary]
-*** xref:quickstart:quickstart-intro.adoc[Quick start]
 ** Building on the Internet Computer
 *** Learn how to:
 **** xref:developers-guide:sdk-guide.adoc[Develop software on the IC]
@@ -81,7 +83,8 @@
 
 
 *** Introducing the Internet Identity
-**** xref:ic-identity-guide:authentication.adoc[Integrating the Internet Identity]
+**** xref:ic-identity-guide:what-is-ic-identity.adoc[What is Internet Identity]
+**** xref:ic-identity-guide:auth-how-to.adoc[How to use the Internet Identity]
 
 *** Frontend development
 **** xref:developers-guide:webpack-config.adoc[Add frontend assets]
@@ -138,7 +141,9 @@
 *** link:https://ic.rocks/[ic.rocks (Block explorer)^]
 *** link:https://plugwallet.ooo/[Plug (Browser-based wallet extension)^]
 *** link:https://fleek.co/[Fleek (Netlify for the open web)^]
-*** Cycles Faucet (coming soon!)
+*** link:http://faucet.dfinity.org/[Cycles Faucet^]
+
+** xref:developers-guide:computation-and-storage-costs.adoc[Computation and Storage Costs]
 
 * Community
 ** link:https://discord.gg/aGVFEPxs[Developer Discord^]

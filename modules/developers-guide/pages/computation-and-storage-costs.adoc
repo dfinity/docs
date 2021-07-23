@@ -1,0 +1,58 @@
+= Computation and Storage Costs
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+
+The {IC} requires computation operations and storage to be funded by cycles. Cycles are generated from the conversion of Internet Computer (ICP) utility tokens.  
+
+
+== The Role of the Network Nervous System (NNS) in Defining Costs
+
+The {IC} is a decentralized public utility, controlled by the NNS –– the network’s open, algorithmic governance system. The NNS fundamentally controls how many cycles are required for low-level computation actions for computation and storage. The number of cycles needed for individual computations will vary based on a number of factors considered by the NNS, including proposals from the community.  
+
+
+== Details: Cost of Compute and Storage Transactions on the {IC}
+
+See below for details on the cost of compute and storage transactions on the {IC} as of July 23, 2021.
+
+.Cycles Cost per Transaction (as of July 20, 2021)
+[cols="1,1,>1"]
+|===
+|Transaction|Description|All Application Subnets
+
+|Canister Created|For creating canisters on a subnet|100,000,000,000
+|Compute Percent Allocated Per Second |For each percent of the reserved compute allocation (a scarce resource).|100,000
+|Update Message Execution|For every update message executed|590,000
+|Ten Update Instructions Execution|For every 10 instructions executed when executing update type messages|4
+|Xnet Call |For every inter-canister call performed (includes the cost for sending the request and receiving the response)|260,000
+|Xnet Byte Transmission |For every byte sent in an inter-canister call (for bytes sent in the request and response)|1,000
+|Ingress Message Reception|For every ingress message received|1,200,000
+|Ingress Byte Reception |For every byte received in an ingress message|2,000
+|GB Storage Per Second |For storing a GB of data per second|127,000
+|=== 
+
+The $USD cost for transactions below is based on the above cycle costs. 1 XDR is equal to 1 Trillion cycles.  As of July 23, 2021, the exchange rate for 1 XDR = $1.42. The exchange rate for USD <> XDR may vary and it will impact the conversion rate. 
+
+To derive the estimated GB Storage per month, we assume a 30 day month.
+
+.Cost per Transaction in $USD (as of July 23, 2021)
+[cols="1,1,>1"]
+|===
+|Transaction|Description|All Application Subnets
+
+|Canister Created|For creating canisters on a subnet|$0.142
+|Compute Percent Allocated Per Second |For each percent of the reserved compute allocation (a scarce resource).|$0.000000142
+|Update Message Execution|For every update message executed|$0.0000008378
+|Ten Update Instructions Execution|For every 10 instructions executed when executing update type messages|$0.00000000000568
+|Xnet Call |For every inter-canister call performed (includes the cost for sending the request and receiving the response)|$0.0000003692
+|Xnet Byte Transmission |For every byte sent in an inter-canister call (for bytes sent in the request and response)|$0.00000000142
+|Ingress Message Reception|For every ingress message received|$0.000001704
+|Ingress Byte Reception |For every byte received in an ingress message|$0.00000000284
+|GB Storage Per Second |For storing a GB of data per second|$0.00000018034
+|===
+
+Assuming a 30 day month --
+[cols="1,1,>1"]
+|===
+|GB Storage Per Month|For storing a GB of data per month|$0.467
+|===

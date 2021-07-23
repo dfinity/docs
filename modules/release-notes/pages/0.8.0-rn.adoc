@@ -89,4 +89,4 @@ And you can modify the `aliases` reducer to point to the path, rather than hardc
 ["dfx-generated/" + name]: path.join(outputRoot),
 ```
 
-Then, you can `dfx deploy` like normal and visit your working site with [http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai](http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai).
+Then, you can `dfx deploy` like normal and visit your working site with http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai.

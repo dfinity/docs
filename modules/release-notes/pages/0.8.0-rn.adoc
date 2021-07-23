@@ -55,7 +55,7 @@ initCanisterIds();
 With your bundler, whether it is Webpack or another bundler of your choice, you will need to account for the following:
 
 1. Identifying canister ids. The output no longer hardcodes the canister ids into JavaScript, so you will need to provide that code using your own strategy. Other bundlers that allow for custom scripting should be able to re-use the webpack config logic.
-2. Determining `NODE_ENV`. During development, the app should call `agent.fetchRootKey()`, but it should not fetch the root key in production. See [Change to the index file](#change-to-index-file).
+2. Determining `NODE_ENV`. During development, the app should call `agent.fetchRootKey()`, but it should not fetch the root key in production.
 3. Copying the codegen, as we do in the `dfx new` template, is optional. You still have access to the `.did.js` and `.did.d.ts` files in `.dfx`, so you can choose to ignore the new `index.js` format if it is inconvenient, and continue providing your own Actor.createActor pattern as before. 
 4. Return types - if you do not want to use the dfx-provided files, consider using the JSDoc comments that we have come up with. If the code knows that your actor has a type of `ActorSubclass<_SERVICE>`, for your particular service, the development process is significantly enhanced in compatible editors.
 

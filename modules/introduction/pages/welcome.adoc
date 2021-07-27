@@ -41,7 +41,7 @@ Excited to take the leap? Check out our xref:quickstart:quickstart-intro.adoc[Qu
 
 Interested in getting plugged into our developer community? Check out the following:
 
-* link:https://discord.gg/aGVFEPxs[Developer Discord], our official Discord for the developer community
+* link:https://discord.gg/cA7y6ezyE2[Developer Discord], our official Discord for the developer community
 * link:https://forum.dfinity.org/[Developer Forum], a welcoming space for technical discussions about building on the Internet Computer
 
 You can follow us on the link:https://twitter.com/dfinitydev[DFINITY Developer Twitter] for the latest developer-specific updates.

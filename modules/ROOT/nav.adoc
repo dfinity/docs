@@ -147,5 +147,5 @@
 ** xref:developers-guide:computation-and-storage-costs.adoc[Computation and Storage Costs]
 
 * Community
-** link:https://discord.gg/aGVFEPxs[Developer Discord^]
+** link:https://discord.gg/cA7y6ezyE2[Developer Discord^]
 ** link:https://forum.dfinity.org/[Developer Forum^]

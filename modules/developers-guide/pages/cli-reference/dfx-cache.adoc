@@ -104,7 +104,7 @@ You can use the following optional flags with the `+dfx cache install+` command.
 
 You can use the `+dfx cache install+` command to force the installation of `+dfx+` from the version in the cache.
 For example, you can run the following command to install `+dfx+`:
-+
+
 [source,bash]
 ----
 dfx cache install

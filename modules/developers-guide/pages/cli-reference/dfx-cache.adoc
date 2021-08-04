@@ -63,7 +63,7 @@ You can specify the following argument for the `+dfx cache delete+` command.
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Command |Description
+|Argument |Description
 |`+version+` |Specifies the version of `+dfx+` you to delete from the local cache.
 |===
 

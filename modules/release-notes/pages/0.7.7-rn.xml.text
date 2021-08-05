@@ -1,0 +1,16 @@
+---
+date: 2021-08-05
+title: Highlights of what's new in 0.7.7
+---
+
+The 0.7.7 release includes updates and fixes that are primarily internal
+to improve existing features and functions rather than user-visible.
+
+The most significant changes in this release include the following:
+
+-   Support for the latest version of the Internet Computer
+    specification and replica.
+
+-   Updating to latest versions of Motoko, Candid, and agent-rs
+
+-   Changes to `dfx new` project template and JavaScript codegen

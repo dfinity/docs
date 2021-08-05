@@ -1,0 +1,58 @@
+---
+date: 2021-08-05
+title: Highlights of what's new in 0.6.25
+---
+
+The 0.6.25 release primarily consists of changes to support new features
+that are not yet complete, including fixes and updates to DFX commands,
+Motoko, the Motoko base library, and Candid.
+
+# New features and capabilities {#_new_features_and_capabilities}
+
+The most significant new features and capabilities include the following
+updates:
+
+-   This release introduces environment variables for specifying
+    canister identifiers.
+
+    You can now use the `CANISTER_ID_{canister.name}` and
+    `CANISTER_CANDID_PATH_{canister.name}` environment variables to
+    reference canister identifiers and the path to the canister Candid
+    description (`.did` file) during the build process. These
+    environment variables enable you to construct the JavaScript for
+    front-end assets using the correct canister identifiers.
+
+    The environment variables are intended to replace the `import`
+    syntax for dependent canisters described in [Entry and output
+    configuration](../developers-guide/webpack-config.xml) which is
+    being deprecated and will be removed in a future release.
+
+-   A new `dfx identity import` subcommand enables you to import a
+    security certificate to create an identity.
+
+    For example, if you use a hardware wallet or a key generation
+    utility to generate a PEM file for authenticating your identity, you
+    can now import that PEM file into `dfx` to create a new identity.
+    After importing the PEM file, you can run the `dfx identity use`
+    command to set that identity as your default context.
+
+    For example, to import the `my-external-id.pem` and create an
+    identity named `alice`, you would run the following command:
+
+        dfx identity import alice my-external-id.pem
+
+    After running this command, you would run the following command to
+    begin using the new identity:
+
+        dfx identity use alice
+
+# Issues fixed in this release {#_issues_fixed_in_this_release}
+
+This section covers any reported issues that have been fixed in this
+release.
+
+# Known issues and limitations {#_known_issues_and_limitations}
+
+This section covers any known issues or limitations that might affect
+how you work with the {sdk-short-name} in specific environments or
+scenarios.

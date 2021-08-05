@@ -1,0 +1,58 @@
+---
+date: 2021-08-05
+title: Highlights of what's new in 0.6.21
+---
+
+The 0.6.21 release primarily consists of changes to support new features
+that are not yet complete, including fixes and updates to DFX commands,
+Motoko, the Motoko base library, and Candid.
+
+# New features and capabilities {#_new_features_and_capabilities}
+
+The most significant new features and capabilities include updates in
+the following functional areas:
+
+-   [DFX](#_dfx)
+
+-   [Candid](#_candid)
+
+-   [Motoko](#_motoko)
+
+## DFX {#_dfx}
+
+-   Two new subcommands---`get-wallet` and `set-wallet`---have been
+    added to the `dfx identity` command to support working with wallet
+    canisters.
+
+    In a future release, you will be able to use these commands locally
+    for testing purposes. However, the commands are not currently
+    supported on any version of the Internet Computer network available
+    for you to run locally or on the public Internet Computer network.
+
+## Candid {#_candid}
+
+-   [Candid
+    changelog](https://github.com/dfinity/candid/blob/master/Changelog.md)
+
+## Motoko {#_motoko}
+
+-   The Motoko compiler now reports errors and warnings with an
+    additional error code.
+
+    You can use the error code to look up a more detailed description
+    for a given error by passing the `--explain` flag with a code to the
+    compiler.
+
+    Note that detailed descriptions are not yet available for most error
+    codes and will be added incrementally in upcoming releases.
+
+# Issues fixed in this release {#_issues_fixed_in_this_release}
+
+This section covers any reported issues that have been fixed in this
+release.
+
+# Known issues and limitations {#_known_issues_and_limitations}
+
+This section covers any known issues or limitations that might affect
+how you work with the {sdk-short-name} in specific environments or
+scenarios.

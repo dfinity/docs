@@ -1,0 +1,98 @@
+---
+date: 2021-08-05
+title: Highlights of what's new in 0.6.26
+---
+
+The 0.6.26 release primarily consists of changes to support new features
+that are not yet complete, including fixes and updates to DFX commands,
+Motoko, the Motoko base library, and Candid.
+
+# New features and capabilities {#_new_features_and_capabilities}
+
+The most significant new feature included in this release is the
+publication of the [*Internet Computer Interface
+Specification*](../interface-spec/index.xml).
+
+The *Internet Computer Interface Specification* details many technical
+properties that describe the lower-level interfaces for interacting with
+the Internet Computer. For example, the *Internet Computer Interface
+Specification* describes the HTTPS endpoints that are exposed to handle
+incoming requests and how low-level bindings enable canisters to
+interact with system components.
+
+If you use existing tools---like the DFINITY Canister SDK or Canister
+Development Kit for Rust---to work with canisters, these tools interact
+with the lower-level interfaces described in the *Internet Computer
+Interface Specification* on your behalf. If you want to create your own
+tooling for working with canisters, however, the *Internet Computer
+Interface Specification* includes the technical details you need to
+understand how the Internet Computer external interfaces work.
+
+If you are interested in expanding the Internet Computer ecosystem,
+you'll also find information in the *Internet Computer Interface
+Specification* to help you in developing the following types of
+projects:
+
+-   Building **front-end agents** for user-facing interaction in any
+    programming language, including popular languages such as Python,
+    Golang, or C.
+
+-   Building **back-end Canister Development Kits** (CDKs) in any
+    language that can compile down to WebAssembly bytecode.
+
+-   Building **local development tools** such as command line interfaces
+    or Internet Computer emulators and debuggers.
+
+-   Implementing **features and enhancements** to improve the developer
+    experience for deploying and managing canisters running remotely on
+    the network.
+
+# Issues fixed in this release {#_issues_fixed_in_this_release}
+
+This section covers any reported issues that have been fixed in this
+release.
+
+This release fixes an issue with memory allocation in the default cycles
+wallet that caused an error after creating and deploying canisters. If
+you encountered this issue, you might have seen an error message similar
+to the following:
+
+    The Replica returned an error: code 5, message: "Canister 6dtaa-vaaaa-aaaab-aaipa-cai exceeded its allowed memory allocation"
+
+This release updates the default cycles wallet to provide better
+handling of unused memory and how memory is allocated when creating and
+deploying canisters.
+
+# Known issues and limitations {#_known_issues_and_limitations}
+
+This section covers any known issues or limitations that might affect
+how you work with the {sdk-short-name} in specific environments or
+scenarios.
+
+## Only the default wallet canister principal can perform canister management tasks {#_only_the_default_wallet_canister_principal_can_perform_canister_management_tasks}
+
+The introduction of the cycles wallet canister changes the default
+principal used to perform key canister management tasks, such as
+registering a new canister identifier and deploying a new canister on
+the Internet Computer. This change introduces some inconsistencies in
+the identity used to perform certain tasks and can result in potential
+access control issues.
+
+You should note that none of the tutorials have been updated to reflect
+this specific change in behavior yet and the current version of the [Add
+access control with
+identities](../developers-guide/tutorials/access-control.xml) tutorial
+is known to be invalid for this release. If you want to experiment with
+access control using the [Add access control with
+identities](../developers-guide/tutorials/access-control.xml) tutorial,
+you should install the {sdk-short-name} version 0.6.23 (or older).
+
+## Incompatibility when using the JavaScript agent directly in a project {#_incompatibility_when_using_the_javascript_agent_directly_in_a_project}
+
+If you access the `@dfinity/agent` JavaScript agent directly in a
+project---that is, without going through the bootstrap server---you will
+not be able to import the `bls` certification scheme with the `agent-js`
+release.
+
+If your application uses the JavaScript agent directly, you should use
+the latest version of the agent.

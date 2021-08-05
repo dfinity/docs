@@ -1,0 +1,15 @@
+---
+date: 2021-08-05
+title: Highlights of what's new in 0.6.23
+---
+
+The 0.6.23 release consists of changes to support new features and
+enhancements that are not yet complete.
+
+# New features and capabilities {#_new_features_and_capabilities}
+
+The most significant new feature enables you to use a locally-installed
+`@dfinity/bootstrap` server.
+
+For information about updates to Candid, see the [Candid
+changelog](https://github.com/dfinity/candid/blob/master/Changelog.md).

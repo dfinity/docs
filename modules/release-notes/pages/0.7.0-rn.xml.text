@@ -1,0 +1,191 @@
+---
+date: 2021-08-05
+title: Highlights of what's new in 0.7.0
+---
+
+The 0.7.0 release primarily consists of changes to support new features
+that are not yet complete, including fixes and updates to DFX commands,
+Motoko, the Motoko base library, and Candid.
+
+The most significant new features and capabilities are updates to the
+following:
+
+-   [DFX](#_dfx)
+
+-   [Motoko](#_motoko)
+
+# New features and capabilities {#_new_features_and_capabilities}
+
+## DFX {#_dfx}
+
+-   Addition of ledger subcommands
+
+    `dfx` now supports a dedicated `dfx ledger` subcommand. This allows
+    you to interact with the ledger canister installed on the Internet
+    Computer. Example commands include `dfx ledger account-id` which
+    prints the Account Identifier associated with your selected
+    identity, `dfx ledger transfer` which allows you to transfer ICP
+    from your ledger account to another, and
+    `dfx ledger create-canister` which allows you to create a canister
+    from ICP. For more information on `dfx ledger` subcommands, see [dfx
+    ledger](../developers-guide/cli-reference/dfx-ledger.xml).
+
+-   Addition of wallet subcommands
+
+    `dfx` now supports a dedicated `dfx wallet` subcommand. This allows
+    you to interact with the cycles wallet associated with your selected
+    identity.
+
+    The following are just some of the available commands:
+
+    -   `dfx wallet balance` returns the selected identity's cycles
+        wallet balance.
+
+    -   `dfx wallet list-addresses` displays the assigned controllers &
+        custodians of the cycles wallet.
+
+        You can use `dfx wallet send <destination> <amount>` to send
+        cycles to another wallet.
+
+        For more information on `dfx wallet` see [dfx
+        wallet](../developers-guide/cli-reference/dfx-wallet.xml).
+
+-   Add an output type to the `request-status` subcommand.
+
+    This change allows you to specify the format for the return result
+    for `dfx canister request-status`. Formatting options include `idl`,
+    `raw`, and `pp`.
+
+-   The default network for projects is now `ic`.
+
+    The default network is now the mainnet `ic` unless otherwise
+    specified. Additionally, `--network ic` now points to the mainnet
+    Internet Computer (Sodium has been deprecated.)
+
+-   Automatic creation of a candid UI canister
+
+    A dedicated candid UI canister is installed on a local network when
+    using `dfx canister install` or `dfx deploy`.
+
+-   Compress some content types
+
+    You can now store `gzip` content encodings of assets with media
+    types if the encoding is smaller than the source contents. Supported
+    file types are `text/*`, `*/javascript`, and `*/html`.
+
+-   Add the encoding size when listing assets
+
+    Now when assets are listed, a new `length` field returns the size of
+    encodings.
+
+-   Add new command `dfx canister info`
+
+    This allows you to retrieve certified canister information. Access
+    to this information is limited to the controller of the canister and
+    the SHA256 hash of its WASM module. If there is no WASM module
+    installed, the hash will be `None`.
+
+-   New method deletes asset canister assets that no longer exist in a
+    project---**breaking change**
+
+    The `keys()` method is no longer supported. Use the `list()` method
+    to delete missing project assets. For example:
+
+    ``` bash
+    assert_command dfx canister call --query e2e_project_assets get '(record{key="/will-delete-this.txt";accept_encodings=vec{"identity"}})'
+    assert_command dfx canister call --query e2e_project_assets list  '(record{})'
+    assert_match '"/will-delete-this.txt"'
+    ```
+
+-   Run an emulator instead of the replica
+
+    To run a `dfx` project using an emulator instead of the replica, you
+    can now run `dfx start --emulator`.
+
+-   Rely on npmjs.org to get the version of agent-js to install
+
+    This decouples the version of `dfx` from the release version of
+    `agent-js`. Additionally, it allows for debug builds to install
+    properly (as `dfx` has a non-release version).
+
+-   You can now install the DFINITY Canister SDK on for M1 Macs running
+    Darwin.
+
+-   Allow upload of assets of any size to the asset canister.
+
+    The following asset canister call methods are added:
+    **create_batch()** create_chunk() **commit_batch()** get() \*\*
+    get_chunk()
+
+    \+ Reworks the asset installer in `dfx` to use these methods. It can
+    therefore upload assets that exceed the message ingress size.
+
+-   Add `--no-wallet` flag and `--wallet` option
+
+    `--no-wallet` allows users to bypass specifying a wallet ID.
+
+    `--wallet` allows users to specify a particular wallet to use for
+    calls.
+
+-   Implement the HTTP request proposal in `dfx` bootstrap webserver
+
+    Adds support for http requests in the base storage canister (with a
+    default to `/index.html`).
+
+This does not support encodings other than `identity`, and doesn't
+return any headers.
+
+This also upgrades `tokio` and `reqwest` in order to work correctly.
+There are some performance issues to note (this is slower than the
+icx-http-server).
+
+## Motoko {#_motoko}
+
+-   Reformat to style guidelines.
+
+-   Add type bindings
+
+    Add `Nat.Nat`, `Nat8.Nat8`, etc. to libraries for primitive types.
+
+# Issues fixed in this release {#_issues_fixed_in_this_release}
+
+This section covers any reported issues that have been fixed in this
+release.
+
+## DFX {#_dfx_2}
+
+-   Deleting a canister on a network removes entries for other networks
+
+    This change fixes a bug where deleting a canister on a network
+    removed all other entries for the canister in the
+    `canister_ids.json` file.
+
+-   Error message: already in use (os error 48) when issuing dfx start.
+
+    This fixes an error which occurred when starting a replica soon
+    after stopping it.
+
+-   The `dfx new` command should not require `node`
+
+    This fixes the inability to use the `dfx new` command to create
+    projects on machines that do not have `node.js` installed.
+
+-   Missing webpack.config plugin
+
+    This adds the missing ProvidePlugin to webpack.config for new
+    projects.
+
+-   Allow new projects assets to contain non-utf8 files
+
+    Previously assets were forced to be valid UTF-8 strings. After this
+    change if a string cannot be converted, in-place variable
+    replacements are ignored.
+
+## Motoko {#_motoko_2}
+
+-   No longer confused by distinct, but eponymous, type definitions.
+
+-   Numbers of eponymous types and specializations from 1 (not 2)
+
+-   Avoids long chains of type equalities by normalizing before
+    translation

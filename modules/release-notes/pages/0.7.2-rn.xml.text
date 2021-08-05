@@ -1,0 +1,19 @@
+---
+date: 2021-08-05
+title: Highlights of what's new in 0.7.2
+---
+
+The 0.7.2 release includes updates and fixes that are primarily internal
+to improve existing features and functions rather than user-visible.
+
+The most significant changes in this release include the following:
+
+-   Support for the latest version of the Internet Computer
+    specification and replica.
+
+-   The availability of new application subnets enable you to now deploy
+    projects on the Internet Computer.
+
+-   The default cycle balance for new cycles wallet canisters is now set
+    to 3T (three trillion) cycles on application subnets and 4T (four
+    trillion) on verified application subnets.

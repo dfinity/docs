@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Concepts</title>
+<date>2021-08-05</date>
+</info>
+<simpara>You don’t need to know much about the inner workings of the {platform} to write programs that run successfully on it.
+However, learning a few key concepts will help you get the most out of the unique features that the Internet Computer provides.</simpara>
+<simpara>Knowing a little about the design and architecture of the {platform} can make it easier for you to realize the benefits that align with your goals and inform the types of applications you develop.</simpara>
+<simpara>The topics in this section introduce key components and terminology to help you understand the architecture and operation of the Internet Computer.</simpara>
+<simpara>If you want to get right to developing code, though, you can skip this introductory material—key concepts and terminology—and look them up later when you need them either in this section or in the <link xl:href="../glossary.xml">glossary</link>.</simpara>
+<simpara>If you are looking for more introductory information, check out the following related resources:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://www.youtube.com/watch?v=XgsOKP224Zw">Overview of the Internet Computer (video)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://www.youtube.com/watch?v=jduSMHxdYD8">Building on the Internet Computer: Fundamentals (video)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://www.youtube.com/watch?v=LKpGuBOXxtQ">Introducing Canisters — An Evolution of Smart Contracts (video)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://dfinity.org/faq/">Frequently Asked Questions (video and short articles)</link></simpara>
+</listitem>
+</itemizedlist>
+</article>

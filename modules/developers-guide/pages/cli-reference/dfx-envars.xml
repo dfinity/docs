@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Environment variables</title>
+<date>2021-08-05</date>
+</info>
+<simpara>You can configure certain properties for your {sdk-short-name} execution environment using environment variables.</simpara>
+<simpara>This section lists the environment variables that are currently supported with examples of how to use them.
+In most cases, you can set environment variables for a session by executing an   command in the terminal or by adding a line similar to the following to your <literal>.profile</literal> file:</simpara>
+<literallayout class="monospaced">export DFX_TELEMETRY_DISABLED=1</literallayout>
+<section xml:id="_canister_candid_path_canister_name">
+<title>CANISTER_CANDID_PATH_{canister.name}</title>
+<simpara>Use environment variables with the <literal>CANISTER_CANDID_PATH</literal> prefix to reference the path to the Candid description file for the canisters that are listed as dependencies in the <literal>dfx.json</literal> file for your project.</simpara>
+<simpara>For example, if you have a <literal>whoami_assets</literal> canister that lists <literal>whoami</literal> under the <literal>dependencies</literal> key, you could use the <literal>CANISTER_CANDID_PATH_whoami_assets</literal> environment variable to refer to the location of the <literal>whoami.did</literal> file, which for local development might be:</simpara>
+<literallayout class="monospaced">$PROJECT_ROOT/.dfx/local/canisters/whoami/whoami.did</literallayout>
+</section>
+<section xml:id="_canister_id_canister_name">
+<title>CANISTER_ID_{canister.name}</title>
+<simpara>Use environment variables with the <literal>CANISTER_ID</literal> prefix to reference the canister identifier for each canister in the <literal>dfx.json</literal> file for your project.</simpara>
+<simpara>For example, if you have a <literal>linkedup</literal> project that consists of the <literal>linkedup</literal> and <literal>connectd</literal> canisters, you could use the <literal>CANISTER_ID_linkedup</literal> and <literal>CANISTER_ID_connectd</literal> environment variables to refer to the canister identifiers—for example <literal>ryjl3-tyaaa-aaaaa-aaaba-cai</literal> and <literal>rrkah-fqaaa-aaaaa-aaaaq-cai</literal>—created for your project.</simpara>
+</section>
+<section xml:id="_dfx_config_root">
+<title>DFX_CONFIG_ROOT</title>
+<simpara>Use the <literal>DFX_CONFIG_ROOT</literal> environment variable to specify a different location for storing the <literal>.cache</literal> and <literal>.config</literal> subdirectories for <literal>dfx</literal>.</simpara>
+<simpara>By default, the <literal>.cache</literal> and <literal>.config</literal> directories are located in the home directory for your development environment.
+For example, on macOS the default location is in the <literal>/Users/&lt;YOUR-USER-NAME&gt;</literal> directory.
+Use the <literal>DFX_CONFIG_ROOT</literal> environment variable to specify a different location for these directories.</simpara>
+<literallayout class="monospaced">DFX_CONFIG_ROOT=~/ic-root</literallayout>
+</section>
+<section xml:id="_dfx_installation_root">
+<title>DFX_INSTALLATION_ROOT</title>
+<simpara>Use the <literal>DFX_INSTALLATION_ROOT</literal> environment variable to specify a different location for the <literal>dfx</literal> binary if you are not using the default location for your operating system.</simpara>
+<simpara>The <literal>.cache/dfinity/uninstall.sh</literal> script uses this environment variable to identify the root directory for your {sdk-short-name} installation.</simpara>
+</section>
+<section xml:id="_dfx_telemetry_disabled">
+<title>DFX_TELEMETRY_DISABLED</title>
+<simpara>Use the <literal>DFX_TELEMETRY_DISABLED</literal> environment variable to opt-out of having data collected about <literal>dfx</literal> usage.</simpara>
+<simpara>By default, <literal>dfx</literal> is configured to collect anonymous—that is, no identifying information such as IP addresses or user information—data about <literal>dfx</literal> command activity and errors.
+Collecting anonymous data is enabled by default in an effort to improve the developer experience based on usage patterns and behavior.</simpara>
+<simpara>If you want to prevent the collection of data about <literal>dfx</literal> usage, however, you can explicitly opt-out by setting the <literal>DFX_TELEMETRY_DISABLED</literal> environment variable to one.</simpara>
+<literallayout class="monospaced">DFX_TELEMETRY_DISABLED=1</literallayout>
+</section>
+<section xml:id="_dfx_version">
+<title>DFX_VERSION</title>
+<simpara>Use the <literal>DFX_VERSION</literal> environment variable to identify a specific version of the {sdk-short-name} that you want to install.</simpara>
+<literallayout class="monospaced">DFX_VERSION=0.8.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</literallayout>
+</section>
+</article>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Get support</title>
+<date>2020-06-05</date>
+</info>
+<section xml:id="_search_the_knowledge_base">
+<title>Search the Knowledge Base</title>
+<div class="container" role="search">
+  <label for="search-input" class="search"></label>
+  <input autocomplete="off" id="search-input" class="search-input" type="text" placeholder="How can we help you today?">
+  <div id="search-results" class="search-results">
+    <div class="grid">
+    </div>
+  </div>
+</div>
+</section>
+<section xml:id="_featured_articles">
+<title>Featured articles</title>
+
+</section>
+<section xml:id="_popular_topics">
+<title>Popular topics</title>
+
+</section>
+<section xml:id="_submit_a_request_for_help">
+<title>Submit a request for help</title>
+
+</section>
+</article>

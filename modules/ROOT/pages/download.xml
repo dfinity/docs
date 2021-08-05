@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Download center</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Currently, you can download the {sdk-long-name} directly from within a terminal shell on your local computer.
+With this installation option, you can be logged on as any user and no additional software is required.</simpara>
+<section xml:id="install-latest">
+<title>Install the latest directly from a terminal</title>
+<simpara>To download and install from a terminal shell:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer.</simpara>
+<simpara>For example, on macOS open the Applications folder, then open Utilities and double-click <emphasis role="strong">Terminal</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Download and install the SDK package by running the following <literal>curl</literal> command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="install-version">
+<title>Install a specific version from a terminal</title>
+<simpara>If you want to install a specific version, for example, to test against a previous version, you can modify the installation command to include a version.</simpara>
+<simpara>To download and install a specific version from a terminal shell:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Set the <literal>DFX_VERSION</literal> environment variable to the version of the {sdk-short-name} package you want to install as a prefix to <literal>curl</literal> command.</simpara>
+<simpara>For example, to install version 0.8.0, you would run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">DFX_VERSION=0.8.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</programlisting>
+</listitem>
+</orderedlist>
+<note>
+<simpara>If you are using the DFX_VERSION environment variable to install a version of the {sdk-short-name} not yet publicly available, see this <link xl:href="http-middleware.xml">article</link> for an overview of what&#8217;s changed.</simpara>
+</note>
+</section>
+<section xml:id="_next_steps">
+<title>Next steps</title>
+<simpara>For information about the next steps to take, see <link xl:href="developers-guide/tutorials-intro.xml">Tutorials</link> in the <link xl:href="developers-guide/sdk-guide.xml"><emphasis>SDK Developer Tools</emphasis></link>.</simpara>
+<simpara>To learn more about writing programs for the Internet Computer before you start experimenting with code, see <link xl:href="developers-guide/concepts/concepts-intro.xml">Concepts</link>.</simpara>
+<simpara>For information about writing programs for the Internet Computer using Motoko, see the <link xl:href="language-guide/motoko.xml"><emphasis>Motoko Programming Language Guide</emphasis></link>.</simpara>
+</section>
+</article>

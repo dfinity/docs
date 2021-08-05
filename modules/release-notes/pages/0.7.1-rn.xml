@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.7.1</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.7.1 release includes new features and fixes to DFX commands, Motoko, the Motoko base library, and Candid.</simpara>
+<section xml:id="_new_features_and_capabilities">
+<title>New features and capabilities</title>
+<simpara>The most significant new features and capabilities include the following updates for DFX commands:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>An update to the <literal>dfx canister sign</literal> command enables you to sign <literal>request_status</literal> messages for update calls.</simpara>
+<simpara>If you are using <literal>dfx canister sign</literal> to call a method that generates an update message, the command also signs a corresponding <literal>request_status</literal> message and appends it to the <literal>message.json</literal> file as <literal>signed_request_status</literal>.
+After you send the message using the <literal>dfx canister send</literal> command, you can check the <literal>request_status</literal> of the call by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister send message.json --status</programlisting>
+<simpara>This change is particularly useful if you are using the <literal>dfx canister sign</literal> and <literal>dfx canister send</literal> commands to call the <literal>ledger</literal> or <literal>governance</literal> canister to make a transaction or stake tokens as a two-step process.</simpara>
+</listitem>
+<listitem>
+<simpara>There are new <literal>deposit_cycles</literal> and <literal>uninstall_code</literal> management canister methods that are also exposed as <literal>dfx canister</literal> subcommands.</simpara>
+<simpara>The two new commands are <literal>dfx canister deposit-cycles</literal> and <literal>dfx canister uninstall-code</literal>.
+For example, you can now send cycles from your cycles wallet to a specific canister by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister deposit-cycles 125000000000 hello_world</programlisting>
+<simpara>You can uninstall code for a deployed WASM module by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister uninstall-code hello_world</programlisting>
+</listitem>
+<listitem>
+<simpara>A new <literal>--no-artificial-delay</literal> option enables you to reduce the time it takes for the local Internet Computer to start.</simpara>
+<simpara>This change adds the <literal>--no-artificial-delay</literal> flag to <literal>dfx start</literal> and <literal>dfx replica</literal> commands.
+By default, the local Internet Computer replica that is installed with the {sdk-short-name} has an artificial consensus delay to simulate the delay users might see in a networked environment.
+With this new flag, you can skip the built-in delay when you start the local Internet Computer by running either the <literal>dfx start --no-artificial-delay</literal> or <literal>dfx replica --no-artificial-delay</literal> command.</simpara>
+<simpara>For example, you can start the local Internet Computer without a delay by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start -no-artificial-delay</programlisting>
+<simpara>If you use this option, however, you might an increase in the CPU used by the local Internet Computer replica.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_breaking_change">
+<title>Breaking change</title>
+<simpara>The {sdk-short-name} version 0.7.1 introduces a change to the default principal used when you run <literal>dfx canister call</literal> commands.
+Depending on the version of the {sdk-short-name} that you were previously using, this change might require changes to your program code or to the way you call methods in deployed canisters.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The cycles wallet canister identifier is not longer used as the message caller by default.</simpara>
+<simpara>In some previous versions of the {sdk-short-name}, the <literal>dfx canister call</literal> command would use the cycles wallet canister identifier as the message caller to perform queries and update calls by default.</simpara>
+<simpara>The <literal>--no-wallet</literal> command-line option was introduced to allow you to bypass the cycles wallet canister identifier and perform query and update calls using the currently-selected identity.</simpara>
+<simpara>However, using the cycles wallet canister identifier to execute <literal>dfx canister call</literal> commands resulted in each call being treated as an inter-canister call and the calls would take longer than necessary to resolve.</simpara>
+<simpara>With this release, <literal>dfx canister call</literal> commands no longer use the cycles wallet canister identifier to execute query and update calls by default.
+If you want to execute a query or update call using the cycles wallet, you can run a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --wallet=<emphasis>cycles-wallet-id</emphasis> call <emphasis>canister</emphasis> <emphasis>method</emphasis></programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_issues_fixed_in_this_release">
+<title>Issues fixed in this release</title>
+<simpara>This section covers any reported issues that have been fixed in this release.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Allow consistent use of canisters names or identifiers in <literal>dfx canister</literal> commands.</simpara>
+<simpara>Previously, <literal>dfx canister</literal> commands were inconsistent about whether you could specify a canister using a canister name or a canister identifier.
+With this change, all <literal>dfx canister</literal> commands now accept either a canister name as specified in the local <literal>dfx.json</literal> configuration file or a valid canister identifier as listed in the <literal>canister_ids.json</literal> file.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

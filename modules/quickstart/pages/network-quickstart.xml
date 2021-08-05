@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Network deployment</title>
+<date>2021-08-05</date>
+</info>
+<simpara xml:id="net-quick-start">This <emphasis>Quick Start</emphasis> scenario assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the Internet Computer <emphasis role="strong">running remotely</emphasis>.</simpara>
+<simpara>If you are only deploying projects in a local development environment, see the <link xl:href="local-quickstart.xml">Local development</link> scenario.</simpara>
+<simpara>To get started, let&#8217;s build and deploy a simple Hello application that has just one function—called <literal>greet</literal>.
+The <literal>greet</literal> function accepts one text argument and returns the result with a greeting similar to <emphasis role="strong">Hello,&#160;everyone!</emphasis> in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.</simpara>
+<section xml:id="net-before">
+<title>Before you begin</title>
+<simpara>Before you download and install this release of the {sdk-short-name}, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have an internet connection and access to a shell terminal on your local <emphasis role="strong">macOS</emphasis> or <emphasis role="strong">Linux</emphasis> computer.</simpara>
+<simpara>Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.</simpara>
+</listitem>
+<listitem>
+<simpara>You have <literal>node.js</literal> installed if you want to access the default front-end for the default project.</simpara>
+</listitem>
+<listitem>
+<simpara>You have ICP tokens or cycles available for you to use.</simpara>
+<simpara>You must have <emphasis role="strong">cycles</emphasis> available to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a <emphasis role="strong">cycles wallet</emphasis> that you control.</simpara>
+<simpara>For information about how to get ICP tokens, see <link xl:href="../developers-guide/concepts/tokens-cycles.xml#get-cycles">How you can get ICP tokens</link>.
+For an introduction to using the Network Nervous System application to manage ICP tokens, see <link xl:href="../token-holders/nns-app-quickstart.xml">Network nervous system application quick start</link>.
+For information about using your default cycles wallet after you have created it, see <link xl:href="../developers-guide/default-wallet.xml">Use the default cycles wallet</link>.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial assumes you know how to perform common tasks—like opening a terminal and running commands—on your computer.
+If you aren’t sure how to open a new terminal shell or how to install software packages like <literal>node.js</literal>, see <link xl:href="newcomers.xml">Preliminary steps for newcomers</link>.
+If you are comfortable meeting the prerequisites without instructions, continue to <xref linkend="net-download-sdk"/>.</simpara>
+</section>
+<section xml:id="net-download-sdk">
+<title>Download and install</title>
+<simpara>You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer. If you have previously installed the {sdk-short-name}, you can skip this section and start with <link linkend="net-new-project">Create a new project</link>.</simpara>
+<simpara>To download and install:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer.</simpara>
+<simpara>For example, open Applications, Utilities, then double-click <emphasis role="strong">Terminal</emphasis> or press <keycombo><keycap>&#8984;</keycap><keycap>spacebar</keycap></keycombo> to open Search, then type <literal>terminal</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Download and install the {sdk-short-name} package by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</programlisting>
+<simpara>This command prompts you to read and accept the license agreement before installing the DFINITY execution command-line interface (CLI) and its dependencies on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Type <literal>y</literal> and press <keycap>Return</keycap> to continue with the installation.</simpara>
+<simpara>The command displays information about the components being installed on the local computer.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="net-verify-sdk-version">
+<title>Verify the SDK is ready to use</title>
+<simpara>If the installation script runs without any errors, everything you need to start developing programs that run on the {platform} will be available on your local computer.</simpara>
+<simpara>To verify the SDK is ready to use:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Check that you have the DFINITY execution command-line interface (CLI) installed and the <literal>dfx</literal> executable is available in your PATH by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --version</programlisting>
+<simpara>The command displays version information for the <literal>dfx</literal> command-line executable similar to the following:</simpara>
+<literallayout class="monospaced">dfx 0.8.0</literallayout>
+</listitem>
+<listitem>
+<simpara>Preview usage information for the other <literal>dfx</literal> command-line sub-commands by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --help</programlisting>
+<simpara>The command displays usage information for the <literal>dfx</literal> parent command and its subcommands.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="net-new-project">
+<title>Create a new project</title>
+<simpara>Applications for the Internet Computer start as <emphasis role="strong">projects</emphasis>.
+You create projects using the <literal>dfx</literal> parent command and its subcommands.</simpara>
+<simpara>For this tutorial, we&#8217;ll start with the default sample application to illustrate creating an application using the starter files in a project.
+When you create a new project, the <literal>dfx</literal> command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the <link xl:href="../developers-guide/tutorials/explore-templates.xml">Explore the default project</link> tutorial.</simpara>
+<simpara>To create a new project for your first application:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project named <literal>hello</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new hello</programlisting>
+<simpara>The <literal>dfx new hello</literal> command creates a new <literal>hello</literal> project directory, template files, and a new <literal>hello</literal> Git repository for your project.</simpara>
+<simpara>If you use a different project name instead of <literal>hello</literal>, make note of the name you used. You&#8217;ll need to use that project name in place of the <literal>hello</literal> project name throughout these instructions.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd hello</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="ping-the-network">
+<title>Check the connection to the network</title>
+<simpara>Before you can deploy your first project on the Internet Computer, you need to connect to the network gateway running remotely on a subnet that you can access.
+There is a reserved network alias that you can use to access the Internet Computer running remotely on nodes in data centers. The network alias is a system setting that&#8217;s defined internally, so there&#8217;s nothing you need to configure in your projects by default.</simpara>
+<simpara>To check your connection to the Internet Computer network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Check the current status of the Internet Computer network and your ability to connect to it by running the following command for the network alias <literal>ic</literal>:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ping ic</programlisting>
+</listitem>
+<listitem>
+<simpara>Verify that the <literal>dfx ping ic</literal> command returns information about the Internet Computer network to which you are connecting.</simpara>
+<simpara>For example, you should see output similar to the following:</simpara>
+<literallayout class="monospaced">{
+  "ic_api_version": "0.18.0"  "impl_hash": "d639545e0f38e075ad240fd4ec45d4eeeb11e1f67a52cdd449cd664d825e7fec"  "impl_version": "8dc1a28b4fb9605558c03121811c9af9701a6142"  "replica_health_status": "healthy"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 129, 76, 14, 110, 199, 31, 171, 88, 59, 8, 189, 129, 55, 60, 37, 92, 60, 55, 27, 46, 132, 134, 60, 152, 164, 241, 224, 139, 116, 35, 93, 20, 251, 93, 156, 12, 213, 70, 217, 104, 95, 145, 58, 12, 11, 44, 197, 52, 21, 131, 191, 75, 67, 146, 228, 103, 219, 150, 214, 91, 155, 180, 203, 113, 113, 18, 248, 71, 46, 13, 90, 77, 20, 80, 95, 253, 116, 132, 176, 18, 145, 9, 28, 95, 135, 185, 136, 131, 70, 63, 152, 9, 26, 11, 170, 174]
+}</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="net-ledger-id">
+<title>Confirm your developer identity and ledger account</title>
+<simpara>All ICP token transactions are recorded in a <link xl:href="../developers-guide/glossary.xml#g-ledger">ledger canister</link> running on the Internet Computer.
+The ledger canister consists of <emphasis role="strong">account identifiers</emphasis> and <emphasis role="strong">balances</emphasis> for all ICP token holders.</simpara>
+<simpara>Before you can transfer any ICP tokens you hold in your ledger account, you need to send a secure and properly-signed message that verifies your identity to the ledger and authorizes your developer identity to complete the transaction.</simpara>
+<simpara>Depending on how you have set up custody for holding your ICP tokens, the hardware, software, and steps required to connect to the ledger and complete a transaction can vary.
+For example, you might connect to the ledger and start a transaction from a hardware wallet, using a hardware security module (HSM) appliance, through the Network Nervous System (NNS) front-end application, or using the {sdk-short-name} <literal>dfx</literal> command-line interface.
+Each approach presents a different interface for signing and sending messages to the ledger and representing your identity as an account holder.</simpara>
+<section xml:id="_about_your_developer_identity">
+<title>About your developer identity</title>
+<simpara>The first time you use the {sdk-short-name}, the <literal>dfx</literal> command-line tool creates a <literal>default</literal> developer identity for you. This identity is represented by a <emphasis role="strong">principal</emphasis> data type and a textual representation of the principal often referred to as your <emphasis role="strong">principal identifier</emphasis>.
+This representation of your identity is similar to a Bitcoin or Ethereum address.</simpara>
+<simpara>However, the principal associated with your developer identity is typically not the same as your <emphasis role="strong">account identifier</emphasis> in the ledger. The principal identifier and the account identifier are related—both provide a textual representation of your identity—but they use different formats.</simpara>
+</section>
+<section xml:id="_connect_to_the_ledger_to_get_account_information">
+<title>Connect to the ledger to get account information</title>
+<simpara>For the purposes of this tutorial—where there&#8217;s no hardware wallet or external application to connect to the ledger—we&#8217;ll use your developer identity to retrieve your ledger account identifier, then transfer ICP tokens from the ledger account identifier to a cycles wallet canister controlled by your developer identity.</simpara>
+<simpara>To look up your account in the ledger:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Confirm the developer identity you are currently using by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity whoami</programlisting>
+<simpara>In most cases, you should see that you are currently using default` developer identity.
+For example:</simpara>
+<literallayout class="monospaced">default</literallayout>
+</listitem>
+<listitem>
+<simpara>View the textual representation of the principal for your current identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity get-principal</programlisting>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe</literallayout>
+</listitem>
+<listitem>
+<simpara>Get the account identifier for your developer identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger account-id</programlisting>
+<simpara>This command displays the ledger account identifier associated with your developer identity.
+For example, you should see output similar to the following:</simpara>
+<literallayout class="monospaced">03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223</literallayout>
+</listitem>
+<listitem>
+<simpara>Check your account balance by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic balance</programlisting>
+<simpara>This command displays the ICP token balance from the ledger account.
+For example, you should see output similar to the following:</simpara>
+<literallayout class="monospaced">10.00000000 ICP</literallayout>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="convert-icp">
+<title>Convert ICP tokens to cycles</title>
+<simpara>Now that you have confirmed your account information and current ICP token balance, you can convert some of those ICP tokens to cycles and move them into a cycles wallet.</simpara>
+<simpara>To transfer ICP tokens to create a cycles wallet:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Create a new canister with cycles by transferring ICP tokens from your ledger account by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic create-canister &lt;principal-identifier&gt; --amount &lt;icp-tokens&gt;</programlisting>
+<simpara>This command converts the number of ICP tokens you specify for the <literal>--amount</literal> argument into cycles, and associates the cycles with a new canister identifier controlled by the principal you specify.</simpara>
+<simpara>For example, the following command converts .25 ICP tokens into cycles and specifies the principal identifier for the default identity as the controller of the new canister:</simpara>
+<literallayout class="monospaced">dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount .25</literallayout>
+<simpara>If the transaction is successful, the ledger records the event and you should see output similar to the following:</simpara>
+<literallayout class="monospaced">Transfer sent at BlockHeight: 20
+Canister created with id: "gastn-uqaaa-aaaae-aaafq-cai"</literallayout>
+</listitem>
+<listitem>
+<simpara>Install the cycles wallet code in the newly-created canister placeholder by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity --network ic deploy-wallet &lt;canister-identifer&gt;</programlisting>
+<simpara>For example:</simpara>
+<literallayout class="monospaced">dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai</literallayout>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Creating a wallet canister on the ic network.
+The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae-aaafq-cai"</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_validate_your_cycles_wallet">
+<title>Validate your cycles wallet</title>
+<simpara>After you convert ICP tokens to cycles, you can validate the cycles wallet canister and check your current cycles balance.</simpara>
+<simpara>To validate your cycles wallet:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Verify the canister identifier for the cycles wallet you deployed by running the following command:</simpara>
+<screen role="bash" linenumbering="unnumbered">dfx identity --network ic get-wallet</screen>
+<simpara>The command displays the canister identifier for your cycles wallet with output similar to the following:</simpara>
+<literallayout class="monospaced">gastn-uqaaa-aaaae-aaafq-cai</literallayout>
+</listitem>
+<listitem>
+<simpara>Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet --network ic balance</programlisting>
+<simpara>The command returns the balance for the your cycles wallet.
+For example:</simpara>
+<literallayout class="monospaced">15430122328028812 cycles.</literallayout>
+<simpara>You can also access your default cycles wallet in a web browser by using a URL similar to the following:</simpara>
+<literallayout class="monospaced">https://&lt;WALLET-CANISTER-ID&gt;.raw.ic0.app</literallayout>
+<simpara>The first time you access the application, you see a notice that you are using an Anonymous Device and are prompted to authenticate your identity, authorize access to the wallet, and register your device.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Authenticate</emphasis> to continue to the Internet Identity service.</simpara>
+</listitem>
+<listitem>
+<simpara>Enter your <emphasis role="strong">User Number</emphasis> if you have previously registered an identity or register with the service as a new user.</simpara>
+<simpara>For more information about the Internet Identity service and how to register multiple authentication devices and methods, see <link xl:href="../ic-identity-guide/auth-how-to.xml">How to use the Internet Identity service</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Authenticate using your user number and the authentication method—for example, a security key or fingerprint—you have registered.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Proceed</emphasis> to access to the default cycles wallet application.</simpara>
+</listitem>
+<listitem>
+<simpara>Register the device you are using for this session by copying the command displayed in the <emphasis role="strong">Register Device</emphasis> page and running it in a terminal.</simpara>
+<simpara>For example, call the <literal>authorize</literal> method for the cycles wallet canister with a command similar to the following:</simpara>
+<literallayout class="monospaced">dfx canister --no-wallet --network ic call "gastn-uqaaa-aaaae-aaafq-cai" authorize '(principal "ejta3-neil3-qek6c-i7rdw-sxreh-lypfe-v6hjg-6so7x-5ugze-3iohr-2qe")'</literallayout>
+<simpara>Be sure that the command you copy has the <literal>--no-wallet</literal> option and the correct network (<literal>ic</literal>) alias.
+You should recognize the canister identifier—in this example, <literal>gastn-uqaaa-aaaae-aaafq-cai</literal>—as the cycles wallet associated with your identity.
+If this is your first wallet on the network, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case.</simpara>
+<simpara>When the browser refreshes after running the <literal>authorize</literal> command, the cycles wallet for your principal account is displayed.</simpara>
+</listitem>
+<listitem>
+<simpara>View your cycles balance and activity in the browser.</simpara>
+<simpara>For example:</simpara>
+<informalfigure>
+<mediaobject>
+<imageobject>
+<imagedata fileref="cycles-wallet.png"/>
+</imageobject>
+<textobject><phrase>cycles wallet</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>For more information about the commands and methods available for working with the default cycles wallet, see <link xl:href="../developers-guide/default-wallet.xml">Use the default cycles wallet</link>.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="net-deploy">
+<title>Register, build, and deploy the application</title>
+<simpara>After you have validated your cycles wallet balance, you can register, build, and deploy your sample application.</simpara>
+<simpara>To deploy your first application on the Internet Computer:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In your terminal shell, check that you are still in the root directory for your project.</simpara>
+</listitem>
+<listitem>
+<simpara>Ensure that <literal>node</literal> modules are available in your project directory, if needed, by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm install</programlisting>
+<simpara>For more information about this step, see <link xl:href="../developers-guide/webpack-config.xml#troubleshoot-node">Ensuring node is available in a project</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy your first application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy --network ic</programlisting>
+<simpara>The <literal>--network</literal> option specifies the network alias or URL for deploying the application.
+This option is required to install on the Internet Computer running remotely.</simpara>
+<simpara>The <literal>dfx deploy</literal> command output displays information about the operations it performs.</simpara>
+<simpara>For example, this step registers two network-specific identifiers—one for the <literal>hello</literal> main program and one for the <literal>hello_assets</literal> front-end user interface—and installation information similar to the following:</simpara>
+<literallayout class="monospaced">Deploying all canisters.
+Creating canisters...
+Creating canister "hello"...
+"hello" canister created on network "ic" with canister id: "5o6tz-saaaa-aaaaa-qaacq-cai"
+Creating canister "hello_assets"...
+"hello_assets" canister created on network "ic" with canister id: "5h5yf-eiaaa-aaaaa-qaada-cai"
+Building canisters...
+Building frontend...
+Installing canisters...
+Installing code for canister hello, with canister_id 5o6tz-saaaa-aaaaa-qaacq-cai
+Installing code for canister hello_assets, with canister_id 5h5yf-eiaaa-aaaaa-qaada-cai
+Authorizing our identity (default) to the asset canister...
+Uploading assets to asset canister...
+  /index.html 1/1 (472 bytes)
+  /index.html (gzip) 1/1 (314 bytes)
+  /index.js 1/1 (260215 bytes)
+  /index.js (gzip) 1/1 (87776 bytes)
+  /main.css 1/1 (484 bytes)
+  /main.css (gzip) 1/1 (263 bytes)
+  /sample-asset.txt 1/1 (24 bytes)
+  /logo.png 1/1 (25397 bytes)
+  /index.js.map 1/1 (842511 bytes)
+  /index.js.map (gzip) 1/1 (228404 bytes)
+  /index.js.LICENSE.txt 1/1 (499 bytes)
+  /index.js.LICENSE.txt (gzip) 1/1 (285 bytes)
+Deployed canisters.</literallayout>
+<simpara>If you didn&#8217;t convert enough ICP tokens to cycles to complete the operation, you can add cycles to your cycles wallet by running a command similar to the following:</simpara>
+<literallayout class="monospaced">dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005</literallayout>
+<simpara>This command converts an additional <literal>1.005</literal> ICP tokens to cycles for the <literal>gastn-uqaaa-aaaae-aaafq-cai</literal> cycles wallet identifier.
+The command returns output similar to the following:</simpara>
+<literallayout class="monospaced">Transfer sent at BlockHeight: 81520
+Canister was topped up!</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>hello</literal> canister and the predefined <literal>greet</literal> function by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --network ic call hello greet '("everyone": text)'</programlisting>
+<simpara>Let&#8217;s take a closer look at this example:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Using the <literal>--network ic</literal> option indicates that the canister you want to call is deployed on the <literal>ic</literal> network. The <literal>ic</literal> network alias is an internally-reserved alias for accessing the Internet Computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Note that the <literal>--network ic</literal> option must precede the operation subcommand, which, in this case, is the <literal>dfx canister call</literal> command.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>hello</literal> argument specifies the name of the canister you want to call.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>greet</literal> argument specifies the name of the function you want to call in the <literal>hello</literal> canister.</simpara>
+</listitem>
+<listitem>
+<simpara>The text string <literal>everyone</literal> is the argument that you want to pass to the <literal>greet</literal> function.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Verify the command displays the return value of the <literal>greet</literal> function.</simpara>
+<simpara>For example:</simpara>
+<literallayout class="monospaced">("Hello, everyone!")</literallayout>
+</listitem>
+<listitem>
+<simpara>Rerun the <literal>dfx wallet balance</literal> command or refresh the browser to see your new cycle balance and recent activity.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="quickstart-frontend">
+<title>Test the application front-end</title>
+<simpara>Now that you have verified that your application has been deployed and tested its operation using the command line, let&#8217;s verify that you can access the front-end using your web browser.</simpara>
+<simpara>To access the application front-end:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the front-end for the application using a URL that consists of the <literal>hello_assets</literal> identifier and the <literal>boundary.ic0.app</literal> suffix.</simpara>
+<simpara>If you didn’t make a note of the canister identifier, you can look it up by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --network ic id hello_assets</programlisting>
+<simpara>For example, the full URL should look similar to the following:</simpara>
+<literallayout class="monospaced">https://gsueu-yaaaa-aaaae-aaagq-cai.raw.ic0.app</literallayout>
+<simpara>Navigating to this URL displays the HTML entry page for the template application.
+For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="net-front-end-prompt.png"/>
+</imageobject>
+<textobject><phrase>HTML page with prompt</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Type a greeting, then click <emphasis role="strong">Click Me</emphasis> to return the greeting.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="next-steps">
+<title>Next steps</title>
+<simpara>Now that you have seen how to deploy an application on the Internet Computer network, you are ready to develop and deploy programs of your own.</simpara>
+<simpara>You can find more detailed examples and tutorials to help you learn about how to use Motoko and how to develop applications for the Internet Computer throughout the documentation.</simpara>
+<simpara>Here are some suggestions for where to go next:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="../developers-guide/tutorials-intro.xml">Tutorials</link> to explore building front-end and back-end applications in a local development environment.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../candid-guide/candid-concepts.xml">What is Candid?</link> to learn how the Candid interface description language enables service interoperability and composability.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../languages/motoko-at-a-glance.xml">Motoko at-a-glance</link> to learn about the features and syntax for using Motoko.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

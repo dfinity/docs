@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.8.0</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.8.0 release includes updates and fixes that are primarily internal to improve existing features and functions rather than user-visible, as well as potentially breaking changes to some frontend projects.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>improvements to codegen from 0.7.7</simpara>
+</listitem>
+<listitem>
+<simpara>set-wallet command no longer requires <literal>--force</literal> flag</simpara>
+</listitem>
+</orderedlist>
+<section xml:id="_instructions_on_migrating_to_dfx_0_8_0">
+<title>Instructions on migrating to dfx 0.8.0</title>
+<simpara>If your project does not have a frontend that relies on the JavaScript files that have been generated under <literal>.dfx/local</literal>, you should not expect to have any issues with dfx 0.8.0.</simpara>
+<simpara>If you have an existing project that depends on dfx-generated frontend files, you may need to make some adjustments when upgrading to 0.8.0. Depending on your situation you may want to choose to set up environment variables or to make a minimum set of changes. We will document both cases here.</simpara>
+<section xml:id="_environment_variables">
+<title>Environment variables</title>
+<simpara>With webpack, we are providing environment variables by using an EnvironmentPlugin. At the top of <literal>webpack.config.js</literal>, we read from the root <literal>canister_ids.json</literal> and the one inside <literal>.dfx/local</literal> to map the canister IDs into environment variables, and then replace the <literal>process.env</literal> values in the code during development or at build time.</simpara>
+<programlisting language="js" linenumbering="unnumbered">// webpack.config.js
+let localCanisters, prodCanisters, canisters;
+
+try {
+  localCanisters = require(path.resolve(".dfx", "local", "canister_ids.json"));
+} catch (error) {
+  console.log("No local canister_ids.json found. Continuing production");
+}
+
+function initCanisterIds() {
+  try {
+    prodCanisters = require(path.resolve("canister_ids.json"));
+  } catch (error) {
+    console.log("No production canister_ids.json found. Continuing with local");
+  }
+
+  const network =
+    process.env.DFX_NETWORK ||
+    (process.env.NODE_ENV === "production" ? "ic" : "local");
+
+  canisters = network === "local" ? localCanisters : prodCanisters;
+
+  for (const canister in canisters) {
+    process.env[canister.toUpperCase() + "_CANISTER_ID"] =
+      canisters[canister][network];
+  }
+}
+initCanisterIds();</programlisting>
+<simpara>With your bundler, whether it is Webpack or another bundler of your choice, you will need to account for the following:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Identifying canister ids. The output no longer hardcodes the canister ids into JavaScript, so you will need to provide that code using your own strategy. Other bundlers that allow for custom scripting should be able to re-use the webpack config logic.</simpara>
+</listitem>
+<listitem>
+<simpara>Determining <literal>NODE_ENV</literal>. During development, the app should call <literal>agent.fetchRootKey()</literal>, but it should not fetch the root key in production.</simpara>
+</listitem>
+<listitem>
+<simpara>Copying the codegen, as we do in the <literal>dfx new</literal> template, is optional. You still have access to the <literal>.did.js</literal> and <literal>.did.d.ts</literal> files in <literal>.dfx</literal>, so you can choose to ignore the new <literal>index.js</literal> format if it is inconvenient, and continue providing your own Actor.createActor pattern as before.</simpara>
+</listitem>
+<listitem>
+<simpara>Return types - if you do not want to use the dfx-provided files, consider using the JSDoc comments that we have come up with. If the code knows that your actor has a type of <literal>ActorSubclass&lt;_SERVICE&gt;</literal>, for your particular service, the development process is significantly enhanced in compatible editors.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_minimal_update">
+<title>Minimal Update</title>
+<simpara>If you are looking to minimally modify your project, here is all you need to do, assuming you are starting from the 0.7.2 starter:</simpara>
+<simpara>You can continue using a query parameter in your URL, you can access it via</simpara>
+<programlisting language="js" linenumbering="unnumbered">// src/example_assets/src/index.js
+import { idlFactory as example_idl } from 'dfx-generated/example/example.did.js';
+import canisterIds from '../../../.dfx/local/canister_ids.json'
+
+const example_id = new URLSearchParams(window.location.search).get("exampleId") || canisterIds.example.local;
+
+const agent = new HttpAgent();
+agent.fetchRootKey();
+const example = Actor.createActor(example_idl, { agent, canisterId: example_id });</programlisting>
+<simpara>And you can modify the <literal>aliases</literal> reducer to point to the path, rather than hardcoding the old <literal>&lt;canister-name&gt;.js</literal> file</simpara>
+<programlisting language="js" linenumbering="unnumbered">// webpack.config.js
+
+// Old
+["dfx-generated/" + name]: path.join(outputRoot, name + ".js"),
+// New
+["dfx-generated/" + name]: path.join(outputRoot),</programlisting>
+<simpara>Then, you can <literal>dfx deploy</literal> like normal and visit your working site with <link xl:href="http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&amp;exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai">http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&amp;exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai</link>.</simpara>
+</section>
+</section>
+</article>

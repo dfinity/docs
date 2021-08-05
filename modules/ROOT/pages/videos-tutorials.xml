@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Videos and tutorials</title>
+<date>2021-05-09</date>
+</info>
+<simpara>The Fundamentals video series provides an introduction to building applications for the Internet Computer.</simpara>
+<section xml:id="_building_on_the_ic_fundamentals">
+<title>Building on the {IC}: Fundamentals</title>
+<simpara>The Fundamentals video series provides an introduction to building applications for the Internet Computer.
+The series consists of ten video segments.
+Most of the segments have a running time of three to five minutes, but there are also deeper technical dives that explore the {proglang} programming language, front-end development, and how all of the pieces come together in a sample application.</simpara>
+<h1></h1>
+<br>
+
+<section xml:id="_what_is_the_ic_and_why_build_apps_for_it">
+<title>What is the {IC} and why build apps for it?</title>
+<simpara>This segment of the Fundamentals video series provides a basic introduction to the {IC} and how it supports the future of open internet services.</simpara>
+<simpara>If you want to learn more after watching the video, check out <link xl:href="developers-guide/concepts/what-is-IC.xml">What is the Internet Computer?</link>.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+
+</section>
+<section xml:id="_simplifying_the_developer_experience">
+<title>Simplifying the developer experience</title>
+<simpara>The {IC} makes it easier to build applications by reducing the ecosystem complexity.</simpara>
+<simpara>If you want to learn more after watching the video, check out <link xl:href="developers-guide/concepts/what-is-IC.xml#next-gen">Building the next generation of software and services</link>.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+
+</section>
+<section xml:id="_what_is_the_dfinity_canister_sdk">
+<title>What is the DFINITY Canister SDK?</title>
+<simpara>Wondering what a "canister" is? Not sure where to start? This video segment introduces the key tools for developing programs that run on the {IC}.</simpara>
+<simpara>If you are ready to get started, visit the <link xl:href="download.xml">Download center</link>.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+
+</section>
+<section xml:id="_deploying_your_first_application">
+<title>Deploying your first application</title>
+<simpara>This video segment walks through how to deploy your first application with the {IC} running locally.</simpara>
+<simpara>To try it yourself, follow the steps in the <link xl:href="quickstart/local-quickstart.xml">Quick start</link> tutorial.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+
+</section>
+<section xml:id="_introducing_motoko_a_language_designed_for_the_ic">
+<title>Introducing Motoko: A language designed for the {IC}</title>
+<simpara>This video segment offers an overview of the Motoko programming language and highlights a few key features that make it especially well-suited for writing applications that run on the {IC}.</simpara>
+<simpara>If you want to learn more about using {proglang}, see the <link xl:href="language-guide/motoko.xml">{proglang} Programming Language</link> guide.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+
+</section>
+<section xml:id="_integrating_a_front_end">
+<title>Integrating a front end</title>
+<simpara>This video segment demonstrates how to integrate a front-end user interface using raw JavaScript, React, and React with TypeScript.</simpara>
+<simpara>After watching the video, you can experiment on your own or follow the steps in <link xl:href="developers-guide/tutorials/my-contacts.xml">Add a stylesheet</link> to learn how to add a stylesheet when using React.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+
+</section>
+<section xml:id="_how_candid_provides_a_common_language_for_application_interfaces">
+<title>How Candid provides a common language for application interfaces</title>
+<simpara>This video segment describes how Candid provides a common interface description language (IDL) for interacting with services running on the Internet Computer.</simpara>
+<simpara>For more complete information about what Candid is and how to use it, see the <link xl:href="candid-guide/candid-intro.xml">Candid</link> guide or <link xl:href="https://crates.io/crates/candid">Candid on crates.io</link>.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+
+</section>
+<section xml:id="_diving_into_the_developer_ecosystem">
+<title>Diving into the developer ecosystem</title>
+<simpara>This video segment highlights additional tools and resources available for developing programs using {proglang}.</simpara>
+<simpara>To start contributing to the community, take a look at the <link xl:href="https://github.com/dfinity/motoko-base">Motoko base library</link>.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+
+</section>
+<section xml:id="_building_a_multiplayer_game">
+<title>Building a multiplayer game</title>
+<simpara>This video segment showcases a multiple-player Reversi game built to run on the {IC} and demonstrates many key concepts involved in building applications for the {IC}.</simpara>
+<simpara>For a closer look at how the game was made, see <link xl:href="https://ninegua.github.io/reversi/">Building a Multiplayer Reversi Game on the Internet Computer</link> or check out the source code in the <link xl:href="https://github.com/ninegua/reversi">Reversi</link> repository.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+
+</section>
+<section xml:id="_join_the_ic_developer_community">
+<title>Join the {IC} developer community</title>
+<simpara>This video segment summarizes the resources available and how you can get involved.</simpara>
+<simpara>For further inspiration, check out the sample applications in the <link xl:href="https://github.com/dfinity/examples">examples</link> or <link xl:href="https://github.com/dfinity/awesome-dfinity">awesome-dfinity</link> repositories.
+To be part of the conversation, join the  <link xl:href="https://forum.dfinity.org/">Developer Forum</link> or follow <link xl:href="https://twitter.com/dfinitydev">@dfinitydev</link> on Twitter.</simpara>
+<h1></h1>
+<br>
+<hr>
+<br>
+</section>
+</section>
+<section xml:id="_tutorials">
+<title>Tutorials</title>
+<simpara>The <link xl:href="quickstart/quickstart-intro.xml">Quick start</link> provides a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.</simpara>
+<simpara>If you want more hands-on experience creating programs that run on the {IC}, check out these tutorials:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/explore-templates.xml">Explore the default project</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/define-an-actor.xml">Query using an actor</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/hello-location.xml">Pass text arguments in a terminal</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/counter-tutorial.xml">Increment a natural number</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/calculator.xml">Use integers in calculator functions</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/phonebook.xml">Import library modules</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/multiple-actors.xml">Use multiple actors</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/custom-frontend.xml">Customize the front-end</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/my-contacts.xml">Add a stylesheet</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/intercanister-calls.xml">Make inter-canister calls</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/scalability-cancan.xml">Create scalable apps</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide/tutorials/access-control.xml">Add access control with identities</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Languages and API reference</title>
+<date>2021-05-09</date>
+</info>
+<simpara>The Languages and API reference information is intended for advanced programmers or system architects who want more details about the lower level structures, libraries, and modules that support the higher-level developer tools.</simpara>
+<section xml:id="_proglang">
+<title>{proglang}</title>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="../language-guide/motoko.xml">Motoko Language Guide</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../base-libraries/stdlib-intro.xml">Motoko Base Library</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../language-guide/language-manual.xml">Motoko Language Quick Reference</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_candid">
+<title>Candid</title>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="../candid-guide/candid-intro.xml">Candid Guide</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/candid/tree/master/spec">Candid specification</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://docs.rs/candid">Candid crate</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_rust">
+<title>Rust</title>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="../rust-guide/rust-intro.xml">Introduction to working with Rust</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://crates.io/crates/ic-types">{IC} Type Library (ic-types)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://crates.io/crates/ic-agent">{IC} Agent Library (ic-agent)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://crates.io/crates/ic-cdk">{IC} Canister Development Kit (ic-cdk)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/cdk-rs/tree/master/examples">Rust Canister Development Kit (CDK) examples</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

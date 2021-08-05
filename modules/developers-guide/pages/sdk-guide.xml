@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>{IC} SDK - Developer Tools</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The {platform} is poised to help you start a revolution with a new way to design, build, and release software.</simpara>
+<section xml:id="_developing_open_internet_applications">
+<title>Developing open internet applications</title>
+<simpara>Conceptually, the Internet Computer is an extension of the existing internet that enables a global network of computers to provide the computing power for running application software.</simpara>
+<simpara>In much the same way that the adoption of the transport control protocol (TCP) and Internet protocol (IP) provided rules for transferring data between endpoints that helped to establish the “network of networks” that we know as the internet of today, the Internet Computer relies on a decentralization protocol called the Internet Computer protocol to define the software components that enable a global network of computers to combine their resources to read, replicate, modify, and return application state.</simpara>
+</section>
+<section xml:id="_developer_workflow_at_a_glance">
+<title>Developer workflow at-a-glance</title>
+<simpara>At a high-level, there are three possible workflows for building applications that run on the Internet Computer.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="local-remote-path-workflow.svg"/>
+</imageobject>
+<textobject><phrase>Development paths</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>The first path is the most common: you connect to the Internet Computer running locally, then write, compile, and deploy iteratively in a local development environment.</simpara>
+<simpara>If you prefer to do all of your development work without connecting to a local or remote network, you can follow the second path and only connect to the network when you are ready to compile and deploy.
+With this option, you only connect to the Internet Computer network and register for a unique identifier after you have a program ready to deploy.</simpara>
+<simpara>In the third path, you connect to the Internet Computer running on a remote network, then register for a unique identifier before you have a program ready to compile.
+With this option, you can preregister with the network to receive a unique identifier, then compile and deploy using a known identifier when you are ready to move your application to the network.</simpara>
+<simpara>Regardless of the development workflow you choose, keep in mind that you must connect to the Internet Computer network running locally or on a remote subnet to register your smart contract canister and that registering your canister creates a unique, network-specific identifier for the canister.
+For example, if you do all of your initial development work locally using a local canister identifier and later want to deploy your application on an Internet Computer network running remotely, you will need to connect to the remote network and register an identifier on that network before you can deploy the application.</simpara>
+</section>
+</article>

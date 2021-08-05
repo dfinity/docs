@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Install, upgrade, or remove software</title>
+<date>2021-08-05</date>
+</info>
+<simpara>As described in the <link xl:href="../quickstart/quickstart-intro.xml">Quick start</link>, you can download and install the latest version of the {sdk-short-name} package by running a command in a terminal shell.
+The topics in this section provide additional information about installing, upgrading, and removing the {sdk-short-name}.</simpara>
+<simpara><link xl:href="ROOT:page$download.adoc">ROOT:page$download.adoc</link></simpara>
+<section xml:id="_reviewing_the_license_agreement">
+<title>Reviewing the license agreement</title>
+<simpara>The installation script prompts you to read and accept the <link xl:href="https://sdk.dfinity.org/sdk-license-agreement.txt">DFINITY Canister SDK License Agreement</link> before installing the <literal>dfx</literal> command-line interface executable and its dependencies on your local computer.
+You must type <literal>y</literal> and press <keycap>Enter</keycap> to continue with the installation.</simpara>
+<simpara>After you accept the license agreement, the installation script displays information about the components being installed on the local computer.</simpara>
+</section>
+<section xml:id="_what_gets_installed">
+<title>What gets installed</title>
+<simpara>The {sdk-short-name} installation script installs several components in default locations on your local computer.
+The following table describes the development environment components that the installation script installs:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="55*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Component</entry>
+<entry align="left" valign="top">Description</entry>
+<entry align="left" valign="top">Default location</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>dfx</simpara></entry>
+<entry align="left" valign="top"><simpara>DFINITY execution command-line interface (CLI)</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>/usr/local/bin/dfx</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>moc</simpara></entry>
+<entry align="left" valign="top"><simpara>Motoko runtime compiler</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>~/.cache/dfinity/versions/&lt;VERSION&gt;/moc</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>replica</simpara></entry>
+<entry align="left" valign="top"><simpara>Internet Computer local network binary</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>~/.cache/dfinity/versions/&lt;VERSION&gt;/replica</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>uninstall.sh</simpara></entry>
+<entry align="left" valign="top"><simpara>Script to remove the {sdk-short-name} and all of its components</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>~/.cache/dfinity</literal></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>versions</simpara></entry>
+<entry align="left" valign="top"><simpara>Cache directory that contains a subdirectory for each version of the {sdk-short-name} you install.</simpara></entry>
+<entry align="left" valign="top"><simpara><literal>~/.cache/dfinity/versions</literal></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<section xml:id="_core_components_in_a_versioned_directory">
+<title>Core components in a versioned directory</title>
+<simpara>The <literal>~/.cache/dfinity/versions</literal> directory stores one or more versioned subdirectories of the {sdk-short-name}.
+Each versioned subdirectory contains the all of the directories and files required for a specific version of the {sdk-short-name}.
+For example, if you list the contents of the <literal>~/.cache/dfinity/versions/0.8.0</literal> directory you would see the following core components:</simpara>
+<literallayout class="monospaced">total 349192
+drwxr-xr-x  17 pubs  staff       544 Mar 15 11:55 .
+drwxr-xr-x   4 pubs  staff       128 Mar 25 14:36 ..
+drwxr-xr-x  49 pubs  staff      1568 Mar 15 11:55 base
+drwxr-xr-x  20 pubs  staff       640 Mar 15 11:55 bootstrap
+-r-x------   1 pubs  staff  66253292 Mar 15 11:55 dfx
+-r-x------   1 pubs  staff  10496256 Dec 31  1969 ic-ref
+-r-x------   1 pubs  staff   5663644 Dec 31  1969 ic-starter
+-r-x------   1 pubs  staff      9604 Dec 31  1969 libcharset.1.0.0.dylib
+-r-x------   1 pubs  staff     38220 Dec 31  1969 libffi.7.dylib
+-r-x------   1 pubs  staff    668300 Dec 31  1969 libgmp.10.dylib
+-r-x------   1 pubs  staff    958248 Dec 31  1969 libiconv.2.4.0.dylib
+-r-x------   1 pubs  staff      4200 Dec 31  1969 libiconv.dylib
+-r-x------   1 pubs  staff     96900 Dec 31  1969 libz.1.2.11.dylib
+-r-x------   1 pubs  staff  15417684 Dec 31  1969 mo-doc
+-r-x------   1 pubs  staff  14634020 Dec 31  1969 mo-ide
+-r-x------   1 pubs  staff  15111508 Dec 31  1969 moc
+-r-x------   1 pubs  staff  49404128 Dec 31  1969 replica</literallayout>
+</section>
+<section xml:id="_motoko_base_directory">
+<title>Motoko base directory</title>
+<simpara>The <literal>base</literal> directory in the versioned subdirectory of the {sdk-short-name} contains the Motoko base library modules that are compatible with that version of the {sdk-short-name}.
+Because the Motoko base library is evolving rapidly, you should only use the base modules that are packaged with the version of the {sdk-short-name} that you have installed.</simpara>
+</section>
+<section xml:id="_bootstrap_directory">
+<title>Bootstrap directory</title>
+<simpara>The <literal>bootstrap</literal> directory contains web server code that is deprecated.
+Beginning with version 0.7.0, agents can call an HTTP middleware server instead of the <literal>bootstrap</literal> code.
+This change enables canisters to respond to HTTP requests directly and operate more like traditional web-based applications.</simpara>
+</section>
+</section>
+<section xml:id="_upgrading_to_the_latest_version">
+<title>Upgrading to the latest version</title>
+<simpara>If a new version of the {sdk-short-name} is available for download after your initial installation, you should install the updated version at your earliest convenience to get the latest fixes and enhancements as soon as possible.
+You can use the <literal>dfx upgrade</literal> command to compare the version you have currently installed against the latest version available for download.
+If a newer version of <literal>dfx</literal> is available, the <literal>dfx upgrade</literal> command automatically downloads and installs the latest version.</simpara>
+<simpara>Note that you don&#8217;t need to uninstall the software before installing the new version.
+However, if you want to perform a clean installation rather than an upgrade, you can first uninstall the software as described in <link linkend="remove">Removing the software</link>, then re-run the download and installation command.</simpara>
+<simpara>For information about the features and fixes in the latest release, see the <link xl:href="release-notes:sdk-release-notes.xml">Release notes</link>.</simpara>
+</section>
+<section xml:id="remove">
+<title>Removing the software</title>
+<simpara>When you install the {sdk-short-name}, the installation script puts the required binary files in a local directory and creates a cache.
+You can remove the SDK binaries and cache from your local computer by running the <literal>uninstall</literal> script located in the <literal>.cache</literal> folder.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">~/.cache/dfinity/uninstall.sh</programlisting>
+<simpara>If you are uninstalling because you want to immediately reinstall a clean version of <literal>dfx</literal>, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">~/.cache/dfinity/uninstall.sh &amp;&amp; sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"</programlisting>
+</section>
+</article>

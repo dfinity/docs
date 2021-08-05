@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Untitled</title>
+<date>2021-05-09</date>
+</info>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="ops-guide.xml">Operators</link></simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="ops-guide.xml">Concepts</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="ops-how-to.xml">How to</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="ops-tutorials.xml">Tutorials</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="ops-ref.xml">Reference</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</article>

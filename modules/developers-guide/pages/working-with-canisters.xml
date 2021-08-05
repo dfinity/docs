@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Manage canisters</title>
+<date>2021-08-05</date>
+<author>
+<personname>
+<firstname>March 2020 (Alpha)</firstname>
+</personname>
+</author>
+<authorinitials>M</authorinitials>
+</info>
+<simpara>If you have experimented with using the {sdk-long-name} by following the tutorials in the <link xl:href="tutorials-intro.xml">Tutorials</link> section or by cloning examples from the <link xl:href="https://github.com/dfinity/examples">examples</link> repository, you are already familiar with how to build and deploy programs as <emphasis role="strong">canisters</emphasis>.
+This section provides additional information about the canister lifecycle and how to manage canisters.</simpara>
+<section xml:id="create-canister">
+<title>Register a canister identifier</title>
+<simpara>Depending on your preferred development workflow, you can register a unique canister identifier before or after you have a program ready to compile.
+For example, if you want to reserve a unique identifier for your program on a subnet before you have written any code, you can do so by running the <literal>dfx canister create</literal> command.
+This command essentially creates an empty canister placeholder into which you can later install your code.</simpara>
+<simpara>To register a unique identifier for a canister:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project for the canister you plan to create by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new YOUR-PROJECT-NAME</programlisting>
+<simpara>Note that the name you use for the project is also used as the canister name by default.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to your new project directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> configuration file and set the host and port for the Internet Computer network provider you want to use.</simpara>
+<simpara>If you are using the local host as the Internet Computer network provider, you can skip this step.</simpara>
+<simpara>You can also optionally change the names of your canisters or add canister settings to the configuration file if you want to create identifiers for any additional canisters you think you will need before compiling code.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network, if necessary, by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --background</programlisting>
+<simpara>In most cases, this step is only necessary if you are running the Internet Computer network locally.</simpara>
+<simpara>If you were registering canisters to run on a remote network, you would include the <literal>--network</literal> command-line option to perform tasks on that network.</simpara>
+</listitem>
+<listitem>
+<simpara>Register unique identifiers for the canisters defined in the <literal>dfx.json</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create --all</programlisting>
+<simpara>The command creates the <literal>.dfx/local</literal> directory and adds the <literal>canister_ids.json</literal> file to that directory for the project.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="local-id">
+<title>Build a canister with a local identifier</title>
+<simpara>After you have written source code for your project, you need to compile it into a WebAssembly module before deploying it to the network as a canister.</simpara>
+<simpara>If you are only compiling your project for local debugging, you can generate a locally-defined identifier for your project.</simpara>
+<simpara>To generate a locally-defined identifier:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Create a project with the configuration settings and program logic to suit your needs.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network, if necessary.</simpara>
+<simpara>In most cases, this step is only necessary if you are running the Internet Computer network locally.</simpara>
+<simpara>If you were compiling canisters to run on a remote network, you would include the <literal>--network</literal> command-line option to perform tasks on that network.</simpara>
+</listitem>
+<listitem>
+<simpara>Generate hard-coded local identifiers for the canisters defined in the <literal>dfx.json</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx build --check</programlisting>
+<simpara>Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the Internet Computer network.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="deploy-canister">
+<title>Deploy canisters on the Internet Computer network</title>
+<simpara>After you have compiled a program, you can install the compiled code on the Internet Computer network running locally in your development or on a remote network provider.</simpara>
+<simpara>The canister identifier that was created in advance or during the build process determines where your code is installed during deployment.</simpara>
+<simpara>To deploy on the Internet Computer network for the first time:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal and navigate to your project directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network, if necessary.</simpara>
+<simpara>In most cases, this step is only necessary if you are running the Internet Computer network locally.</simpara>
+<simpara>If you were installing canisters on a remote network, you would include the <literal>--network</literal> command-line option to perform tasks on that network.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify you have canister identifiers for all of the canisters you want to deploy.</simpara>
+</listitem>
+<listitem>
+<simpara>Deploy all of the canisters by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install --all</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="lookup-id">
+<title>Look up a canister identifier</title>
+<simpara>All canisters have unique, network-specific identifiers.
+You often need to use these identifiers to interact with the canister.
+For example, if you want to access the front-end canister for an application or interact with a service using the Candid web interface, you must specify the appropriate canister identifier.</simpara>
+<simpara>Because the identifiers are network-specific, the files used to store the information are in different directories.
+For example, identifiers for a canister deployed locally are located in the project&#8217;s <literal>.dfx/local/canister_ids.json</literal> file.</simpara>
+<simpara>You can look up the canister identifier for any specific canister by running the <literal>dfx canister id</literal> command.
+For example, to look up the the canister identifier for the <literal>lookup</literal> canister deployed on the local network, you could run the following command:</simpara>
+<literallayout class="monospaced">dfx canister id lookup</literallayout>
+<simpara>To look up the canister identifier for the same canister deployed on the network specified by the <literal>ic</literal> alias, you would run the following command:</simpara>
+<literallayout class="monospaced">dfx canister --network=ic id lookup</literallayout>
+</section>
+<section xml:id="add-wallet">
+<title>Add a wallet for existing canisters</title>
+<simpara>When you are doing local development, creating a new project automatically creates a default wallet for you to use with the canisters in that project.If you want to add a wallet for projects with canisters that you have previously created, you can force <literal>dfx</literal> to generate one by taking a couple of manual steps.</simpara>
+<simpara>To add a wallet for use with an existing canister:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal and navigate to your project directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the local Internet Computer network, if necessary, by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete the <literal>.dfx</literal> directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Start with Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --clean</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="reinstall-canister">
+<title>Reinstall a canister</title>
+<simpara>During the development cycle, you might want to install, then replace your program as you debug and improve it.</simpara>
+<simpara>In this scenario, you might want to keep the canister identifier you have registered but without preserving any of the canister code or state.
+For example, your canister might only have test data that you don&#8217;t want to keep or you might have decided to change the program altogether but want to reinstall under a canister identifier you used to install a previous program.</simpara>
+<simpara>To reinstall on the Internet Computer network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal and navigate to your project directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network, if necessary.</simpara>
+<simpara>In most cases, this step is only necessary if you are running the Internet Computer network locally.</simpara>
+<simpara>If you were reinstalling canisters on a remote network, you would include the <literal>--network</literal> command-line option to perform tasks on that network.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify you have canister identifiers for all of the canisters you want to re-deploy.</simpara>
+</listitem>
+<listitem>
+<simpara>Re-deploy all of the canisters by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install --all --mode reinstall</programlisting>
+</listitem>
+</orderedlist>
+<simpara>Note that you can use the <literal>reinstall</literal> mode to replace any canister, regardless of whether the canister has code or state associated with it.</simpara>
+</section>
+<section xml:id="set-owner">
+<title>Set an identity to own a canister</title>
+<simpara>In most cases, a <literal>default</literal> user identity is created for you automatically the first time you run the <literal>dfx canister create</literal> command.
+This default identity consists of the public and private key pair generated for your local user account.
+Typically, this <literal>default</literal> identity is also the default owner of all of the projects you create and all of the canisters you deploy.
+You can, however, proactively create and use identities of your choice to circumvent the <literal>default</literal> user identity from being used.</simpara>
+<simpara>As an example, the following scenario illustrates creating a <literal>registered_owner</literal> identity that is then used to register, build, deploy, and call the <literal>pubs</literal> project.</simpara>
+<simpara>To set an identity for a project:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new pubs</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to the project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd pubs</programlisting>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network locally in the background by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --background</programlisting>
+</listitem>
+<listitem>
+<simpara>Create a new <literal>registered_owner</literal> identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity new registered_owner</programlisting>
+</listitem>
+<listitem>
+<simpara>Set the active user context to use the <literal>registered_owner</literal> identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity use registered_owner</programlisting>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy canisters for the project by running the following commands:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create --all
+dfx build --all
+dfx canister install --all</programlisting>
+<simpara>These commands run using the <literal>registered_owner</literal> identity, making that user the owner of the canisters deployed.</simpara>
+</listitem>
+<listitem>
+<simpara>Call the <literal>greet</literal> function to verify a successful deployment by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call pubs greet '("Sam")'</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="running-state">
+<title>Managing the running state of a canister</title>
+<simpara>After you deploy a canister on the Internet Computer, it can begin receiving and processing requests from users and from other canisters.
+Canisters that are available to send requests and receive replies are considered in be in a <emphasis role="strong">Running</emphasis> state.</simpara>
+<simpara>Although canisters are normally placed in the Running state by default, there are cases where you might want to temporarily or permanently stop a canister.
+For example, you might want to stop a canister before upgrading it.
+Stopping a canister helps to ensure proper handling of any messages that are in progress and need to either run to completion or be rolled back.
+You might also want to stop a canister to clear its message queue cleanly as a prerequisite to deleting the canister.</simpara>
+<simpara>You can check the current status of all canisters or a specified canister by running the <literal>dfx canister status</literal> command.
+For example, to see the status for all canisters running on the local Internet Computer network, you would run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister status --all</programlisting>
+<simpara>This command returns output similar to the following if canisters are currently running:</simpara>
+<literallayout class="monospaced">Canister status_check's status is Running.
+Canister status_check_assets's status is Running.</literallayout>
+<simpara>You can stop canisters that are currently running by running the <literal>dfx canister stop</literal> command.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister stop --all</programlisting>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Stopping code for canister status_check, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Stopping code for canister status_check_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q</literallayout>
+<simpara>If you were to rerun the <literal>dfx canister status</literal> command, you might see a status of <literal>Stopped</literal> indicating that there were no pending messages that needed to processed or a status of <literal>Stopping</literal> indicating that there were messages in-flight that needed to be addressed.</simpara>
+<simpara>To restart a canister-for example, after a successful canister upgrade—you can run the <literal>dfx canister start</literal> command.
+For example, to restart all of the canisters running on the local Internet Computer network, you would run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister start --all</programlisting>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Starting code for canister status_check, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Starting code for canister status_check_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q</literallayout>
+</section>
+<section xml:id="upgrade-canister">
+<title>Upgrade a canister</title>
+<simpara>Unlike a canister replacement that preserves the canister identifier but no state, a canister upgrade enables you to preserve the state of a deployed canister, and change the code.</simpara>
+<simpara>For example, assume you have an application that manages professional profiles and social connections.
+If you want to add a new feature to the application, you need to be able to update the canister code without losing any of the previously-stored data.
+A canister upgrade enables you to update existing canister identifiers with program changes without losing the program state.</simpara>
+<note>
+<simpara>To preserve state when you are upgrading a canister written in Motoko, be sure to use the <literal>stable</literal> keyword to identify the variables you want to preserve. For more information about preserving variable state in Motoko, see <link xl:href="../language-guide/upgrades.xml">Stable variables and upgrade methods</link>.
+If you are upgrading a canister written in Rust, you should use <literal>pre_upgrade</literal> and <literal>post_upgrade</literal> functions as illustrated in the <link xl:href="https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage/src/asset_storage_rs/lib.rs">Rust CDK asset storage</link> example to ensure data is properly preserved after a canister upgrade.</simpara>
+</note>
+<simpara>To upgrade a canister on the Internet Computer network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal and navigate to your project directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network, if necessary.</simpara>
+<simpara>In most cases, this step is only necessary if you are running the Internet Computer network locally.</simpara>
+<simpara>If you were upgrading canisters on a remote network, you would include the <literal>--network</literal> command-line option to perform tasks on that network.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify you have canister identifiers for all of the canisters you want to upgrade.</simpara>
+<simpara>Note that your program must identify the variables for which to maintain state by using the <literal>stable</literal> keyword in the variable declaration.</simpara>
+<simpara>For more information about declaring stable variables, see the <emphasis>Motoko Programming Language Guide</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Upgrade all of the canisters by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install --all --mode upgrade</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="delete-canister">
+<title>Delete a canister</title>
+<simpara>If you want to permanently delete a specific canister or all canisters for a specific project on a given Internet Computer network, you can do so by running the <literal>dfx canister delete</literal> command.</simpara>
+<simpara>Deleting a canister removes the canister identifier, code, and state from the Internet Computer network.
+Before you can delete a canister, however, you must first stop the canister to clear any pending message requests or replies.</simpara>
+<simpara>To delete all canisters for a project running on the local Internet Computer network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal and navigate to your project directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network, if necessary.</simpara>
+<simpara>In most cases, this step is only necessary if you are running the Internet Computer network locally.</simpara>
+<simpara>If you were deleting canisters on a remote network, you would include the <literal>--network</literal> command-line option to perform tasks on that network.</simpara>
+</listitem>
+<listitem>
+<simpara>Check the status of the project canisters running on the local Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister status --all</programlisting>
+</listitem>
+<listitem>
+<simpara>Stop all of the project canisters by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister stop --all</programlisting>
+</listitem>
+<listitem>
+<simpara>Delete all of the project canisters by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister delete --all</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

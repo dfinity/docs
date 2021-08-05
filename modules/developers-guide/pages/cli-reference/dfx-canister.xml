@@ -1,0 +1,1287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx canister</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx canister</literal> command with flags and subcommands to manage canister operations and interaction with the {platform}.
+In most cases, you use <literal>dfx canister</literal> subcommands after you compile a program to manage the canister lifecycle and to perform key tasks such as calling program functions.</simpara>
+<simpara>The basic syntax for running <literal>dfx canister</literal> commands is:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister [subcommand] [flag]</programlisting>
+<simpara>Depending on the <literal>dfx canister</literal> subcommand you specify, additional arguments, options, and flags might apply or be required.
+To view usage information for a specific <literal>dfx canister</literal> subcommand, specify the subcommand and the <literal>--help</literal> flag.
+For example, to see usage information for <literal>dfx canister call</literal>, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call --help</programlisting>
+<simpara>For reference information and examples that illustrate using <literal>dfx canister</literal> commands, select an appropriate command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Command</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_call"><literal>call</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Calls a specified method on a deployed canister.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_create"><literal>create</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Creates a new "empty" canister by registering a canister identifier on an {IC} network.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_delete"><literal>delete</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Deletes a currently stopped canister.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information message for a specified subcommand.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_id"><literal>id</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays the identifier for a canister.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_install"><literal>install</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Installs compiled code as a canister on the replica.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_request_status"><literal>request-status</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Requests the status of a call to a canister.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_set_controller"><literal>set-controller</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the identity name or principal to use as the new controller for a specified canister on the Internet Computer network.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_send"><literal>send</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Send a previously-signed <literal>message.json</literal> to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_send"><literal>sign</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Create a signed <literal>message.json</literal> file before making a call to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_start"><literal>start</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Restarts a stopped canister.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_status"><literal>status</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Requests the running status of a canister.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_canister_stop"><literal>stop</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Stops a currently running canister.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<section xml:id="_overriding_the_default_network">
+<title>Overriding the default network</title>
+<simpara>By default, <literal>dfx canister</literal> commands run on the local network specified in the <literal>dfx.json</literal> file.
+If you want to send a <literal>dfx canister</literal> subcommand to a specific network provider address and port number without changing the settings in your <literal>dfx.json</literal> configuration file, you can explicitly specify the URL for the network using the <literal>--network</literal> option.</simpara>
+<simpara>For example, to register unique canister identifiers for a project when the {IC} runs on your local computer, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create --all</programlisting>
+<simpara>If you want to register unique canister identifiers for the same project when the {IC} runs on the network that uses the <literal>ic</literal> alias in the <literal>dfx.json</literal> file, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --network ic create --all</programlisting>
+<simpara>Similarly, you can call a canister and function running on a remote {IC} network using a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --network \http://192.168.3.1:5678 call counter get</programlisting>
+<simpara>Note that you must specify the <literal>--network</literal> parameter before the canister operation (<literal>create</literal> or <literal>call</literal>) and any additional arguments such as the canister name (<literal>counter</literal>), and function (<literal>get</literal>).</simpara>
+</section>
+<section xml:id="_dfx_canister_call">
+<title>dfx canister call</title>
+<simpara>Use the <literal>dfx canister call</literal> command to call a specified method on a deployed canister.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call [option] <emphasis>canister_name</emphasis> <emphasis>method_name</emphasis> [argument] [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister call</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--async</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to continue without waiting for the result of the call to be returned by polling the replica.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--query</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to send a query request to a deployed canister.
+For best performance and network efficiency, you should use this flag when you explicitly want to use the query method to retrieve information.
+For information about the difference between query and update calls, see <link xl:href="../concepts/canisters-code.xml#canister-state">Canisters include both program and state</link>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--update</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to send an update request to a deployed canister.
+By default, canister calls use the update method.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can use the following options with the <literal>dfx canister call</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--output &lt;output&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the output format to use when displaying a method&#8217;s return result.
+The valid values are <literal>idl</literal> and <literal>raw</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--type &lt;type&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the data format for the argument when making the call using an argument.
+The valid values are <literal>idl</literal> and <literal>raw</literal>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You can specify the following arguments for the <literal>dfx canister call</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister to call. The canister name is a required argument and should match the name you have configured for a project in the <literal>canisters</literal> section of the <literal>dfx.json</literal> configuration file.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>method_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the method name to call on the canister.
+The canister method is a required argument.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>argument</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the argument to pass to the method.
+Depending on your program logic, the argument can be a required or optional argument.
+You can specify a data format type using the <literal>--type</literal> option if you pass an argument to the canister.
+By default, you can specify arguments using the <link xl:href="../../candid-guide/candid-intro.xml">Candid</link> (<literal>idl</literal>) syntax for data values.
+For information about using Candid and its supported types, see <link xl:href="../../candid-guide/candid-howto.xml#idl-syntax">Interact with a service in a terminal</link> and <link xl:href="../../candid-guide/candid-types.xml">Supported types</link>.
+You can use <literal>raw</literal> as the argument type if you want to pass raw bytes to a canister.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister call</literal> command to invoke specific methods—with or without arguments—after you have deployed the canister on the network using the <literal>dfx canister install</literal> command.
+For example, to invoke the <literal>get</literal> method for a canister with a <literal>canister_name</literal> of <literal>counter</literal>, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call counter get --async</programlisting>
+<simpara>In this example, the command includes the <literal>--async</literal> option to indicate that you want to make a separate <literal>request-status</literal> call rather than waiting to poll the replica for the result.
+The <literal>--async</literal> option is useful when processing an operation might take some time to complete.
+The option enables you to continue performing other operations then check for the result using a separate <literal>dfx canister request-status</literal> command.
+The returned result will be displayed as the IDL textual format.</simpara>
+<section xml:id="_using_the_idl_syntax">
+<title>Using the IDL syntax</title>
+<simpara>You can explicitly specify that you are passing arguments using the IDL syntax by running commands similar to the following for a Text data type:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call hello greet --type idl '("Lisa")'
+("Hello, Lisa!")
+
+dfx canister call hello greet '("Lisa")' --type idl
+("Hello, Lisa!")</programlisting>
+<simpara>You can also implicitly use the IDL by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call hello greet '("Lisa")'
+("Hello, Lisa!")</programlisting>
+<simpara>To specify multiple arguments using the IDL syntax, use commas between the arguments.
+For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call contacts insert '("Amy Lu","01 916-335-2042")'
+
+dfx canister call hotel guestroom '("Deluxe Suite",42,true)'</programlisting>
+<simpara>You can pass raw data in bytes by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call hello greet --type raw '4449444c00017103e29883'</programlisting>
+<simpara>This example uses the raw data type to pass a hexadecimal to the <literal>greet</literal> function of the <literal>hello</literal> canister.</simpara>
+</section>
+</section>
+</section>
+<section xml:id="_dfx_canister_create">
+<title>dfx canister create</title>
+<simpara>Use the <literal>dfx canister create</literal> command to register one or more canister identifiers without compiled code on the {IC} network.
+You must be connected to an {IC} network running locally or on a sub-network that you can access to run this command.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<simpara>The first time you run the <literal>dfx canister create</literal> command to register an identifier, your public/private key pair credentials are used to create a <literal>default</literal> user identity.
+The credentials for the <literal>default</literal> user are migrated from <literal>$HOME/.dfinity/identity/creds.pem</literal> to <literal>$HOME/.config/dfx/identity/default/identity.pem</literal>.</simpara>
+<section xml:id="_basic_usage_2">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create [option] [flag] [--all | <emphasis>canister_name</emphasis>]</programlisting>
+</section>
+<section xml:id="_flags_2">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister create</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options_2">
+<title>Options</title>
+<simpara>You can use the following options with the <literal>dfx canister create</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--with-cycles &lt;number-of-cycles&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to specify the initial number of cycles in a canister when it is created by your wallet.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_2">
+<title>Arguments</title>
+<simpara>You can use the following argument with the <literal>dfx canister create</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--all</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to create multiple canister identifiers at once if you have a project <literal>dfx.json</literal> file that defines multiple canisters.
+Note that you must specify <literal>--all</literal> or an individual canister name.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister for which you want to register an identifier.
+If you are not using the <literal>--all</literal> option, the canister name is a required argument and must match at least one name that you have configured in the <literal>canisters</literal> section of the <literal>dfx.json</literal> configuration file for your project.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_2">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister create</literal> command to register canister identifiers without first compiling any code.
+For example, if you want to create the canister identifier for the project <literal>my_counter</literal> before writing the program, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create my_counter</programlisting>
+<simpara>You can use the <literal>dfx canister create</literal> command with the <literal>--with-cycles</literal> option to specify the initial balance upon the creation of one canister or all canisters in a project. For example, to specify an initial balance of 8000000000000 cycles for all canisters, run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create --with-cycles 8000000000000 --all</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_canister_delete">
+<title>dfx canister delete</title>
+<simpara>Use the <literal>dfx canister delete</literal> command to delete a stopped canister from the local Internet Computer network or on a remote Internet Computer network.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage_3">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister delete [flag] [--all | <emphasis>canister_name</emphasis>]</programlisting>
+</section>
+<section xml:id="_flags_3">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister delete</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_3">
+<title>Arguments</title>
+<simpara>You can use the following arguments with the <literal>dfx canister delete</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--all</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Deletes all of the canisters configured in the <literal>dfx.json</literal> file. Note that you must specify <literal>--all</literal> or an individual canister name.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister you want to delete.
+Note that you must specify either a canister name or the <literal>--all</literal> option.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_3">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister delete</literal> command to delete a specific canister or all canisters.</simpara>
+<simpara>To delete the <literal>hello_world</literal> canister, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister delete hello_world</programlisting>
+<simpara>To delete all of the canisters you have deployed on the <literal>ic</literal> Internet Computer network, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --network=ic delete --all</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_canister_id">
+<title>dfx canister id</title>
+<simpara>Use the <literal>dfx canister id</literal> command to output the canister identifier for a specific canister name.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage_4">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister id [flag] <emphasis>canister_name</emphasis></programlisting>
+</section>
+<section xml:id="_flags_4">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister id</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_4">
+<title>Arguments</title>
+<simpara>You can use the following argument with the <literal>dfx canister id</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister for which you want to display an identifier.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_4">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister id</literal> command to display the canister identifier for a specific canister name.</simpara>
+<simpara>To display the canister identifier for the <literal>hello_world</literal> canister, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister id hello_world</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_canister_install">
+<title>dfx canister install</title>
+<simpara>Use the <literal>dfx canister install</literal> command to install compiled code as a canister on the {IC} network running locally or on a sub-network that you can access.</simpara>
+<section xml:id="_basic_usage_5">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install [flag] [option] [--all | <emphasis>canister_name</emphasis>]</programlisting>
+</section>
+<section xml:id="_flags_5">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister install</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--async</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to continue without waiting for the result of the installation to be returned by polling the replica.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options_3">
+<title>Options</title>
+<simpara>You can use the following options with the <literal>dfx canister install</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--argument &lt;argument&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies an argument to pass to the canister during installation.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--argument-type &lt;argument-type&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the data format for the argument when you install using the <literal>--argument</literal> option. The valid values are <literal>idl</literal> and <literal>raw</literal>.
+By default, you can specify arguments using the <link xl:href="../../candid-guide/candid-intro.xml">Candid</link> (<literal>idl</literal>) syntax for data values.
+For information about using Candid and its supported types, see <link xl:href="../../candid-guide/candid-howto.xml#idl-syntax">Interact with a service in a terminal</link> and <link xl:href="../../candid-guide/candid-types.xml">Supported types</link>.
+You can use <literal>raw</literal> as the argument type if you want to pass raw bytes to a canister.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-c</literal>, <literal>--compute-allocation &lt;compute-allocation&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Defines a compute allocation—essentially the equivalent of setting a CPU allocation—for  canister execution.
+You can set this value as a percentage in the range of 0 to 100.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--memory-allocation &lt;memory-allocation&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies how much memory the canister is allowed to use in total.
+You can set this value in the range of 0 to 8MB.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-m</literal>, <literal>--mode &lt;mode&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies whether you want to <literal>install</literal>, <literal>reinstall</literal>, or <literal>upgrade</literal> canisters.
+For more information about installation modes and canister management, see <link xl:href="../working-with-canisters.xml">Managing canisters</link>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_5">
+<title>Arguments</title>
+<simpara>You can use the following arguments with the <literal>dfx canister install</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--all</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to install multiple canisters at once if you have a project <literal>dfx.json</literal> file that includes multiple canisters.
+Note that you must specify <literal>--all</literal> or an individual canister name.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister to deploy.
+If you are not using the <literal>--all</literal> option, the canister name is a required argument and should match the name you have configured for a project in the <literal>canisters</literal> section of the <literal>dfx.json</literal> configuration file.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_5">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister install</literal> command to deploy WebAssembly you have compiled using the <literal>dfx build</literal> command as a canister on the network.
+The most common use case is to install all of the canisters by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install --all</programlisting>
+<section xml:id="_installing_a_specific_canister">
+<title>Installing a specific canister</title>
+<simpara>You can also use the <literal>dfx canister install</literal> command to deploy a specific canister instead of all of the canisters in your project.
+For example, if you have a project with a <literal>hello_world</literal> canister and a <literal>hello_world_assets</literal> canister but only want to deploy the <literal>hello_world</literal> canister, you can deploy just that the canister by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install hello_world</programlisting>
+</section>
+<section xml:id="_sending_an_asynchronous_request">
+<title>Sending an asynchronous request</title>
+<simpara>If you want to submit a request to install the canister and return a request identifier to check on the status of your request later instead of waiting for the command to complete, you can run a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install hello_world --async</programlisting>
+<simpara>This command submits a request to install the canister and returns a request identifier similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">0x58d08e785445dcab4ff090463b9e8b12565a67bf436251d13e308b32b5058608</programlisting>
+<simpara>You can then use the request identifier to check the status of the request at a later time, much like a tracking number if you were shipping a package.</simpara>
+</section>
+<section xml:id="_overriding_the_default_network_provider">
+<title>Overriding the default network provider</title>
+<simpara>If you want to deploy a canister on a specific {IC} network without changing the settings in your <literal>dfx.json</literal> configuration file, you can explicitly specify the network you want to connect to by using the <literal>+--network</literal> option.</simpara>
+<simpara>For example, you can specify a remote network URL by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --network \http://192.168.3.1:5678 install --all</programlisting>
+<simpara>Note that you must specify the network parameter before the canister operation (<literal>install</literal>) and before the canister name or <literal>--all</literal> flag.</simpara>
+</section>
+<section xml:id="_allocating_message_processing">
+<title>Allocating message processing</title>
+<simpara>The <literal>--compute-allocation</literal> options allows you to allocate computing resources as a percentage in the range of 0 to 100 to indicate how often your canister should be scheduled for execution.</simpara>
+<simpara>For example, assume you run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install --all --compute-allocation 50</programlisting>
+<simpara>With this setting, all of the canisters in the current projects are assigned a 50% allocation. When canisters in the project receive input messages to process, the messages are scheduled for execution.
+Over 100 execution cycles, each canister&#8217;s messages will be scheduled for processing at least 50 times.</simpara>
+<simpara>The default value for this option is 0—indicating that no specific allocation or scheduling is in effect.
+If all of your canisters use the default setting, processing occurs in a round-robin fashion.</simpara>
+</section>
+</section>
+</section>
+<section xml:id="_dfx_canister_request_status">
+<title>dfx canister request-status</title>
+<simpara>Use the <literal>dfx canister request-status</literal> command to request the status of a specified call to a canister.
+This command requires you to specify the request identifier you received after invoking a method on the canister.
+The request identifier is an hexadecimal string starting with <literal>0x</literal>.</simpara>
+<section xml:id="_basic_usage_6">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister request-status <emphasis>request_id</emphasis></programlisting>
+</section>
+<section xml:id="_flags_6">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister request-status</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_6">
+<title>Arguments</title>
+<simpara>You can specify the following argument for the <literal>dfx canister request-status</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>request_id</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the hexadecimal string returned in response to a <literal>dfx canister call</literal> or <literal>dfx canister install</literal> command.
+This identifier is an hexadecimal string starting with 0x.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_6">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister request-status</literal> command to check on the status of a canister state change or to verify that a call was not rejected by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister request-status 0x58d08e785445dcab4ff090463b9e8b12565a67bf436251d13e308b32b5058608</programlisting>
+<simpara>This command displays an error message if the request identifier is invalid or refused by the canister.</simpara>
+</section>
+</section>
+<section xml:id="_dfx_canister_set_controller">
+<title>dfx canister set-controller</title>
+<simpara>Use the <literal>dfx canister set-controller</literal> command to specify the identity name or principal to use as the new <emphasis role="strong">controller</emphasis> for a specified canister on the Internet Computer network.
+A controller identity has special rights to manage the canister it controls.
+For example, only a controlling identity can be used to install, upgrade, or delete the canister under its control.</simpara>
+<simpara>Note that you can specify either a user identity or a canister as a controller.
+You can also specify the controller identity by using its name or its principal.</simpara>
+<section xml:id="_basic_usage_7">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister set-controller [flag] <emphasis>canister</emphasis> <emphasis>new-controller</emphasis></programlisting>
+</section>
+<section xml:id="_flags_7">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister set-controller</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_7">
+<title>Arguments</title>
+<simpara>You must use the following arguments with the <literal>dfx canister set-controller</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;canister&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the canister name or canister identifier to be controlled by the identity you specify using the <emphasis>new_controller</emphasis> argument.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;new_controller&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the identity name or principal of the controller.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_7">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister set-controller</literal> command to specify a user or canister as the controlling identity for a specific canister.</simpara>
+<simpara>For example, you might create a new identity called <literal>pubsadmin</literal> then run the <literal>dfx canister set-controller</literal> to specify that you want the <literal>pubsadmin</literal> identity to be the controller of the <literal>hello_world</literal> canister by running the following commands:</simpara>
+<literallayout class="monospaced">dfx identity new pubsadmin
+dfx canister set-controller hello_world pubsadmin</literallayout>
+<simpara>To set the controlling identity using the textual representation of the identity principal, you might run a command similar to the following:</simpara>
+<literallayout class="monospaced">dfx canister set-controller hello_world wcp5u-pietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe</literallayout>
+<simpara>Although specifying a user identity name or principal is one potential use case, a more common scenario is to specify the wallet canister that you want to use to send cycles to the canister.
+The following steps illustrate this scenario when you are doing local development. For this example, assume you have created a project called <literal>open_sf</literal> with two canisters deployed on the {IC} running locally.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Create an identity—for example, <literal>sf-controller</literal>—to act as the controller.</simpara>
+<literallayout class="monospaced">dfx identity new sf-controller
+
+Creating identity: "sf-controller".
+Created identity: "sf-controller".</literallayout>
+</listitem>
+<listitem>
+<simpara>Make the new identity the active identity.</simpara>
+<literallayout class="monospaced">dfx identity use sf-controller
+
+Using identity: "sf-controller".</literallayout>
+</listitem>
+<listitem>
+<simpara>Generate a wallet canister identifier for the new identity.</simpara>
+<literallayout class="monospaced">dfx identity get-wallet
+
+Creating a wallet canister on the local network.
+r7inp-6aaaa-aaaaa-aaabq-cai
+The wallet canister on the "local" network for user "sf-controller" is "r7inp-6aaaa-aaaaa-aaabq-cai"</literallayout>
+</listitem>
+<listitem>
+<simpara>Switch the active identity to the current controller of the canister. For example, if the default identity was used to create the canister, you would run the following command:</simpara>
+<literallayout class="monospaced">dfx identity use default
+
+Using identity: "default".</literallayout>
+</listitem>
+<listitem>
+<simpara>Set the controller for a specified canister to use the wallet associated wit the sf-controller identity.</simpara>
+<literallayout class="monospaced">dfx canister set-controller open_sf_assets r7inp-6aaaa-aaaaa-aaabq-cai
+
+Set "r7inp-6aaaa-aaaaa-aaabq-cai" as controller of "open_sf_assets".</literallayout>
+<simpara>You can now use the wallet canister <literal>r7inp-6aaaa-aaaaa-aaabq-cai</literal> to send cycles or add custodians to the <literal>open_sf_assets</literal> canister.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="_dfx_canister_send">
+<title>dfx canister send</title>
+<simpara>Use the <literal>dfx canister send</literal> command after signing a message with the <literal>dfx canister sign</literal> command when you want to separate these steps, rather than using the single <literal>dfx canister call</literal> command. Using separate calls can add security to the transaction.</simpara>
+<simpara>For example, when creating your neuron stake, you might want to use the <literal>dfx canister sign</literal> command to create a signed <literal>message.json</literal> file using an air-gapped computer, then use the <literal>dfx canister send</literal> command to deliver the signed message.</simpara>
+<section xml:id="_basic_usage_8">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister send <emphasis>file_name</emphasis></programlisting>
+</section>
+<section xml:id="_flags_8">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister request-status</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_8">
+<title>Arguments</title>
+<simpara>You can specify the following argument for the <literal>dfx canister send</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>file_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the file name of the message.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_8">
+<title>Examples</title>
+<simpara>Use the <literal>dfx canister send</literal> command to send a signed message created using the <literal>dfx canister sign</literal> command to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:</simpara>
+<simpara><literal>dfx canister send message.json</literal></simpara>
+</section>
+</section>
+<section xml:id="_dfx_canister_sign">
+<title>dfx canister sign</title>
+<simpara>Use the <literal>dfx canister sign</literal> command before sending a message with the <literal>dfx canister send</literal> command when you want to separate these steps, rather than using the single <literal>dfx canister call</literal> command. Using separate calls can add security to the transaction.
+For example, when creating your neuron stake, you might want to use the <literal>dfx canister sign</literal> command to create a signed <literal>message.json</literal> file using an air-gapped computer, then use the <literal>dfx canister send</literal> command to deliver the signed message from a computer connected to the network.</simpara>
+<section xml:id="_basic_usage_9">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister sign [flag] [option] <emphasis>canister-name</emphasis> <emphasis>method-name</emphasis> [argument]</programlisting>
+</section>
+<section xml:id="_flags_9">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister sign</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--query</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sends a query request to a canister.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--update</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Sends an update request to the canister. This is the default method if the <literal>--query</literal> method is not used.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options_4">
+<title>Options</title>
+<simpara>You can specify the following options for the <literal>dfx canister sign</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--expire-after &lt;expire-after&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies how long will  will be valid before it expires and cannot be sent. Specify  in seconds. If not defined, the default is 300s (5m)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--file &lt;file&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the output file name. The  default is <literal>message.json</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--random &lt;random&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the configuration for generating random arguments.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--type &lt;type&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the data type for the argument when making a call using an argument.</simpara><simpara>By default, you can specify arguments using the <link xl:href="../../candid-guide/candid-intro.xml">Candid</link> (<literal>idl</literal>) syntax for data values.
+For information about using Candid and its supported types, see <link xl:href="../../candid-guide/candid-howto.xml#idl-syntax">Interact with a service in a terminal</link> and <link xl:href="../../candid-guide/candid-types.xml">Supported types</link>.
+You can use <literal>raw</literal> as the argument type if you want to pass raw bytes.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_9">
+<title>Arguments</title>
+<simpara>You can specify the following arguments for the <literal>dfx canister sign</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister to call. The canister name is a required argument and should match the name you have configured for a project in the <literal>canisters</literal> section of the <literal>dfx.json</literal> configuration file.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>method_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the method name to call on the canister.
+The canister method is a required argument.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>argument</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the argument to pass to the method.
+Depending on your program logic, the argument can be a required or optional argument.
+You can specify a data format type using the <literal>--type</literal> option if you pass an argument to the canister.
+By default, you can specify arguments using the <link xl:href="../../candid-guide/candid-intro.xml">Candid</link> (<literal>idl</literal>) syntax for data values.
+For information about using Candid and its supported types, see <link xl:href="../../candid-guide/candid-howto.xml#idl-syntax">Interact with a service in a terminal</link> and <link xl:href="../../candid-guide/candid-types.xml">Supported types</link>.
+You can use <literal>raw</literal> as the argument type if you want to pass raw bytes.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_9">
+<title>Examples</title>
+<simpara>Use the <literal>dfx canister sign</literal> command to create a signed <literal>message.json</literal> file using the principal associated with the identity you created using the Privacy Enhanced Mail (PEM) file by running a command similar to the following:</simpara>
+<simpara><literal>dfx canister --no-wallet --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’</literal></simpara>
+<simpara>Currently, the <literal>--no-wallet</literal> command must be used to execute the command using the user identity instead of the cycles wallet canister identifier.</simpara>
+<simpara>This command illustrates how to creates a <literal>message.json</literal> file to create neurons on the network stpecified by the <literal>ic</literal> alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.</simpara>
+<simpara>Note that the time allotted to send a signed message is a fixed 5-minute window. The <literal>--expire-after</literal> option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the <literal>--expire-after</literal> option to one hour (<literal>1h</literal>), you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute.</simpara>
+<simpara>In this example, therefore, you would need to send the message after 55 minutes and before 60 minutes for the message to be recognized as valid.</simpara>
+<simpara>If you don&#8217;t specify the <literal>--expire-after</literal> option, the default expiration is five minutes.</simpara>
+<simpara>Send the signed message to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:</simpara>
+<simpara><literal>dfx canister send message.json</literal></simpara>
+</section>
+</section>
+<section xml:id="_dfx_canister_start">
+<title>dfx canister start</title>
+<simpara>Use the <literal>dfx canister start</literal> command to restart a stopped canister on the local Internet Computer network or on a remote Internet Computer network.</simpara>
+<simpara>In most cases, you run this command after you have stopped a canister to properly terminate any pending requests as a prerequisite to upgrading the canister.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage_10">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister start [flag] [--all | <emphasis>canister_name</emphasis>]</programlisting>
+</section>
+<section xml:id="_flags_10">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister start</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_10">
+<title>Arguments</title>
+<simpara>You can use the following arguments with the <literal>dfx canister start</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--all</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Starts all of the canisters configured in the <literal>dfx.json</literal> file. Note that you must specify <literal>--all</literal> or an individual canister name.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister you want to start.
+Note that you must specify either a canister name or the <literal>--all</literal> option.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_10">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister start</literal> command to start a specific canister or all canisters.</simpara>
+<simpara>To start the <literal>hello_world</literal> canister, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister start hello_world</programlisting>
+<simpara>To start all of the canisters you have deployed on the <literal>ic</literal> Internet Computer network, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --network=ic start --all</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_canister_status">
+<title>dfx canister status</title>
+<simpara>Use the <literal>dfx canister status</literal> command to check whether a canister is currently running, in the process of stopping, or currently stopped on the local Internet Computer network or on a remote Internet Computer network.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage_11">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister status [flag] [--all | <emphasis>canister_name</emphasis>]</programlisting>
+</section>
+<section xml:id="_flags_11">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister status</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_11">
+<title>Arguments</title>
+<simpara>You can use the following arguments with the <literal>dfx canister status</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--all</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Returns status information for all of the canisters configured in the <literal>dfx.json</literal> file. Note that you must specify <literal>--all</literal> or an individual canister name.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister you want to return information for.
+Note that you must specify either a canister name or the <literal>--all</literal> option.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_11">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister status</literal> command to check the status of a specific canister or all canisters.</simpara>
+<simpara>To check the status of the <literal>hello_world</literal> canister, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister status hello_world</programlisting>
+<simpara>To check the status for all of the canisters you have deployed on the <literal>ic</literal> Internet Computer network, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --network=ic status --all</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_canister_stop">
+<title>dfx canister stop</title>
+<simpara>Use the <literal>dfx canister stop</literal> command to stop a canister that is currently running on the local Internet Computer network or on a remote Internet Computer network.</simpara>
+<simpara>In most cases, you run this command to properly terminate any pending requests as a prerequisite to upgrading the canister.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage_12">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister stop [flag] [--all | <emphasis>canister_name</emphasis>]</programlisting>
+</section>
+<section xml:id="_flags_12">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx canister stop</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_12">
+<title>Arguments</title>
+<simpara>You can use the following arguments with the <literal>dfx canister stop</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--all</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Stops all of the canisters configured in the <literal>dfx.json</literal> file. Note that you must specify <literal>--all</literal> or an individual canister name.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister you want to stop.
+Note that you must specify either a canister name or the <literal>--all</literal> option.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_12">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx canister stop</literal> command to start a specific canister or all canisters.</simpara>
+<simpara>To stop the <literal>hello_world</literal> canister, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister stop hello_world</programlisting>
+<simpara>To stop all of the canisters you have deployed on the <literal>ic</literal> Internet Computer network, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --network=ic stop --all</programlisting>
+</section>
+</section>
+</article>

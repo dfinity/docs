@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx new</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx new</literal> command to create a new project for the {platform}.
+This command creates a default project structure with template files that you can modify to suit your application.
+You must specify the name of the project to you want to create.</simpara>
+<simpara>You can use the <literal>--dry-run</literal> option to preview the directories and files to be created without adding them to the file system.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx new _project_name_ [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx new</literal> command:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--dry-run</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Generates a preview the directories and files to be created for a new project without adding them to the file system.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--frontend</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Installs the template frontend code for the default project canister.
+The default value for the flag is <literal>true</literal> if <literal>node.js</literal> is currently installed on your local computer.
+If <literal>node.js</literal> is not currently installed, you can set this flag to <literal>true</literal> to attempt to install <literal>node.js</literal> and the template file when creating the project or you can set the flag to <literal>false</literal> to skip the installation of template frontend code entirely.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You must specify the following argument for the <literal>dfx new</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>project_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the project to create.
+This argument is required.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use <literal>dfx new</literal> to create a new project named <literal>my_social_network</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new my_social_network</programlisting>
+<simpara>The command creates a new project, including a default project directory structure under the new project name and a Git repository for your project.</simpara>
+<simpara>If you want to preview the directories and files to be created without adding them to the file system, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new my_social_network --dry-run</programlisting>
+</section>
+</article>

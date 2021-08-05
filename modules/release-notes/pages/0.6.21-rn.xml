@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.6.21</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.6.21 release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, Motoko, the Motoko base library, and Candid.</simpara>
+<section xml:id="_new_features_and_capabilities">
+<title>New features and capabilities</title>
+<simpara>The most significant new features and capabilities include updates in the following functional areas:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="_dfx">DFX</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="_candid">Candid</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="_motoko">Motoko</link></simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_dfx">
+<title>DFX</title>
+<itemizedlist>
+<listitem>
+<simpara>Two new subcommands—<literal>get-wallet</literal> and <literal>set-wallet</literal>—have been added to the <literal>dfx identity</literal> command to support working with wallet canisters.</simpara>
+<simpara>In a future release, you will be able to use these commands locally for testing purposes. However, the commands are not currently supported on any version of the Internet Computer network available for you to run locally or on the public Internet Computer network.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_candid">
+<title>Candid</title>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/candid/blob/master/Changelog.md">Candid changelog</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_motoko">
+<title>Motoko</title>
+<itemizedlist>
+<listitem>
+<simpara>The Motoko compiler now reports errors and warnings with an additional error code.</simpara>
+<simpara>You can use the error code to look up a more detailed description for a given error by passing the <literal>--explain</literal> flag with a code to the compiler.</simpara>
+<simpara>Note that detailed descriptions are not yet available for most error codes and will be added incrementally in upcoming releases.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="_issues_fixed_in_this_release">
+<title>Issues fixed in this release</title>
+<simpara>This section covers any reported issues that have been fixed in this release.</simpara>
+</section>
+<section xml:id="_known_issues_and_limitations">
+<title>Known issues and limitations</title>
+<simpara>This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.</simpara>
+</section>
+</article>

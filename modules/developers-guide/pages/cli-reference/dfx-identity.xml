@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx identity</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx identity</literal> command with subcommands and flags to manage the identities used to execute commands and communicate with the Internet Computer network.
+Creating multiple user identities enables you to test user-based access controls.</simpara>
+<simpara>The basic syntax for running <literal>dfx identity</literal> commands is:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity [subcommand] [flag]</programlisting>
+<simpara>Depending on the <literal>dfx identity</literal> subcommand you specify, additional arguments, options, and flags might apply or be required.
+To view usage information for a specific <literal>dfx identity</literal> subcommand, specify the subcommand and the <literal>--help</literal> flag.
+For example, to see usage information for <literal>dfx identity new</literal>, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity new --help</programlisting>
+<simpara>For reference information and examples that illustrate using <literal>dfx identity</literal> commands, select an appropriate command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Command</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_get_principal"><literal>get-principal</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Shows the textual representation of the principal associated with the current identity.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_get_wallet"><literal>get-wallet</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Shows the canister identifier for the wallet associated with your current identity principal on a network.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays this usage message or the help of the given subcommand(s).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_import"><literal>import</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Creates a new identity by importing a PEM file that contains the key information or security certificate for a principal.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_list"><literal>list</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Lists existing identities.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_new"><literal>new</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Creates a new identity.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_remove"><literal>remove</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Removes an existing identity.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_rename"><literal>rename</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Renames an existing identity.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_set_wallet"><literal>set-wallet</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets the wallet canister identifier to use for your current identity principal on a network.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_use"><literal>use</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the identity to use.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_identity_whoami"><literal>whoami</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays the name of the current identity user context.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<section xml:id="_creating_a_default_identity">
+<title>Creating a default identity</title>
+<simpara>The first time you run the <literal>dfx canister create</literal> command to register an identifier, your public/private key pair credentials are used to create a <literal>default</literal> user identity.
+The credentials for the <literal>default</literal> user are migrated from <literal>$HOME/.dfinity/identity/creds.pem</literal> to <literal>$HOME/.config/dfx/identity/default/identity.pem</literal>.</simpara>
+<simpara>You can then use <literal>dfx identity new</literal> to create new user identities and store credentials for those identities in <literal>$HOME/.config/dfx/identity/&lt;identity_name&gt;/identity.pem</literal> files.
+For example, you can create an identity named <literal>ic_admin</literal> by running the following command:</simpara>
+<literallayout class="monospaced">dfx identity new ic_admin</literallayout>
+<simpara>This command adds a private key for the <literal>ic_admin</literal> user identity in the <literal>~/.config/dfx/identity/ic_admin/identity.pem</literal> file.</simpara>
+</section>
+<section xml:id="_dfx_identity_get_principal">
+<title>dfx identity get-principal</title>
+<simpara>Use the <literal>dfx identity get-principal</literal> command to display the textual representation of a principal associated with the current user identity context.</simpara>
+<simpara>If you haven&#8217;t created any user identities, you can use this command to display the principal for the <literal>default</literal> user.
+The textual representation of a principal can be useful for establishing and testing role-based authorization scenarios.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity get-principal [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity get-principal</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example">
+<title>Example</title>
+<simpara>If you want to display the textual representation of a principal associated with a specific user identity context, you can run commands similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity use ic_admin
+dfx identity get-principal</programlisting>
+<simpara>In this example, the first command sets the user context to use the <literal>ic_admin</literal> identity. The second command then returns the principal associated with the <literal>ic_admin</literal> identity.</simpara>
+</section>
+</section>
+<section xml:id="_dfx_identity_get_wallet">
+<title>dfx identity get-wallet</title>
+<simpara>Use the <literal>dfx identity get-wallet</literal> command to display the canister identifier for the wallet associated with your current identity principal on a network.</simpara>
+<simpara>Note that you must be connected to the {IC} network or running the network locally to run this command.
+In addition, you must be in a project directory to run the command.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories to run the <literal>dfx identity get-wallet</literal> command.</simpara>
+<section xml:id="_basic_usage_2">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity get-wallet [flag]</programlisting>
+</section>
+<section xml:id="_flags_2">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity get-wallet</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example_2">
+<title>Example</title>
+<simpara>If you want to display the canister identifier for the wallet canister associated with your identity, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity get-wallet</programlisting>
+<simpara>To display the canister identifier for the wallet canister associated with your identity on a specific network, you might run a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity --network=https://192.168.74.4 get-wallet</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_identity_import">
+<title>dfx identity import</title>
+<simpara>Use the <literal>dfx identity import</literal> command to create a user identity by importing the user&#8217;s key information or security certificate from a PEM file.</simpara>
+<section xml:id="_basic_usage_3">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity import [flag] <emphasis>identity-name</emphasis> <emphasis>pem_file-name</emphasis></programlisting>
+</section>
+<section xml:id="_flags_3">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity import</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx identity import</literal> command to import a PEM file that contains the security certificate to use for an identity.
+For example, you can run the following command to import the <literal>generated-id.pem</literal> file to create the user identity <literal>alice</literal>:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity import alice generated-id.pem</programlisting>
+<simpara>The command adds the <literal>generated-id.pem</literal> file to the <literal>~/.config/dfx/identity/alice</literal> directory.</simpara>
+</section>
+</section>
+<section xml:id="_dfx_identity_list">
+<title>dfx identity list</title>
+<simpara>Use the <literal>dfx identity list</literal> command to display the list of user identities available.
+When you run this command, the list displays an asterisk (*) to indicate the currently active user context.
+You should note that identities are global. They are not confined to a specific project context.
+Therefore, you can use any identity listed by the <literal>dfx identity list</literal> command in any project.</simpara>
+<section xml:id="_basic_usage_4">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity list [flag]</programlisting>
+</section>
+<section xml:id="_flags_4">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity list</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_2">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx identity list</literal> command to list all of the identities you have currently available and to determine which identity is being used as the currently-active user context for running <literal>dfx</literal> commands.
+For example, you can run the following command to list the identities available:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity list</programlisting>
+<simpara>This command displays the list of identities found similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">alice_auth
+bob_standard *
+default
+ic_admin</programlisting>
+<simpara>In this example, the <literal>bob_standard</literal> identity is the currently-active user context.
+After you run this command to determine the active user, you know that any additional <literal>dfx</literal> commands you run are executed using the principal associated with the <literal>bob_standard</literal> identity.</simpara>
+</section>
+</section>
+<section xml:id="_dfx_identity_new">
+<title>dfx identity new</title>
+<simpara>Use the <literal>dfx identity new</literal> command to add new user identities.
+You should note that the identities you add are global. They are not confined to a specific project context.
+Therefore, you can use any identity you add using the <literal>dfx identity new</literal> command in any project.</simpara>
+<section xml:id="_basic_usage_5">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity new [flag] _identity-name_</programlisting>
+</section>
+<section xml:id="_flags_5">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity new</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You must specify the following argument for the <literal>dfx identity new</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;identity_name&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the identity to create.
+This argument is required.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_3">
+<title>Examples</title>
+<simpara>You can then use <literal>dfx identity new</literal> to create new user identities and store credentials for those identities in <literal>$HOME/.config/dfx/identity/&lt;identity_name&gt;/identity.pem</literal> files.
+For example, you can create an identity named <literal>ic_admin</literal> by running the following command:</simpara>
+<literallayout class="monospaced">dfx identity new ic_admin</literallayout>
+<simpara>This command adds a private key for the <literal>ic_admin</literal> user identity in the <literal>~/.config/dfx/identity/ic_admin/identity.pem</literal> file.</simpara>
+<simpara>After adding the private key for the new identity, the command displays confirmation that the identity has been created:</simpara>
+<literallayout class="monospaced">Creating identity: "ic_admin".
+Created identity: "ic_admin".</literallayout>
+</section>
+</section>
+<section xml:id="_dfx_identity_remove">
+<title>dfx identity remove</title>
+<simpara>Use the <literal>dfx identity remove</literal> command to remove an existing user identity.
+You should note that the identities you add are global. They are not confined to a specific project context.
+Therefore, any identity you remove using the <literal>dfx identity remove</literal> command will no longer be available in any project.</simpara>
+<section xml:id="_basic_usage_6">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity remove [flag] _identity-name_</programlisting>
+</section>
+<section xml:id="_flags_6">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity remove</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_2">
+<title>Arguments</title>
+<simpara>You must specify the following argument for the <literal>dfx identity remove</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;identity_name&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the identity to remove.
+This argument is required.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_4">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx identity remove</literal> command to remove any previously-created identity, including the <literal>default</literal> user identity.
+For example, if you have added named user identities and want to remove the <literal>default</literal> user identity, you can run the following command:</simpara>
+<literallayout class="monospaced">dfx identity remove default</literallayout>
+<simpara>The command displays confirmation that the identity has been removed:</simpara>
+<literallayout class="monospaced">Removing identity "default".
+Removed identity "default".</literallayout>
+<simpara>Although you can delete the <literal>default</literal> identity if you have created other identities to replace it, you must always have at least one identity available.
+If you attempt to remove the last remaining user context, the <literal>dfx identity remove</literal> command displays an error similar to the following:</simpara>
+<literallayout class="monospaced">Identity error:
+  Cannot delete the default identity</literallayout>
+</section>
+</section>
+<section xml:id="_dfx_identity_rename">
+<title>dfx identity rename</title>
+<simpara>Use the <literal>dfx identity rename</literal> command to rename an existing user identity.
+You should note that the identities you add are global. They are not confined to a specific project context.
+Therefore, any identity you rename using the <literal>dfx identity rename</literal> command is available using the new name in any project.</simpara>
+<section xml:id="_basic_usage_7">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity rename [flag] _from_identity-name_ _to_identity-name_</programlisting>
+</section>
+<section xml:id="_flags_7">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity rename</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_3">
+<title>Arguments</title>
+<simpara>You must specify the following arguments for the <literal>dfx identity rename</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;from_identity_name&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the current name of the identity you want to rename.
+This argument is required.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;to_identity_name&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the new name of the identity you want to rename.
+This argument is required.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example_3">
+<title>Example</title>
+<simpara>You can rename the <literal>default</literal> user or any identity you have previously created using the <literal>dfx identity rename</literal> command.
+For example, if you want to rename a <literal>test_admin</literal> identity that you previously created, you would specify the current identity name you want to change <emphasis role="strong">from</emphasis> and the new name you want to change <emphasis role="strong">to</emphasis> by running a command similar to the following:</simpara>
+<literallayout class="monospaced">dfx identity rename test_admin devops</literallayout>
+</section>
+</section>
+<section xml:id="_dfx_identity_set_wallet">
+<title>dfx identity set-wallet</title>
+<simpara>Use the <literal>dfx identity set-wallet</literal> command to specify the wallet canister identifier to use for your identity on a network.</simpara>
+<section xml:id="_basic_usage_8">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity set-wallet [flag] [--canister-name canister-name]</programlisting>
+</section>
+<section xml:id="_flags_8">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity set-wallet</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>force</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Skips verification that the canister you specify is a valid wallet canister.
+This option is only useful if you are connecting to the {IC} running locally.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example_4">
+<title>Example</title>
+<simpara>If you have access to more than one {IC} network or use more than one principal for your identity, you might have access to more than one wallet canister identifier.
+You can use the <literal>dfx identity set-wallet</literal> command to specify the wallet canister identifier to use for a given identity on a given network.</simpara>
+<simpara>For example, you might store the wallet canister identifier in an environment variable, then invoke the <literal>dfx identity set-wallet</literal> command to use that wallet canister for additional operations by running the following:</simpara>
+<literallayout class="monospaced">export WALLET_CANISTER_ID=$(dfx identity get-wallet)
+dfx identity --network=https://192.168.74.4 set-wallet --canister-name ${WALLET_CANISTER_ID}</literallayout>
+</section>
+</section>
+<section xml:id="_dfx_identity_use">
+<title>dfx identity use</title>
+<simpara>Use the <literal>dfx identity use</literal> command to specify the user identity you want to active.
+You should note that the identities you have available to use are global. They are not confined to a specific project context.
+Therefore, you can use any identity you have previously created in any project.</simpara>
+<section xml:id="_basic_usage_9">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity use [flag] _identity-name_</programlisting>
+</section>
+<section xml:id="_flags_9">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity use</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_4">
+<title>Arguments</title>
+<simpara>You must specify the following argument for the <literal>dfx identity use</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;identity_name&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the identity you want to make active for subsequent commands.
+This argument is required.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_5">
+<title>Examples</title>
+<simpara>If you want to run multiple commands with the same user identity context, you can run a command similar to the following:</simpara>
+<literallayout class="monospaced">dfx identity use ops</literallayout>
+<simpara>After running this command, subsequent commands use the credentials and access controls associated with the <literal>ops</literal> user.</simpara>
+</section>
+</section>
+<section xml:id="_dfx_identity_whoami">
+<title>dfx identity whoami</title>
+<simpara>Use the <literal>dfx identity whoami</literal> command to display the name of the currently-active user identity context.</simpara>
+<section xml:id="_basic_usage_10">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity whoami [flag]</programlisting>
+</section>
+<section xml:id="_flags_10">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx identity whoami</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example_5">
+<title>Example</title>
+<simpara>If you want to display the name of the currently-active user identity, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity whoami</programlisting>
+<simpara>The command displays the name of the user identity.
+For example, you had previously run the command <literal>dfx identity use bob_standard</literal>, the command would display:</simpara>
+<literallayout class="monospaced">bob_standard</literallayout>
+</section>
+</section>
+</article>

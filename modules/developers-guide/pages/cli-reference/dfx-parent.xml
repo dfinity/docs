@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The DFINITY command-line execution environment (<literal>dfx</literal>) is the primary tool for creating, deploying, and managing the applications you develop for the {platform}.</simpara>
+<simpara>Use the <literal>dfx</literal> parent command with flags and subcommands to specify the operations you want to perform with or without optional arguments.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx [option] [subcommand] [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx</literal> parent command or with any of the <literal>dfx</literal> subcommands.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-q`</literal>, <literal>--quiet</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Suppresses informational messages.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-v</literal>, <literal>--verbose</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays detailed information about operations.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can use the following options with the <literal>dfx</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--identity &lt;identity&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the user identity to use when running a command.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--logfile &lt;logfile&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Writes log file messages to the specified log file name if you use the <literal>--log file</literal> logging option.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--log &lt;logmode&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the logging mode to use.
++
+You can set the log mode to one of the following:</simpara><simpara>- <literal>stderr</literal> to log messages to the standard error facility.</simpara><simpara>- <literal>tee</literal> to write messages to both standard output and to a specified file name.</simpara><simpara>- <literal>file</literal> to write messages to a specified file name.</simpara><simpara>The default logging mode is <literal>stderr</literal>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_subcommands">
+<title>Subcommands</title>
+<simpara>Use the following subcommands to specify the operation you want to perform or to view usage information for a specific command.</simpara>
+<simpara>For reference information and examples, select an appropriate subcommand.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Command</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-bootstrap.xml"><literal>bootstrap</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Starts the bootstrap server you want to use to serve front-end assets for your project.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-build.xml"><literal>build</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Builds canister output from the source code in your project.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-cache.xml"><literal>cache</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Manages the <literal>dfx</literal> cache on the local computer.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-canister.xml"><literal>canister</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Manages canisters deployed on a network replica.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-config.xml"><literal>config</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Sets or changes configuration options for your current project.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-deploy.xml"><literal>deploy</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Deploys all or a specific canister from the code in your project.
+By default, all canisters are deployed.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-help.xml"><literal>help</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information for a specified subcommand.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-identity.xml"><literal>identity</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to create and manage the identities used to communicate with the Internet Computer network.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-ledger.xml"><literal>ledger</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to interact with accounts in the ledger canister running on the Internet Computer.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-new.xml"><literal>new</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Creates a new project.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-ping.xml"><literal>ping</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Sends a response request to a specified Internet Computer network to determine network connectivity.
+If the connection is successful, the Internet Computer replies with its status.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-replica.xml"><literal>replica</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Starts a local network replica process.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-start.xml"><literal>start</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Starts the local network replica and a web server for the current project.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-stop.xml"><literal>stop</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Stops the local network replica.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-upgrade.xml"><literal>upgrade</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Upgrades the version of <literal>dfx</literal> installed on the local computer to the latest version available.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link xl:href="dfx-wallet.xml"><literal>dfx wallet</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to manage cycles, controllers, custodians, and addresses for the default cycles wallet associated with the currently-selected identity.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx</literal> parent command to display usage information or version information.
+For example, to display information about the version of <literal>dfx</literal> you currently have installed, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --version</programlisting>
+<simpara>To view usage information for a specific subcommand, specify the subcommand and the <literal>--help</literal> flag.
+For example, to see usage information for <literal>dfx build</literal>, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx build --help</programlisting>
+<section xml:id="_using_logging_options">
+<title>Using logging options</title>
+<simpara>You can use the <literal>--verbose</literal> and <literal>--quiet</literal> flags to increment or decrement the logging level.
+If you don&#8217;t specify any logging level, CRITICAL, ERROR, WARNING, and INFO messages are logged by default.
+Specifying one verbose flag (<literal>-v</literal>) increases the log level to include DEBUG messages.
+Specifying two verbose flags (<literal>-vv</literal>)increases the logging level to include both DEBUG and TRACE messages.</simpara>
+<simpara>Adding a <literal>--quiet</literal> flag decreases the logging level.
+For example, to remove all messages, you can run a command similar the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx -qqqq build</programlisting>
+<simpara>Keep in mind that using TRACE level logging (<literal>--vv</literal>) generates a lot of log messages that can affect performance and should only be used when required for troubleshooting or analysis.</simpara>
+<simpara>To output log messages to a file named <literal>newlog.txt</literal> and display the messages on your terminal when creating a new project, you can run a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --log tee --logfile newlog.txt new hello_world</programlisting>
+</section>
+<section xml:id="_specifying_a_user_identity">
+<title>Specifying a user identity</title>
+<simpara>If you create user identities with the <literal>dfx identity new</literal> command, you can then use the <literal>--identity</literal> comment-line option to change the user context when running other <literal>dfx</literal> commands.</simpara>
+<simpara>In the most common use case, you use the <literal>--identity</literal> option to call specific canister functions to test access controls for specific operations.</simpara>
+<simpara>For example, you might want to test whether the <literal>devops</literal> user identity can call the <literal>modify_profile</literal> function for the <literal>accounts</literal> canister by running the following command:</simpara>
+<literallayout class="monospaced">dfx --identity devops canister call accounts modify_profile '("Kris Smith")'</literallayout>
+</section>
+</section>
+</article>

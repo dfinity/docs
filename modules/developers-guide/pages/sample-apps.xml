@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Sample code, applications, and microservices</title>
+<date>2021-08-05</date>
+<author>
+<personname>
+<firstname>May 2020 (Alpha)</firstname>
+</personname>
+</author>
+<authorinitials>M</authorinitials>
+</info>
+<simpara>Sample code, applications, and microservices that have been developed by DFINITY or contributed by the community are available from the <link xl:href="https://github.com/dfinity/examples">DFINITY public repository</link>.</simpara>
+<simpara>By accessing the public repository, you can directly download, clone, fork, or share sample projects.
+You will also be able to contribute by suggesting updates or reporting issues for the published projects using the standard GitHub work flow.</simpara>
+<simpara>Sample projects provide a way for you to experiment and collaborate with other developers.
+The projects and sample code are not, however, intended to be used as commercial applications and do not provide any explicit or implied support or warranty of any kind.</simpara>
+<simpara>This section provides a preliminary look at some sample code for applications and microservices that you can copy and modify to jump-start your own projects.</simpara>
+<section xml:id="_c">
+<title>C</title>
+<simpara>For examples of projects written in the C programming language for the Internet Computer, see <link xl:href="https://github.com/dfinity/examples/tree/master/c">C++ sample projects</link>.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/c/adventure">Adventure game</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/c/qr">QR code generator</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/c/reverse">Reverse game</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_motoko">
+<title>Motoko</title>
+<simpara>For projects that use the Motoko programming language, see <link xl:href="https://github.com/dfinity/examples/tree/master/motoko">Motoko sample projects</link>.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/calc">Calculator - simple functions</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/counter">Counter</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/echo">Echo</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/factorial">Factorial</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/hello-world">Hello, world</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/hello_cycles">Hello, cycles</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/life">Game of Life - upgrades</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/phone-book">Phone book</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/pub-sub">Publish/subscribe</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">Quicksort</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/random_maze">Random maze - cryptographic randomness</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/simple-to-do">To-do checklist</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/superheroes">Superheroes database</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples/tree/master/motoko/whoami">whoami</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_additional_sample_applications">
+<title>Additional sample applications</title>
+<simpara>This section includes sample code from projects that are not currently available in the public repository.</simpara>
+<section xml:id="_hex_encoding_and_decoding">
+<title>Hex encoding and decoding</title>
+<simpara>The <literal>mo-hex</literal> project implements hexadecimal encoding and decoding routines for the Motoko programming language.</simpara>
+<section xml:id="_source_code">
+<title>Source code</title>
+<simpara>The project includes the following <link linkend="hex">hex.mo</link> source code.</simpara>
+<section xml:id="hex">
+<title>hex.mo</title>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in sample-apps.adoc - include::example$hex/hex.mo[]</programlisting>
+</section>
+</section>
+</section>
+<section xml:id="_polynomial_long_division_in_gf256">
+<title>Polynomial long-division in GF(256)</title>
+<simpara>This program performs polynomial long division for a Galois field GF(256) element.</simpara>
+<section xml:id="_source_code_2">
+<title>Source code</title>
+<simpara>In addition to standard libraries, this project uses two main Motoko source code files.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <link linkend="galois">Galois.mo</link> file contains the core programming logic.</simpara>
+</listitem>
+<listitem>
+<simpara>The <link linkend="nat">Nat.mo</link> file contains additional functions that are imported for use in the <literal>Galois.mo</literal> file.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="galois">
+<title>Galois.mo</title>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in sample-apps.adoc - include::example$galois/Galois.mo[]</programlisting>
+</section>
+<section xml:id="nat">
+<title>Nat.mo</title>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in sample-apps.adoc - include::example$galois/Nat.mo[]</programlisting>
+</section>
+</section>
+</section>
+</section>
+</article>

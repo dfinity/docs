@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Introducing a new approach to handling HTTP requests and serving assets</title>
+<date>2021-08-05</date>
+</info>
+<simpara>If you are installing any 0.7.0 (or later) version of the {sdk-short-name}, you might have noticed that those versions have introduced some major improvements for handling HTTP queries and front-end assets.
+When these changes are officially rolled into the next publicly-available release of the {sdk-short-name}, they will change how you build and deploy applications on the Internet Computer.</simpara>
+<simpara>If you are creating new projects, the changes to the underlying architecture will have little, if any, effect on your development workflow. In fact, you might find that the new architecture makes building applications that run on the Internet Computer a more familiar experience.</simpara>
+<simpara>If you have any existing projects, however, you’ll need to plan for a one-time migration to the new architecture.
+Migration to the new architecture doesn’t have to be completed immediately, but updating your projects to take advantage of the changes will ultimately make it easier to upload and manage front-end assets.</simpara>
+<section xml:id="_replacing_the_bootstrap_code_a_recap">
+<title>Replacing the bootstrap code: a recap</title>
+<simpara>Before we describe the new architecture, it’s useful to have some context about the old approach that we are replacing and how the code has worked up to this point.
+Previously, developing a front-end on the Internet Computer involved adding a front-end assets canister with a <literal>retrieve()</literal> function.
+The <literal>retrieve()</literal> function would take a path and return a blob. The blob returned by the <literal>retrieve()</literal> function would then have an <literal>index.js</literal> file that contained some JavaScript and static HTML called the <literal>bootstrap</literal> code.
+After you deployed an application as smart contract—called a <link xl:href="developers-guide/glossary.xml#g-canister">canister</link>—on the Internet Computer, accessing the canister using the <literal>&lt;CANISTER_ID&gt;.ic0.app</literal> URL executed the <literal>bootstrap</literal> code, which in turn, performed the following steps:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Created a secure worker to contain your private key.</simpara>
+</listitem>
+<listitem>
+<simpara>Polyfilled the <literal>window.ic</literal> to provide some mechanics to the running application so that it can communicate with the Internet Computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Called the canister’s <literal>retrieve()</literal> method with <literal>index.js</literal> as the path, and evaluate it.</simpara>
+</listitem>
+<listitem>
+<simpara>Passed control of the document object model (DOM) and the page to the canister’s JavaScript code.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This <literal>bootstrap</literal> workflow is quite different from how people usually build web applications.
+For example, this approach did not support loading HTML directly or downloading assets like PNG files.
+Asset handling required either loading the assets from another domain (for example, an AWS bucket) or loading the assets in JavaScript, transforming them into data URI, then setting the <literal>src</literal> attribute accordingly.
+Handling assets in this way led to problems in the browser, such as:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Not waiting for re-layout of pages.</simpara>
+</listitem>
+<listitem>
+<simpara>Deferred loading of assets.</simpara>
+</listitem>
+<listitem>
+<simpara>Executing JavaScript out of band.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The <literal>bootstrap</literal> approach provided advantages in terms of security and decentralization, but those advantages were offset by the poor HTTP and asset handling that front-end developers and application users didn&#8217;t expect to experience.</simpara>
+<simpara>Over the last year, the {sdk-short-name} team has been gathering and evaluating feedback from the developer community. Based on that feedback, the team has decided to provide a more flexible developer experience while continuing to provide an equivalent security model.</simpara>
+</section>
+<section xml:id="_enabling_canisters_to_respond_to_http_requests">
+<title>Enabling canisters to respond to HTTP requests</title>
+<simpara>After considering the advantages and disadvantages of different  proposals, the team decided on an architecture that would allow canisters to answer HTTP requests directly.
+With this new approach, the {sdk-short-name} implements an HTTP middleware server.</simpara>
+<simpara>The HTTP middleware server handles the processing for the HTTP request by doing the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Receiving the HTTP request and converting its method, uri, headers and body into a Candid structure.</simpara>
+</listitem>
+<listitem>
+<simpara>Resolving the canister identifier for the request.</simpara>
+</listitem>
+<listitem>
+<simpara>Instantiating an agent to talk to the canister.</simpara>
+</listitem>
+<listitem>
+<simpara>Calling an <literal>http_request()</literal> query method.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>If the canister implements the <literal>http_request()</literal> method, the HTTP middleware decodes the response, takes the headers and body, and constructs an HTTP response.
+If the canister does not implement the <literal>http_request()</literal> method, for backward compatibility, the middleware returns a bootstrap polyfill that points out the deprecation as a warning.
+For any errors in the process, the HTTP middleware returns the following error codes:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>400 Bad Request for any invalid requests (for example, if the HTTP middleware could not find or decode a canister ID).</simpara>
+</listitem>
+<listitem>
+<simpara>500 Internal Server Error for errors from the HTTP middleware itself (for example, if it could not connect to a replica)</simpara>
+</listitem>
+<listitem>
+<simpara>502 Bad Gateway if an error is coming from the replica itself (including canister trapping).</simpara>
+</listitem>
+</itemizedlist>
+<simpara>If any of these errors occur,  the <literal>dfx</literal> command-line interface provides additional details in the response body.</simpara>
+</section>
+<section xml:id="_revisiting_the_asset_storage_canister">
+<title>Revisiting the asset storage canister</title>
+<simpara>To make this transition easier, new and existing projects built with the newer version of <literal>dfx</literal> will include an improved asset canister that supports the <literal>http_request()</literal> method by default. This means that assets you upload—including binary assets like images—will be available directly from your browser using their URL.
+For example, in a new project, the <literal>sample-asset.txt</literal> file would be uploaded and available after publishing to the Internet Computer at <link xl:href="https://&lt;CANISTER_ID&gt;.raw.ic0.app/sample-asset.txt">https://&lt;CANISTER_ID&gt;.raw.ic0.app/sample-asset.txt</link>.</simpara>
+<simpara>In the future, we will also provide additional support for managing the asset canister cache, handling default assets, and providing HTTP-specific features.</simpara>
+</section>
+<section xml:id="_routing">
+<title>Routing</title>
+<simpara>Both the <literal>/api</literal> (for replicas) and <literal>/_</literal> (for tool purposes) routes are reserved by the HTTP request specification.
+All other routes are available for you to use as needed within your application, eliminating the need to rely on a separate hash router.</simpara>
+</section>
+<section xml:id="_structure_of_a_new_dfx_project">
+<title>Structure of a new DFX project</title>
+<simpara>Before going into how to migrate an existing project, let’s take a look at a new project.
+The front-end changes include the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>dfx.json</literal> includes a <literal>frontend</literal> key for the asset canister that now points to an <literal>index.html</literal> file instead of the <literal>index.js</literal> JavaScript entry point.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>package.json</literal> file now supports Webpack 5 by default.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>webpack.config.js</literal> file now generates the list of canister imports for for each canister that has a <literal>frontend</literal> key in a different way.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>src/&lt;project_name&gt;_assets/src/index.html</literal> file is a new template file that you can replace with your own <literal>index.html</literal> file for your front-end. It is served by default by the asset canister when a file isn’t found.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>index.js</literal> file has been modified to support agent and actor creation.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_agent_and_actor_creation">
+<title>Agent and actor creation</title>
+<simpara>With the new architecture, we explicitly create an agent instance, then create the actor that we’ll use for our canister.
+In the <literal>index.js</literal> file, this means that where before there was only one <literal>import</literal> from files generated by <literal>dfx</literal>, now there are two.</simpara>
+<simpara>For example, the new <literal>index.js</literal> file in a project provides code similar to this:</simpara>
+<literallayout class="monospaced">import { Actor, HttpAgent } from '@dfinity/agent';
+import { idlFactory as example_idl, canisterId as example_id } from 'dfx-generated/example';
+
+const agent = new HttpAgent();
+const example = Actor.createActor(example_idl, { agent, canisterId: example_id });</literallayout>
+<simpara>Explicitly creating the agent and actor like this example illustrates is better for a couple reasons:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>First, the agent itself is entirely configurable by the application, and so is the actor. For example, authentication can only be set when the agent is constructed, so if you want to manage a user identity, you’ll need to do it before creating the agent.</simpara>
+</listitem>
+<listitem>
+<simpara>Second, being explicit about creating the agent and actor gives you much more control over when you instantiate those objects. If you want a React hook or an Angular service to create the actor, this approach allows you to do so easily.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_migrating_an_existing_project">
+<title>Migrating an existing project</title>
+<simpara>If you have an existing project, chances are it will not work seamlessly after you update the {sdk-short-name}.
+Unfortunately, a direct migration path isn’t possible in this case.
+The best way to migrate your current front-end is to create a new project and move your code manually to the new structure.</simpara>
+<section xml:id="_certified_and_uncertified_front_end_assets">
+<title>Certified and uncertified front-end assets</title>
+<simpara>With the launch of the Internet Computer main network Beta, all projects serve front-end assets use the new HTTP query architecture.
+In addition, the Internet Computer launch introduces a new capability to serve front-end assets as certified data that has been signed and can be considered authenticated and secure or as raw, uncertified data.
+Front-end assets that don&#8217;t go through the certification process are served using the <literal>raw.ic0.app</literal> URL suffix.
+Certified front-end assets use the <literal>.ic0.app</literal> URL suffix.</simpara>
+<simpara>All of the current tutorials illustrate applications that serve uncertified front-end assets.
+Learning how to build an application that uses certified query results for front-end assets is an advanced development topic.
+For information about how to return certified data in response to queries, see the <link xl:href="interface-spec/index.xml">Interface specification</link> and connect with other developers through the <link xl:href="https://forum.dfinity.org/">DFINITY Developer Forum</link>.</simpara>
+</section>
+</section>
+</article>

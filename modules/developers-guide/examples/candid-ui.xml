@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Test functions in a browser</title>
+<date>2021-08-05</date>
+</info>
+<section xml:id="candid-ui">
+<title>Test functions in a browser</title>
+<simpara>The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common language for specifying the signature of a canister service.
+Candid provides a unified way for you to interact with canisters that are written in different languages or accessed using different tools.
+For example, Candid provides a consistent view of a service whether the underlying program is native Rust, JavaScript, or {proglang}.
+Candid also enables different tools—such as the <literal>dfx</literal> command-line interface and the Network Nervous System application—to share a common description for a service.</simpara>
+<simpara>Based on the type signature of the actor, Candid also provides a web interface that allows you to call canister functions for testing and debugging.</simpara>
+<simpara>After you have deployed your project locally using the <literal>dfx deploy</literal> or <literal>dfx canister install</literal> command, you can access the Candid web interface endpoint in a browser.
+This web interface—the Candid UI—exposes the service description in a form, enabling you to quickly view and test functions and experiment with entering different data types without writing any front-end code.</simpara>
+<simpara>To use the Candid web interface to test canister functions:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Find the Candid UI canister identifier associated with the current project using the <literal>dfx canister id __Candid_UI</literal> command.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister id __Candid_UI</programlisting>
+<simpara>The command displays the canister identifier for the Candid UI with output similar to the following:</simpara>
+<literallayout class="monospaced">r7inp-6aaaa-aaaaa-aaabq-cai</literallayout>
+</listitem>
+<listitem>
+<simpara>Copy the Candid UI canister identifier so that it is available in the clipboard.</simpara>
+</listitem>
+<listitem>
+<simpara>If you&#8217;ve stopped the {IC}, restart it locally by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --background</programlisting>
+</listitem>
+<listitem>
+<simpara>Open a browser and navigate to the address and port number specified in the <literal>dfx.json</literal> configuration file.</simpara>
+<simpara>By default, the <literal>local</literal> network binds to the <literal>127.0.0.1:8000</literal> address and port number.</simpara>
+</listitem>
+<listitem>
+<simpara>Add the required <literal>canisterId</literal> parameter and the Candid UI canister identifier returned by the <literal>dfx canister id</literal> command to the URL.</simpara>
+<simpara>For example, the full URL should look similar to the following but with the <literal>CANDID-UI-CANISTER-IDENTIFIER</literal> that was returned by the <literal>dfx canister id</literal> command:</simpara>
+<literallayout class="monospaced">http://127.0.0.1:8000/?canisterId=&lt;CANDID-UI-CANISTER-IDENTIFIER&gt;</literallayout>
+<simpara>The browser displays a form for you to specify a canister identifier or choose a Candid description (<literal>.did</literal>) file.</simpara>
+<simpara>If you aren&#8217;t sure which canister identifier to use, you can run the <literal>dfx canister id</literal> command to look up the identifier for a specific canister name.</simpara>
+</listitem>
+<listitem>
+<simpara>Specify the canister identifier or description file for your application into the <emphasis role="strong">Provide a canister ID</emphasis> field, then click <emphasis role="strong">Go</emphasis> to display the service description.</simpara>
+</listitem>
+<listitem>
+<simpara>Review the list of function calls and types defined in the program.</simpara>
+</listitem>
+<listitem>
+<simpara>Type a value of the appropriate type for a function or click <emphasis role="strong">Random</emphasis> to generate a value, then click <emphasis role="strong">Call</emphasis> or <emphasis role="strong">Query</emphasis> to see the result.</simpara>
+<simpara>Note that depending on the data type, the Candid interface might display additional configuration settings for testing functions.
+For example, if a function takes an array, you might need to specify the number of items in the array before entering values.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</article>

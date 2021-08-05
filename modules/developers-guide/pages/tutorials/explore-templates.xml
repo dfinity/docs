@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Explore the default project</title>
+<date>2021-08-05</date>
+</info>
+<simpara>If you started your tour of the {sdk-long-name} with the <link xl:href="../../quickstart/quickstart-intro.xml">Quick start</link>, you have already seen the basic work flow for creating applications that run on the Internet Computer.
+Now, let&#8217;s take a closer look at that work flow by exploring the default files and folders that are added to your workspace when you create a new project.</simpara>
+<simpara>As a preview, the following diagram illustrates the development work flow when running the Internet Computer locally on you computer.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="dev-workflow-explore.svg"/>
+</imageobject>
+<textobject><phrase>Development work flow</phrase></textobject>
+</inlinemediaobject></simpara>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before you start this tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have an internet connection and access to a shell terminal on your local macOS or Linux computer.</simpara>
+</listitem>
+<listitem>
+<simpara>You have <literal>node.js</literal> installed if you want to include the default template files for front-end development in your project.</simpara>
+</listitem>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have installed the Visual Studio Code plugin for Motoko as described in <link xl:href="../../quickstart/local-quickstart.xml#install-vscode">Install the language editor plug-in</link> if you are using Visual Studio Code as your IDE.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local computer.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial takes approximately 20 minutes to complete.</simpara>
+</section>
+<section xml:id="create-a-new-project">
+<title>Create a new project</title>
+<simpara>As discussed in the <link xl:href="../../quickstart/quickstart-intro.xml">Quick start</link>, applications for the Internet Computer start as <emphasis role="strong">projects</emphasis> that you create. You can create projects using the <literal>dfx</literal> executable command-line interface (CLI).</simpara>
+<simpara>To take a closer look at the files and folders that are included in a  project by default, let&#8217;s create a new project to work with.</simpara>
+<simpara>To create a new project:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the folder you are using for your Internet Computer projects, if you are using a separate working folder.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new explore_hello</programlisting>
+<simpara>The <literal>dfx new explore_hello</literal> command creates a new <literal>explore_hello</literal>
+project, including a default project directory structure under the new
+project name and a new Git repository for your project.
+If you have <literal>node.js</literal> installed locally, creating a new project also adds some template front-end code and dependencies.</simpara>
+<simpara>To ensure that project names are valid when used in JavaScript, Motoko, and other contexts, you should only use alphanumeric characters and underscores.
+You cannot include dashes or any special characters.</simpara>
+</listitem>
+<listitem>
+<simpara>View the default directory structure by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">ls -l explore_hello</programlisting>
+<simpara>By default, the project directory structure includes at least one source subdirectory, a template <literal>README.md</literal> file, and a default <literal>dfx.json</literal> configuration file.</simpara>
+<simpara>Depending on whether you have <literal>node.js</literal> installed, your project directory might include some or all of the following files:</simpara>
+<literallayout class="monospaced">explore_hello/
+├── README.md      # default project documentation
+├── dfx.json       # project configuration file
+├── node_modules   # libraries for front-end development
+├── package-lock.json
+├── package.json
+├── src            # source files directory
+│   ├── explore_hello
+│   │   └── main.mo
+│   └── explore_hello_assets
+│       ├── assets
+│       │   ├── logo.png
+│       │   ├── main.css
+│       │   └── sample-asset.txt
+│       └── src
+│           ├── index.html
+│           └── index.js
+└── webpack.config.js</literallayout>
+<simpara>At a minimum, the default project directory includes the following folders and files:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>A default <literal>README</literal> file for documenting your project in the repository.</simpara>
+</listitem>
+<listitem>
+<simpara>A default <literal>dfx.json</literal> configuration file to set configurable options for your project.</simpara>
+</listitem>
+<listitem>
+<simpara>A default <literal>src</literal> directory for all of the source files required by your application.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The default <literal>src</literal> directory includes a template <literal>main.mo</literal> file that you can modify or replace to include your core programming logic.</simpara>
+<simpara>Because this tutorial focuses on the basics of getting started, you are only going to use the <literal>main.mo</literal> file.
+If you have <literal>node.js</literal> installed, your project directory includes additional files and directories that you can use to define the front-end interface for your application.
+Front-end development and the template files in the <literal>assets</literal> folder are discussed a little later.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_review_the_default_configuration">
+<title>Review the default configuration</title>
+<simpara>By default, creating a new project adds some template files to your project directory.
+You can edit these template files to customize the configuration settings for your project and to include your own code to speed up the development cycle.</simpara>
+<simpara>To review the default configuration file for your project:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd explore_hello</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> configuration file in a text editor to review the default settings.</simpara>
+<simpara>For example:</simpara>
+<literallayout class="monospaced">Unresolved directive in explore-templates.adoc - include::example$sample-explore-dfx.json[]</literallayout>
+<simpara>Let&#8217;s take a look at a few of the default settings.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>canisters</literal> section specifies the name of the WebAssembly module for your <literal>explore_hello</literal> project is <literal>explore_hello</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>canisters.explore_hello</literal> key specifies that the main program to be compiled is located in the path specified by the <literal>main</literal> setting, in this case, <literal>src/explore_hello/main.mo</literal> and the <literal>type</literal> setting indicates that this is a <literal>motoko</literal> program.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>canisters.explore_hello_assets</literal> key specifies configuration details about front-end assets for this project. Let&#8217;s skip those for now.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>dfx</literal> setting is used to identify the version of the software used to create the project.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>networks</literal> section specifies information about the networks to which you connect. The default settings bind the local Internet Computer network to the local host address <literal>127.0.0.1</literal> and port <literal>8000</literal>.</simpara>
+<simpara>If you have access to other Internet Computer network providers, the <literal>networks</literal> section can include network aliases and URLs for connecting to those providers.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>You can leave the default settings as they are.</simpara>
+</listitem>
+<listitem>
+<simpara>Close the <literal>dfx.json</literal> file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_review_the_default_program_code">
+<title>Review the default program code</title>
+<simpara>New projects always include a template <literal>main.mo</literal> source code file.
+You can edit this file to include your own code to speed up the development cycle.</simpara>
+<simpara>Let&#8217;s take a look at the sample program in the default <literal>main.mo</literal> template file as a starting point for creating simple program using the Motoko programming language.</simpara>
+<simpara>To review the default sample program for your project:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">pwd</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the <literal>src/explore_hello/main.mo</literal> file in a text editor and review the code in the template:</simpara>
+<literallayout class="monospaced">actor {
+    public func greet(name : Text) : async Text {
+        return "Hello, " # name # "!";
+    };
+};</literallayout>
+<simpara>Let&#8217;s take a look at a few key elements of this program:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You might notice that this sample code defines an <literal>actor</literal> instead of a <literal>main</literal> function, which some programming languages require.
+For Motoko, the <literal>main</literal> function is implicit in the file itself.</simpara>
+</listitem>
+<listitem>
+<simpara>Although the traditional "Hello, World!" program illustrates how you can print a string using a <literal>print</literal> or <literal>println</literal> function, that traditional program would not represent a typical use case for Motoko programs that run on the Internet Computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Instead of a print function, this sample program defines an <literal>actor</literal> with a public <literal>greet</literal> function that takes a <literal>name</literal> argument with a type of <literal>Text</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>The program then uses the <literal>async</literal> keyword to indicate that the program returns an asynchronous message consisting of a concatenated text string constructed using <literal>"Hello, "</literal>, the <literal>#</literal> operator, the <literal>name</literal> argument, and <literal>"!"</literal>.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>We’ll explore code that uses <literal>actor</literal> objects and asynchronous message handling more a little later.
+For now, you can continue to the next section.</simpara>
+</listitem>
+<listitem>
+<simpara>Close the <literal>main.mo</literal> file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="start-the-local-network">
+<title>Start the local network</title>
+<simpara>Before you can build the default project, you need to connect to the Internet Computer network either running <emphasis role="strong">locally</emphasis> in your development environment or running <emphasis role="strong">remotely</emphasis> on a subnet that you can access.</simpara>
+<simpara>Starting the network locally requires a <literal>dfx.json</literal> file, so you should be sure you are in your project&#8217;s root directory.
+For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or a new terminal tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You should now have <emphasis role="strong">two terminals</emphasis> open.</simpara>
+</listitem>
+<listitem>
+<simpara>You should have the <emphasis role="strong">project directory</emphasis> as your <emphasis role="strong">current working directory</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start</programlisting>
+<simpara>Depending on your platform and local security settings, you might see a warning displayed.
+If you are prompted to allow or deny incoming network connections, click <emphasis role="strong">Allow</emphasis>.</simpara>
+<simpara>After you start the local network, you have one terminal that displays messages about network operations and another for performing project-related tasks.</simpara>
+</listitem>
+<listitem>
+<simpara>Leave the terminal that displays network operations open and switch your focus to the terminal where you created your new project.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_canister_identifiers">
+<title>Register canister identifiers</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register with the network to generate unique, network-specific <emphasis role="strong">canister identifiers</emphasis> for your project.</simpara>
+<simpara>In the <link xl:href="../../quickstart/quickstart-intro.xml">Quick start</link> tutorial, this step was performed as part of the <literal>dfx deploy</literal> command work flow.
+This tutorial demonstrates how to perform each of the operations independently.</simpara>
+<simpara>To register canister identifiers for the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register unique canister identifiers for the canisters in the project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create --all</programlisting>
+<simpara>The command displays the network-specific canister identifiers for the canisters defined in the <literal>dfx.json</literal> configuration file.</simpara>
+<literallayout class="monospaced">Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "pubs-id" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Creating canister "explore_hello"...
+"explore_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Creating canister "explore_hello_assets"...
+"explore_hello_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"</literallayout>
+<simpara>Because you are connected to the Internet Computer network running locally, these canister identifiers are only valid locally and are stored for the project in the <literal>.dfx/local/canister_ids.json</literal> file.</simpara>
+<simpara>For example:</simpara>
+<literallayout class="monospaced">{
+  "explore_hello": {
+    "local": "rrkah-fqaaa-aaaaa-aaaaq-cai"
+  },
+  "explore_hello_assets": {
+    "local": "ryjl3-tyaaa-aaaaa-aaaba-cai"
+  }
+}</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_build_the_program">
+<title>Build the program</title>
+<simpara>Now that you have explored the default configuration settings and program code and have started the Internet Computer network, let&#8217;s compile the default program into an executable WebAssembly module.</simpara>
+<simpara>To build the program executable:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal shell on your local computer, navigate to your <literal>explore_hello</literal> project directory.</simpara>
+<simpara>You must run the <literal>dfx build</literal> command from within the project directory structure.</simpara>
+</listitem>
+<listitem>
+<simpara>Build the executable canister by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx build</programlisting>
+<simpara>You should see output similar to the following:</simpara>
+<literallayout class="monospaced">Building canisters...
+Building frontend...</literallayout>
+<simpara>Because you are connected to the Internet Computer network running locally, the <literal>dfx build</literal> command adds the <literal>canisters</literal> directory under the <literal>.dfx/local/</literal> directory for the project.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify that the <literal>.dfx/local/canisters/explore_hello</literal> directory created by the <literal>dfx build</literal> command contains the WebAssembly and related application files by running the following command.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">ls -l .dfx/local/canisters/explore_hello/</programlisting>
+<simpara>For example, the command returns output similar to the following:</simpara>
+<literallayout class="monospaced">-rw-r--r--  1 pubs  staff     178 Apr  6 14:25 explore_hello.d.ts
+-rw-r--r--  1 pubs  staff      41 Apr  6 14:25 explore_hello.did
+-rw-r--r--  1 pubs  staff     155 Apr  6 14:25 explore_hello.did.js
+-rw-r--r--  1 pubs  staff     142 Apr  6 14:25 explore_hello.js
+-rw-r--r--  1 pubs  staff  157613 Apr  6 14:25 explore_hello.wasm</literallayout>
+<simpara>The <literal>canisters/explore_hello</literal> directory contains the following key files:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>explore_hello.did</literal> file contains an interface description for your main program.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>explore_hello.did.js</literal> file contains a JavaScript representation of the canister interface for the functions in your program.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>explore_hello.js</literal> file contains a JavaScript representation of the canister interface for your program.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>explore_hello.wasm</literal> file contains the compiled WebAssembly for the assets used in your project.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The <literal>canisters/explore_hello_assets</literal> directory contains similar files to describe the front-end assets associated with your project.</simpara>
+<simpara>In addition to the files in the <literal>canisters/explore_hello</literal> and the <literal>canisters/explore_hello_assets</literal> directories, the <literal>dfx build</literal> command creates an <literal>idl</literal> directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify that a new folder has been created, <literal>src/declarations</literal>.</simpara>
+<simpara>This folder will include copies of the folders from <literal>.dfx/local</literal>, except for the wasm. They do not contain any secrets, and we recommend committing these files along with the rest of your source code.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_deploy_the_project_locally">
+<title>Deploy the project locally</title>
+<simpara>You&#8217;ve seen that the <literal>dfx build</literal> command creates several artifacts in a <literal>canisters</literal> directory for your project.
+The WebAssembly modules and the <literal>canister_manifest.json</literal> file are required for your program to be deployed on the Internet Computer network.</simpara>
+<simpara>To deploy locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In a terminal shell on your local computer, navigate to your <literal>explore_hello</literal> project directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Deploy your <literal>explore_hello</literal> project on the local network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install --all</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Installing code for canister explore_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister explore_hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+Authorizing our identity (pubs-id) to the asset canister...
+Uploading assets to asset canister...
+  /index.html 1/1 (480 bytes)
+  /index.js 1/1 (296836 bytes)
+  /main.css 1/1 (484 bytes)
+  /sample-asset.txt 1/1 (24 bytes)
+  /logo.png 1/1 (25397 bytes)
+  /index.js.map 1/1 (964679 bytes)
+  /index.js.LICENSE.txt 1/1 (499 bytes)</literallayout>
+</listitem>
+<listitem>
+<simpara>Run the <literal>dfx canister call</literal> command and specify the program and function to call by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call explore_hello greet '("everyone": text)'</programlisting>
+<simpara>This command specifies:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>explore_hello</literal> as the name of the <emphasis>canister</emphasis> or application service you want to call.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>greet</literal> as the specific <emphasis>method</emphasis> or function you want to call.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>everyone</literal> as the argument to pass to the <literal>greet</literal> function.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Verify the command displays the return value of the <literal>greet</literal> function.</simpara>
+<simpara>For example:</simpara>
+<literallayout class="monospaced">("Hello, everyone!")</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="default-frontend">
+<title>View the default front-end</title>
+<simpara>If you have <literal>node.js</literal> installed in your development environment, your project includes a simple front-end example that uses a template <literal>index.js</literal> JavaScript file for accessing the <literal>explore_hello</literal> program in a browser.</simpara>
+<simpara>To explore the default front-end template:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open, and navigate to your <literal>explore_hello</literal> project directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Open the <literal>src/explore_hello_assets/src/index.js</literal> file in a text editor and review the code in the template script:</simpara>
+<literallayout class="monospaced">import { explore_hello } from "../../declarations/explore_hello";
+
+document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
+  const name = document.getElementById("name").value.toString();
+  // Interact with explore_hello actor, calling the greet method
+  const greeting = await explore_hello.greet(name);
+
+  document.getElementById("greeting").innerText = greeting;
+});</literallayout>
+<simpara>The template <literal>index.js</literal> imports an <literal>explore_hello</literal> agent from our newly created <literal>declarations</literal> directory. The agent is automatically configured to interact with the interface we created in <literal>Main.mo</literal>, and makes calls to our Canister using an <literal>AnonymousIdentity</literal> when the user clicks the <literal>greeting</literal> button.</simpara>
+<simpara>This file works in conjunction with the template <literal>index.html</literal> file to display an HTML page with an image asset, input field, and button for the <literal>greet</literal> function.</simpara>
+</listitem>
+<listitem>
+<simpara>Close the <literal>index.js</literal> file to continue.</simpara>
+</listitem>
+<listitem>
+<simpara>View the front-end assets created for the project by running following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">ls -l .dfx/local/canisters/explore_hello_assets/</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">drwxr-xr-x  9 pubs  staff     288 Apr  6 14:25 assets
+-r--r--r--  1 pubs  staff    2931 Dec 31  1969 assetstorage.did
+-r--r--r--  1 pubs  staff  265823 Dec 31  1969 assetstorage.wasm
+-rw-r--r--  1 pubs  staff    3651 Apr  6 14:25 explore_hello_assets.d.ts
+-rw-rw-rw-  1 pubs  staff    2931 Dec 31  1969 explore_hello_assets.did
+-rw-r--r--  1 pubs  staff    4236 Apr  6 14:25 explore_hello_assets.did.js
+-rw-r--r--  1 pubs  staff     149 Apr  6 14:25 explore_hello_assets.js
+-rw-rw-rw-  1 pubs  staff  265823 Dec 31  1969 explore_hello_assets.wasm</literallayout>
+<simpara>These files were generated automatically by the <literal>dfx build</literal> command using node modules and the template <literal>index.js</literal> file.</simpara>
+</listitem>
+<listitem>
+<simpara>Start a development server with <literal>npm start</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Open a browser and navigate to the <literal>local</literal> network address and port number—<literal>+127.0.0.1:8080</literal></simpara>
+</listitem>
+<listitem>
+<simpara>Verify that you see the HTML page for the sample application.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="explore-hello.png"/>
+</imageobject>
+<textobject><phrase>Sample HTML entry page</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Type a greeting, then click <emphasis role="strong">Click Me</emphasis> to return the greeting.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="greeting.png"/>
+</imageobject>
+<textobject><phrase>Return the name argument</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

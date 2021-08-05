@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Pass text arguments</title>
+<date>2021-08-05</date>
+</info>
+<simpara>This tutorial provides a simple variation on the default program that lets you pass a single text argument to a single actor, compile the code to create a canister, then retrieve the argument.</simpara>
+<simpara>This tutorial illustrates how to pass arguments on the command-line in a terminal using the Candid interface description language (IDL) and how to modify the program to allow it to accept more than one value for the text argument.</simpara>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before you start this tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local
+computer.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial takes approximately 20 minutes to complete.</simpara>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project for this tutorial:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new location_hello</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd location_hello</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_configuration">
+<title>Modify the default configuration</title>
+<simpara>In the <link xl:href="explore-templates.xml">Explore the default project</link> tutorial, you saw that creating a new project adds a default <literal>dfx.json</literal> configuration file to your project directory.
+You should always review the default settings in the file to verify the information accurately reflects the project settings you want to use.
+For this tutorial, you&#8217;ll modify the default configuration to remove settings that aren&#8217;t used.</simpara>
+<simpara>To modify settings in the <literal>dfx.json</literal> configuration file:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> configuration file in a text editor.</simpara>
+</listitem>
+<listitem>
+<simpara>Check the default settings for the <literal>location_hello</literal> project.</simpara>
+</listitem>
+<listitem>
+<simpara>Remove all of the unnecessary configuration settings.</simpara>
+<simpara>Because this tutorial does not involve creating any front-end assets, you can remove all of the <literal>location_hello_assets</literal> configuration settings from the file.</simpara>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_program">
+<title>Modify the default program</title>
+<simpara>In the <link xl:href="explore-templates.xml">Explore the default project</link> tutorial, you saw that creating a new project creates a default <literal>src</literal> directory with a template <literal>main.mo</literal> file.</simpara>
+<simpara>To modify the default template source code:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>src/location_hello/main.mo</literal> source code file in a text editor.</simpara>
+</listitem>
+<listitem>
+<simpara>Modify the default source code to replace the <literal>greet</literal> function with a <literal>location</literal> function and the <literal>name</literal> argument with a <literal>city</literal> argument.</simpara>
+<simpara>For example:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in hello-location.adoc - include::example$location_hello.mo[]</programlisting>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_start_the_local_network">
+<title>Start the local network</title>
+<simpara>Before you can build your project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>Starting the network locally requires a <literal>dfx.json</literal> file, so you should be sure you are in your project&#8217;s root directory.
+For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.</simpara>
+<simpara>To start the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You should now have <emphasis role="strong">two terminals</emphasis> open.</simpara>
+</listitem>
+<listitem>
+<simpara>You should have the <emphasis role="strong">project directory</emphasis> as your <emphasis role="strong">current working directory</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start</programlisting>
+<simpara>If you are prompted to allow or deny incoming network connections, click <emphasis role="strong">Allow</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_build_and_deploy_the_application">
+<title>Register, build, and deploy the application</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.</simpara>
+<simpara>To deploy the application locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy your application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy</programlisting>
+<simpara>The <literal>dfx deploy</literal> command output displays information about the operations it performs.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_pass_a_text_argument">
+<title>Pass a text argument</title>
+<simpara>You now have a program deployed as a <emphasis role="strong">canister</emphasis> on your local Internet Computer network and can test your program by using <literal>dfx canister call</literal> commands.</simpara>
+<simpara>To test the program you have deployed locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Call the <literal>location</literal> method in the program and pass your <literal>city</literal> argument of type <literal>text</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call location_hello location "San Francisco"</programlisting>
+<simpara>Because the argument in this case includes a space between <literal>San</literal> and <literal>Francisco</literal>, you need to enclose the argument in quotes.
+The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">("Hello, San Francisco!")</literallayout>
+<simpara>If the argument did not contain a space that required enclosing the text inside of quotation marks, you could allow the Candid interface description language to infer the data type like this:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call location_hello location Paris</programlisting>
+<simpara>Candid infers the data type as <literal>Text</literal> and returns the output from your program as text like this:</simpara>
+<literallayout class="monospaced">("Hello, Paris!")</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>location</literal> method in the program and pass your <literal>city</literal> argument explicitly using the Candid interface description language syntax for Text arguments:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call location_hello location '("San Francisco and Paris")'</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">("Hello, San Francisco and Paris!")</literallayout>
+<simpara>Because your program only accepts a single text argument, specifying multiple strings returns only the first argument.</simpara>
+<simpara>For example, if you try this command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call location_hello location '("San Francisco","Paris","Rome")'</programlisting>
+<simpara>Only the first argument—<literal>("Hello, San Francisco!")</literal>—is returned.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_revise_the_source_code_in_your_program">
+<title>Revise the source code in your program</title>
+<simpara>To extend what you have learned in this tutorial, you might want to try modifying the source code to return different results.
+For example, you might want to modify the <literal>location</literal> function to return multiple city names.</simpara>
+<simpara>To experiment with modifying the source code for this tutorial:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> configuration file in a text editor and change the default <literal>location_hello</literal> settings to <literal>favorite_cities</literal>.</simpara>
+<simpara>For this step, you should modify both the canister name and the path to the main program for the canister to use <literal>favorite_cities</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the <literal>dfx.json</literal> file to continue.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy the <literal>location_hello</literal> source file directory to match the name specified in the <literal>dfx.json</literal> configuration file by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cp -r src/location_hello src/favorite_cities</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the <literal>src/favorite_cities/main.mo</literal> file in a text editor.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following code sample to replace the <literal>location</literal> function with two new functions.</simpara>
+<simpara>For example:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in hello-location.adoc - include::example$favorite_cities.mo[]</programlisting>
+<simpara>You might notice that <literal>Text</literal> in this code example is enclosed by square (<literal>[ ]</literal>) brackets. By itself, <literal>Text</literal> represents a collection of UTF-8 characters.
+The square brackets around a type indicate that it is an <emphasis role="strong">array</emphasis> of that type.
+In this context, therefore, <literal>[Text]</literal> indicates an array of a collection of UTF-8 characters, enabling the program to accept and return multiple text strings.</simpara>
+<simpara>The code sample also uses the basic format of an <literal>apply</literal> operation for the array, which can be abstracted as:</simpara>
+<literallayout class="monospaced">public func apply&lt;A, B&gt;(fs : [A -&gt; B], xs : [A]) : [B] {
+    var ys : [B] = [];
+    for (f in fs.vals()) {
+      ys := append&lt;B&gt;(ys, map&lt;A, B&gt;(f, xs));
+    };
+    ys;
+};</literallayout>
+<simpara>For information about the functions that perform operations on arrays, see the description of the Array module in the Motoko base library or the <emphasis>Motoko Programming Language Reference</emphasis>.
+For another example focused on the use of arrays, see <link xl:href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">Quicksort</link> in the <link xl:href="https://github.com/dfinity/examples/">examples</link> repository.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy the application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy</programlisting>
+</listitem>
+<listitem>
+<simpara>Call the <literal>location</literal> method in the program and pass your <literal>city</literal> argument using the Candid interface description syntax by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call favorite_cities location '(vec {"San Francisco";"Paris";"Rome"})'</programlisting>
+<simpara>The command uses the Candid interface description syntax <literal>(vec { val1; val2; val3; })</literal> to return a vector of values.
+For more information about the Candid interface description language, see the <link xl:href="../../candid-guide/candid-intro.xml">Candid</link> language guide.</simpara>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">("Hello, from ["San Francisco", "Paris", "Rome"]!")</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>location_pretty</literal> method in the program and pass your <literal>city</literal> argument using the interface description syntax by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call favorite_cities location_pretty '(vec {"San Francisco";"Paris";"Rome"})'</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">("Hello from San Francisco, Paris, Rome, bon voyage!")</literallayout>
+</listitem>
+</orderedlist>
+<simpara>Unresolved directive in hello-location.adoc - include::example$candid-ui.adoc[]</simpara>
+<simpara>+
+In this example, each function accepts an array of text strings. Therefore, you first select the length of the array, then set values for each item before clicking <emphasis role="strong">Call</emphasis>.</simpara>
+<simpara>+
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="candid-favorite-cities-result.png"/>
+</imageobject>
+<textobject><phrase>Specifying an array</phrase></textobject>
+</inlinemediaobject></simpara>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Neurons and governance</title>
+<date>2021-08-05</date>
+</info>
+<simpara>As a decentralized platform, all changes to the configuration and behavior of the Internet Computer are controlled by a governance body called the Network Nervous System (NNS). The NNS controls many aspects of the Internet Computer platform including the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>which data center providers participate in the network</simpara>
+</listitem>
+<listitem>
+<simpara>the number, location, and ownership of the nodes accepted from a data center provider</simpara>
+</listitem>
+<listitem>
+<simpara>assignment of nodes to subnets</simpara>
+</listitem>
+<listitem>
+<simpara>whether upgrades to smart contract canister software or management services are allowed or not</simpara>
+</listitem>
+</itemizedlist>
+<simpara>In addition, only members of the governance body can vote to approve or deny requests to upgrade Internet Computer replicas or modify the Internet Computer protocol.</simpara>
+<section xml:id="_voting_rights_for_stakeholders">
+<title>Voting rights for stakeholders</title>
+<simpara>Because tokens on the Internet Computer are generally liquid, they do not represent a stable enough commitment on the part of their holders for them to be used for governance purposes. To provide the stability required for responsible governance, tokens can be converted to <emphasis role="strong">neurons</emphasis>. A neuron represents a number of ICP tokens that cannot be exchanged for a minimum period of time (the lock-up period).</simpara>
+<simpara>When a person or organization has some number of ICP tokens locked up in a neuron, the neuron holder has the right to vote on governance issues, and to be paid for voting in proportion to the number of ICP locked up and the length of the lock-up period.</simpara>
+<simpara>The Internet Computer tracks the number of ICP tokens that are locked up in neurons and provides the logic necessary for voting in conjunction with managing ICP token account balances.</simpara>
+</section>
+</article>

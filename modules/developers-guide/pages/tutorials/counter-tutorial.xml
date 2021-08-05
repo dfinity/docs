@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Increment a natural number</title>
+<date>2021-08-05</date>
+</info>
+<simpara>In this tutorial, you are going to write a program that creates a single actor and provides a few basic functions to increment a counter and illustrate persistence of a value.</simpara>
+<simpara>For this tutorial, the actor is named <literal>Counter</literal>.
+The program uses the <literal>currentValue</literal> variable to contain a natural number that represents the current value of the counter.
+This program supports the following function calls:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>increment</literal> function call updates the current value, incrementing by 1 (no return value).</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>get</literal> function call queries and returns the current value.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>set</literal> function call updates the current value to an arbitrary numeric value you specify as an argument.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister.
+By calling the function to increment a value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.</simpara>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before starting the tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local
+computer.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial takes approximately 20 minutes to complete.</simpara>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project directory for this tutorial:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new my_counter</programlisting>
+<simpara>The command creates a new <literal>my_counter</literal> project and Git repository for your project.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd my_counter</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_configuration">
+<title>Modify the default configuration</title>
+<simpara>You have already seen that creating a new project adds a default <literal>dfx.json</literal> configuration file to your project directory.
+In this tutorial, you will modify the default settings to use a different name for the main program in your project.</simpara>
+<simpara>To modify the default <literal>dfx.json</literal> configuration file:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> configuration file in a text editor and change the default <literal>main</literal> setting from <literal>main.mo</literal> to <literal>increment_counter.mo</literal>.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="json" linenumbering="unnumbered">"main": "src/my_counter/increment_counter.mo",</programlisting>
+<simpara>For this tutorial, changing the name of the source file from <literal>main.mo</literal> to <literal>increment_counter.mo</literal> simply illustrates how the setting in the <literal>dfx.json</literal> configuration file determines the source file to be compiled.</simpara>
+<simpara>In a more complex application, you might have multiple source files with dependencies that you need to manage using settings in the <literal>dfx.json</literal> configuration file.
+In a scenario like that—with multiple canisters and programs defined in your <literal>dfx.json</literal> file—having multiple files all named <literal>main.mo</literal> might be confusing.</simpara>
+<simpara>You can leave the rest of the default settings as they are.</simpara>
+</listitem>
+<listitem>
+<simpara>Save your change and close the <literal>dfx.json</literal> file to continue.</simpara>
+</listitem>
+<listitem>
+<simpara>Change the name of the main program file in the source code directory to match the name specified in the <literal>dfx.json</literal> configuration file by running the following command</simpara>
+<programlisting language="bash" linenumbering="unnumbered">mv src/my_counter/main.mo src/my_counter/increment_counter.mo</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_program">
+<title>Modify the default program</title>
+<simpara>So far, you have only changed the name of the main program for your project.
+The next step is to modify the code in the <literal>src/my_counter/increment_counter.mo</literal> file to define an actor named <literal>Counter</literal> and implement the <literal>increment</literal>, <literal>get</literal>, and <literal>set</literal> functions.</simpara>
+<simpara>To modify the default template source code:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Open the <literal>src/my_counter/increment_counter.mo</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the <literal>increment_counter.mo</literal> file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in counter-tutorial.adoc - include::example$counter.mo[]</programlisting>
+<simpara>Let&#8217;s take a closer look at this sample program:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You can see that the <literal>currentValue</literal> variable declaration in this example includes the <literal>stable</literal> keyword to indicate the state—the value that can be set, incremented, and retrieved—persists.</simpara>
+<simpara>This keyword ensures that the value for the variable is unchanged when the program is upgraded.</simpara>
+</listitem>
+<listitem>
+<simpara>The declaration for the <literal>currentValue</literal> variable also specifies that its type is a natural (<literal>Nat</literal>) number.</simpara>
+</listitem>
+<listitem>
+<simpara>The program includes two public update methods—the <literal>increment</literal> and <literal>set</literal> functions—and one a query method, in this case, the <literal>get</literal> function.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For more information about stable and flexible variables, see <link xl:href="../../language-guide/upgrades.xml">Stable variables and upgrade methods</link> in the <link xl:href="../../language-guide/motoko.xml"><emphasis>Motoko Programming Language Guide</emphasis></link>.</simpara>
+<simpara>For more information about the differences between a query and an update, see <link xl:href="../concepts/canisters-code.xml#query-calls">query calls</link> in <link xl:href="../concepts/canisters-code.xml#canister-state">Canisters include both program and state</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_start_the_local_network">
+<title>Start the local network</title>
+<simpara>Before you can build the <literal>my_counter</literal> project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>Starting the network locally requires a <literal>dfx.json</literal> file, so you should be sure you are in your project&#8217;s root directory.
+For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You should now have <emphasis role="strong">two terminals</emphasis> open.</simpara>
+</listitem>
+<listitem>
+<simpara>You should have the <emphasis role="strong">project directory</emphasis> as your <emphasis role="strong">current working directory</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start</programlisting>
+<simpara>After you start the local network, the terminal displays messages about network operations.</simpara>
+</listitem>
+<listitem>
+<simpara>Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_build_and_deploy_the_application">
+<title>Register, build, and deploy the application</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.</simpara>
+<simpara>To deploy the application locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy your application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy</programlisting>
+<simpara>The <literal>dfx deploy</literal> command output displays information about the operations it performs.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_invoke_methods_on_the_deployed_canister">
+<title>Invoke methods on the deployed canister</title>
+<simpara>After successfully deploying the canister, you can simulate an end-user invoking the methods provided by the canister.
+For this tutorial, you invoke a <literal>get</literal> method to query the value of a counter, an <literal>increment</literal> method that increments the counter each time it is called, and a <literal>set</literal> method to pass an argument to update the counter to an arbitrary value you specify.</simpara>
+<simpara>To test invoking methods on the deployed canister:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Run the following command to invoke the <literal>get</literal> function, which reads the current value of the <literal>currentValue</literal> variable on the deployed canister:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call my_counter get</programlisting>
+<simpara>The command returns the current value of the <literal>currentValue</literal> variable as zero:</simpara>
+<literallayout class="monospaced">(0)</literallayout>
+</listitem>
+<listitem>
+<simpara>Run the following command to invoke the <literal>increment</literal> function to increment the value of the <literal>currentValue</literal> variable on the deployed canister by one:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call my_counter increment</programlisting>
+<simpara>This command increments the value of the variable—changing its state—but does not return the result.</simpara>
+</listitem>
+<listitem>
+<simpara>Rerun the following command to get the current value of the <literal>currentValue</literal> variable on the deployed canister:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call my_counter get</programlisting>
+<simpara>The command returns the updated value of the <literal>currentValue</literal> variable as one:</simpara>
+<literallayout class="monospaced">(1)</literallayout>
+</listitem>
+<listitem>
+<simpara>Run additional commands to experiment with invoking other methods and using different values.</simpara>
+<simpara>For example, try commands similar to the following to set and return the counter value:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call my_counter set '(987)'
+dfx canister call my_counter get</programlisting>
+<simpara>Returns the current value of 987.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call my_counter increment
+dfx canister call my_counter get</programlisting>
+<simpara>Returns the incremented value of 988.</simpara>
+</listitem>
+</orderedlist>
+<simpara>Unresolved directive in counter-tutorial.adoc - include::example$candid-ui.adoc[]</simpara>
+<simpara>+
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="candid-counter.png"/>
+</imageobject>
+<textobject><phrase>Counter functions</phrase></textobject>
+</inlinemediaobject></simpara>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

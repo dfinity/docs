@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Add a stylesheet</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Cascading stylesheets represent one of the most common ways to customize the user experience for an application.
+This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project.
+If you already know how to add cascading stylesheets (CSS) to a React-based project, you can skip this tutorial.</simpara>
+<note>
+<simpara>This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
+Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see <link xl:href="https://reactjs.org/docs/getting-started.html">Getting started</link> on the <link xl:href="https://reactjs.org/">React website</link>.</simpara>
+</note>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before starting the tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have <literal>node.js</literal> installed for front-end development and can install packages using <literal>npm install</literal> in your project.
+For information about installing node for your local operating system and package manager, see the <link xl:href="https://nodejs.org/en/">Node</link> website.</simpara>
+</listitem>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have installed the Visual Studio Code plugin for Motoko as described in <link xl:href="../../quickstart/local-quickstart.xml#install-vscode">Install the language editor plug-in</link> if you are using Visual Studio Code as your IDE.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local
+computer.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>Because of significant changes to the handling of HTTP requests and front-end assets, this tutorial requires you to use the {sdk-short-name} version <literal>0.7.0</literal> or later. For an overview of what&#8217;s changed, see this <link xl:href="../../http-middleware.xml">article</link>.</simpara>
+</note>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project directory for your custom front-end application:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify that you have <literal>node.js</literal> installed locally, if necessary.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new contacts</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd contacts</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_install_the_react_framework">
+<title>Install the React framework</title>
+<simpara>if you&#8217;ve never used React before, you might want to explore the <link xl:href="https://reactjs.org/tutorial/tutorial.html">Intro to React</link> tutorial or the <link xl:href="https://reactjs.org/">React website</link> before editing the front-end code.</simpara>
+<simpara>To install required framework modules:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Install the React module by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm install --save react react-dom</programlisting>
+</listitem>
+<listitem>
+<simpara>Install the required TypeScript language compiler loader by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm install --save-dev typescript ts-loader</programlisting>
+</listitem>
+<listitem>
+<simpara>Install the required style loaders by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm install --save-dev style-loader css-loader</programlisting>
+<simpara>If the <literal>npm install</literal> command reports a vulnerability, you might also want to run the <literal>npm audit fix</literal> command to attempt to fix the vulnerability reported before continuing.</simpara>
+<note>
+<simpara>As an alternative to installing these modules, you can edit the default <literal>package.json</literal> file to add dependencies for your project.</simpara>
+</note>
+<literallayout class="monospaced">Unresolved directive in my-contacts.adoc - include::example$add-stylesheet-package.json[]</literallayout>
+<simpara>The version of the JavaScript agent in this example <literal>package.json</literal> file is <literal>0.9.2</literal>. In most cases, however, you would want to use the latest version of the agent available. When you create a new project, the <literal>dfx new</literal> command automatically retrieves the latest version of the JavaScript agent for you. You can also manually retrieve the latest version after creating a project by running the <literal>npm install --save @dfinity/agent</literal> command.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_program">
+<title>Modify the default program</title>
+<simpara>For this tutorial, you are going to modify the main program to with code that allows you to store and look up contact information.</simpara>
+<simpara>To modify the default program:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>src/contacts/main.mo</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in my-contacts.adoc - include::example$mycontacts/contacts.mo[]</programlisting>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the <literal>main.mo</literal> file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_front_end_files">
+<title>Modify the front-end files</title>
+<simpara>You are now ready to create a new front-end for your program.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the webpack configuration file (<literal>webpack.config.js</literal>) in a text editor.</simpara>
+</listitem>
+<listitem>
+<simpara>Modify the front-end entry to replace the default index.html with index.jsx.</simpara>
+<programlisting language="js" linenumbering="unnumbered">entry: {
+  // The frontend.entrypoint points to the HTML file for this build, so we need
+  // to replace the extension to `.js`.
+  index: path.join(__dirname, asset_entry).replace(/\.html$/, ".jsx"),
+},</programlisting>
+</listitem>
+<listitem>
+<simpara>Locate the commented example for the <literal>module</literal> key above the <literal>plugins</literal> section, then uncomment the following lines:</simpara>
+<programlisting language="js" linenumbering="unnumbered">module: {
+  rules: [
+    { test: /\.(js|ts)x?$/, loader: "ts-loader" },
+    { test: /\.css$/, use: ['style-loader','css-loader'] }
+  ]
+},</programlisting>
+<simpara>These settings enable your program to use the <literal>ts-loader</literal> compiler and to import CSS files.</simpara>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the <literal>webpack.config.js</literal> file to continue.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new file named <literal>tsconfig.json</literal> in the root directory for your project.</simpara>
+</listitem>
+<listitem>
+<simpara>Open the <literal>tsconfig.json</literal> file in a text editor, then copy and paste the following into the file:</simpara>
+<programlisting language="json" linenumbering="unnumbered">Unresolved directive in my-contacts.adoc - include::example$sample-tsconfig.json[]</programlisting>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the <literal>tsconfig.json</literal> file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_add_a_stylesheet_to_your_project">
+<title>Add a stylesheet to your project</title>
+<simpara>You are now ready to create a new cascading stylesheet and add it to your project.</simpara>
+<simpara>To add a stylesheet:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Change to the <literal>src/contacts_assets/assets</literal> directory.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd src/contacts_assets/assets/</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the <literal>main.css</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Define some style properties for the front-end.</simpara>
+<simpara>For example, copy and paste the following sample styles into the file:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">Unresolved directive in my-contacts.adoc - include::example$mycontacts/mycontacts.css[]</programlisting>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the <literal>main.css</literal> file to continue.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the <literal>src/contacts_assets/src</literal> directory.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd ../src</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the default <literal>index.js</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the <literal>index.js</literal> file:</simpara>
+<programlisting language="react" linenumbering="unnumbered">Unresolved directive in my-contacts.adoc - include::example$mycontacts/mod-index.jsx[]</programlisting>
+</listitem>
+<listitem>
+<simpara>Rename the modified <literal>index.js</literal> file as <literal>index.jsx</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">mv index.js index.jsx</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the default <literal>src/contacts_assets/src/index.html</literal> file in a text editor, then replace <literal>main.css</literal> as the stylesheet file name with <literal>mycontacts.css</literal> and update the <literal>body</literal> contents with <literal>&lt;div id="contacts"&gt;&lt;/div&gt;</literal>.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width" /&gt;
+    &lt;title&gt;contacts&lt;/title&gt;
+    &lt;base href="/" /&gt;
+
+    &lt;link type="text/css" rel="stylesheet" href="main.css" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;main&gt;
+      &lt;div id="contacts"&gt;&lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</programlisting>
+</listitem>
+<listitem>
+<simpara>Navigate back to the root of your project directory.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd ../../..</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_start_the_local_network">
+<title>Start the local network</title>
+<simpara>Before you can build the <literal>contacts</literal> project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --background</programlisting>
+<simpara>After the local Internet Computer network completes its startup operations, you can continue to the next step.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_build_and_deploy_the_application">
+<title>Register, build, and deploy the application</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.</simpara>
+<simpara>To deploy the application:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy your application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy</programlisting>
+<simpara>The <literal>dfx deploy</literal> command output displays information about the operations it performs.</simpara>
+<simpara>Keep in mind that because you are running the Internet Computer locally, the identifiers displayed when you run the <literal>dfx deploy</literal> command are only valid on the local network.</simpara>
+<simpara>To deploy canisters on an external Internet Computer network, you must connect to that network using the <literal>--network</literal> command-line option and a specific network name or address to register identifiers on that network.
+For example, to deploy on the Internet Computer using the reserve network alias <literal>ic</literal>, you would run a command similar the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy --network=ic</programlisting>
+</listitem>
+<listitem>
+<simpara>Start the Webpack development server:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm start</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_view_the_front_end">
+<title>View the front-end</title>
+<simpara>You can now access the front-end for the <literal>contacts</literal> program by entering the canister identifier for the assets canister in a browser.</simpara>
+<simpara>To view the front-end:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser and navigate to the <literal><link xl:href="http://localhost:8080">http://localhost:8080</link></literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify that you are prompted with a <emphasis role="strong">My Contacts</emphasis> form.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="mycontacts-form.png"/>
+</imageobject>
+<textobject><phrase>Sample front-end</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Create one or more test records by entering text in the Name, Address, and Email input fields and a number in the Phone input field, then clicking <emphasis role="strong">Add Contact</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Clear the form fields and type a contact name in the Lookup name field, then click <emphasis role="strong">Lookup</emphasis> to see the stored contact information.</simpara>
+<simpara>Keep in mind that the <emphasis role="strong">Lookup name</emphasis> you type must be an exact match for the name of a contact you added.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_stylesheet_and_test_your_changes">
+<title>Modify the stylesheet and test your changes</title>
+<simpara>After viewing the Contacts application, you might want to make some changes.</simpara>
+<simpara>To change stylesheet properties:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>src/contacts_assets/public/mycontacts.css</literal> file in a text editor and modify its style settings.</simpara>
+<simpara>For example, you might want to change the background color or style the input form.</simpara>
+<simpara>You should see the changes update immediately in your open browser window.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_front_end_or_back_end_code">
+<title>Modify the front-end or back-end code</title>
+<simpara>If you want to explore further, you might want to experiment with modifying the front-end or back-end code for this tutorial.
+For example, you might want try modifying the tutorial to do the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Change the front-end code to clear the input fields after adding a new contact, for example, as part of an <literal>onClick</literal> event.</simpara>
+</listitem>
+<listitem>
+<simpara>Change the Motoko program functions to do partial instead of exact string matching on the <literal>Name</literal> field. (You will need to run <literal>dfx deploy</literal> to test your changes on the local replica)</simpara>
+</listitem>
+<listitem>
+<simpara>Change the Motoko program to allow lookups based on a different field.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays your webpack dev server, press Control-C to interrupt the development server.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

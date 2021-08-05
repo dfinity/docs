@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx deploy</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx deploy</literal> command to register, build, and deploy an application locally or on a specified network.
+By default, all canisters defined in the project <literal>dfx.json</literal> configuration file are deployed.</simpara>
+<simpara>This command simplifies the developer workflow by enabling you to run one command instead of running the following commands as separate steps:</simpara>
+<literallayout class="monospaced">dfx canister create --all
+dfx build
+dfx canister install --all</literallayout>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy [flag] [option] [canister_name]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx deploy</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can use the following options with the <literal>dfx deploy</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--network &lt;network&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Overrides the network to connect to.
+By default, the local network is used.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--argument &lt;argument&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies an argument using Candid syntax to pass to the canister during deployment.
+Note that this option requires you to define an actor class in the {proglang} program.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--with-cycles &lt;number-of-cycles&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Enables you to specify the initial number of cycles for a canister in a project.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You can specify the following arguments for the <literal>dfx deploy</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="153*"/>
+<colspec colname="col_2" colwidth="272*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister you want to register, build, and deploy.
+Note that the canister name you specify must match at least one name in the <literal>canisters</literal> section of the <literal>dfx.json</literal> configuration file for the project.
+If you don&#8217;t specify a canister name, <literal>dfx deploy</literal> will deploy all canisters defined in the <literal>dfx.json</literal> file.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx deploy</literal> command to deploy all or specific canisters locally or on a specified network.</simpara>
+<simpara>For example, to deploy the <literal>hello</literal> project on the <literal>ic-pubs</literal> network provider configured in the <literal>dfx.json</literal> configuration file, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy hello --network ic-pubs</programlisting>
+<simpara>To deploy a project locally and pass a single argument to the installation step, you can run a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy hello_actor_class --argument '("from DFINITY")'</programlisting>
+<simpara>Note that currently you must use an actor class in your {proglang} program.
+In this example, the <literal>dfx deploy</literal> command specifies an argument to pass to the <literal>hello_actor_class</literal> canister.
+The main program for the <literal>hello_actor_class</literal> canister looks like this:</simpara>
+<literallayout class="monospaced">actor class Greet(name: Text) {
+    public query func greet() : async Text {
+        return "Hello, " # name # "!";
+    };
+};</literallayout>
+<simpara>You can use the <literal>dfx deploy</literal> command with the <literal>--with-cycles</literal> option to specify the initial balance of a canister created by your wallet. If you don&#8217;t specify a canister, the number of cycles you specify will be added to all canisters by default. To avoid this, specify a specific canister by name. For example, to add an initial balance of 8000000000000 cycles to a canister called "hello-assets", run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy --with-cycles 8000000000000 hello-assets</programlisting>
+</section>
+</article>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.6.20</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.6.20 release has both user-facing and internal enhancements, including fixes and updates to Motoko, the Motoko base library, and Candid.</simpara>
+<section xml:id="_new_features_and_capabilities">
+<title>New features and capabilities</title>
+<simpara>The most significant new features and capabilities include updates in the following functional areas:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="_dfx">DFX</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="_candid">Candid</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="_motoko">Motoko</link></simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_dfx">
+<title>DFX</title>
+<itemizedlist>
+<listitem>
+<simpara>A new notification message that the DFINITY Canister SDK sends anonymous usage data to DFINITY Stiftung by
+default has been added to <literal>dfx</literal> commands.
+The notification message is only displayed once, the first time you run any <literal>dfx</literal> subcommand.
+For example, the first time you run <literal>dfx new</literal> to create a new project, the notification is displayed before any other project creation messages.</simpara>
+<simpara>The purpose of this notification is to inform you that <literal>dfx</literal> is configured to collect anonymous information about <literal>dfx</literal> command activity and errors.
+Collecting anonymous data is enabled by default in an effort to improve the developer experience based on usage patterns and behavior.</simpara>
+<simpara>If you want to prevent the collection of data about <literal>dfx</literal> usage, you can explicitly opt-out by setting the following environment
+variable:</simpara>
+<literallayout class="monospaced">DFX_TELEMETRY_DISABLED=1</literallayout>
+<simpara>To find out more about the data collected and what your consent means, see the DFINITY Canister SDK <link xl:href="https://sdk.dfinity.org/sdk-license-agreement.txt">Terms and Conditions</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>dfx</literal> commands that support the <literal>--network</literal> option have been updated to support URLs when specifying the network value.</simpara>
+<simpara>Previously, the <literal>--network</literal> option required you to specify a network name that matched a network aliases configured in the project&#8217;s <literal>dfx.json</literal> file.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_candid">
+<title>Candid</title>
+<simpara>The Candid web interface has been updated to provide easier navigation and a better user experience.
+The updates to the Candid web interface include the following new features and improvements:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>A new Console drawer provides quick access to method output and a list of all available methods as links for fast navigation.</simpara>
+</listitem>
+<listitem>
+<simpara>Canister methods and their related form elements are more clearly separated and annotated.</simpara>
+</listitem>
+<listitem>
+<simpara>Method output is selectable and easier to toggle between text, UI, and JSON formats.</simpara>
+</listitem>
+<listitem>
+<simpara>The layout is now responsive to provide an optimized display when viewing service using mobile devices or other media.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_motoko">
+<title>Motoko</title>
+<itemizedlist>
+<listitem>
+<simpara>The Motoko base documentation examples are now executable in the browser.</simpara>
+</listitem>
+<listitem>
+<simpara>The Motoko compiler supports specifying command-line arguments using <literal>--args &lt;file&gt;</literal> and <literal>--args0 &lt;file&gt;</literal>.</simpara>
+<simpara>The new options enable the compiler to read newline and NUL terminated arguments from a specified file name.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="_issues_fixed_in_this_release">
+<title>Issues fixed in this release</title>
+<simpara>This section covers any reported issues that have been fixed in this release.</simpara>
+</section>
+<section xml:id="_known_issues_and_limitations">
+<title>Known issues and limitations</title>
+<simpara>This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.</simpara>
+</section>
+</article>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Operators</title>
+<date>2021-05-09</date>
+</info>
+<section xml:id="_operators">
+<title>Operators</title>
+<simpara>Welcome to the documentation for node providers and data center operators.</simpara>
+</section>
+</article>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Local development</title>
+<date>2021-08-05</date>
+</info>
+<simpara xml:id="quick-start-intro">This <emphasis>Quick Start</emphasis> scenario assumes that you are installing the {sdk-short-name} for the first time and are running the Internet Computer as part of your <emphasis role="strong">local development environment</emphasis>.</simpara>
+<simpara>To get started, let&#8217;s build and deploy a simple Hello application that has just one function—called <literal>greet</literal>. The <literal>greet</literal> function accepts one text argument and returns the result with a greeting similar to <emphasis role="strong">Hello,&#160;everyone!</emphasis> in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.</simpara>
+<section xml:id="before-you-begin">
+<title>Before you begin</title>
+<simpara>Before you download and install this release of the {sdk-short-name}, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have an internet connection and access to a shell terminal on your local <emphasis role="strong">macOS</emphasis> or <emphasis role="strong">Linux</emphasis> computer.</simpara>
+<simpara>Currently, the {sdk-short-name} only runs on computers with a macOS or Linux operating system.</simpara>
+</listitem>
+<listitem>
+<simpara>You have <literal>node.js</literal> installed if you want to include the default template files for front-end development in your project.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial assumes you know how to perform common tasks—like opening a terminal and running commands—on your computer.
+If you aren’t sure how to open a new terminal shell on your local computer or how to install <literal>node.js</literal>, see <link xl:href="newcomers.xml">Preliminary steps for newcomers</link>.
+If you are comfortable meeting the prerequisites without instructions, continue to <xref linkend="download-and-install"/>.</simpara>
+</section>
+<section xml:id="download-and-install">
+<title>Download and install</title>
+<simpara>You can download the latest version of the {sdk-long-name} directly from within a terminal shell on your local computer.</simpara>
+<simpara>To download and install:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer.</simpara>
+<simpara>For example, open Applications, Utilities, then double-click <emphasis role="strong">Terminal</emphasis> or press <keycombo><keycap>&#8984;</keycap><keycap>spacebar</keycap></keycombo> to open Search, then type <literal>terminal</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Download and install the {sdk-short-name} package by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"</programlisting>
+<simpara>This command prompts you to read and accept the license agreement before installing the DFINITY execution command-line interface (CLI) and its dependencies on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Type <literal>y</literal> and press <keycap>Return</keycap> to continue with the installation.</simpara>
+<simpara>The command displays information about the components being installed on the local computer.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="verify-the-sdk-is-ready-to-use">
+<title>Verify the SDK is ready to use</title>
+<simpara>If the installation script runs without any errors, everything you need to start developing programs that run on the {platform} will be available on your local computer.</simpara>
+<simpara>To verify the SDK is ready to use:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Check that you have the DFINITY execution command-line interface (CLI) installed and the <literal>dfx</literal> executable is available in your PATH by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --version</programlisting>
+<simpara>The command displays version information for the <literal>dfx</literal> command-line executable similar to the following:</simpara>
+<literallayout class="monospaced">dfx 0.8.0</literallayout>
+</listitem>
+<listitem>
+<simpara>Preview usage information for the other <literal>dfx</literal> command-line sub-commands by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --help</programlisting>
+<simpara>The command displays usage information for the <literal>dfx</literal> parent command and its subcommands.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="create-a-new-project">
+<title>Create a new project</title>
+<simpara>Applications for the Internet Computer start as <emphasis role="strong">projects</emphasis>.
+You create projects using the <literal>dfx</literal> parent command and its subcommands.</simpara>
+<simpara>For this tutorial, we&#8217;ll start with the default sample application to illustrate creating an application using the starter files in a project.
+When you create a new project, the <literal>dfx</literal> command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the <link xl:href="../developers-guide/tutorials/explore-templates.xml">Explore the default project</link> tutorial.</simpara>
+<simpara>To create a new project for your first application:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project named <literal>hello</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new hello</programlisting>
+<simpara>The <literal>dfx new hello</literal> command creates a new <literal>hello</literal> project directory, template files, and a new <literal>hello</literal> Git repository for your project.</simpara>
+<simpara>If you use a different project name instead of <literal>hello</literal>, make note of the name you used. You&#8217;ll need to use that project name in place of the <literal>hello</literal> project name throughout these instructions.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd hello</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="start-the-local-network">
+<title>Start the local network</title>
+<simpara>Before you can build your first project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>These instructions assume you are running the Internet Computer locally. If you are connecting to an external Internet Computer network, you can skip this section.</simpara>
+<simpara>As a best practice, this step requires you to have <emphasis role="strong">two terminal shells</emphasis> open, so that you can start and see network operations in one terminal and manage your project in another.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new second terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+<simpara>You should now have <emphasis role="strong">two terminals</emphasis> open with your <emphasis role="strong">project directory</emphasis> as your <emphasis role="strong">current working directory</emphasis> in both terminals.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer in your second terminal by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start</programlisting>
+<simpara>Depending on your platform and local security settings, you might see a warning displayed.
+If you are prompted to allow or deny incoming network connections, click <emphasis role="strong">Allow</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Leave the terminal window that displays network operations open and switch your focus to the first terminal window where you created your new project.</simpara>
+<simpara>You perform the remaining steps in the terminal that doesn&#8217;t display network operations.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="register-ids">
+<title>Register, build, and deploy the application</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.</simpara>
+<simpara>To deploy your first application locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Ensure that <literal>node</literal> modules are available in your project directory, if needed, by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm install</programlisting>
+<simpara>For more information about this step, see <link xl:href="../developers-guide/webpack-config.xml#troubleshoot-node">Ensuring node is available in a project</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy your first application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy</programlisting>
+<simpara>The <literal>dfx deploy</literal> command output displays information about the operations it performs.
+For example, this step registers two network-specific identifiers—one for the <literal>hello</literal> main program and one for the <literal>hello_assets</literal> front-end user interface—and installation information similar to the following:</simpara>
+<literallayout class="monospaced">Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Deploying all canisters.
+Creating canisters...
+Creating canister "hello"...
+"hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Creating canister "hello_assets"...
+"hello_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
+Building canisters...
+Building frontend...
+Installing canisters...
+Creating UI canister on the local network.
+The UI canister on the "local" network is "r7inp-6aaaa-aaaaa-aaabq-cai"
+Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+Authorizing our identity (default) to the asset canister...
+Uploading assets to asset canister...
+  /index.html 1/1 (573 bytes)
+  /index.html (gzip) 1/1 (342 bytes)
+  /index.js 1/1 (605692 bytes)
+  /index.js (gzip) 1/1 (143882 bytes)
+  /main.css 1/1 (484 bytes)
+  /main.css (gzip) 1/1 (263 bytes)
+  /sample-asset.txt 1/1 (24 bytes)
+  /logo.png 1/1 (25397 bytes)
+  /index.js.map 1/1 (649485 bytes)
+  /index.js.map (gzip) 1/1 (149014 bytes)
+Deployed canisters.</literallayout>
+<simpara>If you created a project with a different name, however, your canister names will match your project name instead of <literal>hello</literal> and <literal>hello_assets</literal>.</simpara>
+<simpara>You should also note that the <emphasis role="strong">first time you deploy</emphasis>, <literal>dfx</literal> creates a <literal>default</literal> identity and a local cycle wallet controlled by your <literal>default</literal> identity.
+A cycles wallet is a special type of canister that enables you to transfer <link xl:href="../developers-guide/concepts/tokens-cycles.xml">cycles</link> to other canisters.</simpara>
+<simpara><emphasis role="strong">To deploy this sample application locally</emphasis>, you don&#8217;t need to know anything about your default developer identity, using a cycles wallet, or managing cycles. We&#8217;ll cover these topics later, but for now, just note that these are created for you automatically.</simpara>
+</listitem>
+<listitem>
+<simpara>Call the <literal>hello</literal> canister and the predefined <literal>greet</literal> function by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call hello greet everyone</programlisting>
+<simpara>Let&#8217;s take a closer look at this example command:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>dfx canister call</literal> command requires you to specify a canister name and a method—or function—to call.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>hello</literal> specifies the name of the <emphasis role="strong">canister</emphasis> you want to call.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>greet</literal> specifies the name of the <emphasis role="strong">function</emphasis> you want to call in the <literal>hello</literal> canister.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>everyone</literal> is the text data type argument that you want to pass to the <literal>greet</literal> function.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Remember, however, that if you created a project with a different name, the canister name will match your project name and you&#8217;ll need to modify the command line to match the name you used instead of <literal>hello</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify the command displays the return value of the <literal>greet</literal> function.</simpara>
+<simpara>For example:</simpara>
+<literallayout class="monospaced">("Hello, everyone!")</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="quickstart-frontend">
+<title>Test the application front-end</title>
+<simpara>Now that you have verified that your application has been deployed and tested its operation using the command line, let&#8217;s verify that you can access the front-end using your web browser.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Start the development server with <literal>npm start</literal></simpara>
+</listitem>
+<listitem>
+<simpara>Open a browser.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to <link xl:href="http://localhost:8080/">http://localhost:8080/</link></simpara>
+</listitem>
+</orderedlist>
+<simpara>Navigating to this URL displays a simple HTML page with a sample asset image file, an input field, and a button.
+For example:</simpara>
+<simpara>+
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="front-end-prompt.png"/>
+</imageobject>
+<textobject><phrase>Sample HTML page</phrase></textobject>
+</inlinemediaobject></simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Type a greeting, then click <emphasis role="strong">Click Me</emphasis> to return the greeting.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="front-end-result.png" contentwidth="everyone! greeting"/>
+</imageobject>
+<textobject><phrase>Hello</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After testing the application in the browser, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays development server, press Control-C to interrupt the development server process.</simpara>
+</listitem>
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the local Internet Computer network running on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="next-steps">
+<title>Next steps</title>
+<simpara>This <emphasis>Quick Start</emphasis> touched on only a few key steps to introduce the basic workflow for developing programs of your own.
+You can find more detailed examples and tutorials to help you learn about how to use Motoko and how to develop applications to run on the Internet Computer throughout the documentation.</simpara>
+<simpara>Here are some suggestions for where to go next:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="../developers-guide/tutorials-intro.xml">Tutorials</link> to explore building simple applications using a local development environment.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="network-quickstart.xml#convert-icp">Convert ICP tokens to cycles</link> if you have ICP tokens that you want to convert to cycles to enable you to deploy applications to the Internet Computer network.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="network-quickstart.xml">Network deployment</link> if you have cycles and are ready to deploy an application to the Internet Computer network.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../candid-guide/candid-concepts.xml">What is Candid?</link> to learn how the Candid interface description language enables service interoperability and composability.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../languages/motoko-at-a-glance.xml">Motoko at-a-glance</link> to learn about the features and syntax for using Motoko.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

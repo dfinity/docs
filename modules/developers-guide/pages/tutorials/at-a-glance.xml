@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>At a glance</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The <link xl:href="../../quickstart/quickstart-intro.xml">Quick start</link> provides a fast path to deploying a simple default application without stopping to admire the scenery along the way.
+Individual <link xl:href="../tutorials-intro.xml">tutorials</link> walk through specific scenarios, pointing out details about what you&#8217;re doing in each step.</simpara>
+<simpara>If the quick start and tutorials aren’t quite your style, this at-a-glance cheat sheet summarizes the steps to follow for quick reference.</simpara>
+<simpara>After you install the {sdk-short-name}, here&#8217;s all you need to know:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Create a new project and change to the project directory.</simpara>
+<literallayout class="monospaced">dfx new &lt;project_name&gt; &amp;&amp; cd &lt;project_name&gt;&gt;</literallayout>
+</listitem>
+<listitem>
+<simpara>Edit the back-end that defines your service or application.</simpara>
+</listitem>
+<listitem>
+<simpara>Edit the HTML, JavaScript, and CSS that provides the front-end for your service or application.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer for local development or check your connection to the Internet Computer for network deployment.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy locally or on the network.</simpara>
+<literallayout class="monospaced">dfx deploy --network &lt;network&gt;</literallayout>
+</listitem>
+<listitem>
+<simpara>View your service or application in a browser.</simpara>
+</listitem>
+</orderedlist>
+</article>

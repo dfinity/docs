@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Network nervous system application quick start</title>
+<date>2021-08-05</date>
+</info>
+<simpara>As a decentralized blockchain, all changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS).
+The NNS controls all aspects of the Internet Computer network configuration and is responsible for performing many network management operations. For example, the Network Nervous System (NNS) is responsible for:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Upgrading the protocol and guest operating system software used by the nodes that provide computing capacity to the network.</simpara>
+</listitem>
+<listitem>
+<simpara>Inducting new node operators and machines into the network.</simpara>
+</listitem>
+<listitem>
+<simpara>Creating new subnets to increase network capacity.</simpara>
+</listitem>
+<listitem>
+<simpara>Splitting subnets to balance network load.</simpara>
+</listitem>
+<listitem>
+<simpara>Configuring parameters that control how much must be paid by users for compute capacity.</simpara>
+</listitem>
+<listitem>
+<simpara>Monitoring canister activity and node performance for
+malicious behavior and statistical deviations.</simpara>
+</listitem>
+<listitem>
+<simpara>De-activating malicious software or under-performing nodes to protect the network.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The requests for changes and updates to the network are submitted to the NNS in the form of <emphasis role="strong">proposals</emphasis>.
+The NNS decides to adopt or reject proposals based on voting activity by certain network participants.</simpara>
+<section xml:id="_what_are_neurons">
+<title>What are neurons?</title>
+<simpara>For network participants to be able to vote on proposals, they need to lock up a stake of ICP tokens for a given period of time to create a representative called a <emphasis role="strong">neuron</emphasis>.</simpara>
+<simpara>Because neurons represent a stake of ICP tokens, they also represent an identity with a <emphasis role="strong">ledger canister account</emphasis> and a principal that controls the ledger account.</simpara>
+<simpara>Neurons provide the stability required for responsible governance of the Internet Computer by ensuring that the ICP tokens they represent cannot be exchanged for a specific period of time referred to as the <emphasis role="strong">lock-up</emphasis> period.</simpara>
+<simpara>The following diagram provides a simplified view of the workflow for creating a neuron and the relationship between the neuron and ledger canisters.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="create-dissolve-neuron-api.svg"/>
+</imageobject>
+<textobject><phrase>create dissolve neuron api</phrase></textobject>
+</inlinemediaobject></simpara>
+<section xml:id="_governance_and_voting_rewards">
+<title>Governance and voting rewards</title>
+<simpara>When a person or organization has ICP tokens locked up in a neuron, the neuron holder can propose and vote on governance issues.
+To encourage participation, neuron holders are also paid for voting in proportion to the number of ICP tokens they have locked up and the length of the lock-up period up to a maximum of eight years.</simpara>
+<simpara>The incentive paid to neuron holders for voting is called a voting <emphasis role="strong">reward</emphasis>.</simpara>
+</section>
+<section xml:id="_unlocking_the_stake_held_by_a_neuron">
+<title>Unlocking the stake held by a neuron</title>
+<simpara>After network participants create a neuron, the locked balance of ICP tokens can only be unlocked by fully <emphasis role="strong">dissolving</emphasis> the neuron.
+In its <emphasis role="strong">locked</emphasis> state, the neuron has a fixed non-zero <emphasis role="strong">dissolve delay</emphasis> equivalent to the lock-up period.
+For example, assume you have a stake of 100 ICP tokens locked up for a period of five years.
+After successfully created the neuron with these settings, your dissolve delay is five years.</simpara>
+<simpara>Based on the dissolve delay that decreases as time progresses, a <emphasis role="strong">dissolve timer</emphasis> determines how long it will take to completely dissolve a neuron.</simpara>
+<simpara>When the dissolve timer reaches zero, the neuron owner—the ICP token holder who created the neuron or an authenticated custodian—can dissolve the neuron and unlock the balance of ICP tokens.</simpara>
+<simpara>The dissolved neuron ceases to exist and the stake of ICP tokens that the neuron represented is released to the appropriate ledger canister account.</simpara>
+</section>
+</section>
+<section xml:id="_connect_to_the_internet_computer">
+<title>Connect to the Internet Computer</title>
+<simpara>To connect to the Internet Computer using the Network Nervous System (NNS) application:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser and navigate to the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Login</emphasis> to connect to <link xl:href="https://identity.ic0.app">Internet Identity</link>.</simpara>
+<simpara>If you haven&#8217;t previously registered and received an identification number, you can click <emphasis role="strong">Register with Internet Identity</emphasis> to register.</simpara>
+<note>
+<simpara>We strongly recommend you add multiple devices and authentication methods to your Internet Identity. For example, register multiple physical devices like your computer and phone with a security key and using the authentication options that those devices—and browsers running on them—support.</simpara>
+</note>
+<simpara>For more information about creating an Internet Identity, see <link xl:href="../ic-identity-guide/auth-how-to.xml">How to use Internet Identity</link>.</simpara>
+<simpara>After you have registered, you can click <emphasis role="strong">Login</emphasis> to authenticate using your identification number and the authentication method—for example, a security key or fingerprint—you have registered.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Proceed</emphasis> to access to the Network Nervous System (NNS) application.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_add_an_account">
+<title>Add an account</title>
+<simpara>Logging on using an Internet Identity creates a Main account for you in the Internet Computer ledger.
+If your ICP tokens are associated with your developer identity—that is, the identity created by the {sdk-short-name} <literal>dfx</literal> command-line interface—your Main account displays 0.00 for your ICP token balance.
+For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="nns-app-main.png"/>
+</imageobject>
+<textobject><phrase>nns app main</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>Before transferring any tokens, you can create one or more linked subaccounts or attach a hardware wallet to your account.</simpara>
+<simpara>To add an account for managing ICP tokens:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser and navigate to the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Login</emphasis> to connect using your Internet Identity.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify your identification number, then click <emphasis role="strong">Login</emphasis> to authenticate using the device and authentication method you have registered.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Proceed</emphasis> to access to the Network Nervous System (NNS) application.</simpara>
+</listitem>
+<listitem>
+<simpara>On the default ICP tab, click <emphasis role="strong">Add Account</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the type of account to add.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">New Linked Account</emphasis> creates a new subaccount linked to your Main account address in the ledger.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Attach Hardware Wallet</emphasis> adds a hardware wallet to your main account address in the ledger. (Support for the Ledger Nano hardware wallet is coming soon, but not available yet.)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">New Linked Account</emphasis>, type an Account Name, then click <emphasis role="strong">Create</emphasis>.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="new-linked-account.png"/>
+</imageobject>
+<textobject><phrase>new linked account</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_transfer_icp_tokens_between_accounts">
+<title>Transfer ICP tokens between accounts</title>
+<simpara>If you have selected self-custody for holding your ICP tokens and the tokens are associated with your developer identity instead of your registered Internet Identity, you need to transfer ICP tokens to your accounts if you want to manage them using the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+<simpara>To transfer ICP tokens controlled by your developer identity:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Check that you are using an identity with control over the ledger account by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity whoami</programlisting>
+<simpara>In most cases, you should see that you are currently using your <literal>default</literal> developer identity.
+For example:</simpara>
+<literallayout class="monospaced">default</literallayout>
+</listitem>
+<listitem>
+<simpara>View the textual representation of the principal for your current identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity get-principal</programlisting>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe</literallayout>
+<simpara>Note that this identifier should be the same as the identifier you specified in the Know Your Customer (KYC) process if you were required to pass KYC verification to receive your ICP tokens.</simpara>
+</listitem>
+<listitem>
+<simpara>Check the current balance in the ledger account associated with your identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic balance</programlisting>
+</listitem>
+<listitem>
+<simpara>Transfer ICP tokens to your Main account or a linked subaccount you create by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic transfer &lt;destination-account-id&gt; --icp &lt;ICP-amount&gt; --memo &lt;numeric-memo&gt;</programlisting>
+<simpara>For example, assume you have the following accounts:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="accounts.png"/>
+</imageobject>
+<textobject><phrase>accounts</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>If you want to transfer one ICP token to the <literal>Main</literal> account, you can run the following command:</simpara>
+<literallayout class="monospaced">dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb85b9b9850bd60766f --memo 12345 --icp 1</literallayout>
+<simpara>If you also want to transfer one ICP token to the <literal>pubs</literal> account, you can run the following command:</simpara>
+<literallayout class="monospaced">dfx ledger --network ic transfer 183a04888eb20e73766f082bae01587830bd3cd912544f63fda515e9d77a96dc --icp 1 --memo 12346</literallayout>
+<simpara>This example illustrates how to transfer ICP tokens to using a whole number with the <literal>--icp</literal> command-line option.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You can also specify fractional units of ICP tokens—called <emphasis role="strong">e8s</emphasis>—using the <literal>--e8s</literal> option, either on its own or in conjunction with the <literal>--icp</literal> option.</simpara>
+</listitem>
+<listitem>
+<simpara>Alternatively, you can use the <literal>--amount</literal> to  specify the number of ICP tokens to transfer with fractional units up to 8 decimal places, for example, as <literal>5.00000025</literal>.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The destination address can be an address in the ledger canister running on the Internet Computer network, an account you have added using the <link xl:href="https://nns.ic0.app">Network Nervous System application</link>, or the address for a wallet you have on an exchange.</simpara>
+<simpara>If you transfer the ICP tokens to an account in the <link xl:href="https://nns.ic0.app">Network Nervous System application</link>, you might need to refresh the browser to see the transaction reflected.</simpara>
+<simpara>For more information about using the <literal>dfx ledger</literal> command-line options, see <link xl:href="../developers-guide/cli-reference/dfx-ledger.xml">dfx ledger</link>.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="stake-icp">
+<title>Stake ICP tokens in a neuron</title>
+<simpara>After you transfer ICP tokens to the Network Nervous System application, you can use the Network Nervous System application to create and manage neurons, vote on proposals, and create canisters on the Internet Computer.</simpara>
+<simpara>Neurons are required to participate in governance and earn rewards.
+To create a neuron, you must lock up some number of ICP tokens for a period of time. The minimum stake required to create a neuron is one ICP token.
+You can configure the period of time the stake is locked from six months up to a maximum of eight years.</simpara>
+<simpara>To stake ICP tokens:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser and navigate to the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Login</emphasis> to connect using your Internet Identity.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify your identification number, then click <emphasis role="strong">Login</emphasis> to authenticate using the device and authentication method you have registered.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Proceed</emphasis> to access to the Network Nervous System (NNS) application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Neurons</emphasis>, then click <emphasis role="strong">Stake Neuron</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Type the number of ICP tokens to stake, then click <emphasis role="strong">Create</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Set the dissolve delay for the neuron to control the length of time the stake is locked, then click <emphasis role="strong">Update Delay</emphasis>.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="dissolve-delay.png"/>
+</imageobject>
+<textobject><phrase>dissolve delay</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Yes, I&#8217;m sure</emphasis> to confirm the lock up period, then close the window to review the newly-created neuron properties.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="neuron-properties.png"/>
+</imageobject>
+<textobject><phrase>neuron properties</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+</orderedlist>
+<section xml:id="_what_you_can_do_after_creating_a_neuron">
+<title>What you can do after creating a neuron</title>
+<simpara>After you have locked the stake and created a neuron, you can:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Start the dissolve delay timer by clicking <emphasis role="strong">Start Unlock</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Increase the dissolve delay period by clicking <emphasis role="strong">Increase Dissolve Delay</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the dissolve delay after starting the unlock countdown by clicking <emphasis role="strong">Lockup</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Increase the number of ICP tokens you have staked.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_starting_and_stopping_the_dissolve_delay">
+<title>Starting and stopping the dissolve delay</title>
+<simpara>Creating a new neuron does not automatically start the dissolve delay timer.
+You must explicitly start the timer countdown by clicking <emphasis role="strong">Start Unlock</emphasis>.</simpara>
+<simpara>For example, if you set a dissolve delay of one year and want to immediately begin the countdown, you should click <emphasis role="strong">Start Unlock</emphasis> as part of the process of creating the neuron.
+If you change your mind and want to stop a current countdown in progress, you can click <emphasis role="strong">Lockup</emphasis>,
+After you click <emphasis role="strong">Lockup</emphasis> to stop the dissolve delay, you can click <emphasis role="strong">Start Unlock</emphasis> to resume the countdown without changing the existing dissolve delay period.
+If you want to continue a countdown already in progress but extend the lock up period, you can click <emphasis role="strong">Increase Dissolve Delay</emphasis> then select a longer dissolve delay.</simpara>
+</section>
+<section xml:id="_adding_icp_tokens_to_an_existing_neuron">
+<title>Adding ICP tokens to an existing neuron</title>
+<simpara>After you create a neuron, you can increase the number of ICP tokens you have staked in that neuron to increase your voting power and rewards.
+For example, if you initially stake a small number of ICP tokens, then decide to purchase additional tokens, you have the option to create a new neuron or "top-up" your existing neuron.</simpara>
+<simpara>To increase the stake in an existing neuron:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Follow the steps in <link linkend="stake-icp">Stake ICP tokens in a neuron</link> to stake the original neuron using the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Look up the transaction in the Internet Computer Association <link xl:href="https://dashboard.internetcomputer.org/transactions">transaction dashboard</link> to get the neuron address.</simpara>
+<simpara>You can use the account identifier for your main ICP ledger account to search for your transactions.</simpara>
+</listitem>
+<listitem>
+<simpara>Return to the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application, then click <emphasis role="strong">New Transaction</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Paste the neuron address from the transaction dashboard into the <emphasis role="strong">Destination</emphasis> address field, then click <emphasis role="strong">Continue</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Type the amount of ICP tokens you want to add to the specified neuron, then click <emphasis role="strong">Continue</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify the transaction details, then click <emphasis role="strong">Confirm and Send</emphasis>.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="confirm-top-up.png"/>
+</imageobject>
+<textobject><phrase>confirm top up</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Verify the completed transaction, then click <emphasis role="strong">Close</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Neurons</emphasis> tab to see the increased stake.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="_configure_following_rules">
+<title>Configure following rules</title>
+<simpara>Active participation in governance is an important factor in the long-term health of the Internet Computer.
+Voting on proposals is also an important factor in calculating the rewards you receive in return for locking up ICP tokens in neurons.</simpara>
+<simpara>However, voting directly on every proposal submitted to the NNS presents several challenges.
+For example, proposals might be submitted and require a vote when you are unavailable or propose changes that you lack the expertise to evaluate.
+To address these challenges, you can configure neurons to vote automatically to adopt or reject proposals by following the votes of a group of neurons.</simpara>
+<simpara>To maximize your rewards, you should vote on as many proposals as possible by following the active neuron holders who have interests aligned with your own. For example, you might follow the Internet Computer Association (ICA) on some topics such <emphasis role="strong">SubnetManagement</emphasis> and other neuron holders on topics such as <emphasis role="strong">Governance</emphasis>.</simpara>
+<simpara>To configure how you follow other neuron holders:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser and navigate to the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Login</emphasis> to connect using your Internet Identity.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify your identification number, then click <emphasis role="strong">Login</emphasis> to authenticate using the device and authentication method you have registered.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Proceed</emphasis> to access to the Network Nervous System (NNS) application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Neurons</emphasis>, then click the link for a specific neuron identifier to display its properties.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Edit Followees</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Choose a proposal topic.</simpara>
+<simpara>For example, expand the Governance topic, then click <emphasis role="strong">Enter Followee</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a neuron holder to follow, then click <emphasis role="strong">Follow</emphasis>.</simpara>
+<simpara>For example, click <emphasis role="strong">Follow</emphasis> for the Internet Computer Association.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="follow-ica.png"/>
+</imageobject>
+<textobject><phrase>follow ica</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>The neuron holder is added to you Currently Following list.</simpara>
+</listitem>
+<listitem>
+<simpara>Repeat for each topic where you want your neuron&#8217;s votes to automatically follow the votes of one or more other neuron holders.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_disburse_dissolved_neurons_into_an_account">
+<title>Disburse dissolved neurons into an account</title>
+<simpara>When the dissolve delay timer for a neuron reaches zero, you can disburse the neuron’s stake and transfer its locked ICP token balance to the ledger account you specify.
+After you take this step, the neuron identifier and its ledger history are permanently removed from the governance canister.</simpara>
+<simpara>To disburse a neuron and return its ICP tokens:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser and navigate to the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Login</emphasis> to connect using your Internet Identity.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify your identification number, then click <emphasis role="strong">Login</emphasis> to authenticate using the device and authentication method you have registered.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Proceed</emphasis> to access to the Network Nervous System (NNS) application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Neurons</emphasis>, then click Unlocked neuron that has reach the ended of its dissolve delay period.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="unlocked-neuron.png"/>
+</imageobject>
+<textobject><phrase>unlocked neuron</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Disburse</emphasis>.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="disburse.png"/>
+</imageobject>
+<textobject><phrase>disburse</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Type an address or select an account to receive the ICP tokens.</simpara>
+<simpara>For example, you might select the <literal>dev-projects</literal> linked account:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="select-account.png"/>
+</imageobject>
+<textobject><phrase>select account</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Verify the transaction information, then click <emphasis role="strong">Confirm and Send</emphasis>.</simpara>
+<simpara>For example, check that the Destination address matches the intended address of the <literal>dev-projects</literal> linked account:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="confirm-send.png"/>
+</imageobject>
+<textobject><phrase>confirm send</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Verify the completed transaction, then click <emphasis role="strong">Close</emphasis>.</simpara>
+<simpara>For example:</simpara>
+</listitem>
+</orderedlist>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="confirmation.png"/>
+</imageobject>
+<textobject><phrase>confirmation</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>+
+If you transferred the ICP tokens to one of your accounts in the Internet Computer ledger canister, you can click the ICP tab and see your new balance reflected.
+For example:</simpara>
+<simpara>+</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="updated-icp.png"/>
+</imageobject>
+<textobject><phrase>updated icp</phrase></textobject>
+</inlinemediaobject></simpara>
+</section>
+<section xml:id="_spawn_new_neurons">
+<title>Spawn new neurons</title>
+<simpara>As you vote on proposals—either directly or by following the votes of other neurons—the maturity associated with your neuron increases, which in turn increases the rewards you earn for participating in governance.
+When the maturity for a locked stake reaches a minimum threshold of one ICP, you can spawn a new neuron.
+The spawn operation creates a new neuron that locks a new balance of ICP on the ledger.</simpara>
+<simpara>For example, if you have a neuron that contains 100 ICP tokens and it has a maturity of 10 percent, you can spawn a new neuron that contains approximately 10 new ICP tokens. For the neuron with 100 ICP tokens to reach the minimum threshold for spawning, its maturity would need to be greater than one percent.</simpara>
+<simpara>After you spawn a new neuron from an existing neuron, the maturity for the existing neuron falls to zero.</simpara>
+<simpara>To spawn new neurons from an existing neuron:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser and navigate to the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Login</emphasis> to connect using your Internet Identity.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify your identification number, then click <emphasis role="strong">Login</emphasis> to authenticate using the device and authentication method you have registered.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Proceed</emphasis> to access to the Network Nervous System (NNS) application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Neurons</emphasis>, then click the neuron that has reached the minimum maturity required to spawn a new neuron.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Spawn Neuron</emphasis>.</simpara>
+<simpara>Keep in mind that the dissolve delay for a newly-spawned neurons is one day, giving you the option to collect value from the ICP tokens by unlocking them or to increase the dissolve delay to collect additional rewards.</simpara>
+</listitem>
+</orderedlist>
+<simpara>For more information about maturity and spawning new neurons, see the following articles:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182">Earn Substantial Voting Rewards by Staking in the Network Nervous System</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8">Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11">Getting Started on the Internet Computer’s Network Nervous System App &amp; Wallet</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_vote_on_proposals">
+<title>Vote on proposals</title>
+<simpara>You can choose the proposal types and proposal topics that you see and vote on—either directly or by following other neuron stakeholders—using filters in the Network Nervous System application.
+For example, if you want to review and vote on all proposals that involve network participants such as data center identities and node operators, but aren&#8217;t interested in viewing proposals related to the current market value of ICP, as measured by an International Monetary Fund (IMF) Special Drawing Right (SDR), you can select the <emphasis role="strong">ParticipantManagement</emphasis> topic filter and deselect the <emphasis role="strong">ExchangeRate</emphasis> topic filter.</simpara>
+<simpara>To manually vote on proposals:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser and navigate to the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Login</emphasis> to connect using your Internet Identity.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify your identification number, then click <emphasis role="strong">Login</emphasis> to authenticate using the device and authentication method you have registered.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Proceed</emphasis> to access to the Network Nervous System (NNS) application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Voting</emphasis>.</simpara>
+<simpara>You can click any of the proposals listed to view information about the proposal, including a brief description of the proposal, a link for viewing additional information about the proposal, the number of votes that were cast to adopt or reject the proposal, and the votes cast by your neurons.</simpara>
+</listitem>
+<listitem>
+<simpara>Use the Topics, Reward Status, and Proposal Status filters to control the list of proposals displayed.</simpara>
+<simpara>For example, open the Topics list to see if there are any proposal topics that you want to include in the proposal list that are not currently displayed and open the Proposal Status to verify that you are viewing all open proposals.</simpara>
+</listitem>
+<listitem>
+<simpara>Click any Open proposal to see its details and the voting power for the neurons associated with your identity.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the neuron identifiers with voting power that you want to use to cast your vote.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Adopt</emphasis> or <emphasis role="strong">Reject</emphasis> to cast your vote.</simpara>
+<simpara>For more information about voting and voting rewards, see the following articles:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182">Earn Substantial Voting Rewards by Staking in the Network Nervous System</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8">Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11">Getting Started on the Internet Computer’s Network Nervous System App &amp; Wallet</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_submit_a_proposal">
+<title>Submit a proposal</title>
+<simpara>Currently, you can only submit proposals to the network nervous system by using the {sdk-short-name} command-line interface (<literal>dfx</literal>) using calls to the <literal>governance</literal> canister.</simpara>
+<simpara>A separate command-line tool (<literal>icx-nns</literal>) for working with the <literal>governance</literal> canister is in development and this functionality will also be available in the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application soon.</simpara>
+<simpara>If you want to start submitting proposals right away, however, you can access a preliminary version of the <literal>icx-nns</literal> command-line tool by downloading a release from the <link xl:href="https://github.com/dfinity/icx-nns/releases">icx-nns</link> repository.
+For information about how to download the <literal>icx-nns</literal> command-line tool and how to use it to submit proposals, see <link xl:href="https://www.internetcomputer.org/governance/submit-proposal">How to submit proposals to the Network Nervous System</link>.</simpara>
+</section>
+<section xml:id="_deploy_a_canister_with_cycles">
+<title>Deploy a canister with cycles</title>
+<simpara>You must have <emphasis role="strong">cycles</emphasis> available to create and manage <link xl:href="../developers-guide/glossary.xml#g-canister">canisters</link>, which are similar to smart contracts.
+The <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application provides a convenient way for you to create and manage canisters by enabling you to convert ICP tokens into cycles and attach cycles to specific canister identifiers.</simpara>
+<simpara>To create a new canister:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser and navigate to the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Login</emphasis> to connect using your Internet Identity.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify your identification number, then click <emphasis role="strong">Login</emphasis> to authenticate using the device and authentication method you have registered.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Proceed</emphasis> to access to the Network Nervous System (NNS) application.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Canisters</emphasis>, then click <emphasis role="strong">Create or Link Canister</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Create New Canister</emphasis> to create a new cycles wallet canister.</simpara>
+<simpara>If you already have a cycles wallet canister, you can click <emphasis role="strong">Link Canister to Account</emphasis> to link an existing canister identifier to your account in the <link xl:href="https://nns.ic0.app">Network Nervous System (NNS)</link> application.</simpara>
+</listitem>
+<listitem>
+<simpara>Select one of your accounts that holds ICP tokens as the source account.</simpara>
+<simpara>For example, if you have both a <emphasis role="strong">Main</emphasis> account and a <emphasis role="strong">Dev-Projects</emphasis> account, you might select <emphasis role="strong">Dev-Projects</emphasis> account if that account holds the ICP tokens that you want converted into cycles.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Amount</emphasis> and type the number of ICP tokens or e8s that you want to convert into cycles, then click <emphasis role="strong">Review Cycles Purchase</emphasis>.</simpara>
+<simpara>The amount you specify must convert to a value greater than the 2T (two trillion) cycles minimum required to create a new canister identifier.
+For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="convert-to-cycles.png"/>
+</imageobject>
+<textobject><phrase>convert to cycles</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Review the ICP tokens to cycles details, then click <emphasis role="strong">Confirm</emphasis> to continue.</simpara>
+<simpara>After you click Confirm, you can review:</simpara>
+</listitem>
+</orderedlist>
+<itemizedlist>
+<listitem>
+<simpara>the new canister identifier</simpara>
+</listitem>
+<listitem>
+<simpara>the number of cycles available for the canister to use</simpara>
+</listitem>
+<listitem>
+<simpara>the controlling principal that currently has full management rights for the new canister</simpara>
+</listitem>
+</itemizedlist>
+<simpara>+
+To change, the principal used as the controller of the canister, click <emphasis role="strong">Change Controllers</emphasis>.
+To add cycles to the canister, click <emphasis role="strong">Add Cycles</emphasis>.
+. Return to the <emphasis role="strong">Canisters</emphasis> tab to see the canisters you have created.</simpara>
+<simpara>+
+For example:</simpara>
+<simpara>+
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="canister-list.png"/>
+</imageobject>
+<textobject><phrase>canister list</phrase></textobject>
+</inlinemediaobject></simpara>
+</section>
+</article>

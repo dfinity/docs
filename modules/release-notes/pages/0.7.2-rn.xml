@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.7.2</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.7.2 release includes updates and fixes that are primarily internal to improve existing features and functions rather than user-visible.</simpara>
+<simpara>The most significant changes in this release include the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Support for the latest version of the Internet Computer specification and replica.</simpara>
+</listitem>
+<listitem>
+<simpara>The availability of new application subnets enable you to now deploy projects on the Internet Computer.</simpara>
+</listitem>
+<listitem>
+<simpara>The default cycle balance for new cycles wallet canisters is now set to 3T (three trillion) cycles on application subnets and 4T (four trillion) on verified application subnets.</simpara>
+</listitem>
+</itemizedlist>
+</article>

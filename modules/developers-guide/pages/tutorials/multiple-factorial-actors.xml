@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Using multiple actors</title>
+<date>2021-08-05</date>
+<author>
+<personname>
+<firstname>February 2020 (Alpha)</firstname>
+</personname>
+</author>
+<authorinitials>F</authorinitials>
+</info>
+<simpara>In this tutorial, you are going to create a project with multiple actors.
+Currently, you can only define one actor in a Motoko file and a single actor is always compiled to a single canister.
+In addition, you cannot yet call functions defined in an actor in one canister from an actor defined in another canister or define an actor class to support multiple actor instances in your Motoko programs.
+You can, however, create <emphasis role="strong">projects</emphasis> that have multiple actors and can build multiple canisters from the same <literal>dfx.json</literal> configuration file.</simpara>
+<simpara>For this tutorial, you are going to create separate program files for three actors in the same project.
+This project defines the following unrelated actors:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>assistant</literal> actor provides functions to add and show tasks in a to-do list.</simpara>
+<simpara>For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program-with additional functions for marking items as complete and removing items from the list—is included in <link xl:href="../sample-apps.xml">Sample code, applications, and microservices</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>factorial</literal> actor provides a function for determining the factorial for a specified number.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>daemon</literal> actor provides mock functions for starting and stopping a daemon.</simpara>
+<simpara>This code sample simply assigns a variable and prints messages for demonstration purposes.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before starting the tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have downloaded and installed the SDK as described in
+<link xl:href="../getting-started.xml">Getting started</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any network replica processes running on the local
+computer.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial takes approximately 20 minutes to complete.</simpara>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project for this tutorial:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new multiple_actors</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd multiple_actors</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_configuration">
+<title>Modify the default configuration</title>
+<simpara>You have already seen that creating a new project adds a default <literal>dfx.json</literal> configuration file to your project directory.
+For this tutorial, you need to add sections to this file to specify the location of each program that defines an actor you want to build.</simpara>
+<simpara>To modify the default <literal>dfx.json</literal> configuration file:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> configuration file in a text editor, then change the default <literal>multiple_actors</literal> canister name and source directory to <literal>assistant</literal>.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">{
+  "canisters": {
+    "<emphasis role="strong">assistant</emphasis>": {
+      "frontend": {
+        "entrypoint": "src/multiple_actors/public/index.js"
+      },
+      "main": "src/<emphasis role="strong">assistant</emphasis>/main.mo"
+    },</programlisting>
+<simpara>Because you are going to add settings to this <literal>canisters</literal> section of the configuration file, you must also add a <emphasis role="strong">comma</emphasis> after the curly brace that encloses the location of the <literal>assistant</literal> main source code file.</simpara>
+</listitem>
+<listitem>
+<simpara>Add a new canister name and source file location for the <literal>factorial</literal> program and a new canister name and source file location for the <literal>daemon</literal> program files below the <literal>assistant</literal> source file location.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">    "factorial": {
+      "main": "src/factorial/main.mo"
+    },
+    "daemon": {
+      "main": "src/daemon/main.mo"
+        }
+  },</programlisting>
+<simpara>You can leave the other sections as-is.</simpara>
+</listitem>
+<listitem>
+<simpara>Change the name of the default source file directory to match the name specified in the <literal>dfx.json</literal> configuration file by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cp -r src/multiple_actors/ src/assistant/</programlisting>
+</listitem>
+<listitem>
+<simpara>Copy the <literal>assistant</literal> source file directory to create the main program file for the <literal>factorial</literal> actor by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cp -r src/assistant/ src/factorial/</programlisting>
+</listitem>
+<listitem>
+<simpara>Copy the <literal>assistant</literal> source file directory to create the main program file for the <literal>daemon</literal> actor by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cp -r src/assistant/ src/daemon/</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_template_programs">
+<title>Modify the default template programs</title>
+<simpara>You now have three separate directories in the <literal>src</literal> directory, each with a template <literal>main.mo</literal> file.
+For this tutorial, you will replace the content in each template <literal>main.mo</literal> file with a different actor.</simpara>
+<simpara>To modify the default template source code:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>src/assistant/main.mo</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">include::example$multiple-actors/assistant/main.mo</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the <literal>src/factorial/main.mo</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">include::example$multiple-actors/factorial/main.mo</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the <literal>src/daemon/main.mo</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">include::example$multiple-actors/daemon/main.mo</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_build_all_of_the_canisters_in_the_project">
+<title>Build all of the canisters in the project</title>
+<simpara>You now have a program that you can compile into an executable WebAssembly module that you can deploy on your local replica network.</simpara>
+<simpara>To build the executable for each actor in the project:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Change to the <literal>~/ic-projects/multiple_actors</literal> root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Build the WebAssembly executable for each program by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx build --all</programlisting>
+<simpara>If the command is successful, it builds all of the canisters you have specified in the <literal>dfx.json</literal> file.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">Building canister assistant
+Building canister factorial
+Building canister daemon</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_deploy_the_canisters_in_the_project">
+<title>Deploy the canisters in the project</title>
+<simpara>You now have three separate compiled programs—one for each actor—ready for deployment.</simpara>
+<simpara>To deploy the canisters:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start</programlisting>
+</listitem>
+<listitem>
+<simpara>Open a new terminal shell, then change the <literal>~/ic-projects/multiple_actors</literal> root directory for your project.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd ~/ic-projects/multiple_actors</programlisting>
+</listitem>
+<listitem>
+<simpara>Deploy your canisters on the local network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install --all</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_verify_deployment_by_calling_functions">
+<title>Verify deployment by calling functions</title>
+<simpara>You now have three programs deployed as a <emphasis role="strong">canisters</emphasis> on your local replica network and can test each program by using <literal>dfx canister call</literal> commands.</simpara>
+<simpara>To test the programs you have deployed on the local replica network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Use the <literal>dfx canister call</literal> command to call the canister <literal>assistant</literal> using the <literal>addTodo</literal> function and pass it the task you want to add by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call assistant addTodo '("Schedule monthly demos")'</programlisting>
+</listitem>
+<listitem>
+<simpara>Verify that the command returns the to-do list item using the <literal>showTodos</literal> function by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call assistant showTodos</programlisting>
+<simpara>The command returns output similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">("
+___TO-DOs___
+(1) Schedule monthly demos</programlisting>
+</listitem>
+<listitem>
+<simpara>Use the <literal>dfx canister call</literal> command to call the canister <literal>factorial</literal> using the <literal>fac</literal> function by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call factorial fac '(8)'</programlisting>
+<simpara>The command returns the result of the function:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">(40320)</programlisting>
+</listitem>
+<listitem>
+<simpara>Use the <literal>dfx canister call</literal> command to call the canister <literal>daemon</literal> using the <literal>launch</literal> function by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call daemon launch</programlisting>
+</listitem>
+<listitem>
+<simpara>Verify the mock <literal>launch</literal> function returns "The daemon process is running" message":</simpara>
+<programlisting language="bash" linenumbering="unnumbered">(""The daemon process is running"")</programlisting>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer processes running on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

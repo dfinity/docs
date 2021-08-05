@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.7.0</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.7.0 release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, Motoko, the Motoko base library, and Candid.</simpara>
+<simpara>The most significant new features and capabilities are updates to the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="_dfx">DFX</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="_motoko">Motoko</link></simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_new_features_and_capabilities">
+<title>New features and capabilities</title>
+<section xml:id="_dfx">
+<title>DFX</title>
+<itemizedlist>
+<listitem>
+<simpara>Addition of ledger subcommands</simpara>
+<simpara><literal>dfx</literal> now supports a dedicated <literal>dfx ledger</literal> subcommand. This allows you to interact with the ledger
+canister installed on the Internet Computer. Example commands include <literal>dfx ledger account-id</literal> which
+prints the Account Identifier associated with your selected identity, <literal>dfx ledger transfer</literal> which
+allows you to transfer ICP from your ledger account to another, and <literal>dfx ledger create-canister</literal> which
+allows you to create a canister from ICP.
+For more information on <literal>dfx ledger</literal> subcommands, see <link xl:href="../developers-guide/cli-reference/dfx-ledger.xml">dfx ledger</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Addition of wallet subcommands</simpara>
+<simpara><literal>dfx</literal> now supports a dedicated <literal>dfx wallet</literal> subcommand. This allows you to interact with the cycles wallet associated with your selected identity.</simpara>
+<simpara>The following are just some of the available commands:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>dfx wallet balance</literal> returns the selected identity&#8217;s cycles wallet balance.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>dfx wallet list-addresses</literal> displays the assigned controllers &amp; custodians of the cycles wallet.</simpara>
+<simpara>You can use <literal>dfx wallet send &lt;destination&gt; &lt;amount&gt;</literal>
+to send cycles to another wallet.</simpara>
+<simpara>For more information on <literal>dfx wallet</literal> see <link xl:href="../developers-guide/cli-reference/dfx-wallet.xml">dfx wallet</link>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Add an output type to the <literal>request-status</literal> subcommand.</simpara>
+<simpara>This change allows you to specify the format for the return result for <literal>dfx canister request-status</literal>. Formatting options include <literal>idl</literal>, <literal>raw</literal>, and <literal>pp</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>The default network for projects is now <literal>ic</literal>.</simpara>
+<simpara>The default network is now the mainnet <literal>ic</literal> unless otherwise specified.  Additionally, <literal>--network ic</literal> now points to the mainnet Internet Computer (Sodium has been deprecated.)</simpara>
+</listitem>
+<listitem>
+<simpara>Automatic creation of a candid UI canister</simpara>
+<simpara>A dedicated candid UI canister is installed on a local network when using <literal>dfx canister install</literal> or <literal>dfx deploy</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Compress some content types</simpara>
+<simpara>You can now store <literal>gzip</literal> content encodings of assets with media types if the encoding is smaller than the source contents. Supported file types are <literal>text/*</literal>, <literal>*/javascript</literal>, and <literal>*/html</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Add the encoding size when listing assets</simpara>
+<simpara>Now when assets are listed, a new <literal>length</literal> field returns the size of encodings.</simpara>
+</listitem>
+<listitem>
+<simpara>Add new command <literal>dfx canister info</literal></simpara>
+<simpara>This allows you to retrieve certified canister information. Access to this information is limited to the controller of the canister and the SHA256 hash of its WASM module. If there is no WASM module installed, the hash will be <literal>None</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>New method deletes asset canister assets that no longer exist in a project—<emphasis role="strong">breaking change</emphasis></simpara>
+<simpara>The <literal>keys()</literal> method is no longer supported. Use the <literal>list()</literal> method to delete missing project assets. For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">assert_command dfx canister call --query e2e_project_assets get '(record{key="/will-delete-this.txt";accept_encodings=vec{"identity"}})'
+assert_command dfx canister call --query e2e_project_assets list  '(record{})'
+assert_match '"/will-delete-this.txt"'</programlisting>
+</listitem>
+<listitem>
+<simpara>Run an emulator instead of the replica</simpara>
+<simpara>To run a <literal>dfx</literal> project using an emulator instead of the replica, you can now run <literal>dfx start --emulator</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Rely on npmjs.org to get the version of agent-js to install</simpara>
+<simpara>This decouples the version of <literal>dfx</literal> from the release version of <literal>agent-js</literal>. Additionally, it allows for debug builds to install properly (as <literal>dfx</literal> has a non-release version).</simpara>
+</listitem>
+<listitem>
+<simpara>You can now install the DFINITY Canister SDK on for M1 Macs running Darwin.</simpara>
+</listitem>
+<listitem>
+<simpara>Allow upload of assets of any size to the asset canister.</simpara>
+<simpara>The following asset canister call methods are added:
+<emphasis role="strong"> create_batch()
+</emphasis> create_chunk()
+<emphasis role="strong"> commit_batch()
+</emphasis> get()
+** get_chunk()</simpara>
+<simpara>+
+Reworks the asset installer in <literal>dfx</literal> to use these methods. It can therefore upload assets that exceed the message ingress size.</simpara>
+</listitem>
+<listitem>
+<simpara>Add <literal>--no-wallet</literal> flag and <literal>--wallet</literal> option</simpara>
+<simpara><literal>--no-wallet</literal> allows users to bypass specifying a wallet ID.</simpara>
+<simpara><literal>--wallet</literal> allows users to specify a particular wallet to use for calls.</simpara>
+</listitem>
+<listitem>
+<simpara>Implement the HTTP request proposal in <literal>dfx</literal> bootstrap webserver</simpara>
+<simpara>Adds support for http requests in the base storage canister (with a default to <literal>/index.html</literal>).</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This does not support encodings other than <literal>identity</literal>, and doesn&#8217;t return any headers.</simpara>
+<simpara>This also upgrades <literal>tokio</literal> and <literal>reqwest</literal> in order to work correctly. There are some performance issues to note (this is slower than the icx-http-server).</simpara>
+</section>
+<section xml:id="_motoko">
+<title>Motoko</title>
+<itemizedlist>
+<listitem>
+<simpara>Reformat to style guidelines.</simpara>
+</listitem>
+<listitem>
+<simpara>Add type bindings</simpara>
+<simpara>Add <literal>Nat.Nat</literal>, <literal>Nat8.Nat8</literal>, etc. to libraries for primitive types.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="_issues_fixed_in_this_release">
+<title>Issues fixed in this release</title>
+<simpara>This section covers any reported issues that have been fixed in this release.</simpara>
+<section xml:id="_dfx_2">
+<title>DFX</title>
+<itemizedlist>
+<listitem>
+<simpara>Deleting a canister on a network removes entries for other networks</simpara>
+<simpara>This change fixes a bug where deleting a canister on a network removed all other entries for the canister in the <literal>canister_ids.json</literal> file.</simpara>
+</listitem>
+<listitem>
+<simpara>Error message: already in use (os error 48) when issuing dfx start.</simpara>
+<simpara>This fixes an error which occurred when starting a replica soon after stopping it.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>dfx new</literal> command should not require <literal>node</literal></simpara>
+<simpara>This fixes the inability to use the <literal>dfx new</literal> command to create projects on machines that do not have <literal>node.js</literal> installed.</simpara>
+</listitem>
+<listitem>
+<simpara>Missing webpack.config plugin</simpara>
+<simpara>This adds the missing ProvidePlugin to webpack.config for new projects.</simpara>
+</listitem>
+<listitem>
+<simpara>Allow new projects assets to contain non-utf8 files</simpara>
+<simpara>Previously assets were forced to be valid UTF-8 strings. After this change if a string cannot be converted, in-place variable replacements are ignored.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_motoko_2">
+<title>Motoko</title>
+<itemizedlist>
+<listitem>
+<simpara>No longer confused by distinct, but eponymous, type definitions.</simpara>
+</listitem>
+<listitem>
+<simpara>Numbers of eponymous types and specializations from 1 (not 2)</simpara>
+</listitem>
+<listitem>
+<simpara>Avoids long chains of type equalities by normalizing before translation</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+</article>

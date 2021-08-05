@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx start</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx start</literal> command to start a local {IC} replica process and web server processes for the current project.
+This command enables you to deploy canisters to the local {IC} network to test your programs during development.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx start [option] [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx start</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--background</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Starts the {IC} replica and web server processes in the background and waits for a reply before returning to the shell.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--clean</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Starts the {IC} replica and web server processes in a clean state by removing checkpoints from your project cache.
+You can use this flag to set your project cache to a new state when troubleshooting or debugging.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can use the following option with the <literal>dfx start</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--host host</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the host interface IP address and port number to bind the frontend to. The default is <literal>127.0.0.1:8000</literal>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can start the {IC} replica and web server processes in the current shell by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start</programlisting>
+<simpara>If you start the {IC} in the current shell, you need to open a new terminal shell to run additional commands.
+Alternatively, you can start the {IC} in the background by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --background</programlisting>
+<simpara>If you run the {IC} in the background, however, be sure to stop the network before uninstalling or reinstalling the <literal>dfx</literal> execution environment by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+<simpara>You can view the current process identifier (<literal>pid</literal>) for the {IC} process started by <literal>dfx</literal>  by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">more .dfx/pid</programlisting>
+</section>
+</article>

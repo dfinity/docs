@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Choosing self-custody for digital assets</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Self-custody is a token distribution option that enables you to have sole responsibility over your digital assets and over the management of your private keys, without the need of a third party to act on your behalf.</simpara>
+<simpara>If you have made the choice to control your digital assets yourself, you should be aware that there are different kinds of <emphasis role="strong">self-custody solutions</emphasis> and that those solutions vary in their security and ease of use.
+Before you decide on a specific self-custody solution, you should spend some time learning about the various options available and how they differ.</simpara>
+<simpara>This guide provides a brief introduction to the concept of <emphasis role="strong">cold storage</emphasis> as part of your custody strategy and the most common types of cold storage currently available.</simpara>
+<simpara>For additional information about cold storage and other custody options, you should do your own research and be sure that you understand the ramifications of your choices thoroughly before proceeding.</simpara>
+<section xml:id="_cold_storage">
+<title>Cold storage</title>
+<simpara>Cold storage means that you are keeping private keys stored offline in a device that is not connected to the internet.
+Cold storage is a popular solution for self-custody of digital assets because it makes it more difficult for your keys to be compromised if there is a software security breach or if your cold storage solution is lost or stolen.</simpara>
+<simpara>For more information about approaches to cold storage and best practices for securing your private keys, see the following additional resources:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://www.investopedia.com/terms/c/cold-storage.asp">Cold storage</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://www.ledger.com/academy/hardwarewallet/best-practices-when-using-a-hardware-wallet#:~:text=%E2%80%93%20Keep%20your%20Recovery%20sheet%20physically,or%20smartphone%20screen%20with%20caution">Best Practices when using a Hardware Wallet</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://blog.trailofbits.com/2018/11/27/10-rules-for-the-secure-use-of-cryptocurrency-hardware-wallets/">10 Rules for the Secure Use of Cryptocurrency Hardware Wallets</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_common_cold_storage_options">
+<title>Common cold storage options</title>
+<simpara>The most common types of cold storage include the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><xref linkend="_hardware_wallets"/></simpara>
+</listitem>
+<listitem>
+<simpara><xref linkend="_air_gapped_computers"/></simpara>
+</listitem>
+<listitem>
+<simpara><xref linkend="_paper_wallets"/></simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_hardware_wallets">
+<title>Hardware wallets</title>
+<simpara>A <emphasis role="strong">hardware wallet</emphasis> is a physical device that holds your digital assets.
+Private keys are stored in a secure part of the device that does not come into contact with the internet.
+The partitioned storage on the physical device reduces the risks that are associated with devices connected to the internet.
+Because you are relying on a physical device, however, losing the device also means losing access to your digital assets.</simpara>
+<simpara>In most cases, you can recover from the loss of a hardware wallet because the assets stored on hardware wallets are secured using a secret seed phrase.
+. If you copy and secure the seed phrase—for example, by storing it in the form of a <link linkend="_paper_wallets">paper wallet</link>—you can initialize a new device with the seed phrase and regain access to your digital assets.</simpara>
+<simpara>For more information, see
+<link xl:href="https://cointelegraph.com/explained/crypto-wallets-explained">Crypto Wallets, Explained</link>.</simpara>
+</section>
+<section xml:id="_air_gapped_computers">
+<title>Air-gapped computers</title>
+<simpara>An <emphasis role="strong">air-gapped computer</emphasis> is isolated from insecure networks that interact with the internet or unsecured local area networks in your home.</simpara>
+<simpara>Converting a standard personal computer or similar device into an air-gapped computer might require you to physically remove network cards, disable certain software, or be prepared to completely wipe the machine before connecting it to the internet again.</simpara>
+<simpara>Depending on how secure you want you air-gapped computer to be, one option is to use a bootable image that provides a minimal operating system to collect your digital assets then remove any artifacts from that process and reboot the computer normally after completing any transaction.
+For more information, see <link xl:href="https://www.wired.com/story/extreme-security-measures/">Extreme Security Measures for the Extra Paranoid</link> and
+<link xl:href="https://www.howtogeek.com/687792the-ultimate-defense-what-is-an-air-gapped-computer/">The Ultimate Defense: What Is an Air Gapped Computer?</link>.</simpara>
+</section>
+<section xml:id="_paper_wallets">
+<title>Paper wallets</title>
+<simpara>A <emphasis role="strong">paper wallet</emphasis> is a piece of printed paper that contains your important key information (in some cases, even a QR code) and is used for facilitating digital asset transactions.
+Paper wallets are often not recommended because they are susceptible to degradation and could be insecure or lost easily.</simpara>
+<simpara>As a backup to a hardware wallet, however, you might want to create a paper wallet and store it in a secure locations such as a safe deposit box.</simpara>
+<simpara>For more information, see <link xl:href="https://blockgeeks.com/guides/paper-wallet-guide/#Paper_wallets">Paper wallets</link>.</simpara>
+</section>
+</section>
+<section xml:id="_keeping_assets_safe">
+<title>Keeping assets safe</title>
+<simpara>It is ultimately your responsibility to research the cold storage and custody solutions available to you.</simpara>
+<simpara>Regardless of the type of self-custody solution you select, it is also your responsibility to keep your digital assets safe.</simpara>
+<simpara>With this in mind, you should take note of the following general recommendations:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Do not use a work computer to configure a digital asset storage solution. Your private personal data could be lost or
+compromised while hosted on a work computer, especially if that computer is routinely connected to the internet.</simpara>
+</listitem>
+<listitem>
+<simpara>Do not leave your cold storage wallet or any private information in a public place where it could be compromised.</simpara>
+</listitem>
+<listitem>
+<simpara>Do not lose your private key. If lost, you will be permanently unable to access your digital assets.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

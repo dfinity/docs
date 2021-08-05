@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx build</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx build</literal> command to compile your program into a WebAssembly module that can be deployed on the {IC}.
+You can use this command to compile all of the programs that are defined for a project in the project&#8217;s <literal>dfx.json</literal> configuration file or a specific canister.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<simpara>The <literal>dfx build</literal> command looks for the source code to compile using the information you have configured under the <literal>canisters</literal> section in the <literal>dfx.json</literal> configuration file.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx build [flag] [option] [--all | canister_name]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx build</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--check</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Builds canisters using a temporary, hard-coded, locally-defined canister identifier for testing that your program compiles without connecting to the {IC} network.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can specify the following option for the <literal>dfx build</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="153*"/>
+<colspec colname="col_2" colwidth="272*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--network &lt;network&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the {IC} network you want to connect to. You can use this option to override the network specified in the <literal>dfx.json</literal> configuration file.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You can specify the following arguments for the <literal>dfx build</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="153*"/>
+<colspec colname="col_2" colwidth="272*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--all</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Builds all of the canisters configured in the project&#8217;s <literal>dfx.json</literal> file.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister_name</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the canister you want to build.
+If you are not using the <literal>--all</literal> option, you can continue to use <literal>dfx build</literal> or provide a canister name as an argument (the canister name must match at least one name that you have configured in the <literal>canisters</literal> section of the <literal>dfx.json</literal> configuration file for your project.)</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx build</literal> command to build one or more WebAssembly modules from the programs specified in the <literal>dfx.json</literal> configuration file under the <literal>canisters</literal> key.
+For example, if your <literal>dfx.json</literal> configuration file defines one <literal>hello_world</literal> canister and one <literal>hello_world_assets</literal> canister, then running <literal>dfx build</literal> compiles two WebAssembly modules:</simpara>
+<programlisting language="json" linenumbering="unnumbered">Unresolved directive in dfx-build.adoc - include::example$sample-dfx.json[]</programlisting>
+<simpara>Note that the file name and path to the programs on your file system must match the information specified in the <literal>dfx.json</literal> configuration file.</simpara>
+<simpara>In this example, the <literal>hello_world</literal> canister contains the main program code and the <literal>hello_world_assets</literal> canister store front-end code and assets.
+If you want to keep the <literal>hello_world_assets</literal> canister defined in the <literal>dfx.json</literal> file, but only build the back-end program, you could run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx build hello_world</programlisting>
+<simpara>Building a specific canister is useful when you have multiple canisters defined in the dfx.json file, but want to test and debug operations for canisters independently.</simpara>
+<simpara>To test whether a canister compiles without connecting to any {IC} network, you would run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx build --check</programlisting>
+</section>
+</article>

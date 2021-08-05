@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Make inter-canister calls</title>
+<date>2021-08-05</date>
+</info>
+<simpara>One of the most important features of the Internet Computer for developers is the ability to build, deploy, and call shared functions in one canister from a program in another canister.
+This capability to make calls between canisters—also sometimes referred to as <emphasis role="strong">inter-canister calls</emphasis>—enables you to reuse and share functionality in multiple applications.</simpara>
+<simpara>For example, you might want to create an application for professional networking, organizing community events, or hosting fundraising activities.
+Each of these applications might have a social component that enables users to identify social relationships based on some criteria or shared interest, such as friends and family or current and former colleagues.</simpara>
+<simpara>To address this social component, you might want to create a single canister for storing user relationships then write your professional networking, community organizing, or fundraising application to import and call functions that are defined in the canister for social connections.
+You could then build additional applications to use the social connections canister or extend the features provided by the social connections canister to make it useful to an even broader community of other developers.</simpara>
+<simpara>The Motoko-based LinkedUp sample application provides a simple implementation of an open professional network that demonstrates how to use inter-canister calls within a project.</simpara>
+<simpara>The LinkedUp sample application is implemented using the following canisters:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>linkedup</literal> canister creates and stores basic profile information for a user, including work experience and educational background.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>connectd</literal> canister creates and stores a user&#8217;s connections.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>linkedup_assets</literal> canister stores the front-end assets—including the JavaScript, HTML, and CSS files—that define the user interface</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before building the sample application, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local
+computer.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_download_the_demo">
+<title>Download the demo</title>
+<simpara>To experiment with inter-canister calls using the LinkedUp sample application:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell and change to the folder you are using for your Internet Computer sample projects.</simpara>
+</listitem>
+<listitem>
+<simpara>Clone the <literal>linkedup</literal> repository.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">git clone https://github.com/dfinity/linkedup.git</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to the local working directory for the <literal>linkedup</literal> repository.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd linkedup</programlisting>
+</listitem>
+<listitem>
+<simpara>Install node modules by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm install</programlisting>
+<simpara>If necessary, fix any vulnerabilities found by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm audit fix</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> file in a text editor and verify the <literal>dfx</literal> setting has same the version number as the <literal>dfx</literal> executable you have installed.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_start_the_local_network">
+<title>Start the local network</title>
+<simpara>Before you can build the <literal>linkedup</literal> project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --background</programlisting>
+<simpara>After the local Internet Computer network completes its startup operations, you can continue to the next step.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_canister_identifiers">
+<title>Register canister identifiers</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.</simpara>
+<simpara>To register canister identifiers for the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register unique canister identifiers for the project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create --all</programlisting>
+<simpara>The command displays the network-specific canister identifiers for the canisters defined in the <literal>dfx.json</literal> configuration file.</simpara>
+<literallayout class="monospaced">"connectd" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"linkedup" canister created with canister id: "cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
+"linkedup_assets" canister created with canister id: "7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"</literallayout>
+<simpara>Keep in mind that because you are running the Internet Computer locally, these identifiers are only valid on the local network.
+To deploy canisters on a remote network, you must connect to that network using the <literal>--network</literal> command-line option and a specific network name or address to register identifiers on that network.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_build_and_deploy_the_demo_project">
+<title>Build and deploy the demo project</title>
+<simpara>To build and deploy the LinkUp sample application, take the following steps:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory by running the <literal>pwd</literal> command, if necessary.</simpara>
+</listitem>
+<listitem>
+<simpara>Build the LinkedUp canisters by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx build</programlisting>
+</listitem>
+<listitem>
+<simpara>Deploy the project on the local network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install --all</programlisting>
+<simpara>You should see canister identifiers for the <literal>connectd</literal>, <literal>linkedup</literal> and <literal>linkedup_assets</literal> canisters with a message similar to the following:</simpara>
+<literallayout class="monospaced">Installing code for canister connectd, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister linkedup, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+Installing code for canister linkedup_assets, with canister_id 7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q</literallayout>
+</listitem>
+<listitem>
+<simpara>Copy the <literal>linkedup_assets</literal> canister identifier returned by the <literal>dfx canister install</literal> command.</simpara>
+<simpara>In this sample application, only the <literal>linkedup_assets</literal> canister includes the front-end assets used to access the application&#8217;s features.
+To open the application in a browser, therefore, you need to specify the <literal>linkedup_assets</literal> canister identifier.</simpara>
+</listitem>
+<listitem>
+<simpara>Open the <literal>linkedup_assets</literal> canister in your web browser.</simpara>
+<simpara>For example, if binding to the default localhost address and port number, the URL looks similar to this:</simpara>
+<literallayout class="monospaced">http://127.0.0.1:8000/?canisterId=7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_create_a_profile_and_connections">
+<title>Create a profile and connections</title>
+<simpara>To run through a demonstration of the LinkedUp sample application, take the following steps:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a browser tab or window.</simpara>
+</listitem>
+<listitem>
+<simpara>Type the web server host name, port, and the <literal>canisterId</literal> keyword, then paste the <literal>linkedup_assets</literal> canister identifier as the URL to display.</simpara>
+<literallayout class="monospaced">127.0.0.1:8000/?canisterId=&lt;ic-identifier-for-linkedup-assets&gt;</literallayout>
+<simpara>The browser displays an introductory page.</simpara>
+<simpara>A public-private key pair will be automatically generated to establish your identity for accessing the canister, so there&#8217;s no need to provide a user name and password or register an account to store your identity before using the service.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Login</emphasis>.</simpara>
+<simpara>The browser displays an empty profile page.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-empty-maya.png"/>
+</imageobject>
+<textobject><phrase>linkedup empty maya</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Edit</emphasis>, type profile information, copy and paste the image address for an avatar photo, then click <emphasis role="strong">Submit</emphasis>.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-edit-maya.png"/>
+</imageobject>
+<textobject><phrase>linkedup edit maya</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>After you click <emphasis role="strong">Submit</emphasis>, you have a profile with some work history that can be viewed.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-profile-maya.png"/>
+</imageobject>
+<textobject><phrase>linkedup profile maya</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+</orderedlist>
+<section xml:id="_add_another_profile">
+<title>Add another profile</title>
+<simpara>At this point, there are no other profiles to search for or to add as connections.
+To try out the Search and Connect features, you can:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Run a script that populates the sample application with some additional profiles.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a profile manually by opening a private window.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For this tutorial, you will create another profile manually.</simpara>
+<simpara>To add a user profile with different identity:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>At the top right of the browser window, click the appropriate icon to display the browser&#8217;s menu options.</simpara>
+<simpara>For example, if you are using Google Chrome, click the vertical ellipse to display the More menu.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">New Incognito Window</emphasis> if you are using Google Chrome or <emphasis role="strong">New Private Window</emphasis> if you are using Firefox to enable you to navigate to the canister without the user identity generated in your initial browser connection to the canister.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the URL from your first browser session into the private browsing window, then click <emphasis role="strong">Login</emphasis>.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-incognito.png"/>
+</imageobject>
+<textobject><phrase>linkedup incognito</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>Notice that there’s no profile in the private browsing window but your original profile is still visible in your initial browser tab.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Edit</emphasis>, type profile information, copy and paste the image address for an avatar photo, then click <emphasis role="strong">Submit</emphasis>.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-edit-dylan.png"/>
+</imageobject>
+<textobject><phrase>linkedup edit dylan</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>After clicking <emphasis role="strong">Submit</emphasis>, you have a second profile with some work history that can be viewed.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-profile-dylan.png"/>
+</imageobject>
+<textobject><phrase>linkedup profile dylan</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Type the first name or last name from the first profile you created—for example, if you created a profile for Maya Garcia, type Maya—then click <emphasis role="strong">Search</emphasis>.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-search-from-dylan-for-maya.png"/>
+</imageobject>
+<textobject><phrase>linkedup search from dylan for maya</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>The profile matching your search criteria is displayed.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-search-result.png"/>
+</imageobject>
+<textobject><phrase>linkedup search result</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Select the contact from the search results, wait for the Connect button to be displayed, then click <emphasis role="strong">Connect</emphasis>.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-connect-from-dylan-to-maya.png"/>
+</imageobject>
+<textobject><phrase>linkedup connect from dylan to maya</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>When the connection request completes, the second profile displays the connection to the first profile.
+For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="linkedup-connected-to-maya.png"/>
+</imageobject>
+<textobject><phrase>linkedup connected to maya</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Return to the browser tab with your original profile.</simpara>
+<simpara>If you want to create a connection between the original profile and the profile you created in the private browsing window, you can do so by repeating the search, select, and connect steps.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</section>
+<section xml:id="_explore_the_configuration_file">
+<title>Explore the configuration file</title>
+<simpara>Now that you have explored the basic features of the sample application, you have some context for exploring how the configuration settings and source files are used.</simpara>
+<simpara>To explore the configuration file:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Change to the <literal>linkedup</literal> directory, then open the project’s <literal>dfx.json</literal> file.</simpara>
+</listitem>
+<listitem>
+<simpara>Note that there are two main canisters defined—<literal>connectd</literal> and <literal>linkedup</literal>—each with a <literal>main.mo</literal> source file.</simpara>
+</listitem>
+<listitem>
+<simpara>Note that the <literal>linkedup_assets</literal> canister specifies a frontend entry point of <literal>main.js</literal> and assets in the form of CSS and HTML files.</simpara>
+</listitem>
+<listitem>
+<simpara>Note that the application uses the default server IP address and port number.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_explore_the_connectd_source_code">
+<title>Explore the connectd source code</title>
+<simpara>The source code for the social connections canister, <literal>connectd</literal>, is organized into the following files:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>digraph.mo</literal> file provides the functions to create a directed graph of vertices and edges to describe a user&#8217;s connections.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>main.mo</literal> contains the actor and key functions for defining the connections associated with a user profile that can be called by the LinkedUp sample application.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>types.mo</literal> file defines the custom type that maps a vertex to a user identity for use in the <literal>digraph</literal> and <literal>main</literal> program files.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_explore_the_linkedup_source_code">
+<title>Explore the linkedup source code</title>
+<simpara>The source code for the professional profile with work history and educational background is organized into the following files:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>main.mo</literal> file contains the actor and key functions for the LinkedUp sample application.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>types.mo</literal> file defines the custom types that describe the user identity and profile fields that are imported and used in the <literal>main</literal> program file for the <literal>linkedup</literal> canister.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>utils.mo</literal> file provides helper functions.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_query_and_update_operations">
+<title>Query and update operations</title>
+<simpara>In working with the LinkedUp sample application, you might notice that some operations—such as viewing a profile or performing a search—returned results almost immediately.
+Other operations—such as creating a profile or adding a connection—took a little longer.</simpara>
+<simpara>These differences in performance illustrate the difference between using query and update calls in the <literal>linkedup</literal> canister.</simpara>
+<simpara>For example, in the <literal>src/linkedup/main.mo</literal> file, the <literal>create</literal> and <literal>update</literal> functions are update calls that change the state of the canister, but the program uses query calls for the <literal>get</literal> and <literal>search</literal> functions to view or search for a profile:</simpara>
+<literallayout class="monospaced">  // Profiles
+
+  public shared(msg) func create(profile: NewProfile): async () {
+    directory.createOne(msg.caller, profile);
+  };
+
+  public shared(msg) func update(profile: Profile): async () {
+    if(Utils.hasAccess(msg.caller, profile)) {
+      directory.updateOne(profile.id, profile);
+    };
+  };
+
+  public query func get(userId: UserId): async Profile {
+    Utils.getProfile(directory, userId)
+  };
+
+  public query func search(term: Text): async [Profile] {
+    directory.findBy(term)
+  };</literallayout>
+</section>
+<section xml:id="_interaction_between_the_canisters">
+<title>Interaction between the canisters</title>
+<simpara>In this sample application, the <literal>linkedup</literal> canister leverages functions defined in the <literal>connectd</literal> canister.
+This separation simplifies the code in each canister and illustrates how you can extend a project by calling common functions defined in one canister from one or more other canisters.</simpara>
+<simpara>To make the public functions defined in one canister available in the another canister:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Add an <literal>import</literal> statement in the calling canister.</simpara>
+<simpara>In this example, the public functions are defined in the <literal>connectd</literal> canister and are called by the <literal>linkedup</literal> canister.</simpara>
+<simpara>Therefore, the <literal>src/linkedup/main.mo</literal> includes the following code:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">// Make the Connectd app's public methods available locally
+import Connectd "canister:connectd";</programlisting>
+</listitem>
+<listitem>
+<simpara>Use the <literal>canister.function</literal> syntax to call public methods in the imported canister.</simpara>
+<simpara>In this example, the <literal>linkedup</literal> canister calls the <literal>connect</literal> and <literal>getConnections</literal> function in the imported <literal>connectd</literal> canister.</simpara>
+</listitem>
+</orderedlist>
+<simpara>You can see the code that enables interaction between the <literal>linkedup</literal> canister and the <literal>connectd</literal> canister in the <literal>main.mo</literal> source files.</simpara>
+<simpara>For example, the <literal>src/connectd/main.mo</literal> defines the following functions:</simpara>
+<simpara>+</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">actor Connectd {
+  flexible var graph: Digraph.Digraph = Digraph.Digraph();
+
+  public func healthcheck(): async Bool { true };
+
+  public func connect(userA: Vertex, userB: Vertex): async () {
+    graph.addEdge(userA, userB);
+  };
+
+  public func getConnections(user: Vertex): async [Vertex] {
+    graph.getAdjacent(user)
+  };
+
+};</programlisting>
+<simpara>Because of the <literal>Import</literal> statement, the <literal>connectd</literal> functions are available to the <literal>linkedup</literal> canister and the <literal>src/linkedup/main.mo</literal> includes the following code:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">  // Connections
+
+  public shared(msg) func connect(userId: UserId): async () {
+    // Call Connectd's public methods without an API
+    await Connectd.connect(msg.caller, userId);
+  };
+
+  public func getConnections(userId: UserId): async [Profile] {
+    let userIds = await Connectd.getConnections(userId);
+    directory.findMany(userIds)
+  };
+
+  public shared(msg) func isConnected(userId: UserId): async Bool {
+    let userIds = await Connectd.getConnections(msg.caller);
+    Utils.includes(userId, userIds)
+  };
+
+  // User Auth
+
+  public shared query(msg) func getOwnId(): async UserId { msg.caller }
+
+};</programlisting>
+</section>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with the <literal>linkedup</literal> program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

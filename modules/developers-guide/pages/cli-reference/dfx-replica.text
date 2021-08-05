@@ -1,0 +1,51 @@
+---
+date: 2021-08-05
+title: dfx replica
+---
+
+Use the `dfx replica` command to start a {IC} replica process (without a
+web server) locally. This command enables you to deploy canisters
+locally to simulate network deployment and to test your programs during
+development.
+
+Note that you can only run this command from within the project
+directory structure. For example, if your project name is `hello_world`,
+your current working directory must be the `hello_world` top-level
+project directory or one of its subdirectories.
+
+# Basic usage {#_basic_usage}
+
+``` bash
+dfx replica [option] [flag]
+```
+
+# Flags {#_flags}
+
+You can use the following optional flags with the `dfx replica` command.
+
++----------------------+-----------------------------------------------+
+| Flag                 | Description                                   |
++======================+===============================================+
+| `-h`, `--help`       | Displays usage information.                   |
++----------------------+-----------------------------------------------+
+| `-V`, `--version`    | Displays version information.                 |
++----------------------+-----------------------------------------------+
+
+# Options {#_options}
+
+You can use the following option with the `dfx replica` command.
+
++----------------------+-----------------------------------------------+
+| Option               | Description                                   |
++======================+===============================================+
+| `--port port`        | Specifies the port the local replica should   |
+|                      | listen to.                                    |
++----------------------+-----------------------------------------------+
+
+# Examples {#_examples}
+
+You can start the {IC} replica by running the following command:
+
+``` bash
+dfx replica
+```

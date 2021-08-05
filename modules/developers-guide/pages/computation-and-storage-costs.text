@@ -1,0 +1,135 @@
+---
+date: 2021-08-05
+title: Computation and Storage Costs
+---
+
+The Internet Computer requires computation operations and storage to be
+supported by cycles. Cycles are generated from the conversion of
+Internet Computer (ICP) utility tokens.
+
+# The Role of the Network Nervous System (NNS) in Defining Costs {#_the_role_of_the_network_nervous_system_nns_in_defining_costs}
+
+The Internet Computer is a decentralized public utility, controlled by
+the NNS ---- the network's open, algorithmic governance system. The NNS
+fundamentally controls how many cycles are required for low-level
+computation actions for computation and storage. The number of cycles
+needed for individual computations will vary based on a number of
+factors considered by the NNS, including proposals from the community.
+
+# Details: Cost of Compute and Storage Transactions on the Internet Computer {#_details_cost_of_compute_and_storage_transactions_on_the_internet_computer}
+
+See below for details on the cost of compute and storage transactions on
+the Internet Computer as of July 26, 2021.
+
++----------------------+----------------------+-----------------------+
+| Transaction          | Description          | All Application       |
+|                      |                      | Subnets               |
++======================+======================+=======================+
+| Canister Created     | For creating         | 100,000,000,000       |
+|                      | canisters on a       |                       |
+|                      | subnet               |                       |
++----------------------+----------------------+-----------------------+
+| Compute Percent      | For each percent of  | 100,000               |
+| Allocated Per Second | the reserved compute |                       |
+|                      | allocation (a scarce |                       |
+|                      | resource).           |                       |
++----------------------+----------------------+-----------------------+
+| Update Message       | For every update     | 590,000               |
+| Execution            | message executed     |                       |
++----------------------+----------------------+-----------------------+
+| Ten Update           | For every 10         | 4                     |
+| Instructions         | instructions         |                       |
+| Execution            | executed when        |                       |
+|                      | executing update     |                       |
+|                      | type messages        |                       |
++----------------------+----------------------+-----------------------+
+| Xnet Call            | For every            | 260,000               |
+|                      | inter-canister call  |                       |
+|                      | performed (includes  |                       |
+|                      | the cost for sending |                       |
+|                      | the request and      |                       |
+|                      | receiving the        |                       |
+|                      | response)            |                       |
++----------------------+----------------------+-----------------------+
+| Xnet Byte            | For every byte sent  | 1,000                 |
+| Transmission         | in an inter-canister |                       |
+|                      | call (for bytes sent |                       |
+|                      | in the request and   |                       |
+|                      | response)            |                       |
++----------------------+----------------------+-----------------------+
+| Ingress Message      | For every ingress    | 1,200,000             |
+| Reception            | message received     |                       |
++----------------------+----------------------+-----------------------+
+| Ingress Byte         | For every byte       | 2,000                 |
+| Reception            | received in an       |                       |
+|                      | ingress message      |                       |
++----------------------+----------------------+-----------------------+
+| GB Storage Per       | For storing a GB of  | 127,000               |
+| Second               | data per second      |                       |
++----------------------+----------------------+-----------------------+
+
+: Cycles Cost per Transaction (as of July 26, 2021)
+
+The \$USD cost for transactions below is based on the above cycle costs.
+1 XDR is equal to 1 Trillion cycles. As of July 26, 2021, the exchange
+rate for 1 XDR = \$1.42. The exchange rate for USD \<\> XDR may vary and
+it will impact the conversion rate. For XDR exchange rates please visit:
+<https://www.imf.org/external/np/fin/data/rms_sdrv.aspx>
+
+To derive the estimated GB Storage per month, we assume a 30 day month.
+
++----------------------+----------------------+-----------------------+
+| Transaction          | Description          | All Application       |
+|                      |                      | Subnets               |
++======================+======================+=======================+
+| Canister Created     | For creating         | \$0.142               |
+|                      | canisters on a       |                       |
+|                      | subnet               |                       |
++----------------------+----------------------+-----------------------+
+| Compute Percent      | For each percent of  | \$0.000000142         |
+| Allocated Per Second | the reserved compute |                       |
+|                      | allocation (a scarce |                       |
+|                      | resource).           |                       |
++----------------------+----------------------+-----------------------+
+| Update Message       | For every update     | \$0.0000008378        |
+| Execution            | message executed     |                       |
++----------------------+----------------------+-----------------------+
+| Ten Update           | For every 10         | \$0.00000000000568    |
+| Instructions         | instructions         |                       |
+| Execution            | executed when        |                       |
+|                      | executing update     |                       |
+|                      | type messages        |                       |
++----------------------+----------------------+-----------------------+
+| Xnet Call            | For every            | \$0.0000003692        |
+|                      | inter-canister call  |                       |
+|                      | performed (includes  |                       |
+|                      | the cost for sending |                       |
+|                      | the request and      |                       |
+|                      | receiving the        |                       |
+|                      | response)            |                       |
++----------------------+----------------------+-----------------------+
+| Xnet Byte            | For every byte sent  | \$0.00000000142       |
+| Transmission         | in an inter-canister |                       |
+|                      | call (for bytes sent |                       |
+|                      | in the request and   |                       |
+|                      | response)            |                       |
++----------------------+----------------------+-----------------------+
+| Ingress Message      | For every ingress    | \$0.000001704         |
+| Reception            | message received     |                       |
++----------------------+----------------------+-----------------------+
+| Ingress Byte         | For every byte       | \$0.00000000284       |
+| Reception            | received in an       |                       |
+|                      | ingress message      |                       |
++----------------------+----------------------+-----------------------+
+| GB Storage Per       | For storing a GB of  | \$0.00000018034       |
+| Second               | data per second      |                       |
++----------------------+----------------------+-----------------------+
+
+: Cost per Transaction in \$USD (as of July 26, 2021)
+
+Assuming a 30 day month --- 
+
++----------------------+----------------------+-----------------------+
+| GB Storage Per Month | For storing a GB of  | \$0.467               |
+|                      | data per month       |                       |
++----------------------+----------------------+-----------------------+

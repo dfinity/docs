@@ -215,6 +215,7 @@ This command displays the list of identities found similar to the following:
 [source,bash]
 ----
 alice_auth
+anonymous
 bob_standard *
 default
 ic_admin

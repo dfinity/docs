@@ -13,6 +13,7 @@ An overview of the {release} release:
 - Makes `dfx import` work with default identities.
 - Adds support for nonstandard wallet modules.
 - Improves performance of the asset canister to allow for storage of more and larger assets.
+- Updates to version 0.6.7 of Motoko.
 
 == Changes to DFX
 

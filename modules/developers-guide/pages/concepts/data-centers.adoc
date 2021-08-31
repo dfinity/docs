@@ -43,4 +43,4 @@ Network operations and upgrades, however, are monitored and managed through the 
 
 If you are looking for more information about data center operations and node providers, check out the following related resources:
 
-* link:https://internetcomputer.zendesk.com/hc/en-us/categories/360005114372-Node-Provider[Internet Computer Help Center for Node Providers (FAQ and articles)]
+* link:https://support.internetcomputer.org/hc/en-us/sections/4405489337748-Node-Provider[Internet Computer Help Center for Node Providers (FAQ and articles)]

@@ -1,0 +1,22 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+:release: 0.8.2
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+An overview of the {release} release:
+
+- Breaking change in how to specify a controller to `dfx canister create`
+
+== Changes to DFX
+
+=== Breaking change: controller parameter for dfx canister create
+
+Breaking change: The controller parameter for `dfx canister create` is now passed as a named parameter,
+rather than optionally following the canister name.
+
+Old: dfx canister create [canister name] [controller]
+New: dfx canister create --controller <controller> [canister name]
+

@@ -1,0 +1,39 @@
+= Reproducible Canister Builds
+
+The {IC} always ensures that the code of a canister executes correctly.
+But how do you verify whether it's executing the _intended_ code for a canister?
+This document shows a common way of verifing that.
+
+There are two parts to this question:
+
+1. Which code is being executed for a canister? 
+   The {IC} executes WebAssembly (WASM) code, and provides information about the code.
+2. The canisters are rearely written in WASM directly, but normally in a higher-level language, such as Motoko or Rust.
+   The question is then: does the purported source code of the canister really result in the WASM that's running? 
+   If the build system for creating the WASM out of the source code supports _reproducible builds_,
+   we can easily check this. by repeating the same steps that the canister author or uploader did
+
+== Finding out which code the {IC} is executing
+
+{IC} does not allow you to access the WASM code of an arbitrary canister.
+This is a design decision, as developers might want to keep some code private.
+However, the {IC} does allow you to access the _cryptographic hash_ of the WASM code, or more concretely, the SHA-256 hash.
+The easiest way to access this service is using the `dfx` tool from the terminal.
+Open your terminal, and navigate to any directory that contains a valid `dfx.json` file (if you don't have such a directory, you can create it using `dfx new `)
+Make sure that you  as follows:
+
+----
+$ dfx canister --no-wallet --network ic info rdmx6-jaaaa-aaaaa-aaadq-cai
+Controller: r7inp-6aaaa-aaaaa-aaabq-cai
+Module hash: 0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4
+----
+
+Here, the {IC} tells us that the hash of the `rdmx6-jaaaa-aaaaa-aaadq-cai` canister (which happens to be the internet identity canister) is 
+
+== Reproducing a build
+
+Set the DFX_VERSION environment variable to the version of the DFINITY Canister SDK package you want to install as a prefix to curl command.
+
+For example, to install version 0.8.1, you would run the following command:
+
+    DFX_VERSION=-1.8.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)" 

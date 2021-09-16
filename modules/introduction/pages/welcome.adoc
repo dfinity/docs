@@ -10,7 +10,7 @@ Hello there!
 
 If you’ve landed here, you’re interested in learning more about the Internet Computer. You’re in the right place — take a look below for where to get started!
 
-NOTE: Qualified developers can access $100 worth of free cycles to begin deploying Canister smart contracts to the network. https://faucet.dfinity.org/auth[Claim your free cycles]
+NOTE: Qualified developers can access $20 worth of free cycles to begin deploying Canister smart contracts to the network. https://faucet.dfinity.org/auth[Claim your free cycles]
 
 [[for-first-timers]]
 == For: First-Timers

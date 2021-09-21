@@ -20,6 +20,8 @@ rather than optionally following the canister name.
 Old: dfx canister create [canister name] [controller]
 New: dfx canister create --controller <controller> [canister name]
 
+=== JS Codegen update - JSDoc comment now accepts a complete Agent for createActor
+
 === New feature: dfx canister create now accepts multiple instances of --controller argument
 
 It is now possible to create canisters with more than one controller by

@@ -5,9 +5,9 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 :company-id: DFINITY
 
-Applications often require role-based permissions to control the operations different users can perform.
+Dapps often require role-based permissions to control the operations different users can perform.
 
-To illustrate how to create and switch between user identities, this tutorial creates a simple program that displays a different greeting for users who are assigned to different roles.
+To illustrate how to create and switch between user identities, this tutorial creates a simple Dapp that displays a different greeting for users who are assigned to different roles.
 
 In this example, there are three named roles—`+owner+`, `+admin+`, and `+authorized+`. 
 
@@ -15,9 +15,9 @@ In this example, there are three named roles—`+owner+`, `+admin+`, and `+autho
 * Users who are assigned an `+authorized+` role see a greeting that displays `+Would you like to play a game?+`.
 * Users who are not assigned one of these roles see a greeting that displays `+Nice to meet you!+`.
 
-In addition, only the user identity that initialized the canister is assigned the `+owner+` role and only the `+owner+` and `+admin+` roles can assign roles to other users.
+In addition, only the user identity that initialized the smart contract canister is assigned the `+owner+` role and only the `+owner+` and `+admin+` roles can assign roles to other users.
 
-At a high-level, each user has a public/private key pair. The public key combines with the canister identifier the user accesses forms a security principal that can then be used as a message caller to authenticate function calls made to the canister running on the {IC}.
+At a high-level, each user has a public/private key pair. The public key combined with the smart contract canister identifier the user accesses forms a security principal that can then be used as a message caller to authenticate function calls made to the smart contract canister running on the {IC}.
 The following diagram provides a simplified view of how user identities authenticate message callers.
 
 image::principal-identities.svg[]
@@ -54,11 +54,11 @@ dfx new access_hello
 cd access_hello
 ----
 
-== Modify the default program
+== Modify the default Dapp
 
-For this tutorial, you are going to replace the template source code file with a program that has functions for assigning and retrieving roles.
+For this tutorial, you are going to replace the template source code file with a Dapp that has functions for assigning and retrieving roles.
 
-To modify the default program:
+To modify the default Dapp:
 
 . Open the `+src/access_hello/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
@@ -68,13 +68,13 @@ To modify the default program:
 include::example$access-hello/main.mo[]
 ----
 +
-Let's take a look at a few key elements of this program:
+Let's take a look at a few key elements of this Dapp:
 +
 --
 * You might notice that the `+greet+` function is a variation on the `+greet+` function you have seen in previous tutorials. 
 +
-In this program, however, the `+greet+` function uses a message caller to determine the permissions that should be applied and, based on the permissions associated with the caller, which greeting to display.
-* The program defines two custom types—one for `+Roles+` and one for `+Permissions+`.
+In this Dapp, however, the `+greet+` function uses a message caller to determine the permissions that should be applied and, based on the permissions associated with the caller, which greeting to display.
+* The Dapp defines two custom types—one for `+Roles+` and one for `+Permissions+`.
 * The `+assign_roles+` function enables the message caller to assign a role to the principal associated with an identity.
 * The `+callerPrincipal+` function enables you to return the principal associated with an identity.
 * The `+my_role+` function enables you to return the role that is associated with an identity.
@@ -83,7 +83,7 @@ In this program, however, the `+greet+` function uses a message caller to determ
 
 == Start the local network
 
-Before you can build the `+access_hello+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+Before you can build the `+access_hello+` project, you need to connect to the {IC} network either running locally in your development environment or running on the {IC} mainnet.
 
 To start the network locally:
 
@@ -98,15 +98,15 @@ dfx start --background
 +
 After the local {IC} network completes its startup operations, you can continue to the next step.
 
-== Register, build, and deploy the application
+== Register, build, and deploy the Dapp
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application in a single step by running the link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy`] command.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your Dapp in a single step by running the link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy`] command.
 You can also perform each of these steps independently using separate link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_create[`+dfx canister create+`], link:../cli-reference/dfx-build{outfilesuffix}[`+dfx build+`], and link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_install[`+dfx canister install+`] commands.
 
-To deploy the application locally:
+To deploy the Dapp locally:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy the `+access_hello+` back-end program by running the following command:
+. Register, build, and deploy the `+access_hello+` back-end Dapp by running the following command:
 +
 [source,bash]
 ----
@@ -114,7 +114,7 @@ dfx deploy access_hello
 ----
 +
 ....
-Creating a wallet canister on the local network.
+Creating a wallet smart contract canister on the local network.
 The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
 Deploying: access_hello
 Creating canisters...
@@ -129,7 +129,7 @@ Deployed canisters.
 == Check the current identity context
 
 Before we create any additional identities, let's review the principal identifiers associated with your `+default+` identity and the cycles wallet for your `+default+` identity.
-On the {IC}, a principal is the internal representative for a user, canister, node, or subnet. The textual representation for a principal is the external identifier you see displayed with working with the principal data type.
+On the {IC}, a principal is the internal representative for a user, smart contract canister, node, or subnet. The textual representation for a principal is the external identifier you see displayed with working with the principal data type.
 
 To review your current identity and principle:
 
@@ -172,7 +172,7 @@ The command displays output similar to the following:
 
 == Create a new user identity
 
-To begin testing the access controls in our program, let's create some new user identities and assign those users to different roles.
+To begin testing the access controls in our Dapp, let's create some new user identities and assign those users to different roles.
 
 To create a new user identity:
 
@@ -217,7 +217,7 @@ The command displays output similar to the following:
 Using identity: "ic_admin".
 c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae
 ....
-. Check the principal used to call the `+access_hello+` canister by running the following command:
+. Check the principal used to call the `+access_hello+` smart contract canister by running the following command:
 +
 [source,bash]
 ----
@@ -230,7 +230,7 @@ The command displays output similar to the following:
 (principal "ryjl3-tyaaa-aaaaa-aaaba-cai")
 ....
 +
-By default, the cycles wallet identifier is the principal used to call the methods in the `+access_hello+` canister.
+By default, the cycles wallet identifier is the principal used to call the methods in the `+access_hello+` smart contract canister.
 To illustrate access control, however, we want to use the principal associated with the user context, not the cycles wallet.
 Before we get to that step, though, let's assign a role to the `+ic_admin+` user. To do that, we need to switch to the `+default+` user identity that has the `+owner+` role.
 
@@ -466,7 +466,7 @@ You can now run commands using the selected user identity without specifying `+-
 
 == Stop the local network
 
-After you finish experimenting with the program and using identities, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with the Dapp and using identities, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
 
 To stop the local network:
 
@@ -484,4 +484,4 @@ dfx stop
 If you are looking for more information about identity and authentication, check out the following related resources:
 
 * link:../cli-reference/dfx-identity{outfilesuffix}[dfx identity (command reference)]
-* link:../working-with-canisters{outfilesuffix}#set-owner[Set an identity to own a canister (how-to)]
+* link:../working-with-canisters{outfilesuffix}#set-owner[Set an identity to own a smart contract canister (how-to)]

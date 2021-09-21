@@ -9,19 +9,19 @@ You can use the `+dfx config+` command to change these settings programmatically
 
 == How to change your source directory
 
-Before you compile source code for your project using the `+dfx build+` command, you might want to check the default location for storing the source code for your program.
-By default, the name you use to create a new project is the name used for one data smart contract canister (`+canister_name+`) and one assets canister (`+canister_name_assets+`), and program source code is expected to be in the `+src/canister_name+` directory. Similarly, the default location for front-end source code is in the `+src/canister_name_assets/src+` directory and front-end output is located in the `+dist/canister_name_assets+` directory.
+Before you compile source code for your project using the `+dfx build+` command, you might want to check the default location for storing the source code for your Dapp.
+By default, the name you use to create a new project is the name used for one data smart contract canister (`+canister_name+`) and one assets smart contract canister (`+canister_name_assets+`), and Dapp source code is expected to be in the `+src/canister_name+` directory. Similarly, the default location for front-end source code is in the `+src/canister_name_assets/src+` directory and front-end output is located in the `+dist/canister_name_assets+` directory.
 
-Depending on your application's complexity and architecture, however, you might want to modify the default location for the program source code, the front-end source code, or front-end output. 
+Depending on your Dapp's complexity and architecture, however, you might want to modify the default location for the Dapp source code, the front-end source code, or front-end output. 
 
-For example, for a simple program, you might want to eliminate one directory level and place the source code in the `+src+` directory:
+For example, for a simple Dapp, you might want to eliminate one directory level and place the source code in the `+src+` directory:
 
 [source,text]
 ----
   "main": "src/main.mo",
 ----
 
-For more complex applications, you might want to use a multi-tiered directory structure:
+For more complex Dapps, you might want to use a multi-tiered directory structure:
 
 [source,text]
 ----
@@ -82,11 +82,11 @@ For example:
 ----
 ////
 
-== How to change the main program file name
+== How to change the main Dapp file name
 
-Before you compile source code for your project using the `+dfx build+` command, you should verify the location and file name used for your program’s source code.
+Before you compile source code for your project using the `+dfx build+` command, you should verify the location and file name used for your Dapp’s source code.
 
-For example, if you want to build a smart contract canister for the `+factorial+` program and the source code for the program is located in `+src/math/factorial.mo+`, you should be sure that you have the correct
+For example, if you want to build a smart contract canister for the `+factorial+` Dapp and the source code for the Dapp is located in `+src/math/factorial.mo+`, you should be sure that you have the correct
 path specified for the `+main+` setting in the `+canisters+` section of the configuration file.
 
 For example:
@@ -96,12 +96,12 @@ For example:
 "main": "src/math/factorial.mo",
 ----
 
-Keep in mind that changing the configuration setting for the program file name only affects where the `+dfx build+` command looks for the source code to compile. Making changes in the configuration file does not rename any files or directories on the file system. 
-If you change the path to the main program file or the name of the file itself, be sure to change the name and location within your project directory.
+Keep in mind that changing the configuration setting for the Dapp file name only affects where the `+dfx build+` command looks for the source code to compile. Making changes in the configuration file does not rename any files or directories on the file system.
+If you change the path to the main Dapp file or the name of the file itself, be sure to change the name and location within your project directory.
 
-== How to change the location for serving the application front-end
+== How to change the location for serving the Dapp front-end
 
-You can change the default host name and port number for serving the application front-end by modifying the local network settings in the `+dfx.json+` configuration file.
+You can change the default host name and port number for serving the Dapp front-end by modifying the local network settings in the `+dfx.json+` configuration file.
 
 For example, you can change the IP address for the local network by modifying the `+bind+` setting:
 

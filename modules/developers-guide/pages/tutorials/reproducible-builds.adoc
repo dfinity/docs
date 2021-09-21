@@ -10,17 +10,24 @@ There are two parts to this question:
    The {IC} executes WebAssembly (WASM) code, and provides information about the code.
 2. The canisters are rearely written in WASM directly, but normally in a higher-level language, such as Motoko or Rust.
    The question is then: does the purported source code of the canister really result in the WASM that's running? 
-   If the build system for creating the WASM out of the source code supports _reproducible builds_,
-   we can easily check this. by repeating the same steps that the canister author or uploader did
+   To be able to answer this, canister authors should ensure https://reproducible-builds.org/docs/definition/[reproducible builds] of the WASM code. 
+   Such builds allows anyone to follow the same steps as the canister authors and yield the exact same WASM code,
+   which can then be compared to the code executing on the {IC}.
+   Moreover, the build process has to be trusted by the user.
+
+The rest of the document explains both how to retrieve information about code being executed, and instructs authors how to ensure reproducibility of their builds.
+The impatient reader who is familiar with the topic of reproducible builds can skip to the <<repro-build-summary>>.
 
 == Finding out which code the {IC} is executing
 
 {IC} does not allow you to access the WASM code of an arbitrary canister.
 This is a design decision, as developers might want to keep some code private.
-However, the {IC} does allow you to access the _cryptographic hash_ of the WASM code, or more concretely, the SHA-256 hash.
-The easiest way to access this service is using the `dfx` tool from the terminal.
-Open your terminal, and navigate to any directory that contains a valid `dfx.json` file (if you don't have such a directory, you can create it using `dfx new `)
-Make sure that you  as follows:
+However, the {IC} does allow you to access the _cryptographic hash_ of the WASM code of a canister, or more concretely, the SHA-256 hash.
+
+To obtain this hash, you must first note the ID of the {IC} canister whose code you want to check.
+For example, assume we're interested in the code of the Internet Identity canister, whose ID is `rdmx6-jaaaa-aaaaa-aaadq-cai`.
+Then, the easiest way to access this service is using the `dfx` tool from the terminal.
+Open your terminal, and run:
 
 ----
 $ dfx canister --no-wallet --network ic info rdmx6-jaaaa-aaaaa-aaadq-cai
@@ -28,12 +35,187 @@ Controller: r7inp-6aaaa-aaaaa-aaabq-cai
 Module hash: 0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4
 ----
 
-Here, the {IC} tells us that the hash of the `rdmx6-jaaaa-aaaaa-aaadq-cai` canister (which happens to be the internet identity canister) is 
+NOTE: If you are running an old version of `dfx`, you will need to run this command from a directory that contains a valid `dfx.json` file.
+If you don't have such a directory, you can create it using `dfx new`.
 
-== Reproducing a build
+Here, the {IC} tells us that the hash of the code of the `rdmx6-jaaaa-aaaaa-aaadq-cai` canister (which happens to be the internet identity canister) is `0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4`.
 
-Set the DFX_VERSION environment variable to the version of the DFINITY Canister SDK package you want to install as a prefix to curl command.
+CAUTION: The check above provides you the _current_ hash of the canister, but the _controllers_ of an {IC} canister may change the code at any time (e.g., to upgrade a canister). Currently, there is only way to ensure that the canister hasn't changed its code since you last checked it: the canister's controllers must be empty.
 
-For example, to install version 0.8.1, you would run the following command:
+Armed with this hash, you can next check whether it corresponds to some given source code.
+This only works if the build process for the code is reproducible.
 
-    DFX_VERSION=-1.8.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)" 
+== Reproducible builds
+
+As a canister author, there are a few things you have to provide to your users to allow them to reproduce your build:
+
+* The same source code that you used to create the WASM for canister.
+* Instructions on how to recreate your build environment.
+* Instructions on how to repeat the process of building the WASM from the source code.
+  Crucially, the process must be deterministic, to ensure that it results in the exact same WASM.
+
+We next look at each of these points in more detail.
+
+=== Providing source code
+
+Typically, you will version your code in `git` or some other version control system.
+In this case, you should note the particular commit that you use when producing the code to be deployed to the {IC}, and communicate it to the users who are trying to verify your canister.
+Alternatively, you can also provide a package (e.g., a zip file or a tarball) containing the source code you used to build your canister.
+
+=== Reproducing build environments
+
+Before building your code, you should note down the exact versions of the build tools and environment variables you are using.
+In particular, for the languages supported by the {IC} SDK:
+
+* If you are using `dfx`, note the version used, as specified in `dfx.json`. You can install arbitrary versions
+  of `dfx` using `dfx toolchain install <version>`.
+* If you are building Motoko code in a way other than `dfx build`, note the version of `moc` you are using.
+* If you are building Rust, note the version of `cargo` you are using.
+* If you are using Node.js, `npm` and/or `webpack`, note their versions.
+* If your build process depends on any environment variables (such as time zone or local), note them down.
+
+You should communicate all of these to your user in the instructions.
+Ideally, do so by providing an executable recipe to recreate the build environment, using tools such as Docker or Nix.
+We will show you how to do this using Docker.
+
+=== Build environments using Docker
+
+https://docs.docker.com/[Docker containers] are a popular solution to providing build environments.
+You can use a `Dockerfile` such as the following to provide the user with a particular version of `dfx`, `Nodejs` and the Rust toolchain.
+
+----
+FROM ubuntu:20.10
+
+# Specify the versions of the build tools used
+ARG rust_version=1.51.0
+ENV NODE_VERSION=14.17.1
+ENV DFX_VERSION=0.8.0
+
+# Install a basic environment needed for our build tools
+RUN \
+    apt -yq update && \
+    apt -yqq install --no-install-recommends curl ca-certificates \
+        build-essential pkg-config libssl-dev llvm-dev liblmdb-dev clang cmake
+
+# Install Node.js using nvm
+RUN curl --fail -sSf https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"P
+
+# Install Rust and Cargo in /opt
+
+ENV RUSTUP_HOME=/opt/rustup \
+    CARGO_HOME=/opt/cargo \
+    PATH=/opt/cargo/bin:$PATH
+RUN curl --fail https://sh.rustup.rs -sSf \
+        | sh -s -- -y --default-toolchain ${rust_version}-x86_64-unknown-linux-gnu --no-modify-path && \
+    rustup default ${rust_version}-x86_64-unknown-linux-gnu && \
+    rustup target add wasm32-unknown-unknown
+ENV CARGO_HOME=/cargo \
+    CARGO_TARGET_DIR=/cargo_target \
+    PATH=/cargo/bin:$PATH
+
+# Install dfx; the version is picked up the DFX_VERSION environment variable
+RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+
+ONBUILD COPY . /canister
+WORKDIR /canister
+
+----
+
+There are a couple of things worth noting about this `Dockerfile`:
+* It starts from an official Docker image. Furthermore, all the installed tools are standard, and come from standard sources. 
+  This provides the user with confidence that the build environment hasn't been tampered with, and thus that the build process 
+  using Docker can be trusted.
+* To ensure that specific versions of the build tools are installed, it installs them directly, rather than through 
+  the package manager of the Linux distribution running inside of the container.
+  Such package managers usually don't provide a way of pinning the build tools to a specific versions.
+
+To use this `Dockerfile`, get Docker up and running, place the `Dockerfile` in the directory containing the source of your canister,
+and create the Docker container by running:
+----
+$ docker build -t mycanister .
+----
+
+This creates a Docker container called `mycanister`, with npm, Rust and `dfx` installed in it, and your canister source code
+copied to `/canister`.
+You can then enter an interactive shell inside of your container by running:
+----
+docker run -it --rm mycanister
+----
+
+From here, you can experiment with the steps needed to build your canister.
+Once you are confident that the steps are deterministic, you can also put them in the `Dockerfile`, 
+to allow the user to automatically reproduce your build when creating the canister.
+You can see an example in the https://github.com/dfinity/internet-identity/blob/397d0087a29855564c47f0fd3323f60b5b67a8fa/Dockerfile[Dockerfile of the internet identity canister].
+Next, we will investigate what is necessary to make the build deterministic.
+
+=== Ensuring the determinism of the build process
+
+For the build process to be deterministic:
+
+1. You will need to ensure that any dependencies of your canister are always resolved in the same way.
+   Most build tools now support a way of "freezing" dependencies to a particular version.
+
+   * For `npm`, running `npm install` will create a `package-lock.json` file with some fixed versions of all 
+     transitive dependencies of your project that satisfy the requirements specified in your `package.json`.
+     However, `npm install` does not honor the `package-lock.json` file by default.
+     Thus, once you create the final version of your canister, run `npm install` only once.
+     After that, commit `package-lock.json` to your version control system.
+     Finally, when checking the build for reproducibility, use `npm ci` instead of `npm install`.
+
+   * For Rust code, Cargo will automatically generate a `Cargo.lock` file with the fixed versions of
+     your (transitive) dependencies.
+     Like with `package-lock.json`, you should commit this file to your version control system once you
+     are ready to produce the final version of your canister.
+     Furthermore, Cargo by default ignores the locked versions of dependencies.
+     Pass the `--locked` flag to the `cargo` command to ensure that the locked dependencies are used.
+
+2. You must not introduce non-determinism in your build scripts.
+   Some obvious sources of non-determinism are relying on randomness or code obfuscators.
+   Less obvious sources include relying on locales, timestamps, or absolute file paths, and fetching remote URLs whose 
+   content can change.
+   Furthermore, relying on third-party build plug-ins exposes you to any non-determinism introduced by these.
+
+3. Given the same dependencies and deterministic build scripts, the build tools themselves (`dfx` for coordinating canister
+   builds, `moc` for Motoko, `cargo` for Rust, `webpack` by default for front-end development) must also be deterministic.
+   The good news is that all of these tools aim to be deterministic.
+   However, they are complicated pieces of software, and ensuring determinism is non-trivial.
+   Thus, non-determinism bugs can and do occur.
+   For example, see the https://github.com/rust-lang/rust/labels/A-reproducibility[list of current potential non-determinism issues in Rust].
+   Webpack has since version 5 introduced deterministic naming to ensure reproducibility.
+   The Motoko compiler aims to be deterministic, though there might be edge cases that stem from the underlying toolchain and cannot be fixed.
+   Nevertheless, if you observe non-deterministic behavior that you reproduce, we encourage you to report it.
+
+=== Testing reproducibility
+
+=== Long-term considerations
+
+== Summary
+[[repro-build-summary]]
+
+Summarizing our recommendations for canister authors:
+
+* Ideally, use a tool such as Docker or NixOS to conveniently set up the build tools and fix their versions for the user.
+  The build tools should be sourced from somewhere that user can trust.
+  If the build tools you are using don't guarantee reproducible builds, Docker can also help by minimizing the differences in paths, environment variables etc.
+* Rust and Motoko compilers aim to be deterministic, and thus support reproducible builds. If you notice non-determinism, file bug reports.
+* When using NPM, ensure that you specify the exact versions of all your dependencies (commit `package_lock.json` to your git repo!).
+* Webpack builds should be reproducible, but obfuscators and similar tools may compromise reproducibility.
+* Build tools aren't perfect, and may fail to ensure reproducible builds. 
+  If reproducibility is critical for your canister (e.g., it holds a large amount of funds), set up CI processes to check it
+
+Finally, to retrieve the hash of the (current) WASM code that a canister is running, use:
+----
+$ dfx canister --no-wallet --network ic info <canister-id>
+----
+
+Beware that this hash might change if the controllers upgrade the canister code.
+
+== Remaining questions
+
+* How does the Wasm stay they same when I changed the canister IDs in the different versions of dfinihack?
+  How are the calls to a different canister routed? Or perhaps the frontend canister wasn't actually doing anything?

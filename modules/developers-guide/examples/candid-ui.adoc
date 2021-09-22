@@ -36,17 +36,32 @@ dfx start --background
 . Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
 +
 By default, the `+local+` network binds to the `+127.0.0.1:8000+` address and port number.
-. Add the required `+canisterId+` parameter and the Candid UI canister identifier returned by the `+dfx canister id+` command to the URL.
+. Add the required `+canisterId+` parameter and the Candid UI canister identifier returned by the `+dfx canister id __Candid_UI+` command to the URL.
 +
-For example, the full URL should look similar to the following but with the `+CANDID-UI-CANISTER-IDENTIFIER+` that was returned by the `+dfx canister id+` command:
+For example, the full URL should look similar to the following but with the `+CANDID-UI-CANISTER-IDENTIFIER+` that was returned by the `+dfx canister id __Candid_UI+` command:
 +
 ....
 http://127.0.0.1:8000/?canisterId=<CANDID-UI-CANISTER-IDENTIFIER>
 ....
 +
-The browser displays a form for you to specify a canister identifier or choose a Candid description (`+.did+`) file.
+For instance, with the example canister identifier for the Candid UI as shown above, this could look as follows:
 +
-. Specify the canister identifier in the *Provide a canister ID* field or upload the (`+.did+`) file to the *Choose a did file* field, then click *Go* to display the service description.
+....
+http://127.0.0.1:8000/?canisterId=r7inp-6aaaa-aaaaa-aaabq-cai
+....
++
+The browser then displays a form for you to specify a canister identifier or choose a Candid description (`+.did+`) file. 
+Note that this field refers to the canister identifier of the canister you would like to interact with (as opposed to the canister identifier for the Candid UI that we used in the last step).
++
+. Specify the canister identifier of the canister you would like to test in the *Provide a canister ID* field, then click *Go* to display the service description.
++
+If you aren’t sure which canister identifier to use, you can run the `+dfx canister id+` command to look up the identifier for a specific canister name.
+For instance, to get the canister identifier for a canister named `+my_counter+`, you would use:
++
+....
+dfx canister id my_counter
+....
++
 . Review the list of function calls and types defined in the dapp.
 . Type a value of the appropriate type for a function or click *Random* to generate a value, then click *Call* or *Query* to see the result.
 +

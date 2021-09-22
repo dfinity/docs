@@ -72,7 +72,7 @@ In a scenario like that—with multiple canisters and programs defined in your `
 +
 You can leave the rest of the default settings as they are.
 . Save your change and close the `+dfx.json+` file to continue.
-. Change the name of the main program file in the source code directory to match the name specified in the `+dfx.json+` configuration file by running the following command
+. Change the name of the main program file in the source code directory `+src+` to match the name specified in the `+dfx.json+` configuration file by running the following command
 +
 [source,bash]
 ----
@@ -102,13 +102,13 @@ Let's take a closer look at this sample program:
 * You can see that the `+currentValue+` variable declaration in this example includes the `+stable+` keyword to indicate the state—the value that can be set, incremented, and retrieved—persists.
 +
 This keyword ensures that the value for the variable is unchanged when the program is upgraded. 
-* The declaration for the `+currentValue+` variable also specifies that its type is a natural (`+Nat+`) number.
-* The program includes two public update methods—the `+increment+` and `+set+` functions—and one a query method, in this case, the `+get+` function.
+* The declaration for the `+currentValue+` variable also specifies that its type is a natural number (`+Nat+`).
+* The program includes two public update methods—the `+increment+` and `+set+` functions—and one a query method-the `+get+` function.
 --
 +
 For more information about stable and flexible variables, see link:../../language-guide/upgrades{outfilesuffix}[Stable variables and upgrade methods] in the link:../../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
 +
-For more information about the differences between a query and an update, see link:../concepts/canisters-code{outfilesuffix}#query-calls[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
+For more information about the differences between a query and an update, see link:../concepts/canisters-code{outfilesuffix}#query-update[Query and update methods] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the file to continue.
 
 == Start the local network
@@ -138,14 +138,14 @@ dfx start
 After you start the local network, the terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
-== Register, build, and deploy the application
+== Register, build, and deploy the dapp
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
+After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your dapp locally.
 
-To deploy the application locally:
+To deploy the dapp locally:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your application by running the following command:
+. Register, build, and deploy your dapp by running the following command:
 +
 [source,bash]
 ----
@@ -157,7 +157,7 @@ The `+dfx deploy+` command output displays information about the operations it p
 == Invoke methods on the deployed canister
 
 After successfully deploying the canister, you can simulate an end-user invoking the methods provided by the canister.
-For this tutorial, you invoke a `+get+` method to query the value of a counter, an `+increment+` method that increments the counter each time it is called, and a `+set+` method to pass an argument to update the counter to an arbitrary value you specify.
+For this tutorial, you invoke the `+get+` method to query the value of a counter, the `+increment+` method that increments the counter each time it is called, and the `+set+` method to pass an argument to update the counter to an arbitrary value you specify.
 
 To test invoking methods on the deployed canister:
 
@@ -172,7 +172,7 @@ dfx canister call my_counter get
 The command returns the current value of the `+currentValue+` variable as zero:
 +
 ....
-(0)
+(0 : nat)
 ....
 [arabic]
 . Run the following command to invoke the `+increment+` function to increment the value of the `+currentValue+` variable on the deployed canister by one:
@@ -194,7 +194,7 @@ dfx canister call my_counter get
 The command returns the updated value of the `+currentValue+` variable as one:
 +
 ....
-(1)
+(1 : nat)
 ....
 [arabic]
 . Run additional commands to experiment with invoking other methods and using different values.
@@ -207,7 +207,8 @@ dfx canister call my_counter set '(987)'
 dfx canister call my_counter get
 ----
 +
-Returns the current value of 987.
+This returns the updated value of the `+currentValue+` to be 987.
+Running the additional commands
 +
 [source,bash]
 ----
@@ -215,7 +216,7 @@ dfx canister call my_counter increment
 dfx canister call my_counter get
 ----
 +
-Returns the incremented value of 988.
+returns the incremented `+currentValue+` of 988.
 
 include::example$candid-ui.adoc[]
 +

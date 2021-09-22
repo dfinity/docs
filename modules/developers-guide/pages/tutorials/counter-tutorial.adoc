@@ -10,7 +10,7 @@ For this tutorial, the actor is named `+Counter+`.
 The program uses the `+currentValue+` variable to contain a natural number that represents the current value of the counter.
 This program supports the following function calls:
 
-* The `+increment+` function call updates the current value, incrementing by 1 (no return value).
+* The `+increment+` function call updates the current value, incrementing it by 1 (no return value).
 * The `+get+` function call queries and returns the current value.
 * The `+set+` function call updates the current value to an arbitrary numeric value you specify as an argument.
 

@@ -11,7 +11,7 @@ The program uses the `+currentValue+` variable to contain a natural number that 
 This program supports the following function calls:
 
 * The `+increment+` function call updates the current value, incrementing it by 1 (no return value).
-* The `+get+` function call queries and returns the current value.
+* The `+get+` function call queries and returns the current value of the counter.
 * The `+set+` function call updates the current value to an arbitrary numeric value you specify as an argument.
 
 This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister.
@@ -54,7 +54,7 @@ cd my_counter
 You have already seen that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
 In this tutorial, you will modify the default settings to use a different name for the main program in your project.
 
-To modify the default `+dfx.json+` configuration file:
+To modify the `+dfx.json+` configuration file:
 
 . Open the `+dfx.json+` configuration file in a text editor and change the default `+main+` setting from `+main.mo+` to `+increment_counter.mo+`.
 +

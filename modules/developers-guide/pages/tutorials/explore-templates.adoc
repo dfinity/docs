@@ -3,7 +3,7 @@
 :IC: Internet Computer
 :company-id: DFINITY
 
-If you started your tour of the {sdk-long-name} with the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], you have already seen the basic work flow for creating applications that run on the {IC}.
+If you started your tour of the {sdk-long-name} with the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], you have already seen the basic work flow for creating dapps that run on the {IC}.
 Now, let's take a closer look at that work flow by exploring the default files and folders that are added to your workspace when you create a new project.
 
 As a preview, the following diagram illustrates the development work flow when running the {IC} locally on you computer.
@@ -29,7 +29,7 @@ This tutorial takes approximately 20 minutes to complete.
 [[create-a-new-project]]
 == Create a new project
 
-As discussed in the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], applications for the {IC} start as **projects** that you create. You can create projects using the `+dfx+` executable command-line interface (CLI).
+As discussed in the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], dapps for the {IC} start as **projects** that you create. You can create projects using the `+dfx+` executable command-line interface (CLI).
 
 To take a closer look at the files and folders that are included in a  project by default, let's create a new project to work with.
 
@@ -88,13 +88,13 @@ At a minimum, the default project directory includes the following folders and f
 --
 * A default `README` file for documenting your project in the repository.
 * A default `+dfx.json+` configuration file to set configurable options for your project.
-* A default `+src+` directory for all of the source files required by your application.
+* A default `+src+` directory for all of the source files required by your dapp.
 --
 +
 The default `+src+` directory includes a template `+main.mo+` file that you can modify or replace to include your core programming logic.
 +
 Because this tutorial focuses on the basics of getting started, you are only going to use the `+main.mo+` file.
-If you have `+node.js+` installed, your project directory includes additional files and directories that you can use to define the front-end interface for your application.
+If you have `+node.js+` installed, your project directory includes additional files and directories that you can use to define the front-end interface for your dapp.
 Front-end development and the template files in the `+assets+` folder are discussed a little later.
 
 == Review the default configuration
@@ -122,7 +122,7 @@ include::example$sample-explore-dfx.json[]
 Let's take a look at a few of the default settings.
 +
 --
-* The `+canisters+` section specifies the name of the WebAssembly module for your `+explore_hello+` project is `+explore_hello+`.
+* The `+settings+` section specifies the name of the WebAssembly module for your `+explore_hello+` project is `+explore_hello+`.
 * The `+canisters.explore_hello+` key specifies that the main program to be compiled is located in the path specified by the `+main+` setting, in this case, `+src/explore_hello/main.mo+` and the `+type+` setting indicates that this is a `+motoko+` program.
 * The `+canisters.explore_hello_assets+` key specifies configuration details about front-end assets for this project. Let's skip those for now.
 * The `+dfx+` setting is used to identify the version of the software used to create the project.
@@ -178,7 +178,7 @@ For now, you can continue to the next section.
 [[start-the-local-network]]
 == Start the local network
 
-Before you can build the default project, you need to connect to the {IC} network either running *locally* in your development environment or running *remotely* on a subnet that you can access.
+Before you can build the default project, you need to connect to the {IC} network either running *locally* in your development environment or running *remotely* (on-chain) on a subnet that you can access.
 
 Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
@@ -353,7 +353,7 @@ dfx canister call explore_hello greet '("everyone": text)'
 This command specifies:
 +
 --
-* `explore_hello` as the name of the _canister_ or application service you want to call.
+* `explore_hello` as the name of the _canister smart contract_ or dapp you want to call.
 * `greet` as the specific _method_ or function you want to call.
 * `everyone` as the argument to pass to the `+greet+` function.
 --
@@ -387,7 +387,7 @@ document.getElementById("clickMeBtn").addEventListener("click", async () => {
 });
 ....
 +
-The template `+index.js+` imports an `explore_hello` agent from our newly created `declarations` directory. The agent is automatically configured to interact with the interface we created in `Main.mo`, and makes calls to our Canister using an `AnonymousIdentity` when the user clicks the `greeting` button.
+The template `+index.js+` imports an `explore_hello` agent from our newly created `declarations` directory. The agent is automatically configured to interact with the interface we created in `Main.mo`, and makes calls to our canister using an `AnonymousIdentity` when the user clicks the `greeting` button.
 +
 This file works in conjunction with the template `index.html` file to display an HTML page with an image asset, input field, and button for the `+greet+` function.
 . Close the `+index.js+` file to continue.

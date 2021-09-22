@@ -38,7 +38,7 @@ For reference information and examples that illustrate using `+dfx canister+` co
 
 |<<dfx canister request-status,`+request-status+`>> |Requests the status of a call to a canister.
 
-|<<dfx canister set-controller,`+set-controller+`>> |Specifies the identity name or principal to use as the new controller for a specified canister on the Internet Computer network.
+|<<dfx canister set-controller,`+set-controller+`>> |Specifies the identity name or principal to use as the new controller for a specified canister on the {platform}.
 
 |<<dfx canister send,`+send+`>> |Send a previously-signed `+message.json+` to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.
 
@@ -64,14 +64,16 @@ For example, to register unique canister identifiers for a project when the {IC}
 dfx canister create --all
 ----
 
-If you want to register unique canister identifiers for the same project when the {IC} runs on the network that uses the `+ic+` alias in the `+dfx.json+` file, you can run the following command:
+If you want to register unique canister identifiers for the same project on the {platform}, you can run the following command:
 
 [source,bash]
 ----
 dfx canister --network ic create --all
 ----
 
-Similarly, you can call a canister and function running on a remote {IC} network using a command similar to the following:
+The {sdk-short-name} comes with an alias of `+ic+`, which is configured to point to the {platform}. You can also pass a URL as a network option, or you can configure additional aliases in `+dfx.json+` under the `+networks+` configuration.
+
+To illustrate, you can call a canister and function running on a remote {IC} network using a command similar to the following:
 
 [source,bash]
 ----
@@ -276,7 +278,7 @@ dfx canister create --with-cycles 8000000000000 --all
 
 == dfx canister delete
 
-Use the `+dfx canister delete+` command to delete a stopped canister from the local Internet Computer network or on a remote Internet Computer network.
+Use the `+dfx canister delete+` command to delete a stopped canister from the local replica or on the {platform}.
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
@@ -326,7 +328,7 @@ To delete the `+hello_world+` canister, you can run the following command:
 dfx canister delete hello_world
 ----
 
-To delete all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
+To delete all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
 
 [source,bash]
 ----
@@ -571,7 +573,7 @@ This command displays an error message if the request identifier is invalid or r
 
 == dfx canister set-controller
 
-Use the `+dfx canister set-controller+` command to specify the identity name or principal to use as the new **controller** for a specified canister on the Internet Computer network.
+Use the `+dfx canister set-controller+` command to specify the identity name or principal to use as the new **controller** for a specified canister on the {platform}.
 A controller identity has special rights to manage the canister it controls.
 For example, only a controlling identity can be used to install, upgrade, or delete the canister under its control.
 
@@ -797,7 +799,7 @@ Send the signed message to the genesis token canister (GTC) to create a neuron o
 
 == dfx canister start
 
-Use the `+dfx canister start+` command to restart a stopped canister on the local Internet Computer network or on a remote Internet Computer network.
+Use the `+dfx canister start+` command to restart a stopped canister on the local {platform} or on a remote {platform}.
 
 In most cases, you run this command after you have stopped a canister to properly terminate any pending requests as a prerequisite to upgrading the canister.
 
@@ -849,7 +851,7 @@ To start the `+hello_world+` canister, you can run the following command:
 dfx canister start hello_world
 ----
 
-To start all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
+To start all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
 
 [source,bash]
 ----
@@ -858,7 +860,7 @@ dfx canister --network=ic start --all
 
 == dfx canister status
 
-Use the `+dfx canister status+` command to check whether a canister is currently running, in the process of stopping, or currently stopped on the local Internet Computer network or on a remote Internet Computer network.
+Use the `+dfx canister status+` command to check whether a canister is currently running, in the process of stopping, or currently stopped on the local {platform} or on a remote {platform}.
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
@@ -908,7 +910,7 @@ To check the status of the `+hello_world+` canister, you can run the following c
 dfx canister status hello_world
 ----
 
-To check the status for all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
+To check the status for all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
 
 [source,bash]
 ----
@@ -917,7 +919,7 @@ dfx canister --network=ic status --all
 
 == dfx canister stop
 
-Use the `+dfx canister stop+` command to stop a canister that is currently running on the local Internet Computer network or on a remote Internet Computer network.
+Use the `+dfx canister stop+` command to stop a canister that is currently running on the local {platform} or on a remote {platform}.
 
 In most cases, you run this command to properly terminate any pending requests as a prerequisite to upgrading the canister.
 
@@ -969,7 +971,7 @@ To stop the `+hello_world+` canister, you can run the following command:
 dfx canister stop hello_world
 ----
 
-To stop all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
+To stop all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
 
 [source,bash]
 ----

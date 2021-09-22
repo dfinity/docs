@@ -44,19 +44,6 @@ Use the `+DFX_INSTALLATION_ROOT+` environment variable to specify a different lo
 
 The `+.cache/dfinity/uninstall.sh+` script uses this environment variable to identify the root directory for your {sdk-short-name} installation. 
 
-== DFX_TELEMETRY_DISABLED
-
-Use the `+DFX_TELEMETRY_DISABLED+` environment variable to opt-out of having data collected about `+dfx+` usage.
-
-By default, `+dfx+` is configured to collect anonymous—that is, no identifying information such as IP addresses or user information—data about `+dfx+` command activity and errors.
-Collecting anonymous data is enabled by default in an effort to improve the developer experience based on usage patterns and behavior.
-
-If you want to prevent the collection of data about `+dfx+` usage, however, you can explicitly opt-out by setting the `+DFX_TELEMETRY_DISABLED+` environment variable to one.
-
-....
-DFX_TELEMETRY_DISABLED=1
-....
-
 == DFX_VERSION
 
 Use the `+DFX_VERSION+` environment variable to identify a specific version of the {sdk-short-name} that you want to install.

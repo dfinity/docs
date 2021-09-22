@@ -1,6 +1,6 @@
 = dfx deploy
 
-Use the `+dfx deploy+` command to register, build, and deploy an application locally or on a specified network.
+Use the `+dfx deploy+` command to register, build, and deploy a dapp locally or on a specified network.
 By default, all canisters defined in the project `+dfx.json+` configuration file are deployed.
 
 This command simplifies the developer workflow by enabling you to run one command instead of running the following commands as separate steps:
@@ -67,7 +67,7 @@ If you don't specify a canister name, `dfx deploy` will deploy all canisters def
 
 You can use the `+dfx deploy+` command to deploy all or specific canisters locally or on a specified network.
 
-For example, to deploy the `+hello+` project on the `+ic-pubs+` network provider configured in the `+dfx.json+` configuration file, you can run the following command:
+For example, to deploy the `+hello+` project on the hypothetical `+ic-pubs+` network provider configured in the `+dfx.json+` configuration file, you can run the following command:
 
 [source,bash]
 ----

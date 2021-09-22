@@ -1,6 +1,6 @@
 = dfx identity
 
-Use the `+dfx identity+` command with subcommands and flags to manage the identities used to execute commands and communicate with the Internet Computer network. 
+Use the `+dfx identity+` command with subcommands and flags to manage the identities used to execute commands and communicate with the {platform}. 
 Creating multiple user identities enables you to test user-based access controls.
 
 The basic syntax for running `+dfx identity+` commands is:

@@ -62,8 +62,6 @@ For reference information and examples, select an appropriate subcommand.
 [width="100%",cols="<32%,<68%",options="header",]
 |===
 |Command |Description
-|link:dfx-bootstrap{outfilesuffix}[`+bootstrap+`] |Starts the bootstrap server you want to use to serve front-end assets for your project.
-
 |link:dfx-build{outfilesuffix}[`+build+`] |Builds canister output from the source code in your project.
 
 |link:dfx-cache{outfilesuffix}[`+cache+`] |Manages the `+dfx+` cache on the local computer.

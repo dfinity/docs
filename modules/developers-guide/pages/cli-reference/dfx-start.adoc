@@ -1,7 +1,7 @@
 = dfx start
 
 Use the `+dfx start+` command to start a local {IC} replica process and web server processes for the current project.
-This command enables you to deploy canisters to the local {IC} network to test your programs during development.
+This command enables you to deploy canisters to the local {IC} replica to test your dapps during development.
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
@@ -57,7 +57,7 @@ Alternatively, you can start the {IC} in the background by running the following
 dfx start --background
 ----
 
-If you run the {IC} in the background, however, be sure to stop the network before uninstalling or reinstalling the `+dfx+` execution environment by running the following command:
+If you run the {IC} in the background, however, be sure to stop the replica before uninstalling or reinstalling the `+dfx+` execution environment by running the following command:
 
 [source,bash]
 ----

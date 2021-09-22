@@ -33,7 +33,7 @@ Follow us on the official link:https://twitter.com/dfinity[DFINITY Twitter] for 
 == For: Developers
 The Internet Computer hosts special smart contracts, called link:https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[canisters]. A canister smart contract is a bundle of link:https://webassembly.org/[WebAssembly] bytecode logic and memory pages. Dapps on the Internet Computer are created from one or more canisters. 
 
-Canister smart contracts can serve web content directly to end-users, and users can interact with blockchain services without holding tokens. When building on the Internet Computer, you can deploy code directly to the Internet. 
+Canister smart contracts can serve web content directly to end-users, e.g., in their browsers, and users can interact with blockchain services without holding tokens. 
 
 The Internet Computer can eventually host any number of canister smart contractss (i.e., code & state). Moreover, it can run them concurrently with unbounded on-chain capacity. This means you can create dapps that scale. 
 

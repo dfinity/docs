@@ -1,7 +1,7 @@
 [[candid-ui]]
 == Test functions in a browser
 
-The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common language for specifying the signature of a canister service.
+The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common language for specifying the signature of a canister smart contract.
 Candid provides a unified way for you to interact with canisters that are written in different languages or accessed using different tools.
 For example, Candid provides a consistent view of a service whether the underlying program is native Rust, JavaScript, or {proglang}. 
 Candid also enables different tools—such as the `+dfx+` command-line interface and the Network Nervous System application—to share a common description for a service.
@@ -47,8 +47,8 @@ http://127.0.0.1:8000/?canisterId=<CANDID-UI-CANISTER-IDENTIFIER>
 The browser displays a form for you to specify a canister identifier or choose a Candid description (`+.did+`) file.
 +
 If you aren't sure which canister identifier to use, you can run the `+dfx canister id+` command to look up the identifier for a specific canister name.
-. Specify the canister identifier or description file for your application into the *Provide a canister ID* field, then click *Go* to display the service description.
-. Review the list of function calls and types defined in the program.
+. Specify the canister identifier in the *Provide a canister ID* field and, if you have one, upload the (`+.did+`) file to the *Choose a did file* field, then click *Go* to display the service description.
+. Review the list of function calls and types defined in the dapp.
 . Type a value of the appropriate type for a function or click *Random* to generate a value, then click *Call* or *Query* to see the result.
 +
 Note that depending on the data type, the Candid interface might display additional configuration settings for testing functions. 

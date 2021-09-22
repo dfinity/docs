@@ -40,7 +40,7 @@ To create a new project directory for this tutorial:
 dfx new my_counter
 ----
 +
-The command creates a new `+my_counter+` project and Git repository for your project.
+The command creates a new `+my_counter+` project for your project.
 . Change to your project directory by running the following command:
 +
 [source,bash]

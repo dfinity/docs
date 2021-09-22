@@ -42,8 +42,8 @@ node::
 
 [[g-replica]]
 replica:: 
-  In the context of the {IC} blockchain, a replica refers to the {IC} protocol processes (for example, the `+replica+`, `+nodemanager+`) running on a node.
-  For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop the `+replica+` process locally to provide a local network for development.
+  In the context of the {IC} blockchain, a replica refers to the {IC} protocol processes running on a node.
+  For the {sdk-short-name}, you use the `+dfx start+` and `+dfx stop+` commands to start and stop a `+replica+` process that provides a local network for development.
 
 [[g-wasm]]
 WebAssembly::

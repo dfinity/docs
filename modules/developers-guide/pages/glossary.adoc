@@ -19,7 +19,7 @@ principal::
 
 [[g-controller]]
 controller::
-  A controller is a principal that has special rights to manage the canister it controls.
+  A controller is a principal that has special rights to manage the canister smart contract it controls.
   For example, only a controlling principal can be used to install, upgrade, or delete the canister under its control.
   You can specify the controller principal using the textual representation of a principal—often referred to as the principal identifier—associated with a user or with a canister.
 
@@ -49,4 +49,4 @@ replica::
 WebAssembly::
   https://webassembly.org/[WebAssembly] (`+Wasm+`) is a low-level computer instruction format. 
   Because WebAssembly defines a portable, open-standard, binary format that abstracts cleanly over most modern computer hardware, it is broadly supported for programs that run on the internet.
-  Programs written in {proglang} are compiled to WebAssembly code for execution on replicas.
+  Dapps written in {proglang} are compiled to WebAssembly code for execution on the {IC} blockchain.

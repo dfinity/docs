@@ -7,7 +7,7 @@ This section lists the environment variables that are currently supported with e
 In most cases, you can set environment variables for a session by executing an   command in the terminal or by adding a line similar to the following to your `.profile` file:
 
 ....
-export DFX_TELEMETRY_DISABLED=1
+export DFX_NETWORK=ic
 ....
 
 == CANISTER_CANDID_PATH_{canister.name}

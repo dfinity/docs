@@ -35,7 +35,7 @@ The Internet Computer hosts special smart contracts, called link:https://medium.
 
 Canister smart contracts can serve web content directly to end-users, e.g., in their browsers, and users can interact with blockchain services without holding tokens. 
 
-The Internet Computer can eventually host any number of canister smart contractss (i.e., code & state). Moreover, it can run them concurrently with unbounded on-chain capacity. This means you can create dapps that scale. 
+The Internet Computer blockchain can eventually host any number of canister smart contracts (i.e., code & state). Moreover, it can run them concurrently with unbounded on-chain capacity. This means you can create dapps that scale. 
 
 Canister smart contracts are unstoppable and tamperproof. Imagine building without having to worry about databases, caches, firewalls, CDNs, cloud providers, VPNs, DNS, and even usernames & passwords — all because the Internet Computer abstracts these needs away. 
 

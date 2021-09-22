@@ -123,7 +123,7 @@ Let's take a look at a few of the default settings.
 +
 --
 * The `+settings+` section specifies the name of the WebAssembly module for your `+explore_hello+` project is `+explore_hello+`.
-* The `+canisters.explore_hello+` key specifies that the main program to be compiled is located in the path specified by the `+main+` setting, in this case, `+src/explore_hello/main.mo+` and the `+type+` setting indicates that this is a `+motoko+` program.
+* The `+canisters.explore_hello+` key specifies that the main dapp to be compiled is located in the path specified by the `+main+` setting, in this case, `+src/explore_hello/main.mo+` and the `+type+` setting indicates that this is a `+motoko+` dapp.
 * The `+canisters.explore_hello_assets+` key specifies configuration details about front-end assets for this project. Let's skip those for now.
 * The `+dfx+` setting is used to identify the version of the software used to create the project.
 * The `+networks+` section specifies information about the networks to which you connect. The default settings bind the local {IC} network to the local host address `+127.0.0.1+` and port `+8000+`.
@@ -134,14 +134,14 @@ If you have access to other {IC} network providers, the `+networks+` section can
 You can leave the default settings as they are.
 . Close the `+dfx.json+` file to continue.
 
-== Review the default program code
+== Review the default dapp code
 
 New projects always include a template `main.mo` source code file.
 You can edit this file to include your own code to speed up the development cycle.
 
-Let's take a look at the sample program in the default `main.mo` template file as a starting point for creating simple program using the {proglang} programming language.
+Let's take a look at the sample dapp in the default `main.mo` template file as a starting point for creating simple dapp using the {proglang} programming language.
 
-To review the default sample program for your project:
+To review the default sample dapp for your project:
 
 . Check that you are still in your project directory by running the following command:
 +
@@ -159,17 +159,17 @@ actor {
 };
 ....
 +
-Let's take a look at a few key elements of this program:
+Let's take a look at a few key elements of this dapp:
 +
 --
 * You might notice that this sample code defines an `+actor+` instead of a `+main+` function, which some programming languages require.
 For {proglang}, the `+main+` function is implicit in the file itself.
 
-* Although the traditional "Hello, World!" program illustrates how you can print a string using a `+print+` or `+println+` function, that traditional program would not represent a typical use case for {proglang} programs that run on the {IC}.
+* Although the traditional "Hello, World!" program illustrates how you can print a string using a `+print+` or `+println+` function, that traditional program would not represent a typical use case for {proglang} dapps that run on the {IC}.
 
-* Instead of a print function, this sample program defines an `+actor+` with a public `+greet+` function that takes a `+name+` argument with a type of `+Text+`.
+* Instead of a print function, this sample dapp defines an `+actor+` with a public `+greet+` function that takes a `+name+` argument with a type of `+Text+`.
 
-* The program then uses the `+async+` keyword to indicate that the program returns an asynchronous message consisting of a concatenated text string constructed using `+"Hello, "+`, the `+#+` operator, the `+name+` argument, and `+"!"+`.
+* The dapp then uses the `+async+` keyword to indicate that the dapp returns an asynchronous message consisting of a concatenated text string constructed using `+"Hello, "+`, the `+#+` operator, the `+name+` argument, and `+"!"+`.
 --
 We’ll explore code that uses `+actor+` objects and asynchronous message handling more a little later.
 For now, you can continue to the next section.
@@ -249,11 +249,11 @@ For example:
 }
 ....
 
-== Build the program
+== Build the dapp
 
-Now that you have explored the default configuration settings and program code and have started the {IC} network, let's compile the default program into an executable WebAssembly module.
+Now that you have explored the default configuration settings and dapp code and have started the {IC} network, let's compile the default dapp into an executable WebAssembly module.
 
-To build the program executable:
+To build the dapp executable:
 
 [arabic]
 . In the terminal shell on your local computer, navigate to your `+explore_hello+` project directory.
@@ -295,11 +295,11 @@ For example, the command returns output similar to the following:
 The `canisters/explore_hello` directory contains the following key files:
 +
 --
-* The `+explore_hello.did+` file contains an interface description for your main program.
+* The `+explore_hello.did+` file contains an interface description for your main dapp.
 
-* The `+explore_hello.did.js+` file contains a JavaScript representation of the canister interface for the functions in your program.
+* The `+explore_hello.did.js+` file contains a JavaScript representation of the canister interface for the functions in your dapp.
 
-* The `+explore_hello.js+` file contains a JavaScript representation of the canister interface for your program.
+* The `+explore_hello.js+` file contains a JavaScript representation of the canister interface for your dapp.
 
 * The `+explore_hello.wasm+` file contains the compiled WebAssembly for the assets used in your project.
 
@@ -315,7 +315,7 @@ This folder will include copies of the folders from `.dfx/local`, except for the
 == Deploy the project locally
 
 You've seen that the `+dfx build+` command creates several artifacts in a `canisters` directory for your project.
-The WebAssembly modules and the `+canister_manifest.json+` file are required for your program to be deployed on the {IC} network.
+The WebAssembly modules and the `+canister_manifest.json+` file are required for your dapp to be deployed on the {IC} network.
 
 To deploy locally:
 
@@ -343,7 +343,7 @@ Uploading assets to asset canister...
   /index.js.map 1/1 (964679 bytes)
   /index.js.LICENSE.txt 1/1 (499 bytes)
 ....
-. Run the `+dfx canister call+` command and specify the program and function to call by running the following command:
+. Run the `+dfx canister call+` command and specify the dapp and function to call by running the following command:
 +
 [source,bash]
 ----
@@ -368,7 +368,7 @@ For example:
 [[default-frontend]]
 == View the default front-end
 
-If you have `+node.js+` installed in your development environment, your project includes a simple front-end example that uses a template `+index.js+` JavaScript file for accessing the `+explore_hello+` program in a browser.
+If you have `+node.js+` installed in your development environment, your project includes a simple front-end example that uses a template `+index.js+` JavaScript file for accessing the `+explore_hello+` dapp in a browser.
 
 To explore the default front-end template:
 
@@ -428,7 +428,7 @@ image:greeting.png[Return the name argument]
 
 == Stop the local network
 
-After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with your dapp, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
 
 To stop the local network:
 

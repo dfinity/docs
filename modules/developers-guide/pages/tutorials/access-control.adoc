@@ -2,12 +2,12 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 //:!page-repl:
 :proglang: Motoko
-:IC: Internet Computer
+:IC: Internet Computer blockchain
 :company-id: DFINITY
 
 Dapps often require role-based permissions to control the operations different users can perform.
 
-To illustrate how to create and switch between user identities, this tutorial creates a simple Dapp that displays a different greeting for users who are assigned to different roles.
+To illustrate how to create and switch between user identities, this tutorial creates a simple dapp that displays a different greeting for users who are assigned to different roles.
 
 In this example, there are three named roles—`+owner+`, `+admin+`, and `+authorized+`. 
 
@@ -33,7 +33,7 @@ Your default user identity is stored globally for all projects in the `+$HOME/.c
 
 * You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
 
-* You have stopped any {IC} network processes running on the local computer.
+* You have stopped any {IC} processes running on the local computer.
 
 == Create a new project
 
@@ -54,11 +54,11 @@ dfx new access_hello
 cd access_hello
 ----
 
-== Modify the default Dapp
+== Modify the default dapp
 
-For this tutorial, you are going to replace the template source code file with a Dapp that has functions for assigning and retrieving roles.
+For this tutorial, you are going to replace the template source code file with a dapp that has functions for assigning and retrieving roles.
 
-To modify the default Dapp:
+To modify the default dapp:
 
 . Open the `+src/access_hello/main.mo+` file in a text editor and delete the existing content.
 . Copy and paste the following sample code into the file:
@@ -68,45 +68,45 @@ To modify the default Dapp:
 include::example$access-hello/main.mo[]
 ----
 +
-Let's take a look at a few key elements of this Dapp:
+Let's take a look at a few key elements of this dapp:
 +
 --
 * You might notice that the `+greet+` function is a variation on the `+greet+` function you have seen in previous tutorials. 
 +
-In this Dapp, however, the `+greet+` function uses a message caller to determine the permissions that should be applied and, based on the permissions associated with the caller, which greeting to display.
-* The Dapp defines two custom types—one for `+Roles+` and one for `+Permissions+`.
+In this dapp, however, the `+greet+` function uses a message caller to determine the permissions that should be applied and, based on the permissions associated with the caller, which greeting to display.
+* The dapp defines two custom types—one for `+Roles+` and one for `+Permissions+`.
 * The `+assign_roles+` function enables the message caller to assign a role to the principal associated with an identity.
 * The `+callerPrincipal+` function enables you to return the principal associated with an identity.
 * The `+my_role+` function enables you to return the role that is associated with an identity.
 --
 . Save your changes and close the `+main.mo+` file to continue.
 
-== Start the local network
+== Start the local {IC}
 
-Before you can build the `+access_hello+` project, you need to connect to the {IC} network either running locally in your development environment or running on the {IC} mainnet.
+Before you can build the `+access_hello+` project, you need to connect to the {IC} either running locally in your development environment or to the {IC} mainnet.
 
-To start the network locally:
+To start the {IC} locally:
 
 . Open a new terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
-. Start the {IC} network on your local computer by running the following command:
+. Start the {IC} on your local computer by running the following command:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-After the local {IC} network completes its startup operations, you can continue to the next step.
+After the local {IC} completes its startup operations, you can continue to the next step.
 
-== Register, build, and deploy the Dapp
+== Register, build, and deploy the dapp
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your Dapp in a single step by running the link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy`] command.
+After you connect to the {IC} running locally in your development environment, you can register, build, and deploy your dapp in a single step by running the link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy`] command.
 You can also perform each of these steps independently using separate link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_create[`+dfx canister create+`], link:../cli-reference/dfx-build{outfilesuffix}[`+dfx build+`], and link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_install[`+dfx canister install+`] commands.
 
-To deploy the Dapp locally:
+To deploy the dapp locally:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy the `+access_hello+` back-end Dapp by running the following command:
+. Register, build, and deploy the `+access_hello+` back-end dapp by running the following command:
 +
 [source,bash]
 ----
@@ -172,7 +172,7 @@ The command displays output similar to the following:
 
 == Create a new user identity
 
-To begin testing the access controls in our Dapp, let's create some new user identities and assign those users to different roles.
+To begin testing the access controls in our dapp, let's create some new user identities and assign those users to different roles.
 
 To create a new user identity:
 
@@ -464,15 +464,15 @@ If you rerun the `+dfx identity list+` command, the `+ic_admin+` user identity d
 +
 You can now run commands using the selected user identity without specifying `+--identity+` on the command-line. 
 
-== Stop the local network
+== Stop the local {IC}
 
-After you finish experimenting with the Dapp and using identities, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with the dapp and using identities, you can stop the local {IC} so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local {IC}:
 
 . In the terminal that displays network operations, press Control-C to interrupt the local network process.
 
-. Stop the {IC} network by running the following command:
+. Stop the {IC} by running the following command:
 +
 [source,bash]
 ----

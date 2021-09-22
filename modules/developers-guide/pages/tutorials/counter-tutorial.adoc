@@ -15,7 +15,7 @@ This program supports the following function calls:
 * The `+set+` function call updates the current value to an arbitrary numeric value you specify as an argument.
 
 This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister smart contract.
-By calling the function to increment a value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.
+By calling the functions to increment and query the counter value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.
 
 == Before you begin
 

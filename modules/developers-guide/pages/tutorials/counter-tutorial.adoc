@@ -14,7 +14,7 @@ This program supports the following function calls:
 * The `+get+` function call queries and returns the current value of the counter.
 * The `+set+` function call updates the current value to an arbitrary numeric value you specify as an argument.
 
-This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister.
+This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister smart contract.
 By calling the function to increment a value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.
 
 == Before you begin
@@ -22,8 +22,7 @@ By calling the function to increment a value multiple times, you can verify that
 Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any {IC} network processes running on the local
-computer.
+* You have stopped any local {IC} blockchain processes running on the computer.
 
 This tutorial takes approximately 20 minutes to complete.
 
@@ -67,8 +66,8 @@ For example:
 +
 For this tutorial, changing the name of the source file from `+main.mo+` to `+increment_counter.mo+` simply illustrates how the setting in the `+dfx.json+` configuration file determines the source file to be compiled.
 +
-In a more complex application, you might have multiple source files with dependencies that you need to manage using settings in the `+dfx.json+` configuration file.
-In a scenario like that—with multiple canisters and programs defined in your `dfx.json` file—having multiple files all named `main.mo` might be confusing.
+In a more complex dapp, you might have multiple source files with dependencies that you need to manage using settings in the `+dfx.json+` configuration file.
+In a scenario like that—with multiple canister smart contracts and programs defined in your `dfx.json` file—having multiple files all named `main.mo` might be confusing.
 +
 You can leave the rest of the default settings as they are.
 . Save your change and close the `+dfx.json+` file to continue.
@@ -111,14 +110,14 @@ For more information about stable and flexible variables, see link:../../languag
 For more information about the differences between a query and an update, see link:../concepts/canisters-code{outfilesuffix}#query-update[Query and update methods] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the file to continue.
 
-== Start the local network
+== Start the local {IC} blockchain
 
-Before you can build the `+my_counter+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+Before you can build the `+my_counter+` project, you need to either connect to a local {IC} blockchain, running in your development environment, or to the {IC} blockchain mainnet. 
 
-Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
+Starting the {IC} blockchain locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
 
-To start the network locally:
+To start the local {IC} blockchain:
 
 [arabic]
 . Open a new terminal window or tab on your local computer.
@@ -128,19 +127,19 @@ To start the network locally:
 * You should now have **two terminals** open.
 * You should have the **project directory** as your **current working directory**.
 --
-. Start the {IC} network on your local computer by running the following command:
+. Start the local {IC} blockchain on your computer by running the following command:
 +
 [source,bash]
 ----
 dfx start
 ----
 +
-After you start the local network, the terminal displays messages about network operations.
+After you start the local {IC} blockchain, the terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
 == Register, build, and deploy the dapp
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your dapp locally.
+After you connect to the local {IC} blockchain running in your development environment, you can register, build, and deploy your dapp locally.
 
 To deploy the dapp locally:
 
@@ -154,12 +153,12 @@ dfx deploy
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
 
-== Invoke methods on the deployed canister
+== Invoke methods on the deployed canister smart contract
 
-After successfully deploying the canister, you can simulate an end-user invoking the methods provided by the canister.
+After successfully deploying the canister smart contract, you can simulate an end-user invoking the methods provided by the canister.
 For this tutorial, you invoke the `+get+` method to query the value of a counter, the `+increment+` method that increments the counter each time it is called, and the `+set+` method to pass an argument to update the counter to an arbitrary value you specify.
 
-To test invoking methods on the deployed canister:
+To test invoking methods on the deployed canister smart contract:
 
 [arabic]
 . Run the following command to invoke the `+get+` function, which reads the current value of the `+currentValue+` variable on the deployed canister:
@@ -222,15 +221,15 @@ include::example$candid-ui.adoc[]
 +
 image:candid-counter.png[Counter functions]
 
-== Stop the local network
+== Stop the local {IC} blockchain
 
-After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with your dapp, you can stop the local {IC} blockchain so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local {IC} blockchain:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal that displays network operations, press Control-C to interrupt the local {IC} blockchain process.
 
-. Stop the {IC} network by running the following command:
+. Stop the local {IC} blockchain by running the following command:
 +
 [source,bash]
 ----

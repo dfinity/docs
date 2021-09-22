@@ -27,7 +27,7 @@ The default dapp consists of back-end code written in  {proglang}, a programming
 
 == Getting ICP tokens and cycles
 
-As discussed in link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and cycles], *cycles* are required to power canister smart contract operations for dapps running on the {IC}. 
+As discussed in link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and cycles], *cycles* are required to power canister smart contract operations for dapps running on the {IC} blockchain. 
 As a developer, you have a few different options for acquiring and managing cycles for your dapps:
 
 * Purchase or claim ICP tokens through an exchange that lists ICP tokens available for trade, then convert your tokens to cycles using the link:network-quickstart{outfilesuffix}#convert-tokens[{sdk-short-name} command-line interface] or the link:https://nns.ic0.app/#/auth[Network Nervous System application].

@@ -8,28 +8,24 @@
 
 The *{IC}* is a blockchain that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof *canisters*, an evolution of *smart contracts*.
 
-As a dapp developer, you might find it useful to think of the {IC} as providing the following key elements:
+As a dapp developer, you might find it useful to think of the {IC} as providing the following key features:
 
-* A *globally-accessible and public blockchain* for running canister smart contracts.
-* An *open communication protocol* that enables general-purpose computations to run transparently directly on the internet.
-* A *network of blockchains* connected by Chain Key Technology to provide computing capacity—for example, the hardware, CPU, and memory—required to run dapps.
+* A *globally-accessible, public blockchain* for running smart contracts at web speed, that can serve interactive web content to users.
+* A secure cryptographic protocol (*Internet Computer Protocol*) run by nodes machines operated by independent node providers in independent data centers all over the world. This guarantees secure execution of smart contracts.
+* A *network of blockchains* connected by Chain Key Technology that can scale out its capacity as required.
 
-== Open blockchain platform
+== Open blockchain
 
-The {IC} is not physical hardware that exists in any physical location. 
-Instead, the {IC} combines computing resources provided by independent data centers around the world to give users and organizations secure access to applications and transaction processing services. 
+The {IC} is a blockchain hosted on node machines operated by independent parties and located in geographically distributed datacenters. The nodes run the {IC} Protocol, an advanced cryptographic fault-tolerant protocol which ensures that smart contracts running on the blockchain cannot be tampered with or stopped.  The {IC} is composed of individual subnet blockchains running in parallel and connected by Chain Key Cryptography. This means that canisters running on a subnet can seamlessly call canisters hosted in any other subnet of the {IC} blockchain.
 
-The {platform} enables multiple computers to operate like one, very powerful, virtual machine.
-The computers that make up the virtual machine are organized into sub-networks—subnet blockchains—with data centers around the world. 
-The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
-Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.
+Another important feature of the {IC} is that it runs under the control of a decentralized permissionless governance system, called *Network Nervous System* (NNS), which runs completely on chain. The NNS can make decision on several topics, including scaling out the {IC} by creating new subnets, updating the node machines, and configuring parameters used in the {IC} protocol. Anyone can participate in the governance to submit new proposals to the NNS and to vote on open proposals. To do so, users have to stake ICP, the {IC} utility tokens, and create a *neuron* with the NNS.
 
 [[next-gen]]
 == Building the next generation of software and services
 
 The {IC} protocol reduces platform-based risks and paves the way for innovation by re-imagining how software is built, deployed, and accessed. 
 
-For example, with the {IC}, developers can focus on writing code using smart contracts without environment-related distractions such as:
+For example, with the {IC}, developers can focus on writing code using canister smart contracts without environment-related distractions such as:
 
 * physical or virtual network configuration requirements
 * load balancing services
@@ -39,12 +35,12 @@ For example, with the {IC}, developers can focus on writing code using smart con
 
 By enabling developers to focus on building applications and delivering value, the {IC} helps simplify the development process, reduce time to market, and foster innovation.
 
-For end-users, the {IC} provides a secure environment for accessing applications with fewer risks. 
+For end-users, the {IC} provides a secure environment for accessing dapps with fewer risks.
 Because of the inherent security of the blockchain, programs running on the {IC} cannot be hijacked by malicious code, which also reduces the total cost of ownership for both application end-users or organizations.
 
-In addition, because software services can be "autonomous" and public, developers can write services that communicate with each other and share functions in ways that increase productivity and efficiency while leaving room to innovate and improve projects with confidence.
+In addition, because dapps can be "autonomous" and public, developers can write services that communicate with each other and share functions in ways that increase productivity and efficiency while leaving room to innovate and improve projects with confidence.
 
-The {IC} also enables developers to use cryptographically-secure identities to enforce access controls, reducing the need to rely on user names and passwords or external identity management plug-ins.
+The {IC} also enables developers to use cryptographically-secure identities to enforce access controls, reducing the need to rely on usernames and passwords or external identity management plug-ins.
 
 ////
 == Want to learn more?

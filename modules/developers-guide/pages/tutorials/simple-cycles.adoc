@@ -89,14 +89,14 @@ dfx start --clean --background
 +
 After the local canister execution environment completes its startup operations, you can continue to the next step.
 
-== Register, build, and deploy the application
+== Register, build, and deploy the dapp
 
-After you connect to the local canister execution environment, you can register, build, and deploy your application locally.
+After you connect to the local canister execution environment, you can register, build, and deploy your dapp locally.
 
-To deploy the application locally:
+To deploy the dapp locally:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your application by running the following command:
+. Register, build, and deploy your dapp by running the following command:
 +
 [source,bash]
 ----
@@ -129,11 +129,11 @@ Uploading assets to asset canister...
 Deployed canisters.
 ....
 
-== Test the application
+== Test the dapp
 
-After you have deployed the application on your local canister execution environment, you can experiment with the wallet functions and test your program by using `+dfx canister call+` commands.
+After you have deployed the dapp on your local canister execution environment, you can experiment with the wallet functions and test your program by using `+dfx canister call+` commands.
 
-To test the application:
+To test the dapp:
 
 . Check the principal for the `+default+` user identity by running the following command:
 +
@@ -216,11 +216,11 @@ For example, you might a result similar to this:
 
 == Stop the local canister execution environment
 
-After you finish experimenting with the program, you can stop the local canister execution environment network so that it doesn’t continue running in the background.
+After you finish experimenting with the program, you can stop the local canister execution environment  so that it doesn't continue running in the background.
 
-To stop the local network:
+To stop the local canister execution environment:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal that displays the operations, press Control-C to interrupt the process.
 
 . Stop the local canister execution environment by running the following command:
 +

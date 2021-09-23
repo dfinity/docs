@@ -227,7 +227,7 @@ After you finish experimenting with your dapp, you can stop the local canister e
 
 To stop the local canister execution environment:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local {IC} blockchain process.
+. In the terminal that displays network operations, press Control-C to interrupt the local canister execution environment.
 
 . Stop the local {IC} blockchain by running the following command:
 +

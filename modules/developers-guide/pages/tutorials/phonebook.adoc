@@ -20,7 +20,7 @@ This dapp supports the following function calls:
 Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped all replica processes involved in emulating a local network for development purposes.
+* You have stopped all processes related to the local canister execution environment provided by `dfx`.
 
 This tutorial takes approximately 10 minutes to complete.
 
@@ -71,11 +71,11 @@ Creating user-defined types improves the readability of the code.
 * The `+Phone+` type is identified as an optional value by using the `+?Phone+` syntax.
 --
 
-== Start the local network
+== Start the local canister execution environment
 
-For development purposes `dfx` can emulate an {IC} network locally. This requires a `+dfx.json+` file, so you should be sure you are in your project's root directory. For this tutorial, you should have two separate terminal shells, so that you can start and see the output of the processes related to locally emulating the network in one terminal and manage your project in another.
+For development purposes `dfx` provides a local canister execution environment. This requires a `+dfx.json+` file, so you should be sure you are in your project's root directory. For this tutorial, you should have two separate terminal shells, so that you can start and see the output of the processes related to the local canister execution environment in one terminal and manage your project in another.
 
-To start the local {IC} network emulator:
+To start the local canister execution environment:
 
 [arabic]
 . Open a new terminal window or tab on your local computer.
@@ -85,23 +85,23 @@ To start the local {IC} network emulator:
 * You should now have **two terminals** open.
 * You should have the **project directory** as your **current working directory**.
 --
-. Start the {IC} network emulator on your local computer by running the following command:
+. Start the local canister execution environment on your local computer by running the following command:
 +
 [source,bash]
 ----
 dfx start --clean
 ----
 +
-For this tutorial, we're using the `+--clean+` option to start the {IC} network emulator in a clean state.
+For this tutorial, we're using the `+--clean+` option to start the local canister execution environment in a clean state.
 +
 This option removes any orphan background processes or canister smart contract identifiers that might disrupt normal operations.
 For example, if you forgot to issue a `+dfx stop+` when moving between projects, you might have a process running in the background or in another terminal. 
-The `+--clean+` option ensures that you can start the {IC} network emulator and continue to the next step without manually finding and terminating any running processes.
-. Leave the terminal that displays local network operations open and switch your focus to your original terminal where you created your new project.
+The `+--clean+` option ensures that you can start the local canister execution environment and continue to the next step without manually finding and terminating any running processes.
+. Leave the terminal that displays the output of the local canister execution environment open and switch your focus to your original terminal where you created your new project.
 
 == Register, build, and deploy the dapp
 
-Once the {IC} network emulator is up and running locally in your development environment, you can register, build, and deploy your dapp to the emulator.
+Once the local canister execution environment is up and running in your development environment, you can register, build, and deploy your dapp onto it.
 
 To deploy the dapp locally:
 
@@ -122,9 +122,9 @@ Although this tutorial illustrates how to skip compiling a front-end canister, y
 
 == Add names and numbers using the insert function
 
-You now have a dapp deployed as a *canister smart contract* on your local network emulator and can test your dapp by using `+dfx canister call+` commands.
+You now have a dapp deployed as a *canister smart contract* on your local canister execution environment and can test your dapp by using `+dfx canister call+` commands.
 
-To test the dapp you have deployed on the local network emulator:
+To test the dapp you have deployed:
 
 . Use the `+dfx canister call+` command to call the canister smart contract `+phonebook+` using the `+insert+` function and pass it a name and phone number by running the following command:
 +
@@ -179,15 +179,15 @@ To extend what you have learned in this tutorial, you might want to try modifyin
 For example, you might want to change the source code so that instead of a dapp that inserts and looks up a current key-value (name-phone) pair to create a dapp that stores contact information similar to a database "record" in which a primary key is associated with multiple fields.
 In this example, your dapp might enable users or another dapp to add information—such as a home phone number, a cell phone number, an email address, and a street address—and selectively return all or specific field values.
 
-== Stop the local network
+== Stop the local canister execution environment
 
-After you finish experimenting with your dapp, you can stop the local {IC} network emulator so that it does not continue running in the background.
+After you finish experimenting with your dapp, you can stop the local execution environment so that it does not continue running in the background.
 
-To stop the local network emulator:
+To stop the local canister execution environment:
 
 . In the terminal that displays network operations, press Control-C to interrupt the local network process.
 
-. Stop the local network emulator by running the following command:
+. Stop the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

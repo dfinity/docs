@@ -10,7 +10,7 @@ The {IC} blockchain is poised to help you start a revolution with a new way to d
 
 == Developing dapps
 
-The {IC} is a blockchain that runs canister smart contracts, which are code units bundling together WebAssembly bytecode and the memory pages the bytecode runs in. The {IC} is composed of individual subnet blockchains running in parallel and connected together by the use of Chain Key Cryptography. This means that canisters running on a subnet can seamlessly call canisters hosted in any other subnet of the {IC} blockchain. Moreover, the governance system of the {IC} can dynamically increase the capacity of the {IC} by adding new subnets, allowing dapps to scale out.
+The {IC} is a blockchain that runs canister smart contracts, which are code units bundling together WebAssembly bytecode and the memory pages the bytecode runs in. The {IC} is composed of individual subnet blockchains running in parallel and connected together by the use of Chain Key cryptography. This means that canisters running on a subnet can seamlessly call canisters hosted in any other subnet of the {IC} blockchain. Moreover, the governance system of the {IC} can dynamically increase the capacity of the {IC} by adding new subnets, allowing dapps to scale out.
 
 Developers can thus build new dapps consisting of multiple canisters running in parallel on different subnets and possibly integrate them with existing canisters already running on the {IC}.
 

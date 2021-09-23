@@ -75,7 +75,7 @@ include::example$location_hello.mo[]
 
 == Start the local canister execution environment
 
-Before you can build your project, you need to connect to a local canister execution environment or to a real subnet on the Internet Computer that you can access.
+Before you can build your project, you need to connect to a local canister execution environment or access a real subnet on the Internet Computer.
 
 Starting a canister execution environment locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.

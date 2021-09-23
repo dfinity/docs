@@ -225,7 +225,7 @@ image:candid-counter.png[Counter functions]
 
 After you finish experimenting with your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
-To stop the local {IC} blockchain:
+To stop the local canister execution environment:
 
 . In the terminal that displays network operations, press Control-C to interrupt the local {IC} blockchain process.
 

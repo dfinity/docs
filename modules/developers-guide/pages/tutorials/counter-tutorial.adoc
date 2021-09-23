@@ -110,7 +110,7 @@ For more information about stable and flexible variables, see link:../../languag
 For more information about the differences between a query and an update, see link:../concepts/canisters-code{outfilesuffix}#query-update[Query and update methods] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the file to continue.
 
-== Start the local {IC} blockchain
+== Start the local canister execution environment
 
 Before you can build the `+my_counter+` project, you need to either connect to a local {IC} blockchain, running in your development environment, or to the {IC} blockchain mainnet. 
 

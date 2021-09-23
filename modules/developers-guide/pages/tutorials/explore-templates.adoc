@@ -176,7 +176,7 @@ For now, you can continue to the next section.
 . Close the `+main.mo+` file to continue.
 
 [[start-the-local-network]]
-== Start the local network
+== Start the local canister execution environment
 
 Before you can deploy the default project, you need to connect to either the local canister execution environment, or to the {IC} blockchain mainnet.
 

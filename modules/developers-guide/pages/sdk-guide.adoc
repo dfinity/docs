@@ -10,7 +10,7 @@ The {IC} blockchain is poised to help you start a revolution with a new way to d
 
 == Developing dapps
 
-The {IC} is a blockchain that runs canister smart contracts, which are code units bundling together WebAssembly bytecode and the memory pages the bytecode runs in. The {IC} is composed by individual subnet blockchains running in parallel and connected together by the use of Chain Key Cryptography. This means that canisters running on a subnet can seamlessly call canisters hosted in any other subnet of the {IC} blockchain. Moreover, the governance system of the {IC} can dynamically increase the capacity of the {IC} by adding new subnets, allowing dapps to scale out.
+The {IC} is a blockchain that runs canister smart contracts, which are code units bundling together WebAssembly bytecode and the memory pages the bytecode runs in. The {IC} is composed of individual subnet blockchains running in parallel and connected together by the use of Chain Key Cryptography. This means that canisters running on a subnet can seamlessly call canisters hosted in any other subnet of the {IC} blockchain. Moreover, the governance system of the {IC} can dynamically increase the capacity of the {IC} by adding new subnets, allowing dapps to scale out.
 
 Developers can thus build new dapps consisting of multiple canisters running in parallel on different subnets and possibly integrate them with existing canisters already running on the {IC}.
 
@@ -22,6 +22,6 @@ image:local-remote-path-workflow.svg[Development paths]
 
 * *Local development:* you start a local canister execution environment simulating the {IC} blockchain on your computer. Then you write, compile, install and iteratively update your canisters in the local execution environment. This gives you the possibility to test your canisters locally without the need to use cycles to power them.
 
-* *On-chain deployment:* once your dapp is ready you can then deploy it to the {IC} blockchain mainnet, making it available for the world to use it. Note that your canisters need have cycles to be able to run on the {IC} blockchain mainnet, as discussed in link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and cycles].
+* *On-chain deployment:* once your dapp is ready you can then deploy it to the {IC} blockchain mainnet, making it available for the world to use it. Note that your canisters need to have cycles to be able to run on the {IC} blockchain mainnet, as discussed in link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and cycles].
 
 Regardless of the development workflow you choose, keep in mind that when you deploy a canister for the first time, either on a local execution environment or on the {IC}, a unique link:../developers-guide/glossary{outfilesuffix}#g-principal[principal identifier] is created for your canister smart contract. For example, if you start developing your canister locally and then deploy it to the {IC}, then your canister will generally have a different identifier on the local execution environment and on the {IC} blockchain mainnet. Note that it is also possible for you to register a principal identifier for your new canister before deploying it or even writing any line of code.

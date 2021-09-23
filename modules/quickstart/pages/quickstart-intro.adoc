@@ -14,7 +14,7 @@ To keep the instructions simple and focused on the task at hand, the _Quick star
 
 * In the link:local-quickstart{outfilesuffix}[Local development] scenario, you create and deploy the sample dapp with processes that in a _local canister execution environment_.
 
-* In the link:network-quickstart{outfilesuffix}[On-chain deployment] scenario, you create the sample dapp locally but _connect to the {IC} blockchain_ running on node machines in independent data centers and deploy the dapp there.
+* In the link:network-quickstart{outfilesuffix}[On-chain deployment] scenario, you create the sample dapp locally but _connect to the {platform}_ running on node machines in independent data centers and deploy the dapp there.
 
 If you need some help setting up your development environment—for example, if you aren’t sure how to open a new terminal, install packages, or create folders and navigate between directories—you might want to start with the link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
 

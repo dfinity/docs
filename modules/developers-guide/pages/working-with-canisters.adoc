@@ -213,7 +213,7 @@ dfx new pubs
 ----
 cd pubs
 ----
-. Start the {IC} network locally in the background by running the following command:
+. Start the local canister execution environment in the background by running the following command:
 +
 [source,bash]
 ----
@@ -314,9 +314,9 @@ Starting code for canister status_check_assets, with canister_id cxeji-wacaa-aaa
 [[upgrade-canister]]
 == Upgrade a canister smart contract
 
-Unlike a canister replacement that preserves the canister identifier but no state, a canister upgrade enables you to preserve the state of a deployed canister, and change the code.
+Unlike a canister reinstall that preserves the canister identifier but no state, a canister upgrade enables you to preserve the state of a deployed canister, and change the code.
  
-For example, assume you have an dapp that manages professional profiles and social connections.
+For example, assume you have a dapp that manages professional profiles and social connections.
 If you want to add a new feature to the dapp, you need to be able to update the canister code without losing any of the previously-stored data.
 A canister upgrade enables you to update existing canister identifiers with program changes without losing the program state.
 
@@ -326,7 +326,7 @@ If you are upgrading a canister written in Rust, you should use `+pre_upgrade+` 
 To upgrade a canister:
 
 . Open a new terminal and navigate to your project directory.
-. Start the {IC} network, if necessary.
+. Start the local canister execution environment, if necessary.
 +
 In most cases, this step is only necessary if you are running the canisters locally.
 +
@@ -344,7 +344,7 @@ dfx canister install --all --mode upgrade
 ----
 
 [[delete-canister]]
-== Delete a canister
+== Delete a canister smart contract
 
 If you want to permanently delete a specific canister or all canisters for a specific project on a given {IC} network, you can do so by running the `+dfx canister delete+` command.
 

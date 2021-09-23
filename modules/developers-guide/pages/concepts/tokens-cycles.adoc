@@ -18,7 +18,7 @@ For example, you might:
 * Purchase ICP tokens directly through an exchange that lists ICP tokens available for trade.
 * Receive tokens as rewards for participating in the governance of the {IC}
 * Receive a grant of tokens through the Internet Computer Association (ICA) or the {company-id} Foundation.
-* Receive tokens as remuneration for providing computing capacity as a node provider or data center.
+* Receive tokens as remuneration for providing computing capacity as a node provider.
 
 [[using-cycles]]
 == How you can use ICP tokens
@@ -56,7 +56,7 @@ As an example, imagine you have a house where propane is used for a water heater
 - Tokens are used to reward node providers for providing compute capacity and platform stakeholders for participating in the governance of the {IC} by voting and submitting proposals.
 
 [[data-centers]]
-== Payment to data centers and node providers
+== Payment to node providers
 
 With this model, the Internet Computer platform provides node providers with a predictable economic model for computing power capacity to ensure resources are available when and where they are needed. Node providers receive compensation for both active and spare nodes so that the network has capacity to handle both normal traffic and workload spikes.
 

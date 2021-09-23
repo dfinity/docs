@@ -20,7 +20,7 @@ This dapp supports the following function calls:
 Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped all processes related to the local canister execution environment provided by `dfx`.
+* You have stopped the local canister execution environment provided by `dfx`.
 
 This tutorial takes approximately 10 minutes to complete.
 
@@ -73,7 +73,7 @@ Creating user-defined types improves the readability of the code.
 
 == Start the local canister execution environment
 
-For development purposes `dfx` provides a local canister execution environment. This requires a `+dfx.json+` file, so you should be sure you are in your project's root directory. For this tutorial, you should have two separate terminal shells, so that you can start and see the output of the processes related to the local canister execution environment in one terminal and manage your project in another.
+For development purposes `dfx` provides a local canister execution environment. This requires a `+dfx.json+` file, so you should be sure you are in your project's root directory. For this tutorial, you should have two separate terminal shells, so that you can start and see the output of the local canister execution environment in one terminal and manage your project in another.
 
 To start the local canister execution environment:
 
@@ -94,7 +94,7 @@ dfx start --clean
 +
 For this tutorial, we're using the `+--clean+` option to start the local canister execution environment in a clean state.
 +
-This option removes any orphan background processes or canister smart contract identifiers that might disrupt normal operations.
+This option removes any orphan background processes or canister identifiers that might disrupt normal operations.
 For example, if you forgot to issue a `+dfx stop+` when moving between projects, you might have a process running in the background or in another terminal. 
 The `+--clean+` option ensures that you can start the local canister execution environment and continue to the next step without manually finding and terminating any running processes.
 . Leave the terminal that displays the output of the local canister execution environment open and switch your focus to your original terminal where you created your new project.
@@ -181,7 +181,7 @@ In this example, your dapp might enable users or another dapp to add information
 
 == Stop the local canister execution environment
 
-After you finish experimenting with your dapp, you can stop the local execution environment so that it does not continue running in the background.
+After you finish experimenting with your dapp, you can stop the local canister execution environment so that it does not continue running in the background.
 
 To stop the local canister execution environment:
 

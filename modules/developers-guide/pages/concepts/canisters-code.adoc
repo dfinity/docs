@@ -4,7 +4,7 @@
 :IC: Internet Computer
 :company-id: DFINITY
 
-One of the most important principles to keep in mind is that the {IC} is primarily a blockchain that allows running software in a distributed, replicated way.
+One of the most important principles to keep in mind is that the {IC} is a blockchain that allows running software in a distributed, replicated way.
 
 When you write source code for a dapp that runs on the {IC}, you compile the source code into a  *WebAssembly module*.
 When you deploy the WebAssembly module that contains your program on the {IC} blockchain, the program is executed inside  a conceptual computational unit called a *canister smart contract*, or *canister* in short.

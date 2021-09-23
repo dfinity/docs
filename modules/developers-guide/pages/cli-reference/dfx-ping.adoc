@@ -33,7 +33,7 @@ You can specify the following argument for the `+dfx ping+` command.
 |===
 |Argument |Description
 
-|provider |Specifies the testnet URL that you want to use.
+|provider |Specifies the {platform} or testnet URL that you want to use.
 |===
 
 == Examples

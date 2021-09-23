@@ -163,21 +163,21 @@ service : {
 
 === Modify the default dapp
 
-When you create a new project, your project `+src+` directory includes a template `+main.rs+` file with the "Hello, World!" dapp.
+When you create a new project, your project `+src+` directory includes a template `+main.rs+` file with the "Hello, World!" program.
 
 To modify the template source code:
 
 . Open the template `+src/main.rs+` file in a text editor and delete the existing content.
-. Write the dapp you want to deploy on the {IC}.
+. Write the program you want to deploy on the {IC}.
 +
-As you write your dapp, keep in mind that there are two types of calls—update calls and query calls—and that update functions use asynchronous messaging.
+As you write your program, keep in mind that there are two types of calls—update calls and query calls—and that update functions use asynchronous messaging.
 . Save your changes and close the `+main.rs+` file.
 
-=== Connect to a network and deploy
+=== Connect to an execution environment and deploy
 
 Before you can deploy and test your dapp, you need to do the following:
 
-* Connect to the {IC} network either running locally in your development environment or running remotely (on-chain) on a subnet that you can access.
+* Connect to either the local canister execution environment, or to the {IC} blockchain mainnet, to a subnet that you can access.
 * Register a network-specific identifier for the application
 * Compile the dapp with a target output of WebAssembly.
 
@@ -196,7 +196,7 @@ For example, you can do either of the following if running Terminal on macOS:
 --
 +
 You should now have two terminals open with your project directory as your current working directory**.
-. Start the {IC} network on your local computer by running the following command:
+. Start the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
@@ -218,7 +218,7 @@ dfx canister create --all
 ----
 dfx build
 ----
-. Deploy the dapp on the local network by running the following command:
+. Deploy the dapp on the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
@@ -230,12 +230,12 @@ dfx canister install --all
 
 Because the {IC} supports dapps compiled to standard WebAssembly modules, you can use standard compilers and toolchains to build applications in languages such as  C, {cpp}, Objective-C, and Objective-{cpp} programming languages and the `+Clang+` compiler.
 
-To illustrate how to migrate dapps written in C to run on the {IC}, let’s look at the simple `+reverse.c+` dapp in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository. 
-The `+reverse.c+` dapp contains one function—named `+go+`—that reverses a string in place.
+To illustrate how to migrate dapps written in C to run on the {IC}, let’s look at the simple `+reverse.c+` program in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository. 
+The `+reverse.c+` program contains one function—named `+go+`—that reverses a string in place.
 
 === Set up the development environment
 
-To compile the `+reverse.c+` dapp into WebAssembly, you need to have the `+clang+` compiler and standard libraries installed. 
+To compile the `+reverse.c+` program into WebAssembly, you need to have the `+clang+` compiler and standard libraries installed. 
 You can check whether you have `+clang+` installed on your local computer by running the following command:
 
 [source,bash]
@@ -269,14 +269,14 @@ For example, if `+clang+` is not installed, run the following command:
 brew install llvm
 ----
 
-=== Compile the dapp into WebAssembly
+=== Compile the program into WebAssembly
 
 You can compile a C program to run as a WebAssembly module by first compiling using `+clang+`, then linking using `+wasm-ld+`. 
 Depending on the operating system and version of `+clang+` you are using, you might use a different version of the WebAssembly linker, such as `+wasm-ld+` on macOS or `+wasm-ld-8+` on Debian. 
  
 To compile to WebAssembly on macOS:
  
-. Compile the dapp by running the following clang command:
+. Compile the program by running the following clang command:
 +
 [source,bash]
 ----
@@ -328,7 +328,7 @@ For details about the syntax to use for different data types, see the link:../ca
 
 To create a Candid interface description file for this program:
 
-. Open a terminal in the `+build+` directory you created for the `+reverse.c+` dapp source
+. Open a terminal in the `+build+` directory you created for the `+reverse.c+` program source
 . Create a new text file named `+reverse.did+`.
 . Add a description of the `+go+` function.
 +
@@ -346,7 +346,7 @@ service : {
 
 Before you can deploy and test your dapp, you need to do the following:
 
-* Connect to the {IC} network either running locally in your development environment or running remotely (on-chain) on a subnet that you can access.
+* Connect to either the local canister execution environment, or to the {IC} blockchain mainnet, to a subnet that you can access.
 * Register a network-specific identifier for the application.
 
 To deploy and test the dapp locally:
@@ -354,7 +354,7 @@ To deploy and test the dapp locally:
 . Open a new terminal window or tab on your local computer.
 +
 For example, if running Terminal on macOS,click *Shell*, then select *New Tab* to open a new terminal in your current working directory.
-. Start the {IC} network on your local computer in your second terminal by running the following command:
+. Start the local canister execution environment in your second terminal by running the following command:
 +
 [source,bash]
 ----
@@ -366,7 +366,7 @@ dfx start
 ----
 dfx canister create --all
 ----
-. Deploy the default dapp on the local network by running the following command:
+. Deploy the default dapp on the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

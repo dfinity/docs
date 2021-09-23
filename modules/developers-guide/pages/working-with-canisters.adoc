@@ -27,7 +27,7 @@ dfx new YOUR-PROJECT-NAME
 +
 Note that the name you use for the project is also used as the canister name by default. 
 . Change to your new project directory.
-. Open the `+dfx.json+` configuration file and set the host and port for the canister execution environment you want to use (e.g. the {IC} blockchain mainnet).
+. Open the `+dfx.json+` configuration file and set the host and port for the canister execution environment you want to use (e.g. the {IC} blockchain).
 +
 If you are using a local deployment, you can skip this step.
 +
@@ -41,7 +41,7 @@ dfx start --background
 +
 In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain mainnet, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
+If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Register unique identifiers for the canisters defined in the `+dfx.json+` by running the following command:
 +
 [source,bash]
@@ -63,7 +63,7 @@ To generate a locally-defined identifier:
 . Create a project with the configuration settings and program logic to suit your needs.
 . Start the local canister execution environment, if necessary.
 +
-If you were compiling canisters to run on a remote execution environment, e.g. the {IC} blockchain mainnet, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
+If you were compiling canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Generate hard-coded local identifiers for the canisters defined in the `+dfx.json+` by running the following command:
 +
 [source,bash]
@@ -71,7 +71,7 @@ If you were compiling canisters to run on a remote execution environment, e.g. t
 dfx build --check
 ----
 +
-Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the {IC} network.
+Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the {IC} blockchain.
 
 ////
 === Register a unique network-wide identifier
@@ -98,7 +98,7 @@ dfx build
 [[deploy-canister]]
 == Deploy canister smart contracts
 
-After you have compiled a program, you can install the compiled code in a canister smart contract running either on a local canister execution environment or on a remote environment like the {IC} blockchain mainnet.
+After you have compiled a program, you can install the compiled code in a canister smart contract running either on a local canister execution environment or on a remote environment like the {IC} blockchain.
 
 The canister identifier that was created in advance or during the build process determines where your code is installed during deployment.
 
@@ -109,7 +109,7 @@ To deploy the code for the first time:
 +
 In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain mainnet, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
+If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Verify you have canister identifiers for all of the canisters you want to deploy.
 . Deploy all of the canisters by running the following command:
 +
@@ -178,7 +178,7 @@ To reinstall a canister:
 +
 In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain mainnet, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
+If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Verify you have canister identifiers for all of the canisters you want to re-deploy.
 . Re-deploy all of the canisters by running the following command:
 +
@@ -330,7 +330,7 @@ To upgrade a canister:
 +
 In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain mainnet, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
+If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Verify you have canister identifiers for all of the canisters you want to upgrade.
 +
 Note that your program must identify the variables for which to maintain state by using the `+stable+` keyword in the variable declaration.
@@ -346,9 +346,9 @@ dfx canister install --all --mode upgrade
 [[delete-canister]]
 == Delete a canister smart contract
 
-If you want to permanently delete a specific canister or all canisters for a specific project on a given {IC} network, you can do so by running the `+dfx canister delete+` command.
+If you want to permanently delete a specific canister or all canisters for a specific project on a given deployment (either local, or remote), you can do so by running the `+dfx canister delete+` command.
 
-Deleting a canister removes the canister identifier, code, and state from the {IC} network. 
+Deleting a canister removes the canister identifier, code, and state.
 Before you can delete a canister, however, you must first stop the canister to clear any pending message requests or replies.
 
 To delete all canisters for a project:
@@ -358,8 +358,8 @@ To delete all canisters for a project:
 +
 In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were deleting canisters to run on a remote execution environment, e.g. the {IC} blockchain mainnet, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
-. Check the status of the project canisters running on the local {IC} network by running the following command:
+If you were deleting canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
+. Check the status of the project canisters running on the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

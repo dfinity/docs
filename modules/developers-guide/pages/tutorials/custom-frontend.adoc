@@ -264,7 +264,7 @@ After the local {IC} environment completes its startup operations, you can conti
 
 == Register, build, and deploy the dapp
 
-After you connect to the local {IC} execution environment, you can register, build, and deploy your dapp locally.
+After you connect to the local canister execution environment, you can register, build, and deploy your dapp locally.
 
 To deploy the dapp locally:
 

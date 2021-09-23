@@ -4,7 +4,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 :company-id: DFINITY
 
-The DFINITY command-line execution environment (`+dfx+`) is the primary tool for creating, deploying, and managing the applications you develop for the {platform}.
+The DFINITY command-line execution environment (`+dfx+`) is the primary tool for creating, deploying, and managing the dapps you develop for the {platform}.
 
 Use the `+dfx+` parent command with flags and subcommands to specify the operations you want to perform with or without optional arguments.
 
@@ -66,7 +66,7 @@ For reference information and examples, select an appropriate subcommand.
 
 |link:dfx-cache{outfilesuffix}[`+cache+`] |Manages the `+dfx+` cache on the local computer.
 
-|link:dfx-canister{outfilesuffix}[`+canister+`] |Manages canisters deployed on a network replica.
+|link:dfx-canister{outfilesuffix}[`+canister+`] |Manages deployed canisters .
 
 |link:dfx-config{outfilesuffix}[`+config+`] |Sets or changes configuration options for your current project.
 
@@ -75,20 +75,20 @@ By default, all canisters are deployed.
 
 |link:dfx-help{outfilesuffix}[`+help+`] |Displays usage information for a specified subcommand.
 
-|link:dfx-identity{outfilesuffix}[`+identity+`] |Enables you to create and manage the identities used to communicate with the Internet Computer network.
+|link:dfx-identity{outfilesuffix}[`+identity+`] |Enables you to create and manage the identities used to communicate with the {platform}.
 
 |link:dfx-ledger{outfilesuffix}[`+ledger+`] |Enables you to interact with accounts in the ledger canister running on the {IC}.
 
 |link:dfx-new{outfilesuffix}[`+new+`] |Creates a new project.
 
-|link:dfx-ping{outfilesuffix}[`+ping+`] |Sends a response request to a specified {IC} network to determine network connectivity.
-If the connection is successful, the {IC} replies with its status.
+|link:dfx-ping{outfilesuffix}[`+ping+`] |Sends a response request to the {platform} or the local canister execution environment to determine network connectivity.
+If the connection is successful, a status reply is returned.
 
-|link:dfx-replica{outfilesuffix}[`+replica+`] |Starts a local network replica process.
+|link:dfx-replica{outfilesuffix}[`+replica+`] |Starts a local canister execution environment.
 
-|link:dfx-start{outfilesuffix}[`+start+`] |Starts the local network replica and a web server for the current project.
+|link:dfx-start{outfilesuffix}[`+start+`] |Starts the local canister execution environment a web server for the current project.
 
-|link:dfx-stop{outfilesuffix}[`+stop+`] |Stops the local network replica.
+|link:dfx-stop{outfilesuffix}[`+stop+`] |Stops the local canister execution environment.
 
 |link:dfx-upgrade{outfilesuffix}[`+upgrade+`] |Upgrades the version of `+dfx+` installed on the local computer to the latest version available.
 

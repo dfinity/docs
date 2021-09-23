@@ -39,7 +39,7 @@ You can specify the following option for the `+dfx build+` command.
 
 |Option |Description
 
-|`+--network <network>+` |Specifies the {IC} network you want to connect to. You can use this option to override the network specified in the `+dfx.json+` configuration file.
+|`+--network <network>+` |Specifies the {platform} you want to connect to. You can use this option to override the network specified in the `+dfx.json+` configuration file.
 
 |===
 
@@ -81,7 +81,7 @@ dfx build hello_world
 
 Building a specific canister is useful when you have multiple canisters defined in the dfx.json file, but want to test and debug operations for canisters independently.
 
-To test whether a canister compiles without connecting to a public or local {platform}, you would run the following command:
+To test whether a canister compiles without connecting to the {platform} or the local canister execution environment, you would run the following command:
 
 [source,bash]
 ----

@@ -53,7 +53,7 @@ As a developer, it is important to recognize this relationship between the calls
 In particular, you should keep in mind the inherent tradeoff between security and performance.
 
 [[dev-motoko-intro]]
-== How to develop descentralized applications (dapps) for the {IC}
+== How to develop dapps for the {IC}
 
 For programmers and software developers, the {IC} blockchain provides unique capabilities and opportunities within a framework that simplifies how you can design, build, and deploy dapps.
 A key part of this framework is a new, general purpose programming language, {proglang}. 

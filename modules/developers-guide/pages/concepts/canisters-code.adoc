@@ -19,7 +19,7 @@ A canister smart contract is similar to a container in that both are deployed as
 Containerization allows for applications to be decoupled from the environment, allowing for easy and reliable deployment.
 The canister differs from a container, however, in that it also stores information about the current software *state*.
 
-While a containerized application might include information about the state of the environment in which the application runs, a canister smart contract is able to persist a record of state changes that resulted from its functions being called.
+While a containerized application might include information about the state of the environment in which the application runs, a canister is able to persist a record of state changes that resulted from its functions being called.
 
 [[query-update]]
 == Query and update methods

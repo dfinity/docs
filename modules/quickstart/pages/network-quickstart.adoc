@@ -420,7 +420,7 @@ Let's take a closer look at this example:
 +
 -- 
 
-* Using the `+--network ic+` option indicates that the canister you want to call is deployed on the `+ic+`. The `+ic+` network alias is an internally-reserved alias for accessing the {IC} blockchain.
+* Using the `+--network ic+` option indicates that the canister you want to call is deployed on the `+ic+`. The `+ic+` network alias is an internally-reserved alias for accessing the {IC} blockchain mainnet.
 * Note that the `+--network ic+` option must precede the operation subcommand, which, in this case, is the `+dfx canister call+` command.
 * The `+hello+` argument specifies the name of the canister you want to call.
 * The `+greet+` argument specifies the name of the function you want to call in the `+hello+` canister.

@@ -3,7 +3,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The link:../quickstart/quickstart-intro{outfilesuffix}[Quick start] provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.
 
-Next, we’ll explore writing a few simple programs to give you hands-on experience creating programs that run on the {IC} blockchain.
+Next, we’ll explore writing a few simple programs to give you hands-on experience creating programs that run on the {platform}.
 
 NOTE: Most of these tutorials illustrate how to write dapps using the {proglang} programming language.
 For additional examples of dapps written in other languages, see the {company-id} https://github.com/dfinity/examples[examples] repository.

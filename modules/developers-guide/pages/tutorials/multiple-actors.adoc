@@ -171,7 +171,7 @@ dfx deploy
 To deploy the dapp to the {IC} blockchain mainnet:
 
 . Check that you are still in the root directory for your project, if needed.
-. Run `dfx deploy` command specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file. For example, if you are connecting to the URL specified by the network alias `+ic+` you would run a command similar the following:
+. Run `dfx deploy` command specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file. For example, if you are connecting to the {IC} mainnet using to the URL specified by the network alias `+ic+` you would run a command similar the following:
 +
 [source,bash]
 ----

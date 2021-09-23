@@ -253,7 +253,7 @@ To start the environment locally:
 
 . Open a new terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
-. Start the {IC} environment on your local computer by running the following command:
+. Start the local canister execution environment on your local computer by running the following command:
 +
 [source,bash]
 ----

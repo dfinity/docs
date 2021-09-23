@@ -159,7 +159,7 @@ For example, to invoke the `+get+` method for a canister with a `+canister_name+
 dfx canister call counter get --async
 ----
 
-In this example, the command includes the `+--async+` option to indicate that you want to make a separate `+request-status+` call rather than waiting to poll the replica for the result.
+In this example, the command includes the `+--async+` option to indicate that you want to make a separate `+request-status+` call rather than waiting to poll the local canister execution environment or the {platform} for the result.
 The `+--async+` option is useful when processing an operation might take some time to complete.
 The option enables you to continue performing other operations then check for the result using a separate `+dfx canister request-status+` command.
 The returned result will be displayed as the IDL textual format.

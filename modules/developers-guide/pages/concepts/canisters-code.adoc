@@ -126,6 +126,7 @@ A single user can have multiple public-private key pairs for accessing canisters
 All canisters consume resources, being CPU cycles for execution, bandwidth for routing messages, and storage for persisted data.
 Canisters maintain an account balance of *cycles* to pay for the cost of communication, computation, and storage that they consume.
 
+
 Cycles are intended to reflect the real cost of operations including physical hardware, rack space, energy, storage devices, and bandwidth in a stable or deflationary way so that the cost of program execution remains the same or decreases with operational efficiency. 
 
 * Canisters must be able to pay for complete execution (all or nothing), but the cost associated with a unit of cycles will make efficient programs cost-effective.

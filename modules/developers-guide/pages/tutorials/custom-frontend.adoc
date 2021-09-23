@@ -326,7 +326,7 @@ For example:
 +
 image:modified-result.png[Modified greeting result]
 
-== Stop the local execution environment
+== Stop the local canister execution environment
 
 After you finish experimenting with the front-end for your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 

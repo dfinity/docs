@@ -127,7 +127,7 @@ To start the local canister execution environment:
 * You should now have **two terminals** open.
 * You should have the **project directory** as your **current working directory**.
 --
-. Start the local {IC} blockchain on your computer by running the following command:
+. Start the local canister execution environment on your computer by running the following command:
 +
 [source,bash]
 ----

@@ -2,6 +2,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 //:!page-repl:
 :proglang: Motoko
+:LEE: local canister execution environment
 :IC: Internet Computer blockchain
 :company-id: DFINITY
 
@@ -33,7 +34,7 @@ Your default user identity is stored globally for all projects in the `+$HOME/.c
 
 * You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
 
-* You have stopped any {IC} processes running on the local computer.
+* You have stopped any {LEE} processes running on your computer.
 
 == Create a new project
 
@@ -81,26 +82,26 @@ In this dapp, however, the `+greet+` function uses a message caller to determine
 --
 . Save your changes and close the `+main.mo+` file to continue.
 
-== Start the local {IC}
+== Start the {LEE}
 
-Before you can build the `+access_hello+` project, you need to connect to the {IC} either running locally in your development environment or to the {IC} mainnet.
+Before you can build the `+access_hello+` project, you need to connect to the {LEE} running in your development environment or to the {IC} mainnet.
 
-To start the {IC} locally:
+To start the {LEE}:
 
 . Open a new terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
-. Start the {IC} on your local computer by running the following command:
+. Start the {LEE} on your computer by running the following command:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-After the local {IC} completes its startup operations, you can continue to the next step.
+After the {LEE} completes its startup operations, you can continue to the next step.
 
 == Register, build, and deploy the dapp
 
-After you connect to the {IC} running locally in your development environment, you can register, build, and deploy your dapp in a single step by running the link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy`] command.
+After you connect to the {LEE} running in your development environment, you can register, build, and deploy your dapp in a single step by running the link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy`] command.
 You can also perform each of these steps independently using separate link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_create[`+dfx canister create+`], link:../cli-reference/dfx-build{outfilesuffix}[`+dfx build+`], and link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_install[`+dfx canister install+`] commands.
 
 To deploy the dapp locally:
@@ -464,15 +465,15 @@ If you rerun the `+dfx identity list+` command, the `+ic_admin+` user identity d
 +
 You can now run commands using the selected user identity without specifying `+--identity+` on the command-line. 
 
-== Stop the local {IC}
+== Stop the {LEE}
 
-After you finish experimenting with the dapp and using identities, you can stop the local {IC} so that it doesn’t continue running in the background.
+After you finish experimenting with the dapp and using identities, you can stop the {LEE} so that it doesn’t continue running in the background.
 
-To stop the local {IC}:
+To stop the {LEE}:
 
 . In the terminal that displays network operations, press Control-C to interrupt the local network process.
 
-. Stop the {IC} by running the following command:
+. Stop the {LEE} by running the following command:
 +
 [source,bash]
 ----

@@ -138,7 +138,7 @@ Depending on your platform and local security settings, you might see a warning 
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal window that displays canister execution operations open and switch your focus to the first terminal window where you created your new project.
 +
-You perform the remaining steps in the terminal that doesn't display {IC} operations.
+You perform the remaining steps in the terminal that doesn't display canister execution operations.
 
 [[register-ids]]
 == Register, build, and deploy the application

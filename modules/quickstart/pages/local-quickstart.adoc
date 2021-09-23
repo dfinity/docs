@@ -1,5 +1,5 @@
 = Local development
-:description: Download the DFINITY Canister SDK and deploy your first application locally.
+:description: Download the DFINITY Canister SDK and deploy your first dapp locally.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :experimental:
 // Define unicode for Apple Command key.
@@ -279,7 +279,7 @@ Here are some suggestions for where to go next:
 
 * link:network-quickstart{outfilesuffix}#convert-icp[Convert ICP tokens to cycles] if you have ICP tokens that you want to convert to cycles to enable you to deploy dapp to the {IC} blockchain.
 
-* link:network-quickstart{outfilesuffix}[{IC} blockchain deployment] if you have cycles and are ready to deploy an application to the {IC} blockchain.
+* link:network-quickstart{outfilesuffix}[On-chain deployment] if you have cycles and are ready to deploy an application to the {IC} blockchain.
 
 * link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
 

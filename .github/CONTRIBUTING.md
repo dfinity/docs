@@ -1,11 +1,11 @@
 # Contributing
 
-Thank you for your interest in contributing to documentation for the Internet Computer.
+Thank you for your interest in contributing to documentation for the Internet Computer blockchain.
 By participating in this project, you agree to abide by our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 As a member of the community, you are invited and encouraged to contribute by submitting issues, offering suggestions for improvements, adding review comments to existing pull requests, or creating new pull requests to fix issues.
 
-All contributions to DFINITY documentation and the developer community are respected and appreciated.
+All contributions to documentation of the Internet Computer and the developer community are respected and appreciated.
 Your participation is an important factor in the success of the Internet Computer.
 
 ## Contents of this repository

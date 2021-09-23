@@ -342,7 +342,7 @@ For more information about the commands and methods available for working with t
 
 After you have validated your cycles wallet balance, you can register, build, and deploy your sample application.
 
-To deploy your first application on the {IC} blockchain:
+To deploy your first application on the {IC} blockchain mainnet:
 
 . In your terminal shell, check that you are still in the root directory for your project.
 . Ensure that `+node+` modules are available in your project directory, if needed, by running the following command:

@@ -11,7 +11,7 @@ The *{IC}* is a blockchain that enables developers, organizations, and entrepren
 As a dapp developer, you might find it useful to think of the {IC} as providing the following key features:
 
 * A *globally-accessible, public blockchain* for running smart contracts at web speed, that can serve interactive web content to users.
-* A secure cryptographic protocol (*Internet Computer Protocol*) run by nodes machines operated by independent node providers in independent data centers all over the world. This guarantees secure execution of smart contracts.
+* A secure cryptographic protocol (*Internet Computer Protocol*) run by nodes machines operated by independent node providers in independent data centers all over the world. This guarantees the secure execution of smart contracts.
 * A *network of blockchains* connected by Chain Key Technology that can scale out its capacity as required.
 
 == An open blockchain

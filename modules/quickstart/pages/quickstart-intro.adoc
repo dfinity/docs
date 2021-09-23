@@ -32,7 +32,7 @@ As a developer, you have a few different options for acquiring and managing cycl
 
 * Purchase or claim ICP tokens through an exchange that lists ICP tokens available for trade, then convert your tokens to cycles using the link:network-quickstart{outfilesuffix}#convert-tokens[{sdk-short-name} command-line interface] or the link:https://nns.ic0.app/#/auth[Network Nervous System application].
 * Register for cycles by signing up for an account or link:../developers-guide/default-wallet{outfilesuffix}#wallet-create-wallets[cycles wallet] through a provider offering those services.
-* Coordinate with other developers to link:../developers-guide/default-wallet{outfilesuffix}#wallet-send[send] and link:../developers-guide/default-wallet{outfilesuffix}#wallet-receive[receive] cycles directly to and from canisters through a cycles wallet or another dapps.
+* Coordinate with other developers to link:../developers-guide/default-wallet{outfilesuffix}#wallet-send[send] and link:../developers-guide/default-wallet{outfilesuffix}#wallet-receive[receive] cycles directly to and from canisters through a cycles wallet or another canister.
 
 Because only canisters require and consume cycles—to perform operations and to pay for the resources they use—cycles are always transferred between canisters and not to users or developers. You can manage the distribution of cycles, however, through a cycles wallet created for you or using a similar dapp. 
 

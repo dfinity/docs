@@ -1,23 +1,23 @@
 = Develop using different languages
 :cpp: C++
 
-Most of the examples in this guide use {proglang}—the programming language specifically designed to work with the {IC}. 
-Potentially, however, you can write programs in any language that compiles to WebAssembly to deploy applications that run on the {IC}.
-This section provides some high-level guidance for writing programs in different languages and how to deploy them on the {IC}.
+Most of the example dapps in this guide use {proglang}—the programming language specifically designed to work with the {IC}. 
+Potentially, however, you can write dapps in any language that compiles to WebAssembly to deploy applications that run on the {IC}.
+This section provides some high-level guidance for writing dapps in different languages and how to deploy them on the {IC}.
 
 == Using Rust
 
-You can create Rust projects to run on the {IC} by using Cargo and compiling your program to use WebAssembly as the target output.
+You can create Rust projects to run on the {IC} by using Cargo and compiling your dapp to use WebAssembly as the target output.
 
-This section provides a summary of the key steps involved in deploying a Rust program as a smart contract canister on the {IC}.
+This section provides a summary of the key steps involved in deploying a Rust program as a canister smart contract on the {IC}.
 You should note, however, that the steps described here only illustrate one approach. 
 Other implementation approaches are also possible. 
 
-Note that the link:https://github.com/dfinity/cdk-rs[Rust canister development kit (Rust CDK)] for provides some shortcuts to make it easier to write functions as query and update calls and includes several link:https://github.com/dfinity/cdk-rs/tree/next/examples[examples] to get you started building Rust-based projects, but you can also develop applications for the {IC} without using the Rust CDK.
+Note that the link:https://github.com/dfinity/cdk-rs[Rust canister development kit (Rust CDK)] for provides some shortcuts to make it easier to write functions as query and update calls and includes several link:https://github.com/dfinity/cdk-rs/tree/next/examples[examples] to get you started building Rust-based projects, but you can also develop dapps for the {IC} without using the Rust CDK.
 
 === Create a project
 
-Because most Rust programmers use Cargo to handle build and package management tasks—such as downloading and compiling the libraries your program depends on—your first step is to create a new Rust project using the Cargo command-line interface.
+Because most Rust programmers use Cargo to handle build and package management tasks—such as downloading and compiling the libraries your dapp depends on, your first step is to create a new Rust project using the Cargo command-line interface.
 
 Alternatively, you could create a new project using {sdk-long-name} instead of Cargo, but creating a project using Cargo represents the typical workflow for creating Rust projects.
 
@@ -37,15 +37,15 @@ cargo --version
 +
 [source,bash]
 ----
-cargo new my_rust_program
+cargo new my_rust_dapp
 ----
 +
-This command creates a new `+my_rust_program+` directory with a default `+Cargo.toml+` file and a `+src+` directory with a default `+main.rs+` file.
+This command creates a new `+my_rust_dapp+` directory with a default `+Cargo.toml+` file and a `+src+` directory with a default `+main.rs+` file.
 . Change to your project directory by running the following command:
 +
 [source,bash]
 ----
-cd my_rust_program
+cd my_rust_dapp
 ----
 +
 If you list the contents of this directory, you'll see that it only contains the `+Cargo.toml+` file and `+src+` directory. 
@@ -77,7 +77,7 @@ By default, the file contains the `+[package]+` and the `+[dependencies]+` secti
 ----
 [workspace]
 members = [
-    "src/my_rust_program",
+    "src/my_rust_dapp",
 ]
 ----
 +
@@ -113,11 +113,11 @@ To add the `+dfx.json+` configuration file:
 {
   "version": 1,
   "canisters": {
-    "my_rust_program": {
+    "my_rust_dapp": {
       "type": "custom",
-      "candid": "src/my_rust_program.did",
-      "wasm": "target/wasm32-unknown-unknown/debug/my_rust_program.wasm",
-      "build": "cargo build --target wasm32-unknown-unknown --package my_rust_program"
+      "candid": "src/my_rust_dapp.did",
+      "wasm": "target/wasm32-unknown-unknown/debug/my_rust_dapp.wasm",
+      "build": "cargo build --target wasm32-unknown-unknown --package my_rust_dapp"
     }
   }
 }
@@ -128,7 +128,7 @@ Let's take a closer look at these settings.
 --
 * The `+version+` setting is used to identify the version of the software used to create the project.
 * The `+canisters+` section specifies the name of the project's canisters.
-In this case, there's only one canister and it is named `+my_rust_program+`.
+In this case, there's only one canister and it is named `+my_rust_dapp+`.
 * The `+type+` key is set to `+custom+` because this canister is not one of the currently recognized (`+motoko+` or `+assets+`) canister types.
 * The `+candid+` key specifies the name and location of the Candid interface description file to use for this project.
 * The `+wasm+` key specifies the path to the WebAssembly file generated by the `+cargo build+` command.
@@ -141,15 +141,15 @@ As you build more complex programs, you might need to include additional configu
 
 === Create a Candid interface description file
 
-In addition to the `+dfx.json+` configuration file, you need to have a Candid interface description file—for example, `+my_rust_program.did+`—to map your program's input parameters and return value formats to their language-agnostic representation in Candid.
+In addition to the `+dfx.json+` configuration file, you need to have a Candid interface description file—for example, `+my_rust_dapp.did+`—to map your dapp's input parameters and return value formats to their language-agnostic representation in Candid.
 
 To add the Candid interface description file:
 
 . Check that you are still in your project directory by running the `+pwd+` command, if necessary.
-. Create a new Candid interface description file—for example, `+my_rust_program.did+`—in the `+src+` directory for your project.
-. Open the Candid interface description file in a text editor and add a description for each function the program defines.
+. Create a new Candid interface description file—for example, `+my_rust_dapp.did+`—in the `+src+` directory for your project.
+. Open the Candid interface description file in a text editor and add a description for each function the dapp defines.
 +
-For example, if the `+my_rust_program+` is a simple program that increments a counter using the `+increment+`, `+read+`, and `+write+` functions, the `+my_rust_program.did+` file might look like this:
+For example, if the `+my_rust_dapp+` is a simple dapp that increments a counter using the `+increment+`, `+read+`, and `+write+` functions, the `+my_rust_dapp.did+` file might look like this:
 +
 [source,candid]
 ----
@@ -161,29 +161,29 @@ service : {
 ----
 . Save your changes and close the file to continue.
 
-=== Modify the default program
+=== Modify the default dapp
 
-When you create a new project, your project `+src+` directory includes a template `+main.rs+` file with the "Hello, World!" program.
+When you create a new project, your project `+src+` directory includes a template `+main.rs+` file with the "Hello, World!" dapp.
 
 To modify the template source code:
 
 . Open the template `+src/main.rs+` file in a text editor and delete the existing content.
-. Write the program you want to deploy on the {IC}.
+. Write the dapp you want to deploy on the {IC}.
 +
-As you write your program, keep in mind that there are two types of calls—update calls and query calls—and that update functions use asynchronous messaging.
+As you write your dapp, keep in mind that there are two types of calls—update calls and query calls—and that update functions use asynchronous messaging.
 . Save your changes and close the `+main.rs+` file.
 
 === Connect to a network and deploy
 
-Before you can deploy and test your program, you need to do the following:
+Before you can deploy and test your dapp, you need to do the following:
 
-* Connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+* Connect to the {IC} network either running locally in your development environment or running remotely (on-chain) on a subnet that you can access.
 * Register a network-specific identifier for the application
-* Compile the program with a target output of WebAssembly.
+* Compile the dapp with a target output of WebAssembly.
 
 Because you configured the custom `+dfx.json+` file with a `+cargo build+` command that compiles to WebAssembly, you can use the `+dfx+` command-line interface and standard work flow to perform all of the remaining steps.
 
-To build and deploy the program locally:
+To build and deploy the dapp locally:
 
 . Check that you are still in your project directory by running the `+pwd+` command, if necessary.
 . Open a new terminal window or tab on your local computer and navigate to your project directory.
@@ -212,30 +212,30 @@ If you are prompted to allow or deny incoming network connections, click *Allow*
 ----
 dfx canister create --all
 ----
-. Build the program by running the following command:
+. Build the dapp by running the following command:
 +
 [source,bash]
 ----
 dfx build
 ----
-. Deploy the program on the local network by running the following command:
+. Deploy the dapp on the local network by running the following command:
 +
 [source,bash]
 ----
 dfx canister install --all
 ----
-. Test functions in the program from the command-line or in a browser.
+. Test functions in the dapp from the command-line or in a browser.
 
 == Using C
 
-Because the {IC} supports applications compiled to standard WebAssembly modules, you can use standard compilers and toolchains to build applications in languages such as  C, {cpp}, Objective-C, and Objective-{cpp} programming languages and the `+Clang+` compiler.
+Because the {IC} supports dapps compiled to standard WebAssembly modules, you can use standard compilers and toolchains to build applications in languages such as  C, {cpp}, Objective-C, and Objective-{cpp} programming languages and the `+Clang+` compiler.
 
-To illustrate how to migrate programs written in C to run on the {IC}, let’s look at the simple `+reverse.c+` program in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository. 
-The `+reverse.c+` program contains one function—named `+go+`—that reverses a string in place.
+To illustrate how to migrate dapps written in C to run on the {IC}, let’s look at the simple `+reverse.c+` dapp in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository. 
+The `+reverse.c+` dapp contains one function—named `+go+`—that reverses a string in place.
 
 === Set up the development environment
 
-To compile the `+reverse.c+` program into WebAssembly, you need to have the `+clang+` compiler and standard libraries installed. 
+To compile the `+reverse.c+` dapp into WebAssembly, you need to have the `+clang+` compiler and standard libraries installed. 
 You can check whether you have `+clang+` installed on your local computer by running the following command:
 
 [source,bash]
@@ -269,14 +269,14 @@ For example, if `+clang+` is not installed, run the following command:
 brew install llvm
 ----
 
-=== Compile the program into WebAssembly
+=== Compile the dapp into WebAssembly
 
 You can compile a C program to run as a WebAssembly module by first compiling using `+clang+`, then linking using `+wasm-ld+`. 
 Depending on the operating system and version of `+clang+` you are using, you might use a different version of the WebAssembly linker, such as `+wasm-ld+` on macOS or `+wasm-ld-8+` on Debian. 
  
 To compile to WebAssembly on macOS:
  
-. Compile the program by running the following clang command:
+. Compile the dapp by running the following clang command:
 +
 [source,bash]
 ----
@@ -291,7 +291,7 @@ wasm-ld --no-entry --export-dynamic --allow-undefined reverse.o -o reverse.wasm
 
 === Create a minimal configuration file
 
-Next, you need to prepare a simple configuration file that identifies the `+reverse+` program binary as a package that can be installed on the {IC} and a `+build+` directory so that you can use the `+dfx+` command-line interface to install and run the package as a canister.
+Next, you need to prepare a simple configuration file that identifies the `+reverse+` dapp binary as a package that can be installed on the {IC} and a `+build+` directory so that you can use the `+dfx+` command-line interface to install and run the package as a canister.
 
 To prepare a configuration file and build directory:
 
@@ -301,13 +301,13 @@ To prepare a configuration file and build directory:
 ----
 echo '{"canisters":{"reverse":{"main":"reverse"}}}' > dfx.json
 ----
-. Create a `+build+` directory for the program by running the following command:
+. Create a `+build+` directory for the dapp by running the following command:
 +
 [source,bash]
 ----
 mkdir build
 ----
-. Create a `+reverse+` directory for the program by running the following command:
+. Create a `+reverse+` directory for the dapp by running the following command:
 +
 [source,bash]
 ----
@@ -328,7 +328,7 @@ For details about the syntax to use for different data types, see the link:../ca
 
 To create a Candid interface description file for this program:
 
-. Open a terminal in the `+build+` directory you created for the `+reverse.c+` program source
+. Open a terminal in the `+build+` directory you created for the `+reverse.c+` dapp source
 . Create a new text file named `+reverse.did+`.
 . Add a description of the `+go+` function.
 +
@@ -342,14 +342,14 @@ service : {
 ----
 . Save your changes and close the file to continue.
 
-=== Deploy and test the program
+=== Deploy and test the dapp
 
-Before you can deploy and test your program, you need to do the following:
+Before you can deploy and test your dapp, you need to do the following:
 
-* Connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+* Connect to the {IC} network either running locally in your development environment or running remotely (on-chain) on a subnet that you can access.
 * Register a network-specific identifier for the application.
 
-To deploy and test the application locally:
+To deploy and test the dapp locally:
 
 . Open a new terminal window or tab on your local computer.
 +
@@ -366,13 +366,13 @@ dfx start
 ----
 dfx canister create --all
 ----
-. Deploy the default program on the local network by running the following command:
+. Deploy the default dapp on the local network by running the following command:
 +
 [source,bash]
 ----
 dfx canister install --all
 ----
-. Call the `+go+` function in the program by running the following command:
+. Call the `+go+` function in the dapp by running the following command:
 +
 [source,bash]
 ----
@@ -380,4 +380,4 @@ dfx canister call reverse go reward
 ("drawer")
 ----
 
-You can find additional examples of C programs in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository.
+You can find additional examples of C dapps in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository.

@@ -122,7 +122,7 @@ cd hello
 ----
 
 [[ping-the-network]]
-== Check the connection to the {IC} blockchain
+== Check the connection to the {platform} mainnet
 
 Before you can deploy your first project on the {IC} blockchain, you need to connect to the network gateway running remotely on a subnet that you can access.
 There is a reserved network alias that you can use to access the {IC} blockchain. The network alias is a system setting that's defined internally, so there's nothing you need to configure in your projects by default.

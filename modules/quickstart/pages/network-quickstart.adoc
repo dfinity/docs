@@ -361,7 +361,7 @@ dfx deploy --network ic
 ----
 +
 The `+--network+` option specifies the network alias or URL for deploying the dapp.
-This option is required to install on the {IC} blockchain.
+This option is required to install on the {IC} blockchain mainnet.
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
 +

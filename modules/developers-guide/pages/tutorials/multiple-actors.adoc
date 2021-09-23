@@ -137,7 +137,7 @@ include::example$multiple-actors/daemon/main.mo[]
 
 == Start the local canister execution environment
 
-Before you can install the `+multiple_actors+` project locally, you need to start your local canister execution environment. If you intend to deploy it to the {IC} blockchain mainet, then you can skip this section.
+Before you can install the `+multiple_actors+` project locally, you need to start your local canister execution environment. If you intend to deploy it to the {IC} blockchain mainnet, then you can skip this section.
 
 To start the local canister execution environment:
 
@@ -150,7 +150,7 @@ To start the local canister execution environment:
 ----
 dfx start
 ----
-. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
+. Leave the terminal that displays canister execution operations open and switch your focus to your original terminal where you created your new project.
 
 == Deploy your multi-canister dapp
 

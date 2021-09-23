@@ -6,13 +6,13 @@
 
 [[ic-overview]]
 
-The *{IC}* is a blockchain that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof software programs.
+The *{IC}* is a blockchain that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof *canisters*, an evolution of *smart contracts*.
 
-As an application developer, you might find it useful to think of the {IC} as providing the following key elements:
+As a dapp developer, you might find it useful to think of the {IC} as providing the following key elements:
 
-* An *open communication protocol* that enables general-purpose computations to run transparently directly on the internet
-* A *network* that runs the protocol to provide computing capacity—for example, the hardware, CPU, and memory required to run programs—through *independent data centers*.
-* A *globally-accessible and scalable blockchain platform* for running software applications.
+* A *globally-accessible and public blockchain* for running canister smart contracts.
+* An *open communication protocol* that enables general-purpose computations to run transparently directly on the internet.
+* A *network of blockchains* connected by Chain Key Technology to provide computing capacity—for example, the hardware, CPU, and memory—required to run dapps.
 
 == Open blockchain platform
 

@@ -1,8 +1,8 @@
-= Frontend Overview
+= Front-end Overview
 
-The {platform} allows you to host web content for your dapps, using our https://www.npmjs.com/package/@dfinity/agent[JavaScript agent]. By using the https://github.com/dfinity/certified-assets[asset canister] provided by `+dfx+` to upload static files to the {IC}, you will be able to run your entire application on decentralized technology. This section takes a closer look at the default front-end template that is provided by `+dfx new+`, front-end configuration options, and using other frameworks to build the user interface for your projects.
+The {platform} allows you to host Web 3.0 front-ends for your dapps, using our https://www.npmjs.com/package/@dfinity/agent[JavaScript agent]. By using the https://github.com/dfinity/certified-assets[asset canister] provided by `+dfx+` to upload static files to the {IC}, you will be able to run your entire application on decentralized technology. This section takes a closer look at the default front-end template that is provided by `+dfx new+`, front-end configuration options, and using other frameworks to build the user interface for your projects.
 
-Here are some quick links to tutorials with example code for various stages of developing your frontend dapp:
+Here are some quick links to tutorials with example code for various stages of developing your front-end dapp:
 
 * A tutorial on building a React dapp link:tutorials/custom-frontend{outfilesuffix}[Customize the front-end]
 * Using link:tutorials/hello-location{outfilesuffix}#candid-ui[Candid] as a bare-bones interface to expose and test the functions in a canister.

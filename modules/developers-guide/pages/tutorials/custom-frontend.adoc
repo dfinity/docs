@@ -4,12 +4,12 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 :company-id: DFINITY
 
-Now that you have a basic understanding of how to create, build, and deploy a simple program and are familiar with the default project files and sample front-end, you might want to start experimenting with different ways to customize the front-end user experience for your project.
+Now that you have a basic understanding of how to create, build, and deploy a simple dapp and are familiar with the default project files and sample front-end, you might want to start experimenting with different ways to customize the front-end user experience for your project.
 
-This tutorial illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed.
+This tutorial illustrates using the React framework to create a new front-end for the default sample dapp and guides you through some basic modifications to customize the interface displayed.
 Later tutorials expand on the techniques introduced here, but if you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.
 
-NOTE: This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
+NOTE: This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister smart contract.
 Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see link:https://reactjs.org/docs/getting-started.html[Getting started] on the https://reactjs.org/[React website].
 
 == Before you begin
@@ -23,16 +23,16 @@ For information about installing node for your local operating system and packag
 
 * You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
 
-* You have stopped any {IC} network processes running on the local
+* You have stopped any {sdk-short-name} processes running on the local
 computer.
 
-NOTE: Because of significant changes to the handling of HTTP requests and front-end assets, this tutorial requires you to use the {sdk-short-name} version `+0.7.0+` or later. For an overview of what's changed, see this link:../../http-middleware{outfilesuffix}[article].
+NOTE: This tutorial requires you to use the {sdk-short-name} version `+0.8.0+` or later.
 
 This tutorial takes approximately 30 minutes to complete.
 
 == Create a new project
 
-To create a new project directory for your custom front-end application:
+To create a new project directory for your custom front-end dapp:
 
 [arabic]
 . Open a terminal shell on your local computer, if you don’t already have one open.
@@ -125,14 +125,14 @@ Let's take a look at the settings in this section.
 
 * The assets canister has a default dependency on the main canister for the project.
 
-* The `+frontend.entrypoint+` setting specifies the path to a file—in this case, the `+index.html+` file—to use as your application entry point.
+* The `+frontend.entrypoint+` setting specifies the path to a file—in this case, the `+index.html+` file—to use as your dapp entry point.
 If you had a different starting point—for example, a custom `first-page.html` file—you would modify this setting.
 
 * The `+source+` settings specify the path to your `src` and `dist` directories. The `src` setting specifies the directory to use for static assets that will be included in your assets canister when you build your project.
 If you have custom cascading stylesheet (CSS) or JavaScript files, you would include them in the folder specified by this path.
 After building the project, the project assets are served from the directory specified by the `+dist+` setting.
 
-* The `+type+` setting specifies that the `+custom_greeting_assets+` is an asset canister rather than a program canister.
+* The `+type+` setting specifies that the `+custom_greeting_assets+` should use the https://github.com/dfinity/certified-assets[certified asset canister], which comes with everything you need to host static assets on the {platform}.
 --
 +
 For this tutorial, we are going to add React JavaScript in an `+index.jsx+` file, but that won't require any changes to the default settings in the `dfx.json` file.
@@ -140,14 +140,14 @@ For this tutorial, we are going to add React JavaScript in an `+index.jsx+` file
 
 == Review the default front-end files
 
-For this tutorial, you are going to use the default `+main.mo+` program and only manipulate the application by modifying the front-end.
+For this tutorial, you are going to make calls to the default `+main.mo+` canister through a custom front-end.
 Before you make any changes, though, let's take a look at what's in the default front-end files for a project.
 
 To review the default front-end files:
 
 . Open the `+src/custom_greeting_assets/src/index.html+` file in a text editor.
 +
-This template file is the default front-end entry point for the application as specified by the `+frontend.entrypoint+` setting in the `dfx.json` file.
+This template file is the default front-end entry point for the dapp as specified by the `+frontend.entrypoint+` setting in the `dfx.json` file.
 +
 This file contains standard HTML with references to a CSS file and an image that are located in the `+src/custom_greeting_assets/assets+` directory. 
 The default `+index.html+` file also includes standard HTML syntax for displaying an input field for the `+name+` argument and a clickable button.
@@ -175,7 +175,7 @@ document.getElementById("clickMeBtn").addEventListener("click", async () => {
 
 == Modify the front-end files
 
-You are now ready to create a new front-end for the default program.
+You are now ready to create a new front-end for the default dapp.
 
 To prepare the front-end files:
 
@@ -201,7 +201,7 @@ module: {
 },
 ----
 +
-This setting enables the program to use the `+ts-loader+` compiler for a React JavaScript `+index.jsx+` file.
+This setting enables the project to use the `+ts-loader+` compiler for a React JavaScript `+index.jsx+` file.
 Note that there's a commented section in the default `webpack.config.js` file that you can modify to add the `module` key.
 . Create a new file named `+tsconfig.json+` in the root directory for your project.
 . Open the `+tsconfig.json+` file in a text editor, then copy and paste the following into the file:
@@ -245,31 +245,31 @@ For example:
 </html>
 ----
 
-== Start the local network
+== Start the local canister execution environment
 
-Before you can build the `+custom_greeting+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+Before you can build the `+custom_greeting+` project, you need to connect to either the live {platform}, or a canister execution environment running locally in your development environment.
 
-To start the network locally:
+To start the environment locally:
 
 . Open a new terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
-. Start the {IC} network on your local computer by running the following command:
+. Start the {IC} environment on your local computer by running the following command:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-After the local {IC} network completes its startup operations, you can continue to the next step.
+After the local {IC} environment completes its startup operations, you can continue to the next step.
 
-== Register, build, and deploy the application
+== Register, build, and deploy the dapp
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
+After you connect to the local {IC} execution environment, you can register, build, and deploy your dapp locally.
 
-To deploy the application locally:
+To deploy the dapp locally:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your application by running the following command:
+. Register, build, and deploy your dapp by running the following command:
 +
 [source,bash]
 ----
@@ -280,7 +280,7 @@ The `+dfx deploy+` command output displays information about the operations it p
 
 == View the new front-end
 
-You can now access the new front-end for the default program by entering the canister identifier for the assets canister in a browser.
+You can now access the new front-end for the default dapp by entering the canister identifier for the assets canister in a browser.
 
 To view the custom front-end:
 
@@ -326,9 +326,9 @@ For example:
 +
 image:modified-result.png[Modified greeting result]
 
-== Stop the local network
+== Stop the local execution environment
 
-After you finish experimenting with the front-end for your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with the front-end for your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
 To stop the local network:
 
@@ -336,7 +336,7 @@ To stop the local network:
 
 . In the terminal that displays network operations, press Control-C to interrupt the local network process.
 
-. Stop the {IC} network by running the following command:
+. Stop the {IC} environment by running the following command:
 +
 [source,bash]
 ----

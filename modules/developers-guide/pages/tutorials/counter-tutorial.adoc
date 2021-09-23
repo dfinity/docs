@@ -114,7 +114,7 @@ For more information about the differences between a query and an update, see li
 
 Before you can build the `+my_counter+` project, you need to either connect to a local {IC} blockchain, running in your development environment, or to the {IC} blockchain mainnet. 
 
-Starting the {IC} blockchain locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
+Starting the local canister execution environment requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
 
 To start the local {IC} blockchain:

@@ -4,17 +4,10 @@
 :IC: Internet Computer
 :company-id: DFINITY
 
-As described in the link:../quickstart/quickstart-intro{outfilesuffix}[Quick start], you can download and install the latest version of the {sdk-short-name} package by running a command in a terminal shell.
+As described in the link:../quickstart/quickstart-intro{outfilesuffix}[Quick start], you can download and install the latest version of the DFINITY Canister smart contract SDK package by running a command in a terminal shell.
 The topics in this section provide additional information about installing, upgrading, and removing the {sdk-short-name}.
 
 include::ROOT:page$download.adoc[leveloffset=0,tag=install]
-
-== Reviewing the license agreement
-
-The installation script prompts you to read and accept the link:https://sdk.dfinity.org/sdk-license-agreement.txt[DFINITY Canister SDK License Agreement] before installing the `+dfx+` command-line interface executable and its dependencies on your local computer.
-You must type `+y+` and press kbd:[Enter] to continue with the installation.
-
-After you accept the license agreement, the installation script displays information about the components being installed on the local computer.
 
 == What gets installed
 

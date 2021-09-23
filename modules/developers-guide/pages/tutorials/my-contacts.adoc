@@ -245,7 +245,7 @@ To start the environment locally:
 
 [arabic]
 . Open a new terminal window or tab on your local computer.
-. Start the canister execution environment on your local computer by running the following command:
+. Start the local canister execution environment on your local computer by running the following command:
 +
 [source,bash]
 ----

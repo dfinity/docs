@@ -139,7 +139,7 @@ After you start the local canister execution environment, the terminal displays 
 
 == Register, build, and deploy the dapp
 
-After you connect to the local {IC} blockchain running in your development environment, you can register, build, and deploy your dapp locally.
+After you connect to the local canister execution environment running in your development environment, you can register, build, and deploy your dapp locally.
 
 To deploy the dapp locally:
 

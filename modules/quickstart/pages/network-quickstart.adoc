@@ -126,17 +126,17 @@ cd hello
 
 There is a reserved network alias that you can use to access the {IC} blockchain mainnet. The network alias is a system setting that's defined internally, so there's nothing you need to configure in your projects by default.
 
-To check your connection to the {IC} blockchain:
+To check your connection to the {platform}:
 
 [arabic]
 . Check that you are in the root directory for your project, if needed.
-. Check the current status of the {IC} network and your ability to connect to it by running the following command for the network alias `+ic+`:
+. Check the current status of the {platform} and your ability to connect to it by running the following command for the network alias `+ic+`:
 +
 [source,bash]
 ----
 dfx ping ic
 ----
-. Verify that the `+dfx ping ic+` command returns information about the {IC} blockchain.
+. Verify that the `+dfx ping ic+` command returns information about the {platform}.
 +
 For example, you should see output similar to the following:
 +
@@ -325,7 +325,7 @@ dfx canister --no-wallet --network ic call "gastn-uqaaa-aaaae-aaafq-cai" authori
 +
 Be sure that the command you copy has the `+--no-wallet+` option and the correct network (`+ic+`) alias.
 You should recognize the canister identifier—in this example, `+gastn-uqaaa-aaaae-aaafq-cai+`—as the cycles wallet associated with your identity.
-If this is your first wallet on the network, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
+If this is your first wallet on the {platform}, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
 +
 When the browser refreshes after running the `+authorize+` command, the cycles wallet for your principal account is displayed.
 . View your cycles balance and activity in the browser.

@@ -52,7 +52,7 @@ You can follow us on the link:https://twitter.com/dfinitydev[DFINITY Developer T
 [[for-protocol-enthusiasts]]
 == For: Protocol Enthusiasts
 
-The Internet Computer is created by the Internet Computer Protocol (“ICP”), which has formed the world’s first web-speed, web-serving public blockchain. The Internet Computer can grow its capacity with demand and is self-governing. It combines special node machines run en masse by independent data centers all around the world. Like all blockchains, it is unstoppable, and the code it hosts is tamperproof. 
+The Internet Computer is created by the Internet Computer Protocol (“ICP”), which has formed the world’s first web-speed, web-serving public blockchain. The Internet Computer is self-governing and can grow its capacity as required. It combines special node machines run en masse by independent data centers all around the world. Like all blockchains, it is unstoppable, and the code it hosts is tamperproof. 
 
 Get started by checking out our “Concepts” section to the left, starting with xref:developers-guide:concepts/what-is-IC.adoc[What is the Internet Computer?]
 

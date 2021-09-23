@@ -134,7 +134,7 @@ To start the local canister execution environment:
 dfx start
 ----
 +
-After you start the local {IC} blockchain, the terminal displays messages about network operations.
+After you start the local canister execution environment, the terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
 == Register, build, and deploy the dapp

@@ -7,7 +7,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-This {sdk-long-name} provides tools, sample code, and documentation to help you create canister smart contract dapps to run on the {IC}.
+This {sdk-long-name} provides tools, sample code, and documentation to help you create canister smart contract dapps and deploy them on the {IC} blockchain mainnet.
 The _Quick Start_ tutorial assumes that you are installing the {sdk-short-name} for the first time and illustrates how to create, build, and deploy your first dapp. 
 
 To keep the instructions simple and focused on the task at hand, the _Quick start_ is split into two scenarios:

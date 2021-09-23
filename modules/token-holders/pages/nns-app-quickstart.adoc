@@ -420,11 +420,9 @@ image:convert-to-cycles.png[]
 . Review the ICP utility tokens to cycles details, then click **Confirm** to continue.
 +
 After you click Confirm, you can review:
---
 - the new canister identifier
 - the number of cycles available for the canister to use
 - the controlling principal that currently has full management rights for the new canister
---
 +
 To change, the principal used as the controller of the canister, click **Change Controllers**.
 To add cycles to the canister, click **Add Cycles**.

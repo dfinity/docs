@@ -14,7 +14,7 @@ As a dapp developer, you might find it useful to think of the {IC} as providing 
 * A secure cryptographic protocol (*Internet Computer Protocol*) run by nodes machines operated by independent node providers in independent data centers all over the world. This guarantees secure execution of smart contracts.
 * A *network of blockchains* connected by Chain Key Technology that can scale out its capacity as required.
 
-== Open blockchain
+== An open blockchain
 
 The {IC} is a blockchain hosted on node machines operated by independent parties and located in geographically distributed datacenters. The nodes run the {IC} Protocol, an advanced cryptographic fault-tolerant protocol which ensures that smart contracts running on the blockchain cannot be tampered with or stopped.  The {IC} is composed of individual subnet blockchains running in parallel and connected using Chain Key Cryptography. This means that canisters running on a subnet can seamlessly call canisters hosted in any other subnet of the {IC} blockchain.
 

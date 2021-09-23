@@ -214,9 +214,9 @@ For example, you might a result similar to this:
 (record { 3_573_748_184 = 97_638_622_179_500 })
 ....
 
-== Stop the local network
+== Stop the local canister execution environment
 
-After you finish experimenting with the program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with the program, you can stop the local canister execution environment network so that it doesn’t continue running in the background.
 
 To stop the local network:
 

@@ -10,7 +10,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and want to build a canister smart contract in your *local development environment*.
+This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and want to build a canister smart contract in a *locally running canister deployment environment simulating the {IC} blockchain*.
 
 To get started, let's build and deploy a simple Hello canister that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the canister using the command-line or in an HTML page if you access the canister in a browser.
 

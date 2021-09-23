@@ -260,7 +260,7 @@ To start the environment locally:
 dfx start --background
 ----
 +
-After the local {IC} environment completes its startup operations, you can continue to the next step.
+After the local canister execution environment completes its startup operations, you can continue to the next step.
 
 == Register, build, and deploy the dapp
 

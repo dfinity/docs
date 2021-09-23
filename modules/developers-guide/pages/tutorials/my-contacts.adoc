@@ -5,11 +5,11 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 :company-id: DFINITY
 
-Cascading stylesheets represent one of the most common ways to customize the user experience for an application.
-This tutorial illustrates how to add a stylesheet when you use React to create a new front-end for your project.
-If you already know how to add cascading stylesheets (CSS) to a React-based project, you can skip this tutorial.
+Cascading stylesheets are an important part of any front-end user interface. The default starter is configured to import a `main.css` file that you can edit, but you may prefer to import your stylesheet into a JavaScript file, or to use an alternate format such as Syntactically Awesome Style Sheets, aka SCSS.
+This tutorial illustrates how to configure webpack to import a stylesheet by walking through building a contact dapp.
+If you already know how to add cascading stylesheets (CSS) to a webpack-based project, you can skip this tutorial.
 
-NOTE: This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
+NOTE: This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your front-end.
 Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see link:https://reactjs.org/docs/getting-started.html[Getting started] on the https://reactjs.org/[React website].
 
 == Before you begin
@@ -23,14 +23,14 @@ For information about installing node for your local operating system and packag
 
 * You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
 
-* You have stopped any {IC} network processes running on the local
+* You have stopped any local canister execution environment processes running on the local
 computer.
 
-NOTE: Because of significant changes to the handling of HTTP requests and front-end assets, this tutorial requires you to use the {sdk-short-name} version `+0.7.0+` or later. For an overview of what's changed, see this link:../../http-middleware{outfilesuffix}[article].
+NOTE: This tutorial requires you to use the {sdk-short-name} version `+0.8.0+` or later.
 
 == Create a new project
 
-To create a new project directory for your custom front-end application:
+To create a new project directory for your custom front-end dapp:
 
 . Open a terminal shell on your local computer, if you don’t already have one open.
 . Change to the folder you are using for your {IC} projects, if you are using one.
@@ -81,7 +81,7 @@ NOTE: As an alternative to installing these modules, you can edit the default `+
 include::example$add-stylesheet-package.json[]
 ....
 +
-The version of the JavaScript agent in this example `+package.json+` file is `+0.9.2+`. In most cases, however, you would want to use the latest version of the agent available. When you create a new project, the `+dfx new+` command automatically retrieves the latest version of the JavaScript agent for you. You can also manually retrieve the latest version after creating a project by running the `+npm install --save @dfinity/agent+` command.
+The version of the JavaScript agent in this example `+package.json+` file is `+0.10.0+`. In most cases, however, you would want to use the latest version of the agent available. When you create a new project, the `+dfx new+` command automatically retrieves the latest version of the JavaScript agent for you. You can also manually retrieve the latest version after creating a project by running the `+npm install --save @dfinity/agent+` command.
 
 == Modify the default program
 
@@ -125,7 +125,37 @@ module: {
 },
 ----
 +
-These settings enable your program to use the `+ts-loader+` compiler and to import CSS files.
+. These settings enable your program to use the `+ts-loader+` compiler and to import CSS files.
++
+Note: if you want to add support for `+.scss+` or `+.sass+` files, you should install `+sass-loader+` with:
++
+[source,bash]
+----
+npm install --save react react-dom
+----
++ 
+and then add this additional rule beneath the `+css-loader+` rule in `+webpack.config.js+`:
++
+[source,js]
+----
+module: {
+  rules: [
+    // ...
+    {
+      test: /\.s[ac]ss$/i,
+      use: [
+        // Creates `style` nodes from JS strings
+        "style-loader",
+        // Translates CSS into CommonJS
+        "css-loader",
+        // Compiles Sass to CSS
+        "sass-loader",
+      ],
+    },
+  ]
+},
+----
+
 . Save your changes and close the `+webpack.config.js+` file to continue.
 . Create a new file named `+tsconfig.json+` in the root directory for your project.
 . Open the `+tsconfig.json+` file in a text editor, then copy and paste the following into the file:
@@ -177,7 +207,7 @@ include::example$mycontacts/mod-index.jsx[]
 ----
 mv index.js index.jsx
 ----
-. Open the default `src/contacts_assets/src/index.html` file in a text editor, then replace `main.css` as the stylesheet file name with `mycontacts.css` and update the `body` contents with `<div id="contacts"></div>`.
+. Open the default `src/contacts_assets/src/index.html` file in a text editor, then remove the `main.css` link and update the `body` contents with `<div id="contacts"></div>`.
 +
 For example:
 +
@@ -190,8 +220,6 @@ For example:
     <meta name="viewport" content="width=device-width" />
     <title>contacts</title>
     <base href="/" />
-
-    <link type="text/css" rel="stylesheet" href="main.css" />
   </head>
   <body>
     <main>
@@ -211,29 +239,29 @@ cd ../../..
 
 == Start the local network
 
-Before you can build the `+contacts+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+Before you can build the `+contacts+` project, you need to connect to the local canister execution environment.
 
-To start the network locally:
+To start the environment locally:
 
 [arabic]
 . Open a new terminal window or tab on your local computer.
-. Start the {IC} network on your local computer by running the following command:
+. Start the canister execution environment on your local computer by running the following command:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-After the local {IC} network completes its startup operations, you can continue to the next step.
+After the environment completes its startup operations, you can continue to the next step.
 
-== Register, build, and deploy the application
+== Register, build, and deploy the dapp
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
+After you connect to the local canister execution environment in your development environment, you can register, build, and deploy your dapp for testing.
 
-To deploy the application:
+To deploy the dapp:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your application by running the following command:
+. Register, build, and deploy your dapp by running the following command:
 +
 [source,bash]
 ----
@@ -242,10 +270,9 @@ dfx deploy
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
 +
-Keep in mind that because you are running the {IC} locally, the identifiers displayed when you run the `+dfx deploy+` command are only valid on the local network.
+Keep in mind that because you are running the canister execution environment locally, the identifiers displayed when you run the `+dfx deploy+` command are only valid on your machine.
 +
-To deploy canisters on an external {IC} network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
-For example, to deploy on the {IC} using the reserve network alias `+ic+`, you would run a command similar the following:
+To deploy canisters on the {platform}, you must specify that you are deploying to the {IC} and not your local environment by using the `+--network+` command-line option:
 +
 [source,bash]
 ----
@@ -260,7 +287,7 @@ npm start
 
 == View the front-end
 
-You can now access the front-end for the `+contacts+` program by entering the canister identifier for the assets canister in a browser.
+You can now access the front-end for the `+contacts+` dapp.
 
 To view the front-end:
 
@@ -278,11 +305,11 @@ Keep in mind that the *Lookup name* you type must be an exact match for the name
 
 == Modify the stylesheet and test your changes
 
-After viewing the Contacts application, you might want to make some changes.
+After viewing the Contacts dapp, you might want to make some changes.
 
 To change stylesheet properties:
 
-. Open the `+src/contacts_assets/public/mycontacts.css+` file in a text editor and modify its style settings.
+. Open the `+src/contacts_assets/assets/mycontacts.css+` file in a text editor and modify its style settings.
 +
 For example, you might want to change the background color or style the input form.
 +
@@ -294,14 +321,14 @@ If you want to explore further, you might want to experiment with modifying the 
 For example, you might want try modifying the tutorial to do the following:
 
 - Change the front-end code to clear the input fields after adding a new contact, for example, as part of an `+onClick+` event.
-- Change the {proglang} program functions to do partial instead of exact string matching on the `+Name+` field. (You will need to run `dfx deploy` to test your changes on the local replica)
+- Change the {proglang} program functions to do partial instead of exact string matching on the `+Name+` field. (You will need to run `dfx deploy` to test your changes on the local environment)
 - Change the {proglang} program to allow lookups based on a different field.
 
-== Stop the local network
+== Stop the local canister execution environment
 
-After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with your program, you can stop the local environment so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local development environment:
 
 . In the terminal that displays your webpack dev server, press Control-C to interrupt the development server.
 

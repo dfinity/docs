@@ -22,7 +22,7 @@ Before you start this tutorial, verify the following:
 
 * You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
 
-* You have stopped any {IC} network processes running on the local computer.
+* You have stopped any local canister execution environment processes running on the local computer.
 
 This tutorial takes approximately 20 minutes to complete.
 
@@ -123,10 +123,10 @@ Let's take a look at a few of the default settings.
 +
 --
 * The `+settings+` section specifies the name of the WebAssembly module for your `+explore_hello+` project is `+explore_hello+`.
-* The `+canisters.explore_hello+` key specifies that the main dapp to be compiled is located in the path specified by the `+main+` setting, in this case, `+src/explore_hello/main.mo+` and the `+type+` setting indicates that this is a `+motoko+` dapp.
+* The `+canisters.explore_hello+` key specifies that the main program to be compiled is located in the path specified by the `+main+` setting, in this case, `+src/explore_hello/main.mo+` and the `+type+` setting indicates that this is a `+motoko+` program.
 * The `+canisters.explore_hello_assets+` key specifies configuration details about front-end assets for this project. Let's skip those for now.
 * The `+dfx+` setting is used to identify the version of the software used to create the project.
-* The `+networks+` section specifies information about the networks to which you connect. The default settings bind the local {IC} network to the local host address `+127.0.0.1+` and port `+8000+`.
+* The `+networks+` section specifies information about the networks to which you connect. The default settings bind the local canister execution environment to the local host address `+127.0.0.1+` and port `+8000+`.
 +
 If you have access to other {IC} network providers, the `+networks+` section can include network aliases and URLs for connecting to those providers.
 --
@@ -134,14 +134,14 @@ If you have access to other {IC} network providers, the `+networks+` section can
 You can leave the default settings as they are.
 . Close the `+dfx.json+` file to continue.
 
-== Review the default dapp code
+== Review the default program code
 
 New projects always include a template `main.mo` source code file.
 You can edit this file to include your own code to speed up the development cycle.
 
-Let's take a look at the sample dapp in the default `main.mo` template file as a starting point for creating simple dapp using the {proglang} programming language.
+Let's take a look at the sample program in the default `main.mo` template file as a starting point for creating simple dapp using the {proglang} programming language.
 
-To review the default sample dapp for your project:
+To review the default sample program for your project:
 
 . Check that you are still in your project directory by running the following command:
 +
@@ -159,7 +159,7 @@ actor {
 };
 ....
 +
-Let's take a look at a few key elements of this dapp:
+Let's take a look at a few key elements of this program:
 +
 --
 * You might notice that this sample code defines an `+actor+` instead of a `+main+` function, which some programming languages require.
@@ -167,9 +167,9 @@ For {proglang}, the `+main+` function is implicit in the file itself.
 
 * Although the traditional "Hello, World!" program illustrates how you can print a string using a `+print+` or `+println+` function, that traditional program would not represent a typical use case for {proglang} dapps that run on the {IC}.
 
-* Instead of a print function, this sample dapp defines an `+actor+` with a public `+greet+` function that takes a `+name+` argument with a type of `+Text+`.
+* Instead of a print function, this sample program defines an `+actor+` with a public `+greet+` function that takes a `+name+` argument with a type of `+Text+`.
 
-* The dapp then uses the `+async+` keyword to indicate that the dapp returns an asynchronous message consisting of a concatenated text string constructed using `+"Hello, "+`, the `+#+` operator, the `+name+` argument, and `+"!"+`.
+* The program then uses the `+async+` keyword to indicate that the program returns an asynchronous message consisting of a concatenated text string constructed using `+"Hello, "+`, the `+#+` operator, the `+name+` argument, and `+"!"+`.
 --
 We’ll explore code that uses `+actor+` objects and asynchronous message handling more a little later.
 For now, you can continue to the next section.
@@ -178,12 +178,12 @@ For now, you can continue to the next section.
 [[start-the-local-network]]
 == Start the local network
 
-Before you can build the default project, you need to connect to the {IC} network either running *locally* in your development environment or running *remotely* (on-chain) on a subnet that you can access.
+Before you can deploy the default project, you need to connect to either the local canister execution environment, or to the {IC} blockchain mainnet.
 
-Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
+Starting the local canister execution environment requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
 
-To start the network locally:
+To start the local canister execution environment:
 
 [arabic]
 . Open a new terminal window or a new terminal tab on your local computer.
@@ -193,7 +193,7 @@ To start the network locally:
 * You should now have **two terminals** open.
 * You should have the **project directory** as your **current working directory**.
 --
-. Start the {IC} network on your local computer by running the following command:
+. Start the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
@@ -203,12 +203,12 @@ dfx start
 Depending on your platform and local security settings, you might see a warning displayed.
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 +
-After you start the local network, you have one terminal that displays messages about network operations and another for performing project-related tasks.
+After you start the local canister execution environment, you have one terminal that displays messages about network operations and another for performing project-related tasks.
 . Leave the terminal that displays network operations open and switch your focus to the terminal where you created your new project.
 
 == Register canister identifiers
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique, network-specific *canister identifiers* for your project.
+After you connect to the local canister execution environment, you can register with the network to generate unique, network-specific *canister identifiers* for your project.
 
 In the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start] tutorial, this step was performed as part of the `+dfx deploy+` command work flow.
 This tutorial demonstrates how to perform each of the operations independently.
@@ -234,7 +234,7 @@ Creating canister "explore_hello_assets"...
 "explore_hello_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
 ....
 +
-Because you are connected to the {IC} network running locally, these canister identifiers are only valid locally and are stored for the project in the `+.dfx/local/canister_ids.json+` file.
+Because you are connected to the local canister execution environment, these canister identifiers are only valid locally and are stored for the project in the `+.dfx/local/canister_ids.json+` file.
 +
 For example:
 +
@@ -251,9 +251,9 @@ For example:
 
 == Build the dapp
 
-Now that you have explored the default configuration settings and dapp code and have started the {IC} network, let's compile the default dapp into an executable WebAssembly module.
+Now that you have explored the default configuration settings and program code and have started the local canister execution environment, let's compile the default program into an executable WebAssembly module.
 
-To build the dapp executable:
+To build the program executable:
 
 [arabic]
 . In the terminal shell on your local computer, navigate to your `+explore_hello+` project directory.
@@ -273,7 +273,7 @@ Building canisters...
 Building frontend...
 ....
 +
-Because you are connected to the {IC} network running locally, the `+dfx build+` command adds the `+canisters+` directory under the `+.dfx/local/+` directory for the project.
+Because you are connected to the local canister execution environment, the `+dfx build+` command adds the `+canisters+` directory under the `+.dfx/local/+` directory for the project.
 . Verify that the `+.dfx/local/canisters/explore_hello+` directory created by the `+dfx build+` command contains the WebAssembly and related application files by running the following command.
 +
 [source,bash]
@@ -317,7 +317,7 @@ This folder will include copies of the folders from `.dfx/local`, except for the
 You've seen that the `+dfx build+` command creates several artifacts in a `canisters` directory for your project.
 The WebAssembly modules and the `+canister_manifest.json+` file are required for your dapp to be deployed on the {IC} network.
 
-To deploy locally:
+To deploy to the local canister execution environment:
 
 [arabic]
 . In a terminal shell on your local computer, navigate to your `+explore_hello+` project directory.
@@ -426,15 +426,15 @@ For example:
 +
 image:greeting.png[Return the name argument]
 
-== Stop the local network
+== Stop the local canister execution environment
 
-After you finish experimenting with your dapp, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local canister execution environment:
 
 . In the terminal that displays network operations, press Control-C to interrupt the local network process.
 
-. Stop the {IC} network by running the following command:
+. Stop the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

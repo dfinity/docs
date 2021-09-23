@@ -7,7 +7,7 @@
 One of the most important principles to keep in mind is that the {IC} is primarily a blockchain that allows running software in a distributed, replicated way.
 
 When you write source code for an application that runs on the {IC}, you compile the source code into a  *WebAssembly module*. 
-When you deploy the WebAssembly module that contains your program on an {IC} replica, the program is executed inside of a conceptual computational unit called a software *canister smart contract*, or *canister* in short.
+When you deploy the WebAssembly module that contains your program on an {IC} replica, the program is executed inside of a conceptual computational unit called a *canister smart contract*, or *canister* in short.
 
 Once deployed, end-users can interact with the canister smart contract by accessing the entry point functions you have defined for that canister through a front-end client such as a browser.
 
@@ -17,15 +17,14 @@ Once deployed, end-users can interact with the canister smart contract by access
 A canister smart contract is similar to a container in that both are deployed as a software unit that contains compiled code and dependencies for an application or service.
 
 Containerization allows for applications to be decoupled from the environment, allowing for easy and reliable deployment.
-The canister differs from a container, however, in that it also stores information about the current software *state* with a record of preceding events and user interactions. 
+The canister differs from a container, however, in that it also stores information about the current software *state*.
 
 While a containerized application might include information about the state of the environment in which the application runs, a canister smart contract is able to persist a record of state changes that resulted from an application’s functions being used.
 
 [[query-update]]
 == Query and update methods
 
-This concept of a canister consisting of both program and state is an important one.
-When a canister function is invoked by sending a message to one of its entry points, there are only two types of calls: non-committing *query calls* and committing *update calls*.
+This concept of a canister consisting of both program and state is an important one.  In particular it relates to the behavior one should expect when calling an end-point of the canister. There are only two types of calls: non-committing *query calls* (any state change is discarded) and committing *update calls* (state changes are persisted).
 
 [width="100%",cols="<15%,<80%"]
 |===
@@ -36,7 +35,7 @@ a| Allow the user to query the current state of a canister or call a function th
 
 * Are synchronous and answered immediately.
 * Can be made to any node that holds the canister; the result does not go through consensus.
-That is, there is an inherent tradeoff between security and performance because the reply from a single node might be untrustworthy or inaccurate.
+That is, there is an inherent tradeoff between security and performance: the reply from a single node is fast, but might be untrustworthy or inaccurate.
 * Do not allow changes to the state of the canister to be persisted, so essentially query calls are read-only operations.
 * Do not allow the called canister to invoke functions exposed by other canisters as inter-canister calls. (Note that this restriction is temporary and that canisters will be able to invoke functions exposed by other canisters when processing query calls in the future.)
 
@@ -45,8 +44,8 @@ a| Allow the user to change the state of the canister and have *changes persiste
 
 * Are answered asynchronously.
 * Must pass through consensus to return the result. 
-Because consensus is required, changing the state of a canister can take time. Therefore, update calls use the actor-based programming model (with state isolation) to allow concurrent and asynchronous processing. 
-There is an inherent tradeoff between security and performance because two-thirds of the replicas in a subnet must agree on the result.
+Because consensus is required, changing the state of a canister, and returning the result can take time.
+There is an inherent tradeoff between security and performance: the result is trustworthy because two-thirds of the replicas in a subnet must agree on the result, but the call is slow.
 * The called canister can invoke functions exposed by other canisters
 |===
 
@@ -56,7 +55,7 @@ In particular, you should keep in mind the inherent tradeoff between security an
 [[dev-motoko-intro]]
 == How to develop descentralized applications (dapps) for the {IC}
 
-For programmers and software developers, the {IC} provides unique capabilities and opportunities within a framework that simplifies how you can design, build, and deploy applications.
+For programmers and software developers, the {IC} blockchain provides unique capabilities and opportunities within a framework that simplifies how you can design, build, and deploy applications.
 A key part of this framework is a new, general purpose programming language, {proglang}. 
 {proglang} is a programming language that has been specifically designed to take full advantage of the unique features that the {IC} blockchain provides, including:
 
@@ -109,10 +108,9 @@ For more detailed information about the {proglang} programming language itself, 
 
 One of the main differences between a user-initiated canister operation and a canister-to-canister operation is that canisters have an explicitly registered identity on the {IC}.
 
-There is no central registry for user principals. 
-Instead, user identifiers are associated specifically with the canisters each user accesses through one or more public-private key pairs. 
-The user’s private key is used to sign messages, which are sent along with their public key to a canister. 
-The {IC} authenticates the user and passes the principal to the canister for the authorization of their operation.
+There is no central registry for user principals, but users may chose to identify themselves using one (or more) digital signing key.
+The user’s private key is used to sign messages, which are sent along with their public key to the {IC}.
+The {IC} authenticates the user and passes the principal to the canister -- the canister may choose to implement whatever authorization policies it wants based on principals.
 
 At a high level, first-time users generate an unsigned key pair and derive their principal identifier from the public key during their first interaction with the {IC}. 
 Returning users are authenticated using the private key (or keys) that have been stored securely by the user agent. 
@@ -123,18 +121,14 @@ A single user can have multiple public-private key pairs for accessing canisters
 [[resource-intro]]
 == Resource consumption and cycles
 
-All canisters consume resources, being CPU cycles for execution, bandwidth for routing messages, and storage for persisted data.
-Canisters maintain an account balance of *cycles* to pay for the cost of communication, computation, and storage that they consume.
-
-
-Cycles are intended to reflect the real cost of operations including physical hardware, rack space, energy, storage devices, and bandwidth in a stable or deflationary way so that the cost of program execution remains the same or decreases with operational efficiency. 
+All canisters consume resources, being CPU cycles for execution, bandwidth for routing messages, and storage for persisted data.  These resources are paid for using a unit of cost called *cycles*. Cycles can be obtained by converting ICP tokens and are stored by each canister in a local balance.
 
 * Canisters must be able to pay for complete execution (all or nothing), but the cost associated with a unit of cycles will make efficient programs cost-effective.
 * By setting limits on how many cycles a canister can consume, the platform can prevent malicious code from completely taking over resources.
+* Cycles are intended to reflect the real cost of operations in a stable or deflationary way so that the cost of program execution remains the same or decreases with operational efficiency. As such, the conversion rate of ICP to cycles is adjusted accordingly, based on the current ICP market value.
+ The relative stability of operational costs makes it easier to predict the cycles required to process, for example, a million messages.
 
-The relative stability of operational costs makes it easier to predict the cycles required to process, for example, a million messages.
 
-The cycles available for program execution are held in a **wallet canister**. For local deployment, wallet canisters are automatically created and issued cycles. To deploy your application on the {IC} running on external nodes and subnets, however, you'll need a principal with a cycles wallet to manage canister operations. 
 
 == Want to learn more?
 

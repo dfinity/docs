@@ -1,6 +1,6 @@
 = dfx deploy
 
-Use the `+dfx deploy+` command to register, build, and deploy a dapp on the local canister execution environment, on the {platform} or on a specified network.
+Use the `+dfx deploy+` command to register, build, and deploy a dapp on the local canister execution environment, on the {platform} or on a specified testnet.
 By default, all canisters defined in the project `+dfx.json+` configuration file are deployed.
 
 This command simplifies the developer workflow by enabling you to run one command instead of running the following commands as separate steps:

@@ -55,7 +55,7 @@ For reference information and examples that illustrate using `+dfx canister+` co
 == Overriding the default deployment environment
 
 By default, `+dfx canister+` commands run on the local canister execution environment specified in the `+dfx.json+` file.
-If you want to send a `+dfx canister+` subcommand to the {platform} or a testnet without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the URL for the network using the `+--network+` option.
+If you want to send a `+dfx canister+` subcommand to the {platform} or a testnet without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the URL to connect to using the `+--network+` option.
 
 For example, to register unique canister identifiers for a project on the local canister execution environment, you can run the following command:
 
@@ -105,7 +105,7 @@ You can use the following optional flags with the `+dfx canister call+` command.
 |`+-h+`, `+--help+` |Displays usage information.
 
 |`+--query+` |Enables you to send a query request to a deployed canister.
-For best performance and network efficiency, you should use this flag when you explicitly want to use the query method to retrieve information.
+For best performance, you should use this flag when you explicitly want to use the query method to retrieve information.
 For information about the difference between query and update calls, see link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 
 |`+--update+` |Enables you to send an update request to a deployed canister.
@@ -151,7 +151,7 @@ You can use `+raw+` as the argument type if you want to pass raw bytes to a cani
 
 === Examples
 
-You can use the `+dfx canister call+` command to invoke specific methods—with or without arguments—after you have deployed the canister on the network using the `+dfx canister install+` command.
+You can use the `+dfx canister call+` command to invoke specific methods—with or without arguments—after you have deployed the canister using the `+dfx canister install+` command.
 For example, to invoke the `+get+` method for a canister with a `+canister_name+` of `+counter+`, you can run the following command:
 
 [source,bash]
@@ -717,7 +717,7 @@ Use the `+dfx canister send+` command to send a signed message created using the
 == dfx canister sign ==
 
 Use the `+dfx canister sign+` command before sending a message with the `+dfx canister send+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction. 
-For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message from a computer connected to the network.
+For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message from a computer connected to the {platform}.
 
 === Basic usage
 
@@ -785,7 +785,7 @@ Use the `+dfx canister sign+` command to create a signed `message.json` file usi
 
 Currently, the `+--no-wallet+` command must be used to execute the command using the user identity instead of the cycles wallet canister identifier. 
 
-This command illustrates how to creates a `+message.json+` file to create neurons on the network stpecified by the `+ic+` alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
+This command illustrates how to creates a `+message.json+` file to create neurons on the {platform} specified by the `+ic+` alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
 
 Note that the time allotted to send a signed message is a fixed 5-minute window. The `+--expire-after+` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `+--expire-after+` option to one hour (`+1h+`), you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute.
 

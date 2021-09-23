@@ -106,7 +106,7 @@ You can use the following options with the `+dfx canister call+` command.
 |===
 |Option |Description
 
-|`+--network <network>+` |Specifies the network of the controller you want to add.
+|`+--network <network>+` |Specifies the environment (e.g., {platform} or testnet) of the controller you want to add.
 |===
 
 === Arguments
@@ -121,7 +121,7 @@ You can specify the following arguments for the `+dfx wallet add-controller+` co
 
 === Examples
 
-You can use the `+dfx wallet add-controller+` command to add a controller to your wallet. If the controller you want to add is on a different network on the {IC}, specify the network using the `+--network+` option. For example:
+You can use the `+dfx wallet add-controller+` command to add a controller to your wallet. If the controller you want to add is on a different environment, specify it using the `+--network+` option. For example:
 
 [source,bash]
 ----
@@ -470,7 +470,7 @@ You can use the following option with the `+dfx wallet send+` command.
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Option |Description
-|`+--network+` |Override the compute network to connect to. By default, the local network is used. A valid URL (starting with `http:` or `https:`) can be specified here, and a special ephemeral network will be created specifically for this request. E.g. "http://localhost:12345/" is a valid network name.
+|`+--network+` |Override the environment to connect to. By default, the local canister execution environment is used. A valid URL (starting with `http:` or `https:`) can be specified here. E.g. "http://localhost:12345/" is a valid network name.
 |===
 
 === Arguments

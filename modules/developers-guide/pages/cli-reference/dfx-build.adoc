@@ -39,7 +39,7 @@ You can specify the following option for the `+dfx build+` command.
 
 |Option |Description
 
-|`+--network <network>+` |Specifies the {platform} you want to connect to. You can use this option to override the network specified in the `+dfx.json+` configuration file.
+|`+--network <network>+` |Specifies the network alias or URL you want to connect to. You can use this option to override the network specified in the `+dfx.json+` configuration file.
 
 |===
 

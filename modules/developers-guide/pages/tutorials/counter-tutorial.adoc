@@ -22,7 +22,7 @@ By calling the functions to increment and query the counter value multiple times
 Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any local {IC} blockchain processes running on the computer.
+* You have stopped any local canister execution environments running on the computer.
 
 This tutorial takes approximately 20 minutes to complete.
 

@@ -219,7 +219,7 @@ Installing code for canister actor_hello, with canister_id rrkah-fqaaa-aaaaa-aaa
 
 You now have a program deployed as a *canister* on your local canister execution environment and can test your program by using the `+dfx canister call+` command.
 
-To test the program you have deployed on the local {IC}:
+To test the program you have deployed on the local canister execution environment:
 
 . Use `+dfx canister call+` to call the `+hello+` function by running the following command:
 +

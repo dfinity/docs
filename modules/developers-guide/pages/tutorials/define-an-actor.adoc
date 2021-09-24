@@ -88,7 +88,7 @@ To compile the canister for the {IC}, however, your canister must include an `+a
 include::example$actor_hello.mo[]
 ----
 +
-Let's take a closer look at this simple canister:
+Let's take a closer look at this Motoko actor defining our canister:
 +
 --
 * The canister imports a `+Debug+` module to provide the `+print+` functionality.

@@ -227,7 +227,7 @@ To test the program you have deployed on the local canister execution environmen
 ----
 dfx canister call actor_hello hello
 ----
-. Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local {IC} process.
+. Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local canister execution environment.
 +
 For example, the program displays "Hello, World from DFINITY" in output similar to the following:
 +

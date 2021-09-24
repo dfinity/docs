@@ -155,7 +155,7 @@ You cannot deploy the output from the `+dfx build --check+` command to any {IC} 
 If you wanted to deploy this project, you would need to do the following:
 
 * Connect to the {IC} mainnet.
-* Register a network-specific canister identifier.
+* Register a mainnet-specific canister identifier.
 * Deploy the canister.
 
 Let's consider these steps in a bit more detail.

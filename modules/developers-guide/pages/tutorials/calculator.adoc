@@ -102,7 +102,9 @@ If you wanted to restrict the functions in this calculator code to only use posi
 
 == Start the local canister execution environment
 
+
 Before you can build the `+calc+` project, you need to connect to the canister execution environment running locally in your development environment, or you need to connect toa subnet that you can access.
+
 
 Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
@@ -240,7 +242,10 @@ image:candid-calc.png[Calculator functions]
 
 == Stop the local canister execution environment
 
+
+
 After you finish experimenting with the dapp, you can stop the local canister execution environment  so that it does not continue running in the background.
+
 
 To stop the local canister execution environment:
 

@@ -191,7 +191,7 @@ Creating canister "actor_hello"...
 "actor_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 +
-The `+dfx canister create+` command also stores the mainnet-specific canister identifier in a `+canister_ids.json+` file in the `+.dfx/local+` directory.
+The `+dfx canister create+` command also stores the connection-specific canister identifier in a `+canister_ids.json+` file in the `+.dfx/local+` directory.
 +
 For example:
 +

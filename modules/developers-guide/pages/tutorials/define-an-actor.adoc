@@ -98,20 +98,18 @@ Let's take a closer look at this simple program:
 For more information about using a query call, see link:../concepts/canisters-code{outfilesuffix}#query-update[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the `+main.mo+` file.
 
-== Build the program with a local identifier
+== Checking that the program builds
 
-You are probably only going to use this simple program for some local testing.
-Therefore, there's no need to reserve a unique canister identifier on the {IC} network to hold the compiled output for the program.
+Usually, in order to build a program, it's necessary to first create a canister identifier
+on an {IC} network.
 
-In this scenario, you can compile the program without connecting to an {IC} network at all.
-Instead, the `+dfx build+` command creates a local, hard-coded canister identifier for you to use.
+However, it's also possible to compile your program without connecting to an {IC} network at all.
+The `+dfx build --check+` command uses a temporary, hard-coded canister identifier to accomplish this.
 
-You can use this local identifier while you are testing your program or any time you want to compile your program without starting the {IC} replica process locally or connecting to a replica on a remote subnet.
-
-To build the program executable:
+To check that the program builds:
 
 . Navigate back to the root of your project directory.
-. Build the program with a locally-defined identifier by running the following command:
+. Build the program with a temporary, hard-coded identifier by running the following commands:
 +
 [source,bash]
 ----
@@ -119,7 +117,7 @@ dfx build --check
 ----
 +
 The `+--check+` option enables you to build a project locally to verify that it compiles and to inspect the files produced.
-Because the `+dfx build --check+` command only generates a temporary identifier, you should see output similar to the following:
+Because the `+dfx build --check+` command only uses a temporary identifier, you should see output similar to the following:
 +
 ....
 Building canisters to check they build ok. Canister IDs might be hard coded.
@@ -201,6 +199,17 @@ For example:
     "local": "rrkah-fqaaa-aaaaa-aaaaq-cai"
   }
 }
+....
+. Build the canister by running the following commands:
++
+[source,bash]
+----
+dfx build
+----
+The command displays output similar to the following:
++
+....
+Building canisters...
 ....
 . Deploy your `+actor_hello+` project on the local network by running the following command:
 +

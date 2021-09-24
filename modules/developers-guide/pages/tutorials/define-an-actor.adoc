@@ -48,7 +48,7 @@ To modify the `+dfx.json+` configuration file:
 . Check the default settings for the `+actor_hello+` project.
 . Notice that the names and paths to source and output files all use the `+actor_hello+` project name.
 +
-For example, the default canister name is `+actor_hello+` and the default path to the main program file is `+src/actor_hello/main.mo+`.
+For example, the default canister smart contract name is `+actor_hello+` and the default path to the main program file is `+src/actor_hello/main.mo+`.
 +
 You can rename any of these files or directories.
 If you make any changes, however, be sure that the names you use for your files and directories on the file system match the names you specify in the `+dfx.json+` configuration file.
@@ -92,7 +92,7 @@ Let's take a closer look at this simple program:
 +
 --
 * The program imports a `+Debug+` module to provide the `+print+` functionality.
-* The program uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister or perform any operations that would update the data you are accessing.
+* The program uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister smart contract or perform any operations that would update the data you are accessing.
 --
 +
 For more information about using a query call, see link:../concepts/canisters-code{outfilesuffix}#query-update[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
@@ -159,7 +159,7 @@ If you wanted to deploy this project, you would need to do the following:
 * Deploy the canister.
 
 Let's consider these steps in a bit more detail.
-Before you can deploy this project, you must connect to the {IC} network either running *locally* in your development environment or running *remotely* on a subnet that you can access.
+Before you can deploy this project, you must connect to the {IC} network either running *locally* in your development environment or running on a subnetwork *remotely*.
 After you connect to a local or remote network, you must also generate a unique, *network-specific* canister identifier to replace your locally-defined identifier.
 To see the steps involved for yourself, let's deploy the project locally.
 
@@ -217,9 +217,9 @@ Installing code for canister actor_hello, with canister_id rrkah-fqaaa-aaaaa-aaa
 
 == Query the canister
 
-You now have a program deployed as a *canister* on your local {IC} network and can test your program by using the `+dfx canister call+` command.
+You now have a program deployed as a *canister* on your local {IC} and can test your program by using the `+dfx canister call+` command.
 
-To test the program you have deployed on the local network:
+To test the program you have deployed on the local {IC}:
 
 . Use `+dfx canister call+` to call the `+hello+` function by running the following command:
 +
@@ -227,7 +227,7 @@ To test the program you have deployed on the local network:
 ----
 dfx canister call actor_hello hello
 ----
-. Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local network process.
+. Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local {IC} process.
 +
 For example, the program displays "Hello, World from DFINITY" in output similar to the following:
 +
@@ -239,9 +239,9 @@ Note that if you are running the Internet Computer network in a separate termina
 
 == Stop the local network
 
-After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with your program, you can stop the local Internet Computer so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local {IC}:
 
 . In the terminal that displays network operations, press Control-C to interrupt the local network process.
 

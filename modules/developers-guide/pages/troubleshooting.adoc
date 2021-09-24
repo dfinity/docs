@@ -1,5 +1,5 @@
 = Troubleshoot issues
-December 2019 (Alpha)
+September 2021 (Beta)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
 :IC: Internet Computer
@@ -10,7 +10,7 @@ This section provides information to help you troubleshoot and resolve or work a
 * downloading and installing the {sdk-short-name}
 * creating, building, or deploying canisters
 * using the `+dfx+` command-line interface
-* running the {IC} network locally in a development environment
+* running the local canister execution environment
 
 include::developers-guide:page$webpack-config.adoc[leveloffset=-1,tag=node]
 
@@ -21,29 +21,29 @@ After upgrading to the latest version, you might see error or failure messages i
 
 In many cases, however, you can continue to work with projects from a previous release by manually changing the dfx setting in the dfx.json configuration file, then rebuilding the project to be compatible with the version of the `+dfx+` command-line interface you have currently installed.
 
-For example, if you have a project that was created with `+dfx+` version `+0.4.9+`, open the `+dfx.json+` file in a text editor and change the `+dfx+` setting to the latest version or remove the section entirely.
+For example, if you have a project that was created with `+dfx+` version `+0.8.0+`, open the `+dfx.json+` file in a text editor and change the `+dfx+` setting to the latest version or remove the section entirely.
 
-== Restarting the local {IC} network
+== Restarting the local canister execution environment
 
-In some cases, starting the {IC} network locally fails because of replicated state errors. 
-If you encounter issues when running `+dfx start+` to start the local {IC} network:
+In some cases, starting the local canister execution environment fails due to stale state. 
+If you encounter issues when running `+dfx start+` to start the local canister execution environment:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal that displays the IC emulation the execution environment uses, press Control-C to interrupt the local canister execution environment process.
 
-. Stop the {IC} network by running the following command:
+. Stop the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
 dfx stop
 ----
-. Restart the {IC} in a clean state by running the following command:
+. Restart the local canister execution environment in a clean state by running the following command:
 +
 [source,bash]
 ----
 dfx start --clean
 ----
 +
-The `+--clean+` option removes checkpoints and stale state information from your project's cache so that you can restart the {IC} replica and web server processes in a clean state.
+The `+--clean+` option removes checkpoints and stale state information from your project's cache so that you can restart the local canister execution environment and web server processes in a clean state.
 
 Keep in mind, however, that if you reset the state information by running `+dfx start --clean+`, your existing canisters are also removed. 
 
@@ -114,14 +114,14 @@ Io(
 
 == Address in use error or orphan processes
 
-If you are developing projects locally, you often have a local version of core {IC} processes—collectively referred to as the `+replica+`—running either is a separate terminal or in the background.
-If the running {IC} processes do not get properly terminated, you might see operating system errors indicating that an address is already in use or or be unable to stop processes normally using the `+dfx stop+` command.
+If you are developing projects locally, you often have the local canister execution environment running either in a separate terminal or in the background.
+If the local environment processes do not get properly terminated, you might see operating system errors indicating that an address is already in use or or be unable to stop processes normally using the `+dfx stop+` command.
 
-There are several scenarios in which you might encounter this issue. For example, if you run `+dfx start+` in a local project directory then change to a different local project directory without first stopping {IC} processes, you might see this issue.
+There are several scenarios in which you might encounter this issue. For example, if you run `+dfx start+` in a local project directory then change to a different local project directory without first stopping the canister execution environment processes, you might see this issue.
 
 If you encounter an issue where you suspect or you receive a message that an address is already in use or that a process is already running in the background, perform the following steps:
 
-. Run the following command to see which process is listening to the 8000 port if you are using the default local network binding:
+. Run the following command to see which process is listening to the 8000 port if you are using the default binding to localhost:
 +
 [source,bash]
 ----
@@ -134,7 +134,7 @@ lsof -i tcp:8000
 killall dfx replica
 ----
 . Close the current terminal and open a new terminal window.
-. In the new terminal, run the following command to run the local {IC} in a clean state:
+. In the new terminal, run the following command to run the local canister execution environment in a clean state:
 +
 [source,bash]
 ----

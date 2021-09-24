@@ -7,7 +7,7 @@ This section lists the environment variables that are currently supported with e
 In most cases, you can set environment variables for a session by executing an   command in the terminal or by adding a line similar to the following to your `.profile` file:
 
 ....
-export DFX_TELEMETRY_DISABLED=1
+export DFX_NETWORK=ic
 ....
 
 == CANISTER_CANDID_PATH_{canister.name}
@@ -43,19 +43,6 @@ DFX_CONFIG_ROOT=~/ic-root
 Use the `+DFX_INSTALLATION_ROOT+` environment variable to specify a different location for the `+dfx+` binary if you are not using the default location for your operating system.
 
 The `+.cache/dfinity/uninstall.sh+` script uses this environment variable to identify the root directory for your {sdk-short-name} installation. 
-
-== DFX_TELEMETRY_DISABLED
-
-Use the `+DFX_TELEMETRY_DISABLED+` environment variable to opt-out of having data collected about `+dfx+` usage.
-
-By default, `+dfx+` is configured to collect anonymous—that is, no identifying information such as IP addresses or user information—data about `+dfx+` command activity and errors.
-Collecting anonymous data is enabled by default in an effort to improve the developer experience based on usage patterns and behavior.
-
-If you want to prevent the collection of data about `+dfx+` usage, however, you can explicitly opt-out by setting the `+DFX_TELEMETRY_DISABLED+` environment variable to one.
-
-....
-DFX_TELEMETRY_DISABLED=1
-....
 
 == DFX_VERSION
 

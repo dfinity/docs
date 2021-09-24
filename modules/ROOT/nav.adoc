@@ -4,6 +4,7 @@
 ** xref:introduction:welcome.adoc#for-protocol-enthusiasts[For: Protocol Enthusiasts]
 
 * xref:quickstart:quickstart-intro.adoc[Quick Start]
+** xref:quickstart:newcomers.adoc[For Newcomers]
 ** xref:quickstart:local-quickstart.adoc[Local Development]
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
 
@@ -31,7 +32,7 @@
 **** xref:developers-guide:glossary.adoc[Glossary]
 ** Building on the Internet Computer
 *** Learn how to:
-**** xref:developers-guide:sdk-guide.adoc[Develop software on the IC]
+**** xref:developers-guide:sdk-guide.adoc[Develop smart contracts on the IC]
 **** xref:developers-guide:design-apps.adoc[Design apps]
 **** xref:developers-guide:customize-projects.adoc[Manage projects]
 **** xref:developers-guide:working-with-canisters.adoc[Manage canisters]

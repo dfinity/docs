@@ -28,7 +28,7 @@ If you have ICP tokens, but aren't sure how to use them, the following diagram p
 image:icp-tokens-how-to-use.svg[]
 
 As this diagram suggests, how you use ICP tokens depends primarily on your goals in acquiring them.
-For example, if you are a developer or entrepreneur, ICP tokens can be converted to **cycles**. Cycles can then be used to pay for running smart contract canisters that deliver products and services to the market.
+For example, if you are a developer or entrepreneur, ICP tokens can be converted to **cycles**. Cycles can then be used to pay for running canister smart contracts that deliver products and services to the market.
 If you are a member of the community interested in participating in governance and influencing the direction of the {IC}, you can lock up ICP tokens in a stake—called a neuron—so that you can submit and vote on proposals.
 
 [[how-cycles-work]]
@@ -36,7 +36,7 @@ If you are a member of the community interested in participating in governance a
 
 For developers, ICP tokens are important because they can be converted to cycles that, in turn, are used to pay for resource consumption.
 
-As an example, imagine you have a house where propane is used for a water heater, kitchen stove, dryer, and space heater. As you use these appliances, you deplete the supply of gas you have on hand, so periodically you contact a provider to refill your supply so you can continue to use your appliances without interruption. This is similar to smart contract canisters in that each canister must have an account with cycles available to pay for the communication, computation, and storage that the canister’s application consumes.
+As an example, imagine you have a house where propane is used for a water heater, kitchen stove, dryer, and space heater. As you use these appliances, you deplete the supply of gas you have on hand, so periodically you contact a provider to refill your supply so you can continue to use your appliances without interruption. This is similar to canister smart contracts in that each canister must have an account with cycles available to pay for the communication, computation, and storage that the canister’s application consumes.
 
 
 [[cost-of-compute]]
@@ -51,14 +51,14 @@ As an example, imagine you have a house where propane is used for a water heater
 [[volatility]]
 == Token value and volatility
 
-- Tokens reflect the value of the network and can fluctuate. To prevent the token value from affecting the number of messages a canister can process, tokens are not used to pay for network resources directly.
+- Tokens reflect the value of the network and can fluctuate. To prevent the token value from affecting the number of messages a canister can process, tokens are not used to pay for resources directly.
 - Tokens can be exchanged between token holders or locked up in **neurons** to secure voting rights as part of the platform governance system.
-- Tokens are used to reward node providers for providing compute capacity and platform stakeholders for participating in the governance of the {IC} by voting and submitting proposals.
+- Tokens are used to reward node providers for providing compute capacity and neuron holders for participating in the governance of the {IC} by voting and submitting proposals.
 
 [[data-centers]]
 == Payment to node providers
 
-With this model, the Internet Computer platform provides node providers with a predictable economic model for computing power capacity to ensure resources are available when and where they are needed. Node providers receive compensation for both active and spare nodes so that the network has capacity to handle both normal traffic and workload spikes.
+With this model, the Internet Computer platform provides node providers with a predictable economic model for computing power capacity to ensure resources are available when and where they are needed. Node providers receive compensation for both active and spare nodes so that the Internet Computer blockchain has capacity to handle both normal traffic and workload spikes.
 
 The Internet Computer economic model places much of the power and responsibility of managing capacity on the governance system—the Network Nervous System. Specific details about compensation and service level requirements are outside the scope of this document.
 

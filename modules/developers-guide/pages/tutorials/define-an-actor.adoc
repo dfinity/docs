@@ -241,7 +241,7 @@ Note that if you are running the Internet Computer network in a separate termina
 
 After you finish experimenting with your program, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
-To stop the local {IC}:
+To stop the local canister execution environment, you can:
 
 . In the terminal used to interact with your canister, issue the command `dfx stop`; or
 . In the terminal that displays network operations, press Control-C to interrupt the local network process; or

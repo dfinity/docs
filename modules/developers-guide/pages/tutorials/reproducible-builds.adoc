@@ -1,22 +1,22 @@
 = Reproducible Canister Builds
 
-Thanks to its consensus protocol, the {IC} always runs canisters code correctly.
+Thanks to its consensus protocol, the {IC} always runs canisters' code correctly.
 But this doesn't mean that it's running the _correct_ code for a canister.
-In particular, if you are a canister user as opposed to the owner, you may want to verify that the canister is running some intended code before giving it control over your digital assets or confidential data.
+In particular, if you are a canister user as opposed to the owner, you likely want to verify that the canister is running some intended code before giving it control over your ICP tokens or confidential data.
 Verifying this requires answering two questions:
 
-1. Which WebAssembly (WASM) code is being executed for a canister? 
-2. The canisters are rarely written in WASM directly, but normally in a higher-level language, such as Motoko or Rust.
-   The question is then: does the purported source code of the canister really result in the WASM that's running? 
+. Which WebAssembly (WASM) code is being executed for a canister? 
+. The canisters are normally written in a higher-level language, such as Motoko or Rust, and not directly in WASM.
+   The question is then: is the WASM that's running really the result of compiling the purported source code? 
 
 The rest of the document answers these questions.
 For the first question, we will see how the {IC} provides information about canister code.
-To be able to answer the second questions, canister authors should ensure trusted and 
+To be able to answer the second question, canister authors should ensure trusted and 
 https://reproducible-builds.org/docs/definition/[reproducible builds] of the WASM code from the source.
 Such builds allows anyone to follow the same steps as the canister authors and yield the exact same WASM code,
 which can then be compared to the code executing on the {IC}.
 
-The impatient reader who is familiar with the topic of reproducible builds can skip straight to the <<repro-build-summary>>.
+The impatient reader who is familiar with the topic of reproducible builds can skip straight to the <<repro-build-summary,summary>>.
 
 == Finding out which code the {IC} is executing
 
@@ -61,12 +61,12 @@ We next look at each of these points in more detail.
 === Providing source code
 
 Typically, you will version your code in `git` or some other version control system.
-In this case, you should note the particular commit that you use when producing the code to be deployed to the {IC}, and communicate it to the users who are trying to verify your canister.
+In this case, you should note the particular commit that you used when producing the code to be deployed to the {IC}, and communicate it to the users who are trying to verify your canister.
 Alternatively, you can also provide a package (e.g., a zip file or a tarball) containing the source code you used to build your canister.
 
 === Reproducing build environments
 
-Before building your code, you should note down the exact versions of your system and the build tools, as well as the environment variables you are using.
+Before building your code, you should document the build environment you are using in detail.
 In particular, for the languages supported by the {IC} SDK:
 
 * Note down the operating system and its version you are using to build your canister.
@@ -80,13 +80,13 @@ In particular, for the languages supported by the {IC} SDK:
 
 You should communicate all of these to your user in the instructions.
 Ideally, do so by providing an executable recipe to recreate the build environment, using tools such as Docker or Nix.
-We recommend using Docker, as this allows you to also fix the operating system used for building the software.
+We recommend using Docker, as this allows you to also pinpoint the operating system used for building the software.
 
 === Build environments using Docker
 
 https://docs.docker.com/[Docker containers] are a popular solution for providing build environments.
 You can use a `Dockerfile` such as the following to provide the user with a particular version of the operating system,
-as well as `dfx`, `Nodejs` and the Rust toolchain.
+as well as `dfx`, Node.js and the Rust toolchain.
 
 ----
 FROM ubuntu:20.10
@@ -130,12 +130,14 @@ WORKDIR /canister
 ----
 
 There are a couple of things worth noting about this `Dockerfile`:
-* It starts from an official Docker image. Furthermore, all the installed tools are standard, and come from standard sources. 
-  This provides the user with confidence that the build environment hasn't been tampered with, and thus that the build process 
-  using Docker can be trusted.
-* To ensure that specific versions of the build tools are installed, it installs them directly, rather than through 
-  `apt` (the package manager of Ubuntu, the Linux distribution running inside of the container).
-  Such package managers usually don't provide a way of pinning the build tools to a specific versions.
+
+* It starts from an official Docker image. Furthermore, all the installed tools are standard, 
+  and come from standard sources. 
+  This provides the user with confidence that the build environment hasn't been tampered with, and thus that 
+  the build process using Docker can be trusted.
+* To ensure that specific versions of the build tools are installed, it installs them directly, rather than 
+  through `apt` (the package manager of Ubuntu, the Linux distribution running inside of the container). 
+  Such package managers usually don't provide a way of pinning the build tools to specific versions.
 
 To use this `Dockerfile`, get Docker https://docs.docker.com[up and running], place the `Dockerfile` in the project directory 
 of your canister, and create the Docker container by running:
@@ -144,7 +146,7 @@ $ docker build -t mycanister .
 ----
 
 This creates a Docker container image called `mycanister`, with Node.js, Rust and `dfx` installed in it, and your canister source code
-copied to `/canister`.
+copied to `/canister` (recall that you should run this from the canister project directory).
 You can then enter an interactive shell inside of your container by running:
 ----
 docker run -it --rm mycanister
@@ -161,12 +163,12 @@ Next, we will investigate what is necessary to make the build deterministic.
 For the build process to be deterministic:
 
 .  You will need to ensure that any dependencies of your canister are always resolved in the same way.
-   Most build tools now support a way of "freezing" dependencies to a particular version.
+   Most build tools now support a way of pinning dependencies to a particular version.
 
    * For `npm`, running `npm install` will create a `package-lock.json` file with some fixed versions of all 
      transitive dependencies of your project that satisfy the requirements specified in your `package.json`.
-     However, `npm install` does not honor the `package-lock.json` file by default.
-     Thus, once you are ready create the final version of your canister, run `npm install` only once.
+     However, `npm install` will overwrite the `package-lock.json` file every time it is invoked.
+     Thus, once you are ready to create the final version of your canister, run `npm install` only once.
      After that, commit `package-lock.json` to your version control system.
      Finally, when checking the build for reproducibility, use `npm ci` instead of `npm install`.
 
@@ -190,11 +192,13 @@ For the build process to be deterministic:
    However, they are complicated pieces of software, and ensuring determinism is non-trivial.
    Thus, non-determinism bugs can and do occur.
    For Rust, see the https://github.com/rust-lang/rust/labels/A-reproducibility[list of current potential non-determinism issues in Rust].
-   Furthermore, we have observed differences between Rust code compiled to WASM under Linux and MacOS, and thus recommend fixing the platform.
+   Furthermore, we have observed differences between Rust code compiled to WASM under Linux and MacOS, and thus recommend pinning the build platform and its version.
    For webpack, determinism is important to ensure caching, and webpack has since version 5 introduced https://webpack.js.org/configuration/optimization/[deterministic naming of module and chunk IDs] that you should use.
    The Motoko compiler aims to be deterministic, but there are currently known issues.
    Absolute file paths might be included in the binary, and the Motoko runtime bundled in the canisters may differ between platforms (such as Linux and MacOS).
    You can work around these issues by performing your build in a Docker container, as this will fix both the platform and the file paths.
+   We will try to address these issues in the future.
+   If you find further reproducibility issues with `moc`, we would like to hear about them.
    
 === Testing reproducibility
 
@@ -202,7 +206,7 @@ While the above guidelines should help you achieve reproducible builds, they are
 If reproducibility is vital for your code, you should test your builds to increase your confidence in their reproducibility.
 Such testing is non-trivial: we have seen real-world examples where non-determinism in a canister build took a month to show up!
 Fortunately, a tool called https://salsa.debian.org/reproducible-builds/reprotest[reprotest] can help you automate reproducibility tests.
-It tests your build by running it in two different environments, which differ in characteristics such as paths, times, file order, and others,
+It tests your build by running it in two different environments that differ in characteristics such as paths, times, file order, and others,
 and comparing the results.
 To use it, you can put the following `Dockerfile` in the root directory of your canister project.
 
@@ -261,8 +265,10 @@ The first command builds the Docker canister using the above `Dockerfile`.
 The second one opens an interactive shell (hence the `--it` flags) in the canister.
 We run this in privileged mode (the `--privileged` flag), as `reprotest` uses kernel modules for some build environment variations.
 You can also run it in non-privileged mode by excluding some of the variations; see the https://manpages.debian.org/stretch/reprotest/reprotest.1.en.html[reprotest manual].
+The `--rm` flag will destroy the canister after you close its shell.
 Finally, once inside of the canister, we launch `reprotest` in verbose mode (the `-vv` flags).
-You need to give it the build command you want to run as the first argument; here, we assume that it's just `dfx build --network ic`.
+You need to give it the build command you want to run as the first argument.
+Here, we assume that it's `dfx build --network ic` - adjust it if you're using a different build process.
 It will then run the build in two different environments.
 Finally, you need to tell `reprotest` which paths to compare at the end of the two builds.
 Here, we compare the WASM code for all canisters, which is found in the `.dfx/ic` directory.
@@ -276,7 +282,7 @@ No differences in ./.dfx/local/canisters/*/*.wasm
 ----
 
 Congratulations - this is a good indicator that your build is reproducible!
-However, we recommend you to run the container builds under several host operating systems and comparing the results.
+However, we recommend you to run the container builds under several host operating systems and compare the results.
 If the comparison does find differences between the WASM code produced in two builds, it will output a diff.
 You will then likely want to use the `--store-dir` flag of `reprotest` to store the outputs and the diff somewhere where you can analyze them.
 If you are struggling to achieve reproducibility, consider also using https://github.com/dettrace/dettrace[DetTrace],
@@ -290,13 +296,14 @@ for the long term.
 As you have seen, ensuring reproducibile builds for your canisters isn't a trivial task.
 It's even more demanding if you expect your canister canister code to stay around for years, and stay reproducible.
 The biggest challenges are to ensure that your:
+
 . Build toolchain is still available in the future.
 . Dependencies are avaiable.
 . Toolchain still runs and still correctly builds your dependencies.
 
 Distributions and package archives may drop old versions of packages, including both your toolchain and their dependencies.
 Web sites may go offline and URLs might stop working.
-Thus, it'thus prudent to back up all of your toolchain and dependencies.
+Thus, it's prudent to back up all of your toolchain and dependencies.
 You should consider getting involved in projects such as https://www.softwareheritage.org/[Software Heritage], which do this on a large scale.
 At some later point in time, you might have to adjust your build process (e.g., by changing URLs) to ensure that your canister still builds.
 Even if the build changes, if it still yields the same result, your users can be confident that your canister is running the correct code.

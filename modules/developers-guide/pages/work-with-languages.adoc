@@ -173,12 +173,12 @@ To modify the template source code:
 As you write your program, keep in mind that there are two types of calls—update calls and query calls—and that update functions use asynchronous messaging.
 . Save your changes and close the `+main.rs+` file.
 
-=== Connect to an execution environment and deploy
+=== Deploy the dapp
 
 Before you can deploy and test your dapp, you need to do the following:
 
-* Connect to either the local canister execution environment, or to the {IC} blockchain mainnet, to a subnet that you can access.
-* Register a network-specific identifier for the application
+* Connect to either the local canister execution environment, or to the {IC} blockchain mainnet.
+* Register a network-specific identifier for the application.
 * Compile the dapp with a target output of WebAssembly.
 
 Because you configured the custom `+dfx.json+` file with a `+cargo build+` command that compiles to WebAssembly, you can use the `+dfx+` command-line interface and standard work flow to perform all of the remaining steps.
@@ -346,7 +346,7 @@ service : {
 
 Before you can deploy and test your dapp, you need to do the following:
 
-* Connect to either the local canister execution environment, or to the {IC} blockchain mainnet, to a subnet that you can access.
+* Connect to either the local canister execution environment, or to the {IC} blockchain mainnet.
 * Register a network-specific identifier for the application.
 
 To deploy and test the dapp locally:

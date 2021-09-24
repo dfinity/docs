@@ -74,7 +74,7 @@ If you are doing local development, you can use the  `+dfx wallet balance+` comm
 To check the cycles balance in a local project:
 
 . Open a terminal and navigate to the root directory of the project.
-. Start the {IC} locally by running the following command:
+. Start the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
@@ -246,7 +246,7 @@ You can use the  `+dfx wallet remove-controller+` command or the `+remove_contro
 To remove a controller for a cycles wallet in a local project:
 
 . Open a terminal and navigate to the root directory of the project.
-. Start the local canister execution environment locally by running the following command:
+. Start the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

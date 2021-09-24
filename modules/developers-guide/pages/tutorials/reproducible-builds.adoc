@@ -1,4 +1,5 @@
 = Reproducible Canister Builds
+:IC: Internet Computer
 
 Thanks to its consensus protocol, the {IC} always runs canisters' code correctly.
 But this doesn't mean that it's running the _correct_ code for a canister.

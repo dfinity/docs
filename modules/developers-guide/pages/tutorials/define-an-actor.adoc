@@ -80,7 +80,7 @@ cd src/actor_hello
 . Open the template `+main.mo+` file in a text editor and delete the existing content.
 +
 The next step is to write a canister that prints a statement like the traditional "Hello, World!" sample canister.
-To compile the canister for the {IC}, however, your canister must include an `+actor+` object with a `+public+` function.
+To compile the canister for the {IC}, however, your Motoko code must define an `+actor+`.  
 . Copy and paste the following sample code into the `+main.mo+` file:
 +
 [source.copy,motoko,no-repl]

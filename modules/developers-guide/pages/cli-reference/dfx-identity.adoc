@@ -1,7 +1,6 @@
 = dfx identity
-:sdk-short-name: DFINITY Canister SDK
 
-Use the `+dfx identity+` command with subcommands and flags to manage the identities used to execute commands and communicate with the Internet Computer network. 
+Use the `+dfx identity+` command with subcommands and flags to manage the identities used to execute commands and communicate with the {platform} or the local canister execution environment.
 Creating multiple user identities enables you to test user-based access controls.
 
 The basic syntax for running `+dfx identity+` commands is:
@@ -28,7 +27,7 @@ For reference information and examples that illustrate using `+dfx identity+` co
 
 |<<dfx identity get-principal,`+get-principal+`>> | Shows the textual representation of the principal associated with the current identity.
 
-|<<dfx identity get-wallet,`+get-wallet+`>> | Shows the canister identifier for the wallet associated with your current identity principal on a network.
+|<<dfx identity get-wallet,`+get-wallet+`>> | Shows the canister identifier for the wallet associated with your current identity principal.
 
 |`+help+` |Displays this usage message or the help of the given subcommand(s).
 
@@ -42,7 +41,7 @@ For reference information and examples that illustrate using `+dfx identity+` co
 
 |<<dfx identity rename,`+rename+`>> |Renames an existing identity.
 
-|<<dfx identity set-wallet,`+set-wallet+`>> | Sets the wallet canister identifier to use for your current identity principal on a network.
+|<<dfx identity set-wallet,`+set-wallet+`>> | Sets the wallet canister identifier to use for your current identity principal.
 
 |<<dfx identity use,`+use+`>> |Specifies the identity to use.
 
@@ -102,9 +101,9 @@ In this example, the first command sets the user context to use the `+ic_admin+`
 
 == dfx identity get-wallet
 
-Use the `+dfx identity get-wallet+` command to display the canister identifier for the wallet associated with your current identity principal on a network.
+Use the `+dfx identity get-wallet+` command to display the canister identifier for the wallet associated with your current identity principal.
 
-Note that you must be connected to the {IC} network or running the network locally to run this command. 
+Note that you must be connected to the {platform} or the local canister execution environment to run this command.
 In addition, you must be in a project directory to run the command.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories to run the `+dfx identity get-wallet+` command.
 
@@ -135,7 +134,7 @@ If you want to display the canister identifier for the wallet canister associate
 dfx identity get-wallet
 ----
 
-To display the canister identifier for the wallet canister associated with your identity on a specific network, you might run a command similar to the following:
+To display the canister identifier for the wallet canister associated with your identity on a specific testnet, you might run a command similar to the following:
 
 [source,bash]
 ----
@@ -216,6 +215,7 @@ This command displays the list of identities found similar to the following:
 [source,bash]
 ----
 alice_auth
+anonymous
 bob_standard *
 default
 ic_admin
@@ -391,7 +391,7 @@ dfx identity rename test_admin devops
 
 == dfx identity set-wallet
 
-Use the `+dfx identity set-wallet+` command to specify the wallet canister identifier to use for your identity on a network.
+Use the `+dfx identity set-wallet+` command to specify the wallet canister identifier to use for your identity.
 
 === Basic usage
 
@@ -415,8 +415,8 @@ This option is only useful if you are connecting to the {IC} running locally.
 
 === Example
 
-If you have access to more than one {IC} network or use more than one principal for your identity, you might have access to more than one wallet canister identifier. 
-You can use the `+dfx identity set-wallet+` command to specify the wallet canister identifier to use for a given identity on a given network.
+If you use more than one principal for your identity, you might have access to more than one wallet canister identifier.
+You can use the `+dfx identity set-wallet+` command to specify the wallet canister identifier to use for a given identity.
 
 For example, you might store the wallet canister identifier in an environment variable, then invoke the `+dfx identity set-wallet+` command to use that wallet canister for additional operations by running the following:
 

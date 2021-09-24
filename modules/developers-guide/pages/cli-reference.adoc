@@ -8,10 +8,8 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-The DFINITY command-line execution environment (`+dfx+`) is the primary tool for creating, deploying, and managing the applications you develop for the {platform}.
+The DFINITY command-line execution environment (`+dfx+`) is the primary tool for creating, deploying, and managing the dapps for the {platform}.
 
 You can use the `+dfx+` parent command with different flags and subcommands to perform different types of operations.
 

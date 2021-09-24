@@ -1,5 +1,4 @@
 = dfx build
-:sdk-short-name: DFINITY Canister SDK
 
 Use the `+dfx build+` command to compile your program into a WebAssembly module that can be deployed on the {IC}.
 You can use this command to compile all of the programs that are defined for a project in the project's `+dfx.json+` configuration file or a specific canister.
@@ -24,7 +23,7 @@ You can use the following optional flags with the `+dfx build+` command.
 |===
 |Flag |Description
 
-|`+--check+` |Builds canisters using a temporary, hard-coded, locally-defined canister identifier for testing that your program compiles without connecting to the {IC} network.
+|`+--check+` |Builds canisters using a temporary, hard-coded, locally-defined canister identifier for testing that your program compiles without connecting to the {platform}.
 
 |`+-h+`, `+--help+` |Displays usage information.
 
@@ -40,7 +39,7 @@ You can specify the following option for the `+dfx build+` command.
 
 |Option |Description
 
-|`+--network <network>+` |Specifies the {IC} network you want to connect to. You can use this option to override the network specified in the `+dfx.json+` configuration file.
+|`+--network <network>+` |Specifies the network alias or URL you want to connect to. You can use this option to override the network specified in the `+dfx.json+` configuration file.
 
 |===
 
@@ -82,7 +81,7 @@ dfx build hello_world
 
 Building a specific canister is useful when you have multiple canisters defined in the dfx.json file, but want to test and debug operations for canisters independently.
 
-To test whether a canister compiles without connecting to any {IC} network, you would run the following command:
+To test whether a canister compiles without connecting to the {platform} or the local canister execution environment, you would run the following command:
 
 [source,bash]
 ----

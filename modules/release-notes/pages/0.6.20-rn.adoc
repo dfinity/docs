@@ -1,11 +1,8 @@
 = Highlights of what's new in {release}
 :description: DFINITY Canister Software Development Kit Release Notes
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 :release: 0.6.20
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
@@ -20,23 +17,6 @@ The most significant new features and capabilities include updates in the follow
 * <<Motoko,Motoko>>
 
 === DFX
-
-* A new notification message that the DFINITY Canister SDK sends anonymous usage data to DFINITY Stiftung by
-default has been added to `+dfx+` commands.
-The notification message is only displayed once, the first time you run any `+dfx+` subcommand.
-For example, the first time you run `+dfx new+` to create a new project, the notification is displayed before any other project creation messages.
-+
-The purpose of this notification is to inform you that `+dfx+` is configured to collect anonymous information about `+dfx+` command activity and errors.
-Collecting anonymous data is enabled by default in an effort to improve the developer experience based on usage patterns and behavior.
-+
-If you want to prevent the collection of data about `+dfx+` usage, you can explicitly opt-out by setting the following environment
-variable:
-+
-....
-DFX_TELEMETRY_DISABLED=1
-....
-+
-To find out more about the data collected and what your consent means, see the DFINITY Canister SDK link:https://sdk.dfinity.org/sdk-license-agreement.txt[Terms and Conditions].
 
 * The `+dfx+` commands that support the `+--network+` option have been updated to support URLs when specifying the network value.
 +

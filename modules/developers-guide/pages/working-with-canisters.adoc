@@ -1,25 +1,21 @@
-= Manage canisters
+= Manage canister smart contracts
 March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-If you have experimented with using the {sdk-long-name} by following the tutorials in the link:tutorials-intro{outfilesuffix}[Tutorials] section or by cloning examples from the link:https://github.com/dfinity/examples[examples] repository, you are already familiar with how to build and deploy programs as **canisters**.
+If you have experimented with using the {sdk-long-name} by following the tutorials in the link:tutorials-intro{outfilesuffix}[Tutorials] section or by cloning examples from the link:https://github.com/dfinity/examples[examples] repository, you are already familiar with how to build and deploy programs as **canister smart contracts**.
 This section provides additional information about the canister lifecycle and how to manage canisters.
 
 [[create-canister]]
-== Register a canister identifier
+== Obtaining a canister smart contract identifier
 
-Depending on your preferred development workflow, you can register a unique canister identifier before or after you have a program ready to compile.
-For example, if you want to reserve a unique identifier for your program on a sub-network before you have written any code, you can do so by running the `+dfx canister create+` command.
-This command essentially creates an empty canister placeholder into which you can later install your code.
+Depending on your preferred development workflow, you can obtain a unique identifier for your canister smart contract, before or after you have a program ready to compile.
+For example, if you want to reserve a unique identifier for your canister smart contract on a subnet before you have written any code, you can do so by running the `+dfx canister create+` command.
+This command essentially creates an empty canister placeholder into which you can later install your code. The resulting canister will obtain a unique identifier.
 
-To register a unique identifier for a canister:
+To obtain a unique identifier for a canister:
 
 . Open a new terminal window or tab on your local computer.
 . Create a new project for the canister you plan to create by running a command similar to the following:
@@ -31,21 +27,21 @@ dfx new YOUR-PROJECT-NAME
 +
 Note that the name you use for the project is also used as the canister name by default. 
 . Change to your new project directory.
-. Open the `+dfx.json+` configuration file and set the host and port for the {IC} network provider you want to use.
+. Open the `+dfx.json+` configuration file and set the host and port for the canister execution environment you want to use (e.g. the {IC} blockchain).
 +
-If you are using the local host as the {IC} network provider, you can skip this step.
+If you are using a local deployment, you can skip this step.
 +
 You can also optionally change the names of your canisters or add canister settings to the configuration file if you want to create identifiers for any additional canisters you think you will need before compiling code.
-. Start the {IC} network, if necessary, by running the following command:
+. Start the local canister execution environment, if necessary, by running the following command:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-In most cases, this step is only necessary if you are running the {IC} network locally.
+In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were registering canisters to run on a remote network, you would include the `+--network+` command-line option to perform tasks on that network.
+If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Register unique identifiers for the canisters defined in the `+dfx.json+` by running the following command:
 +
 [source,bash]
@@ -56,20 +52,18 @@ dfx canister create --all
 The command creates the `+.dfx/local+` directory and adds the `+canister_ids.json+` file to that directory for the project.
 
 [[local-id]]
-== Build a canister with a local identifier
+== Build a canister smart contract with a local identifier
 
-After you have written source code for your project, you need to compile it into a WebAssembly module before deploying it to the network as a canister.
+After you have written source code for your project, you need to compile it into a WebAssembly module before deploying it as a canister.
 
 If you are only compiling your project for local debugging, you can generate a locally-defined identifier for your project.
 
 To generate a locally-defined identifier:
 
 . Create a project with the configuration settings and program logic to suit your needs.
-. Start the {IC} network, if necessary.
+. Start the local canister execution environment, if necessary.
 +
-In most cases, this step is only necessary if you are running the {IC} network locally.
-+
-If you were compiling canisters to run on a remote network, you would include the `+--network+` command-line option to perform tasks on that network.
+If you were compiling canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Generate hard-coded local identifiers for the canisters defined in the `+dfx.json+` by running the following command:
 +
 [source,bash]
@@ -77,7 +71,7 @@ If you were compiling canisters to run on a remote network, you would include th
 dfx build --check
 ----
 +
-Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the {IC} network.
+Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the {IC} blockchain.
 
 ////
 === Register a unique network-wide identifier
@@ -102,20 +96,20 @@ dfx build
 ////
 
 [[deploy-canister]]
-== Deploy canisters on the {IC} network
+== Deploy canister smart contracts
 
-After you have compiled a program, you can install the compiled code on the {IC} network running locally in your development or on a remote network provider.
+After you have compiled a program, you can install the compiled code in a canister smart contract running either on a local canister execution environment or on the {IC} blockchain.
 
 The canister identifier that was created in advance or during the build process determines where your code is installed during deployment.
 
-To deploy on the {IC} network for the first time:
+To deploy the code for the first time:
 
 . Open a new terminal and navigate to your project directory.
-. Start the {IC} network, if necessary.
+. Start the local canister execution environment, if necessary.
 +
-In most cases, this step is only necessary if you are running the {IC} network locally.
+In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were installing canisters on a remote network, you would include the `+--network+` command-line option to perform tasks on that network.
+If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Verify you have canister identifiers for all of the canisters you want to deploy.
 . Deploy all of the canisters by running the following command:
 +
@@ -125,44 +119,44 @@ dfx canister install --all
 ----
 
 [[lookup-id]]
-== Look up a canister identifier
+== Look up a canister smart contract identifier
 
-All canisters have unique, network-specific identifiers. 
+All canisters have unique identifiers.
 You often need to use these identifiers to interact with the canister.
-For example, if you want to access the front-end canister for an application or interact with a service using the Candid web interface, you must specify the appropriate canister identifier.
+For example, if you want to access the front-end canister for a dapp or interact with a service using the Candid web interface, you must specify the appropriate canister identifier.
 
-Because the identifiers are network-specific, the files used to store the information are in different directories.
+Because the identifiers are specific to the environment where the canisters are deployed, the files used to store the information are in different directories.
 For example, identifiers for a canister deployed locally are located in the project's `+.dfx/local/canister_ids.json+` file.
 
 You can look up the canister identifier for any specific canister by running the `+dfx canister id+` command.
-For example, to look up the the canister identifier for the `+lookup+` canister deployed on the local network, you could run the following command:
+For example, to look up the the canister identifier for the `+lookup+` canister deployed on the local canister execution environment, you could run the following command:
 
 ....
 dfx canister id lookup
 ....
 
-To look up the canister identifier for the same canister deployed on the network specified by the `+ic+` alias, you would run the following command:
+To look up the canister identifier for the same canister deployed on the environment specified by the `+ic+` alias, you would run the following command:
 
 ....
 dfx canister --network=ic id lookup
 ....
 
 [[add-wallet]]
-== Add a wallet for existing canisters
+== Add a wallet for existing canister smart contracts
 
-When you are doing local development, creating a new project automatically creates a default wallet for you to use with the canisters in that project.If you want to add a wallet for projects with canisters that you have previously created, you can force `dfx` to generate one by taking a couple of manual steps.
+When you are doing local development, creating a new project automatically creates a default wallet for you to use with the canisters in that project. If you want to add a wallet for projects with canisters that you have previously created, you can force `dfx` to generate one by taking a couple of manual steps.
 
 To add a wallet for use with an existing canister:
 
 . Open a terminal and navigate to your project directory.
-. Stop the local {IC} network, if necessary, by running the following command:
+. Stop the local canister execution environment, if necessary, by running the following command:
 +
 [source,bash]
 ----
 dfx stop
 ----
 . Delete the `+.dfx+` directory.
-. Start with {IC} network by running the following command:
+. Start the local canister execution environment network by running the following command:
 +
 [source,bash]
 ----
@@ -170,21 +164,21 @@ dfx start --clean
 ----
 
 [[reinstall-canister]]
-== Reinstall a canister
+== Reinstall a canister smart contract
 
 During the development cycle, you might want to install, then replace your program as you debug and improve it.
 
 In this scenario, you might want to keep the canister identifier you have registered but without preserving any of the canister code or state.
 For example, your canister might only have test data that you don't want to keep or you might have decided to change the program altogether but want to reinstall under a canister identifier you used to install a previous program. 
 
-To reinstall on the {IC} network:
+To reinstall a canister:
 
 . Open a new terminal and navigate to your project directory.
-. Start the {IC} network, if necessary.
+. Start the local canister execution environment, if necessary.
 +
-In most cases, this step is only necessary if you are running the {IC} network locally.
+In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were reinstalling canisters on a remote network, you would include the `+--network+` command-line option to perform tasks on that network.
+If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Verify you have canister identifiers for all of the canisters you want to re-deploy.
 . Re-deploy all of the canisters by running the following command:
 +
@@ -196,7 +190,7 @@ dfx canister install --all --mode reinstall
 Note that you can use the `+reinstall+` mode to replace any canister, regardless of whether the canister has code or state associated with it.
 
 [[set-owner]]
-== Set an identity to own a canister
+== Set an identity to own a canister smart contract
 
 In most cases, a `+default+` user identity is created for you automatically the first time you run the `+dfx canister create+` command.
 This default identity consists of the public and private key pair generated for your local user account. 
@@ -219,7 +213,7 @@ dfx new pubs
 ----
 cd pubs
 ----
-. Start the {IC} network locally in the background by running the following command:
+. Start the local canister execution environment in the background by running the following command:
 +
 [source,bash]
 ----
@@ -255,9 +249,9 @@ dfx canister call pubs greet '("Sam")'
 ----
 
 [[running-state]]
-== Managing the running state of a canister
+== Managing the running state of a canister smart contract
 
-After you deploy a canister on the {IC}, it can begin receiving and processing requests from users and from other canisters. 
+After you deploy a canister, it can begin receiving and processing requests from users and from other canisters.
 Canisters that are available to send requests and receive replies are considered in be in a **Running** state.
 
 Although canisters are normally placed in the Running state by default, there are cases where you might want to temporarily or permanently stop a canister.
@@ -267,7 +261,7 @@ You might also want to stop a canister to clear its message queue cleanly as a p
 
 // tag::check-status[]
 You can check the current status of all canisters or a specified canister by running the `+dfx canister status+` command.
-For example, to see the status for all canisters running on the local {IC} network, you would run the following command:
+For example, to see the status for all canisters running on the local canister execution environment, you would run the following command:
 
 [source,bash]
 ----
@@ -302,7 +296,7 @@ If you were to rerun the `+dfx canister status+` command, you might see a status
 
 // tag::restart-status[]
 To restart a canister-for example, after a successful canister upgrade—you can run the `+dfx canister start+` command.
-For example, to restart all of the canisters running on the local {IC} network, you would run the following command:
+For example, to restart all of the canisters, you would run the following command:
 
 [source,bash]
 ----
@@ -318,25 +312,25 @@ Starting code for canister status_check_assets, with canister_id cxeji-wacaa-aaa
 // tag::restart-status[]
 
 [[upgrade-canister]]
-== Upgrade a canister
+== Upgrade a canister smart contract
 
-Unlike a canister replacement that preserves the canister identifier but no state, a canister upgrade enables you to preserve the state of a deployed canister, and change the code.
+Unlike a canister reinstall that preserves the canister identifier but no state, a canister upgrade enables you to preserve the state of a deployed canister, and change the code.
  
-For example, assume you have an application that manages professional profiles and social connections. 
-If you want to add a new feature to the application, you need to be able to update the canister code without losing any of the previously-stored data.
+For example, assume you have a dapp that manages professional profiles and social connections.
+If you want to add a new feature to the dapp, you need to be able to update the canister code without losing any of the previously-stored data.
 A canister upgrade enables you to update existing canister identifiers with program changes without losing the program state.
 
 NOTE: To preserve state when you are upgrading a canister written in {proglang}, be sure to use the `+stable+` keyword to identify the variables you want to preserve. For more information about preserving variable state in {proglang}, see link:../language-guide/upgrades{outfilesuffix}[Stable variables and upgrade methods].
 If you are upgrading a canister written in Rust, you should use `+pre_upgrade+` and `+post_upgrade+` functions as illustrated in the link:https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage/src/asset_storage_rs/lib.rs[Rust CDK asset storage] example to ensure data is properly preserved after a canister upgrade.
 
-To upgrade a canister on the {IC} network:
+To upgrade a canister:
 
 . Open a new terminal and navigate to your project directory.
-. Start the {IC} network, if necessary.
+. Start the local canister execution environment, if necessary.
 +
-In most cases, this step is only necessary if you are running the {IC} network locally.
+In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were upgrading canisters on a remote network, you would include the `+--network+` command-line option to perform tasks on that network.
+If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
 . Verify you have canister identifiers for all of the canisters you want to upgrade.
 +
 Note that your program must identify the variables for which to maintain state by using the `+stable+` keyword in the variable declaration.
@@ -350,22 +344,22 @@ dfx canister install --all --mode upgrade
 ----
 
 [[delete-canister]]
-== Delete a canister
+== Delete a canister smart contract
 
-If you want to permanently delete a specific canister or all canisters for a specific project on a given {IC} network, you can do so by running the `+dfx canister delete+` command.
+If you want to permanently delete a specific canister or all canisters for a specific project on a given deployment (either local, or remote), you can do so by running the `+dfx canister delete+` command.
 
-Deleting a canister removes the canister identifier, code, and state from the {IC} network. 
+Deleting a canister removes the canister identifier, code, and state.
 Before you can delete a canister, however, you must first stop the canister to clear any pending message requests or replies.
 
-To delete all canisters for a project running on the local {IC} network:
+To delete all canisters for a project:
 
 . Open a new terminal and navigate to your project directory.
-. Start the {IC} network, if necessary.
+. Start the local canister execution environment, if necessary.
 +
-In most cases, this step is only necessary if you are running the {IC} network locally.
+In most cases, this step is only necessary if you are running the canisters locally.
 +
-If you were deleting canisters on a remote network, you would include the `+--network+` command-line option to perform tasks on that network.
-. Check the status of the project canisters running on the local {IC} network by running the following command:
+If you were deleting canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
+. Check the status of the project canisters running on the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

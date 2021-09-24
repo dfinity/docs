@@ -1,13 +1,10 @@
 = Introducing a new approach to handling HTTP requests and serving assets 
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-If you are installing any 0.7.0 version of the {sdk-short-name}, you might have noticed that those versions have introduced some major improvements for handling HTTP queries and front-end assets.
+If you are installing any 0.7.0 (or later) version of the {sdk-short-name}, you might have noticed that those versions have introduced some major improvements for handling HTTP queries and front-end assets.
 When these changes are officially rolled into the next publicly-available release of the {sdk-short-name}, they will change how you build and deploy applications on the Internet Computer.
 
 If you are creating new projects, the changes to the underlying architecture will have little, if any, effect on your development workflow. In fact, you might find that the new architecture makes building applications that run on the {IC} a more familiar experience. 
@@ -120,4 +117,4 @@ Certified front-end assets use the `+.ic0.app+` URL suffix.
 
 All of the current tutorials illustrate applications that serve uncertified front-end assets. 
 Learning how to build an application that uses certified query results for front-end assets is an advanced development topic.
-For information about how to return certified data in response to queries, see the link:../interface-spec/index{outfilesuffix}[Interface specification] and connect with other developers through the link:https://forum.dfinity.org/[DFINITY Developer Forum].
+For information about how to return certified data in response to queries, see the link:interface-spec/index{outfilesuffix}[Interface specification] and connect with other developers through the link:https://forum.dfinity.org/[DFINITY Developer Forum].

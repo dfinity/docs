@@ -1,10 +1,8 @@
 = Canisters and code
 :keywords: Internet Computer,blockchain,protocol,smart contracts,canister,developer
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
 
 One of the most important principles to keep in mind is that the {IC} is primarily a distributed and decentralized platform for running software. 
 
@@ -103,7 +101,7 @@ The {proglang} language offers many of the features that are common to other hig
 In addition, {proglang} provides built-in support for defining messaging services using actors in a way that is especially well-suited to the {platform} and is easy to learn whether you are a new or experienced programmer.
 
 This guide provides an introduction to the basic features of the {proglang} programming language in the context of writing programs using the SDK. 
-For more detailed information about the {proglang} programming language itself, see the link:../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
+For more detailed information about the {proglang} programming language itself, see the link:../../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
 
 [[auth-intro]]
 == Identities and authentication
@@ -134,10 +132,7 @@ Cycles are intended to reflect the real cost of operations including physical ha
 
 The relative stability of operational costs makes it easier to predict the cycles required to process, for example, a million messages.
 
-The cycles available for program execution are held in a **wallet canister**. For local deployment, wallet canisters are automatically created and issued cycles. To deploy your application on the {IC} network running on external nodes and subnets, however, you'll need to provide a principal and be issued a wallet canister identifier.
-
-NOTE: When you deploy canisters locally or to an {IC} test network, program execution consumes cycles but there are no funds associated with those cycles. However, it is possible that in calculating the operations to be performed, executing a program might result in an “out of cycles” exception because the operations would exceed a predefined threshold. 
-If you see this exception in testing, you can temporarily configure a higher cycles limit by setting a command-line option. 
+The cycles available for program execution are held in a **wallet canister**. For local deployment, wallet canisters are automatically created and issued cycles. To deploy your application on the {IC} running on external nodes and subnets, however, you'll need a principal with a cycles wallet to manage canister operations. 
 
 == Want to learn more?
 

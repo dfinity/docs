@@ -4,8 +4,6 @@
 :commandkey: &#8984;
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 THANK YOU for being a Seed participant.
@@ -171,7 +169,7 @@ Run the following command to install the DFINITY Canister SDK.
 
 [source,bash]
 ----
-DFX_VERSION=0.7.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
 *Warning: Note that `dfx` will currently not install on M1-based Macs.*

@@ -1,0 +1,91 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+:release: 0.7.1
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The {release} release includes new features and fixes to DFX commands, {proglang}, the {proglang} base library, and Candid.
+
+== New features and capabilities
+
+The most significant new features and capabilities include the following updates for DFX commands:
+
+* An update to the `+dfx canister sign+` command enables you to sign `+request_status+` messages for update calls.
++
+If you are using `+dfx canister sign+` to call a method that generates an update message, the command also signs a corresponding `+request_status+` message and appends it to the `+message.json+` file as `+signed_request_status+`.
+After you send the message using the `+dfx canister send+` command, you can check the `+request_status+` of the call by running the following command:
++
+[source,bash]
+----
+dfx canister send message.json --status
+----
++
+This change is particularly useful if you are using the `+dfx canister sign+` and `+dfx canister send+` commands to call the `+ledger+` or `+governance+` canister to make a transaction or stake tokens as a two-step process.
+
+* There are new `+deposit_cycles+` and `+uninstall_code+` management canister methods that are also exposed as `+dfx canister+` subcommands.
++
+The two new commands are `+dfx canister deposit-cycles+` and `+dfx canister uninstall-code+`.
+For example, you can now send cycles from your cycles wallet to a specific canister by running a command similar to the following:
++
+[source,bash]
+----
+dfx canister deposit-cycles 125000000000 hello_world
+----
++
+You can uninstall code for a deployed WASM module by running a command similar to the following:
++
+[source,bash]
+----
+dfx canister uninstall-code hello_world
+----
+
+* A new `+--no-artificial-delay+` option enables you to reduce the time it takes for the local {IC} to start.
++
+This change adds the `+--no-artificial-delay+` flag to `+dfx start+` and `+dfx replica+` commands.
+By default, the local {IC} replica that is installed with the {sdk-short-name} has an artificial consensus delay to simulate the delay users might see in a networked environment.
+With this new flag, you can skip the built-in delay when you start the local {IC} by running either the `+dfx start --no-artificial-delay+` or `+dfx replica --no-artificial-delay+` command.
++
+For example, you can start the local {IC} without a delay by running the following command:
++
+[source,bash]
+----
+dfx start -no-artificial-delay
+----
++
+If you use this option, however, you might an increase in the CPU used by the local {IC} replica.
+
+== Breaking change
+
+The {sdk-short-name} version {release} introduces a change to the default principal used when you run `+dfx canister call+` commands.
+Depending on the version of the {sdk-short-name} that you were previously using, this change might require changes to your program code or to the way you call methods in deployed canisters.
+
+* The cycles wallet canister identifier is not longer used as the message caller by default.
++
+In some previous versions of the {sdk-short-name}, the `+dfx canister call+` command would use the cycles wallet canister identifier as the message caller to perform queries and update calls by default.
++
+The `+--no-wallet+` command-line option was introduced to allow you to bypass the cycles wallet canister identifier and perform query and update calls using the currently-selected identity.
++
+However, using the cycles wallet canister identifier to execute `+dfx canister call+` commands resulted in each call being treated as an inter-canister call and the calls would take longer than necessary to resolve. 
++
+With this release, `+dfx canister call+` commands no longer use the cycles wallet canister identifier to execute query and update calls by default.
+If you want to execute a query or update call using the cycles wallet, you can run a command similar to the following:
++
+[source,bash,subs=quotes]
+----
+dfx canister --wallet=_cycles-wallet-id_ call _canister_ _method_
+----
+
+== Issues fixed in this release
+
+This section covers any reported issues that have been fixed in this release.
+
+* Allow consistent use of canisters names or identifiers in `+dfx canister+` commands.
++
+Previously, `+dfx canister+` commands were inconsistent about whether you could specify a canister using a canister name or a canister identifier.
+With this change, all `+dfx canister+` commands now accept either a canister name as specified in the local `+dfx.json+` configuration file or a valid canister identifier as listed in the `+canister_ids.json+` file. 
+
+//== Known issues and limitations
+
+//This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.

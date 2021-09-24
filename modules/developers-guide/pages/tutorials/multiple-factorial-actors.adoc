@@ -1,17 +1,9 @@
 = Using multiple actors
 February 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - MULTIPLE ACTORS
-:toclevels: 3
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 In this tutorial, you are going to create a project with multiple actors. 
 Currently, you can only define one actor in a {proglang} file and a single actor is always compiled to a single canister.

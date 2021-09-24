@@ -1,5 +1,4 @@
 = dfx help
-:sdk-short-name: DFINITY Canister SDK
 
 Use this command to view usage information for the `+dfx+` parent command or for any specified subcommand.
 
@@ -29,7 +28,7 @@ To display the usage information for `+dfx+`, run the following command:
 dfx help
 ----
 
-To display the usage information for `+dfx bew+`, run the following command:
+To display the usage information for `+dfx new+`, run the following command:
 
 [source,bash]
 ----

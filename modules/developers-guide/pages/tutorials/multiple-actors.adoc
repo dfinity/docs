@@ -1,18 +1,11 @@
 = Use multiple actors
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toc:
-:toc: right
-:toc-title: TUTORIAL - MULTIPLE ACTORS
-:toclevels: 3
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 In this tutorial, you are going to create a project with multiple actors. 
-Currently, you can only define one actor in a {proglang} file and a single actor is always compiled to a single canister.
+Currently, you can only define one actor in a {proglang} file and a single actor is always compiled to a single canister smart contract.
 You can, however, create **projects** that have multiple actors and can build multiple canisters from the same `+dfx.json+` configuration file.
 
 For this tutorial, you are going to create separate program files for three actors in the same project. 
@@ -20,7 +13,7 @@ This project defines the following unrelated actors:
 
 * The `+assistant+` actor provides functions to add and show tasks in a to-do list.
 +
-For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this program—with additional functions for marking items as complete and removing items from the list—is available in the link:https://github.com/dfinity/examples/[examples] repository as link:https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[Simple to-do checklist].
+For simplicity, the code sample for this tutorial only includes the functions to add to-do items and to show the current list of to-do items that have been added. A more complete version of this canister—with additional functions for marking items as complete and removing items from the list—is available in the link:https://github.com/dfinity/examples/[examples] repository as link:https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[Simple to-do checklist].
 
 * The `+rock_paper_scissors+` actor provides a function for determining a winner in a hard-coded rock-paper-scissors contest.
 +
@@ -35,8 +28,7 @@ This code sample simply assigns a variable and prints messages for demonstration
 Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any {IC} network processes running on the local
-computer.
+* You have stopped any local canister execution environment running on your computer.
 
 This tutorial takes approximately 20 minutes to complete.
 
@@ -63,7 +55,7 @@ cd multiple_actors
 == Modify the default configuration
 
 You have already seen that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
-For this tutorial, you need to add sections to this file to specify the location of each program that defines an actor you want to build.
+For this tutorial, you need to add sections to this file to specify the location of each canister that defines an actor you want to build.
 
 To modify the default `+dfx.json+` configuration file:
 
@@ -81,7 +73,7 @@ For example, under the `canisters` key:
 +
 Because you are going to add settings to this `+canisters+` section of the configuration file, you must also add a **comma** after the curly brace that encloses the location of the `+assistant+` main source code file and the canister type.
 . Remove the `+multiple_actors_assets+` section from the file.
-. Add a new canister name, source code location, and canister type for the `+rock_paper_scissors+` program and a new canister name, source code location, and canister type for the `+daemon+` program files below the `+assistant+` canister definition.
+. Add a new canister name, source code location, and canister type for the `+rock_paper_scissors+` canister and a new canister name, source code location, and canister type for the `+daemon+` program files below the `+assistant+` canister definition.
 +
 After making the changes, the `+canisters+` section of the `+dfx.json+` file should look similar to this:
 +
@@ -98,20 +90,20 @@ You can leave the other sections as-is.
 ----
 cp -r src/multiple_actors/ src/assistant/
 ----
-. Copy the `+assistant+` source file directory to create the main program file for the `+rock_paper_scissors+` actor by running the following command:
+. Copy the `+assistant+` source file directory to create the main canister file for the `+rock_paper_scissors+` actor by running the following command:
 +
 [source,bash]
 ----
 cp -r src/assistant/ src/rock_paper_scissors/
 ----
-. Copy the `+assistant+` source file directory to create the main program file for the `+daemon+` actor by running the following command:
+. Copy the `+assistant+` source file directory to create the main canister file for the `+daemon+` actor by running the following command:
 +
 [source,bash]
 ----
 cp -r src/assistant/ src/daemon/
 ----
 
-== Modify the default programs
+== Modify the default canisters
 
 You now have three separate directories in the `+src+` directory, each with a template `+main.mo+` file.
 For this tutorial, you will replace the content in each template `+main.mo+` file with a different actor.
@@ -143,28 +135,28 @@ include::example$multiple-actors/daemon/main.mo[]
 ----
 . Save your changes and close the `+main.mo+` file to continue.
 
-== Start the local network
+== Start the local canister execution environment
 
-Before you can build the `+multiple_actors+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a sub-network that you can access.
+Before you can install the `+multiple_actors+` project locally, you need to start your local canister execution environment. If you intend to deploy it to the {IC} blockchain mainnet, then you can skip this section.
 
-To start the network locally:
+To start the local canister execution environment:
 
 [arabic]
 . Open a new terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
-. Start the {IC} network on your local computer by running the following command:
+. Start the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
 dfx start
 ----
-. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
+. Leave the terminal that displays canister execution operations open and switch your focus to your original terminal where you created your new project.
 
-== Register, build, and deploy your application
+== Deploy your multi-canister dapp
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your multi-canister application locally.
+To deploy the multi-canister dapp you need to register, build, and install the canisters either to the local canister execution environment or to the {IC} blockchain mainnet.
 
-To deploy the application locally:
+To deploy the dapp locally:
 
 . Check that you are still in the root directory for your project, if needed.
 . Register, build, and deploy the application by running the following command:
@@ -173,18 +165,22 @@ To deploy the application locally:
 ----
 dfx deploy
 ----
-+
-If you have access to the {IC} running remotely, you can deploy to the that network instead of deploying locally by specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file.
-For example, if you are connecting to the URL specified by the network alias `+ic+` you would run a command similar the following:
+
+
+
+To deploy the dapp to the {IC} blockchain mainnet:
+
+. Check that you are still in the root directory for your project, if needed.
+. Run `dfx deploy` command specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file. For example, if you are connecting to the {IC} mainnet using to the URL specified by the network alias `+ic+` you would run a command similar the following:
 +
 [source,bash]
 ----
 dfx deploy --network ic
 ----
-+
+
 The `+dfx deploy+` command output displays information about the operations it performs.
-For example, the command displays the network-specific canister identifiers for the three canisters defined in the `+dfx.json+` configuration file.
-+
+For example, the command displays the specific canister identifiers for the three canisters defined in the `+dfx.json+` configuration file.
+
 ....
 Deploying all canisters.
 Creating canisters...
@@ -196,11 +192,11 @@ Creating canister "rock_paper_scissors"...
 "rock_paper_scissors" canister created with canister id: "7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 
-== Verify deployment by calling functions
+== Verify deployment by calling the canisters
 
-You now have three programs deployed as a *canisters* on your local replica network and can test each program by using `+dfx canister call+` commands.
+You now have three *canisters* smart contracts deployed, either on your local canister execution environment or on the {IC} blockchain mainnet, and can test them by using `+dfx canister call+` commands.
 
-To test the programs you have deployed:
+To test the canisters you have deployed locally:
 
 . Use the `+dfx canister call+` command to call the canister `+assistant+` using the `+addTodo+` function and pass it the task you want to add by running the following command:
 +
@@ -246,15 +242,17 @@ dfx canister call daemon launch
 (""The daemon process is running"")
 ....
 
+To test your canisters running on the {IC} blockchain mainnet use the same command as above, specifying the `+--network+` option and the network alias configured in the `+dfx.json+` file.
+
 == Stop the local network
 
-After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local canister execution environment:
 
 . In the terminal that displays network operations, press Control-C to interrupt the local network process.
 
-. Stop the {IC} network by running the following command:
+. Stop the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

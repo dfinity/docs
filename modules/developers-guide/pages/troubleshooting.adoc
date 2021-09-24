@@ -1,13 +1,9 @@
 = Troubleshoot issues
 December 2019 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:toclevels: 1
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 This section provides information to help you troubleshoot and resolve or work around common issues that are related to the following tasks:
 
@@ -118,8 +114,8 @@ Io(
 
 == Address in use error or orphan processes
 
-If you are developing projects locally, you often have a local version of core {IC} processes—collectively referred to as the `+replica+`—also running either is a separate terminal or in the background.
-If the runnning {IC} processes do not get properly terminated, you might see operating system errors indicating that an address is already in use or or be unable to stop processes normally using the `+dfx stop+` command.
+If you are developing projects locally, you often have a local version of core {IC} processes—collectively referred to as the `+replica+`—running either is a separate terminal or in the background.
+If the running {IC} processes do not get properly terminated, you might see operating system errors indicating that an address is already in use or or be unable to stop processes normally using the `+dfx stop+` command.
 
 There are several scenarios in which you might encounter this issue. For example, if you run `+dfx start+` in a local project directory then change to a different local project directory without first stopping {IC} processes, you might see this issue.
 

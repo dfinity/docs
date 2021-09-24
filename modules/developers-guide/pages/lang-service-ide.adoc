@@ -1,18 +1,11 @@
 = Language server and development client support 
 December 2019 (Alpha 3)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:linkedcss:
-:toc:
-:toc: right
 :toc-title: DEVELOPMENT CLIENT
 :toclevels: 1
 :proglang: Motoko
-:platform: Internet Computer platform
 :IC: Internet Computer
-:ext: .mo
 :company-id: DFINITY
-:sdk-short-name: DFINITY Canister SDK
-:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
 The https://microsoft.github.io/language-server-protocol[Language Server Protocol (LSP)]—originally developed by Microsoft—provides a common language to add broadly-useful features like automatic code complete, GoTo definition, and hover-over tool tips 
 to development tools.

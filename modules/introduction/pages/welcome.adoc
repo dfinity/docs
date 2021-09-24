@@ -1,0 +1,64 @@
+= Introducing the Internet Computer
+:description: Start coding on the Internet Computer. Find documentation, walk-throughs, and tutorials to start building decentralized apps, DeFi and novel blockchain-based services
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+Hello there!
+
+If you’ve landed here, you’re interested in learning more about the Internet Computer. You’re in the right place — take a look below for where to get started!
+
+NOTE: Qualified developers can access $20 worth of free cycles to begin deploying canister smart contracts to the Internet Computer blockchain. https://faucet.dfinity.org/auth[Claim your free cycles]
+
+[[for-first-timers]]
+== For: First-Timers
+The Internet Computer is a blockchain that runs at web speed with unbounded capacity. 
+
+As a crash course in blockchain history, Bitcoin created digital gold. Then, in the next step of the evolution, Ethereum developed smart contracts and pioneered DeFi and NFT use cases. 
+
+The Internet Computer is the third major blockchain innovation — a blockchain that scales smart contract computation, runs them at web speed, processes and stores data efficiently, and provides powerful software frameworks to developers. By making this possible, the Internet Computer enables the complete reimagination of how systems and apps operate.
+
+Interested in learning more? Check out the following resources:
+
+* link:https://www.youtube.com/watch?v=YWHTNr8RZHg&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=17&ab_channel=DFINITY[Primer to the Internet Computer], a high-level overview of the Internet Computer in under 10 minutes
+* link:https://medium.com/dfinity[The Internet Computer Review], our blog covering updates for the Internet Computer 
+* link:https://thereboot.com/[The Reboot], our tech publication exploring issues with the current internet
+
+Follow us on the official link:https://twitter.com/dfinity[DFINITY Twitter] for the latest updates.
+
+
+[[for-developers]]
+== For: Developers
+The Internet Computer hosts special smart contracts, called link:https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[canisters]. A canister smart contract is a bundle of link:https://webassembly.org/[WebAssembly] bytecode logic and memory pages. Dapps on the Internet Computer are created from one or more canisters. 
+
+Canister smart contracts can serve web content directly to end-users, e.g., in their browsers, and users can interact with blockchain services without holding tokens. 
+
+The Internet Computer blockchain can eventually host any number of canister smart contracts (i.e., code & state). Moreover, it can run them concurrently with unbounded on-chain capacity. This means you can create dapps that scale. 
+
+Canister smart contracts are unstoppable and tamperproof. Imagine building without having to worry about databases, caches, firewalls, CDNs, cloud providers, VPNs, DNS, and even usernames & passwords — all because the Internet Computer abstracts these needs away. 
+
+Excited to take the leap? Check out our xref:quickstart:quickstart-intro.adoc[Quick Start] to get started with a simple hello world dapp.
+
+Interested in getting plugged into our developer community? Check out the following:
+
+* link:https://discord.gg/cA7y6ezyE2[Developer Discord], our official Discord for the developer community
+* link:https://forum.dfinity.org/[Developer Forum], a welcoming space for technical discussions about building on the Internet Computer
+
+You can follow us on the link:https://twitter.com/dfinitydev[DFINITY Developer Twitter] for the latest developer-specific updates.
+
+
+[[for-protocol-enthusiasts]]
+== For: Protocol Enthusiasts
+
+The Internet Computer is created by the Internet Computer Protocol (“ICP”), which has formed the world’s first web-speed, web-serving public blockchain. The Internet Computer is self-governing and can grow its capacity as required. It combines special node machines run en masse by independent data centers all around the world. Like all blockchains, it is unstoppable, and the code it hosts is tamperproof. 
+
+Get started by checking out our “Concepts” section to the left, starting with xref:developers-guide:concepts/what-is-IC.adoc[What is the Internet Computer?]
+
+To learn more about the Internet Computer Protocol, check out the following resources:
+
+* link:https://dfinity.org/technicals/[Technical Library], for in-depth videos by our world-class R&D team explaining components of the Internet Computer Protocol. Worth noting in particular:
+** link:https://dfinity.org/technicals/chain-key-technology[Chain Key Cryptography], one of the fundamental breakthroughs enabling the Internet Computer to scale to millions of nodes. The most notable innovation of Chain Key cryptography is that the Internet Computer has a single public key, which enables any device to verify the authenticity of artifacts generated by the Internet Computer, even smart watches and mobile phones.
+* xref:interface-spec:index.adoc[Interface Specification], for a deeply technical document that provides an overview of the lower-level external interfaces of the Internet Computer
+* link:https://dashboard.internetcomputer.org/[Internet Computer Dashboard], to monitor real-time metrics around the Internet Computer blockchain

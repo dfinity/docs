@@ -106,7 +106,7 @@ Therefore, there's no need to reserve a unique canister identifier on the {IC} b
 In this scenario, you can compile the canister without connecting to the {IC} blockchain mainnet at all.
 Instead, the `+dfx build+` command creates a local, hard-coded canister identifier for you to use.
 
-You can use this local identifier while you are testing your canister or any time you want to compile your canister without starting the local canister execution environment process locally or connecting to a replica on a remote subnet.
+You can use this local identifier while you are testing your canister or any time you want to compile your canister without starting the local canister execution environment process locally.
 
 To build the canister executable:
 

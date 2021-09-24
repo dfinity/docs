@@ -98,7 +98,7 @@ Let's take a closer look at this simple canister:
 For more information about using a query call, see link:../concepts/canisters-code{outfilesuffix}#query-update[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the `+main.mo+` file.
 
-== Build the canister with a local identifier
+== Build the canister for the local canister execution environment
 
 You are probably only going to use this simple canister for some local testing.
 Therefore, there's no need to reserve a unique canister identifier on the {IC} blockchain mainnet to hold the compiled output for the canister.

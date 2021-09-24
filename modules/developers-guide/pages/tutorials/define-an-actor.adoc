@@ -243,7 +243,9 @@ After you finish experimenting with your program, you can stop the local caniste
 
 To stop the local {IC}:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal used to interact with your canister, issue the command `dfx stop`; or
+. In the terminal that displays network operations, press Control-C to interrupt the local network process; or
+. Kill the `replica` process using commands or tools of your operating system.
 
 . Stop the {IC} network by running the following command:
 +

@@ -1,6 +1,6 @@
 = dfx canister
 
-Use the `+dfx canister+` command with flags and subcommands to manage canister operations and interaction with the {platform}.
+Use the `+dfx canister+` command with flags and subcommands to manage canister operations and interaction with the {platform} or the local canister execution environment.
 In most cases, you use `+dfx canister+` subcommands after you compile a program to manage the canister lifecycle and to perform key tasks such as calling program functions.
 
 The basic syntax for running `+dfx canister+` commands is:
@@ -26,7 +26,7 @@ For reference information and examples that illustrate using `+dfx canister+` co
 |Command |Description
 |<<dfx canister call,`+call+`>> |Calls a specified method on a deployed canister.
 
-|<<dfx canister create,`+create+`>> |Creates a new "empty" canister by registering a canister identifier on an {IC} network.
+|<<dfx canister create,`+create+`>> |Creates a new "empty" canister by registering a canister identifier on the {platform} or the local canister execution environment.
 
 |<<dfx canister delete,`+delete+`>> |Deletes a currently stopped canister.
 
@@ -34,11 +34,11 @@ For reference information and examples that illustrate using `+dfx canister+` co
 
 |<<dfx canister id,`+id+`>> |Displays the identifier for a canister.
 
-|<<dfx canister install,`+install+`>> |Installs compiled code as a canister on the replica.
+|<<dfx canister install,`+install+`>> |Installs compiled code as a canister on the {platform} or the local canister execution environment.
 
 |<<dfx canister request-status,`+request-status+`>> |Requests the status of a call to a canister.
 
-|<<dfx canister set-controller,`+set-controller+`>> |Specifies the identity name or principal to use as the new controller for a specified canister on the Internet Computer network.
+|<<dfx canister set-controller,`+set-controller+`>> |Specifies the identity name or principal to use as the new controller for a specified canister on the {platform}.
 
 |<<dfx canister send,`+send+`>> |Send a previously-signed `+message.json+` to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.
 
@@ -52,26 +52,28 @@ For reference information and examples that illustrate using `+dfx canister+` co
 
 |===
 
-== Overriding the default network
+== Overriding the default deployment environment
 
-By default, `+dfx canister+` commands run on the local network specified in the `+dfx.json+` file.
-If you want to send a `+dfx canister+` subcommand to a specific network provider address and port number without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the URL for the network using the `+--network+` option.
+By default, `+dfx canister+` commands run on the local canister execution environment specified in the `+dfx.json+` file.
+If you want to send a `+dfx canister+` subcommand to the {platform} or a testnet without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the URL to connect to using the `+--network+` option.
 
-For example, to register unique canister identifiers for a project when the {IC} runs on your local computer, you can run the following command:
+For example, to register unique canister identifiers for a project on the local canister execution environment, you can run the following command:
 
 [source,bash]
 ----
 dfx canister create --all
 ----
 
-If you want to register unique canister identifiers for the same project when the {IC} runs on the network that uses the `+ic+` alias in the `+dfx.json+` file, you can run the following command:
+If you want to register unique canister identifiers for the same project on the {platform}, you can run the following command:
 
 [source,bash]
 ----
 dfx canister --network ic create --all
 ----
 
-Similarly, you can call a canister and function running on a remote {IC} network using a command similar to the following:
+The {sdk-short-name} comes with an alias of `+ic+`, which is configured to point to the {platform}. You can also pass a URL as a network option, or you can configure additional aliases in `+dfx.json+` under the `+networks+` configuration.
+
+To illustrate, you can call a canister and function running on a testnet using a command similar to the following:
 
 [source,bash]
 ----
@@ -98,12 +100,12 @@ You can use the following optional flags with the `+dfx canister call+` command.
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Flag |Description
-|`+--async+` |Enables you to continue without waiting for the result of the call to be returned by polling the replica.
+|`+--async+` |Enables you to continue without waiting for the result of the call to be returned by polling the local canister execution environment or the {platform}.
 
 |`+-h+`, `+--help+` |Displays usage information.
 
 |`+--query+` |Enables you to send a query request to a deployed canister.
-For best performance and network efficiency, you should use this flag when you explicitly want to use the query method to retrieve information.
+For best performance, you should use this flag when you explicitly want to use the query method to retrieve information.
 For information about the difference between query and update calls, see link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 
 |`+--update+` |Enables you to send an update request to a deployed canister.
@@ -149,7 +151,7 @@ You can use `+raw+` as the argument type if you want to pass raw bytes to a cani
 
 === Examples
 
-You can use the `+dfx canister call+` command to invoke specific methods—with or without arguments—after you have deployed the canister on the network using the `+dfx canister install+` command.
+You can use the `+dfx canister call+` command to invoke specific methods—with or without arguments—after you have deployed the canister using the `+dfx canister install+` command.
 For example, to invoke the `+get+` method for a canister with a `+canister_name+` of `+counter+`, you can run the following command:
 
 [source,bash]
@@ -157,7 +159,7 @@ For example, to invoke the `+get+` method for a canister with a `+canister_name+
 dfx canister call counter get --async
 ----
 
-In this example, the command includes the `+--async+` option to indicate that you want to make a separate `+request-status+` call rather than waiting to poll the replica for the result.
+In this example, the command includes the `+--async+` option to indicate that you want to make a separate `+request-status+` call rather than waiting to poll the local canister execution environment or the {platform} for the result.
 The `+--async+` option is useful when processing an operation might take some time to complete.
 The option enables you to continue performing other operations then check for the result using a separate `+dfx canister request-status+` command.
 The returned result will be displayed as the IDL textual format.
@@ -204,8 +206,8 @@ This example uses the raw data type to pass a hexadecimal to the `+greet+` funct
 
 == dfx canister create
 
-Use the `+dfx canister create+` command to register one or more canister identifiers without compiled code on the {IC} network.
-You must be connected to an {IC} network running locally or on a sub-network that you can access to run this command.
+Use the `+dfx canister create+` command to register one or more canister identifiers without compiled code.
+You must be connected to the local canister execution environment or the {platform} to run this command.
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
@@ -276,7 +278,7 @@ dfx canister create --with-cycles 8000000000000 --all
 
 == dfx canister delete
 
-Use the `+dfx canister delete+` command to delete a stopped canister from the local Internet Computer network or on a remote Internet Computer network.
+Use the `+dfx canister delete+` command to delete a stopped canister from the local canister execution environment or on the {platform}.
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
@@ -326,7 +328,7 @@ To delete the `+hello_world+` canister, you can run the following command:
 dfx canister delete hello_world
 ----
 
-To delete all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
+To delete all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
 
 [source,bash]
 ----
@@ -392,7 +394,7 @@ The command displays output similar to the following:
 
 == dfx canister install
 
-Use the `+dfx canister install+` command to install compiled code as a canister on the {IC} network running locally or on a sub-network that you can access.
+Use the `+dfx canister install+` command to install compiled code as a canister on the {platform} or on the local canister execution environment.
 
 === Basic usage
 
@@ -409,7 +411,7 @@ You can use the following optional flags with the `+dfx canister install+` comma
 |===
 |Flag |Description
 
-|`+--async+` |Enables you to continue without waiting for the result of the installation to be returned by polling the replica.
+|`+--async+` |Enables you to continue without waiting for the result of the installation to be returned by polling the {platform} or  the local canister execution environment.
 
 |`+-h+`, `+--help+` |Displays usage information.
 
@@ -458,7 +460,7 @@ If you are not using the `+--all+` option, the canister name is a required argum
 
 === Examples
 
-You can use the `+dfx canister install+` command to deploy WebAssembly you have compiled using the `+dfx build+` command as a canister on the network.
+You can use the `+dfx canister install+` command to deploy WebAssembly you have compiled using the `+dfx build+` command as a canister on the {platform} or on the local canister execution environment.
 The most common use case is to install all of the canisters by running the following command:
 
 [source,bash]
@@ -492,11 +494,11 @@ This command submits a request to install the canister and returns a request ide
 
 You can then use the request identifier to check the status of the request at a later time, much like a tracking number if you were shipping a package.
 
-==== Overriding the default network provider
+==== Overriding the default deployment options
 
-If you want to deploy a canister on a specific {IC} network without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the network you want to connect to by using the `+--network` option.
+If you want to deploy a canister on a testnet without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the testnet you want to connect to by using the `+--network` option.
 
-For example, you can specify a remote network URL by running a command similar to the following:
+For example, you can specify a testnet URL by running a command similar to the following:
 
 [source,bash]
 ----
@@ -571,7 +573,7 @@ This command displays an error message if the request identifier is invalid or r
 
 == dfx canister set-controller
 
-Use the `+dfx canister set-controller+` command to specify the identity name or principal to use as the new **controller** for a specified canister on the Internet Computer network.
+Use the `+dfx canister set-controller+` command to specify the identity name or principal to use as the new **controller** for a specified canister on the {platform}.
 A controller identity has special rights to manage the canister it controls.
 For example, only a controlling identity can be used to install, upgrade, or delete the canister under its control.
 
@@ -629,7 +631,7 @@ dfx canister set-controller hello_world wcp5u-pietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnl
 ....
 
 Although specifying a user identity name or principal is one potential use case, a more common scenario is to specify the wallet canister that you want to use to send cycles to the canister.
-The following steps illustrate this scenario when you are doing local development. For this example, assume you have created a project called `open_sf` with two canisters deployed on the {IC} running locally.
+The following steps illustrate this scenario when you are doing local development. For this example, assume you have created a project called `open_sf` with two canisters deployed on the local canister execution environment.
 
 . Create an identity—for example, `sf-controller`—to act as the controller.
 +
@@ -651,9 +653,9 @@ Using identity: "sf-controller".
 ....
 dfx identity get-wallet
 
-Creating a wallet canister on the local network.
+Creating a wallet canister on the local canister execution environment.
 r7inp-6aaaa-aaaaa-aaabq-cai
-The wallet canister on the "local" network for user "sf-controller" is "r7inp-6aaaa-aaaaa-aaabq-cai"
+The wallet canister on the  the local canister execution environment for user "sf-controller" is "r7inp-6aaaa-aaaaa-aaabq-cai"
 ....
 . Switch the active identity to the current controller of the canister. For example, if the default identity was used to create the canister, you would run the following command:
 +
@@ -715,7 +717,7 @@ Use the `+dfx canister send+` command to send a signed message created using the
 == dfx canister sign ==
 
 Use the `+dfx canister sign+` command before sending a message with the `+dfx canister send+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction. 
-For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message from a computer connected to the network.
+For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message from a computer connected to the {platform}.
 
 === Basic usage
 
@@ -783,7 +785,7 @@ Use the `+dfx canister sign+` command to create a signed `message.json` file usi
 
 Currently, the `+--no-wallet+` command must be used to execute the command using the user identity instead of the cycles wallet canister identifier. 
 
-This command illustrates how to creates a `+message.json+` file to create neurons on the network stpecified by the `+ic+` alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
+This command illustrates how to creates a `+message.json+` file to create neurons on the {platform} specified by the `+ic+` alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
 
 Note that the time allotted to send a signed message is a fixed 5-minute window. The `+--expire-after+` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `+--expire-after+` option to one hour (`+1h+`), you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute.
 
@@ -797,7 +799,7 @@ Send the signed message to the genesis token canister (GTC) to create a neuron o
 
 == dfx canister start
 
-Use the `+dfx canister start+` command to restart a stopped canister on the local Internet Computer network or on a remote Internet Computer network.
+Use the `+dfx canister start+` command to restart a stopped canister on the {platform} or the local canister execution environment.
 
 In most cases, you run this command after you have stopped a canister to properly terminate any pending requests as a prerequisite to upgrading the canister.
 
@@ -849,7 +851,7 @@ To start the `+hello_world+` canister, you can run the following command:
 dfx canister start hello_world
 ----
 
-To start all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
+To start all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
 
 [source,bash]
 ----
@@ -858,7 +860,7 @@ dfx canister --network=ic start --all
 
 == dfx canister status
 
-Use the `+dfx canister status+` command to check whether a canister is currently running, in the process of stopping, or currently stopped on the local Internet Computer network or on a remote Internet Computer network.
+Use the `+dfx canister status+` command to check whether a canister is currently running, in the process of stopping, or currently stopped on the {platform} or on the local canister execution environment.
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
@@ -908,7 +910,7 @@ To check the status of the `+hello_world+` canister, you can run the following c
 dfx canister status hello_world
 ----
 
-To check the status for all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
+To check the status for all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
 
 [source,bash]
 ----
@@ -917,7 +919,7 @@ dfx canister --network=ic status --all
 
 == dfx canister stop
 
-Use the `+dfx canister stop+` command to stop a canister that is currently running on the local Internet Computer network or on a remote Internet Computer network.
+Use the `+dfx canister stop+` command to stop a canister that is currently running on the {platform} or on the local canister execution environment.
 
 In most cases, you run this command to properly terminate any pending requests as a prerequisite to upgrading the canister.
 
@@ -969,7 +971,7 @@ To stop the `+hello_world+` canister, you can run the following command:
 dfx canister stop hello_world
 ----
 
-To stop all of the canisters you have deployed on the `+ic+` Internet Computer network, you can run the following command:
+To stop all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
 
 [source,bash]
 ----

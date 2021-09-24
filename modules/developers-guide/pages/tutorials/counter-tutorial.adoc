@@ -10,20 +10,19 @@ For this tutorial, the actor is named `+Counter+`.
 The program uses the `+currentValue+` variable to contain a natural number that represents the current value of the counter.
 This program supports the following function calls:
 
-* The `+increment+` function call updates the current value, incrementing by 1 (no return value).
-* The `+get+` function call queries and returns the current value.
+* The `+increment+` function call updates the current value, incrementing it by 1 (no return value).
+* The `+get+` function call queries and returns the current value of the counter.
 * The `+set+` function call updates the current value to an arbitrary numeric value you specify as an argument.
 
-This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister.
-By calling the function to increment a value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.
+This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister smart contract.
+By calling the functions to increment and query the counter value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.
 
 == Before you begin
 
 Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any {IC} network processes running on the local
-computer.
+* You have stopped any local canister execution environments running on the computer.
 
 This tutorial takes approximately 20 minutes to complete.
 
@@ -41,7 +40,7 @@ To create a new project directory for this tutorial:
 dfx new my_counter
 ----
 +
-The command creates a new `+my_counter+` project and Git repository for your project.
+The command creates a new `+my_counter+` project for your project.
 . Change to your project directory by running the following command:
 +
 [source,bash]
@@ -54,7 +53,7 @@ cd my_counter
 You have already seen that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
 In this tutorial, you will modify the default settings to use a different name for the main program in your project.
 
-To modify the default `+dfx.json+` configuration file:
+To modify the `+dfx.json+` configuration file:
 
 . Open the `+dfx.json+` configuration file in a text editor and change the default `+main+` setting from `+main.mo+` to `+increment_counter.mo+`.
 +
@@ -67,12 +66,12 @@ For example:
 +
 For this tutorial, changing the name of the source file from `+main.mo+` to `+increment_counter.mo+` simply illustrates how the setting in the `+dfx.json+` configuration file determines the source file to be compiled.
 +
-In a more complex application, you might have multiple source files with dependencies that you need to manage using settings in the `+dfx.json+` configuration file.
-In a scenario like that—with multiple canisters and programs defined in your `dfx.json` file—having multiple files all named `main.mo` might be confusing.
+In a more complex dapp, you might have multiple source files with dependencies that you need to manage using settings in the `+dfx.json+` configuration file.
+In a scenario like that—with multiple canister smart contracts and programs defined in your `dfx.json` file—having multiple files all named `main.mo` might be confusing.
 +
 You can leave the rest of the default settings as they are.
 . Save your change and close the `+dfx.json+` file to continue.
-. Change the name of the main program file in the source code directory to match the name specified in the `+dfx.json+` configuration file by running the following command
+. Change the name of the main program file in the source code directory `+src+` to match the name specified in the `+dfx.json+` configuration file by running the following command
 +
 [source,bash]
 ----
@@ -102,23 +101,23 @@ Let's take a closer look at this sample program:
 * You can see that the `+currentValue+` variable declaration in this example includes the `+stable+` keyword to indicate the state—the value that can be set, incremented, and retrieved—persists.
 +
 This keyword ensures that the value for the variable is unchanged when the program is upgraded. 
-* The declaration for the `+currentValue+` variable also specifies that its type is a natural (`+Nat+`) number.
-* The program includes two public update methods—the `+increment+` and `+set+` functions—and one a query method, in this case, the `+get+` function.
+* The declaration for the `+currentValue+` variable also specifies that its type is a natural number (`+Nat+`).
+* The program includes two public update methods—the `+increment+` and `+set+` functions—and one a query method-the `+get+` function.
 --
 +
 For more information about stable and flexible variables, see link:../../language-guide/upgrades{outfilesuffix}[Stable variables and upgrade methods] in the link:../../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
 +
-For more information about the differences between a query and an update, see link:../concepts/canisters-code{outfilesuffix}#query-calls[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
+For more information about the differences between a query and an update, see link:../concepts/canisters-code{outfilesuffix}#query-update[Query and update methods] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the file to continue.
 
-== Start the local network
+== Start the local canister execution environment
 
-Before you can build the `+my_counter+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+Before you can build the `+my_counter+` project, you need to either connect to a local canister execution environment simulating the {IC} blockchain or to the {IC} blockchain mainnet. 
 
-Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
+Starting the local canister execution environment requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
 
-To start the network locally:
+To start the local canister execution environment:
 
 [arabic]
 . Open a new terminal window or tab on your local computer.
@@ -128,24 +127,24 @@ To start the network locally:
 * You should now have **two terminals** open.
 * You should have the **project directory** as your **current working directory**.
 --
-. Start the {IC} network on your local computer by running the following command:
+. Start the local canister execution environment on your computer by running the following command:
 +
 [source,bash]
 ----
 dfx start
 ----
 +
-After you start the local network, the terminal displays messages about network operations.
+After you start the local canister execution environment, the terminal displays messages about network operations.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
 
-== Register, build, and deploy the application
+== Register, build, and deploy the dapp
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
+After you connect to the local canister execution environment running in your development environment, you can register, build, and deploy your dapp locally.
 
-To deploy the application locally:
+To deploy the dapp locally:
 
 . Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your application by running the following command:
+. Register, build, and deploy your dapp by running the following command:
 +
 [source,bash]
 ----
@@ -154,12 +153,12 @@ dfx deploy
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
 
-== Invoke methods on the deployed canister
+== Invoke methods on the deployed canister smart contract
 
-After successfully deploying the canister, you can simulate an end-user invoking the methods provided by the canister.
-For this tutorial, you invoke a `+get+` method to query the value of a counter, an `+increment+` method that increments the counter each time it is called, and a `+set+` method to pass an argument to update the counter to an arbitrary value you specify.
+After successfully deploying the canister smart contract, you can simulate an end-user invoking the methods provided by the canister.
+For this tutorial, you invoke the `+get+` method to query the value of a counter, the `+increment+` method that increments the counter each time it is called, and the `+set+` method to pass an argument to update the counter to an arbitrary value you specify.
 
-To test invoking methods on the deployed canister:
+To test invoking methods on the deployed canister smart contract:
 
 [arabic]
 . Run the following command to invoke the `+get+` function, which reads the current value of the `+currentValue+` variable on the deployed canister:
@@ -172,7 +171,7 @@ dfx canister call my_counter get
 The command returns the current value of the `+currentValue+` variable as zero:
 +
 ....
-(0)
+(0 : nat)
 ....
 [arabic]
 . Run the following command to invoke the `+increment+` function to increment the value of the `+currentValue+` variable on the deployed canister by one:
@@ -194,7 +193,7 @@ dfx canister call my_counter get
 The command returns the updated value of the `+currentValue+` variable as one:
 +
 ....
-(1)
+(1 : nat)
 ....
 [arabic]
 . Run additional commands to experiment with invoking other methods and using different values.
@@ -207,7 +206,8 @@ dfx canister call my_counter set '(987)'
 dfx canister call my_counter get
 ----
 +
-Returns the current value of 987.
+This returns the updated value of the `+currentValue+` to be 987.
+Running the additional commands
 +
 [source,bash]
 ----
@@ -215,21 +215,21 @@ dfx canister call my_counter increment
 dfx canister call my_counter get
 ----
 +
-Returns the incremented value of 988.
+returns the incremented `+currentValue+` of 988.
 
 include::example$candid-ui.adoc[]
 +
 image:candid-counter.png[Counter functions]
 
-== Stop the local network
+== Stop the local canister execution environment
 
-After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local canister execution environment:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal that displays network operations, press Control-C to interrupt the local canister execution environment.
 
-. Stop the {IC} network by running the following command:
+. Stop the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

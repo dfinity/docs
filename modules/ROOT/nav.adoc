@@ -4,6 +4,7 @@
 ** xref:introduction:welcome.adoc#for-protocol-enthusiasts[For: Protocol Enthusiasts]
 
 * xref:quickstart:quickstart-intro.adoc[Quick Start]
+** xref:quickstart:newcomers.adoc[For Newcomers]
 ** xref:quickstart:local-quickstart.adoc[Local Development]
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
 

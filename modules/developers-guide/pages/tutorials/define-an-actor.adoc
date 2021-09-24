@@ -109,7 +109,7 @@ The `+dfx build --check+` command uses a temporary, hard-coded canister identifi
 To check that the canister builds:
 
 . Navigate back to the root of your project directory.
-. Build the canister executable with a temporary, hard-coded identifier by running the following commands:
+. Build the canister executable with a temporary, hard-coded identifier by running the following command:
 +
 [source,bash]
 ----
@@ -200,7 +200,7 @@ For example:
   }
 }
 ....
-. Build the canister by running the following commands:
+. Build the canister by running the following command:
 +
 [source,bash]
 ----

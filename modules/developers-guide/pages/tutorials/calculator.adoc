@@ -240,7 +240,7 @@ image:candid-calc.png[Calculator functions]
 
 == Stop the local canister execution environment
 
-After you finish experimenting with the program, you can stop the local canister execution environment  so that it doesn't continue running in the background.
+After you finish experimenting with the dapp, you can stop the local canister execution environment  so that it does not continue running in the background.
 
 To stop the local canister execution environment:
 

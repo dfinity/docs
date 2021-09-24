@@ -92,7 +92,7 @@ Let's take a closer look at this Motoko actor defining our canister:
 +
 --
 * The code imports a `+Debug+` module to provide the `+print+` functionality.
-* The canister uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` canister doesn't make any persistent changes to the state of the canister smart contract - any changes are transient and discarded after the query completes.
+* The actor uses the `+public query func+` declaration to define an {IC} _query_ method.  Our method doesn't need to make any permanent changes to the state of the actor. Declaring it as a query means that  any changes it does make are transient and discarded after the query completes.
 --
 +
 For more information about using a query call, see link:../concepts/canisters-code{outfilesuffix}#query-update[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].

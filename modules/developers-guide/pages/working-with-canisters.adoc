@@ -98,7 +98,7 @@ dfx build
 [[deploy-canister]]
 == Deploy canister smart contracts
 
-After you have compiled a program, you can install the compiled code in a canister smart contract running either on a local canister execution environment or on a remote environment like the {IC} blockchain.
+After you have compiled a program, you can install the compiled code in a canister smart contract running either on a local canister execution environment or on the {IC} blockchain.
 
 The canister identifier that was created in advance or during the build process determines where your code is installed during deployment.
 

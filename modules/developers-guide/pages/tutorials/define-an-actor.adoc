@@ -67,7 +67,7 @@ include::example$define-actor-dfx.json[]
 == Modify the default canister
 
 In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
-In this tutorial, you modify the template code to create a simple "Hello, World!" canister that uses an actor.
+In this tutorial, you modify the template code to create a simple "Hello, World!" canister. by defining an actor in {proglang}. In Motoko,  an {IC} canister is representeded as a Motoko actor.
 
 To modify the default template source code:
 

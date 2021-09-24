@@ -91,7 +91,7 @@ include::example$actor_hello.mo[]
 Let's take a closer look at this Motoko actor defining our canister:
 +
 --
-* The canister imports a `+Debug+` module to provide the `+print+` functionality.
+* The code imports a `+Debug+` module to provide the `+print+` functionality.
 * The canister uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` canister doesn't make any persistent changes to the state of the canister smart contract - any changes are transient and discarded after the query completes.
 --
 +

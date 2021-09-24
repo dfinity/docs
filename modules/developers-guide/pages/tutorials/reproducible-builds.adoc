@@ -267,9 +267,6 @@ It will then run the build in two different environments.
 Finally, you need to tell `reprotest` which paths to compare at the end of the two builds.
 Here, we compare the WASM code for all canisters, which is found in the `.dfx/ic` directory.
 
-If the comparison finds any differences between the WASM code produced in two builds, it will output a diff.
-You will then likely want to use the `--store-dir` flag of `reprotest` to store the outputs and the diff somewhere where you can analyze them.
-
 If the comparison doesn't find any differences, you will see an output similar to this one:
 
 ----
@@ -280,7 +277,13 @@ No differences in ./.dfx/local/canisters/*/*.wasm
 
 Congratulations - this is a good indicator that your build is reproducible!
 However, we recommend you to run the container builds under several host operating systems and comparing the results.
-And finally, there are still other things to consider for the long term.
+If the comparison does find differences between the WASM code produced in two builds, it will output a diff.
+You will then likely want to use the `--store-dir` flag of `reprotest` to store the outputs and the diff somewhere where you can analyze them.
+If you are struggling to achieve reproducibility, consider also using https://github.com/dettrace/dettrace[DetTrace],
+which is a container abstraction that tries to make arbitrary builds deterministic.
+
+Finally, even after you achieve reproducibility for your builds, there are still other things to consider 
+for the long term.
 
 === Long-term considerations
 

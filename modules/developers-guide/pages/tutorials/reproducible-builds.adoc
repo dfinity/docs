@@ -1,28 +1,29 @@
 = Reproducible Canister Builds
 
-The {IC} always ensures that the code of a canister executes correctly.
-But how do you verify whether it's executing the _intended_ code for a canister?
-This document shows a common way of verifing that.
+Thanks to its consensus protocol, the {IC} always runs canisters code correctly.
+But this doesn't mean that it's running the _correct_ code for a canister.
+In particular, if you are a canister user as opposed to the owner, you may want to verify that the canister is running some intended code before giving it control over your digital assets or confidential data.
+Verifying this requires answering two questions:
 
-There are two parts to this question:
-
-1. Which code is being executed for a canister? 
-   The {IC} executes WebAssembly (WASM) code, and provides information about the code.
-2. The canisters are rearely written in WASM directly, but normally in a higher-level language, such as Motoko or Rust.
+1. Which WebAssembly (WASM) code is being executed for a canister? 
+2. The canisters are rarely written in WASM directly, but normally in a higher-level language, such as Motoko or Rust.
    The question is then: does the purported source code of the canister really result in the WASM that's running? 
-   To be able to answer this, canister authors should ensure https://reproducible-builds.org/docs/definition/[reproducible builds] of the WASM code. 
-   Such builds allows anyone to follow the same steps as the canister authors and yield the exact same WASM code,
-   which can then be compared to the code executing on the {IC}.
-   Moreover, the build process has to be trusted by the user.
 
-The rest of the document explains both how to retrieve information about code being executed, and instructs authors how to ensure reproducibility of their builds.
-The impatient reader who is familiar with the topic of reproducible builds can skip to the <<repro-build-summary>>.
+The rest of the document answers these questions.
+For the first question, we will see how the {IC} provides information about canister code.
+To be able to answer the second questions, canister authors should ensure trusted and 
+https://reproducible-builds.org/docs/definition/[reproducible builds] of the WASM code from the source.
+Such builds allows anyone to follow the same steps as the canister authors and yield the exact same WASM code,
+which can then be compared to the code executing on the {IC}.
+
+The impatient reader who is familiar with the topic of reproducible builds can skip straight to the <<repro-build-summary>>.
 
 == Finding out which code the {IC} is executing
 
 {IC} does not allow you to access the WASM code of an arbitrary canister.
 This is a design decision, as developers might want to keep some code private.
-However, the {IC} does allow you to access the _cryptographic hash_ of the WASM code of a canister, or more concretely, the SHA-256 hash.
+However, the {IC} does allow you to access the _cryptographic hash_ of the WASM code of a canister.
+More concretely, it provides you the SHA-256 hash of the code.
 
 To obtain this hash, you must first note the ID of the {IC} canister whose code you want to check.
 For example, assume we're interested in the code of the Internet Identity canister, whose ID is `rdmx6-jaaaa-aaaaa-aaadq-cai`.
@@ -35,12 +36,12 @@ Controller: r7inp-6aaaa-aaaaa-aaabq-cai
 Module hash: 0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4
 ----
 
-NOTE: If you are running an old version of `dfx`, you will need to run this command from a directory that contains a valid `dfx.json` file.
+NOTE: If you are running an older version of `dfx`, you will need to run this command from a directory that contains a valid `dfx.json` file.
 If you don't have such a directory, you can create it using `dfx new`.
 
 Here, the {IC} tells us that the hash of the code of the `rdmx6-jaaaa-aaaaa-aaadq-cai` canister (which happens to be the internet identity canister) is `0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4`.
 
-CAUTION: The check above provides you the _current_ hash of the canister, but the _controllers_ of an {IC} canister may change the code at any time (e.g., to upgrade a canister). Currently, there is only way to ensure that the canister hasn't changed its code since you last checked it: the canister's controllers must be empty.
+CAUTION: The check above provides you the _current_ hash of the canister, but the _controllers_ of an {IC} canister may change the code at any time (e.g., to upgrade a canister). Currently, there is only way to ensure that the canister hasn't changed its code since you last checked it: the canister's controllers must be empty, preventing the code from upgrading.
 
 Armed with this hash, you can next check whether it corresponds to some given source code.
 This only works if the build process for the code is reproducible.
@@ -53,6 +54,7 @@ As a canister author, there are a few things you have to provide to your users t
 * Instructions on how to recreate your build environment.
 * Instructions on how to repeat the process of building the WASM from the source code.
   Crucially, the process must be deterministic, to ensure that it results in the exact same WASM.
+  It also has to be trusted, such that the user can be convinced that the WASM is a faithful translation of the source code, and not an artifact of a malicious build tool.
 
 We next look at each of these points in more detail.
 
@@ -67,22 +69,22 @@ Alternatively, you can also provide a package (e.g., a zip file or a tarball) co
 Before building your code, you should note down the exact versions of your system and the build tools, as well as the environment variables you are using.
 In particular, for the languages supported by the {IC} SDK:
 
-* Note down the operating system and the version you are using to build your canister.
+* Note down the operating system and its version you are using to build your canister.
 * If you are using `dfx`, note the version used, as specified in `dfx.json`. You can install arbitrary versions
   of `dfx` using `dfx toolchain install <version>`, or by running the installation script with the `DFX_VERSION`
-  set to the desired version.
+  environment variable set to the desired version.
 * If you are building Motoko code in a way other than `dfx build`, note the version of `moc` you are using.
 * If you are building Rust, note the version of `cargo` you are using.
-* If you are using Node.js, `npm` and/or `webpack`, note their versions.
-* If your build process depends on any environment variables (such as time zone or local), note them down.
+* If you are using Node.js and/or `webpack` for frontend development, note their versions.
+* If your build process depends on any environment variables (such as the time zone or locale), note them down.
 
 You should communicate all of these to your user in the instructions.
 Ideally, do so by providing an executable recipe to recreate the build environment, using tools such as Docker or Nix.
-We recommend using Docker, as this allows you to also fix the platform used for building the software.
+We recommend using Docker, as this allows you to also fix the operating system used for building the software.
 
 === Build environments using Docker
 
-https://docs.docker.com/[Docker containers] are a popular solution to providing build environments.
+https://docs.docker.com/[Docker containers] are a popular solution for providing build environments.
 You can use a `Dockerfile` such as the following to provide the user with a particular version of the operating system,
 as well as `dfx`, `Nodejs` and the Rust toolchain.
 
@@ -119,8 +121,7 @@ ENV CARGO_HOME=/cargo \
     CARGO_TARGET_DIR=/cargo_target \
     PATH=/cargo/bin:$PATH
 
-# Install dfx; the version is picked up the DFX_VERSION environment variable
-# Specify the dfx version to download
+# Install dfx; the version is picked up from the DFX_VERSION environment variable
 ENV DFX_VERSION=0.8.1
 RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
@@ -133,16 +134,16 @@ There are a couple of things worth noting about this `Dockerfile`:
   This provides the user with confidence that the build environment hasn't been tampered with, and thus that the build process 
   using Docker can be trusted.
 * To ensure that specific versions of the build tools are installed, it installs them directly, rather than through 
-  the package manager of the Linux distribution running inside of the container.
+  `apt` (the package manager of Ubuntu, the Linux distribution running inside of the container).
   Such package managers usually don't provide a way of pinning the build tools to a specific versions.
 
-To use this `Dockerfile`, get Docker up and running, place the `Dockerfile` in the directory containing the source of your canister,
-and create the Docker container by running:
+To use this `Dockerfile`, get Docker https://docs.docker.com[up and running], place the `Dockerfile` in the project directory 
+of your canister, and create the Docker container by running:
 ----
 $ docker build -t mycanister .
 ----
 
-This creates a Docker container called `mycanister`, with npm, Rust and `dfx` installed in it, and your canister source code
+This creates a Docker container image called `mycanister`, with Node.js, Rust and `dfx` installed in it, and your canister source code
 copied to `/canister`.
 You can then enter an interactive shell inside of your container by running:
 ----
@@ -165,7 +166,7 @@ For the build process to be deterministic:
    * For `npm`, running `npm install` will create a `package-lock.json` file with some fixed versions of all 
      transitive dependencies of your project that satisfy the requirements specified in your `package.json`.
      However, `npm install` does not honor the `package-lock.json` file by default.
-     Thus, once you create the final version of your canister, run `npm install` only once.
+     Thus, once you are ready create the final version of your canister, run `npm install` only once.
      After that, commit `package-lock.json` to your version control system.
      Finally, when checking the build for reproducibility, use `npm ci` instead of `npm install`.
 
@@ -180,7 +181,7 @@ For the build process to be deterministic:
 
 .  Your own build scripts must not introduce non-determinism.
    Obvious sources of non-determinism include randomness, timestamps, or code obfuscators.
-   Less obvious sources include locales, absolute file paths, and remote URLs whose content can change.
+   Less obvious sources include locales, absolute file paths, order of files in a directory, and remote URLs whose content can change.
    Furthermore, relying on third-party build plug-ins exposes you to any non-determinism introduced by these.
 
 .  Given the same dependencies and deterministic build scripts, the build tools themselves (`moc` for Motoko, `cargo` for Rust, `webpack` 
@@ -188,8 +189,9 @@ For the build process to be deterministic:
    The good news is that all of these tools aim to be deterministic.
    However, they are complicated pieces of software, and ensuring determinism is non-trivial.
    Thus, non-determinism bugs can and do occur.
-   For example, see the https://github.com/rust-lang/rust/labels/A-reproducibility[list of current potential non-determinism issues in Rust].
-   For webpack, determinism is important to ensure caching, and webpack has since version 5 introduced deterministic naming.
+   For Rust, see the https://github.com/rust-lang/rust/labels/A-reproducibility[list of current potential non-determinism issues in Rust].
+   Furthermore, we have observed differences between Rust code compiled to WASM under Linux and MacOS, and thus recommend fixing the platform.
+   For webpack, determinism is important to ensure caching, and webpack has since version 5 introduced https://webpack.js.org/configuration/optimization/[deterministic naming of module and chunk IDs] that you should use.
    The Motoko compiler aims to be deterministic, but there are currently known issues.
    Absolute file paths might be included in the binary, and the Motoko runtime bundled in the canisters may differ between platforms (such as Linux and MacOS).
    You can work around these issues by performing your build in a Docker container, as this will fix both the platform and the file paths.
@@ -198,9 +200,10 @@ For the build process to be deterministic:
 
 While the above guidelines should help you achieve reproducible builds, they are by no means perfect.
 If reproducibility is vital for your code, you should test your builds to increase your confidence in their reproducibility.
-This is non-trivial: we have seen real-world examples where non-determinism in a canister build took a month to show up!
+Such testing is non-trivial: we have seen real-world examples where non-determinism in a canister build took a month to show up!
 Fortunately, a tool called https://salsa.debian.org/reproducible-builds/reprotest[reprotest] can help you automate reproducibility tests.
-It tests your build by running it in two different environments, which differ in characteristics such as paths, times, file order, and others.
+It tests your build by running it in two different environments, which differ in characteristics such as paths, times, file order, and others,
+and comparing the results.
 To use it, you can put the following `Dockerfile` in the root directory of your canister project.
 
 ----
@@ -234,11 +237,11 @@ ENV CARGO_HOME=/cargo \
     CARGO_TARGET_DIR=/cargo_target \
     PATH=/cargo/bin:$PATH
 
-# Install dfx; the version is picked up the DFX_VERSION environment variable
+# Install dfx; the version is picked up from the DFX_VERSION environment variable
 ENV DFX_VERSION=0.8.1
 RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
-# Install reprotest and useful tools it relies on
+# Install reprotest and some tools it relies on
 RUN apt -yqq install --no-install-recommends reprotest disorderfs faketime sudo wabt
 
 COPY . /canister
@@ -256,18 +259,18 @@ root@6fe19d89f8f5:/canister# reprotest -vv "dfx build --network ic" '.dfx/ic/can
 
 The first command builds the Docker canister using the above `Dockerfile`.
 The second one opens an interactive shell (hence the `--it` flags) in the canister.
-We run this in privileged mode, as `reprotest` installs some kernel modules to modify environments.
+We run this in privileged mode (the `--privileged` flag), as `reprotest` uses kernel modules for some build environment variations.
 You can also run it in non-privileged mode by excluding some of the variations; see the https://manpages.debian.org/stretch/reprotest/reprotest.1.en.html[reprotest manual].
 Finally, once inside of the canister, we launch `reprotest` in verbose mode (the `-vv` flags).
-You need to give it the build command you want to run as the first argument; here, we assume that it's just `dfx build`.
+You need to give it the build command you want to run as the first argument; here, we assume that it's just `dfx build --network ic`.
 It will then run the build in two different environments.
-Finally, you need to tell `reprotest` which paths to compare at the end of the two build.
-Here, we compare the wasm code for all canisters, which is found in the `.dfx/ic` directory.
+Finally, you need to tell `reprotest` which paths to compare at the end of the two builds.
+Here, we compare the WASM code for all canisters, which is found in the `.dfx/ic` directory.
 
-If the comparison finds any differences between the wasm code produced in two builds, it will output a diff.
+If the comparison finds any differences between the WASM code produced in two builds, it will output a diff.
 You will then likely want to use the `--store-dir` flag of `reprotest` to store the outputs and the diff somewhere where you can analyze them.
 
-If the comparison doesn't find any differences, you will see output similar to this one:
+If the comparison doesn't find any differences, you will see an output similar to this one:
 
 ----
 No differences in ./.dfx/local/canisters/*/*.wasm
@@ -276,7 +279,8 @@ No differences in ./.dfx/local/canisters/*/*.wasm
 ----
 
 Congratulations - this is a good indicator that your build is reproducible!
-However, there are still other things to consider for the long term.
+However, we recommend you to run the container builds under several host operating systems and comparing the results.
+And finally, there are still other things to consider for the long term.
 
 === Long-term considerations
 
@@ -289,42 +293,38 @@ The biggest challenges are to ensure that your:
 
 Distributions and package archives may drop old versions of packages, including both your toolchain and their dependencies.
 Web sites may go offline and URLs might stop working.
-Thus, it's thus prudent to back up all of your toolchain and dependencies.
+Thus, it'thus prudent to back up all of your toolchain and dependencies.
 You should consider getting involved in projects such as https://www.softwareheritage.org/[Software Heritage], which do this on a large scale.
-At some later point in time, you might have to adjust your build process later (e.g., by changing URLs) to ensure that your canister still builds.
-Nevertheless, if the build still yields the same result, you can still convince the user that your canister is running the correct code.
-This may be easier if you source your dependencies from a trustworthy source, such as the Software Heritage project.
+At some later point in time, you might have to adjust your build process (e.g., by changing URLs) to ensure that your canister still builds.
+Even if the build changes, if it still yields the same result, your users can be confident that your canister is running the correct code.
+The trust argument is easier if your dependencies come from a trustworthy source, such as the Software Heritage project.
 
 == Summary
 [[repro-build-summary]]
 
 Summarizing our recommendations for canister authors:
 
-* Ideally, use Docker to conveniently set up the operating system and the build tools, and fix their versions for the user.
+* Ideally, when producing the final version of your container code, use Docker or a similar technology to conveniently set up the 
+  operating system and the build tools, and fix their versions for the user. 
   If the build tools you are using don't guarantee fully reproducible builds, Docker can also help by minimizing the differences in paths, environment variables etc.
-* The build tools and the base Docker image should be sourced from somewhere that user can trust.
-* Rust and Motoko compilers aim to be deterministic, and thus support reproducible builds. If you notice non-determinism, file bug reports.
+* The build tools and the base Docker image should be sourced from somewhere that the user can trust.
+* Rust and Motoko compilers aim to be deterministic, and thus to support reproducible builds. If you notice non-determinism, file bug reports.
 * When using NPM, ensure that you specify the exact versions of all your dependencies (commit `package_lock.json` to your git repo!).
-  Invoke NPM using the `ci` command rather than `install`. Similarly, for Rust packages commit `Cargo.lock` to your repository, and then
-  use `cargo build --locked` when building the package.
+  Invoke NPM using the `ci` command rather than `install` to reproduce the build. 
+  Similarly, for Rust packages commit `Cargo.lock` to your repository, and then use `cargo build --locked` when building the package.
 * Webpack builds should be deterministic, but obfuscators and similar tools may compromise reproducibility.
   Make sure you use deterministic chunk and module IDs.
 * Build tools aren't perfect, and may fail to ensure reproducible builds. 
-  If reproducibility is critical for your canister (e.g., it holds a large amount of funds), test it.
+  If reproducibility is critical for your canister (e.g., it holds other users' funds), test it.
   Reprotest is a useful tool for this purpose.
-* Ideally, you want to minimize the number of dependencies, as, in order to do a full audit, the user should (reproducibly) rebuild all 
+* Ideally, you want to minimize the number of dependencies, as, in order to do a full audit, the user may have to (reproducibly) rebuild all 
   of your dependencies too. 
-  This is especially important if you plan to run the same canister code for a long time, while ensuring
-  reproducible builds.
+* Achieving reproducibility is harder over longer time scales, primarily as you need to ensure that a trustworthy source of your 
+  dependencies and build tools stays available.
 
-Finally, if your build is reproducible, you can compare the hash of the resulting WASM code to the hash of the code that is running in a canister as follows:
+Finally, if your build is reproducible, you can compare the hash of the resulting WASM code to the hash of the code that is running in a canister, which you retrieve as follows:
 ----
 $ dfx canister --no-wallet --network ic info <canister-id>
 ----
 
 Beware that this hash might change if the controllers upgrade the canister code.
-
-== Remaining questions
-
-* How does the Wasm stay they same when I changed the canister IDs in the different versions of dfinihack?
-  How are the calls to a different canister routed? Or perhaps the frontend canister wasn't actually doing anything?

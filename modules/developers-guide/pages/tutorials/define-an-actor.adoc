@@ -159,7 +159,7 @@ If you wanted to deploy this project, you would need to do the following:
 * Deploy the canister.
 
 Let's consider these steps in a bit more detail.
-Before you can deploy this project, you must connect to the {IC} network either running *locally* in your development environment or running on a subnetwork *remotely*.
+Before you can deploy this project, you must connect to either your local canister execution environment, provided by `dfx`, or to the Internet Computer blockchain network.
 After you connect to a local or remote network, you must also generate a unique, *network-specific* canister identifier to replace your locally-defined identifier.
 To see the steps involved for yourself, let's deploy the project locally.
 

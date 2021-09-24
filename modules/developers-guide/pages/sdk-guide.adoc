@@ -6,27 +6,22 @@
 :page-layout: home
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {platform} is poised to help you start a revolution with a new way to design, build, and release software.
+The {IC} blockchain is poised to help you start a revolution with a new way to design, build, and release dapps.
 
-== Developing open internet applications
+== Developing dapps
 
-Conceptually, the Internet Computer is an extension of the existing internet that enables a global network of computers to provide the computing power for running application software.
+The {IC} is a blockchain that runs canister smart contracts, which are code units bundling together WebAssembly bytecode and the memory pages the bytecode runs in. The {IC} is composed of individual subnet blockchains running in parallel and connected together by the use of Chain Key Cryptography. This means that canisters running on a subnet can seamlessly call canisters hosted in any other subnet of the {IC} blockchain. Moreover, the governance system of the {IC} can dynamically increase the capacity of the {IC} by adding new subnets, allowing dapps to scale out.
 
-In much the same way that the adoption of the transport control protocol (TCP) and Internet protocol (IP) provided rules for transferring data between endpoints that helped to establish the “network of networks” that we know as the internet of today, the {IC} relies on a decentralization protocol called the {IC} protocol to define the software components that enable a global network of computers to combine their resources to read, replicate, modify, and return application state.
+Developers can thus build new dapps consisting of multiple canisters running in parallel on different subnets and possibly integrate them with existing canisters already running on the {IC}.
 
 == Developer workflow at-a-glance
 
-At a high-level, there are three possible workflows for building applications that run on the {IC}.
+At a high-level, there are two main possible workflows for developing dapps that run on the {IC} blockchain.
 
 image:local-remote-path-workflow.svg[Development paths]
 
-The first path is the most common: you connect to the Internet Computer running locally, then write, compile, and deploy iteratively in a local development environment. 
+* *Local development:* you start a local canister execution environment simulating the {IC} blockchain on your computer. Then you write, compile, install and iteratively update your canisters in the local execution environment. This gives you the possibility to test your canisters locally without the need to use cycles to power them.
 
-If you prefer to do all of your development work without connecting to a local or remote network, you can follow the second path and only connect to the network when you are ready to compile and deploy.
-With this option, you only connect to the Internet Computer network and register for a unique identifier after you have a program ready to deploy.
+* *On-chain deployment:* once your dapp is ready you can then deploy it to the {IC} blockchain mainnet, making it available for the world to use it. Note that your canisters need to have cycles to be able to run on the {IC} blockchain mainnet, as discussed in link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and cycles].
 
-In the third path, you connect to the Internet Computer running on a remote network, then register for a unique identifier before you have a program ready to compile. 
-With this option, you can preregister with the network to receive a unique identifier, then compile and deploy using a known identifier when you are ready to move your application to the network.
-
-Regardless of the development workflow you choose, keep in mind that you must connect to the {IC} network running locally or on a remote subnet to register your smart contract canister and that registering your canister creates a unique, network-specific identifier for the canister.
-For example, if you do all of your initial development work locally using a local canister identifier and later want to deploy your application on an {IC} network running remotely, you will need to connect to the remote network and register an identifier on that network before you can deploy the application.
+Regardless of the development workflow you choose, keep in mind that when you deploy a canister for the first time, either on a local execution environment or on the {IC}, a unique link:../developers-guide/glossary{outfilesuffix}#g-principal[principal identifier] is created for your canister smart contract. For example, if you start developing your canister locally and then deploy it to the {IC}, then your canister will generally have a different identifier on the local execution environment and on the {IC} blockchain mainnet. Note that it is also possible for you to register a principal identifier for your new canister before deploying it or even writing any line of code.

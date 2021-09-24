@@ -75,7 +75,7 @@ The command returns the current value for the configuration option:
 "staging/"
 ----
 
-Similarly, you can change the name of the main source file or the port number for the local network replica by running commands similar to the following:
+Similarly, you can change the name of the main source file or the port number for the local canister execution environment by running commands similar to the following:
 
 [source,bash]
 ----

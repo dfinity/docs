@@ -101,9 +101,9 @@ For more information about using a query call, see link:../concepts/canisters-co
 == Build the canister with a local identifier
 
 You are probably only going to use this simple canister for some local testing.
-Therefore, there's no need to reserve a unique canister identifier on the {IC} network to hold the compiled output for the canister.
+Therefore, there's no need to reserve a unique canister identifier on the {IC} blockchain mainnet to hold the compiled output for the canister.
 
-In this scenario, you can compile the canister without connecting to an {IC} network at all.
+In this scenario, you can compile the canister without connecting to the {IC} blockchain mainnet at all.
 Instead, the `+dfx build+` command creates a local, hard-coded canister identifier for you to use.
 
 You can use this local identifier while you are testing your canister or any time you want to compile your canister without starting the local canister execution environment process locally or connecting to a replica on a remote subnet.
@@ -151,16 +151,16 @@ The command displays output similar to the following
 
 == Deploy the project
 
-You cannot deploy the output from the `+dfx build --check+` command to any {IC} network.
+You cannot deploy the output from the `+dfx build --check+` command to any {IC} mainnet.
 If you wanted to deploy this project, you would need to do the following:
 
-* Connect to the {IC} network.
+* Connect to the {IC} mainnet.
 * Register a network-specific canister identifier.
 * Deploy the canister.
 
 Let's consider these steps in a bit more detail.
-Before you can deploy this project, you must connect to either your local canister execution environment, provided by `dfx`, or to the Internet Computer blockchain network.
-After you connect to a local canister execution environment or remote network, you must also generate a unique, *network-specific* canister identifier to replace your locally-defined identifier.
+Before you can deploy this project, you must connect to either your local canister execution environment, provided by `dfx`, or to the Internet Computer blockchain mainnet.
+After you connect to a local canister execution environment or {IC} mainnet, you must also generate a unique, *mainnet-specific* canister identifier to replace your locally-defined identifier.
 To see the steps involved for yourself, let's deploy the project locally.
 
 To deploy this project locally:
@@ -173,7 +173,7 @@ To deploy this project locally:
 dfx start --background
 ----
 +
-For this tutorial, you can use the `+--background+` option to start the {IC} network as background processes.
+For this tutorial, you can use the `+--background+` option to start the local canister execution environment as background processes.
 With this option, you can continue to the next step without opening another terminal shell on your local computer.
 . Generate a new canister identifier for your project on the local canister execution environment by running the following command:
 +
@@ -191,7 +191,7 @@ Creating canister "actor_hello"...
 "actor_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 +
-The `+dfx canister create+` command also stores the network-specific canister identifier in a `+canister_ids.json+` file in the `+.dfx/local+` directory.
+The `+dfx canister create+` command also stores the mainnet-specific canister identifier in a `+canister_ids.json+` file in the `+.dfx/local+` directory.
 +
 For example:
 +
@@ -235,7 +235,7 @@ For example, the canister displays "Hello, World from DFINITY" in output similar
 [Canister rrkah-fqaaa-aaaaa-aaaaq-cai] Hello, World from DFINITY 
 ....
 +
-Note that if you are running the Internet Computer network in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays network activity.
+Note that if you are running the Internet Computer mainnet in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays mainnet activity.
 
 == Stop the local canister execution environment
 
@@ -244,7 +244,7 @@ After you finish experimenting with your canister, you can stop the local canist
 To stop the local canister execution environment, you can:
 
 . In the terminal used to interact with your canister, issue the command `dfx stop`; or
-. In the terminal that displays network operations, press Control-C to interrupt the local canister execution environment process; or
+. In the terminal that displays operations from the local canister execution environment, press Control-C to interrupt that process; or
 . Kill the `replica` process using commands or tools of your operating system.
 
 . Stop the local canister execution environment by running the following command:

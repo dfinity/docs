@@ -17,7 +17,7 @@ Note that the link:https://github.com/dfinity/cdk-rs[Rust canister development k
 
 === Create a project
 
-Because most Rust programmers use Cargo to handle build and package management tasks—such as downloading and compiling the libraries your dapp depends on, your first step is to create a new Rust project using the Cargo command-line interface.
+Because most Rust programmers use Cargo to handle build and package management tasks, such as downloading and compiling the libraries your dapp depends on, your first step is to create a new Rust project using the Cargo command-line interface.
 
 Alternatively, you could create a new project using {sdk-long-name} instead of Cargo, but creating a project using Cargo represents the typical workflow for creating Rust projects.
 

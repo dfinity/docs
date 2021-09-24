@@ -151,7 +151,7 @@ The command displays output similar to the following
 
 == Deploy the project
 
-You cannot deploy the output from the `+dfx build --check+` command to any {IC} mainnet.
+You cannot deploy the output from the `+dfx build --check+` command to  a local canister execution environment or the {IC} mainnet.
 If you wanted to deploy this project, you would need to do the following:
 
 * Connect to the {IC} mainnet.

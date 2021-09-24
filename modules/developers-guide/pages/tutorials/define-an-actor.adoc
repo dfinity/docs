@@ -160,7 +160,7 @@ If you wanted to deploy this project, you would need to do the following:
 
 Let's consider these steps in a bit more detail.
 Before you can deploy this project, you must connect to either your local canister execution environment, provided by `dfx`, or to the Internet Computer blockchain mainnet.
-After you connect to a local canister execution environment or {IC} mainnet, you must also generate a unique, *mainnet-specific* canister identifier to replace your locally-defined identifier.
+After you connect to a local canister execution environment or {IC} mainnet, you must also generate a unique, *connection-specific* canister identifier to replace your locally-defined identifier.
 To see the steps involved for yourself, let's deploy the project locally.
 
 To deploy this project locally:

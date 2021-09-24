@@ -106,7 +106,7 @@ on the {IC} blockchain mainnet.
 However, it's also possible to compile your program without connecting to the {IC} blockchain mainnet at all.
 The `+dfx build --check+` command uses a temporary, hard-coded canister identifier to accomplish this.
 
-To check that the program builds:
+To check that the canister builds:
 
 . Navigate back to the root of your project directory.
 . Build the canister executable with a temporary, hard-coded identifier by running the following commands:

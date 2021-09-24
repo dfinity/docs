@@ -8,12 +8,12 @@ The {IC} is not physical hardware that exists in any physical location.
 Instead, the {IC} combines computing resources provided by independently-operated data centers around the world.
 
 Unlike a public or private cloud, the {IC} is not owned and operated by a single private company.
-Instead, the {IC} is a public utility with updates and operations that are managed through an algorithmic, decentralized proof-of-stake (POS) governance system defined in the protocol.
+Instead, the {IC} is a public utility with updates and operations that are managed through an algorithmic, decentralized governance system defined in the protocol.
 Its architecture enables multiple computers to operate like one, very powerful, virtual machine.
 
-The computers that make up the virtual machine are organized into sub-blockchain networks of data centers around the globe.
+The nodes located in data centers around the globe that make up the Internet Computer are organized into subnet blockchains that in turn connect to each other using Chain Key cryptography.
 The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
-Independent data centers receive remuneration for contributing computing capacity and hosting services to support dapps running on the {IC}.
+Independent node operators pay data centers to host their nodes and receive remuneration for contributing computing capacity and hosting services to support dapps running on the {IC}.
 
 == Subnets and data centers
 
@@ -30,7 +30,7 @@ In this simplified scenario:
 * Each data center has hardware supplied by multiple node providers.
 * Any single node provider might have equipment in multiple data centers.
 
-Although this example represents one blockchain subnet with nodes in multiple data centers, any of the nodes could be moved out of this blockchain subnet to form a new blockchain subnet, if needed.
+Although this example represents one subnet blockchain with nodes in multiple data centers, any of the nodes could be moved out of this blockchain subnet to form a new blockchain subnet, if needed.
 Changes to the network topology are managed through the {IC} governance system called the **Network Nervous System** (NNS).
 
 == Node providers and data center operators

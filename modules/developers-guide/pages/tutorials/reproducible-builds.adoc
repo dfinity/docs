@@ -28,7 +28,7 @@ More concretely, it provides you the SHA-256 hash of the code.
 
 To obtain this hash, you must first note the principal of the {IC} canister whose code you want to check.
 For example, assume we're interested in the code of the Internet Identity canister, whose principal is `rdmx6-jaaaa-aaaaa-aaadq-cai`.
-Then, the easiest way to access this service is using the `dfx` tool from the terminal.
+Then, the easiest way to access this service is using the https://dfinity.org/developers/[`dfx`] tool from the terminal.
 Open your terminal, and run:
 
 ----
@@ -198,8 +198,8 @@ For the build process to be deterministic:
    The Motoko compiler aims to be deterministic, but there are currently known issues.
    Absolute file paths might be included in the binary, and the Motoko runtime bundled in the canisters may differ between platforms (such as Linux and MacOS).
    You can work around these issues by performing your build in a Docker container, as this will fix both the platform and the file paths.
-   We will try to address these issues in the future.
-   If you find further reproducibility issues with `moc`, we would like to hear about them.
+   We will try to address these issues in the future to the extent possible.
+   If you find further reproducibility issues with `moc`, please submit a https://github.com/dfinity/motoko/issues/new/choose[new issue].
    
 === Testing reproducibility
 

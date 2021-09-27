@@ -3,31 +3,31 @@
 
 Thanks to its consensus protocol, the {IC} always runs canisters' code correctly.
 But this doesn't mean that it's running the _correct_ code for a canister.
-In particular, if you are a canister user as opposed to the owner, you likely want to verify that the canister is running some intended code before giving it control over your ICP tokens or confidential data.
+If you are using a canister somebody else developed, you may want to verify that the canister is indeed running some intended code before giving it control to make important decision for you, e.g., execute a canister smart contract involving ICP.
 Verifying this requires answering two questions:
 
-. Which WebAssembly (WASM) code is being executed for a canister? 
+. Which WebAssembly (Wasm) code is being executed for a canister? 
 . The canisters are normally written in a higher-level language, such as Motoko or Rust, and not directly in WASM.
-   The question is then: is the WASM that's running really the result of compiling the purported source code? 
+   The second question is then: is the WASM that's running really the result of compiling the purported source code? 
 
 The rest of the document answers these questions.
 For the first question, we will see how the {IC} provides information about canister code.
 To be able to answer the second question, canister authors should ensure trusted and 
 https://reproducible-builds.org/docs/definition/[reproducible builds] of the WASM code from the source.
-Such builds allows anyone to follow the same steps as the canister authors and yield the exact same WASM code,
-which can then be compared to the code executing on the {IC}.
+Such builds allow anyone to follow the same steps as the canister authors and yield the exact same Wasm code,
+which can then be compared to the Wasm code executing in the canister on the {IC}.
 
 The impatient reader who is familiar with the topic of reproducible builds can skip straight to the <<repro-build-summary,summary>>.
 
-== Finding out which code the {IC} is executing
+== Finding out which canister code the {IC} is executing
 
 {IC} does not allow you to access the WASM code of an arbitrary canister.
 This is a design decision, as developers might want to keep some code private.
 However, the {IC} does allow you to access the _cryptographic hash_ of the WASM code of a canister.
 More concretely, it provides you the SHA-256 hash of the code.
 
-To obtain this hash, you must first note the ID of the {IC} canister whose code you want to check.
-For example, assume we're interested in the code of the Internet Identity canister, whose ID is `rdmx6-jaaaa-aaaaa-aaadq-cai`.
+To obtain this hash, you must first note the principal of the {IC} canister whose code you want to check.
+For example, assume we're interested in the code of the Internet Identity canister, whose principal is `rdmx6-jaaaa-aaaaa-aaadq-cai`.
 Then, the easiest way to access this service is using the `dfx` tool from the terminal.
 Open your terminal, and run:
 
@@ -40,9 +40,9 @@ Module hash: 0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4
 NOTE: If you are running an older version of `dfx`, you will need to run this command from a directory that contains a valid `dfx.json` file.
 If you don't have such a directory, you can create it using `dfx new`.
 
-Here, the {IC} tells us that the hash of the code of the `rdmx6-jaaaa-aaaaa-aaadq-cai` canister (which happens to be the internet identity canister) is `0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4`.
+Here, the {IC} tells us that the hash of the Wasm module of the `rdmx6-jaaaa-aaaaa-aaadq-cai` canister (which happens to be the Internet Identity canister) is `0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4`.
 
-CAUTION: The check above provides you the _current_ hash of the canister, but the _controllers_ of an {IC} canister may change the code at any time (e.g., to upgrade a canister). Currently, there is only way to ensure that the canister hasn't changed its code since you last checked it: the canister's controllers must be empty, preventing the code from upgrading.
+CAUTION: The check above provides you the _current_ hash of the canister's Wasm module, but the _controllers_ of an {IC} canister may change the code at any time (e.g., to upgrade a canister). However, if the list of controllers is empty, you know that the canister is immutable since nobody has the power to change the code.
 
 Armed with this hash, you can next check whether it corresponds to some given source code.
 This only works if the build process for the code is reproducible.
@@ -51,7 +51,7 @@ This only works if the build process for the code is reproducible.
 
 As a canister author, there are a few things you have to provide to your users to allow them to reproduce your build:
 
-* The same source code that you used to create the WASM for canister.
+* The same source code that you used to create the Wasm module for the canister.
 * Instructions on how to recreate your build environment.
 * Instructions on how to repeat the process of building the WASM from the source code.
   Crucially, the process must be deterministic, to ensure that it results in the exact same WASM.
@@ -61,7 +61,7 @@ We next look at each of these points in more detail.
 
 === Providing source code
 
-Typically, you will version your code in `git` or some other version control system.
+Typically, you will version your code in `git` or some other version control system, and your versioned code may be available in a public repository, e.g., GitHub.
 In this case, you should note the particular commit that you used when producing the code to be deployed to the {IC}, and communicate it to the users who are trying to verify your canister.
 Alternatively, you can also provide a package (e.g., a zip file or a tarball) containing the source code you used to build your canister.
 
@@ -156,7 +156,7 @@ docker run -it --rm mycanister
 From here, you can experiment with the steps needed to build your canister.
 Once you are confident that the steps are deterministic, you can also put them in the `Dockerfile`, 
 to allow the user to automatically reproduce your build when creating the canister.
-You can see an example in the https://github.com/dfinity/internet-identity/blob/397d0087a29855564c47f0fd3323f60b5b67a8fa/Dockerfile[Dockerfile of the internet identity canister].
+You can see an example in the https://github.com/dfinity/internet-identity/blob/397d0087a29855564c47f0fd3323f60b5b67a8fa/Dockerfile[Dockerfile of the Internet Identity canister].
 Next, we will investigate what is necessary to make the build deterministic.
 
 === Ensuring the determinism of the build process
@@ -203,11 +203,10 @@ For the build process to be deterministic:
    
 === Testing reproducibility
 
-While the above guidelines should help you achieve reproducible builds, they are by no means perfect.
 If reproducibility is vital for your code, you should test your builds to increase your confidence in their reproducibility.
 Such testing is non-trivial: we have seen real-world examples where non-determinism in a canister build took a month to show up!
 Fortunately, a tool called https://salsa.debian.org/reproducible-builds/reprotest[reprotest] can help you automate reproducibility tests.
-It tests your build by running it in two different environments that differ in characteristics such as paths, times, file order, and others,
+It tests your build by running it in two different environments that differ in characteristics such as paths, time, file order, and others,
 and comparing the results.
 To use it, you can put the following `Dockerfile` in the root directory of your canister project.
 
@@ -294,8 +293,7 @@ for the long term.
 
 === Long-term considerations
 
-As you have seen, ensuring reproducibile builds for your canisters isn't a trivial task.
-It's even more demanding if you expect your canister canister code to stay around for years, and stay reproducible.
+Reproducibility can be more demanding if you expect your canister canister code to stay around for years, and stay reproducible.
 The biggest challenges are to ensure that your:
 
 . Build toolchain is still available in the future.

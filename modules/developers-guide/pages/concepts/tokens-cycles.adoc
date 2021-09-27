@@ -40,7 +40,7 @@ As an example, imagine you have a house where propane is used for a water heater
 [[cost-of-compute]]
 == Cost of computation
 
-- Cycles reflect the real costs of operations for applications hosted in the Internet Computer platform including resources such physical hardware, rack space, energy, storage devices, and bandwidth.
+- Cycles reflect the real costs of operations for applications hosted in the Internet Computer blockchain including resources such physical hardware, rack space, energy, storage devices, and bandwidth.
 - Canister smart contracts must be able to pay for complete execution (all or nothing), but the platform sets limits on how many cycles a canister can hold and consume to prevent malicious code from draining resources.
 - The relative stability of operational costs makes it easier to predict the cycles required to process, for example, a million messages.
 - The costs associated with communication, computation, and storage are more likely to decrease than to increase over time—for example, because disk space becomes cheaper, hardware more efficient and the {IC} protocol will also improve over time to make better use of the resources.
@@ -52,7 +52,7 @@ As an example, imagine you have a house where propane is used for a water heater
 
 
 - Tokens reflect the value of the {IC} blockchain and can fluctuate. To prevent the token value from affecting the number of messages a canister can process, tokens are not used to pay for resources directly.
-- Tokens can be exchanged between token holders or locked up in **neurons** to secure voting rights as part of the platform governance system.
+- Tokens can be exchanged between token holders or locked up in **neurons** to secure voting rights as part of the governance system.
 - Tokens are used to reward node providers for providing compute capacity and neuron holders for participating in the governance of the {IC} by voting and submitting proposals.
 
 
@@ -60,7 +60,7 @@ As an example, imagine you have a house where propane is used for a water heater
 == Payment to node providers
 
 
-With this model, the Internet Computer platform provides node providers with a predictable economic model for computing power capacity to ensure resources are available when and where they are needed. Node providers receive compensation for both active and spare nodes so that the Internet Computer blockchain has capacity to handle both normal traffic and workload spikes.
+With this model, the Internet Computer blockchain provides node providers with a predictable economic model for computing power capacity to ensure resources are available when and where they are needed. Node providers receive compensation for both active and spare nodes so that the Internet Computer blockchain has capacity to handle both normal traffic and workload spikes.
 
 The Internet Computer economic model places much of the power and responsibility of managing capacity on the governance system—the Network Nervous System. Specific details about compensation and service level requirements are outside the scope of this document.
 

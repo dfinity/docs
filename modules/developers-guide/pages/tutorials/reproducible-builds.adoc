@@ -7,13 +7,13 @@ If you are using a canister somebody else developed, you may want to verify that
 Verifying this requires answering two questions:
 
 . Which WebAssembly (Wasm) code is being executed for a canister? 
-. The canisters are normally written in a higher-level language, such as Motoko or Rust, and not directly in WASM.
-   The second question is then: is the WASM that's running really the result of compiling the purported source code? 
+. The canisters are normally written in a higher-level language, such as Motoko or Rust, and not directly in Wasm.
+   The second question is then: is the Wasm that's running really the result of compiling the purported source code? 
 
 The rest of the document answers these questions.
 For the first question, we will see how the {IC} provides information about canister code.
 To be able to answer the second question, canister authors should ensure trusted and 
-https://reproducible-builds.org/docs/definition/[reproducible builds] of the WASM code from the source.
+https://reproducible-builds.org/docs/definition/[reproducible builds] of the Wasm code from the source.
 Such builds allow anyone to follow the same steps as the canister authors and yield the exact same Wasm code,
 which can then be compared to the Wasm code executing in the canister on the {IC}.
 
@@ -21,9 +21,9 @@ The impatient reader who is familiar with the topic of reproducible builds can s
 
 == Finding out which canister code the {IC} is executing
 
-{IC} does not allow you to access the WASM code of an arbitrary canister.
+{IC} does not allow you to access the Wasm code of an arbitrary canister.
 This is a design decision, as developers might want to keep some code private.
-However, the {IC} does allow you to access the _cryptographic hash_ of the WASM code of a canister.
+However, the {IC} does allow you to access the _cryptographic hash_ of the Wasm code of a canister.
 More concretely, it provides you the SHA-256 hash of the code.
 
 To obtain this hash, you must first note the principal of the {IC} canister whose code you want to check.
@@ -53,9 +53,9 @@ As a canister author, there are a few things you have to provide to your users t
 
 * The same source code that you used to create the Wasm module for the canister.
 * Instructions on how to recreate your build environment.
-* Instructions on how to repeat the process of building the WASM from the source code.
-  Crucially, the process must be deterministic, to ensure that it results in the exact same WASM.
-  It also has to be trusted, such that the user can be convinced that the WASM is a faithful translation of the source code, and not an artifact of a malicious build tool.
+* Instructions on how to repeat the process of building the Wasm from the source code.
+  Crucially, the process must be deterministic, to ensure that it results in the exact same Wasm.
+  It also has to be trusted, such that the user can be convinced that the Wasm is a faithful translation of the source code, and not an artifact of a malicious build tool.
 
 We next look at each of these points in more detail.
 
@@ -193,7 +193,7 @@ For the build process to be deterministic:
    However, they are complicated pieces of software, and ensuring determinism is non-trivial.
    Thus, non-determinism bugs can and do occur.
    For Rust, see the https://github.com/rust-lang/rust/labels/A-reproducibility[list of current potential non-determinism issues in Rust].
-   Furthermore, we have observed differences between Rust code compiled to WASM under Linux and MacOS, and thus recommend pinning the build platform and its version.
+   Furthermore, we have observed differences between Rust code compiled to Wasm under Linux and MacOS, and thus recommend pinning the build platform and its version.
    For webpack, determinism is important to ensure caching, and webpack has since version 5 introduced https://webpack.js.org/configuration/optimization/[deterministic naming of module and chunk IDs] that you should use.
    The Motoko compiler aims to be deterministic, but there are currently known issues.
    Absolute file paths might be included in the binary, and the Motoko runtime bundled in the canisters may differ between platforms (such as Linux and MacOS).
@@ -205,7 +205,7 @@ For the build process to be deterministic:
 
 If reproducibility is vital for your code, you should test your builds to increase your confidence in their reproducibility.
 Such testing is non-trivial: we have seen real-world examples where non-determinism in a canister build took a month to show up!
-Fortunately, a tool called https://salsa.debian.org/reproducible-builds/reprotest[reprotest] can help you automate reproducibility tests.
+Fortunately, the Debian Reproducible Builds project created a tool called https://salsa.debian.org/reproducible-builds/reprotest[reprotest], which can help you automate reproducibility tests.
 It tests your build by running it in two different environments that differ in characteristics such as paths, time, file order, and others,
 and comparing the results.
 To use it, you can put the following `Dockerfile` in the root directory of your canister project.
@@ -271,7 +271,7 @@ You need to give it the build command you want to run as the first argument.
 Here, we assume that it's `dfx build --network ic` - adjust it if you're using a different build process.
 It will then run the build in two different environments.
 Finally, you need to tell `reprotest` which paths to compare at the end of the two builds.
-Here, we compare the WASM code for all canisters, which is found in the `.dfx/ic` directory.
+Here, we compare the Wasm code for all canisters, which is found in the `.dfx/ic` directory.
 
 If the comparison doesn't find any differences, you will see an output similar to this one:
 
@@ -283,7 +283,7 @@ No differences in ./.dfx/local/canisters/*/*.wasm
 
 Congratulations - this is a good indicator that your build is reproducible!
 However, we recommend you to run the container builds under several host operating systems and compare the results.
-If the comparison does find differences between the WASM code produced in two builds, it will output a diff.
+If the comparison does find differences between the Wasm code produced in two builds, it will output a diff.
 You will then likely want to use the `--store-dir` flag of `reprotest` to store the outputs and the diff somewhere where you can analyze them.
 If you are struggling to achieve reproducibility, consider also using https://github.com/dettrace/dettrace[DetTrace],
 which is a container abstraction that tries to make arbitrary builds deterministic.
@@ -331,7 +331,7 @@ Summarizing our recommendations for canister authors:
 * Achieving reproducibility is harder over longer time scales, primarily as you need to ensure that a trustworthy source of your 
   dependencies and build tools stays available.
 
-Finally, if your build is reproducible, you can compare the hash of the resulting WASM code to the hash of the code that is running in a canister, which you retrieve as follows:
+Finally, if your build is reproducible, you can compare the hash of the resulting Wasm code to the hash of the code that is running in a canister, which you retrieve as follows:
 ----
 $ dfx canister --no-wallet --network ic info <canister-id>
 ----

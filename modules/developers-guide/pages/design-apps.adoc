@@ -44,6 +44,7 @@ As an alternative to basic queries, the {IC} also supports *certified queries*. 
 
 == Data storage and retrieval
 
-The {IC} enables you to use *stable memory* to handle long-term data storage—often referred to as orthogonal persistence—and to use *query calls* to retrieve your data.
-Efficiently retrieving data using one or more keys can typically be achieved by using data structures like hash tables.
-It is also possible to implement a more traditional database inside a canister.
+The {IC} offers *orthogonal persistence*, which means that the full state of each canister is stored after every upgrade call.
+You therefore do not have to explicitly persist data.
+It is important to think about the data structures used, as this may affect how efficiently data can be retrieved.
+For example, in the link:https://github.com/dfinity/linkedup[LinkedUp] sample dapp, a hash map is used to efficiently retrieve the profile of a given user id.

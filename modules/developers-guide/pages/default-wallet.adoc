@@ -60,7 +60,7 @@ If you are doing local development, your cycles wallet is created when you regis
 
 If you are deploying on the {IC}, you typically create your cycles wallet by converting ICP tokens to cycles, transferring the cycles to a new canister principal, and updating the canister with the default cycles wallet WebAssembly module (WASM).
 
-There are dapps that can help you convert ICP to cycles and create a new cycles wallet, e.g., link:token-holders/nns-app-quickstart{outfilesuffix}#_deploy_a_canister_with_cycles[NNS dapp].
+There are dapps that can help you convert ICP to cycles and create a new cycles wallet, e.g., link:../token-holders/nns-app-quickstart{outfilesuffix}#_deploy_a_canister_with_cycles[NNS dapp].
 
 [[wallet-check-balance]]
 == Check the cycle balance

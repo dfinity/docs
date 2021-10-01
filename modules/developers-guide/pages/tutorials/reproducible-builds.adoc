@@ -23,8 +23,7 @@ The impatient reader who is familiar with the topic of reproducible builds can s
 
 {IC} does not allow you to access the Wasm code of an arbitrary canister.
 This is a design decision, as developers might want to keep some code private.
-However, the {IC} does allow you to access the _cryptographic hash_ of the Wasm code of a canister.
-More concretely, it provides you the SHA-256 hash of the code.
+However, the {IC} does allow you to access the SHA-256 of the Wasm code of a canister.
 
 To obtain this hash, you must first note the principal of the {IC} canister whose code you want to check.
 For example, assume we're interested in the code of the Internet Identity canister, whose principal is `rdmx6-jaaaa-aaaaa-aaadq-cai`.
@@ -183,7 +182,7 @@ For the build process to be deterministic:
    * You have to allocate canister IDs in advance, as canisters refer to each other by their IDs.
 
 .  Your own build scripts must not introduce non-determinism.
-   Obvious sources of non-determinism include randomness, timestamps, or code obfuscators.
+   Obvious sources of non-determinism include randomness, timestamps, concurrency, or code obfuscators.
    Less obvious sources include locales, absolute file paths, order of files in a directory, and remote URLs whose content can change.
    Furthermore, relying on third-party build plug-ins exposes you to any non-determinism introduced by these.
 

@@ -276,8 +276,9 @@ No differences in ./.dfx/local/canisters/*/*.wasm
 6af1076f70407854cd6f62f23429d81f58398729f9ee5d4247ae4f93eb12770c  ./.dfx/local/canisters/Test/Test.wasm
 ----
 
-Congratulations - this is a good indicator that your build is reproducible!
-However, we recommend you to run the container builds under several host operating systems and compare the results.
+Congratulations - this is a good indicator that your build is not affected by your evinronment!
+Note that `reprotest` can't check that your dependencies are pinned properly - use guidelines from the previous section for that.
+Moreover, we recommend you to run the container `reprotest` builds under several host operating systems and compare the results.
 If the comparison does find differences between the Wasm code produced in two builds, it will output a diff.
 You will then likely want to use the `--store-dir` flag of `reprotest` to store the outputs and the diff somewhere where you can analyze them.
 If you are struggling to achieve reproducibility, consider also using https://github.com/dettrace/dettrace[DetTrace],

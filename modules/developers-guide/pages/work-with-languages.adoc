@@ -105,7 +105,7 @@ To add the `+dfx.json+` configuration file:
 
 . Check that you are still in your project directory by running the `+pwd+` command, if necessary.
 . Create a new `+dfx.json+` configuration file in the root directory for your project.
-. Open the `+dfx.json+`file in a text editor.
+. Open the `+dfx.json+` file in a text editor.
 . Add the `+version+` and `+canisters+` keys with settings similar to the following to the `+dfx.json+` file:
 +
 [source,json]

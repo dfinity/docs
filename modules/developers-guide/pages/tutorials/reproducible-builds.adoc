@@ -3,7 +3,7 @@
 
 Thanks to its consensus protocol, the {IC} always runs canisters' code correctly.
 But this doesn't mean that it's running the _correct_ code for a canister.
-If you are using a canister somebody else developed, you may want to verify that the canister is indeed running some intended code before giving it control to make important decision for you, e.g., execute a canister smart contract involving ICP.
+If you are using a canister somebody else developed, you may want to verify that the canister is indeed running some intended code before giving it control to make important decision for you, e.g., sending your ICP to a canister smart contract.
 Verifying this requires answering two questions:
 
 . Which WebAssembly (Wasm) code is being executed for a canister? 
@@ -95,7 +95,7 @@ FROM ubuntu:20.10
 RUN \
     apt -yq update && \
     apt -yqq install --no-install-recommends curl ca-certificates \
-        build-essential pkg-config libssl-dev llvm-dev liblmdb-dev clang cmake reprotest
+        build-essential pkg-config libssl-dev llvm-dev liblmdb-dev clang cmake
 
 # Install Node.js using nvm
 # Specify the Node version
@@ -105,11 +105,11 @@ ENV NVM_DIR=/root/.nvm
 RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"P
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
 # Install Rust and Cargo in /opt
 # Specify the Rust toolchain version
-ARG rust_version=1.51.0
+ARG rust_version=1.54.0
 ENV RUSTUP_HOME=/opt/rustup \
     CARGO_HOME=/opt/cargo \
     PATH=/opt/cargo/bin:$PATH
@@ -117,9 +117,6 @@ RUN curl --fail https://sh.rustup.rs -sSf \
         | sh -s -- -y --default-toolchain ${rust_version}-x86_64-unknown-linux-gnu --no-modify-path && \
     rustup default ${rust_version}-x86_64-unknown-linux-gnu && \
     rustup target add wasm32-unknown-unknown
-ENV CARGO_HOME=/cargo \
-    CARGO_TARGET_DIR=/cargo_target \
-    PATH=/cargo/bin:$PATH
 
 # Install dfx; the version is picked up from the DFX_VERSION environment variable
 ENV DFX_VERSION=0.8.1
@@ -146,7 +143,7 @@ $ docker build -t mycanister .
 ----
 
 This creates a Docker container image called `mycanister`, with Node.js, Rust and `dfx` installed in it, and your canister source code
-copied to `/canister` (recall that you should run this from the canister project directory).
+copied to `/canister` (recall that you should invoke `docker build` from the canister project directory).
 You can then enter an interactive shell inside of your container by running:
 ----
 docker run -it --rm mycanister
@@ -232,22 +229,18 @@ RUN curl --fail https://sh.rustup.rs -sSf \
         | sh -s -- -y --default-toolchain ${rust_version}-x86_64-unknown-linux-gnu --no-modify-path && \
     rustup default ${rust_version}-x86_64-unknown-linux-gnu && \
     rustup target add wasm32-unknown-unknown
-ENV CARGO_HOME=/cargo \
-    CARGO_TARGET_DIR=/cargo_target \
-    PATH=/cargo/bin:$PATH
 
-# Install dfx; the version is picked up from the DFX_VERSION environment variable
+# Install dfx; the version is picked up the DFX_VERSION environment variable
 ENV DFX_VERSION=0.8.1
 RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
-# Install reprotest and some tools it relies on
 RUN apt -yqq install --no-install-recommends reprotest disorderfs faketime sudo wabt
 
 COPY . /canister
 WORKDIR /canister
 ----
 
-Next, create a `canister_ids.json` file containing the IDs of your canisters on the {IC}, and put it in the `.dfx/local/ic` file.
+Next, create a `canister_ids.json` file containing the IDs of your canisters on the {IC}, and put it in your project directory.
 Now, from the root directory of your canister project, you can test the reproducibility of your `dfx` builds as follows:
 ----
 $ docker build -t mycanister .
@@ -257,7 +250,7 @@ root@6fe19d89f8f5:/canister# reprotest -vv "dfx build --network ic" '.dfx/ic/can
 ----
 
 The first command builds the Docker canister using the above `Dockerfile`.
-The second one opens an interactive shell (hence the `--it` flags) in the canister.
+The second one opens an interactive shell (hence the `-it` flags) in the canister.
 We run this in privileged mode (the `--privileged` flag), as `reprotest` uses kernel modules for some build environment variations.
 You can also run it in non-privileged mode by excluding some of the variations; see the https://manpages.debian.org/stretch/reprotest/reprotest.1.en.html[reprotest manual].
 The `--rm` flag will destroy the canister after you close its shell.
@@ -271,9 +264,9 @@ Here, we compare the Wasm code for all canisters, which is found in the `.dfx/ic
 If the comparison doesn't find any differences, you will see an output similar to this one:
 
 ----
-No differences in ./.dfx/local/canisters/*/*.wasm
-27ff185372dbf51a860d6ddbe6fc9cbdd47cb41fba8c1b702bed9767cc34d66f  ./.dfx/local/canisters/Map/Map.wasm
-6af1076f70407854cd6f62f23429d81f58398729f9ee5d4247ae4f93eb12770c  ./.dfx/local/canisters/Test/Test.wasm
+No differences in ./.dfx/ic/canisters/*/*.wasm
+27ff185372dbf51a860d6ddbe6fc9cbdd47cb41fba8c1b702bed9767cc34d66f  ./.dfx/ic/canisters/Map/Map.wasm
+6af1076f70407854cd6f62f23429d81f58398729f9ee5d4247ae4f93eb12770c  ./.dfx/ic/canisters/Test/Test.wasm
 ----
 
 Congratulations - this is a good indicator that your build is not affected by your environment!

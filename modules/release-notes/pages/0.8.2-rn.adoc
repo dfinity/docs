@@ -9,6 +9,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 An overview of the {release} release:
 
 - Breaking change in how to specify a controller to `dfx canister create`
+- Be sure to upgrade your wallet with `dfx wallet upgrade`, or `dfx wallet --network ic upgrade`
 
 == Changes to DFX
 
@@ -27,26 +28,30 @@ Cycles can be returned to a designated canister with `--withdraw-cycles-to-canis
 cycles can be returned to dank at the current identity principal with `--withdraw-cycles-to-dank`
 and to a designated principal with `--withdraw-cycles-to-dank-principal`.
 
-=== dfx canister create now accepts multiple instances of --controller argument
+=== New feature: dfx canister create now accepts multiple instances of --controller argument
 
 It is now possible to create canisters with more than one controller by
-passing multiple instances of the `--controller parameter to `dfx canister create`.
+passing multiple instances of the `--controller` parameter to `dfx canister create`.
 
 You will need to upgrade your wallet with `dfx wallet upgrade`, or `dfx wallet --network ic upgrade`
 
-=== dfx canister update-settings now accepts multiple instance of --controller argument
+=== New feature: dfx canister update-settings now accepts multiple instance of --controller argument
 
 It is now possible to configure a canister to have more than one controller by
-passing multiple instances of the `--controller parameter to `dfx canister update-settings`.
+passing multiple instances of the `--controller` parameter to `dfx canister update-settings`.
 
-=== dfx canister info and dfx canister status now display all controllers
+=== New feature: dfx canister info and dfx canister status now display all controllers
+
+=== JS Codegen update - JSDoc comment now accepts a complete Agent for createActor
 
 === Fixed: dfx now respects $DFX_CONFIG_ROOT when looking for legacy credentials
 
 Previously this would always look in `$HOME/.dfinity/identity/creds.pem`.
 
-
 == Changes to Cycles Wallet
+
+- Module hash: 9183a38dd2eb1a4295f360990f87e67aa006f225910ab14880748e091248e086
+- https://github.com/dfinity/cycles-wallet/commit/9ef38bb7cd0fe17cda749bf8e9bbec5723da0e95
 
 === Added support for multiple controllers
 
@@ -71,3 +76,4 @@ Updated Motoko from 0.6.7 to 0.6.10
 * Add Debug.trap : Text -> None (motoko-base #288)
 * Introduce primitives for `Int` ⇔ `Float` conversions (#2733)
 * Fix crashing bug for formatting huge floats (#2737)
+

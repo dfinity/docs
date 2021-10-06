@@ -1,6 +1,7 @@
 import * as React from "react";
 import { render } from "react-dom";
 import { contacts } from "../../declarations/contacts";
+import "../assets/mycontacts.css";
 
 const Contact = () => {
   async function doInsert() {

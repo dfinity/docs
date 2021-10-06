@@ -4,15 +4,15 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 :company-id: DFINITY
 
-In the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], you had your first look at a simple program for the {IC} involving an actor object and asynchronous messaging.
-As the next step in learning to write programs that take advantage of actor-based messaging, this tutorial illustrates how to modify a traditional `+Hello, World!+` program to define an actor, then deploy and test your program on a local network.
+In the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], you had your first look at a simple canister for the {IC} involving an actor object and asynchronous messaging.
+As the next step in learning to write canisters that take advantage of actor-based messaging, this tutorial illustrates how to modify a traditional `+Hello, World!+` canister to define an actor, then deploy and test your canister on a local canister execution environment.
 
 == Before you begin
 
 Before starting the tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any {IC} network processes running on the local computer.
+* You have stopped any local canister execution environment processes
 
 This tutorial takes approximately 20 minutes to complete.
 
@@ -48,14 +48,14 @@ To modify the `+dfx.json+` configuration file:
 . Check the default settings for the `+actor_hello+` project.
 . Notice that the names and paths to source and output files all use the `+actor_hello+` project name.
 +
-For example, the default canister name is `+actor_hello+` and the default path to the main program file is `+src/actor_hello/main.mo+`.
+For example, the default canister smart contract name is `+actor_hello+` and the default path to the main code file is `+src/actor_hello/main.mo+`.
 +
 You can rename any of these files or directories.
 If you make any changes, however, be sure that the names you use for your files and directories on the file system match the names you specify in the `+dfx.json+` configuration file.
 If you plan to use the default directory and file names, no changes are necessary.
 . Remove all of the `+actor_hello_assets+` configuration settings from the file.
 +
-The sample program for this tutorial doesn't use any front-end assets, so you can remove those settings from the configuration file.
+The sample canister for this tutorial doesn't use any front-end assets, so you can remove those settings from the configuration file.
 +
 For example, the configuration file looks like this after you remove the `+actor_hello_assets+` section:
 +
@@ -64,10 +64,10 @@ include::example$define-actor-dfx.json[]
 ....
 . Save your changes and close the file to continue.
 
-== Modify the default program
+== Modify the default canister
 
 In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
-In this tutorial, you modify the template code to create a simple "Hello, World!" program that uses an actor.
+In this tutorial, you modify the template code to create a simple "Hello, World!" canister. by defining an actor in {proglang}. In Motoko,  an {IC} canister is representeded as a Motoko actor.
 
 To modify the default template source code:
 
@@ -79,8 +79,8 @@ cd src/actor_hello
 ----
 . Open the template `+main.mo+` file in a text editor and delete the existing content.
 +
-The next step is to write a program that prints a statement like the traditional "Hello, World!" sample program.
-To compile the program for the {IC}, however, your program must include an `+actor+` object with a `+public+` function.
+The next step is to write a canister that prints a statement like the traditional "Hello, World!" sample canister.
+To compile the canister for the {IC}, however, your Motoko code must define an `+actor+`.  
 . Copy and paste the following sample code into the `+main.mo+` file:
 +
 [source.copy,motoko,no-repl]
@@ -88,30 +88,28 @@ To compile the program for the {IC}, however, your program must include an `+act
 include::example$actor_hello.mo[]
 ----
 +
-Let's take a closer look at this simple program:
+Let's take a closer look at this Motoko actor defining our canister:
 +
 --
-* The program imports a `+Debug+` module to provide the `+print+` functionality.
-* The program uses the `+public query func+` to define a query method because, in this case, the `+actor_hello+` program doesn't make any changes to the state of the canister or perform any operations that would update the data you are accessing.
+* The code imports a `+Debug+` module to provide the `+print+` functionality.
+* The actor uses the `+public query func+` declaration to define an {IC} _query_ method.  Our method doesn't need to make any permanent changes to the state of the actor. Declaring it as a query means that  any changes it does make are transient and discarded after the query completes.
 --
 +
 For more information about using a query call, see link:../concepts/canisters-code{outfilesuffix}#query-update[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
 . Save your changes and close the `+main.mo+` file.
 
-== Build the program with a local identifier
+== Checking that the canister builds
 
-You are probably only going to use this simple program for some local testing.
-Therefore, there's no need to reserve a unique canister identifier on the {IC} network to hold the compiled output for the program.
+Usually, in order to build a canister, it's necessary to first reserve a unique canister identifier
+on the {IC} blockchain mainnet.
 
-In this scenario, you can compile the program without connecting to an {IC} network at all.
-Instead, the `+dfx build+` command creates a local, hard-coded canister identifier for you to use.
+However, it's also possible to compile your program without connecting to the {IC} blockchain mainnet at all.
+The `+dfx build --check+` command uses a temporary, hard-coded canister identifier to accomplish this.
 
-You can use this local identifier while you are testing your program or any time you want to compile your program without starting the {IC} replica process locally or connecting to a replica on a remote subnet.
-
-To build the program executable:
+To check that the canister builds:
 
 . Navigate back to the root of your project directory.
-. Build the program with a locally-defined identifier by running the following command:
+. Build the canister executable with a temporary, hard-coded identifier by running the following command:
 +
 [source,bash]
 ----
@@ -119,14 +117,14 @@ dfx build --check
 ----
 +
 The `+--check+` option enables you to build a project locally to verify that it compiles and to inspect the files produced.
-Because the `+dfx build --check+` command only generates a temporary identifier, you should see output similar to the following:
+Because the `+dfx build --check+` command only uses a temporary identifier, you should see output similar to the following:
 +
 ....
 Building canisters to check they build ok. Canister IDs might be hard coded.
 Building canisters...
 ....
 +
-If the program compiles successfully, you can inspect the output in the default `+.dfx/local/canisters+` directory and `+.dfx/local/canisters/actor_hello/+` subdirectory.
+If the canister compiles successfully, you can inspect the output in the default `+.dfx/local/canisters+` directory and `+.dfx/local/canisters/actor_hello/+` subdirectory.
 +
 For example, you might use the `+tree+` command to review the files created:
 +
@@ -151,31 +149,31 @@ The command displays output similar to the following
 
 == Deploy the project
 
-You cannot deploy the output from the `+dfx build --check+` command to any {IC} network.
+You cannot deploy the output from the `+dfx build --check+` command to  a local canister execution environment or the {IC} mainnet.
 If you wanted to deploy this project, you would need to do the following:
 
-* Connect to the {IC} network.
-* Register a network-specific canister identifier.
+* Connect to the either the local canister execution environment or {IC} mainnet.
+* Register a connection-specific canister identifier.
 * Deploy the canister.
 
 Let's consider these steps in a bit more detail.
-Before you can deploy this project, you must connect to the {IC} network either running *locally* in your development environment or running *remotely* on a subnet that you can access.
-After you connect to a local or remote network, you must also generate a unique, *network-specific* canister identifier to replace your locally-defined identifier.
+Before you can deploy this project, you must connect to either your local canister execution environment, provided by `dfx`, or to the Internet Computer blockchain mainnet.
+After you connect to a local canister execution environment or {IC} mainnet, you must also generate a unique, *connection-specific* canister identifier to replace your locally-defined identifier.
 To see the steps involved for yourself, let's deploy the project locally.
 
 To deploy this project locally:
 
 . Open a terminal and navigate to your project directory, if needed.
-. Start the {IC} network on your local computer by running the following command:
+. Start the local canister execution environment on your local computer by running the following command:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-For this tutorial, you can use the `+--background+` option to start the {IC} network as background processes.
+For this tutorial, you can use the `+--background+` option to start the local canister execution environment as background processes.
 With this option, you can continue to the next step without opening another terminal shell on your local computer.
-. Generate a new canister identifier for your project on the local {IC} network by running the following command:
+. Generate a new canister identifier for your project on the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
@@ -191,7 +189,7 @@ Creating canister "actor_hello"...
 "actor_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 +
-The `+dfx canister create+` command also stores the network-specific canister identifier in a `+canister_ids.json+` file in the `+.dfx/local+` directory.
+The `+dfx canister create+` command also stores the connection-specific canister identifier in a `+canister_ids.json+` file in the `+.dfx/local+` directory.
 +
 For example:
 +
@@ -202,7 +200,18 @@ For example:
   }
 }
 ....
-. Deploy your `+actor_hello+` project on the local network by running the following command:
+. Build the canister by running the following command:
++
+[source,bash]
+----
+dfx build
+----
+The command displays output similar to the following:
++
+....
+Building canisters...
+....
+. Deploy your `+actor_hello+` project on the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
@@ -217,9 +226,9 @@ Installing code for canister actor_hello, with canister_id rrkah-fqaaa-aaaaa-aaa
 
 == Query the canister
 
-You now have a program deployed as a *canister* on your local {IC} network and can test your program by using the `+dfx canister call+` command.
+You now have a canister deployed on your local canister execution environment and can test your canister by using the `+dfx canister call+` command.
 
-To test the program you have deployed on the local network:
+To test the canister you have deployed on the local canister execution environment:
 
 . Use `+dfx canister call+` to call the `+hello+` function by running the following command:
 +
@@ -227,25 +236,27 @@ To test the program you have deployed on the local network:
 ----
 dfx canister call actor_hello hello
 ----
-. Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local network process.
+. Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local canister execution environment.
 +
-For example, the program displays "Hello, World from DFINITY" in output similar to the following:
+For example, the canister displays "Hello, World from DFINITY" in output similar to the following:
 +
 ....
 [Canister rrkah-fqaaa-aaaaa-aaaaq-cai] Hello, World from DFINITY 
 ....
 +
-Note that if you are running the Internet Computer network in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays network activity.
+Note that if you are running the Internet Computer mainnet in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays mainnet activity.
 
-== Stop the local network
+== Stop the local canister execution environment
 
-After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with your canister, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local canister execution environment, you can:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal used to interact with your canister, issue the command `dfx stop`; or
+. In the terminal that displays operations from the local canister execution environment, press Control-C to interrupt that process; or
+. Kill the `replica` process using commands or tools of your operating system.
 
-. Stop the {IC} network by running the following command:
+. Stop the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

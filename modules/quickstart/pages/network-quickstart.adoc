@@ -1,5 +1,5 @@
 = Network deployment
-:description: Download the DFINITY Canister SDK and deploy your first application on the Internet Computer.
+:description: Download the DFINITY Canister SDK and deploy your first dapp on the Internet Computer blockchain.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :experimental:
 // Define unicode for Apple Command key.
@@ -10,12 +10,12 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[net-quick-start]]
-This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the {IC} **running remotely**.
+This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and deploying the default project on the {IC} blockchain mainnet.
 
 If you are only deploying projects in a local development environment, see the link:local-quickstart{outfilesuffix}[Local development] scenario.
 
-To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. 
-The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.
+To get started, let's build and deploy a simple Hello dapp that has just one function—called `+greet+`. 
+The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the dapp using the command-line or in an HTML page if you access the dapp in a browser.
 
 [[net-before]]
 == Before you begin
@@ -33,7 +33,7 @@ Currently, the {sdk-short-name} only runs on computers with a macOS or Linux ope
 You must have *cycles* available to complete this tutorial. To get cycles, you must either convert ICP tokens to cycles or be provided cycles from another source, for example, from a canister controlled by another developer or from a third-party cycles provider. This tutorial assumes that you have an account with ICP tokens available and illustrates how to convert ICP tokens into cycles and transfer those cycles to a **cycles wallet** that you control.
 +
 For information about how to get ICP tokens, see link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
-For an introduction to using the Network Nervous System application to manage ICP tokens, see link:../token-holders/nns-app-quickstart{outfilesuffix}[Network nervous system application quick start].
+For an introduction to using the Network Nervous System application to manage ICP tokens, see link:../token-holders/nns-app-quickstart{outfilesuffix}[Network nervous system dapp quick start].
 For information about using your default cycles wallet after you have created it, see link:../developers-guide/default-wallet{outfilesuffix}[Use the default cycles wallet].
 
 This tutorial assumes you know how to perform common tasks—like opening a terminal and running commands—on your computer.
@@ -95,13 +95,13 @@ The command displays usage information for the `+dfx+` parent command and its su
 [[net-new-project]]
 == Create a new project
 
-Applications for the {IC} start as **projects**.
+Dapps for the {IC} start as **projects**.
 You create projects using the `+dfx+` parent command and its subcommands.
 
-For this tutorial, we'll start with the default sample application to illustrate creating an application using the starter files in a project.
+For this tutorial, we'll start with the default sample dapp to illustrate creating a dapp using the starter files in a project.
 When you create a new project, the `+dfx+` command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the link:../developers-guide/tutorials/explore-templates{outfilesuffix}[Explore the default project] tutorial.
 
-To create a new project for your first application:
+To create a new project for your first dapp:
 
 . Open a terminal shell on your local computer, if you don’t already have one open.
 . Create a new project named `+hello+` by running the following command:
@@ -122,22 +122,21 @@ cd hello
 ----
 
 [[ping-the-network]]
-== Check the connection to the network
+== Check the connection to the {platform} mainnet
 
-Before you can deploy your first project on the {IC}, you need to connect to the network gateway running remotely on a subnet that you can access.
-There is a reserved network alias that you can use to access the {IC} running remotely on nodes in data centers. The network alias is a system setting that's defined internally, so there's nothing you need to configure in your projects by default.
+There is a reserved network alias that you can use to access the {IC} blockchain mainnet. The network alias is a system setting that's defined internally, so there's nothing you need to configure in your projects by default.
 
-To check your connection to the {IC} network:
+To check your connection to the {platform}:
 
 [arabic]
 . Check that you are in the root directory for your project, if needed.
-. Check the current status of the {IC} network and your ability to connect to it by running the following command for the network alias `+ic+`:
+. Check the current status of the {platform} and your ability to connect to it by running the following command for the network alias `+ic+`:
 +
 [source,bash]
 ----
 dfx ping ic
 ----
-. Verify that the `+dfx ping ic+` command returns information about the {IC} network to which you are connecting.
+. Verify that the `+dfx ping ic+` command returns information about the {platform}.
 +
 For example, you should see output similar to the following:
 +
@@ -150,7 +149,7 @@ For example, you should see output similar to the following:
 [[net-ledger-id]]
 == Confirm your developer identity and ledger account
 
-All ICP token transactions are recorded in a link:../developers-guide/glossary{outfilesuffix}#g-ledger[ledger canister] running on the Internet Computer.
+All ICP token transactions are recorded in a link:../developers-guide/glossary{outfilesuffix}#g-ledger[ledger canister] running on the Internet Computer blockchain.
 The ledger canister consists of *account identifiers* and *balances* for all ICP token holders.
 
 Before you can transfer any ICP tokens you hold in your ledger account, you need to send a secure and properly-signed message that verifies your identity to the ledger and authorizes your developer identity to complete the transaction.
@@ -326,7 +325,7 @@ dfx canister --no-wallet --network ic call "gastn-uqaaa-aaaae-aaafq-cai" authori
 +
 Be sure that the command you copy has the `+--no-wallet+` option and the correct network (`+ic+`) alias.
 You should recognize the canister identifier—in this example, `+gastn-uqaaa-aaaae-aaafq-cai+`—as the cycles wallet associated with your identity.
-If this is your first wallet on the network, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
+If this is your first wallet on the {platform}, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
 +
 When the browser refreshes after running the `+authorize+` command, the cycles wallet for your principal account is displayed.
 . View your cycles balance and activity in the browser.
@@ -343,7 +342,7 @@ For more information about the commands and methods available for working with t
 
 After you have validated your cycles wallet balance, you can register, build, and deploy your sample application.
 
-To deploy your first application on the {IC}:
+To deploy your first application on the {IC} blockchain mainnet:
 
 . In your terminal shell, check that you are still in the root directory for your project.
 . Ensure that `+node+` modules are available in your project directory, if needed, by running the following command:
@@ -361,12 +360,12 @@ For more information about this step, see link:../developers-guide/webpack-confi
 dfx deploy --network ic
 ----
 +
-The `+--network+` option specifies the network alias or URL for deploying the application.
-This option is required to install on the {IC} running remotely.
+The `+--network+` option specifies the network alias or URL for deploying the dapp.
+This option is required to install on the {IC} blockchain mainnet.
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
 +
-For example, this step registers two network-specific identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
+For example, this step registers two identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
 +
 ....
 Deploying all canisters.
@@ -421,7 +420,7 @@ Let's take a closer look at this example:
 +
 -- 
 
-* Using the `+--network ic+` option indicates that the canister you want to call is deployed on the `+ic+` network. The `+ic+` network alias is an internally-reserved alias for accessing the {IC}.
+* Using the `+--network ic+` option indicates that the canister you want to call is deployed on the `+ic+`. The `+ic+` network alias is an internally-reserved alias for accessing the {IC} blockchain mainnet.
 * Note that the `+--network ic+` option must precede the operation subcommand, which, in this case, is the `+dfx canister call+` command.
 * The `+hello+` argument specifies the name of the canister you want to call.
 * The `+greet+` argument specifies the name of the function you want to call in the `+hello+` canister.
@@ -437,14 +436,14 @@ For example:
 . Rerun the `+dfx wallet balance+` command or refresh the browser to see your new cycle balance and recent activity.
 
 [[quickstart-frontend]]
-== Test the application front-end
+== Test the dapp front-end
 
-Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
+Now that you have verified that your dapp has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
 
-To access the application front-end:
+To access the dapp front-end:
 
 . Open a browser.
-. Navigate to the front-end for the application using a URL that consists of the `+hello_assets+` identifier and the `+boundary.ic0.app+` suffix.
+. Navigate to the front-end for the dapp using a URL that consists of the `+hello_assets+` identifier and the `+boundary.ic0.app+` suffix.
 +
 If you didn’t make a note of the canister identifier, you can look it up by running the following command:
 +
@@ -469,13 +468,13 @@ image:net-front-end-prompt.png[HTML page with prompt]
 [[next-steps]]
 == Next steps
 
-Now that you have seen how to deploy an application on the {IC} network, you are ready to develop and deploy programs of your own.
+Now that you have seen how to deploy a dapp on the {IC} blockchain, you are ready to develop and deploy programs of your own.
 
-You can find more detailed examples and tutorials to help you learn about how to use Motoko and how to develop applications for the Internet Computer throughout the documentation.
+You can find more detailed examples and tutorials to help you learn about how to use Motoko and how to develop dapps for the Internet Computer blockchain throughout the documentation.
 
 Here are some suggestions for where to go next:
 
-* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building front-end and back-end applications in a local development environment.
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building front-end and back-end dapps in a local development environment.
 
 * link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
 

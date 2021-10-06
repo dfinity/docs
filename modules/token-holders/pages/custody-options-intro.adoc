@@ -52,16 +52,16 @@ An *air-gapped computer* is isolated from insecure networks that interact with t
 
 Converting a standard personal computer or similar device into an air-gapped computer might require you to physically remove network cards, disable certain software, or be prepared to completely wipe the machine before connecting it to the internet again.
 
-Depending on how secure you want you air-gapped computer to be, one option is to use a bootable image that provides a minimal operating system to collect your digital assets then remove any artifacts from that process and reboot the computer normally after completing any transaction.
+Depending on how secure you want your air-gapped computer to be, one option is to use a bootable image that provides a minimal operating system to collect your digital assets then remove any artifacts from that process and reboot the computer normally after completing any transaction.
 For more information, see link:https://www.wired.com/story/extreme-security-measures/[Extreme Security Measures for the Extra Paranoid] and 
 link:https://www.howtogeek.com/687792the-ultimate-defense-what-is-an-air-gapped-computer/[The Ultimate Defense: What Is an Air Gapped Computer?].
 
 === Paper wallets
 
 A *paper wallet* is a piece of printed paper that contains your important key information (in some cases, even a QR code) and is used for facilitating digital asset transactions. 
-Paper wallets are often not recommended because they are susceptible to degradation and could be insecure or lost easily.
+Paper wallets are often not recommended because they are susceptible to degradation and could be insecure or lost or stolen easily.
 
-As a backup to a hardware wallet, however, you might want to create a paper wallet and store it in a secure locations such as a safe deposit box.
+As a backup to a hardware wallet, however, you might want to create a paper wallet and store it in a secure location such as a safe deposit box.
 
 For more information, see link:https://blockgeeks.com/guides/paper-wallet-guide/#Paper_wallets[Paper wallets].
 
@@ -78,4 +78,4 @@ compromised while hosted on a work computer, especially if that computer is rout
 
 * Do not leave your cold storage wallet or any private information in a public place where it could be compromised.
 
-* Do not lose your private key. If lost, you will be permanently unable to access your digital assets.
+* Do not lose your private key or your seed phrase. If lost, you will be permanently unable to access your digital assets.

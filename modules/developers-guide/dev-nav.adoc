@@ -8,7 +8,7 @@
 
 * xref:sdk-guide.adoc[How to]
 ** xref:install-upgrade-remove.adoc[Install, upgrade, or remove software]
-** xref:customize-projects.adoc[Design apps]
+** xref:customize-projects.adoc[Design dapps]
 ** xref:customize-projects.adoc[Manage projects]
 ** xref:work-with-languages.adoc[Develop using different backend languages]
 //*** xref:basic-syntax-rules.adoc[Motoko]

@@ -18,21 +18,21 @@ Information about other integration options and procedures might be available in
 
 == Basic terminology 
 
-The Internet Computer is primarily a distributed and decentralized platform for running software. 
-When you write applications that run on the Internet Computer, you deploy your programs in the form of a conceptual computational unit called a **canister**. 
-A canister is similar to a "smart contract" in that it consists of the source code of a program as well as its running state, and is replicated on a blockchain network that guarantees security as well as liveness.
+The Internet Computer is a blockchain system comprised of several subnet blockchains for running dapps.
+When you write dapps that run on the Internet Computer, you deploy your program in the form of a conceptual computational unit called a **canister**. 
+A canister is a "smart contract" in that it consists of the source code of a program as well as its running state, and is replicated on a subnet blockchain that guarantees security as well as liveness.
 
 End-users or other canisters can send messages to canister functions to perform specific operations. 
-The messages can be either **query calls** that retrieve information without saving the state of application data or **update calls** that change and preserve the state.
-The order in which updates are executed is agreed upon by using a consensus protocol between all {IC} nodes that run the canister.
+The messages can be either **query calls** that retrieve information without modifying the state of a canister or **update calls** that may modify the state of canister.
+The order in which updates are executed is agreed upon using a consensus protocol between all nodes in the subnet that runs the canister.
 
 == Ledger canister overview
 
-The Internet Computer Protocol (ICP) implements token management using a specialized canister, called the **ledger canister**.
-There is a single ledger canister which runs alongside all other canisters on the Internet Computer. 
-The ledger canister is basically a smart contract that holds **accounts** and **transactions**.
+The Internet Computer Protocol (ICP) implements management of its utility token (ticker "ICP") using a specialized canister, called the **ledger canister**.
+There is a single ledger canister which runs alongside other canisters on a special subnet of the Internet Computer, viz., the NNS subnet.
+The ledger canister is a smart contract that holds **accounts** and **transactions**.
 These transactions either **mint ICP tokens** for accounts,  **transfer ICP tokens** from one account to another, or **burn ICP tokens**, eliminating them from existence.
-The ledger canister maintains a traceable history of all transactions starting from its genesis, or beginning, state.
+The ledger canister maintains a traceable history of all transactions starting from its genesis state (initial state).
 
 === Accounts
 
@@ -42,7 +42,9 @@ An account owner may control more than one account. In this case, each account c
 
 An account on the ledger is identified by its address, which is derived from the principal ID and sub-account identifier.
 
-In this context, you can think of principal identifiers as a rough equivalent to the hash of a user's public key for Bitcoin or Ethereum. You use the corresponding secret key to sign messages and therefore authenticate to the ledger canister and operate on the principal's account. Canisters can also have accounts in the ledger canister, but currently the functionality of such accounts is limited.
+
+In this context, you can think of principal identifiers as a rough equivalent to the hash of a user's public key for Bitcoin or Ethereum. You use the corresponding secret key to sign messages and therefore authenticate to the ledger canister and operate on the principal's account. Canisters can also have accounts in the ledger canister, in which case the address is derived from the canister's principal.
+
 The ledger canister is initialized using administrative operations that are internal to the Internet Computer.
 As part of the initialization process, the canister is created with the set of accounts and associated ICP token balances.
 
@@ -56,7 +58,10 @@ There are three operations that can change the internal state of the ledger cani
 
 All operations are recorded as transactions in the ledger canister. 
 
-The ledger maintains the transactions as a hashed blockchain.
+
+
+The ledger maintains the transactions as a hashed blockchain, i.e., a blockchain running inside a cansiter smart contract (the ledger canister), which in turn is running on the NNS subnet blockchain.
+
 As state changes are recorded, each new transaction is placed in a block and assigned a unique index.
 The entire chain is regularly authenticated by signing the latest chain link. The signature used to authenticate the chain can be verified by any third party who has access to the root public key of the Internet Computer.
 Specific transactions can be retrieved by querying the ledger.
@@ -66,7 +71,9 @@ Specific transactions can be retrieved by querying the ledger.
 One can interact with the Internet Computer and ledger canister in several ways.
 This document outlines how to integrate with the ledger canister using the https://www.rosetta-api.org/[Rosetta application programming interface]. This is a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] designed to support multiple blockchain data formats and structured communication for exchange transactions.
 
-The interface is implemented by the integration software—`+dfinity/rosetta-api+. This piece of software enables you to deploy a passive Rosetta node outside of the Internet Computer network and use the node to communicate with the ledger canister running on the Internet Computer.
+
+The interface is implemented by the integration software—`+dfinity/rosetta-api+. This piece of software enables you to deploy a passive Rosetta node outside of the Internet Computer blockchain and use the node to communicate with the ledger canister running on the Internet Computer.
+
 
 The following diagram provides a simplified view of the communication between the Rosetta node and the Internet Computer using the `+dfinity/rosetta-api+` integration software.
 
@@ -131,7 +138,9 @@ Listening on 0.0.0.0:8080
 Starting Rosetta API server
 ....
 +
-By default, the software *does not* connect to the ledger canister running on the Internet Computer production network, but rather it connects to one of the testnets.
+
+By default, the software *does not* connect to the ledger canister running on the Internet Computer blockchain mainnet, but rather it connects to a testnets.
+
 +
 If you have been assigned a test network and corresponding ledger canister identifier, you can run the command against that network by specifying an additional `+canister+` argument. For example, the following command illustrates connecting to the ledger canister on a test network by setting the `+canister+` argument to `+2xh5f-viaaa-aaaab-aae3q-cai+`.
 +
@@ -207,6 +216,10 @@ The following questions are taken from the most commonly reported questions and 
 ==== How to I run an instance of the Rosetta node?
 
 An easy way to accomplish this is to use the link:https://hub.docker.com/r/dfinity/rosetta-api/tags?page=1&ordering=last_updated[`dfinity/rosetta-api`] Docker image. Once the node initializes and syncs all blocks, you can perform queries and submit transactions by invoking the Rosetta API on the node. The node listens on the `8080` port.
+
+==== How do I connect the Rosetta node to the mainnet?
+
+Use flags `+--mainnet+` and `+--not-whitelisted+`
 
 ==== How do I connect the Rosetta node to the mainnet?
 

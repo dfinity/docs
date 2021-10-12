@@ -1,0 +1,27 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+:release: 0.8.3
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+An overview of the {release} release:
+
+Breaking change: Removed `--no-artificial-delay` option from `dfx start` and `dfx replica`
+
+
+== Changes to DFX
+
+=== Breaking change: Replaced `--no-artificial-delay` option with a sensible default
+
+The `--no-artificial-delay` option not being the default has been causing a lot of confusion.
+Now that we have measured in production and already applied a default of 600ms
+to most subnets deployed, we set the same default for dfx and removed this option.
+
+== Changes to Replica
+
+== Changes to Motoko
+
+Updated Motoko from 0.6.10 to 0.6.11
+

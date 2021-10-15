@@ -48,6 +48,7 @@
 **** xref:developers-guide:tutorials/intercanister-calls.adoc[Make inter-canister calls]
 **** xref:developers-guide:tutorials/access-control.adoc[Add access control with identities]
 **** xref:developers-guide:tutorials/simple-cycles.adoc[Accept cycles from a wallet]
+**** xref:developers-guide:tutorials/reproducible-builds.adoc[Build canisters reproducibly]
 **** xref:developers-guide:troubleshooting.adoc[Troubleshoot issues]
 
 *** Explore our languages

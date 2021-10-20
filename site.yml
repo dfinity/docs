@@ -1,0 +1,12 @@
+site:
+  title: Dfinity ドキュメント
+  url: https://localhost/
+  start_page: docs::index.adoc
+content:
+  sources:
+    - url: https://github.com/hoosan/docs
+      branches: HEAD
+ui:
+  bundle:
+    url: ./ui-bundle.zip
+    snapshot: true

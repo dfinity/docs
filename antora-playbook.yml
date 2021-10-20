@@ -1,6 +1,6 @@
 site:
   title: Dfinity ドキュメント
-  url: https://localhost/
+  url: https://hoosan.github.io/docs
   start_page: docs::index.adoc
 content:
   sources:

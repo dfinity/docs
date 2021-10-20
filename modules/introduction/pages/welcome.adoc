@@ -1,4 +1,7 @@
+= Internet Computerの紹介
+////
 = Introducing the Internet Computer
+////
 :description: Start coding on the Internet Computer. Find documentation, walk-throughs, and tutorials to start building decentralized apps, DeFi and novel blockchain-based services
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :proglang: Motoko
@@ -6,13 +9,38 @@
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
+こんにちは！
+
+ここにたどり着いたということは、 Internet Computer についてもっと知りたいと思っているのではないでしょうか。あなたは正しい場所にいます - どこから始めればよいか、以下をご覧ください！
+
+NOTE: 認可された開発者は、20ドル相当の無料の Cycles を利用して、 Internet Computer のブロックチェーンに Canister と呼ばれるスマートコントラクトをデプロイすることができます。 https://faucet.dfinity.org/auth[無料の Cycles を申請する]
+
+////
 Hello there!
 
 If you’ve landed here, you’re interested in learning more about the Internet Computer. You’re in the right place — take a look below for where to get started!
 
 NOTE: Qualified developers can access $20 worth of free cycles to begin deploying canister smart contracts to the Internet Computer blockchain. https://faucet.dfinity.org/auth[Claim your free cycles]
+////
+
 
 [[for-first-timers]]
+== はじめての方へ
+Internet Computer は、ウェブスピードで動作するブロックチェーンであり、その容量に限界がありません。
+
+ブロックチェーンの歴史を簡単に振り返りましょう。まず Bitcoin によりデジタルゴールドが生み出され、その次の進化として、 Ethereum がスマートコントラクトを開発し DeFi と NFT のユースケースを開拓しました。
+
+Internet Computer は、ブロックチェーンの3つ目の大きなイノベーションであり、スマートコントラクトをスケーリングし、ウェブスピードで実行し、データを効率的に処理・保存し、強力なソフトウェアフレームワークを開発者に提供するブロックチェーンです。
+これらを可能にすることで、 Internet Computer は、システムやアプリの運用方法を再定義します。
+
+もっと詳しく知りたいですか？以下の資料をご覧ください。
+
+* link:https://www.youtube.com/watch?v=YWHTNr8RZHg&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=17&ab_channel=DFINITY[Internet Computer入門(英語)]: Internet Computer の概要を10分で説明
+* link:https://medium.com/dfinity[The Internet Computer Review]: Internet Computer の最新情報をお届けするブログ
+* link:https://thereboot.com/[The Reboot]: 現在のインターネットの問題点を探る技術資料
+
+公式 link:https://twitter.com/dfinity[DFINITY Twitter] で最新情報をお届けします。
+////
 == For: First-Timers
 The Internet Computer is a blockchain that runs at web speed with unbounded capacity. 
 
@@ -27,9 +55,29 @@ Interested in learning more? Check out the following resources:
 * link:https://thereboot.com/[The Reboot], our tech publication exploring issues with the current internet
 
 Follow us on the official link:https://twitter.com/dfinity[DFINITY Twitter] for the latest updates.
-
+////
 
 [[for-developers]]
+Internet Computer は、 link:https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[canisters] と呼ばれる特別なスマートコントラクトを扱います。
+Canister のスマートコントラクトは、 link:https://webassembly.org/[WebAssembly] のバイトコードで記述されたロジックとメモリページのバンドルです。
+Internet Computer 上の Dapps は、1つまたは複数のcanisterから作成されます。
+
+Canister のスマートコントラクトは、ウェブコンテンツをエンドユーザーのブラウザなどに直接提供することができ、ユーザーはトークンを保有せずにブロックチェーンサービスを使うことができます。
+
+Internet Computer のブロックチェーンは、最終的に canister のスマートコントラクト（コードとステート）をいくつでもホストすることができます。
+さらに、それらを束縛されないオンチェーンの容量で同時に実行することができます。つまり、スケールする Dapps を作ることができるのです。
+
+Canister のスマートコントラクトは止めることができず、改ざんもできません。データベース、キャッシュ、ファイアウォール、CDN、クラウドプロバイダー、 VPN 、 DNS 、さらにはユーザー名やパスワードなどを気にすることなく構築できることを想像してみてください。
+
+胸が踊りませんか？ xref:quickstart:quickstart-intro.adoc[クイックスタート]をチェックして、簡単なハローワールド Dapp から始めてみましょう。
+
+開発者コミュニティに参加することに興味がありますか？以下をチェックしてみてください。
+
+* link:https://discord.gg/cA7y6ezyE2[Developer Discord]: 開発者コミュニティのための公式 Discord
+* link:https://forum.dfinity.org/[Developer Forum]: Internet Computer での構築に関する技術的な議論を行うためのフォーラム
+
+開発者向けの最新情報は、 link:https://twitter.com/dfinitydev[DFINITY Developer Twitter] をフォローすることで得られます。
+////
 == For: Developers
 The Internet Computer hosts special smart contracts, called link:https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[canisters]. A canister smart contract is a bundle of link:https://webassembly.org/[WebAssembly] bytecode logic and memory pages. Dapps on the Internet Computer are created from one or more canisters. 
 
@@ -47,9 +95,24 @@ Interested in getting plugged into our developer community? Check out the follow
 * link:https://forum.dfinity.org/[Developer Forum], a welcoming space for technical discussions about building on the Internet Computer
 
 You can follow us on the link:https://twitter.com/dfinitydev[DFINITY Developer Twitter] for the latest developer-specific updates.
-
+////
 
 [[for-protocol-enthusiasts]]
+== プロトコル愛好家へ
+
+Internet Computer は、世界初のウェブスピード、ウェブサービスのパブリックブロックチェーンを形成しているインターネットコンピュータプロトコル（「ICP」）によって作られています。
+Internet Computer は自治権を持ち、必要に応じて容量を増やすことができます。世界中の独立したデータセンターが一斉に運営する特別なノードマシンを組み合わせています。他のブロックチェーンと同様に、止めることができず、ホストするコードは改ざんできません。
+
+まずは左の「コンセプト」セクションをチェックして、xref:Developers-guide:concepts/what-is-IC.adoc[インターネットコンピュータとは？]から始めてください。
+
+Internet Computer のプロトコルについてさらに知りたい方は、以下の資料をご覧ください。
+
+* link:https://dfinity.org/technicals/[技術ライブラリ]は、世界トップクラスの研究開発チームが Internet Computer プロトコルの構成要素を詳細に説明したビデオです。特に注目していただきたいのは以下です。
+** link:https://dfinity.org/technicals/chain-key-technology[チェーンキー(鎖鍵)暗号]は、 Internet Computer を数百万ノードにまで拡張することを可能にした基本的なブレークスルーの1つです。
+鎖鍵暗号の最大の特徴は、 Internet Computer が単一の公開鍵を持つことであり、これによって、スマートウォッチや携帯電話などのいかなるデバイスでも、 Internet Computer が生成したものを検証することができます。
+* xref:interface-spec:index.adoc[インターフェース仕様]: Internet Computer の低レベルな外部インターフェースの概要を説明した非常に技術的なドキュメント
+* link:https://dashboard.internetcomputer.org/[Internet Computer ダッシュボード]: Internet Computer ブロックチェーン上のリアルタイムな指標を監視するダッシュボード
+////
 == For: Protocol Enthusiasts
 
 The Internet Computer is created by the Internet Computer Protocol (“ICP”), which has formed the world’s first web-speed, web-serving public blockchain. The Internet Computer is self-governing and can grow its capacity as required. It combines special node machines run en masse by independent data centers all around the world. Like all blockchains, it is unstoppable, and the code it hosts is tamperproof. 
@@ -62,3 +125,4 @@ To learn more about the Internet Computer Protocol, check out the following reso
 ** link:https://dfinity.org/technicals/chain-key-technology[Chain Key Cryptography], one of the fundamental breakthroughs enabling the Internet Computer to scale to millions of nodes. The most notable innovation of Chain Key cryptography is that the Internet Computer has a single public key, which enables any device to verify the authenticity of artifacts generated by the Internet Computer, even smart watches and mobile phones.
 * xref:interface-spec:index.adoc[Interface Specification], for a deeply technical document that provides an overview of the lower-level external interfaces of the Internet Computer
 * link:https://dashboard.internetcomputer.org/[Internet Computer Dashboard], to monitor real-time metrics around the Internet Computer blockchain
+////

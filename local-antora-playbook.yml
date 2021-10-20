@@ -1,0 +1,12 @@
+site:
+  title: Dfinity 日本語ドキュメント
+  url: https://hoosan.github.io/docs
+  start_page: docs:introduction:welcome.adoc
+content:
+  sources:
+    - url: .
+      branches: HEAD
+ui:
+  bundle:
+    url: ./ui-bundle.zip
+    snapshot: true

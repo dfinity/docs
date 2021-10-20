@@ -12,6 +12,8 @@ jobs:
         uses: kameshsampath/antora-site-action@v0.2.4
         with:
           antora_playbook: antora-playbook.yml
+      - name: 'Check'
+        run: pwd && ls . && ls build/site
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

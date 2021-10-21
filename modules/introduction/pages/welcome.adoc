@@ -1,5 +1,4 @@
 = Internet Computer の紹介
-
 :description: Start coding on the Internet Computer. Find documentation, walk-throughs, and tutorials to start building decentralized apps, DeFi and novel blockchain-based services
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :proglang: Motoko
@@ -58,7 +57,6 @@ Canister のスマートコントラクトは止めることができず、改�
 == プロトコル愛好家の方へ
 
 Internet Computer は、世界初のウェブスピード、ウェブサービスのパブリックブロックチェーンを形成しているインターネットコンピュータプロトコル（ ICP ）によって作られています。
-
 Internet Computer は自治権を持ち、必要に応じて容量を増やすことができます。世界中の独立したデータセンターが一斉に運営する特別なノードマシンを組み合わせています。他のブロックチェーンと同様に、止めることができず、ホストするコードは改ざんできません。
 
 まずは左の「コンセプト」セクションをチェックして、xref:Developers-guide:concepts/what-is-IC.adoc[インターネットコンピュータとは？]から始めてください。

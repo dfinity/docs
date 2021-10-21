@@ -48,6 +48,7 @@ $ cd docs
 ```
 
 翻訳作業を行うためのブランチを作成します。ここでは、例として `introduction/pages/welcome.adoc` を翻訳するためのブランチを作成します。
+どのファイルを翻訳するかは、[翻訳の概要と進捗状況](https://github.com/Japan-DfinityInfoHub/docs/issues/17)を確認して決めてください。
 
 ```
 $ git checkout -b introduction/pages/welcome.adoc
@@ -75,7 +76,7 @@ $ antora local-antora-playbook.yml
 ビルド後、`build/site/docs` 以下の html ファイルを直接開きます。
 
 ```
-open build/site/docs/introduction/welcome.html
+$ open build/site/docs/introduction/welcome.html
 ```
 
 ブラウザが開き、翻訳が反映されていることが確認できます。

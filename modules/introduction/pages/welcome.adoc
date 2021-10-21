@@ -1,4 +1,5 @@
-= Internet Computerの紹介
+= Internet Computer の紹介
+
 :description: Start coding on the Internet Computer. Find documentation, walk-throughs, and tutorials to start building decentralized apps, DeFi and novel blockchain-based services
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :proglang: Motoko
@@ -8,7 +9,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 こんにちは！
 
-ここにたどり着いたということは、 Internet Computer についてもっと知りたいと思っているのではないでしょうか。ようこそお越し下さいました。以下をご覧になってください！
+ここにたどり着いたということは、 Internet Computer についてもっと知りたいと思っているのではないでしょうか。ここはまさにそのための場所です。以下をご覧になってください！
 
 NOTE: 認可された開発者は、20ドル相当の無料の Cycles を利用して、 Internet Computer のブロックチェーンに Canister と呼ばれるスマートコントラクトをデプロイすることができます。 https://faucet.dfinity.org/auth[無料の Cycles を申請する]
 
@@ -31,6 +32,7 @@ Internet Computer は、ブロックチェーンの3つ目の大きなイノベ�
 
 
 [[for-developers]]
+== 開発者の方へ
 Internet Computer は、 link:https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[canisters] と呼ばれる特別なスマートコントラクトを扱います。
 Canister のスマートコントラクトは、 link:https://webassembly.org/[WebAssembly] のバイトコードで記述されたロジックとメモリページのバンドルです。
 Internet Computer 上の Dapps は、1つまたは複数の canister から作成されます。
@@ -53,9 +55,10 @@ Canister のスマートコントラクトは止めることができず、改�
 
 
 [[for-protocol-enthusiasts]]
-== プロトコル愛好家へ
+== プロトコル愛好家の方へ
 
-Internet Computer は、世界初のウェブスピード、ウェブサービスのパブリックブロックチェーンを形成しているインターネットコンピュータプロトコル（「ICP」）によって作られています。
+Internet Computer は、世界初のウェブスピード、ウェブサービスのパブリックブロックチェーンを形成しているインターネットコンピュータプロトコル（ ICP ）によって作られています。
+
 Internet Computer は自治権を持ち、必要に応じて容量を増やすことができます。世界中の独立したデータセンターが一斉に運営する特別なノードマシンを組み合わせています。他のブロックチェーンと同様に、止めることができず、ホストするコードは改ざんできません。
 
 まずは左の「コンセプト」セクションをチェックして、xref:Developers-guide:concepts/what-is-IC.adoc[インターネットコンピュータとは？]から始めてください。

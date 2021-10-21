@@ -39,9 +39,8 @@ Dfinity のドキュメントを日本語へ翻訳するためのスタイルガ
 
 ## 英語原文をコメントアウト
 
-Dfinity 本家のドキュメントに更新があった場合に追従が容易なように、英語原文は以下のようにコメントアウトしてください。
+Dfinity 本家のドキュメントに更新があった場合に追従が容易なように、英語原文は文章全体を以下のようにコメントアウトしてください。
 コメントアウトするときは、必ず`////`を前後の行に挿入するようにしてください。
-一度にコメントアウトする量は特に決まりはありませんが、レベル１セクションごとを推奨します。
 
 元の文
 
@@ -83,6 +82,7 @@ Internet Computer は、ブロックチェーンの3つ目の大きなイノベ�
 
 公式 link:https://twitter.com/dfinity[DFINITY Twitter] で最新情報をお届けします。
 ////
+[[for-first-timers]]
 == For: First-Timers
 The Internet Computer is a blockchain that runs at web speed with unbounded capacity.
 

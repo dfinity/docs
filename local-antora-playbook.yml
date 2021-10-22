@@ -1,6 +1,6 @@
 site:
   title: Dfinity 日本語ドキュメント
-  url: https://hoosan.github.io/docs
+  url: https://nifty-beaver-611cb8.netlify.app
   start_page: docs:introduction:welcome.adoc
 content:
   sources:

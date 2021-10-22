@@ -1,10 +1,26 @@
-= Concepts
+= 概念
 :keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 
+{platform} 上で正常に動作するプログラムを書くにあたり、その内部動作について詳しく知る必要はありません。
+しかし、いくつかの重要な概念を学ぶことで、{IC} が提供するユニークな機能を最大限に活用することができます。
 
+{platform} の設計やアーキテクチャについて少しでも知っておくことで、あなたの目標に沿った強みを簡単に実現でき、開発するアプリケーションのタイプにも反映させることができます。
+
+このセクションのトピックでは、{IC} のアーキテクチャと動作を理解するために、主要なコンポーネントと用語を紹介します。
+
+すぐにコードの開発に取り掛かりたい方は、この入門編である主要な概念や用語をスキップして、後で必要なときにこのセクションまたは link:.../glossary{outfilesuffix}[grossary] で調べることができます。
+
+より入門的な情報をお探しであれば、以下の関連資料をご覧ください。
+
+* link:https://www.youtube.com/watch?v=XgsOKP224Zw[Overview of the Internet Computer (video)]
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the {IC}: Fundamentals (video)]
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
+* link:https://dfinity.org/faq/[Frequently Asked Questions (video and short articles)]
+
+////
 You don’t need to know much about the inner workings of the {platform} to write programs that run successfully on it.
 However, learning a few key concepts will help you get the most out of the unique features that the {IC} provides.
 
@@ -20,3 +36,4 @@ If you are looking for more introductory information, check out the following re
 * link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the {IC}: Fundamentals (video)]
 * link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
 * link:https://dfinity.org/faq/[Frequently Asked Questions (video and short articles)]
+////

@@ -1,3 +1,32 @@
+= Developer Center
+:IC: Internet Computer
+:title:  {IC} SDK - 開発ツール
+:proglang: Motoko
+:company-id: DFINITY
+:page-layout: home
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+{IC} ブロックチェーンは、Dapps を設計・構築・リリースするための全く新しい方法によって、あなたが革命を起こす手助けをする準備ができています。
+
+== Dapps の開発
+
+{IC} は、canister スマートコントラクトを実行するブロックチェーンで、WebAssembly のバイトコードとバイトコードが実行されるメモリページを束ねたコードユニットです。{IC} は、並列に動作する個々のサブネットブロックチェーンで構成されており、チェーンキー暗号を使用して接続されています。つまり、あるサブネット上で動作する canister は、{IC} ブロックチェーンの他のサブネットでホストされている canister をシームレスに呼び出すことができます。さらに、{IC} のガバナンスシステムは、新しいサブネットを追加することで {IC} の容量を動的に増やすことができ、Dapps のスケールアウトを可能にしています。
+
+開発者は、異なるサブネット上で複数の canister を並列に動作させた新しい Dapps を構築したり、{IC} 上で既に動作している既存の canister と統合することができます。
+
+== すぐわかる開発者のワークフロー
+
+上位レベルでは、{IC} ブロックチェーン上で動作する Dapps を開発するために、2つの主要なワークフローが考えられます。
+
+image:local-remote-path-workflow.svg[Development paths]
+
+* *ローカル開発:* {IC} ブロックチェーンをシミュレートした canister のローカル実行環境をあなたのコンピュータ上で起動させます。そして、ローカルの実行環境で canister を書き、コンパイルし、インストールし、繰り返し更新します。これにより、cycle を使用しなくても、ローカルで canister をテストすることができます。
+
+* *オンチェーン開発:* Dapp の準備ができたら、{IC} ブロックチェーンのメインネットにデプロイし、世界中の人が利用できるようにします。なお、{IC} ブロックチェーンのメインネット上で動作させるためには、link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[トークンと cycle] で詳説されているように、canister に cycle を持たせる必要があります。
+
+どのような開発ワークフローを選択しても、canister を初めてデプロイする際には、ローカルの実行環境または {IC} 上のいずれかで、canister のスマートコントラクトに固有のlink:../developers-guide/glossary{outfilesuffix}#g-principal[プリンシパル識別子]が作成されることに留意してください。例えば、ローカルで canister の開発を開始し、その後 {IC} にデプロイした場合、canister は通常、ローカルの実行環境と {IC} ブロックチェーンのメインネットで異なる識別子を持つことになります。なお、新しい canister をデプロイする前に、あるいはコードを書く前に、その canister のプリンシパル識別子を登録することも可能です。
+
+////
 :title:  {IC} SDK - Developer Tools
 = Developer Center
 :proglang: Motoko
@@ -25,3 +54,4 @@ image:local-remote-path-workflow.svg[Development paths]
 * *On-chain deployment:* once your dapp is ready you can then deploy it to the {IC} blockchain mainnet, making it available for the world to use it. Note that your canisters need to have cycles to be able to run on the {IC} blockchain mainnet, as discussed in link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and cycles].
 
 Regardless of the development workflow you choose, keep in mind that when you deploy a canister for the first time, either on a local execution environment or on the {IC}, a unique link:../developers-guide/glossary{outfilesuffix}#g-principal[principal identifier] is created for your canister smart contract. For example, if you start developing your canister locally and then deploy it to the {IC}, then your canister will generally have a different identifier on the local execution environment and on the {IC} blockchain mainnet. Note that it is also possible for you to register a principal identifier for your new canister before deploying it or even writing any line of code.
+////

@@ -3,6 +3,7 @@
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
+:platform: Internet Computer プラットフォーム
 
 {platform} 上で正常に動作するプログラムを書くにあたり、その内部動作について詳しく知る必要はありません。
 しかし、いくつかの重要な概念を学ぶことで、{IC} が提供するユニークな機能を最大限に活用することができます。

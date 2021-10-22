@@ -1,3 +1,169 @@
+* xref:introduction:welcome.adoc[**はじめに**]
+** xref:introduction:welcome.adoc#for-first-timers[はじめての方へ]
+** xref:introduction:welcome.adoc#for-developers[開発者の方へ]
+** xref:introduction:welcome.adoc#for-protocol-enthusiasts[プロトコル愛好家の方へ]
+
+* xref:quickstart:quickstart-intro.adoc[Quick Start]
+** xref:quickstart:newcomers.adoc[For Newcomers]
+** xref:quickstart:local-quickstart.adoc[Local Development]
+** xref:quickstart:network-quickstart.adoc[Network Deployment]
+
+* Developer Docs
+** Getting Started
+*** Introducing the SDK
+**** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
+**** xref:release-notes:sdk-release-notes.adoc[Release notes]
+***** xref:release-notes:0.8.3-rn.adoc[0.8.3]
+***** xref:release-notes:0.8.2-rn.adoc[0.8.2]
+***** xref:release-notes:0.8.1-rn.adoc[0.8.1]
+***** xref:release-notes:0.8.0-rn.adoc[0.8.0]
+***** xref:release-notes:0.7.7-rn.adoc[0.7.7]
+***** xref:release-notes:0.7.2-rn.adoc[0.7.2]
+***** xref:release-notes:0.7.1-rn.adoc[0.7.1]
+***** xref:release-notes:0.7.0-rn.adoc[0.7.0]
+***** xref:release-notes:0.6.26-rn.adoc[0.6.26]
+***** xref:release-notes:0.6.25-rn.adoc[0.6.25]
+***** xref:release-notes:0.6.24-rn.adoc[0.6.24]
+***** xref:release-notes:0.6.23-rn.adoc[0.6.23]
+***** xref:release-notes:0.6.22-rn.adoc[0.6.22]
+***** xref:release-notes:0.6.21-rn.adoc[0.6.21]
+***** xref:release-notes:0.6.20-rn.adoc[0.6.20]
+*** Introducing DFX
+**** xref:developers-guide:cli-reference.adoc[DFX commands]
+**** xref:developers-guide:cli-reference/dfx-envars.adoc[DFX environment variables]
+**** xref:developers-guide:glossary.adoc[Glossary]
+** Building on the Internet Computer
+*** Learn how to:
+**** xref:developers-guide:sdk-guide.adoc[Develop smart contracts on the IC]
+**** xref:developers-guide:design-apps.adoc[Design apps]
+**** xref:developers-guide:customize-projects.adoc[Manage projects]
+**** xref:developers-guide:working-with-canisters.adoc[Manage canisters]
+**** xref:developers-guide:default-wallet.adoc[Use the default cycles wallet]
+**** xref:developers-guide:tutorials/explore-templates.adoc[Explore the default project]
+**** xref:developers-guide:tutorials/define-an-actor.adoc[Query using an actor]
+**** xref:developers-guide:tutorials/hello-location.adoc[Pass text arguments]
+**** xref:developers-guide:tutorials/counter-tutorial.adoc[Increment a natural number]
+**** xref:developers-guide:tutorials/calculator.adoc[Use integers in calculator functions]
+**** xref:developers-guide:tutorials/phonebook.adoc[Import library modules]
+**** xref:developers-guide:tutorials/multiple-actors.adoc[Use multiple actors]
+**** xref:developers-guide:tutorials/intercanister-calls.adoc[Make inter-canister calls]
+**** xref:developers-guide:tutorials/access-control.adoc[Add access control with identities]
+**** xref:developers-guide:tutorials/simple-cycles.adoc[Accept cycles from a wallet]
+**** xref:developers-guide:tutorials/reproducible-builds.adoc[Build canisters reproducibly]
+**** xref:developers-guide:troubleshooting.adoc[Troubleshoot issues]
+
+*** Explore our languages
+
+**** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
+**** xref:language-guide:motoko.adoc[Motoko]
+***** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
+***** xref:base-libraries:stdlib-intro.adoc[Motoko Base Library]
+***** Motoko Guide
+****** xref:language-guide:about-this-guide.adoc[About the language guide]
+****** xref:language-guide:motoko-introduction.adoc[Introduction]
+****** xref:language-guide:basic-concepts.adoc[Basic concepts and terms]
+****** xref:language-guide:mutable-state.adoc[Mutable state]
+****** xref:language-guide:local-objects-classes.adoc[Local objects and classes]
+****** xref:language-guide:actors-async.adoc[Actors and async data]
+****** xref:language-guide:errors.adoc[Error handling]
+****** xref:language-guide:pattern-matching.adoc[Pattern matching]
+****** xref:language-guide:sharing.adoc[Sharing data and behavior]
+****** xref:language-guide:modules-and-imports.adoc[Modules and imports]
+****** xref:language-guide:control-flow.adoc[Imperative control flow]
+****** xref:language-guide:structural-equality.adoc[Structural equality]
+****** xref:language-guide:actor-classes.adoc[Actor classes]
+****** xref:language-guide:caller-id.adoc[Principals and caller identification]
+****** xref:language-guide:cycles.adoc[Managing cycles]
+****** xref:language-guide:upgrades.adoc[Stable variables and upgrade methods]
+****** xref:language-guide:language-manual.adoc[Language quick reference]
+****** xref:language-guide:compiler-ref.adoc[Compiler reference]
+****** xref:language-guide:motoko-grammar.adoc[Motoko grammar]
+****** xref:language-guide:style.adoc[Motoko style guidelines]
+
+**** xref:rust-guide:rust-intro.adoc[Rust]
+***** xref:rust-guide:rust-quickstart.adoc[Hello, World! Quick Start]
+***** xref:rust-guide:rust-counter.adoc[Simple counter tutorial]
+***** xref:rust-guide:multiply-dependency.adoc[Basic dependency tutorial]
+***** xref:rust-guide:rust-profile.adoc[Profile tutorial]
+***** xref:rust-guide:rust-optimize.adoc[Optimize a Rust program]
+
+**** xref:candid-guide:candid-intro.adoc[Candid]
+***** xref:candid-guide:candid-concepts.adoc[What is Candid?]
+***** xref:candid-guide:candid-howto.adoc[How to]
+***** xref:candid-guide:candid-ref.adoc[Reference]
+****** xref:candid-guide:candid-types.adoc[Supported types]
+****** link:https://github.com/dfinity/candid[Candid specification^]
+****** link:https://docs.rs/candid[Candid Rust crate^]
+
+*** Introducing the Internet Identity
+**** xref:ic-identity-guide:what-is-ic-identity.adoc[What is Internet Identity]
+**** xref:ic-identity-guide:auth-how-to.adoc[How to use the Internet Identity]
+**** xref:ic-identity-guide:hello-guide.adoc[Windows Hello Guide]
+
+*** Frontend development
+**** xref:developers-guide:webpack-config.adoc[Add frontend assets]
+**** xref:developers-guide:tutorials/custom-frontend.adoc[Customize the front-end]
+**** xref:developers-guide:tutorials/my-contacts.adoc[Add a stylesheet]
+
+* Protocol Docs
+** .xref:developers-guide:concepts/concepts-intro.adoc[概念]
+*** xref:developers-guide:concepts/what-is-IC.adoc[What is the {IC}]
+*** xref:interface-spec:index.adoc[Internet Computer Interface Specification]
+*** xref:developers-guide:concepts/nodes-subnets.adoc[Nodes and sub-networks]
+*** xref:developers-guide:concepts/data-centers.adoc[Decentralized data centers]
+*** xref:developers-guide:concepts/canisters-code.adoc[Canisters and code]
+*** xref:developers-guide:concepts/tokens-cycles.adoc[トークンと cycle]
+*** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
+
+* General Docs
+** Overview of self-custody
+*** xref:token-holders:custody-options-intro.adoc[Choosing self-custody for digital assets]
+*** xref:token-holders:self-custody-quickstart.adoc[Self-custody quick start]
+** Overview of ledger
+*** xref:integration:ledger-quick-start.adoc[Ledger quick start]
+** Overview of the NNS App
+*** xref:token-holders:nns-app-quickstart.adoc[NNS App quick start]
+
+* Additional Resources
+** Developer videos
+*** link:https://www.youtube.com/watch?v=oxEr8UzGeBo&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=11&ab_channel=DFINITY[Internet Identity^]
+*** link:https://www.youtube.com/watch?v=4eSceDOS-Ms&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=21&ab_channel=DFINITY[Motoko^]
+*** link:https://www.youtube.com/watch?v=GzkRsbqPaA0&ab_channel=DFINITY[Building a multiplayer game for the Internet Computer^]
+*** link:https://www.youtube.com/watch?v=b_nc6yx5_DQ&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=7&ab_channel=DFINITY[Deploying static sites to the Internet Computer^]
+*** link:https://www.youtube.com/watch?v=2miweY9-vZc&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=6&ab_channel=DFINITY[Zero to fullstack: web apps on the Internet Computer ^]
+
+** Protocol videos
+*** link:https://dfinity.org/technicals/[Technical library^]
+
+** Developer tooling
+*** xref:ROOT:download.adoc[DFINITY Canister SDK]
+*** link:https://github.com/dfinity/cdk-rs[Rust CDK^]
+*** link:https://github.com/kritzcreek/vessel[Vessel Package Manager^]
+*** link:https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko[Motoko VS Code Extension^]
+*** link:https://github.com/dfinity/agent-js[Agent JS^]
+*** link:https://github.com/sudograph/sudograph[Sudograph^]
+*** link:https://github.com/dfinity/cycles-wallet[Cycles Wallet^]
+*** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
+*** link:https://github.com/dfinity/quill[Quill^]
+
+** Examples
+*** link:https://github.com/dfinity/awesome-dfinity[Awesome DFINITY^]
+*** link:https://github.com/dfinity/cancan[CanCan^]
+*** link:https://github.com/dfinity/examples[Mini Motoko examples^]
+
+** Community created resources
+*** link:https://ic.rocks/[ic.rocks (Block explorer)^]
+*** link:https://plugwallet.ooo/[Plug (Browser-based wallet extension)^]
+*** link:https://fleek.co/[Fleek (Netlify for the open web)^]
+*** link:http://faucet.dfinity.org/[Cycles Faucet^]
+
+** xref:developers-guide:computation-and-storage-costs.adoc[Computation and Storage Costs]
+
+* Community
+** link:https://discord.gg/cA7y6ezyE2[Developer Discord^]
+** link:https://forum.dfinity.org/[Developer Forum^]
+
+////
 * xref:introduction:welcome.adoc[**Introduction**]
 ** xref:introduction:welcome.adoc#for-first-timers[For: First-Timers]
 ** xref:introduction:welcome.adoc#for-developers[For: Developers]
@@ -162,3 +328,4 @@
 * Community
 ** link:https://discord.gg/cA7y6ezyE2[Developer Discord^]
 ** link:https://forum.dfinity.org/[Developer Forum^]
+////

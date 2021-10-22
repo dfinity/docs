@@ -21,6 +21,15 @@
         "translation",
         "tool"
       ]
+    },
+    {
+      "login": "tokuryoo",
+      "name": "tokuryoo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/92770268?v=4",
+      "profile": "https://github.com/tokuryoo",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,

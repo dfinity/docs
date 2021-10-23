@@ -36,7 +36,7 @@
 ** xref:cli-reference.adoc[DFX commands]
 ** xref:candid-reference.adoc[Candid interface description language]
 ** xref:lang-service-ide.adoc[Language server protocol client]
-** xref:glossary.adoc[Glossary]
+** xref:glossary.adoc[用語集]
 
 * xref:sample-apps.adoc[Examples]
 

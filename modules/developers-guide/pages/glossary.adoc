@@ -1,3 +1,65 @@
+= 用語集
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+
+[[g-actor]]
+actor::
+  Actor とは、モダンプログラミング言語における特殊な種類のオブジェクトで、メッセージ（actor 間の関数呼び出しのやり取り）を隔離されたステートとして処理し、リモートで非同期に処理することを可能にします。
+
+[[g-canister]]
+Canister スマートコントラクト::
+  Canister スマートコントラクト（あるいは、単に canister と呼ばれることもあります）は、スマートコントラクトを拡張したものです。
+  Canister スマートコントラクトが画期的なのは、決定論的に並列実行できるからです。
+  これは、actor モデルと決定論的メッセージパッシングによって可能になります。
+  Canister のスマートコントラクトは、普遍的にユニークな識別子と、特定の Dapp の境界を定義する owner を持っています。
+  Canister は、プログラムのロジック、公開された関数の呼び出し方法、メッセージの型に対するインターフェース記述、および caster によって表される Dapp のステート情報のすべてをカプセル化します。
+
+[[g-principal]]
+principal::
+  Principal とは、{IC} ブロックチェーンによって認証可能なエンティティです。
+  {IC} ブロックチェーンとやりとりする principal は、多くの場合、identity を介して行います。
+  例えば、{sdk-short-name} を初めて使用するとき、`+dfx+` というコマンドラインツールは、PEM ファイル内の公開鍵と秘密鍵のペアを使って、`+デフォルトの+` 開発者 identity を生成します。（訳者注：`default` という名前のディレクトリが生成され、その中に PEM ファイルが生成されます。）
+  この開発者 identity が、**principal** を決定づけます。
+  Principal にはテキスト表現があり、これはしばしば ** principal 識別子**と呼ばれます。
+  開発者 identity は、ICP トークンを identity に代わって ledger に保持するための**アカウント識別子**（BitcoinやEthereumのアドレスに似ています）を導くためにも使用できます。
+
+[[g-controller]]
+controller::
+  Controller とは、canister スマートコントラクトを管理する特別な権利を持つ principal のことです。
+  たとえば、controller である principal のみが、その制御下にある canister のインストール、アップグレード、または削除を行うことができます。
+  Controller は、ユーザーまたは canister に関連付けられた principal のテキスト表現（principal 識別子）を用いて指定することができます。
+
+[[g-ledger]]
+ledger::
+  {IC} ブロックチェーンは、ICP トークンを含むすべての取引を、**ledger canister** と呼ばれる専用の管理 canister スマートコントラクトに記録します。
+  Ledger canister は、**アカウント**と**残高**を管理し、アカウントと残高に影響を与える *トランザクション* の履歴を残すスマートコントラクトを実装しています。トランザクションは、以下の特定のイベントを追跡するために記録されます:
+  
+  * アカウントに対して **ICPトークンをミント** する。
+  * あるアカウントから別のアカウントに **ICP トークン**を転送する。
+  * **ICP トークンをバーン**して消滅させる。
+
+[[g-wallet]]
+wallet::
+  Wallet とは、cycle を保管・管理するための専用の Dapp で、canister スマートコントラクトとして実装されています。
+  Cycle は {IC} ブロックチェーンでの計算やリソース消費の支払いに使用されます。
+  Cycle は {IC} ブロックチェーンのネイティブユーティリティートークンである ICP から変換することで入手できます。
+
+[[g-node]]
+node::
+  {IC} ブロックチェーンに参加するために必要なすべてのハードウェア、replica ソフトウェア、および構成設定をホストする物理的または仮想的なマシンです。
+
+[[g-replica]]
+replica:: 
+  {IC} ブロックチェーンの文脈では、replica とは node 上で実行されている {IC} プロトコルのプロセスを指します。
+
+[[g-wasm]]
+WebAssembly::
+  https://webassembly.org/[WebAssembly] (`+Wasm+`) は、低レベルのコンピュータ命令フォーマットです。
+  WebAssemblyは、ほとんどのモダンなコンピュータハードウェアをきれいに抽象化した、ポータブルでオープンスタンダードなバイナリフォーマットを定義しているため、インターネット上で実行するプログラムに広くサポートされています。
+  {proglang} で書かれた Dapps は、{IC} ブロックチェーン上で実行するために WebAssembly コードにコンパイルされます。
+
+////
 = Glossary
 :proglang: Motoko
 :IC: Internet Computer
@@ -49,3 +111,4 @@ WebAssembly::
   https://webassembly.org/[WebAssembly] (`+Wasm+`) is a low-level computer instruction format. 
   Because WebAssembly defines a portable, open-standard, binary format that abstracts cleanly over most modern computer hardware, it is broadly supported for programs that run on the internet.
   Dapps written in {proglang} are compiled to WebAssembly code for execution on the {IC} blockchain.
+////

@@ -31,7 +31,7 @@
 *** Introducing DFX
 **** xref:developers-guide:cli-reference.adoc[DFX commands]
 **** xref:developers-guide:cli-reference/dfx-envars.adoc[DFX environment variables]
-**** xref:developers-guide:glossary.adoc[Glossary]
+**** xref:developers-guide:glossary.adoc[用語集]
 ** Building on the Internet Computer
 *** Learn how to:
 **** xref:developers-guide:sdk-guide.adoc[Develop smart contracts on the IC]

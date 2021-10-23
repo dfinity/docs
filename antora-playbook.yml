@@ -6,6 +6,9 @@ content:
   sources:
     - url: https://github.com/Japan-DfinityInfoHub/docs
       branches: HEAD
+    - url: https://github.com/Japan-DfinityInfoHub/motoko
+      branches: HEAD
+      start_path: doc
 ui:
   bundle:
     url: ./ui-bundle.zip

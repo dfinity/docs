@@ -9,6 +9,19 @@ content:
     - url: https://github.com/Japan-DfinityInfoHub/motoko
       branches: HEAD
       start_path: doc
+    - url: https://github.com/Japan-DfinityInfoHub/motoko-base
+      branches: HEAD
+      start_path: doc
+    - url: https://github.com/Japan-DfinityInfoHub/cdk-rs
+      branches: HEAD
+      start_path: docs
+    - url: https://github.com/Japan-DfinityInfoHub/candid
+      branches: HEAD
+      start_path: docs
+    - url: https://github.com/Japan-DfinityInfoHub/internet-identity
+      branches: HEAD
+      start_path: docs
+
 ui:
   bundle:
     url: ./ui-bundle.zip

@@ -4,6 +4,8 @@ Dfinity のドキュメントを日本語へ翻訳するためのスタイルガ
 
 もし、わからないことや質問等がある場合は [Discord](https://discord.gg/Q4XnFPstQn) の#🗒-ドキュメント翻訳 チャンネルで質問してください。
 
+AsciiDoc の文法に馴染みのない方は、[文法クイックリファレンス](https://takumon.github.io/asciidoc-syntax-quick-reference-japanese-translation/)を参照してください。
+
 翻訳スタイルガイドの改訂案がある場合は、issues を立てるか、プルリクエストを送ってください。
 
 ## 文体
@@ -39,8 +41,9 @@ Dfinity のドキュメントを日本語へ翻訳するためのスタイルガ
 
 ## 英語原文をコメントアウト
 
-Dfinity 本家のドキュメントに更新があった場合に追従が容易なように、英語原文は文章全体を以下のようにコメントアウトしてください。
-コメントアウトするときは、必ず`////`を前後の行に挿入するようにしてください。
+Dfinity 本家のドキュメントに更新があった場合に追従が容易なように、英語原文は、セクションタイトルや ID を含む**翻訳前の全文**を以下のようにコメントアウトしてください。
+コメントアウトするときは、必ず`////`を前後の行に挿入し、ブロックコメントになるようにしてください。
+翻訳例は[こちら](https://raw.githubusercontent.com/Japan-DfinityInfoHub/docs/main/modules/introduction/pages/welcome.adoc)です。
 
 元の文
 
@@ -149,25 +152,34 @@ yarn create next-app
 
 ## 用語集
 
-用語の翻訳に一貫性を持たせるための用語集です。随時追加します。
+用語の翻訳（カタカナ化含む）に一貫性を持たせるための用語集です。随時追加・更新します。
 
-| 用語             | 和訳              |
-| ---------------- | ----------------- |
-| xx documentation | xx のドキュメント |
+| 用語                   | 和訳              |
+| ---------------------- | ----------------- |
+| Chain Key Cryptography | チェーンキー暗号  |
+| web speed              | ウェブスピード    |
+| xx documentation       | xx のドキュメント |
 
-## 原文のままの方がいいと判断された用語
+## 原文（英単語）のままの方がいいと判断された用語
 
-原文のままの方がいい例として、以下があります。もし、翻訳するべきか分からない場合は Discord で質問してください。
+原文（英単語）のままの方がいい例として、以下があります。もし、翻訳するべきか分からない場合は Discord で質問してください。
 
 - Dfinity で頻出の用語の場合
 - 原文の方がニュアンスを伝えやすい場合
 - 日本語に訳すものが見当たらない場合
 
-| 用語              |
-| ----------------- |
-| Dfinity           |
-| Internet Computer |
-| Canister          |
+| 用語                       |
+| -------------------------- |
+| Canister                   |
+| Cycle                      |
+| Dapp(s)                    |
+| Dfinity                    |
+| Discord                    |
+| Internet Computer          |
+| Internet Computer Protocol |
+| Network Nervous System     |
+| Neuron                     |
+| WebAssembly                |
 
 ## 参考
 

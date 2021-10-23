@@ -7,7 +7,7 @@
 ** xref:concepts/governance.adoc[Neurons and governance]
 
 * xref:sdk-guide.adoc[How to]
-** xref:install-upgrade-remove.adoc[Install, upgrade, or remove software]
+** xref:install-upgrade-remove.adoc[ソフトウェアのインストール・アップグレード・削除]
 ** xref:customize-projects.adoc[Design dapps]
 ** xref:customize-projects.adoc[Manage projects]
 ** xref:work-with-languages.adoc[Develop using different backend languages]

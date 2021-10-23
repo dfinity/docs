@@ -1,3 +1,116 @@
+= ソフトウェアのインストール・アップグレード・削除
+:experimental:
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+
+link:../quickstart/quickstart-intro{outfilesuffix}[クイックスタート]で説明したように、ターミナルシェルでコマンドを実行することで、DFINITY Canister スマートコントラクトSDKパッケージの最新バージョンをダウンロードしてインストールすることができます。
+このセクションでは、{sdk-short-name} のインストール、アップグレード、および削除に関する追加情報を提供します。
+
+include::ROOT:page$download.adoc[leveloffset=0,tag=install]
+
+== インストールされるもの
+
+{sdk-short-name} のインストールスクリプトは、ローカルコンピュータのデフォルトの場所にいくつかのコンポーネントをインストールします。
+次の表では、スクリプトがインストールする開発環境のコンポーネントについて説明します:
+
+[cols="20,55,25",options="header"]
+|===
+|コンポーネント
+|概要
+|デフォルトの場所
+
+|dfx
+|{company-id} 実行コマンドラインインターフェース (CLI)
+|`+/usr/local/bin/dfx+`
+
+|moc
+|{proglang} ランタイムコンパイラ
+|`~/.cache/dfinity/versions/<VERSION>/moc`
+
+|replica
+|{IC} ローカルネットワークバイナリ
+|`~/.cache/dfinity/versions/<VERSION>/replica`
+
+|uninstall.sh
+|{sdk-short-name} と全てのコンポーネントの削除スクリプト
+|`~/.cache/dfinity`
+
+|versions
+|{sdk-short-name} の各バージョンのサブディレクトリを含むキャッシュディレクトリ。 
+|`~/.cache/dfinity/versions`
+
+|===
+
+=== versions ディレクトリに含まれる主要コンポーネント
+
+`~/.cache/dfinity/versions` ディレクトリには、{sdk-short-name} の各バージョンのサブディレクトリが格納されています。
+各バージョンのサブディレクトリには、{sdk-short-name} の特定のバージョンに必要な全てのディレクトリとファイルが含まれています。
+例えば、`~/.cache/dfinity/versions/0.8.3` ディレクトリの内容をリストアップすると、以下のような主要コンポーネントが表示されます。
+
+....
+total 349192
+drwxr-xr-x  17 pubs  staff       544 Mar 15 11:55 .
+drwxr-xr-x   4 pubs  staff       128 Mar 25 14:36 ..
+drwxr-xr-x  49 pubs  staff      1568 Mar 15 11:55 base
+drwxr-xr-x  20 pubs  staff       640 Mar 15 11:55 bootstrap
+-r-x------   1 pubs  staff  66253292 Mar 15 11:55 dfx
+-r-x------   1 pubs  staff  10496256 Dec 31  1969 ic-ref
+-r-x------   1 pubs  staff   5663644 Dec 31  1969 ic-starter
+-r-x------   1 pubs  staff      9604 Dec 31  1969 libcharset.1.0.0.dylib
+-r-x------   1 pubs  staff     38220 Dec 31  1969 libffi.7.dylib
+-r-x------   1 pubs  staff    668300 Dec 31  1969 libgmp.10.dylib
+-r-x------   1 pubs  staff    958248 Dec 31  1969 libiconv.2.4.0.dylib
+-r-x------   1 pubs  staff      4200 Dec 31  1969 libiconv.dylib
+-r-x------   1 pubs  staff     96900 Dec 31  1969 libz.1.2.11.dylib
+-r-x------   1 pubs  staff  15417684 Dec 31  1969 mo-doc
+-r-x------   1 pubs  staff  14634020 Dec 31  1969 mo-ide
+-r-x------   1 pubs  staff  15111508 Dec 31  1969 moc
+-r-x------   1 pubs  staff  49404128 Dec 31  1969 replica
+....
+
+=== {proglang} base ディレクトリ
+
+{sdk-short-name} の各バージョンのサブディレクトリ内にある `+base+` ディレクトリには、そのバージョンの{sdk-short-name} と互換性のある{proglang} のベースライブラリモジュールが含まれています。
+{proglang} ベースライブラリは急速に進化しているため、インストールした {sdk-short-name} のバージョンにパッケージされているベースモジュールのみを使用する必要があります。
+
+=== Bootstrap ディレクトリ
+
+`bootstrap` ディレクトリにはすでに非推奨となった Web サーバのコードが含まれています。
+バージョン 0.7.0 以降、agent は `bootstrap` コードの代わりに HTTP ミドルウェアサーバを呼び出すことができるようになりました。
+この変更により、canister は HTTP リクエストに直接応答できるようになり、従来のウェブベースのアプリケーションのように操作できるようになりました。
+
+== 最新バージョンへのアップグレード
+
+最初のインストール後に {sdk-short-name} の新しいバージョンがダウンロードできるようになった場合、最新の修正や拡張機能をいち早く手にするために、更新されたバージョンをできるだけ早くインストールすることを推奨します。
+現在インストールされているバージョンと、ダウンロード可能な最新バージョンを比較するには、`+dfx upgrade+` コマンドを使用します。
+より新しいバージョンの `+dfx+` が利用可能な場合、`+dfx upgrade+` コマンドによって自動的に最新バージョンをダウンロードしてインストールすることができます。
+
+なお，新しいバージョンをインストールする前に，既存のソフトウェアをアンインストールする必要はありません。
+ただし，アップグレードではなくクリーンインストールを行いたい場合は，xref:remove[ソフトウェアのアンインストール] で説明しているように，まず既存のソフトウェアをアンインストールしてから，ダウンロードおよびインストールコマンドを実行してください。
+
+最新リリースの機能や修正については、xref:release-notes:sdk-release-notes.adoc[リリースノート]をご覧ください。
+
+[[remove]]
+== ソフトウェアのアンインストール
+
+{sdk-short-name} をインストールすると、インストールスクリプトが必要なバイナリファイルをローカルディレクトリに置き、キャッシュを作成します。
+`.cache` フォルダにある `+uninstall+` スクリプトを実行することで、ローカルコンピュータから SDK のバイナリとキャッシュを削除することができます。
+
+例えば、以下のようにします:
+[source,bash]
+----
+~/.cache/dfinity/uninstall.sh
+----
+
+まっさらな状態の `dfx` をすぐに再インストールしたい場合は、以下のコマンドを実行してください:
+
+[source,bash]
+----
+~/.cache/dfinity/uninstall.sh && sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"
+----
+
+////
 = Install, upgrade, or remove software
 :experimental:
 :proglang: Motoko
@@ -109,3 +222,4 @@ If you are uninstalling because you want to immediately reinstall a clean versio
 ----
 ~/.cache/dfinity/uninstall.sh && sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"
 ----
+////

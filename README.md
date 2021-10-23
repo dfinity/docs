@@ -1,7 +1,5 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # （非公式） Dfinity ドキュメント翻訳プロジェクト
@@ -111,6 +109,7 @@ Special thanks to these wonderful people ([emoji key](https://allcontributors.or
   <tr>
     <td align="center"><a href="https://github.com/hoosan"><img src="https://avatars.githubusercontent.com/u/40290137?v=4" width="100px;" alt=""/><br /><sub><b>hoosan</b></sub></a></td>
     <td align="center"><a href="https://github.com/tokuryoo"><img src="https://avatars.githubusercontent.com/u/92770268?v=4" width="100px;" alt=""/><br /><sub><b>tokuryoo</b></sub></a></td>
+    <td align="center"><a href="https://github.com/gelgoog999"><img src="https://avatars.githubusercontent.com/u/84751541?v=4" width="100px;" alt=""/><br /><sub><b>gelgoog999</b></sub></a></td>
   </tr>
 </table>
 

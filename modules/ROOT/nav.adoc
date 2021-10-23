@@ -11,7 +11,7 @@
 * Developer Docs
 ** Getting Started
 *** Introducing the SDK
-**** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
+**** xref:developers-guide:install-upgrade-remove.adoc[ソフトウェアのインストール・アップグレード・削除]
 **** xref:release-notes:sdk-release-notes.adoc[Release notes]
 ***** xref:release-notes:0.8.3-rn.adoc[0.8.3]
 ***** xref:release-notes:0.8.2-rn.adoc[0.8.2]

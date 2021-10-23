@@ -1,3 +1,298 @@
+= ローカル環境での開発
+:description: Download the DFINITY Canister SDK and deploy your first dapp locally.
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[quick-start-intro]]
+この _クイックスタート_ では Dfinity Canister SDK を初めてインストールする方が、スマートコントラクトを {IC} のブロックチェーンに展開するのではなく、 *ローカルの実行環境* に展開し、動作させることを想定しています。
+
+まず最初に `+greet+` という関数を1つだけ持つシンプルな Hello Canister を構築し展開してみます。 `+greet+` 関数は1つの引数を受けとり、その結果を **Hello,{nbsp}everyone!** のように返します。コマンドラインでキャニスターを実行した場合はターミナルに、ブラウザで Canister にアクセスした場合は HTML で表示されます。
+
+[[before-you-begin]]
+== 始める前に
+
+{sdk-short-name} をダウンロードしてインストールする前に、以下のことを確認してください。
+
+* インターネットに接続されている **macOS** または **Linux** コンピュータでターミナルにアクセスできること。
++
+現在 {sdk-short-name} は、macOS または Linux の OS を搭載したコンピュータでのみ動作します。
+
+* フロントエンド開発用のテンプレートファイルをプロジェクトに含めたい場合は、 `+node.js+` がインストールされている必要があります。
+
+このチュートリアルは、ターミナルを開いてコマンドを実行するなど、コンピュータ上で一般的な作業を行う方法を知っていることを前提としています。
+コンピュータで新しいターミナルを開く方法や、`node.js` をインストールする方法がわからない場合は、link:newcomers{outfilesuffix}[初めての人のための準備] を参照してください。
+準備ができたら <<download-and-install>> に進みます。
+
+[[download-and-install]]
+== ダウンロードとインストール
+
+最新の {sdk-long-name} を、コンピュータのターミナルから直接ダウンロードすることができます。
+
+ダウンロードしてインストールするには:
+
+[arabic]
+. ローカルコンピュータでターミナルを開きます。
++
+例えば、「アプリケーション」から「ユーティリティ」を開いて、「ターミナル」をダブルクリックするか、kbd:[{commandkey} + スペースキー] を押して「検索」を開き、 `+terminal+` と入力します。
+. 以下のコマンドを実行して、{sdk-short-name} パッケージをダウンロードしてインストールします。
++
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
++
+このコマンドは、{company-id} コマンドラインインターフェース（CLI）及びその依存関係をローカルコンピュータにインストールする前に、使用許諾契約書を読み同意するよう促します。
+. `+y+` と入力し、kbd:[Return] を押すと、インストールが続行されます。
++
+このコマンドは、コンピュータにインストールされているコンポーネントに関する情報を表示します。
+
+
+[[verify-the-sdk-is-ready-to-use]]
+== SDK の確認
+
+インストールスクリプトでエラーがなければ、プログラム開発を始めるために必要なすべてのものが、ローカルコンピュータ上で利用可能になります。
+
+SDK を使用できることを確認するには:
+
+[arabic]
+. ローカルコンピュータでターミナルを開きます（まだ開いていない場合）。
+. 次のコマンドを実行して、{company-id} コマンドラインインターフェース（CLI）がインストールされ `+dfx+` コマンドが実行可能であることを確認します。
++
+[source,bash]
+----
+dfx --version
+----
++
+このコマンドは、以下のような `+dfx+` コマンドのバージョン情報を表示します。
++
+....
+dfx 0.8.3
+....
+. 他の `+dfx+` コマンドの使用方法は、以下のコマンドを実行してください。
++
+[source,bash]
+----
+dfx --help
+----
++
+このコマンドは、 `+dfx+` とそのオプション情報を表示します。
+
+//include::example$vscode-plugin.adoc[]
+
+[[create-a-new-project]]
+== 新しいプロジェクトの作成
+
+{IC} の Daaps 開発は**プロジェクト**として始めます。
+プロジェクトはdfx コマンドで作成できます。
+
+このチュートリアルでは、プロジェクトのスターターファイルを使ったアプリケーション作成について説明するために、デフォルトのサンプルアプリケーションの作成から始めます。
+新しいプロジェクトを作成すると、`+dfx+` コマンドラインインターフェイスは、ワークスペースにデフォルトのプロジェクトディレクトリを追加します。プロジェクトディレクトリを構成するテンプレートファイルについては、link:../developers-guide/tutorials/explore-templates{outfilesuffix}[デフォルトプロジェクトの確認] で説明しています。
+
+新しいプロジェクトを作成する手順:
+
+[arabic]
+. ローカルコンピュータでターミナルを開きます。
+. 以下のコマンドを実行し、 `+hello+` という名前の新しいプロジェクトを作成します。
++
+[source,bash]
+----
+dfx new hello
+----
++
+`+dfx new hello+` コマンドは、新しい `+hello+` プロジェクトディレクトリ、テンプレートファイル、そして新しい Git リポジトリを作成します。
++
+もし別のプロジェクト名を使った場合は、使った名前をメモしておいてください。以下の手順では、`+hello+` プロジェクト名の代わりにそのプロジェクト名を使用してください。
+. 以下のコマンドでプロジェクトディレクトリに移動します。
++
+[source,bash]
+----
+cd hello
+----
+
+[[start-the-local-network]]
+== ローカル環境での開発を始める
+
+最初のプロジェクトを構築する前に、Canister 実行環境に接続する必要があります。
+ベスト・プラクティスとして、**2つのターミナル**を開いておいてください。これにより、1つのターミナルで Canister の動作を確認し、別のターミナルでプロジェクトを管理することができます。
+
+ローカルでの Canister 実行環境の準備:
+
+[arabic]
+. ローカルコンピュータで新しいターミナルを開きます。
+. 必要に応じて、プロジェクトのルートディレクトリに移動します。
++
+これで、2つのターミナルが開き、両方のターミナルでプロジェクト・ディレクトリがカレント・ワーキング・ディレクトリになっているはずです。
+. 2つ目のターミナルで以下のコマンドを実行して、ローカルな Canister 実行環境を開始します。
++
+[source,bash]
+----
+dfx start
+----
++
+お使いのプラットフォームのセキュリティ設定によっては、警告が表示される場合があります。
+ネットワーク接続を許可するかどうかのプロンプトが表示された場合は、*Allow* をクリックします。
+. Canister の実行が表示されているターミナルを開いたままにして、最初のターミナルにフォーカスを切り替えます。
++
+残りの手順は、Canister の実行操作が表示されていないこちらのターミナルで行います。
+
+[[register-ids]]
+== アプリケーションの登録と構築、展開
+
+ローカルの Canister 実行環境に接続すると、アプリケーションの登録と構築、展開が可能になります。
+
+最初のアプリケーションをローカル環境に展開するには
+
+. プロジェクトのルート・ディレクトリにいることを確認します。
+. 以下のコマンドを実行して、プロジェクト・ディレクトリで `+node+` モジュールが利用可能であることを確認します。
++
+[source,bash]
+----
+npm install
+----
++
+このステップについてさらに情報が欲しい場合は link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[node がプロジェクトで利用可能であることを確認する] を参照してください。
+. 以下のコマンドで、あなたの最初のアプリケーションを登録、構築そして展開します。
++
+[source,bash]
+----
+dfx deploy
+----
++
+`+dfx deploy+` コマンドの出力には、実行した結果が表示されます。
+例えば、このステップでは `+hello+` メインプログラムと `+hello_assets+` フロントエンドUI用の2つの Canister 識別子を登録し、以下のようなインストール情報を表示します。
++
+....
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Deploying all canisters.
+Creating canisters...
+Creating canister "hello"...
+"hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Creating canister "hello_assets"...
+"hello_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
+Building canisters...
+Building frontend...
+Installing canisters...
+Creating UI canister on the local network.
+The UI canister on the "local" network is "r7inp-6aaaa-aaaaa-aaabq-cai"
+Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+Authorizing our identity (default) to the asset canister...
+Uploading assets to asset canister...
+  /index.html 1/1 (573 bytes)
+  /index.html (gzip) 1/1 (342 bytes)
+  /index.js 1/1 (605692 bytes)
+  /index.js (gzip) 1/1 (143882 bytes)
+  /main.css 1/1 (484 bytes)
+  /main.css (gzip) 1/1 (263 bytes)
+  /sample-asset.txt 1/1 (24 bytes)
+  /logo.png 1/1 (25397 bytes)
+  /index.js.map 1/1 (649485 bytes)
+  /index.js.map (gzip) 1/1 (149014 bytes)
+Deployed canisters.
+....
++
+別の名前でプロジェクトを作成した場合、 `+hello+` や `+hello_assets+` ではなく、プロジェクトの名前になります。
++
+
+また、最初の展開時には、 `+dfx+` は `+default+` アイデンティティと、`+default+` アイデンティティが管理するローカルの Cycle ウォレットを作成することに注意してください。
+Cycle ウォレットは特別なタイプの Canister で、link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Cycle] を他の Canister に転送することができます。
+
++
+このサンプルアプリケーションをローカルにデプロイするためには、デフォルトの開発者アイデンティティ、Cycle ウォレットの使用、Cycle の管理などについて特に知る必要はありません。これらのトピックについては後ほど説明しますが、今のところ、これらが自動的に作成されることを覚えておいてください。
+. 以下のコマンドを実行して、 `+hello+` キャニスターと定義済みの `+greet+` 関数を呼び出します。
++
+[source,bash]
+----
+dfx canister call hello greet everyone
+----
++
+このコマンドを詳しく見てみましょう。
++
+--
+
+* `+dfx canister call+` コマンドでは、Canister 名と、呼び出すメソッドまたは関数を指定する必要があります。
+* `+hello+` は呼び出したい *Canister* の名前を指定します。
+* `+greet+` は `+hello+` Caniser で呼び出したい関数の名前を指定します。
+* `+everyone+` は `+greet+` 関数に渡したいテキスト型の引数です。
+
+--
+
++
+ただし、別の名前でプロジェクトを作成した場合は、Canister 名がプロジェクト名と一致するので、コマンドラインを `+hello+` の代わりに使用した名前に合わせて変更する必要があります。
+. コマンドが `+greet+` 関数の戻り値を表示することを確認してください。
++
+例:
++
+....
+("Hello, everyone!")
+....
+
+[[quickstart-frontend]]
+== フロントエンドアプリケーションのテスト
+
+アプリケーションの展開とコマンドラインを使った動作テストが終わったので、Webブラウザを使ってフロントエンドにアクセスできるかどうかを確認してみましょう。
+
+. 開発サーバーを `+npm start+` で起動します。
+. ブラウザを開きます。
+. http://localhost:8080/ にアクセスします。
+
+このURLにアクセスすると、サンプルのアセット画像ファイル、入力フィールド、ボタンを含むシンプルなHTMLページが表示されます。
+例えば、以下のようになります。
++
+image:front-end-prompt.png[Sample HTML page]
+
+. 挨拶を入力し、 *Click Me* をクリックすると挨拶が返ってきます。
++
+例:
++
+image:front-end-result.png[Hello, everyone! greeting]
+
+== ローカルの Canister 実行環境の停止
+
+ブラウザでアプリケーションをテストした後は、ローカルの Canister実行環境を停止して、バックグラウンドで実行し続けないようにします。
+
+ローカルの実行環境を停止するには、以下の手順に従います。
+
+. 開発サーバが表示されているターミナルで、Control-C を押して開発サーバのプロセスを中断します。
+
+. Canister 実行操作を表示しているターミナルで、Control-C を押してローカル・ネットワーク・プロセスを中断します。
+
+. 以下のコマンドを実行して、ローカル・コンピュータ上で動作しているCanister 実行環境を停止します。
++
+[source,bash]
+----
+dfx stop
+----
+
+[[next-steps]]
+== 次のステップ
+
+このクイックスタートでは、独自のアプリケーションを開発するための基本的な流れを紹介するために、いくつかの重要なステップにのみ触れています。
+他のドキュメントには、{proglang} の使い方や {IC} ブロックチェーン上で動作する アプリケーションの開発方法を学ぶための、より詳細な例やチュートリアルなどもあります。
+
+次のステップに進むために以下も参考にしてください。
+
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] ローカルの Canister 実行環境を使用して、シンプルなアプリケーションを構築するためのチュートリアルです。
+
+* link:network-quickstart{outfilesuffix}#convert-icp[Convert ICP tokens to cycles] {IC} ブロックチェーンへのアプリケーションの展開を可能にするために、ICPトークンをサイクルに変換します。
+
+* link:network-quickstart{outfilesuffix}[On-chain deployment] サイクルを持っていて、{IC} ブロックチェーンのメインネットにアプリケーションを展開します。
+
+* link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] Candid インターフェース記述言語がどのようにサービスの相互運用性とコンポーザビリティを可能にするかを学びます。
+
+* link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] {proglang} についての機能と構文について学ぶことができます。
+
+
+////
 = Local development
 :description: Download the DFINITY Canister SDK and deploy your first dapp locally.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
@@ -284,3 +579,4 @@ Here are some suggestions for where to go next:
 * link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
 
 * link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using {proglang}.
+////

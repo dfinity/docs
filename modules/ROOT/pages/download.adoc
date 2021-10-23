@@ -7,7 +7,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 {sdk-long-name} をローカルコンピュータのターミナルシェル内から直接ダウンロードすることができます。
 このインストール方法では、どのユーザーとしてもログオンすることができ、追加のソフトウェアは必要ありません。
 
-// tag::install[] 
+// tag::install_jp[] 
 [[install-latest]]
 == ターミナルから直接最新版をインストールする
 
@@ -43,7 +43,7 @@ DFX_VERSION=0.8.3 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 NOTE: 環境変数 DFX_VERSION を使用して、まだ一般に公開されていないバージョンの {sdk-short-name} をインストールしている場合は、変更点の概要についてこの link:http-middleware{outfilesuffix}[記事]を参照してください。
 
-// end::install[]   
+// end::install_jp[]   
 
 == 次のステップ
 

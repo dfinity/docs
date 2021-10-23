@@ -34,7 +34,7 @@
 **** xref:developers-guide:glossary.adoc[用語集]
 ** Building on the Internet Computer
 *** Learn how to:
-**** xref:developers-guide:sdk-guide.adoc[Develop smart contracts on the IC]
+**** xref:developers-guide:sdk-guide.adoc[IC 上でのスマートコントラクト開発]
 **** xref:developers-guide:design-apps.adoc[Design apps]
 **** xref:developers-guide:customize-projects.adoc[Manage projects]
 **** xref:developers-guide:working-with-canisters.adoc[Manage canisters]
@@ -57,7 +57,7 @@
 **** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
 **** xref:language-guide:motoko.adoc[Motoko]
 ***** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
-***** xref:base-libraries:stdlib-intro.adoc[Motoko Base Library]
+***** xref:base-libraries:stdlib-intro.adoc[Motoko 基本ライブラリ]
 ***** Motoko Guide
 ****** xref:language-guide:about-this-guide.adoc[About the language guide]
 ****** xref:language-guide:motoko-introduction.adoc[Introduction]

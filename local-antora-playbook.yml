@@ -10,3 +10,12 @@ ui:
   bundle:
     url: ./ui-bundle.zip
     snapshot: true
+
+asciidoc:
+  attributes:
+    platform: Internet Computer プラットフォーム
+    IC: Internet Computer
+    sdk-short-name: DFINITY Canister SDK
+    sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+    proglang: Motoko
+    company-id: DFINITY

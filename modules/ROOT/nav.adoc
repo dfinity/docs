@@ -96,7 +96,7 @@
 ****** link:https://docs.rs/candid[Candid Rust crate^]
 
 *** Introducing the Internet Identity
-**** xref:ic-identity-guide:what-is-ic-identity.adoc[What is Internet Identity]
+**** xref:ic-identity-guide:what-is-ic-identity.adoc[Internet Identity とは]
 **** xref:ic-identity-guide:auth-how-to.adoc[How to use the Internet Identity]
 **** xref:ic-identity-guide:hello-guide.adoc[Windows Hello Guide]
 

@@ -7,7 +7,7 @@
 link:../quickstart/quickstart-intro{outfilesuffix}[クイックスタート]で説明したように、ターミナルシェルでコマンドを実行することで、DFINITY Canister スマートコントラクトSDKパッケージの最新バージョンをダウンロードしてインストールすることができます。
 このセクションでは、{sdk-short-name} のインストール、アップグレード、および削除に関する追加情報を提供します。
 
-include::ROOT:page$download.adoc[leveloffset=0,tag=install]
+include::ROOT:page$download.adoc[leveloffset=0,tag=install_jp]
 
 == インストールされるもの
 

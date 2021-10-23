@@ -1,8 +1,10 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-# （非公式） Dfinity 　ドキュメント翻訳プロジェクト
+# （非公式） Dfinity ドキュメント翻訳プロジェクト
 
 ## 翻訳手順
 
@@ -45,8 +47,10 @@ $ git clone https://github.com/your/docs
 $ cd docs
 ```
 
-翻訳作業を行うためのブランチを作成します。ここでは、例として `introduction/pages/welcome.adoc` を翻訳するためのブランチを作成します。
-どのファイルを翻訳するかは、[翻訳の概要と進捗状況](https://github.com/Japan-DfinityInfoHub/docs/issues/17)を確認して決めてください。
+翻訳作業を行うためのブランチを作成します。
+どのファイルを翻訳するかは、[翻訳の概要と進捗状況](https://github.com/Japan-DfinityInfoHub/docs/issues/17)の翻訳ページ一覧を確認して、翻訳したい箇所をコメントしてください。
+
+ここでは、例として `introduction/pages/welcome.adoc` を翻訳するためのブランチを作成します。
 
 ```
 $ git checkout -b introduction/pages/welcome.adoc
@@ -82,7 +86,7 @@ $ open build/site/docs/introduction/welcome.html
 ### 手順 5: 翻訳内容のプルリクを出す
 
 翻訳が終わったら、ローカルリポジトリにコミットしたあと、自分のリモートリポジトリにプッシュします。
-なるべく[１つのコミットにまとめて](https://dev.classmethod.jp/articles/git-rebase-fixup/)いただければありがたいですが、難しければそのままでも OK です。
+コミットが複数になった場合、なるべく[１つのコミットにまとめて](https://dev.classmethod.jp/articles/git-rebase-fixup/)いただければありがたいですが、難しければそのままでも OK です。
 
 ```
 $ git add modules/introduction/pages/welcome.adoc

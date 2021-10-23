@@ -1,3 +1,59 @@
+= ダウンロードセンター
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+{sdk-long-name} をローカルコンピュータのターミナルシェル内から直接ダウンロードすることができます。
+このインストール方法では、どのユーザーとしてもログオンすることができ、追加のソフトウェアは必要ありません。
+
+// tag::install[] 
+[[install-latest]]
+== ターミナルから直接最新版をインストールする
+
+ターミナルシェルからダウンロードしてインストールする場合、以下のような手順となります:
+
+. ローカルコンピューターでターミナルシェルを開きます。
++
+例えば、macOSの場合、「アプリケーション」フォルダーを開き、「ユーティリティ」を開いて「*Terminal*」をダブルクリックします。
+. `curl`コマンドを実行して、SDKパッケージをダウンロードし、インストールします:
++
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
+
+[[install-version]]
+== ターミナルから特定のバージョンをインストールする
+
+以前のバージョンと比較してテストときするなど、特定のバージョンをインストールしたい場合は、バージョン名を含めたインストールコマンドを実行します。
+
+以下のようにして、ターミナルシェルから特定のバージョンをダウンロードしてインストールすることができます:
+
+. ローカルコンピューターでターミナルシェルを開きます。
+
+. 環境変数である `DFX_VERSION` に、`+curl+` コマンドのプレフィックスとしてインストールしたい {sdk-short-name} パッケージのバージョンを設定します。
++
+例えば、バージョン0.8.3をインストールするには、以下のコマンドを実行します:
++
+[source,bash]
+----
+DFX_VERSION=0.8.3 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
+
+NOTE: 環境変数 DFX_VERSION を使用して、まだ一般に公開されていないバージョンの {sdk-short-name} をインストールしている場合は、変更点の概要についてこの link:http-middleware{outfilesuffix}[記事]を参照してください。
+
+// end::install[]   
+
+== 次のステップ
+
+次のステップのためのさらなる情報については、link:developers-guide/sdk-guide{outfilesuffix}[_SDK Developer Tools_] の link:developers-guide/tutorials-intro{outfilesuffix}[チュートリアル]を参照してください.
+
+コードを書き始める前に {IC} のプログラムを書くことについて詳しく知りたい方は、link:developers-guide/concepts/concepts-intro{outfilesuffix}[概念] をご覧ください。
+
+{proglang} を使って {IC} のプログラムを書く方法については、link:language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_] を参照してください。
+
+////
 = Download center
 :proglang: Motoko
 :IC: Internet Computer
@@ -53,6 +109,7 @@ For information about the next steps to take, see link:developers-guide/tutorial
 To learn more about writing programs for the {IC} before you start experimenting with code, see link:developers-guide/concepts/concepts-intro{outfilesuffix}[Concepts].
 
 For information about writing programs for the {IC} using {proglang}, see the link:language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
+////
 
 ////
 == Download a packaged release

@@ -5,7 +5,7 @@
 
 * xref:quickstart:quickstart-intro.adoc[Quick Start]
 ** xref:quickstart:newcomers.adoc[For Newcomers]
-** xref:quickstart:local-quickstart.adoc[Local Development]
+** xref:quickstart:local-quickstart.adoc[ローカル開発]
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
 
 * Developer Docs
@@ -81,7 +81,7 @@
 ****** xref:language-guide:style.adoc[Motoko style guidelines]
 
 **** xref:rust-guide:rust-intro.adoc[Rust]
-***** xref:rust-guide:rust-quickstart.adoc[Hello, World! Quick Start]
+***** xref:rust-guide:rust-quickstart.adoc[Hello World! クイックスタート]
 ***** xref:rust-guide:rust-counter.adoc[Simple counter tutorial]
 ***** xref:rust-guide:multiply-dependency.adoc[Basic dependency tutorial]
 ***** xref:rust-guide:rust-profile.adoc[Profile tutorial]
@@ -109,7 +109,7 @@
 ** .xref:developers-guide:concepts/concepts-intro.adoc[概念]
 *** xref:developers-guide:concepts/what-is-IC.adoc[Internet Computer とは]
 *** xref:interface-spec:index.adoc[Internet Computer Interface Specification]
-*** xref:developers-guide:concepts/nodes-subnets.adoc[Nodes and sub-networks]
+*** xref:developers-guide:concepts/nodes-subnets.adoc[ノードとサブネット]
 *** xref:developers-guide:concepts/data-centers.adoc[Decentralized data centers]
 *** xref:developers-guide:concepts/canisters-code.adoc[Canisters and code]
 *** xref:developers-guide:concepts/tokens-cycles.adoc[トークンと Cycle]

@@ -112,7 +112,7 @@
 *** xref:developers-guide:concepts/nodes-subnets.adoc[Nodes and sub-networks]
 *** xref:developers-guide:concepts/data-centers.adoc[Decentralized data centers]
 *** xref:developers-guide:concepts/canisters-code.adoc[Canisters and code]
-*** xref:developers-guide:concepts/tokens-cycles.adoc[トークンと cycle]
+*** xref:developers-guide:concepts/tokens-cycles.adoc[トークンと Cycle]
 *** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
 
 * General Docs

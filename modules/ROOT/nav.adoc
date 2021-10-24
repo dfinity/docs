@@ -95,9 +95,9 @@
 ****** link:https://github.com/dfinity/candid[Candid specification^]
 ****** link:https://docs.rs/candid[Candid Rust crate^]
 
-*** Introducing the Internet Identity
+*** Internet Identity の紹介
 **** xref:ic-identity-guide:what-is-ic-identity.adoc[Internet Identity とは]
-**** xref:ic-identity-guide:auth-how-to.adoc[How to use the Internet Identity]
+**** xref:ic-identity-guide:auth-how-to.adoc[Internet Identity の使い方]
 **** xref:ic-identity-guide:hello-guide.adoc[Windows Hello ガイド]
 
 *** Frontend development

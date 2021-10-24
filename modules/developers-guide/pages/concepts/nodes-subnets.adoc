@@ -1,3 +1,31 @@
+= ノードとサブネットブロックチェーン
+:keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
+:proglang: Motoko
+:IC: Internet Computer blockchain
+:LEE: ローカル Canister 実行環境
+:company-id: DFINITY
+
+{IC} の **サブネットブロックチェーン** は、ソフトウェアオペレーションを実行するための物理的なハードウェアとリソース（CPUとメモリのような）を提供します。各サブネットは、いくつかの **ノード** と呼ばれる、独立して所有・制御される分散化されたマシン（接続されたピアコンピュータ）で構成されるブロックチェーンです。**ノード** は、{IC} Protocol のソフトウェアコンポーネントを実行します。
+
+各ノード上で実行する {IC} ソフトウェアコンポーネント は、サブネットブロックチェーン内のすべてのノードに状態と計算結果を複製するため、*レプリカ* と呼ばれています。
+
+
+レプリカの中核となるコンポーネントは、下記の論理的なレイヤーからなっています。
+
+* ユーザー、サブネットブロックチェーン内の他のノード、他のサブネットブロックチェーン からのメッセージを収集し、アドバタイズする **ピアツーピア**（P2P）ネットワーキングレイヤー。ピアツーピアレイヤーで受信されたメッセージは、サブネット内のすべてのノードに複製され、セキュリティ、信頼性、回復力を保証します。
+* ブロックチェーンブロックを作成するために、ユーザー と 異なるサブネット から受け取ったメッセージを選び、順序付ける **コンセンサス** レイヤー。ブロックチェーンブロックは、発展するブロックチェーンを形成するビザンチン障害耐性を有するコンセンサスによって署名され、ファイナライズされます。これらのファイナライズされたブロックは、メッセージルーティングレイヤーに配信されます。
+* ユーザーとシステムが生成したメッセージをサブネット間でルーティングしたり、dapps の入出力キューを管理したり、メッセージを実行するようスケジューリングしたりする *メッセージルーティング* レイヤー。
+* メッセージルーティングレイヤーから受け取ったメッセージを処理することで、スマートコントラクトの実行に関わる決定論的演算を行う *実行環境*。
+
+
+開発環境で {LEE} としてデプロイされた {IC} Protocol コンポーネント の簡単な概要を、下図に示します。
+
+image:SDK-protocol-local-overview.svg[Internet Computer components in a developer’s environment]
+
+開発者としては、あなたの dapps とユーザー間の相互作用が、{IC} アーキテクチャを介してどのようにルーティングされるのか、またはブロックチェーンネットワーク上でどのように複製されるのかについて、詳細を知る必要はありません。
+しかしながら、デプロイにおける {EE} と 本番環境のワークフローの実際的な感覚を得るために、開発環境はレプリカのコンポーネントを含んでいるため、主要なコンポーネントを大まかに理解するのに役に立つでしょう。
+
+/////
 = Nodes and subnet blockchains
 :keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
 :proglang: Motoko
@@ -22,6 +50,7 @@ image:SDK-protocol-local-overview.svg[Internet Computer components in a develope
 
 As a developer, it isn’t necessary to know the details about how your dapps and user interactions with your dapps are routed through the {IC} architecture or replicated on the blockchain network.
 However, a general understanding of the key components can be useful because the development environment includes the replica components to provide a {EE} for deployment and a realistic sense of the workflow for a production deployment.
+/////
 
 ////
 

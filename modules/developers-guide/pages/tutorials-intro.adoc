@@ -1,3 +1,46 @@
+= チュートリアル
+:platform: Internet Computer プラットフォーム
+:proglang: Motoko
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+link:../quickstart/quickstart-intro{outfilesuffix}[クイックスタート] では、プロジェクトディレクトリやサンプルコードの中身を探索せずに、新しいプロジェクトを作成しデプロイするための基本的なワークフローを簡単に紹介しました。
+
+次に、{platform} 上で動作するプログラムの作成を実践的に体験するために、いくつかの単純なプログラムを書いていきましょう。
+
+NOTE: ほとんどのチュートリアルでは、 {proglang} プログラミング言語を使って Dapps の書き方を説明しています。別の言語で記述された Dapps の例は、 {company-id}  https://github.com/dfinity/examples[examples] レポジトリを確認してください。
+
+以下に続くチュートリアルでは、 {platform} 上で動作する Dapps の書き方の基礎を紹介しています。
+
+* link:tutorials/explore-templates{outfilesuffix}[デフォルトプロジェクトを探索する] では、新しくプロジェクトを作るときに、初めからワークスペースに追加されているファイルやフォルダを調査することで、プロジェクトを制作する一連の流れを詳しく見ていきます。
+
+* link:tutorials/define-an-actor{outfilesuffix}[Actor を使って処理を要求する] では、 "Hello, World!" Canister で頻繁に定義している典型的な `+print+` 関数を `+hello+` 関数を備えた Actor （オブジェクト）で置き換える方法に焦点を当てています。
+
+* link:tutorials/hello-location{outfilesuffix}[文字列の引数を渡す] では、ターミナルのコマンドラインで使う関数に引数を渡す複数の方法を紹介します。
+
+* link:tutorials/counter-tutorial{outfilesuffix}[インクリメントする] では、インクリメントをしてカウンターの値を返す関数を持つ Actor を作成する Dapps を書くプロセスを一通り紹介します。
+
+* link:tutorials/calculator{outfilesuffix}[関数での計算で整数を使う] では、 {proglang} での実践的で単純な計算を行う Dapp の書き方とプロジェクト環境のカスタマイズ方法の学び方を示します。
+
+* link:tutorials/phonebook{outfilesuffix}[ライブラリのモジュールを導入する] では、連想配列で動作する基礎的な {proglang} ライブラリの関数の導入と利用の方法を示します。
+
+* link:tutorials/multiple-actors{outfilesuffix}[多様な Actors を使用する] では、同じプロジェクトで複数の Canisters をコンパイルする方法を示すために、複数の関連しない Actors を単一のプロジェクトに含める方法を説明します。
+
+* link:tutorials/custom-frontend{outfilesuffix}[フロントエンドをカスタマイズする] では、デフォルトのサンプル Canister のフロントエンドを、単純な React フレームワークで作成する方法を説明します。もし既に CSS, HTML, JavaScript, React, または別のフレームワークを使ったユーザーインターフェースの組み立て方を知っているのであれば、このチュートリアルを飛ばしてしまって構いません。
+
+* link:tutorials/my-contacts{outfilesuffix}[スタイルシートを追加する] では、 React を使用してプロジェクトのフロントエンドを作成するときのスタイルシートを導入する方法を説明します。もし既に React へのスタイルシートの導入の仕方を知っているのであれば、このチュートリアルを飛ばしてしまって構いません。
+
+* link:tutorials/intercanister-calls{outfilesuffix}[内部の Canister をコールする] では、同じプロジェクトの別の Canister からもう一つの Canister の関数を呼び出す単純な方法を説明します。
+
+* link:tutorials/scalability-cancan{outfilesuffix}[拡張性のあるアプリケーションを作成する] では、拡張できるアプリケーションを作成する複数の Canisters の使い方を説明します。
+
+* link:tutorials/access-control{outfilesuffix}[ ID を用いてアクセス権限を与える] では、複数のユーザー ID を作成して切り替える方法を説明します。
+
+* link:tutorials/simple-cycles{outfilesuffix}[ウォレットから Cycles を受け取る] では、デフォルトのウォレットの Canister から送られる Cycles を受け取る方法を説明します。
+
+さらに発展的な Dapps や基礎的なブロック作成を使用する詳細な例を網羅している追加のチュートリアルが、 link:https://github.com/dfinity/examples[examples] レポジトリと link:../language-guide/motoko{outfilesuffix}[_{proglang} プログラミング言語ガイド_] で利用可能です。
+
+////
 = Tutorials
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
@@ -39,3 +82,4 @@ If you already know how to add stylesheets to React, you can skip this tutorial.
 * link:tutorials/simple-cycles{outfilesuffix}[Accept cycles from a wallet] illustrates how to accept cycles sent from the default wallet canister.
 
 Additional tutorials covering more advanced dapps and more detailed examples of how to use the basic building blocks are available in the link:https://github.com/dfinity/examples[examples] repository and link:../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
+////

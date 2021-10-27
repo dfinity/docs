@@ -1,3 +1,53 @@
+= クイックスタート
+:description: Download the DFINITY Canister SDK and learn how to deploy your first application.
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[quick-start-intro]]
+この {sdk-long-name} は、Canister スマートコントラクトのアプリケーションを作成し、{IC} ブロックチェーンのメインネットにデプロイするためのツール、サンプルコード、ドキュメントを提供しています。
+_クイックスタート_ チュートリアルでは、{sdk-short-name} を初めてインストールする方のために、最初のアプリケーションを作成、ビルド、デプロイする方法を説明します。
+
+説明をシンプルにして作業に集中できるように、 _クイックスタート_ は2つのシナリオに分かれています。
+
+* link:local-quickstart{outfilesuffix}[ローカル環境での開発] シナリオでは、 _ローカルの Canister 実行環境_ でサンプルアプリケーションを作成してデプロイします。
+
+* link:network-quickstart{outfilesuffix}[オンチェーンへのデプロイ] シナリオでは、ローカルでサンプルアプリケーションを作成しますが、独立したデータセンターのノードマシン上で稼働している _{platform} に接続_ し、そこにアプリケーションをデプロイします。
+
+開発環境のセットアップにヘルプが必要な場合、例えば、新しいターミナルの開き方、パッケージのインストール方法、フォルダの作成やディレクトリ間の移動方法などがわからない場合は、link:newcomers{outfilesuffix}[初めての方の為の予備知識]から始めるとよいでしょう。
+
+[[default-app]]
+== デフォルトの Dapp
+
+どちらのシナリオでも、シンプルな Hello Canister のスマートコントラクトを構築してデプロイしますが、このスマートコントラクトには `+greet+` という関数が1つだけ存在します。この `+greet+` 関数は1つのテキスト引数を受け入れ、その結果として **Hello,{nbsp}everyone!** のような挨拶を返します。コマンドラインで Canister を実行した場合はターミナルに、ブラウザでアプリケーションにアクセスした場合はポップアップウィンドウに表示されます。
+
+デフォルトの Dapp は、{IC} 向けに特別に設計されたプログラミング言語である {proglang} で書かれたバックエンドコードと、シンプルな Webpack ベースのフロントエンドで構成されています。
+
+
+== ICP トークンと Cycle の取得
+
+link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[トークンと Cycle] で説明したように、 {platform} 上で動作するアプリケーションである Canister スマートコントラクトを動かすためには **Cycle** が必要です。
+開発者はアプリケーションを動作させるために Cycle を取得・管理する必要がありますが、それにはいくつかの方法があります。
+
+* ICP トークンを取り扱っている取引所で購入し、link:network-quickstart{outfilesuffix}#convert-tokens[{sdk-short-name} コマンドラインインターフェイス]または link:https://nns.ic0.app/#/auth[Network Nervous System アプリケーション]を使用して、トークンを Cycle に変換します。
+* Cycle を配布するサービスを提供しているプロバイダーに、アカウントや link:../developers-guide/default-wallet{outfilesuffix}#wallet-create-wallets[Cycle ウォレット]を登録して、Cycle を取得します。
+* 他の開発者と連携し、Cycle ウォレットや Canister を使って Canister 間で Cycle を直接 link:../developers-guide/default-wallet{outfilesuffix}#wallet-send[送信]または link:../developers-guide/default-wallet{outfilesuffix}#wallet-receive[受信]します。
+
+Cycle を必要とし消費するのは Canister だけであり、それらはオペレーションやリソースの支払いのために使用されます。Cycle は通常、Canister 同士でやり取りされ、ユーザーや開発者には転送されません。ただし、Cycle を配布したりする際には、自分用に作成された Cycle ウォレットや同様のアプリケーションで Cycle を管理することができます。
+
+
+== もっと学びたいですか？
+
+さらに詳しい情報を知りたい方や、実際に導入する前にデモを見たい方は、以下の関連資料をご覧ください。
+
+* link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#using-tokens[ICP トークンの使い方 (概要)]
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Internet Computer 上での構築: 基礎 (ビデオ)]
+* link:https://www.youtube.com/watch?v=60uHQfoA8Dk[DFINITY Canister SDK とは何か (ビデオ)]
+* link:https://www.youtube.com/watch?v=yqIoiyuGYNA[はじめてのアプリケーション構築と展開 (ビデオ)]
+
+////
 = Quick start
 :description: Download the DFINITY Canister SDK and learn how to deploy your first application.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
@@ -44,3 +94,4 @@ If you are looking for more information before getting started or want to view a
 * link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the Internet Computer: Fundamentals (video)]
 * link:https://www.youtube.com/watch?v=60uHQfoA8Dk[What is the DFINITY Canister SDK (video)]
 * link:https://www.youtube.com/watch?v=yqIoiyuGYNA[Deploying your first dapp (video)]
+////

@@ -12,9 +12,9 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-この _クイックスタート_ では Dfinity Canister SDK を初めてインストールする方が、スマートコントラクトを {IC} のブロックチェーンに展開するのではなく、 *ローカルの実行環境* に展開し、動作させることを想定しています。
+この _クイックスタート_ では Dfinity Canister SDK を初めてインストールする方が、スマートコントラクトを {IC} のブロックチェーンにデプロイするのではなく、 *ローカルの実行環境* にデプロイし、動作させることを想定しています。
 
-まず最初に `+greet+` という関数を1つだけ持つシンプルな Hello Canister を構築し展開してみます。 `+greet+` 関数は1つの引数を受けとり、その結果を **Hello,{nbsp}everyone!** のように返します。コマンドラインでキャニスターを実行した場合はターミナルに、ブラウザで Canister にアクセスした場合は HTML で表示されます。
+まず最初に `+greet+` という関数を1つだけ持つシンプルな Hello Canister をビルドしデプロイしてみます。 `+greet+` 関数は1つの引数を受けとり、その結果を **Hello,{nbsp}everyone!** のように返します。コマンドラインでキャニスターを実行した場合はターミナルに、ブラウザで Canister にアクセスした場合は HTML で表示されます。
 
 [[before-you-begin]]
 == 始める前に
@@ -90,7 +90,7 @@ dfx --help
 [[create-a-new-project]]
 == 新しいプロジェクトの作成
 
-{IC} の Daaps 開発は**プロジェクト**として始めます。
+{IC} の Dapps 開発は**プロジェクト**として始めます。
 プロジェクトはdfx コマンドで作成できます。
 
 このチュートリアルでは、プロジェクトのスターターファイルを使ったアプリケーション作成について説明するために、デフォルトのサンプルアプリケーションの作成から始めます。
@@ -120,7 +120,7 @@ cd hello
 [[start-the-local-network]]
 == ローカル環境での開発を始める
 
-最初のプロジェクトを構築する前に、Canister 実行環境に接続する必要があります。
+最初のプロジェクトをビルドする前に、Canister 実行環境に接続する必要があります。
 ベスト・プラクティスとして、**2つのターミナル**を開いておいてください。これにより、1つのターミナルで Canister の動作を確認し、別のターミナルでプロジェクトを管理することができます。
 
 ローカルでの Canister 実行環境の準備:
@@ -144,11 +144,11 @@ dfx start
 残りの手順は、Canister の実行操作が表示されていないこちらのターミナルで行います。
 
 [[register-ids]]
-== アプリケーションの登録と構築、展開
+== アプリケーションの登録とビルド、デプロイ
 
-ローカルの Canister 実行環境に接続すると、アプリケーションの登録と構築、展開が可能になります。
+ローカルの Canister 実行環境に接続すると、アプリケーションの登録とビルド、デプロイが可能になります。
 
-最初のアプリケーションをローカル環境に展開するには
+最初のアプリケーションをローカル環境にデプロイするには
 
 . プロジェクトのルート・ディレクトリにいることを確認します。
 . 以下のコマンドを実行して、プロジェクト・ディレクトリで `+node+` モジュールが利用可能であることを確認します。
@@ -159,7 +159,7 @@ npm install
 ----
 +
 このステップについてさらに情報が欲しい場合は link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[node がプロジェクトで利用可能であることを確認する] を参照してください。
-. 以下のコマンドで、あなたの最初のアプリケーションを登録、構築そして展開します。
+. 以下のコマンドで、あなたの最初のアプリケーションを登録、ビルドそしてデプロイします。
 +
 [source,bash]
 ----
@@ -203,7 +203,7 @@ Deployed canisters.
 別の名前でプロジェクトを作成した場合、 `+hello+` や `+hello_assets+` ではなく、プロジェクトの名前になります。
 +
 
-また、最初の展開時には、 `+dfx+` は `+default+` アイデンティティと、`+default+` アイデンティティが管理するローカルの Cycle ウォレットを作成することに注意してください。
+また、最初のデプロイ時には、 `+dfx+` は `+default+` アイデンティティと、`+default+` アイデンティティが管理するローカルの Cycle ウォレットを作成することに注意してください。
 Cycle ウォレットは特別なタイプの Canister で、link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Cycle] を他の Canister に転送することができます。
 
 +
@@ -239,7 +239,7 @@ dfx canister call hello greet everyone
 [[quickstart-frontend]]
 == フロントエンドアプリケーションのテスト
 
-アプリケーションの展開とコマンドラインを使った動作テストが終わったので、Webブラウザを使ってフロントエンドにアクセスできるかどうかを確認してみましょう。
+アプリケーションのデプロイとコマンドラインを使った動作テストが終わったので、Webブラウザを使ってフロントエンドにアクセスできるかどうかを確認してみましょう。
 
 . 開発サーバーを `+npm start+` で起動します。
 . ブラウザを開きます。
@@ -276,16 +276,16 @@ dfx stop
 [[next-steps]]
 == 次のステップ
 
-このクイックスタートでは、独自のアプリケーションを開発するための基本的な流れを紹介するために、いくつかの重要なステップにのみ触れています。
-他のドキュメントには、{proglang} の使い方や {IC} ブロックチェーン上で動作する アプリケーションの開発方法を学ぶための、より詳細な例やチュートリアルなどもあります。
+このクイックスタートでは、独自の Dapps を開発するための基本的な流れを紹介するために、いくつかの重要なステップにのみ触れています。
+他のドキュメントには、{proglang} の使い方や {IC} ブロックチェーン上で動作する Dapps の開発方法を学ぶための、より詳細な例やチュートリアルなどもあります。
 
 次のステップに進むために以下も参考にしてください。
 
-* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] ローカルの Canister 実行環境を使用して、シンプルなアプリケーションを構築するためのチュートリアルです。
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] ローカルの Canister 実行環境を使用して、シンプルな Dapps を構築するためのチュートリアルです。
 
-* link:network-quickstart{outfilesuffix}#convert-icp[Convert ICP tokens to cycles] {IC} ブロックチェーンへのアプリケーションの展開を可能にするために、ICPトークンをサイクルに変換します。
+* link:network-quickstart{outfilesuffix}#convert-icp[Convert ICP tokens to cycles] {IC} ブロックチェーンへのアプリケーションのデプロイを可能にするために、ICPトークンを Cycle に変換します。
 
-* link:network-quickstart{outfilesuffix}[On-chain deployment] サイクルを持っていて、{IC} ブロックチェーンのメインネットにアプリケーションを展開します。
+* link:network-quickstart{outfilesuffix}[On-chain deployment] Cycle を所持し、{IC} ブロックチェーンのメインネットにアプリケーションをデプロイします。
 
 * link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] Candid インターフェース記述言語がどのようにサービスの相互運用性とコンポーザビリティを可能にするかを学びます。
 

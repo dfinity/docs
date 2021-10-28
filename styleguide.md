@@ -170,6 +170,7 @@ yarn create next-app
 
 | 用語                       |
 | -------------------------- |
+| Actor                      |
 | Canister                   |
 | Cycle                      |
 | Dapp(s)                    |
@@ -177,6 +178,7 @@ yarn create next-app
 | Discord                    |
 | Internet Computer          |
 | Internet Computer Protocol |
+| Motoko                     |
 | Network Nervous System     |
 | Neuron                     |
 | WebAssembly                |

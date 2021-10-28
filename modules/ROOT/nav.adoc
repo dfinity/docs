@@ -82,10 +82,10 @@
 
 **** xref:rust-guide:rust-intro.adoc[Rust]
 ***** xref:rust-guide:rust-quickstart.adoc[Hello World! クイックスタート]
-***** xref:rust-guide:rust-counter.adoc[Simple counter tutorial]
-***** xref:rust-guide:multiply-dependency.adoc[Basic dependency tutorial]
-***** xref:rust-guide:rust-profile.adoc[Profile tutorial]
-***** xref:rust-guide:rust-optimize.adoc[Optimize a Rust program]
+***** xref:rust-guide:rust-counter.adoc[シンプルなカウンターのチュートリアル]
+***** xref:rust-guide:multiply-dependency.adoc[基本的な依存関係のチュートリアル]
+***** xref:rust-guide:rust-profile.adoc[プロフィールのチュートリアル]
+***** xref:rust-guide:rust-optimize.adoc[Rust プログラムの最適化]
 
 **** xref:candid-guide:candid-intro.adoc[Candid]
 ***** xref:candid-guide:candid-concepts.adoc[What is Candid?]

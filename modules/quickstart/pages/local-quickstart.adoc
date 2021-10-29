@@ -14,7 +14,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 [[quick-start-intro]]
 この _クイックスタート_ では Dfinity Canister SDK を初めてインストールする方が、スマートコントラクトを {IC} のブロックチェーンにデプロイするのではなく、 *ローカルの実行環境* にデプロイし、動作させることを想定しています。
 
-まず最初に `+greet+` という関数を1つだけ持つシンプルな Hello Canister をビルドしデプロイしてみます。 `+greet+` 関数は1つの引数を受けとり、その結果を **Hello,{nbsp}everyone!** のように返します。コマンドラインでキャニスターを実行した場合はターミナルに、ブラウザで Canister にアクセスした場合は HTML で表示されます。
+まず最初に `+greet+` という関数を1つだけ持つシンプルな Hello Canister をビルドしデプロイしてみます。 `+greet+` 関数は1つの引数を受けとり、その結果を **Hello,{nbsp}everyone!** のように返します。コマンドラインで Canister を実行した場合はターミナルに、ブラウザで Canister にアクセスした場合は HTML で表示されます。
 
 [[before-you-begin]]
 == 始める前に

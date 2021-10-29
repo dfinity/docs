@@ -143,7 +143,7 @@ If the `+dfx+` executable is not in one of the directories listed in your curren
 The specific steps for updating the `+PATH+` depend on your operating system, but, in many cases, you can run a command similar to the following and specifying the appropriate directory, such as `+~/bin+`:
 
 ....
-export PATH=<path-to-directory-for-dfx>
+export PATH="<path-to-directory-for-dfx>:$PATH"
 ....
 
 Now you're ready to link:local-quickstart{outfilesuffix}#download-and-install[install] the {sdk-short-name} and get coding!

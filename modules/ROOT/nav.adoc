@@ -3,8 +3,8 @@
 ** xref:introduction:welcome.adoc#for-developers[開発者の方へ]
 ** xref:introduction:welcome.adoc#for-protocol-enthusiasts[プロトコル愛好家の方へ]
 
-* xref:quickstart:quickstart-intro.adoc[Quick Start]
-** xref:quickstart:newcomers.adoc[For Newcomers]
+* xref:quickstart:quickstart-intro.adoc[クイックスタート]
+** xref:quickstart:newcomers.adoc[初めての人へ]
 ** xref:quickstart:local-quickstart.adoc[ローカル開発]
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
 
@@ -88,12 +88,12 @@
 ***** xref:rust-guide:rust-optimize.adoc[Rust プログラムの最適化]
 
 **** xref:candid-guide:candid-intro.adoc[Candid]
-***** xref:candid-guide:candid-concepts.adoc[What is Candid?]
-***** xref:candid-guide:candid-howto.adoc[How to]
-***** xref:candid-guide:candid-ref.adoc[Reference]
-****** xref:candid-guide:candid-types.adoc[Supported types]
-****** link:https://github.com/dfinity/candid[Candid specification^]
-****** link:https://docs.rs/candid[Candid Rust crate^]
+***** xref:candid-guide:candid-concepts.adoc[Candid とは？]
+***** xref:candid-guide:candid-howto.adoc[Candid の使い方]
+***** xref:candid-guide:candid-ref.adoc[リファレンス]
+****** xref:candid-guide:candid-types.adoc[サポートされている型]
+****** link:https://github.com/dfinity/candid[Candid の仕様^]
+****** link:https://docs.rs/candid[Candid Rust クレート^]
 
 *** Internet Identity の紹介
 **** xref:ic-identity-guide:what-is-ic-identity.adoc[Internet Identity とは]
@@ -110,7 +110,7 @@
 *** xref:developers-guide:concepts/what-is-IC.adoc[Internet Computer とは]
 *** xref:interface-spec:index.adoc[Internet Computer Interface Specification]
 *** xref:developers-guide:concepts/nodes-subnets.adoc[ノードとサブネット]
-*** xref:developers-guide:concepts/data-centers.adoc[Decentralized data centers]
+*** xref:developers-guide:concepts/data-centers.adoc[分散型データセンター]
 *** xref:developers-guide:concepts/canisters-code.adoc[Canisters and code]
 *** xref:developers-guide:concepts/tokens-cycles.adoc[トークンと Cycle]
 *** xref:developers-guide:concepts/governance.adoc[Neurons and governance]

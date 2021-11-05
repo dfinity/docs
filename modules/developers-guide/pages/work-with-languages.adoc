@@ -1,3 +1,390 @@
+= Motoko 以外のプログラミング言語を用いた開発
+:cpp: C++
+
+このドキュメントに掲載されている Dapps の例のほとんどは、{proglang} という {IC} で動作するように特別に設計されたプログラミング言語を使用しています。
+しかし、{IC} 上に Dapps をデプロイするために、WebAssembly にコンパイル可能な任意のプログラミング言語で Dapps を書くことも可能です。
+この章では、様々なプログラミング言語で Dapps を書き、{IC} 上にデプロイするためのハイレベルなガイダンスを用意しています。
+
+== Rust を使用する
+
+Cargo を使用し、Dapp を WebAssembly にコンパイルすることで、{IC} 上で動作する Rust プロジェクトを作成することができます。
+
+この章では、Rust プログラムを Canister スマートコントラクトとして {IC} 上にデプロイする際の主要な手順をまとめています。
+ただし、ここで説明している手順は、1 つのアプローチを示しているに過ぎないことに注意してください。
+他のアプローチも可能です。
+
+なお、link:https://github.com/dfinity/cdk-rs[Rust canister development kit (Rust CDK)] では、クエリコールやアップデートコールの関数を書きやすくするためのショートカットが用意されており、Rust ベースのプロジェクトを作り始めるためのいくつかの link:https://github.com/dfinity/cdk-rs/tree/next/examples[例] が含まれていますが、Rust CDK を使わなくても {IC} 用の Dapps を開発することができます。
+
+=== プロジェクトの作成
+
+ほとんどの Rust プログラマーは、Cargo を使って Dapp が依存しているライブラリのダウンロードやコンパイルなどのビルドやパッケージ管理のタスクを処理しています。そのため、最初のステップは Cargo のコマンドラインインターフェイスを使って新しい Rust プロジェクトを作成することです。
+
+Cargo の代わりに {sdk-long-name} を使って新しいプロジェクトを作成することもできますが、Cargo を使ってプロジェクトを作成するのが Rust プロジェクト作成の典型的なワークフローです。
+
+新しい Rust プロジェクトを作成するには、以下のようにします：
+
+[arabic]
+. ローカル PC でターミナルを開きます。
+. 以下のコマンドで Cargo がインストールされているかどうかを確認します：
++
+[source,bash]
+----
+cargo --version
+----
+. {IC} か Rust サンプルプロジェクトのために使用しているディレクトリに移動してください。
+. 以下のコマンドを実行して、新しいプロジェクトを作成します：
++
+[source,bash]
+----
+cargo new my_rust_dapp
+----
++
+このコマンドは、`+Cargo.toml+` ファイルが入った `+my_rust_dapp+` ディレクトリと、`+main.rs+` ファイルが入った `+src+` ディレクトリを新たに作成します。
+. 以下のコマンドを実行してプロジェクトディレクトリに移動します：
++
+[source,bash]
+----
+cd my_rust_dapp
+----
++
+このディレクトリの中身を表示すると、`+Cargo.toml+` ファイルと `+src+` ディレクトリだけが含まれていることがわかります。
+このプロジェクトを {IC} 上で動作するようにコンパイルするには、いくつかの追加ファイルが必要になります。
+
+=== Cargo 設定ファイルの修正
+
+`+Cargo.toml+` ファイルでは、それぞれの Rust パッケージごとに *マニフェスト* を用意しています。
+マニフェストには、パッケージの設定の詳細を指定するセクションが含まれています。
+Rust プロジェクトを {IC} 上で実行できるようにするために、デフォルトの `+Cargo.toml+` ファイルをコピーして、プロジェクトの設定の詳細をいくつか変更します。
+
+`+Cargo.toml+` ファイルを修正するには、以下のようにします：
+
+. 必要に応じて `pwd` コマンドを使い、自分がプロジェクトのルートディレクトリにいることを確認します。
+. デフォルトの `+Cargo.toml+` ファイルを `+src+` ディレクトリに以下のコマンドでコピーします：
++
+[source,toml]
+----
+cp Cargo.toml src/Cargo.toml
+----
++
+{IC} 上で実行されるプロジェクトでは通常、プロジェクトのルートディレクトリにある `+Cargo.toml+` ファイルを使用してプロジェクトの Canister 群のワークスペースを設定し、ソースコードのディレクトリにある2つ目の `+Cargo.toml+` ファイルを使用して、各 Canister の設定を行います。
+. プロジェクトのルートディレクトリにある `+Cargo.toml+` ファイルをテキストエディタで開きます。
++
+デフォルトでは、`+[package]+` と `+[dependencies]+` のセクションが含まれています。
+. `+[package]+` セクションを、以下のように `+[workspace]+` セクションに置き換えます：
++
+[source,toml]
+----
+[workspace]
+members = [
+    "src/my_rust_dapp",
+]
+----
++
+`+[workspace]+` のセクションで使用するキーについては、link:https://doc.rust-lang.org/cargo/reference/workspaces.html[Workspaces] を参照してください。
+`+Cargo.toml+` ファイルで設定できるその他のセクションやキーについては、link:https://doc.rust-lang.org/cargo/reference/manifest.html[The Manifest Format] を参照してください。
+
+. `+[dependencies]+` セクションを削除します。
+. 変更を保存しファイルを閉じて次に進んでください。
+. `+src/Cargo.toml+` ファイルをテキストエディタで開きます。
+. 以下のように、main のソースコードへのパスを指定する `+[lib]+` セクションを追加します：
++
+[source,toml]
+----
+[lib]
+path = "main.rs"
+----
+. パッケージの依存関係については適宜 `+[dependencies]+` セクションに追加してください。
+. 変更を保存しファイルを閉じて次に進んでください。
+
+=== Canister 設定ファイルの追加
+
+{sdk-short-name} を使用して新しいプロジェクトを作成すると、`+dfx new+` コマンドが自動的にデフォルトの設定ファイルである `+dfx.json+` をプロジェクトディレクトリに追加します。
+ここでは Cargo を使って Rust プロジェクトを作成したので、`+dfx.json+` をプロジェクトディレクトリに手動で作成する必要があります。
+
+`+dfx.json+` を追加するには、以下のようにします：
+
+. 必要に応じて `pwd` コマンドを使い、自分がプロジェクトのルートディレクトリにいることを確認します。
+. `+dfx.json+` 設定ファイルをプロジェクトのルートディレクトリに新しく作成します。
+. `+dfx.json+` ファイルをテキストエディタで開きます。
+. `+version+` と　`+canisters+` キーを以下のように追加します：
++
+[source,json]
+----
+{
+  "version": 1,
+  "canisters": {
+    "my_rust_dapp": {
+      "type": "custom",
+      "candid": "src/my_rust_dapp.did",
+      "wasm": "target/wasm32-unknown-unknown/debug/my_rust_dapp.wasm",
+      "build": "cargo build --target wasm32-unknown-unknown --package my_rust_dapp"
+    }
+  }
+}
+----
++
+この設定について詳しく見てみましょう。
++
+--
+* `+version+` の設定は、プロジェクトの作成に使用したソフトウェアのバージョンを確認するために使用されます。
+* `+canisters+` セクションでは、プロジェクトの Canister の名前を指定します。
+この例では、`+my_rust_dapp+` という名前の Canister が1つ指定されています。
+* `+type+` キーが `+custom+` なのは、この Canister が現在認識されているCanister タイプ (`+motoko+` か `+assets+`) ではないからです。
+* `+candid+` キーは、このプロジェクトで使用する Candid インターフェース記述ファイルの名前と場所を指定します。
+* `+wasm+` キーは、`+cargo build+` コマンドで生成される WebAssembly ファイルのパスを指定します。
+* `+build+` キーは、コンパイルに使用する `+cargo+` コマンドを指定します。
+
+--
++
+これらは必要最小限の設定です。
+より複雑なプログラムを作成する際には、`+Cargo.toml+` ファイル、`+dfx.json+` ファイル、あるいはその両方に、追加の設定情報を含める必要が出る可能性があります。
+. 変更を保存し、ファイルを閉じて次に進んでください。
+
+=== Candid インターフェース記述ファイルの作成
+
+設定ファイルである `+dfx.json+` に加えて、Candid インターフェース記述ファイル（例えば、`+my_rust_dapp.did+`）を用意する必要があります。このファイルは、Dapp の引数や返り値のフォーマットを、Candid での言語にとらわれない表現にマッピングするために必要です。
+
+Candid インターフェース記述ファイルを追加するには、以下のようにします：
+
+. 必要に応じて `pwd` コマンドを使い、自分がプロジェクトのルートディレクトリにいることを確認します。
+. プロジェクトの `+src+` ディレクトリに、Candid インターフェース記述ファイル（例えば、`+my_rust_dapp.did+`）を新たに作成します。
+. Candid インターフェース記述ファイルをテキストエディタで開き、Dapp が定義する各関数に対する記述を追加します。
++
+例えば、`+my_rust_dapp+` が `+increment+`、`+read+`、`+write+` 関数を使ってカウンタをインクリメントするシンプルな dapp である場合、`+my_rust_dapp.did+` ファイルは以下のようになります：
++
+[source,candid]
+----
+service : {
+  "increment": () -> ();
+  "read": () -> (nat) query;
+  "write": (nat) -> ();
+}
+----
+. 変更を保存しファイルを閉じて次に進んでください。
+
+=== デフォルトの Dapp の修正
+
+新しいプロジェクトを作成すると、"Hello, World!" プログラムのテンプレートファイルである `+main.rs+` ファイルが `+src+` ディレクトリに作られます。
+
+このテンプレートのソースコードを修正するには以下のようにします：
+
+. `+src/main.rs+` ファイルをテキストエディタで開き、中身を削除します。
+. {IC} にデプロイしたいプログラムを書きます。
++
+プログラムを書く際には、呼び出しには「アップデートコール」と「クエリコール」の2種類があることと、アップデート関数は非同期メッセージングを行うことに注意してください。
+. 変更を保存して、`+main.rs+` ファイルを閉じます。
+
+=== Dapp のデプロイ
+
+Dapp をデプロイしてテストする前に、以下を行う必要があります。
+
+* ローカルの Canister 実行環境、または {IC} ブロックチェーンのメインネットのいずれかに接続します。
+* アプリケーションにネットワーク固有の識別子を登録します。
+* WebAssembly をターゲット出力として Dapp をコンパイルします。
+
+WebAssembly にコンパイルする `+cargo build+` コマンドを `+dfx.json+` ファイルに設定したので、`+dfx+` コマンドラインインターフェイスと標準的なワークフローによって残りのすべてのステップを実行することができます。
+
+Dapp をローカルでビルドとデプロイするには以下のようにします：
+
+. 必要に応じて `pwd` コマンドを使い、自分がプロジェクトのルートディレクトリにいることを確認します。
+. 新しいターミナルの窓あるいはタブを開き、プロジェクトディレクトリへ移動します。
++
+例えば、macOS で Terminal を使用している場合は、以下のどちらかを行います：
++
+--
+* *Shell* をクリックし、*New Tab* を選択して、現在の作業ディレクトリに新しいターミナルを開きます。
+* *Shell* をクリックし、 *New Window* を選択して、`+cd ~/ic-projects/location_hello+` を新しいターミナルで実行してください（`+ic-projects+` フォルダの中に `+location_hello+` プロジェクトがある場合）。
+--
++
+今手元では、プロジェクトディレクトリを作業ディレクトリとした、2つのターミナルが開かれているはずです。
+. 以下のコマンドを実行して、ローカルの Canister 実行環境を起動します：
++
+[source,bash]
+----
+dfx start
+----
++
+使用しているプラットフォームやローカルのセキュリティ設定によっては、警告が表示される場合があります。
+受信するネットワーク接続を許可するか拒否するかを選択する操作画面が表示された場合は、*Allow* をクリックしてください。
+. ネットワーク操作を表示している端末を開いたまま、プロジェクトを作成した元の端末にフォーカスを切り替えます。
+. 以下のコマンドを実行して、アプリケーションに固有の Canister ID を登録します：
++
+[source,bash]
+----
+dfx canister create --all
+----
+. 以下のコマンドを実行して Dapp をビルドします：
++
+[source,bash]
+----
+dfx build
+----
+. 以下のコマンドを実行して Dapp をローカルの Canister 実行環境にデプロイします：
++
+[source,bash]
+----
+dfx canister install --all
+----
+. コマンドライン、あるいはブラウザから、Dapp の関数をテストしてください。
+
+== C 言語の使用
+
+{IC} は標準的な WebAssembly モジュールにコンパイルされた Dapps をサポートしているため、標準的なコンパイラやツールチェーンを使用して、C、{cpp}、Objective-C、Objective-{cpp} などのプログラミング言語や、`+Clang+` コンパイラを用いてアプリケーションを構築することができます。
+
+C 言語で書かれた Dapps を {IC} 上で動作するようにする方法を説明するために、link:https://github.com/dfinity/examples/tree/master/c[examples] リポジトリにあるシンプルな `+reverse.c+` プログラムを見てみましょう。
+この `+reverse.c+` プログラムには、文字列の順番を反転させる `+go+` という関数を1つ持っています。
+
+=== 開発環境のセットアップ
+
+`+reverse.c+` プログラムを WebAssembly にコンパイルするためには、`+clang+` コンパイラと標準ライブラリがインストールされている必要があります。
+ローカルコンピュータに `+clang+` がインストールされているかどうかは、次のコマンドを実行することで確認することができます：
+
+[source,bash]
+----
+clang --version
+----
+
+`+clang+` がインストールされていれば、以下のような情報が表示されます。
+
+....
+clang version 10.0.0 
+Target: x86_64-apple-darwin19.5.0
+Thread model: posix
+InstalledDir: /usr/local/opt/llvm/bin
+....
+
+コマンドがバージョン情報を返さない場合は、先に `+clang+` をインストールしてください。
+`+clang+` をインストールする手順は，使用している OS によって異なります。
+例えば、Debian Linux では，以下のコマンドを実行してください：
+
+[source,bash]
+----
+sudo apt-get install clang lld gcc-multilib
+----
+
+macOS では、Developer Command-Line Tools をインストールするか、Homebrew を使って LLVM をインストールすることで、`+clang+` をインストールすることができます。
+例えば、`+clang+` がインストールされていない場合は、以下のコマンドを実行してください：
+
+[source,bash]
+----
+brew install llvm
+----
+
+=== プログラムを WebAssembly にコンパイルする
+
+C 言語で書いたプログラムを WebAssembly モジュールとして動作させるには、まず `+clang+` でコンパイルし、次に `+wasm-ld+` でリンクします。
+使用している OS や `+clang+` のバージョンによっては、macOS では `+wasm-ld+`、Debianでは `+wasm-ld-8+` など、異なるバージョンの WebAssembly リンカを使用する場合もあります。
+
+macOS で WebAssembly にコンパイルするには以下のようにします：
+ 
+. 以下のコマンドを実行し、プログラムをコンパイルします：
++
+[source,bash]
+----
+clang --target=wasm32 -c -O3 reverse.c
+----
+. 以下のように `+wasm-ld+` コマンドを用いて、WebAssembly モジュールを作成するリンカを実行します：
++
+[source,bash]
+----
+wasm-ld --no-entry --export-dynamic --allow-undefined reverse.o -o reverse.wasm
+----
+
+=== 最小限の設定ファイルの作成
+
+次に、{IC} にインストールできるパッケージとして `+reverse+` の Dapp バイナリを識別させるために、簡単な設定ファイルを準備する必要があります。また、`+dfx+` のコマンドラインインターフェイスを使ってパッケージを Canister としてインストールして実行できるように、`+build+` ディレクトリを用意する必要があります。
+
+設定ファイルと build ディレクトリを用意するには以下のようにします：
+
+. 以下のコマンドを実行し、Canister キーを持たせた `+dfx.json+` を作成します：
++
+[source,bash]
+----
+echo '{"canisters":{"reverse":{"main":"reverse"}}}' > dfx.json
+----
+. 以下のコマンドを実行し、`+build+` ディレクトリを作成します：
++
+[source,bash]
+----
+mkdir build
+----
+. 以下のコマンドを実行し、`+reverse+` ディレクトリを作成します：
++
+[source,bash]
+----
+mkdir build/reverse
+----
+. 以下のコマンドを実行して、WebAssembly モジュールを新しい `+build/reverse+` ディレクトリにコピーします：
++
+[source,bash]
+----
+cp reverse.wasm build/reverse/
+----
+
+=== 最小限のインターフェース記述ファイルの作成
+
+標準的な開発ワークフローでは、`+dfx build+` コマンドによって `+Canister+` のアウトプットディレクトリにいくつかのファイルが作成され、その中に、プログラムの関数に関連するデータ型の型合わせを行う Candid インターフェース記述ファイル (`+.did+`) が（1つ、あるいは複数）含まれています。
+
+異なるデータ型に使用する構文の詳細については、link:.../candid-guide/candid-intro{outfilesuffix}[_Candid のガイド_] または link:https://github.com/dfinity/candid/tree/master/spec[Candid の仕様]を参照してください。
+
+現在のプログラムに Candid インターフェース記述ファイルを作成するには以下のようにします：
+
+. `+reverse.c+` ファイルを置くために作成した `+build+` ディレクトリでターミナルを開きます。
+. 新しいテキストファイルを `+reverse.did+` という名前で作成します。
+. 関数 `+go+` の記述を追加します。
++
+例えば、以下のようになります：
++
+[source.bash]
+----
+service : {
+  "go": (text) -> (text);
+}
+----
+. 変更を保存しファイルを閉じて次に進んでください。
+
+=== Dapp のデプロイとテスト
+
+Dapp をデプロイしてテストする前に、以下の手順を行う必要があります：
+
+* ローカル Canister 実行環境か、{IC} ブロックチェーンのメインネットのどちらかに接続します。
+* アプリケーションにネットワーク固有の識別子を登録します。
+
+ローカルで Dapp のデプロイとテストを行うには以下のようにします：
+
+. ローカルコンピュータで、新しいターミナルのウィンドウかタブを開きます。
++
+例えば、macOS で Terminal を起動している場合、*Shell* をクリックし、*New Tab* を選択すると、現在の作業ディレクトリに新しいターミナルが開きます。
+. 2つ目のターミナルで以下のコマンドを実行して、ローカルの Canister 実行環境を起動します：
+
++
+[source,bash]
+----
+dfx start
+----
+. 以下のコマンドを実行し、`+reverse+` アプリケーションに固有の Canister ID を登録します：
++
+[source,bash]
+----
+dfx canister create --all
+----
+. 以下のコマンドを実行し、ローカルの Canister 実行環境にデフォルトの Dapp をデプロイします：
++
+[source,bash]
+----
+dfx canister install --all
+----
+. 以下のコマンドを実行し、Dapp の `go` 関数を呼びます：
++
+[source,bash]
+----
+dfx canister call reverse go reward
+("drawer")
+----
+
+C 言語の Dapps の例は他にも link:https://github.com/dfinity/examples/tree/master/c[examples] リポジトリにあります。
+
+////
 = Develop using different languages
 :cpp: C++
 
@@ -381,3 +768,5 @@ dfx canister call reverse go reward
 ----
 
 You can find additional examples of C dapps in the link:https://github.com/dfinity/examples/tree/master/c[examples] repository.
+
+////

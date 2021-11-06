@@ -1,3 +1,125 @@
+= HTTP リクエストの処理とアセットの提供に関する新しいアプローチの紹介 
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+{sdk-short-name} の 0.7.0（またはそれ以降）のバージョンをインストールしている方は、それらのバージョンで HTTP クエリやフロントエンドのアセットの処理にいくつかの大きな改善が行なわれていることにお気づきかもしれません。
+これらの変更が {sdk-short-name} の次のパブリックリリースに正式に組み込まれると、{IC} 上でのアプリケーションのビルドとデプロイの方法が変わるでしょう。
+
+新しいプロジェクトを作成する場合、基盤となるアーキテクチャの変更は、開発ワークフローにほとんど影響を与えません。むしろ、{IC} 上で動作するアプリケーションを構築する上で、新しいアーキテクチャの方が馴染みやすいと感じるかもしれません。
+
+ただし、既存のプロジェクトがある場合は、新アーキテクチャへの移行を考える必要があります。
+新アーキテクチャへの移行はすぐに行う必要はありませんが、プロジェクトを更新することで、フロントエンドのアセットのアップロードと管理が圧倒的に容易になった変更の恩恵を受けることができます。
+
+== Bootstrap コードの置き換え： 要約
+
+新しいアーキテクチャを説明する前に、置き換えようとしている従来のアプローチと、これまでのコードがどのように機能していたかについての背景を知っておくとよいでしょう。
+以前は、{IC} のフロントエンドを開発するには、フロントエンドのアセット Canister に `retrieve()` という関数を追加する必要がありました。
+`retrieve()` 関数は、パスを受け取り、blob を返します。`retrieve()` 関数が返す blob には、`index.js` というファイルがあり、`bootstrap` コードと呼ばれる JavaScript と 静的な HTML が含まれていました。
+スマートコントラクトとしてのアプリケーション、すなわち link:developers-guide/glossary{outfilesuffix}#g-canister[Canister] を {IC} にデプロイした後、`<CANISTER_ID>.ic0.app` の URL を用いて Canister にアクセスすると、`bootstrap` コードが実行され、次のようなステップが実行されていました：
+
+* 秘密鍵を格納するセキュアな Web Worker を作成。
+* 実行中のアプリケーションが {IC} と通信できる仕組みを提供するため、`window.ic` をポリフィル化。
+* Canister の `retrieve()` メソッドから `index.js` をパスとして呼び出し、評価。
+* ドキュメントオブジェクトモデル（DOM）とページの制御を Canister の JavaScript コードに渡す。
+
+この `bootstrap` のワークフローは、通常のウェブアプリケーションの構築方法とはかなり異なります。
+例えば、このアプローチでは、HTML を直接ロードしたり、PNG ファイルのようなアセットをダウンロードすることをサポートしていませんでした。
+アセットを扱うには、別のドメイン（例えば、AWS のバケット）からアセットを読み込むか、JavaScript でアセットを読み込み、データ URI に変換し、`src` 属性を設定する必要がありました。
+この方法でアセットを処理すると、ブラウザ上で次のような問題が発生していました：
+
+* ページの再レイアウトを待たない。
+* アセットの読み込みが保留される。
+* 帯域外で JavaScript を実行する。
+
+`bootstrap` 方式は、セキュリティや分散性の面で利点がありましたが、フロントエンドの開発者やアプリケーションのユーザーが望まない、貧弱な HTTP やアセットの処理によって、そのメリットが相殺されていました。
+
+過去 1 年間に渡って、{sdk-short-name} チームは、開発者コミュニティからのフィードバックを収集し、評価してきました。その結果、同等のセキュリティモデルを提供しつつ、より柔軟な開発環境を提供することを決定しました。
+
+== Canister が HTTP リクエストに応答できるようにする
+
+さまざまな案のメリットとデメリットを検討した結果、開発チームは Canister が HTTP リクエストに直接応答できるようなアーキテクチャを採用することを決定しました。
+{sdk-short-name} は、この新しいアプローチによって HTTP ミドルウェアサーバを実装しています。
+
+HTTP ミドルウェアサーバは、HTTP リクエストに対する処理を以下のように行います：
+
+* HTTP リクエストを受信し、そのメソッド、URI、ヘッダ、ボディを Candid 構造に変換する。
+* リクエストの Canister ID を解決する。
+* Canister と通信するためのエージェントをインスタンス化する。
+* `http_request()` のクエリメソッドを呼び出す。
+
+Canister が `http_request()` メソッドを実装している場合、HTTP ミドルウェアはレスポンスをデコードし、ヘッダーとボディを受け取り、HTTP レスポンスを構築します。
+Canister が `http_request()` メソッドを実装していない場合、後方互換性のため、ミドルウェアは警告として非推奨を指摘しつつ bootstrap ポリフィルを返します。
+処理中にエラーが発生した場合、HTTP ミドルウェアは以下のエラーコードを返します：
+
+* 400 Bad Request：不正なリクエスト（HTTP ミドルウェアが Canister ID を見つけられなかったり、デコードできなかった場合など）。
+* 500 Internal Server Error：HTTP　ミドルウェア自身のエラー（例えば、レプリカに接続できなかった場合など）。
+* 502 Bad Gateway：レプリカ自身からのエラー（Canister のトラッピングを含む）。
+
+これらのエラーが発生した場合、`dfx` コマンドラインインターフェースは、レスポンスボディに詳細を追加します。
+
+== アセットストレージ Canister の再考
+
+この移行を容易にするために、新しいバージョンの `dfx` でビルドされた新規および既存のプロジェクトには、 `http_request()` メソッドをサポートしている改良されたアセット Canister がデフォルトで含まれています。これは、画像などのバイナリアセットを含むアップロードされたアセットが、その URL を使ってブラウザから直接利用できるようになることを意味します。
+例えば、新しいプロジェクトでは、`https://<CANISTER_ID>.raw.ic0.app/sample-asset.txt` というファイルがアップロードされ、{IC} に公開された後に利用できるようになります。
+
+将来的には、アセット Casniter のキャッシュ管理、デフォルトのアセットの取り扱い、HTTP に特化した機能の提供などのサポートも追加していく予定です。
+
+== ルーティング
+
+`/api` （レプリカ用）と `/_` （ツール用）のルートは、HTTP リクエストの仕様で予約されています。
+それ以外のルートは、アプリケーション内で必要に応じて使用することができ、別途ハッシュルーターに頼る必要はありません。
+
+== DFX の新規プロジェクトの構成
+
+既存のプロジェクトを移行する方法に入る前に、新しいプロジェクトを見てみましょう。
+フロントエンドの変更点は以下の通りです：
+
+* `dfx.json` でアセット Canister 用の `frontend` キーを指定します。アセット Canister は JavaScript のエントリーポイントである `index.js` の代わりに `index.html` ファイルを指すようになりました。
+* `package.json` ファイルは、デフォルトで Webpack 5 をサポートするようになりました。
+* `webpack.config.js` ファイルは、`frontend` キーを持つ各 Canister に対し、Canister のインポートのリストを生成しますが、その方法が変わりました。
+* `src/<プロジェクト名>_assets/src/index.html` ファイルは新しいテンプレートファイルであり、フロントエンド用に作成したご自身の `index.html` ファイルに置き換えることができます。ファイルが見つからない場合には、アセット Canister によってデフォルトで生成されます。
+* `index.js` ファイルは、エージェントや Actor の作成をサポートするように変更されました。
+
+== エージェントと Actor の作成
+
+新しいアーキテクチャでは、エージェントのインスタンスを明示的に作成してから、Canister に使用する Actor を作成します。
+これは、`index.js` ファイルにおいて、`dfx` で生成されたファイルからの `import` が以前は1つだったのに対し、現在は2つになったことを意味します。
+
+例えば、プロジェクトの新しい `index.js` ファイルは、以下のようなコードとなります：
+
+....
+import { Actor, HttpAgent } from '@dfinity/agent';
+import { idlFactory as example_idl, canisterId as example_id } from 'dfx-generated/example';
+ 
+const agent = new HttpAgent();
+const example = Actor.createActor(example_idl, { agent, canisterId: example_id });
+....
+
+以上の例のようにエージェントと Actor を明示的に作成することは、以下のような理由で優れています：
+
+* 第1に、エージェント自体はアプリケーションによって完全に設定可能であり、Actor も同様です。例えば、認証の設定はエージェントのインスタンスが作成されるときにしかできないので、ユーザーの ID を管理したい場合は、エージェントを作成する前に行う必要があります。
+* 第2に、エージェントと Actor の作成を明示的に行うことで、これらのオブジェクトをインスタンス化する際に、より多くのコントロールを行うことができます。React フックや Angular のサービスで Actor を作成したい場合、このアプローチにより簡単に実行することができます。
+
+== 既存のプロジェクトを移行する
+
+既存のプロジェクトがある場合、{sdk-short-name} をアップデートしても、シームレスに動作しない可能性があります。
+残念ながら、このような場合、直接移行することはできません。
+現在のフロントエンドを移行するための最良の方法は、新しいプロジェクトを作成し、コードを新しい構造に合わせて手動で移動させることです。
+
+=== 認証されたフロントエンドアセットと認証されていないアセット
+
+{IC} メインネットのベータ版の開始に伴い、フロントエンドアセットを提供するすべてのプロジェクトは、新しい HTTP クエリアーキテクチャを使用します。
+また、{IC} の開始に伴い、フロントエンドアセットを、証明済で安全とみなせるように署名された認証データとしてか、あるいは認証されていない生のデータとして提供する、新たな機能が導入されました。
+認証プロセスを経ていないフロントエンドアセットは、`+raw.ic0.app+` という URL サフィックスを使って提供されます。
+認証されたフロントエンドアセットは、`+.ic0.app+`というURLサフィックスを使用します。
+
+現在の全てのチュートリアルは、認証されていないフロントエンドアセットを提供するアプリケーションについて説明しています。
+認証されたクエリ結果をフロントエンドアセットに使用するアプリケーションを構築する方法については、高度な開発トピックです。
+クエリに応答して認証されたデータを返す方法については、link:interface-spec/index{outfilesuffix}[インターフェースの仕様]を参照してください。また、link:https://forum.dfinity.org/[DFINITY Developer Forum]を通じて他の開発者と交流してください。
+
+////
 = Introducing a new approach to handling HTTP requests and serving assets 
 :proglang: Motoko
 :IC: Internet Computer
@@ -118,3 +240,4 @@ Certified front-end assets use the `+.ic0.app+` URL suffix.
 All of the current tutorials illustrate applications that serve uncertified front-end assets. 
 Learning how to build an application that uses certified query results for front-end assets is an advanced development topic.
 For information about how to return certified data in response to queries, see the link:interface-spec/index{outfilesuffix}[Interface specification] and connect with other developers through the link:https://forum.dfinity.org/[DFINITY Developer Forum].
+////

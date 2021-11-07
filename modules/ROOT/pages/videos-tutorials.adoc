@@ -1,3 +1,199 @@
+= ビデオとチュートリアル
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+基礎ビデオシリーズでは、{IC} 用のアプリケーションを構築する方法を紹介しています。
+
+== {IC} で構築する: 基礎
+
+基礎ビデオシリーズは、{IC} 用のアプリケーションを構築する方法を紹介しています。
+このシリーズは、10 のビデオで構成されています。
+ほとんどのビデオは3分から5分程度ですが、プログラミング言語 {proglang} やフロントエンドの開発、それら全てを組み合わせたサンプルアプリケーションの構築など、より深い技術的な内容も含まれています。
+
+++++
+<h1></h1>
+<br>
+++++
+
+video::jduSMHxdYD8[youtube,width=100%,height=480px]
+
+=== {IC} とは何か。なぜ {IC} でアプリを作るのか？
+
+このビデオでは、{IC} についての基礎入門と、{IC} がオープンインターネットサービスの将来をどのようにサポートするかを説明しています。
+このビデオを見た後、さらに詳しく学びたい方は、link:developers-guide/concepts/what-is-IC{outfilesuffix}[Internet Computer とは？]をご覧ください。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::TXf87GTXO78[youtube,width=100%,height=480px]
+
+=== 開発者体験をシンプルに
+
+{IC} は、エコシステムの複雑さを軽減することで、アプリケーションの構築を容易にします。
+このビデオを見た後、さらに詳しく学びたい方は link:developers-guide/concepts/what-is-IC{outfilesuffix}#next-gen[次世代のソフトウェアとサービスの構築] をご覧ください。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::60uHQfoA8Dk[youtube,width=100%,height=480px]
+
+=== DFINITY Canister SDK とは？
+
+Canister とはなんだろう、と思っていますか？ 何から始めたらいいかわからないですか？ このビデオでは、{IC} 上で動作するプログラムを開発するための鍵となるツールを紹介します。
+
+始める準備ができたら、link:download{outfilesuffix}[ダウンロードセンター] をご覧ください。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::yqIoiyuGYNA[youtube,width=100%,height=480px]
+
+=== はじめてのアプリケーションをデプロイする
+
+このビデオでは、{IC} をローカル実行して最初のアプリケーションをデプロイする方法を説明します。
+自分で挑戦するには、link:quickstart/local-quickstart{outfilesuffix}[クイックスタート] チュートリアルの手順に従ってください。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::QbeP4xuPUp0[youtube,width=100%,height=480px]
+
+=== Motoko の紹介: {IC} のために設計されたプログラミング言語
+
+このビデオでは、プログラミング言語 Motoko の概要と、{IC} 上で動作するアプリケーションの開発に適したいくつかの特徴を紹介します。
+
+{proglang} を使った開発についてさらに詳しく学びたい方は、link:language-guide/motoko{outfilesuffix}[{proglang} プログラミング言語] のガイドをご覧ください。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::jWf1zY6o5xM[youtube,width=100%,height=480px]
+
+=== フロントエンドの統合
+
+このビデオでは、生の JavaScript、React（と TypeScript）を使ってフロントエンドのユーザーインターフェースを統合する方法を紹介しています。
+
+ビデオを見た後、link:developers-guide/tutorials/my-contacts{outfilesuffix}[スタイルシートの追加] の手順に従って手を動かすことで、Reactを使用する際にスタイルシートを追加する方法を学ぶことができます。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::O2KaWRtsqHg[youtube,width=100%,height=480px]
+
+=== アプリケーションインターフェースの共通言語となる Candid  
+
+このビデオでは、{IC} 上で動作するサービスと対話するための共通のインターフェース記述言語（IDL）である Candid について説明しています。
+
+Candid の使い方とより詳細な情報については、link:candid-guide/candid-intro{outfilesuffix}[Candid] のガイドか link:https://crates.io/crates/candid[Candid on crates.io] をご覧ください。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::UAlqO66Tweg[youtube,width=100%,height=480px]
+
+=== 開発者のエコシステムに飛び込む
+
+このビデオでは、{proglang} を使用したプログラムを開発するための追加ツールやリソースを紹介します。
+
+コミュニティへの貢献を開始するには、link:https://github.com/dfinity/motoko-base[Motoko base library] をご覧ください。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::GzkRsbqPaA0[youtube,width=100%,height=480px]
+
+=== マルチプレイヤーゲームの構築
+
+このビデオでは、{IC} 上で動作するマルチプレイヤーのリバーシゲームを紹介し、{IC} 向けのアプリケーションを構築する際に必要な多くのキーコンセプトを示しています。
+
+どのようにゲームが作られたかの詳細は、link:https://ninegua.github.io/reversi/[Building a Multiplayer Reversi Game on the Internet Computer] か、 link:https://github.com/ninegua/reversi[Reversi] リポジトリのソースコードをご覧ください。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+video::G6vUrC9lues[youtube,width=100%,height=480px]
+
+=== {IC} の開発者コミュニティに参加する
+
+このビデオでは、利用可能なリソースや参加方法についてまとめています。
+
+さらに詳しく知りたい方は、link:https://github.com/dfinity/examples[examples] のサンプルアプリケーションや、link:https://github.com/dfinity/awesome-dfinity[awesome-dfinity] リポジトリをご覧ください。
+
+議論に参加するには、link:https://forum.dfinity.org/[Developer Forum] に参加するか、ツイッターで link:https://twitter.com/dfinitydev[@dfinitydev] をフォローしてください。
+
+++++
+<h1></h1>
+<br>
+<hr>
+<br>
+++++
+
+== チュートリアル
+
+link:quickstart/quickstart-intro{outfilesuffix}[クイックスタート] では、プロジェクトディレクトリの内容やサンプルコードを調べずに、新しいプロジェクトを作成してデプロイするための基本的なワークフローを簡単に紹介しています。
+
+{IC} 上で動作するプログラムをハンズオンで作成したい方は、以下のチュートリアルをご覧ください。
+
+* link:developers-guide/tutorials/explore-templates{outfilesuffix}[デフォルトプロジェクトの探索]
+
+* link:developers-guide/tutorials/define-an-actor{outfilesuffix}[Actor を用いたクエリ]
+
+* link:developers-guide/tutorials/hello-location{outfilesuffix}[ターミナルでテキストの引数を渡す]
+
+* link:developers-guide/tutorials/counter-tutorial{outfilesuffix}[自然数をインクリメントする]
+
+* link:developers-guide/tutorials/calculator{outfilesuffix}[計算用関数で整数を使う]
+
+* link:developers-guide/tutorials/phonebook{outfilesuffix}[ライブラリモジュールをインポートする]
+
+* link:developers-guide/tutorials/multiple-actors{outfilesuffix}[複数の Actor を使う]
+
+* link:developers-guide/tutorials/custom-frontend{outfilesuffix}[フロントエンドをカスタマイズする]
+
+* link:developers-guide/tutorials/my-contacts{outfilesuffix}[スタイルシートを追加する]
+
+* link:developers-guide/tutorials/intercanister-calls{outfilesuffix}[インターキャニスターコールを行う]
+
+* link:developers-guide/tutorials/scalability-cancan{outfilesuffix}[スケールするアプリケーションを作る]
+
+* link:developers-guide/tutorials/access-control{outfilesuffix}[ID を用いたアクセス制御を追加する]
+
+////
 = Videos and tutorials
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
@@ -194,3 +390,4 @@ If you want more hands-on experience creating programs that run on the {IC}, che
 * link:developers-guide/tutorials/scalability-cancan{outfilesuffix}[Create scalable apps]
 
 * link:developers-guide/tutorials/access-control{outfilesuffix}[Add access control with identities]
+////

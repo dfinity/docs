@@ -1,3 +1,40 @@
+= プログラミング言語と API リファレンス
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+プログラミング言語と API リファレンスは、よりハイレベルなプログラマやシステムアーキテクト向けに、高級な開発ツールをサポートする低級な構造、ライブラリ、モジュールについての情報です。
+
+== {proglang}
+
+* link:../language-guide/motoko{outfilesuffix}[Motoko 言語のガイド]
+* link:../base-libraries/stdlib-intro{outfilesuffix}[Motoko 基本ライブラリ]
+* link:../language-guide/language-manual{outfilesuffix}[Motoko 言語のクイックリファレンス]
+
+== Candid
+
+* link:../candid-guide/candid-intro{outfilesuffix}[Candid のガイド]
+* link:https://github.com/dfinity/candid/tree/master/spec[Candid の仕様]
+* link:https://docs.rs/candid[Candid のクレート]
+
+////
+== JavaScript
+
+* TBD
+////
+
+== Rust
+
+* link:../rust-guide/rust-intro{outfilesuffix}[Rust を用いた開発の紹介]
+* link:https://crates.io/crates/ic-types[{IC} Type Library (ic-types)]
+* link:https://crates.io/crates/ic-agent[{IC} Agent Library (ic-agent)]
+* link:https://crates.io/crates/ic-cdk[{IC} Canister Development Kit (ic-cdk)]
+* link:https://github.com/dfinity/cdk-rs/tree/master/examples[Rust Canister Development Kit (CDK) examples]
+
+////
+== AssemblyScript
+////
+
+////
+
 = Languages and API reference
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
@@ -16,11 +53,13 @@ The Languages and API reference information is intended for advanced programmers
 * link:https://docs.rs/candid[Candid crate]
 
 ////
+////
 == JavaScript
 
 * TBD
 ////
 
+////
 == Rust
 
 * link:../rust-guide/rust-intro{outfilesuffix}[Introduction to working with Rust]
@@ -29,6 +68,7 @@ The Languages and API reference information is intended for advanced programmers
 * link:https://crates.io/crates/ic-cdk[{IC} Canister Development Kit (ic-cdk)]
 * link:https://github.com/dfinity/cdk-rs/tree/master/examples[Rust Canister Development Kit (CDK) examples]
 
+////
 ////
 == AssemblyScript
 ////

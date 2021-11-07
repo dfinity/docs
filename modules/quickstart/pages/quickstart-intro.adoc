@@ -12,7 +12,7 @@ The _Quick Start_ tutorial assumes that you are installing the {sdk-short-name} 
 
 To keep the instructions simple and focused on the task at hand, the _Quick start_ is split into two scenarios:
 
-* In the link:local-quickstart{outfilesuffix}[Local development] scenario, you create and deploy the sample dapp with processes that in a _local canister execution environment_.
+* In the link:local-quickstart{outfilesuffix}[Local development] scenario, you create and deploy the sample dapp with processes that run in a _local canister execution environment_.
 
 * In the link:network-quickstart{outfilesuffix}[On-chain deployment] scenario, you create the sample dapp locally but _connect to the {platform}_ running on node machines in independent data centers and deploy the dapp there.
 

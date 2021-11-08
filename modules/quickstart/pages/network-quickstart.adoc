@@ -1,3 +1,489 @@
+= ネットワーク環境での開発
+:description: Download the DFINITY Canister SDK and deploy your first dapp on the Internet Computer blockchain.
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:experimental:
+// Define unicode for Apple Command key.
+:commandkey: &#8984;
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[net-quick-start]]
+この _クイックスタート_ では Dfinity Canister SDK を初めてインストールする方が、デフォルトのプロジェクトを {IC} ブロックチェーンのメインネットにデプロイすることを想定しています。
+
+もしローカルの開発環境にデプロイする場合は、link:local-quickstart{outfilesuffix}[ローカル環境での開発] シナリオを参照してください。
+
+まず最初に `+greet+` という関数を1つだけ持つシンプルな Hello Canister をビルドしデプロイしてみます。 `+greet+` 関数は1つの引数を受けとり、その結果を **Hello,{nbsp}everyone!** のように返します。コマンドラインで Canister を実行した場合はターミナルに、ブラウザで Canister にアクセスした場合は HTML で表示されます。
+
+[[net-before]]
+== 始める前に
+
+{sdk-short-name} をダウンロードしてインストールする前に、以下のことを確認してください。
+
+* インターネットに接続されている **macOS** または **Linux** コンピュータでターミナルにアクセスできること。
++
+現在 {sdk-short-name} は、macOS または Linux の OS を搭載したコンピュータでのみ動作します。
+
+* フロントエンド開発用のテンプレートファイルをプロジェクトに含めたい場合は、 `+node.js+` がインストールされている必要があります。
+
+* 利用可能な ICP トークンまたは Cycle を所持していること。
++
+このチュートリアルを完了するには、*Cycle* が必要です。Cycle を入手するには ICP トークンを Cycle に変換するか、別の開発者が管理する Canister や第三者のCycle プロバイダなど、他のソースから Cycle を入手する必要があります。このチュートリアルでは、ICP トークンを持つ台帳アカウントがあることを前提に、ICP トークンを Cycle に変換し、その Cycle を自分の **Cycle ウォレット**に転送する方法を説明します。
++
+ICPトークンの入手については、link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[ICP トークンの入手方法]を参照してください。
+ICPトークンを管理する Network Nervous System アプリケーションの使用方法については、link:../token-holders/nns-app-quickstart{outfilesuffix}[Network nervous system アプリケーション クイックスタート]を参照してください。
+作成したデフォルトの Cycle ウォレットの使用方法については、link:../developers-guide/default-wallet{outfilesuffix}[デフォルトの Cycle ウォレットを使う]を参照してください。
+
+このチュートリアルは、ターミナルを開いてコマンドを実行するなど、コンピュータ上で一般的な作業を行う方法を知っていることを前提としています。
+コンピュータで新しいターミナルを開く方法や、`node.js` をインストールする方法がわからない場合は、link:newcomers{outfilesuffix}[初めての人のための予備知識] を参照してください。
+準備ができたら <<net-download-sdk,ダウンロードとインストール>> に進みます。
+
+
+[[net-download-sdk]]
+== ダウンロードとインストール
+
+最新の {sdk-long-name} は、コンピュータのターミナルから直接ダウンロードすることができます。既に {sdk-long-name} をインストールしている場合は、このセクションをスキップして <<net-new-project,新しいプロジェクトの作成>> から始めてください。
+//<<net-ledger-id,Confirm your developer identity and ledger account>>.
+
+ダウンロードしてインストールするには:
+
+[arabic]
+. ローカルコンピュータでターミナルを開きます。
++
+例えば、「アプリケーション」から「ユーティリティ」を開いて、「ターミナル」をダブルクリックするか、kbd:[{commandkey} + スペースキー] を押して「検索」を開き、 `+terminal+` と入力します。
+. 以下のコマンドを実行して、{sdk-short-name} パッケージをダウンロードしてインストールします。
++
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
++
+このコマンドは、{company-id} コマンドラインインターフェース（CLI）及びその依存関係をローカルコンピュータにインストールする前に、使用許諾契約書を読み同意するよう促します。
+. `+y+` と入力し、kbd:[Return] を押すと、インストールが続行されます。
++
+このコマンドは、コンピュータにインストールされているコンポーネントに関する情報を表示します。
+
+[[net-verify-sdk-version]]
+== SDK の確認
+
+インストールでエラーが無ければ、プログラム開発を始めるための全てがローカルコンピュータ上で利用可能になります。
+
+SDK を使用できることを確認するには:
+
+[arabic]
+. ローカルコンピュータでターミナルを開きます（まだ開いていない場合）。
+. 次のコマンドを実行して、{company-id} コマンドラインインターフェース（CLI）がインストールされ `+dfx+` コマンドが実行可能であることを確認します。
++
+[source,bash]
+----
+dfx --version
+----
++
+このコマンドは、以下のような `+dfx+` コマンドのバージョン情報を表示します。
++
+....
+dfx 0.8.3
+....
+. 他の `+dfx+` コマンドの使用方法は、以下のコマンドを実行してください。
++
+[source,bash]
+----
+dfx --help
+----
++
+このコマンドは、 `+dfx+` とそのオプション情報を表示します。
+
+[[net-new-project]]
+== 新しいプロジェクトの作成
+
+{IC} の Dapps 開発は**プロジェクト**として始めます。
+プロジェクトはdfx コマンドで作成できます。
+
+このチュートリアルでは、プロジェクトのスターターファイルを使ったアプリケーション作成について説明するために、デフォルトのサンプルアプリケーションの作成から始めます。
+新しいプロジェクトを作成すると、`+dfx+` コマンドラインインターフェイスは、ワークスペースにデフォルトのプロジェクトディレクトリを追加します。プロジェクトディレクトリを構成するテンプレートファイルについては、link:../developers-guide/tutorials/explore-templates{outfilesuffix}[デフォルトプロジェクトの確認] で説明しています。
+
+新しいプロジェクトを作成する手順:
+
+[arabic]
+. ローカルコンピュータでターミナルを開きます。
+. 以下のコマンドを実行し、 `+hello+` という名前の新しいプロジェクトを作成します。
++
+[source,bash]
+----
+dfx new hello
+----
++
+`+dfx new hello+` コマンドは、新しい `+hello+` プロジェクトディレクトリ、テンプレートファイル、そして新しい Git リポジトリを作成します。
++
+もし別のプロジェクト名を使った場合は、使った名前をメモしておいてください。以下の手順では、`+hello+` プロジェクト名の代わりにそのプロジェクト名を使用してください。
+. 以下のコマンドでプロジェクトディレクトリに移動します。
++
+[source,bash]
+----
+cd hello
+----
+
+[[ping-the-network]]
+== {platform} メインネットへの接続性を確認する
+
+{IC} ブロックチェーンのメインネットにアクセスするためのに、予約済みのネットワークエイリアスが用意されています。ネットワークエイリアスはシステムで定義されており、プロジェクトで設定する必要はありません。
+
+{platform} への接続性を確認するには:
+
+[arabic]
+. プロジェクトのルートディレクトリにいることを確認します。
+. ネットワークエイリアス `+ic+` に対して以下のコマンドを実行して、{platform} の状態と、それへの接続性を確認します。
++
+[source,bash]
+----
+dfx ping ic
+----
+. `+dfx ping ic+` コマンドが{platform}の情報を返すことを確認します。
++
+例えば、以下のような出力が表示されるはずです。
++
+....
+{
+  "ic_api_version": "0.18.0"  "impl_hash": "d639545e0f38e075ad240fd4ec45d4eeeb11e1f67a52cdd449cd664d825e7fec"  "impl_version": "8dc1a28b4fb9605558c03121811c9af9701a6142"  "replica_health_status": "healthy"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 129, 76, 14, 110, 199, 31, 171, 88, 59, 8, 189, 129, 55, 60, 37, 92, 60, 55, 27, 46, 132, 134, 60, 152, 164, 241, 224, 139, 116, 35, 93, 20, 251, 93, 156, 12, 213, 70, 217, 104, 95, 145, 58, 12, 11, 44, 197, 52, 21, 131, 191, 75, 67, 146, 228, 103, 219, 150, 214, 91, 155, 180, 203, 113, 113, 18, 248, 71, 46, 13, 90, 77, 20, 80, 95, 253, 116, 132, 176, 18, 145, 9, 28, 95, 135, 185, 136, 131, 70, 63, 152, 9, 26, 11, 170, 174]
+}
+....
+
+[[net-ledger-id]]
+== 開発者 IDと台帳アカウントの確認
+
+全ての ICP トークンの取引は、インターネットコンピュータブロックチェーン上で動作する link:../developers-guide/glossary{outfilesuffix}#g-ledger[台帳 Canister] に記録されます。 
+台帳 Canister は、すべての ICP トークン保有者の *アカウント識別子* と *残高* で構成されています。
+
+台帳アカウントに保持している ICP トークンを転送するためには、安全かつ適切に署名したメッセージを台帳に送信し、あなたの開発者 ID に取引権限を与える必要があります。
+
+台帳に接続し取引を行うために必要なハードウェアやソフトウェア、および手順は、ICP トークンの保管方法によって異なります。
+例えば、ハードウェアウォレットやハードウェアセキュリティモジュール (HSM) アプライアンス、 Network Nervous System (NNS) フロントエンドアプリケーション、または {sdk-short-name} の `+dfx+` コマンドラインインターフェイスなど、様々な方法で元帳に接続して取引できます。
+これらはそれぞれ、署名されたメッセージの台帳への送信や、アカウントホルダーとして ID を提示するためのインターフェースが異なります。
+
+=== 開発者 IDについて
+
+初めて {sdk-short-name} を使用したとき、 `+dfx+` コマンドラインツールはあなたの `+default+` の開発者 ID を作成します。この ID は、 *プリンシパル* データタイプと、*プリンシパル ID* とも呼ばれるテキスト表現で表されます。この ID は、ビットコインやイーサリアムのアドレスに似ています。
+
+しかし、開発者 ID に関連するプリンシパルは、通常、台帳の *アカウント識別子* とは同じではありません。プリンシパル ID とアカウント識別子は関連しており、どちらもあなたの IDをテキストで表現しますが、異なるフォーマットを使用しています。
+
+
+=== 台帳に接続しアカウント情報を得る
+
+このチュートリアルでは、ハードウェアウォレットや台帳に接続する外部アプリケーションを使わないことを想定しています。開発者 ID で台帳のアカウント識別子を取得し、ICP トークンを台帳のアカウント識別子から開発者 ID が管理する Cycle ウォレット Canister に転送します。
+
+台帳で自分のアカウントを調べるには:
+
+. 以下のコマンドを実行して、現在の開発者 ID を確認します。
++
+[source,bash]
+----
+dfx identity whoami
+----
++
+ほとんどの場合、`+default+` の開発者 ID を使用しているはずです。
+例えば、以下のようになります。
++
+....
+default
+....
+. 以下のコマンドを実行して、ID に紐づくプリンシパルを表示します。
++
+[source,bash]
+----
+dfx identity get-principal
+----
++
+このコマンドを実行すると、以下のような出力が表示されます:
++
+....
+tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+....
+. 以下のコマンドを実行して、開発者 ID のアカウント識別子を表示します。
++
+[source,bash]
+----
+dfx ledger account-id
+----
++
+このコマンドは、あなたの開発者 ID に関連付けられた元帳のアカウント識別子を表示します。
+例えば、以下のような出力が表示されるはずです。
++
+....
+03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223
+....
+. 次のコマンドを実行して、口座残高を確認します。
++
+[source,bash]
+----
+dfx ledger --network ic balance
+----
+このコマンドは、元帳アカウントからICPトークンの残高を表示します。
+例えば、以下のような出力が表示されます。
++
+....
+10.00000000 ICP
+....
+
+[[convert-icp]]
+== ICP トークンを Cycle に変換する
+
+アカウント情報から現在の ICP トークンの残高が確認できました。ICP トークンの一部を Cycle に変換して、Cycle ウォレットに移動させてみましょう。
+
+ICP トークンを転送して Cycle ウォレットを作成するには:
+
+. 以下のコマンドを実行して、台帳アカウントから ICP トークンを転送し、新しい Canister を作成します。
++
+[source,bash]
+----
+dfx ledger --network ic create-canister <principal-identifier> --amount <icp-tokens>
+----
++
+このコマンドは、 `+--amount+` 引数に指定した ICP トークンを Cycle に変換し、指定したプリンシパルが制御する新しい Canister に Cycle を関連付けます。
++
+例えば、以下のコマンドは、0.25 ICP トークンを Cycle に変換し、新しい Canister のコントローラーとしてデフォルト ID のプリンシパル識別子を指定します。
++
+....
+dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount .25
+....
++
+取引が成功すると、台帳にイベントが記録され、以下のような出力が表示されます。
++
+....
+Transfer sent at BlockHeight: 20
+Canister created with id: "gastn-uqaaa-aaaae-aaafq-cai"
+....
+. 以下のコマンドを実行して、新たに作成した Canister プレースホルダーに Cycle ウォレットコードをインストールします。
++
+[source,bash]
+----
+dfx identity --network ic deploy-wallet <canister-identifer>
+----
++
+例えば、:
++
+....
+dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai
+....
++
+このコマンドを実行すると、以下のような出力が表示されます。:
++
+....
+Creating a wallet canister on the ic network.
+The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae-aaafq-cai"
+....
+
+== Cycle ウォレットの検証
+
+ICP トークンを Cycle に変換した後、Cycle ウォレットの Canister を検証し、現在の Cycle 残高を確認することができます。
+
+cyclesウォレットを検証するには:
+
+. 以下のコマンドを実行して、導入した Cycle ウォレットの Canister 識別子を確認します。
++
+[source.bash]
+----
+dfx identity --network ic get-wallet
+----
++
+このコマンドは、Cycle ウォレットの Canister 識別子を、以下のように表示します。
++
+....
+gastn-uqaaa-aaaae-aaafq-cai
+....
+. 次のコマンドを実行して、 Cycle ウォレット Canister が正しく設定され、Cycleの残高があることを確認します。
++
+[source,bash]
+----
+dfx wallet --network ic balance
+----
++
+コマンドは Cycle ウォレットの残高を表示します。
+例えば:
++ 
+....
+15430122328028812 cycles.
+....
++
+また、Webブラウザで以下のようなURLを使用して、デフォルトの Cycle ウォレットにアクセスすることもできます。
++
+....
+https://<WALLET-CANISTER-ID>.raw.ic0.app
+....
++
+初めてアプリケーションにアクセスする場合、匿名のデバイスを使用しているという通知が表示され、本人認証、ウォレットへのアクセス許可、デバイスの登録が求められます。
+. *Authenticate* をクリックして、Internet Identity サービスに進みます。
+. 以前に ID を登録したことがある場合は *ユーザー番号* を入力し、新しいユーザーとしてサービスに登録します。
++
+Internet Identity サービスの詳細や、複数の認証デバイスや認証登録については、link:../ic-identity-guide/auth-how-to{outfilesuffix}[Internet Identity サービスの使い方]を参照してください。
+. ユーザー番号と登録した認証方法（セキュリティキーや指紋認証など）を使って認証します。
+. *進む* をクリックすると、デフォルトの Cycle ウォレットアプリケーションにアクセスします。
+. *デバイスの登録* ページに表示されているコマンドをコピーし、ターミナルで実行して、このセッションで使用するデバイスを登録します。
++
+例えば、以下のようなコマンドで、Cycle ウォレット Canister の `+authorize+` メソッドを呼び出します。
++
+....
+dfx canister --no-wallet --network ic call "gastn-uqaaa-aaaae-aaafq-cai" authorize '(principal "ejta3-neil3-qek6c-i7rdw-sxreh-lypfe-v6hjg-6so7x-5ugze-3iohr-2qe")'
+....
++
+コマンドには、`+--no-wallet+` オプションと、正しいネットワーク（`+ic+`）のエイリアスが含まれていることを確認してください。
+Canister 識別子（この例では、`+gastn-uqaaa-aaae-aaafq-cai+`）が、あなたのIDに関連する Cycle ウォレットである必要があります。
+ただし、これが {platform} 上の初めてのウォレットである場合、認証されているプリンシパルを認識できない可能性があります。このような場合には、別のプリンシパルを使用してください。
++
+`+authorize+` コマンドの実行後にブラウザを更新すると、プリンシパルアカウントの Cycle ウォレットが表示されます。
+. ブラウザで Cycle の残高とアクティビティを確認できます。
++
+For example:
++
+
+image::cycles-wallet.png[]
++
+デフォルトのCycleウォレットで使用できるコマンドやメソッドの詳細については、link:../developers-guide/default-wallet{outfilesuffix}[デフォルトの Cycle ウォレットを使う]を参照してください。
+
+[[net-deploy]]
+== アプリケーションの登録、ビルド、およびデプロイ
+
+Cycleウォレットの残高を確認したら、サンプルアプリケーションを登録、ビルド、デプロイすることができます。
+
+最初のアプリケーションを {IC} ブロックチェーンのメインネットにデプロイするには:
+
+. ターミナルで、プロジェクトのルートディレクトリにいることを確認します。
+. 以下のコマンドを実行して、プロジェクトディレクトリで `+node+` モジュールが利用可能であることを確認します。
++
+[source,bash]
+----
+npm install
+----
++
+この手順の詳細については、link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[プロジェクトでノードが利用可能であることを確認する] を参照してください。
+. 以下のコマンドを実行して、最初のアプリケーションを登録、ビルド、デプロイします。
++
+[source,bash]
+----
+dfx deploy --network ic
+----
++
+`+--network+` オプションは、アプリケーションをデプロイするためのネットワークエイリアスまたは URL を指定します。
+このオプションは、{IC} ブロックチェーンのメインネットにインストールするために必要です。
++
+`+dfx deploy+` コマンドの出力には、実行した結果が表示されます。
++
+例えば、このステップでは、`+hello+` メインプログラム用と `+hello_assets+` フロントエンドユーザーインターフェース用の2つの識別子を登録し、以下のようなインストール情報を表示します。
++
+....
+Deploying all canisters.
+Creating canisters...
+Creating canister "hello"...
+"hello" canister created on network "ic" with canister id: "5o6tz-saaaa-aaaaa-qaacq-cai"
+Creating canister "hello_assets"...
+"hello_assets" canister created on network "ic" with canister id: "5h5yf-eiaaa-aaaaa-qaada-cai"
+Building canisters...
+Building frontend...
+Installing canisters...
+Installing code for canister hello, with canister_id 5o6tz-saaaa-aaaaa-qaacq-cai
+Installing code for canister hello_assets, with canister_id 5h5yf-eiaaa-aaaaa-qaada-cai
+Authorizing our identity (default) to the asset canister...
+Uploading assets to asset canister...
+  /index.html 1/1 (472 bytes)
+  /index.html (gzip) 1/1 (314 bytes)
+  /index.js 1/1 (260215 bytes)
+  /index.js (gzip) 1/1 (87776 bytes)
+  /main.css 1/1 (484 bytes)
+  /main.css (gzip) 1/1 (263 bytes)
+  /sample-asset.txt 1/1 (24 bytes)
+  /logo.png 1/1 (25397 bytes)
+  /index.js.map 1/1 (842511 bytes)
+  /index.js.map (gzip) 1/1 (228404 bytes)
+  /index.js.LICENSE.txt 1/1 (499 bytes)
+  /index.js.LICENSE.txt (gzip) 1/1 (285 bytes)
+Deployed canisters.
+....
++
+操作を完了させるのに十分な ICP トークンを Cycle に変換しなかった場合は、以下のようなコマンドを実行することで、Cycle ウォレットに Cycle を追加することができます。
++
+....
+dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005
+....
++
+このコマンドは、追加の `+1.005+` の ICP トークンを、`+gastn-uqaaa-aaaae-aaafq-cai+` の Cycle ウォレット識別子の Cycle に変換します。
+このコマンドは以下のような出力を返します。
++
+....
+Transfer sent at BlockHeight: 81520
+Canister was topped up!
+....
+. 以下のコマンドを実行して、`+hello+` Canister と、定義済みの `+greet+` 関数を呼び出します。
++
+[source,bash]
+----
+dfx canister --network ic call hello greet '("everyone": text)'
+----
++
+例を詳しく見てみましょう。
++
+-- 
+
+* `+--network ic+` オプションは、呼び出したい Canister が `+ic+` に展開されることを示します。ネットワークエイリアスの `+ic+` は、{IC} ブロックチェーンのメインネットにアクセスするためのエイリアスです。
+* `+--network ic+` オプションは操作サブコマンドの前になければならず、この場合は `+dfx canister call+` コマンドとなります。
+* `+hello+` 引数は呼び出したい Canister の名前を指定します。
+* `+greet+` 引数は、`+hello+` Canister で呼び出したい関数の名前を指定します。
+* テキスト文字列 `+everyone+` は、`+greet+` 関数に渡したい引数です。
+--
+. コマンドが `+greet+` 関数の戻り値を表示していることを確認してください。
++
+例えば、以下のようになります。
++
+....
+("Hello, everyone!")
+....
+. `+dfx wallet balance+` コマンドを再実行するか、ブラウザを更新すると、新しい Cycle の残高と最近のアクティビティが表示されます。
+
+[[quickstart-frontend]]
+== フロントエンドアプリケーションのテスト
+
+アプリケーションがデプロイされたことを確認し、コマンドラインを使って動作をテストした後は、Webブラウザを使ってフロントエンドにアクセスできるかどうかを確認しましょう。
+
+フロントエンドアプリケーションにアクセスするには、次のようにします。
+
+. ブラウザを開きます。
+. 識別子の `+hello_assets+` と接尾辞の `+boundary.ic0.app+` を組み合わせた URL を使って、フロントエンドアプリケーションにアクセスします。
++
+Canister 識別子をメモしていなかった場合は、以下のコマンドを実行して調べることができます。
++
+[source,bash] 
+----
+dfx canister --network ic id hello_assets
+----
++
+例えば、完全なURLは以下のようになります。
++
+....
+https://gsueu-yaaaa-aaaae-aaagq-cai.raw.ic0.app
+....
++
+このURLにアクセスすると、テンプレートアプリケーションのHTMLエントリーページが表示されます。
+例えば、以下のようになります。
++
+image:net-front-end-prompt.png[プロンプトが表示されるHTMLページ]
+
+. 挨拶文を入力し、「Click Me」をクリックすると、挨拶文が返されます。
+
+[[next-steps]]
+== 次のステップ
+
+{IC} ブロックチェーンにアプリケーションを展開する方法を身につけたので、自分で開発したプログラムを展開する準備ができました。
+
+Motoko の使い方や Internet Computer ブロックチェーン向けの Dapps の開発方法を学ぶための、より詳細な例やチュートリアルがドキュメントの随所に掲載されています。
+
+次のステップに進むために以下も参考にしてください。
+
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] ローカルの Canister 実行環境を使用して、シンプルな Dapps を構築するためのチュートリアルです。
+
+* link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] インターフェース記述言語がどのようにサービスの相互運用性とコンポーザビリティを可能にするかを学びます。
+
+* link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] Motoko についての機能と構文について学ぶことができます。
+
+////
 = Network deployment
 :description: Download the DFINITY Canister SDK and deploy your first dapp on the Internet Computer blockchain.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
@@ -479,3 +965,4 @@ Here are some suggestions for where to go next:
 * link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
 
 * link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] to learn about the features and syntax for using Motoko.
+////

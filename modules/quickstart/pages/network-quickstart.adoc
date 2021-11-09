@@ -277,7 +277,7 @@ The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae
 
 ICP トークンを Cycle に変換した後、Cycle ウォレットの Canister を検証し、現在の Cycle 残高を確認することができます。
 
-cyclesウォレットを検証するには:
+Cycle ウォレットを検証するには:
 
 . 以下のコマンドを実行して、導入した Cycle ウォレットの Canister 識別子を確認します。
 +

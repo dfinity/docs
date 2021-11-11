@@ -1,4 +1,23 @@
 [[install-vscode]]
+== エディタの言語プラグインをインストールする
+
+エディタに Visual Studio Code（VSCode）を使用して {proglang} のプログラムを書く場合、 VSCode 用の {proglang} 言語クライアント・プラグインをインストールするとよいでしょう。
+{proglang} プラグインは、シンタックス・ハイライト、型情報、オートコンプリートの機能を提供します。
+
+プラグインをインストールするには:
+
+. link:https://code.visualstudio.com/download[Visual Studio Code] をダウンロードしてインストールします（まだローカル・コンピュータにインストールされていない場合）。
+. 「表示」をクリックし、「*拡張機能*」を選択します。
+. 検索欄に「motoko」と入力します。
+. DFINITY Foundation が公開している **Motoko language support** を選択して、**Install** をクリックします。
+
+プログラムの依存関係がある場合は、{proglang} 用の Vessel パッケージマネージャもインストールするとよいでしょう。
+手順については、link:https://github.com/kritzcreek/vessel[ReadMe] を参照してください。
+最新のリリースをダウンロードするには、link:https://github.com/kritzcreek/vessel/releases[vessel] GitHub リポジトリにアクセスしてください。
+
+
+////
+[[install-vscode]]
 == Install the language editor plug-in
 If you are planning to write a program using {proglang} and use Visual Studio Code (VSCode) as your editor, you can install the {proglang} language client plug-in for VSCode.
 The {proglang} plug-in provides syntax highlighting, type information, and auto-completion features.
@@ -13,3 +32,4 @@ To install the plug-in:
 If your program has dependencies, you might also want to install the Vessel package manager for {proglang}.
 For instructions, see the link:https://github.com/kritzcreek/vessel[ReadMe].
 To download the latest release, go to the link:https://github.com/kritzcreek/vessel/releases[vessel] GitHub repository.
+////

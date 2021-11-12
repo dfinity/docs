@@ -1,73 +1,75 @@
-= {proglang} at-a-glance
+= {proglang} の概要
+
 :keywords: Motoko,programming language,Internet Computer,developers
 :proglang: Motoko
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 
-This summary provides a simple but comprehensive overview of {proglang} with examples of key features to help you identify operations and patterns that you might know in other languages and what they look like in {proglang}. 
+ここでは、読者の理解の助けになるように、他の言語で見られるオペレーションやパターンが {proglang} ではどうなるのかをまとめています。主要な機能の例を挙げて {proglang} の概要をシンプルに、かつ包括的に説明します。
 
-== {proglang} motivation and goals
+== {proglang} の動機と目標
 
-A simple, useful language for {company-id} and the {platform}.
+Motoko は、{company-id} と {platform} のためのシンプルで使いやすい言語です。
 
-* Familiar syntax
-* Safe by default
-* Incorporates smart contracts using the *canister* model
-* Provides seamless integration of {company-id} and the {platform} features
-* Makes the most of present and future WebAssembly
+* よく見られるシンタックス
+* デフォルトで安全
+* *Canister* モデルを使用したスマートコントラクトの組み込み
+* {company-id} と {platform} の機能のシームレスな統合を提供
+* 現在、そして将来の WebAssembly を最大限に活用
 
-## Key design points
+## 設計のポイント
 
-{proglang} takes inspiration from several programming languages, including Java, JavaScript, C#, Swift, Pony, ML, Haskell.
+{proglang} は、Java、JavaScript、C#、Swift、Pony、ML、Haskell など、いくつかのプログラミング言語からインスピレーションを受けています。
 
-* Object-oriented, functional, and imperative
-* Objects as records of members
-* `async`/`await` for sequential programming of asynchronous messaging
-* Structural typing with simple generics and subtyping
-* Safe arithmetic (unbounded and checked)
-* Non-nullable types by default
-* JavaScript-like syntax but statically typed and sane
+* オブジェクト指向、関数型、命令型
+* メンバーの record としてのオブジェクト
+* `async`/`await` による非同期メッセージングのシーケンシャルプログラミング
+* シンプルなジェネリクスと派生型付けによる構造的な型付け
+* 安全な算術 (Unbounded とチェック)
+* デフォルトでは Non-nullable 型
+* JavaScript のようなシンタックスでありながら、静的に型付けされており安全
 
-== Semantics
+== セマンティクス
 
-* call-by-value (like Java, C, JS, and ML; unlike Haskell and Nix)
-* declarations are locally mutually recursive
-* parametric, bounded polymorphism
-* subtyping as subsumption, not coercion
-* no dynamic casts
-* no inheritance
+* 値渡し（Java、C、JS、MLと同様で、HaskellやNixとは異なる）
+* 宣言は局所・相互再帰
+* パラメトリック・有界量化
+* 型強制ではなく包摂的な派生型付け
+* 動的キャストなし
+* 継承なし
 
-== Implementations
+== 実装
 
-* implemented in OCaml (leverages `wasm` library)
-* simple reference interpreter
-* less simple compiler to WebAssembly
-  * multipass with typed IR in each pass
-  * uniform representation, unboxed arithmetic
-  * two-space gc, gc between messages
-* polymorphism by erasure
+* OCaml で実装（`wasm` ライブラリを利用）
+* シンプルなリファレンスインタプリタ
+* WebAssembly へのシンプルなコンパイラ
+  * 各パスで型付けされた IR によるマルチパス
+  * 統一された表現、Unboxed な算術
+  * Two-space GC、メッセージ間 GC
+* 消去によるポリモーフィズム
 
-== Language features
+== 言語の特徴
 
-The next sections highlight {proglang} programming language features in simplified form.
-For additional information about using these and other features, see the link:../language-guide/language-manual{outfilesuffix}[Language quick reference] in the ink:../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
+この章では、{proglang} プログラミング言語の機能を簡単に紹介します。
+ここで紹介している機能やその他の機能の使い方については、link:../language-guide/language-manual{outfilesuffix}[言語のクイックリファレンス] の link:../language-guide/motoko{outfilesuffix}[_Motoko プログラミング言語のガイド_] を参照してください。
 
-=== Expressions
+=== 表現
 
-* identifiers such as `x`, `foo_bar`, `test'`, `List`, `Map`
+* `x`、`foo_bar`、`test'`、`List`、`Map` などの識別子
 
-* parentheses for grouping
+* グルーピングのための括弧書き
 
-* type annotations to help type inference, for example `(42 : Int)`
+* 型推論を助けるための型アノテーション（例えば `(42 : Int)`）
 
-=== Blocks and declarations
 
-* semi-colons are required after each declaration
+=== ブロックと宣言
 
-* mutually recursive
+* 各宣言の後にセミコロンが必要
 
-* mutable variables marked explicitly
+* 相互再帰
+
+* 可変変数を明示的に記述
 
 ```
 type Delta = Nat;
@@ -80,22 +82,22 @@ counter := counter + tmp;
 print();
 ```
 
-=== Control flow
+=== 制御フロー
 
-if and if - else
+if と if - else
 
 ```
 if (b) …
 if (b) … else …
 ```
 
-switch and case
+switch と case
 
 ```
 switch x { case (pat1) e1; …; case _ en }
 ```
 
-while and loop
+while と loop
 
 ```
 while (b) …
@@ -119,51 +121,51 @@ for (pat in e) …
 labels ensure control flow is structured (no gotos)
 ////
 
-== Primitive types
+== プリミティブ型
 
-The next sections highlight the primitive types in the {proglang} programming language.
+次の章では、{proglang} プログラミング言語のプリミティブ型について説明します。
 
-=== Unbounded integers
+=== 制限なし整数
 
 `Int`
 
-* inferred by default for negative literals
+* 負のリテラルを標準で推論
 
-* literals: `13`, `0xf4`, `-20`, `+1`, `1_000_000`
+* リテラル: `13`、`0xf4`、`-20`、`+1`、`1_000_000`
 
-=== Unbounded naturals
+=== 制限なし自然数
 
 `Nat`
 
-* non-negative numbers, trap upon underflow
+* 非負数、アンダーフロー時のトラップ
 
-* inferred by default for non-negative literals
+* 非負のリテラルを標準で推論
 
-* literals: `13`, `0xf4`, `1_000_000`
+* リテラル: `13`, `0xf4`, `1_000_000`
 
-=== Bounded numbers (trapping)
+=== 制限あり数（トラップあり）
 
 `Nat8`, `Nat16`, `Nat32`, `Nat64`, `Int8`, `Int16`, `Int32`, `Int64`
 
-* trap on over- and underflow
+* オーバーフロー、アンダーフロー時にトラップ
 
-* need type annotations specified
+* 型アノテーションの指定が必要
 
-* literals: `13`, `0xf4`, `-20`, `1_000_000`
+* リテラル: `13`, `0xf4`, `-20`, `1_000_000`
 
-=== Floating point numbers
+=== 浮動小数点数
 
 `Float`
 
-* IEEE 754 double precision (64 bit) semantics, normalized NaN
+* IEEE 754 の倍精度（64ビット）セマンティクス、正規化された NaN
 
-* inferred for fractional literals
+* 小数点以下のリテラルの推論
 
-* literals: `0`, `-10`, `2.71`, `-0.3e+15`, `3.141_592_653_589_793_12`
+* リテラル: `0`、`-10`、`2.71`、`-0.3e+15`、`3.141_592_653_589_793_12`
 
-=== Numeric operations
+=== 数値演算
 
-operators behave as you would expect (no surprises)
+数値演算は期待通りの動作をします
 
 ```
 a - b  
@@ -171,11 +173,11 @@ a + b
 a & b
 ```
 
-=== Characters and text
+=== 文字とテキスト
 
-`Char`, `Text`
+`Char`、`Text`
 
-Unicode, no random access
+ユニコード、ランダムアクセスなし
 
 ```
 'x', '\u{\6a}', '☃'
@@ -183,11 +185,11 @@ Unicode, no random access
 "Concat" # "enation"
 ```
 
-=== Booleans
+=== ブーリアン
 
 `Bool`
 
-literals: `true`, `false`
+リテラル: `true`, `false`
 
 ```
 a or b
@@ -196,46 +198,46 @@ not b
 if (b) e1 else e2
 ```
 
-== Functions
+== 関数
 
-The next sections provide examples for working with functions in the {proglang} programming language.
+次の章では、プログラミング言語 {proglang} で関数を扱うための例を紹介します。
 
-=== Function types
+=== 関数型
 
-simple functions
+シンプルな関数
 
 ```
 Int.toText : Int -> Text
 ```
 
-multiple arguments and return values  
+複数の引数と返り値
 
 ```
 divRem : (Int, Int) -> (Int, Int)
 ```
 
-can be generic/polymorphic  
+は、ジェネリクス、ポリモーフィックでは以下のようになります：
 
 ```
 Option.unwrapOr : <T>(?T, default : T) -> T
 ```
 
-first-class (can be passed around, stored)  
+第一級関数（引き渡し、保管が可能）  
 
 ```
 map : <A, B>(f : A -> B, xs : [A]) -> [B]
 let funcs : [<T>(T) -> T] = …
 ```
 
-=== Function declarations and use
+=== 関数の宣言と使用
 
-`func() { … }` short for `func() : () = { … }`
+`func() { … }` は `func() : () = { … }` の短縮形
 
-parametric functions
+パラメトリック関数
 
-type instantiations may sometimes be omitted
+型のインスタンス化は省略されることがあります。
 
-anonymous functions (a.k.a. lambdas)
+匿名関数（ラムダ関数）
 
 ```
 func add(x : Int, y : Int) : Int = x + y;
@@ -253,15 +255,15 @@ func applyNTimes<T>(n : Nat, x : T, f : T -> ()) {
 applyNTimes<Text>(10, "Hello!", func(x) = { Debug.print(x) } );
 ```
 
-== Composite types
+== 複合型
 
-The next sections provide examples for working with composite types in the {proglang} programming language.
+次の章では、プログラミング言語 {proglang} で複合型を扱う例を紹介します。
 
-=== Tuples
+=== タプル型
 
 `(Bool, Float, Text)`
 
-immutable, heterogeneous, fixed size
+イミュータブル、異なる型を格納可能、固定サイズ
 
 ```
 let tuple = (true, 1.2, "foo");
@@ -269,11 +271,11 @@ tuple.1 > 0.0;
 let (_,_,t) = tuple;
 ```
 
-=== Options
+=== オプション型
 
 `?Text`
 
-is either a value of that type, or `null`
+は、その型の値か、`null`
 
 ```
 func foo(x : ?Text) : Text {
@@ -286,7 +288,7 @@ foo(null);
 foo(?"Test");
 ```
 
-=== Arrays (immutable)
+=== 配列型（イミュータブル） 
 
 `[Text]`
 
@@ -294,11 +296,11 @@ foo(?"Test");
 let days = ["Monday", "Tuesday", … ];
 assert(days.len() == 7);
 assert(days[1] == "Tuesday");
-// days[7] will trap (fixed size)
+// days[7] はトラップ (固定長)
 for (d in days.vals()) { Debug.print(d) };
 ```
 
-=== Arrays (mutable)
+=== 配列型 (ミュータブル)
 
 `[var Nat]`
 
@@ -306,10 +308,10 @@ for (d in days.vals()) { Debug.print(d) };
 let counters = [var 1, 2, 3];
 assert(counters.len() == 3);
 counters[1] := counters[1] + 1;
-// counters[3] will trap (fixed size)
+// counters[3] はトラップ (固定長)
 ```
 
-=== Records
+=== レコード型
 
 `{name : Text; points : var Int}`
 
@@ -322,25 +324,25 @@ Debug.print(
 player.points += 1;
 ```
 
-=== Objects
+=== オブジェクト
 
 `{ get : () -> Int; add : Int -> () }`
 
-different syntax, same type as records
+レコード型と同じ型の異なるシンタックス
 
 ```
 object self {
-  var points = 0; // private by default
+  var points = 0; // デフォルトでプライベート
   public func get() = points;
   public func add(p : Int) { points += p };
 }
 ```
 
-=== Variants
+=== バリアント型
 
 `{ #invincible; #alive : Int; #dead }`
 
-similar to enumerated types
+列挙型と類似
 
 ```
 type Health = { #invincible; #alive : Nat; #dead };
@@ -355,18 +357,18 @@ func takeDamage(h : Health, p : Nat) : Health {
 }
 ```
 
-== Packages and modules
+== パッケージとモジュール
 
-The next sections provide examples for working with packages and modules in the {proglang} programming language.
+次の章では、プログラミング言語 {proglang} でパッケージやモジュールを扱う例を紹介します。
 
-=== Modules
+=== モジュール
 
-* types and values like objects
+* オブジェクトのような型と値
 
-* restricted to _static_ content (pure, no state, …)
+* _静的_ なコンテンツに限定（純粋、ステートなし、...）。
 
 ```
-// the type of base/Int.mo
+// base/Int.mo の型
 module {
   toText : Int -> Text;
   abs : Int -> Nat;
@@ -374,26 +376,26 @@ module {
 }
 ```
 
-=== Module imports
+=== モジュールのインポート
 
-* `base` package provides basic features
+* 基本的な機能を提供する `base` パッケージ
 
-* additional libraries evolving with community support
+* コミュニティのサポートにより開発されている追加のライブラリ
 
 ```
 import Debug "mo:base/Debug";
 import Int "mo:base/Int";
 ```
 
-== Platform features
+== プラットフォームの機能
 
-The next sections provide examples of the {proglang} programming language platform-specific features.
+次の章では、プログラミング言語 {proglang} のプラットフォーム固有の機能の例を紹介します。
 
-=== Actor types
+=== Actor 型
 
-* like object types, but marked as `actor`:
+* オブジェクト型に似ていますが、`actor` としてマークされています。
 
-* _sharable_ arguments and _no_ or _async_ result type.
+* _sharable_ の引数と、_no_ または _async_ の返り値型。
 
 * “canister” ≈ “actor”
 
@@ -405,27 +407,27 @@ type Broadcast = actor {
 }
 ```
 
-=== Sharable ≈ serializable
+=== Sharable 型 ≈ シリアライズ
 
-* all primitive types
+* 全てプリミティブ型
 
-* records, tuples, arrays, variants, options with immutable sharable components
+* レコード、タプル、配列、バリアント、オプションなどであり、イミュータブルで Sharable なコンポーネントであるもの
 
-* `actor` types
+* `actor` 型
 
-*  `shared` function type
+*  `shared` 関数型
 
-The following are **not sharable:**
+以下は **sharable ではない:**
 
-* mutable things
+* ミュータブルなもの
 
-* local functions
+* ローカル関数
 
-* objects (with methods)
+* オブジェクト (メソッドを持つもの)
 
-=== Complete actor example
+=== 完全な Actor の例
 
-typical canister main file
+典型的な Canister の main ファイル
 
 ```
 import Array "mo:base/Array";
@@ -448,13 +450,13 @@ actor {
 
 `async T`
 
-* asynchronous future or promise
+* 非同期の future や promise
 
-* introduced by `async { … }` (implicit in async function declaration)
+* `async { ... }` によって導入（async 関数宣言では暗黙的）。
 
-* `await e` suspends computation pending `e`'s result
+* `await e` は `e` の結果を待つために計算をサスペンドする。
 
-=== Actor import
+=== Actor のインポート
 
 ```
 import Broadcast "ic:ABCDEF23";
@@ -468,9 +470,9 @@ actor Self {
 }
 ```
 
-=== Principal and caller
+=== Principal と Caller
 
-a `Principal` type represents the identity of a user or canister/actor
+プリンシパル型は、ユーザーや Canister/Actor の ID を表します。
 
 ```
 actor Self {
@@ -485,13 +487,13 @@ actor Self {
 }
 ```
 
-== Type system
+== 型システム
 
-The next sections highlight details about type system used in the {proglang} programming language.
+次の章では、プログラミング言語 {proglang} で使用されている型システムの詳細を紹介します。
 
-=== Structural
+=== 構造
 
-type definitions do not create types, but name existing types
+型定義は、型を作るのではなく、既存の型に名前を付けます。
 
 ```
 type Health1 = { #invincible; #alive : Nat; #dead };
@@ -499,10 +501,10 @@ type Health2 = { #invincible; #alive : Nat; #dead };
 
 let takeDamage : (Health1, Nat) -> Health1 = …;
 let h : Health2 = #invincible;
-let h' = takeDamage(h, 100); // works
+let h' = takeDamage(h, 100); // 動作します
 ```
 
-=== Subtyping
+=== 派生型付け
 
 `Mortal <: Health`
 
@@ -512,12 +514,12 @@ type Mortal = { #alive : Nat; #dead };
 
 let takeDamage : (Health, Nat) -> Health = …;
 let h : Mortal = #alive 1000;
-let h' = takeDamage(h, 100); // also works
+let h' = takeDamage(h, 100); // こちらも動作します
 ```
 
-`t1 <: t2`: `t1` can be used wherever `t2` is expected
+`t1 <: t2`: `t1` は `t2` が期待されるところであればどこでも使用できます。
 
-=== Generic types
+=== ジェネリクス型
 
 ```
 type List<T> = ?{head : T; tail : List<T>};
@@ -525,7 +527,7 @@ type List<T> = ?{head : T; tail : List<T>};
 let l : List<Nat> = ?{head = 0; tail = ?{head = 1 ; tail = null }};
 ```
 
-== Error handling
+== エラーハンドリング
 
 ```
 try … catch …
@@ -1537,6 +1539,1593 @@ String.get s 0 or s.[0]
 |===
 ////
 
+== クラス宣言の例
+
+次の表は、{proglang} のクラス宣言と、JavaScript や TypeScript のクラス宣言を比較したものです。
+
+[width="100%",options="header"]
+|===
+|Motoko |JavaScript/TypeScript
+
+a|
+----
+class Counter(initValue:Nat) {
+  var _value = initValue;
+  public func get() : Nat {
+    _value
+  };
+  func f(x: Nat) {};
+}
+----
+
+a|
+----
+class Counter {
+  private _value;
+  constructor(initValue) { _value = initValue }
+  public get() { return _value }
+  private f(x) {}
+}
+----
+
+a|
+----
+class Foo() = Self {
+  func f() : Foo = Self
+}
+----
+
+a| 
+ 
+|===
+
+
+////
+
+= {proglang} at-a-glance
+:keywords: Motoko,programming language,Internet Computer,developers
+:proglang: Motoko
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:IC: Internet Computer
+
+This summary provides a simple but comprehensive overview of {proglang} with examples of key features to help you identify operations and patterns that you might know in other languages and what they look like in {proglang}. 
+
+== {proglang} motivation and goals
+
+A simple, useful language for {company-id} and the {platform}.
+
+* Familiar syntax
+* Safe by default
+* Incorporates smart contracts using the *canister* model
+* Provides seamless integration of {company-id} and the {platform} features
+* Makes the most of present and future WebAssembly
+
+## Key design points
+
+{proglang} takes inspiration from several programming languages, including Java, JavaScript, C#, Swift, Pony, ML, Haskell.
+
+* Object-oriented, functional, and imperative
+* Objects as records of members
+* `async`/`await` for sequential programming of asynchronous messaging
+* Structural typing with simple generics and subtyping
+* Safe arithmetic (unbounded and checked)
+* Non-nullable types by default
+* JavaScript-like syntax but statically typed and sane
+
+== Semantics
+
+* call-by-value (like Java, C, JS, and ML; unlike Haskell and Nix)
+* declarations are locally mutually recursive
+* parametric, bounded polymorphism
+* subtyping as subsumption, not coercion
+* no dynamic casts
+* no inheritance
+
+== Implementations
+
+* implemented in OCaml (leverages `wasm` library)
+* simple reference interpreter
+* less simple compiler to WebAssembly
+  * multipass with typed IR in each pass
+  * uniform representation, unboxed arithmetic
+  * two-space gc, gc between messages
+* polymorphism by erasure
+
+== Language features
+
+The next sections highlight {proglang} programming language features in simplified form.
+For additional information about using these and other features, see the link:../language-guide/language-manual{outfilesuffix}[Language quick reference] in the ink:../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
+
+=== Expressions
+
+* identifiers such as `x`, `foo_bar`, `test'`, `List`, `Map`
+
+* parentheses for grouping
+
+* type annotations to help type inference, for example `(42 : Int)`
+
+=== Blocks and declarations
+
+* semi-colons are required after each declaration
+
+* mutually recursive
+
+* mutable variables marked explicitly
+
+```
+type Delta = Nat;
+func print() {
+  Debug.print(Int.toText(counter));
+};
+let d : Delta = 42;
+var counter = 1;
+counter := counter + tmp;
+print();
+```
+
+=== Control flow
+
+if and if - else
+
+```
+if (b) …
+if (b) … else …
+```
+
+switch and case
+
+```
+switch x { case (pat1) e1; …; case _ en }
+```
+
+while and loop
+
+```
+while (b) …
+
+loop …
+loop … while (b)`
+```
+for
+
+```
+for (pat in e) …
+```
+////
+
+////
+=== Labels, break and continue
+
+* `label l exp`
+* `break l` (more generally, `break l exp`)
+* `continue l`
+
+labels ensure control flow is structured (no gotos)
+////
+
+////
+
+== Primitive types
+
+The next sections highlight the primitive types in the {proglang} programming language.
+
+=== Unbounded integers
+
+`Int`
+
+* inferred by default for negative literals
+
+* literals: `13`, `0xf4`, `-20`, `+1`, `1_000_000`
+
+=== Unbounded naturals
+
+`Nat`
+
+* non-negative numbers, trap upon underflow
+
+* inferred by default for non-negative literals
+
+* literals: `13`, `0xf4`, `1_000_000`
+
+=== Bounded numbers (trapping)
+
+`Nat8`, `Nat16`, `Nat32`, `Nat64`, `Int8`, `Int16`, `Int32`, `Int64`
+
+* trap on over- and underflow
+
+* need type annotations specified
+
+* literals: `13`, `0xf4`, `-20`, `1_000_000`
+
+=== Floating point numbers
+
+`Float`
+
+* IEEE 754 double precision (64 bit) semantics, normalized NaN
+
+* inferred for fractional literals
+
+* literals: `0`, `-10`, `2.71`, `-0.3e+15`, `3.141_592_653_589_793_12`
+
+=== Numeric operations
+
+operators behave as you would expect (no surprises)
+
+```
+a - b  
+a + b
+a & b
+```
+
+=== Characters and text
+
+`Char`, `Text`
+
+Unicode, no random access
+
+```
+'x', '\u{\6a}', '☃'
+"boo", "foo \u{\62}ar ☃"
+"Concat" # "enation"
+```
+
+=== Booleans
+
+`Bool`
+
+literals: `true`, `false`
+
+```
+a or b
+a and b
+not b  
+if (b) e1 else e2
+```
+
+== Functions
+
+The next sections provide examples for working with functions in the {proglang} programming language.
+
+=== Function types
+
+simple functions
+
+```
+Int.toText : Int -> Text
+```
+
+multiple arguments and return values  
+
+```
+divRem : (Int, Int) -> (Int, Int)
+```
+
+can be generic/polymorphic  
+
+```
+Option.unwrapOr : <T>(?T, default : T) -> T
+```
+
+first-class (can be passed around, stored)  
+
+```
+map : <A, B>(f : A -> B, xs : [A]) -> [B]
+let funcs : [<T>(T) -> T] = …
+```
+
+=== Function declarations and use
+
+`func() { … }` short for `func() : () = { … }`
+
+parametric functions
+
+type instantiations may sometimes be omitted
+
+anonymous functions (a.k.a. lambdas)
+
+```
+func add(x : Int, y : Int) : Int = x + y;
+```
+
+```
+func applyNTimes<T>(n : Nat, x : T, f : T -> ()) {
+  if (n == 0) return;
+  f(x);
+  applyNTimes(n-1, x, f);
+}
+```
+
+```
+applyNTimes<Text>(10, "Hello!", func(x) = { Debug.print(x) } );
+```
+
+== Composite types
+
+The next sections provide examples for working with composite types in the {proglang} programming language.
+
+=== Tuples
+
+`(Bool, Float, Text)`
+
+immutable, heterogeneous, fixed size
+
+```
+let tuple = (true, 1.2, "foo");
+tuple.1 > 0.0;
+let (_,_,t) = tuple;
+```
+
+=== Options
+
+`?Text`
+
+is either a value of that type, or `null`
+
+```
+func foo(x : ?Text) : Text {
+  switch x {
+    case (null) { "No value" };
+    case (?y) { "Value: " # y };
+  };
+};
+foo(null);
+foo(?"Test");
+```
+
+=== Arrays (immutable)
+
+`[Text]`
+
+```
+let days = ["Monday", "Tuesday", … ];
+assert(days.len() == 7);
+assert(days[1] == "Tuesday");
+// days[7] will trap (fixed size)
+for (d in days.vals()) { Debug.print(d) };
+```
+
+=== Arrays (mutable)
+
+`[var Nat]`
+
+```
+let counters = [var 1, 2, 3];
+assert(counters.len() == 3);
+counters[1] := counters[1] + 1;
+// counters[3] will trap (fixed size)
+```
+
+=== Records
+
+`{name : Text; points : var Int}`
+
+```
+let player = { name = "Joachim";  var points = 0 };
+Debug.print(
+  player.name # " has " #
+  Int.toText(player.points) # " points."
+);
+player.points += 1;
+```
+
+=== Objects
+
+`{ get : () -> Int; add : Int -> () }`
+
+different syntax, same type as records
+
+```
+object self {
+  var points = 0; // private by default
+  public func get() = points;
+  public func add(p : Int) { points += p };
+}
+```
+
+=== Variants
+
+`{ #invincible; #alive : Int; #dead }`
+
+similar to enumerated types
+
+```
+type Health = { #invincible; #alive : Nat; #dead };
+func takeDamage(h : Health, p : Nat) : Health {
+  switch (h) {
+    case (#invincible) #invincible;
+    case (#alive hp) {
+      if (hp > p) (#alive (hp-p)) else #dead
+    };
+    case (#dead) #dead;
+  }
+}
+```
+
+== Packages and modules
+
+The next sections provide examples for working with packages and modules in the {proglang} programming language.
+
+=== Modules
+
+* types and values like objects
+
+* restricted to _static_ content (pure, no state, …)
+
+```
+// the type of base/Int.mo
+module {
+  toText : Int -> Text;
+  abs : Int -> Nat;
+  …
+}
+```
+
+=== Module imports
+
+* `base` package provides basic features
+
+* additional libraries evolving with community support
+
+```
+import Debug "mo:base/Debug";
+import Int "mo:base/Int";
+```
+
+== Platform features
+
+The next sections provide examples of the {proglang} programming language platform-specific features.
+
+=== Actor types
+
+* like object types, but marked as `actor`:
+
+* _sharable_ arguments and _no_ or _async_ result type.
+
+* “canister” ≈ “actor”
+
+```
+type Receiver = actor { recv : Text -> async Nat };
+type Broadcast = actor {
+  register : Receiver -> ();
+  send : Text -> async Nat;
+}
+```
+
+=== Sharable ≈ serializable
+
+* all primitive types
+
+* records, tuples, arrays, variants, options with immutable sharable components
+
+* `actor` types
+
+*  `shared` function type
+
+The following are **not sharable:**
+
+* mutable things
+
+* local functions
+
+* objects (with methods)
+
+=== Complete actor example
+
+typical canister main file
+
+```
+import Array "mo:base/Array";
+actor {
+  var r : [Receiver] = [];
+  public func register(a : Receiver) {
+    r := Array.append(r, [a]);
+  };
+  public func send(t : Text) : async Nat {
+    var sum := 0;
+    for (a in r.values()) {
+      sum += await a.recv(t);
+    };
+    return sum;
+  };
+}
+```
+
+=== Async/await
+
+`async T`
+
+* asynchronous future or promise
+
+* introduced by `async { … }` (implicit in async function declaration)
+
+* `await e` suspends computation pending `e`'s result
+
+=== Actor import
+
+```
+import Broadcast "ic:ABCDEF23";
+actor Self {
+  public func go() {
+    Broadcast.register(Self);
+  };
+  public func recv(msg : Text) : async Nat {
+    …
+  }
+}
+```
+
+=== Principal and caller
+
+a `Principal` type represents the identity of a user or canister/actor
+
+```
+actor Self {
+  let myself : Principal = Principal.fromActor(Self);
+  public shared(context) func hello() : async Text {
+    if (context.caller == myself) {
+      "Talking to yourself is the first sign of madness";
+    } else {
+      "Hello, nice to see you";
+    };
+  };
+}
+```
+
+== Type system
+
+The next sections highlight details about type system used in the {proglang} programming language.
+
+=== Structural
+
+type definitions do not create types, but name existing types
+
+```
+type Health1 = { #invincible; #alive : Nat; #dead };
+type Health2 = { #invincible; #alive : Nat; #dead };
+
+let takeDamage : (Health1, Nat) -> Health1 = …;
+let h : Health2 = #invincible;
+let h' = takeDamage(h, 100); // works
+```
+
+=== Subtyping
+
+`Mortal <: Health`
+
+```
+type Health = { #invincible; #alive : Nat; #dead };
+type Mortal = { #alive : Nat; #dead };
+
+let takeDamage : (Health, Nat) -> Health = …;
+let h : Mortal = #alive 1000;
+let h' = takeDamage(h, 100); // also works
+```
+
+`t1 <: t2`: `t1` can be used wherever `t2` is expected
+
+=== Generic types
+
+```
+type List<T> = ?{head : T; tail : List<T>};
+
+let l : List<Nat> = ?{head = 0; tail = ?{head = 1 ; tail = null }};
+```
+
+== Error handling
+
+```
+try … catch …
+
+throw …
+```
+////
+
+////
+== Language comparison cheat sheet
+
+=== Literals
+
+[width="100%",options="header",frame="topbot"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+> 3;
+3 : Nat
+----
+
+a|
+----
+# 3;;
+- : int = 3
+----
+
+a|
+----
+> 3
+3
+----
+
+a|
+----
+> 3.141;
+3.141 : Float
+----
+
+a|
+----
+# 3.141;;
+- : float = 3.141
+----
+
+a|
+----
+> 3.141
+3.141
+----
+
+a|
+----
+> “Hello world”;
+“Hello world” : Text
+----
+
+a|
+----
+# “Hello world”;;
+- : string = “Hello world”
+----
+
+a|
+----
+> “Hello world”
+“Hello world”
+----
+
+a|
+----
+> ‘J’;
+‘J’ : Char
+----
+
+a|
+----
+# ‘J’;;
+- : char = ‘J’
+----
+
+a|
+Does not have `char` literals -- use string
+
+a|
+----
+> true;
+true : Bool
+----
+
+a|
+----
+# true;;
+- : bool = true
+----
+
+a|
+----
+> true
+true
+----
+
+a|
+----
+> ();
+----
+
+a|
+----
+# ();;
+- : unit = ()
+----
+
+a|
+----
+> undefined
+----
+
+a|
+----
+> (3, true, “hi”);
+(3, true, “hi”) : (Nat, Bool, Text)
+----
+
+a|
+----
+# (3, true, “hi”);;
+- : int * bool * string = 3, true, “hi”
+----
+
+a|
+----
+> [3, true, “hi”]
+[3, true, “hi”]
+----
+
+a|
+----
+> [var 1, 2, 3];
+[1, 2, 3] : [var Nat]
+----
+
+a|
+----
+# [\|1; 2; 3\|];;
+- : int array = [\|1; 2; 3\|]
+----
+
+a|
+----
+> [1, 2, 3]
+[1, 2, 3]
+----
+
+a|
+----
+> [1, 2, 3];
+[1, 2, 3] : [Nat]
+----
+
+a|
+----
+# [1; 2; 3];;
+- : int list = [1; 2; 3]
+----
+
+a|
+----
+> [1, 2, 3]
+[1, 2, 3]
+----
+|===
+
+=== Expressions
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+-3*(1+7)/2%3
+----
+
+a|
+----
+-3*(1+7)/2 mod 3
+----
+
+a|
+----
+-3*(1+7)/2%3
+----
+
+a|
+----
+-1.0 / 2.0 + 1.9 * x
+----
+
+a|
+----
+-1.0 /. 2.0 +. 1.9 *. x
+----
+
+a|
+----
+-1 / 2 + 1.9 * x
+----
+a|
+----
+a \|\| b && c
+----
+
+a|
+----
+a or b and c
+----
+
+a|
+----
+a \|\| b && c
+----
+|===
+
+=== Functions
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+func<T1,T2,T3>(f : (T1, T2) -> T3) : T1 -> T2 -> T3 = func(x : T1) : T2 -> T3 = func(y : T2) : T3 = f(x,y)
+----
+
+a|
+----
+fun f -> fun x -> fun y -> f (x, y)
+or
+fun f x y -> f (x, y)
+----
+
+a|
+----
+f => x => y => f(x,y)
+----
+
+a|
+----
+func<T1, T2, T3>(f : (T1, T2) -> T3, x: T1, y : T2) : T3 = f (x,y)
+----
+
+a|
+----
+fun (f, x, y) -> f (x, y)
+----
+
+a|
+----
+([f, x, y]) => f(x,y)
+----
+
+a|
+----
+func f<T>(x:T) : T = x
+----
+
+a|
+----
+let f x = x
+----
+
+a|
+----
+f(x) { x }
+----
+a|
+Does not have function pattern matching
+----
+func(x : Int) : Int =
+  switch(x) {
+    case (0) 0;
+    case (n) 1;
+  };
+----
+
+a|
+----
+function 0 -> 0
+         \| n -> 1
+----
+
+a|
+ 
+|===
+
+=== Control flow
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+if (3 > 2) “X” else “Y”
+----
+
+a|
+----
+if 3 > 2 then “X” else “Y”
+----
+
+a|
+----
+if (3 > 2) { “X” } else { “Y” }
+----
+
+a|
+----
+import Debug “mo:base/Debug”;
+if (3 > 2) Debug.print(“hello”);
+----
+
+a|
+----
+if 3 > 2 then print_string “hello”
+----
+
+a|
+----
+if (3 > 2) console.log(“hello”)
+----
+
+a|
+----
+while (true) {
+  Debug.print(“X”);
+}
+----
+
+a|
+----
+while true do
+  print_string “X”
+done
+----
+
+a|
+----
+while(true) {
+  console.log(“X”);
+}
+----
+
+a|
+----
+label L loop {
+  if (x == 0) break L
+  else continue L;
+} while (true);
+----
+
+a|
+Does not have do while loops -- use recursion or while
+
+a|
+----
+do {
+  if (x === 0) break;
+  else continue;
+} while (true);
+----
+
+a|
+----
+import Iter “mo:base/Iter”;
+for (i in Iter.range(1,10)) {
+  Debug.print(“X”);
+};
+----
+
+a|
+----
+for i = 1 to 10 do
+  print_string “X”
+done
+----
+
+a|
+----
+for (i = 1; i <= 10; i++) {
+  console.log(“X”);
+}
+----
+
+a|
+----
+print_string “hello”;
+print_string “world”
+----
+
+a|
+----
+print_string “hello”;
+print_string “world”
+----
+
+a|
+----
+console.log(“hello”);
+console.log(“world”);
+----
+|===
+
+=== Value declarations
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+let name = expr;
+----
+
+a|
+----
+let name = expr
+----
+
+a|
+----
+const name = expr
+----
+
+a|
+----
+let f = func<T1, T2>(x : T1) : T2 { expr };
+----
+
+a|
+----
+let f x = expr
+----
+
+a|
+----
+const f = x => expr
+----
+
+a|
+----
+let fib = func(n : Nat) : Nat {expr};
+----
+
+a|
+----
+let rec fib n = expr
+----
+
+a|
+----
+const fib = n => expr
+----
+|===
+
+=== Type declarations
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+type T = Int32 -> Bool
+----
+
+a|
+----
+type t = int -> bool
+<int is 31-bit signed int>
+----
+
+a|
+----
+type t = (x: number) => boolean;
+----
+
+a|
+----
+type AssocList<K,V> = List<(K,V)>
+----
+
+a|
+----
+type (‘a, ‘b) assoc_list = (‘a * ‘b) list
+----
+
+a|
+not applicable
+
+|type option<T> = ?T
+|type ‘a option = None | Some of ‘a
+|type option<T> = T?
+
+|type T = {#a : Int32; #b : U};
+type U = (T, T);
+|type t = A of int | B of u
+and u = t * t
+|not applicable
+
+|type Complex = {#c : (Float, Float)};
+func complex(x : Float, y : Float) : Complex = #c(x,y);
+func coord(#c(x, y) : Complex) : (Float, Float) = (x, y);
+|type complex = C of float * float
+let complex (x,y) = C (x,y)
+let coord (C (x,y)) = (x,y)
+|not applicable
+|===
+
+=== Pattern matching
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml
+
+a|
+----
+func get_opt<T>(opt : ?T, d : T) : T {
+  switch(opt) {
+    case (null) d;
+    case (?x) x;
+  };
+}
+----
+
+a|
+----
+let get_opt (opt, d) =
+  match opt with
+    None -> d
+  \| Some x -> x
+----
+
+a| 
+Does not have guards -- use if
+----
+import prelude “mo:base/Prelude”;
+func fac(x : Nat) : Nat {
+  switch(x) {
+    case (0) 1;
+    case (n) if (n>0) n * fac(n-1) else Prelude.unreachable();
+  };
+}
+----
+
+a|
+----
+let rec fac = function
+  0 -> 1
+\| n when n>0 -> n * fac(n-1)
+\| _ -> raise Hell
+----
+
+a|
+Does not have as a pattern
+
+a|
+----
+let foo ((x,y) as p) = (x,p,y)
+----
+|===
+
+=== Tuples
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+type Foo = (Int32, Float, Text)
+----
+
+a|
+----
+type foo = int * float * string
+----
+
+a|
+----
+type foo = (number, number, string)
+----
+
+a|
+----
+let bar = (0, 3.14, “hi”)
+----
+
+a|
+----
+let bar = (0, 3.14, “hi”)
+----
+
+a|
+----
+const bar = [0, 3.14, “hi”]
+----
+
+a|
+----
+let x = bar.1
+or
+let (_, x, _) = bar
+----
+
+a|
+----
+let _, x, _ = bar in x
+----
+
+a|
+----
+const x = bar[1]
+----
+|===
+
+=== Records
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+type foo = {x : Int32; y : Float; var s : Text}
+----
+
+a|
+----
+type foo = {x:int; y:float; mutable s:string}
+----
+
+a|
+Everything is mutable
+----
+type foo = {
+  x: number; y: number;
+  s: string
+}
+----
+
+a|
+----
+let bar = {x=0; y=3.14; var s=””}
+----
+
+a|
+----
+let bar = {x=0; y=3.14; s=””}
+----
+
+a|
+----
+const bar = {x:0; y:3.14; s:””}
+----
+
+a|
+----
+bar.x
+bar.y
+bar.s
+----
+
+a|
+----
+bar.x
+bar.y
+bar.s
+----
+
+a|
+----
+bar.x
+bar.y
+bar.s
+----
+
+a|
+Does not do pattern matching on mutable fields
+----
+let {x=x; y=y} = bar
+let {y=y} = bar
+or
+let {x;y} = bar
+let {y} = bar
+----
+
+a|
+----
+let {x=x; y=y; s=s} = bar
+let {y=y} = bar
+or
+let {x;y;s} = bar
+let {y;_} = bar
+----
+
+a|
+ 
+a|
+----
+bar.s := “something”
+----
+
+a|
+----
+bar.s <- “something”
+----
+
+a|
+----
+bar.s = “something”
+----
+
+a|
+----
+type Bar = { f: <T>T -> Int32 }
+----
+
+a|
+----
+type bar = { f:’a.’a->int }
+----
+
+a|
+----
+type bar = {
+  f<T>(x:T): number;
+}
+----
+|===
+
+=== References and mutable variables
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+var r = 0;
+----
+
+a|
+----
+let r = ref 0
+----
+
+a|
+----
+let r = new Number(0) // object reference
+or
+let r = 0  // mutable variable
+----
+
+a|
+----
+r
+----
+
+a|
+----
+!r
+or
+r.contents
+----
+
+a|
+----
+r
+----
+
+a|
+----
+r := 1
+----
+
+a|
+----
+r := 1
+or
+r.contents <- 1
+----
+
+a|
+----
+r = 1
+----
+
+a|
+Does not take mutable variables
+----
+func f(x : Nat) : Nat = x
+----
+
+a|
+----
+let f {contents=x} = x
+----
+
+a|
+
+a|
+----
+r1 == r2
+r1 != r2
+----
+
+a|
+----
+r1 == r2
+r1 != r2
+----
+
+a|
+----
+r1.valueOf() === r2.valueOf()
+r1 !== r2
+----
+|===
+
+=== Comparison
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml |JavaScript/TypeScript
+
+a|
+----
+2 == 2
+2 != 3
+----
+
+a|
+----
+2 = 2
+2 <> 3
+----
+
+a|
+----
+2 === 2
+2 !== 3
+----
+
+a|
+Does not have references
+----
+var r = 2;
+var s = 2;
+r == s
+----
+
+a|
+----
+let r = ref 2
+r == r
+r != ref 2
+----
+
+a|
+ 
+a|
+Does not have generic equality
+
+a|
+Does not have a generic equality
+----
+(2, r) != (2, r)
+(2, r) = (2, ref 2)
+----
+
+a|
+----
+(2, r) === (2, r)
+----
+|===
+
+=== Immutable and mutable arrays
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml
+
+a|
+----
+import Array “mo:base/Array”;
+Array.tabulate(20, func(x:Nat):Nat = x*x)
+----
+
+a|
+----
+List.init 20 (fun x -> x*x)
+----
+
+a|
+----
+Array.init(20, 1.0)
+----
+
+a|
+----
+Array.make 20 1.0
+----
+
+a|
+----
+a[2]
+----
+
+a|
+----
+Array.get a 2
+
+a.(2)
+----
+
+a|
+----
+a[2] := x
+----
+
+a|
+----
+Array.set a 2 x
+or
+a.(2) <- x
+----
+
+a|
+----
+for (x in a.vals()) {
+  Debug.print(x)
+}
+----
+a|
+----
+List.iter print_string a
+----
+|===
+
+=== Strings
+
+[width="100%",options="header"]
+|===
+|Motoko |Ocaml
+
+a|
+----
+“Hello ” # “world\n”
+----
+a|
+----
+“Hello “ ^ “world\n”
+----
+
+a|
+----
+Int.toText(13)
+debug_show(3.141)
+----
+
+a|
+----
+string_of_int 13
+string_of_float 3.141
+----
+
+a|
+----
+s.len()
+----
+
+a|
+----
+String.length s
+----
+
+a|
+----
+for (c in s.chars()) {
+  Debug.print(debug_show(c))
+}
+----
+
+a|
+----
+String.iter print_char s
+----
+
+a|
+Does not have index access
+
+a|
+----
+String.get s 0 or s.[0]
+----
+|===
+////
+////
+
 == Class declaration example
 
 The following table compares class declarations in {proglang} with class declarations in JavaScript and TypeScript.
@@ -1576,3 +3165,4 @@ class Foo() = Self {
 a| 
  
 |===
+////

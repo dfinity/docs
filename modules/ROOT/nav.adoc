@@ -6,7 +6,7 @@
 * xref:quickstart:quickstart-intro.adoc[クイックスタート]
 ** xref:quickstart:newcomers.adoc[初めての人へ]
 ** xref:quickstart:local-quickstart.adoc[ローカル開発]
-** xref:quickstart:network-quickstart.adoc[Network Deployment]
+** xref:quickstart:network-quickstart.adoc[ネットワークへのデプロイ]
 
 * Developer Docs
 ** Getting Started

@@ -1,4 +1,4 @@
-= ネットワーク環境での開発
+= ネットワークへのデプロイ
 :description: Download the DFINITY Canister SDK and deploy your first dapp on the Internet Computer blockchain.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :experimental:

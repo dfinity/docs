@@ -1,3 +1,266 @@
+= Actor を使って処理を要求する
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+:sdk-short-name: SDK
+:sdk-long-name: DFINITY Canister Software Development Kit (SDK)
+
+link:../../quickstart/quickstart-intro{outfilesuffix}[クイックスタート] では、Actor オブジェクトや非同期メッセージを含めた {IC} の単純な Canister を初めて見たことでしょう。Actor ベースのメッセージを活用する Caniter の書き方を学ぶ次のステップとして、このチュートリアルでは Actor を定義する伝統的な `+Hello, World!+` Canister を修正する方法を説明して、ローカル実行環境でのデプロイからテストまで行います。
+
+== 始める前に
+
+このチュートリアルを始める前に、以下のことを確認してください。
+
+* link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[ダウンロードとインストール] に記載されている {sdk-short-name} パッケージを、ダウンロードしてインストールまで行っていること
+* すべてのローカル Canister 実行環境プロセスを停止していること
+
+このチュートリアルの所要時間は２０分程度です。
+
+== 新しいプロジェクトを作成する
+
+このチュートリアルで利用する新しいプロジェクトを作成する:
+
+[arabic]
+. ターミナルシェルをまだ開いていなければ開きます。
+. もし別のフォルダを使用しているなら、{IC} プロジェクト用のフォルダに移動します。
+. 以下のコマンドを実行して、新しいプロジェクトを作成します。
++
+[source,bash]
+----
+dfx new actor_hello
+----
+. 以下のコマンドを実行して、プロジェクトディレクトリに移動します。
++
+[source,bash]
+----
+cd actor_hello
+----
+
+== デフォルト設定を修正する
+
+link:explore-templates{outfilesuffix}[デフォルトプロジェクトを探索する] チュートリアルでは、新しくプロジェクトを作成することで、プロジェクトディレクトリにデフォルト `+dfx.json+` 設定ファイルが追加されるのを見たことでしょう。このチュートリアルでは、プロジェクトに反映するデフォルト設定をいくつか修正する必要があります。
+
+`+dfx.json+` 設定ファイルを修正する:
+
+. テキストエディタで `+dfx.json+` 設定ファイルを開きます。
+.  `+actor_hello+` プロジェクトのデフォルト設定を確認します。
+. 名前、ソースへのパスまた出力ファイルのすべてが、`+actor_hello+` プロジェクト名を使用していることに注目します。
++
+例えば、デフォルト Canister スマートコントラクト名は `+actor_hello+` であり、メインコードのファイルへのデフォルトパスは `+src/actor_hello/main.mo+` です。
++
+これらのファイルやディレクトリの名前は変更することができます。ただ変更する場合は、ファイルシステム上のファイルやディレクトリの名前が、`+dfx.json+` 設定ファイルで指定している名前と一致していることを確認してください。
+デフォルトのディレクトリ名やファイル名を使用するつもりであれば、変更する必要はありません。
+. ファイルから `+actor_hello_assets+` 設定をすべて取り除きます。
++
+このチュートリアルでのサンプル canister では、フロントエンドアセットを使用しないので、設定ファイルからこれらの設定を削除できます。
++
+例えば、`+actor_hello_assets+` セクションを取り除いた後、設定ファイルは以下のようになります。
++
+....
+include::example$define-actor-dfx.json[]
+....
+. 変更内容を保存し、ファイルを閉じて次に進みます。
+
+== デフォルト Canister を修正する
+
+link:explore-templates{outfilesuffix}[デフォルトプロジェクトを探索する] チュートリアルでは、新しいプロジェクトを作成することで、`+main.mo+` ファイルを含む `+src+` デフォルトディレクトリが作成されるのを見たことでしょう。このチュートリアルでは、アクターを定義することで、単純な "Hello, World!" Canister を作成するテンプレートコードを修正します。Motoko では、{IC} Canister は Motoko Actor として表現されます。
+
+デフォルトテンプレートソースコードを修正する:
+
+. 以下のコマンドを実行して、プロジェクトのソースコードディレクトリに移動します。
++
+[source,bash]
+----
+cd src/actor_hello
+----
+. テキストエディタでテンプレート `+main.mo+` ファイルを開き、既存のコンテンツを削除します。
+
++
+[source,bash]
+----
+cd src/actor_hello
+----
+
++
+次のステップは、伝統的な "Hello, World!" サンプル Canister のような文章を表示する Canister を書くことです。
+ただ {IC} の Canister をコンパイルするには、Motoko コードで Actor を定義する必要があります。  
+. 以下のサンプルコードをコピーして、`+main.mo+` ファイルに貼り付けます。
++
+[source.copy,motoko,no-repl]
+----
+include::example$actor_hello.mo[]
+----
++
+Canister を定義した Motoko Actor を詳しく見ていきましょう。
++
+--
+* まず `+print+` 機能を提供する `+Debug+` モジュールをインポートします。
+* Actor は、{IC} _query_ メソッドを定義するのに `+public query func+` 宣言を使います。メソッドは Actor のステートに永続的な変更を加える必要はありません。メソッドをクエリとして宣言することで、メソッドが行ういかなる変更も一時的なものになり、クエリの完了後に破棄されます。
+--
++
+クエリコールの使用方法に関しては、link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters はプログラムとステートを含める] にある link:../concepts/canisters-code{outfilesuffix}#query-update[クエリコール] を参照してください。
+. 変更内容を保存して、`+main.mo+` ファイルを閉じます。
+
+== Canister のビルドを確認する
+
+通常 Canister をビルドするには、まず {IC} ブロックチェーンメインネット上でユニークな Canister ID を予約する必要があります。
+
+しかしながら、{IC} ブロックチェーンメインネットに全く接続せずに、プログラムをコンパイルすることも可能です。`+dfx build --check+` コマンドは、一時的にハードコードされた Canister ID を使用してコンパイルを実現します。
+
+Canister のビルドを確認する:
+
+. プロジェクトディレクトリのルート直下に戻ります。
+. 以下のコマンドを実行して、一時的にハードコードされた Canister ID での Canister をビルドします。
++
+[source,bash]
+----
+dfx build --check
+----
++
+`+--check+` オプションは、プロジェクトをローカルにビルドして、コンパイルの確認と生成されたファイルの調査を可能にします。`+dfx build --check+` コマンドは、一時的な ID のみを使用するので、以下のような出力を表示します。
++
+....
+Building canisters to check they build ok. Canister IDs might be hard coded.
+Building canisters...
+....
++
+もし Canister のコンパイルが成功すれば、デフォルト `+.dfx/local/canisters+` ディレクトリと `+.dfx/local/canisters/actor_hello/+` サブディレクトリにある出力を調査できます。
++
+例えば、生成されたファイルを確認するには、`+tree+` コマンドを使います。
++
+[source,bash]
+----
+tree .dfx/local/canisters
+----
++
+コマンドを実行すると、以下のような出力が表示されます。
+....
+.dfx/local/canisters
+├── actor_hello
+│   ├── actor_hello.d.ts
+│   ├── actor_hello.did
+│   ├── actor_hello.did.js
+│   ├── actor_hello.js
+│   └── actor_hello.wasm
+└── idl
+
+2 directories, 5 files
+....
+
+== プロジェクトをデプロイする
+
+`+dfx build --check+` コマンドからローカル Canister 実行環境もしくは {IC} メインネットにデプロイすることはできません。
+もしプロジェクトをデプロイしたいのであれば、以下のことを実行する必要があります。
+
+* ローカル Canister 実行環境もしくは {IC} メインネットに接続すること
+* 接続専用の Canister ID を登録すること
+* Canister をデプロイすること
+
+これらのステップをもう少し詳しく考えてみましょう。まずプロジェクトをデプロイする前に、`dfx` のローカル Canister 実行環境もしくは {IC} ブロックチェーンメインネットに接続する必要があります。どちらかに接続した後、ローカルで定義した ID の代わりに、ユニークで接続専用の Canister ID を生成する必要があります。これらのステップを確認するために、プロジェクトをローカルにデプロイしてみましょう。
+
+プロジェクトをローカルにデプロイする:
+
+. 必要であればターミナルを開き、プロジェクトディレクトリに移動します。
+. 以下のコマンドを実行して、ローカル Canister 実行環境を起動します。
++
+[source,bash]
+----
+dfx start --background
+----
++
+このチュートリアルでは、バックグラウンドプロセスとして、ローカル Canister 実行環境を動かすのに `+--background+` オプションを使用します。
+このオプションのおかげで、別のターミナルシェルを開くことなく、次のステップに進むことができます。
+. 以下のコマンドを実行して、ローカル Canister 実行環境のプロジェクトに対する新しい Canister ID を生成します。
++
+[source,bash]
+----
+dfx canister create actor_hello
+----
++
+コマンドの実行で、以下のような出力が表示されます。
++
+....
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "pubs-id" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Creating canister "actor_hello"...
+"actor_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+....
++
+`+dfx canister create+` コマンドは、`+.dfx/local+` ディレクトリの `+canister_ids.json+` ファイルに接続専用の Canister ID を格納します。
++
+例:
++
+....
+{
+  "actor_hello": {
+    "local": "rrkah-fqaaa-aaaaa-aaaaq-cai"
+  }
+}
+....
+. 以下のコマンドを実行して、Canister をビルドします。
++
+[source,bash]
+----
+dfx build
+----
+コマンドの実行で、以下のような出力が表示されます。
++
+....
+Building canisters...
+....
+. 以下のコマンドを実行して、ローカル Canister 実行環境に `+actor_hello+` プロジェクトをデプロイします。
++
+[source,bash]
+----
+dfx canister install actor_hello
+----
++
+コマンドの実行で、以下のような出力が表示されます。
++
+....
+Installing code for canister actor_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+....
+
+== キャニスターに処理を要求する
+
+これでローカル Canister 実行環境にデプロイした Canister がありますので、`+dfx canister call+` コマンドを使用して Canister をテストします。
+
+ローカル Canister 実行環境にデプロイした Canister をテストする:
+
+. 以下のコマンドを実行することで、`+dfx canister call+` を使用して `+hello+` 関数を呼び出します。
++
+[source,bash]
+----
+dfx canister call actor_hello hello
+----
+. ローカル Canister 実行環境が稼働しているターミナルで、コマンドが `+hello+` 関数に指定された文章とチェックポイントのメッセージを返すことを確認します。
++
+例えば、Canister は、以下のような出力の中に "Hello, World from DFINITY" を表示します。
++
+....
+[Canister rrkah-fqaaa-aaaaa-aaaaq-cai] Hello, World from DFINITY 
+....
++
+もしバックグラウンドの代わりに別のターミナルで {IC} メインネットを動かしていたら、"Hello, World from DFINITY" メッセージはメインネットの処理を表示するターミナルに表示されることに注意してください。
+
+== ローカル Canister 実行環境を止める
+
+Canister での実験が終わりましたら、バックグラウンドで動かし続けないために、ローカル Canister 実行環境を停止します。
+
+ローカル Canister 実行環境を止める:
+
+. Canister とやり取りを行うターミナルで、`dfx stop` コマンドを実行します。もしくは
+. ローカル Canister 実行環境の処理を表示しているターミナルで、プロセスを中断するために Control-C を押します。もしくは
+. コマンドやOSのツールを使用して `replica` プロセスを強制終了します。
+
+. 以下のコマンドを実行して、ローカル Canister 実行環境を止めます。
++
+[source,bash]
+----
+dfx stop
+----
+////
 = Query using an actor
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
@@ -262,3 +525,4 @@ To stop the local canister execution environment, you can:
 ----
 dfx stop
 ----
+////

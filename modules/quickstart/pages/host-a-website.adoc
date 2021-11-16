@@ -1,7 +1,7 @@
 Hosting a Static Website on the Internet Computer
 =================================================
 
-Before you begin, make sure you are set up with our {sdk-short-name} sdk and a Cycles Wallet, either from the Faucet Quickstart or by purchasing ICP and following our link:https://smartcontracts.org/docs/quickstart/network-quickstart.html[Network Deployment] guide.
+Before you begin, make sure you are set up with our {sdk-short-name} (DFX) and a Cycles Wallet, either from the Faucet Quickstart or by purchasing ICP and following our link:https://smartcontracts.org/docs/quickstart/network-quickstart.html[Network Deployment] guide.
 
 == Set up your project
 
@@ -86,9 +86,9 @@ p:first-of-type {
 }
 ----
 
-== Configure {sdk-short-name} to deploy
+== Configure DFX to deploy
 
-To host and run this website live on the {platform}, you will need to configure {sdk-short-name} to upload your files to a certified asset canister. In the root directory of your project, +static-ic-website+, create a new file, +dfx.json+. Then, add the following content:
+To host and run this website live on the {platform}, you will need to configure DFX to upload your files to a certified asset canister. In the root directory of your project, +static-ic-website+, create a new file, +dfx.json+. Then, add the following content:
 
 .dfx.json
 [source,json]
@@ -103,7 +103,7 @@ To host and run this website live on the {platform}, you will need to configure 
 }
 ----
 
-This tells {sdk-short-name} that you want to create an asset canister, and that it should upload the contents of the +asset+ folder. If you want to upload additional static assets, you can add them to the +asset+ folder or add additional folders to the +source+ configuration.
+This tells DFX that you want to create an asset canister, and that it should upload the contents of the +asset+ folder. If you want to upload additional static assets, you can add them to the +asset+ folder or add additional folders to the +source+ configuration.
 
 Now, your directory should look something like this:
 

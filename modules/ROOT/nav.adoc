@@ -5,7 +5,7 @@
 
 * xref:quickstart:quickstart-intro.adoc[Quick Start]
 ** xref:quickstart:newcomers.adoc[For Newcomers]
-** xref:quickstart:cycles-faucet.adoc[Claim your free Cycles]
+** xref:quickstart:cycles-faucet.adoc[Claim Your Free Cycles]
 ** xref:quickstart:host-a-website.adoc[Host a Static Website]
 ** xref:quickstart:local-quickstart.adoc[Local Development]
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]

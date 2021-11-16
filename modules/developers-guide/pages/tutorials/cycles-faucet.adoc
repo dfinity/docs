@@ -42,5 +42,3 @@ image:cycles-faucet/faucet_step_6.png[Configure DFX Wallet]
 Your Cycles Wallet is created and ready to use. Now all you need to do is copy the +set-wallet+ command from the final screen and run it in your terminal. It will configure {sdk-short-name} to automatically use the wallet and your free cycles to deploy your first few dapps or websites to the {platform}!
 
 Now you are ready to host a website on the IC or follow one of our dapp tutorials.
-
-TODO: add links

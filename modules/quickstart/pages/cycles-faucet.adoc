@@ -45,6 +45,6 @@ Now you are ready to host a website on the IC or follow one of our dapp tutorial
 
 === Next, people often look at these guides:
 
-xref:quickstart:host-a-website.adoc[Host a Static Website]
-xref:quickstart:local-quickstart.adoc[Local Development]
-xref:quickstart:network-quickstart.adoc[Network Deployment]
+* xref:host-a-website.adoc[Host a Static Website]
+* xref:local-quickstart.adoc[Local Development]
+* xref:network-quickstart.adoc[Network Deployment]

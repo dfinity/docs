@@ -1,0 +1,46 @@
+Cycles Faucet Quickstart
+========================
+
+Ready to deploy your first smart contract on the Internet Computer blockchain? You can use our Cycles Faucet to get set up with $20 in free cycles in just a few minutes.
+
+Before you begin, make sure you have {sdk-short-name} installed by running
+[source,sh]
+----
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
+----
+
+or following the instructions at link:https://smartcontracts.org[].
+
+== Claim your Cycles Wallet
+
+=== Step 1: Authenticate
+
+First, you will need to navigate to link:https://faucet.dfinity.org[]. You will need to connect an active GitHub account to continue. If your account is not eligible, please follow the link:https://smartcontracts.org/docs/quickstart/network-quickstart.html[Network Deployment] guide.
+
+image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
+
+=== Step 2: Principal ID
+
+Once you have logged in, open up a terminal window and run teh command +dfx identity get-principal+. Paste the output into the text input on the Step 2 screen. This Principal will uniquely identify your computer, and will be used to give you access to your Cycles Wallet and any canister smart contracts you deploy with it. Your Principal will look like a long series of numbers and letters separated by hyphens.
+
+image:cycles-faucet/faucet_step_2.png[Enter a Principal ID]
+
+=== Step 3: Deposit method
+
+On the third screen, you have a choice to use an existing Cycles Wallet, or to Generate a New Cycles Wallet. If you already have created one, you can select the first option and the faucet will send your existing canister $20 worth of cycles. 
+
+For any first time user, select *Generate New Cycles Wallet* and then press *Continue​​*.
+
+image:cycles-faucet/faucet_step_4.png[Generate New Cycles Wallet]
+
+== Configure your wallet in DFX
+
+Now that you have claimed your wallet, you should see a screen like the one below:
+
+image:cycles-faucet/faucet_step_6.png[Configure DFX Wallet]
+
+Your Cycles Wallet is created and ready to use. Now all you need to do is copy the +set-wallet+ command from the final screen and run it in your terminal. It will configure {sdk-short-name} to automatically use the wallet and your free cycles to deploy your first few dapps or websites to the {platform}!
+
+Now you are ready to host a website on the IC or follow one of our dapp tutorials.
+
+TODO: add links

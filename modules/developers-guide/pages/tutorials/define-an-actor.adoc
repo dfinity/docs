@@ -6,7 +6,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :sdk-short-name: SDK
 :sdk-long-name: DFINITY Canister Software Development Kit (SDK)
 
-link:../../quickstart/quickstart-intro{outfilesuffix}[クイックスタート] では、Actor オブジェクトや非同期メッセージを含めた {IC} の単純な Canister を初めて見たことでしょう。Actor ベースのメッセージを活用する Caniter の書き方を学ぶ次のステップとして、このチュートリアルでは Actor を定義する伝統的な `+Hello, World!+` Canister を修正する方法を説明して、ローカル実行環境でのデプロイからテストまで行います。
+link:../../quickstart/quickstart-intro{outfilesuffix}[クイックスタート] では、Actor オブジェクトや非同期メッセージを含めた {IC} の単純な Canister を初めて見たことでしょう。Actor ベースのメッセージを活用する Canister の書き方を学ぶ次のステップとして、このチュートリアルでは Actor を定義する伝統的な `+Hello, World!+` Canister を修正する方法を説明して、ローカル実行環境でのデプロイからテストまで行います。
 
 == 始める前に
 
@@ -45,15 +45,15 @@ link:explore-templates{outfilesuffix}[デフォルトプロジェクトを探索
 
 . テキストエディタで `+dfx.json+` 設定ファイルを開きます。
 .  `+actor_hello+` プロジェクトのデフォルト設定を確認します。
-. 名前、ソースへのパスまた出力ファイルのすべてが、`+actor_hello+` プロジェクト名を使用していることに注目します。
+. 名前、ソースへのパス、出力ファイルのすべてが、`+actor_hello+` プロジェクト名を使用していることに注目します。
 +
 例えば、デフォルト Canister スマートコントラクト名は `+actor_hello+` であり、メインコードのファイルへのデフォルトパスは `+src/actor_hello/main.mo+` です。
 +
-これらのファイルやディレクトリの名前は変更することができます。ただ変更する場合は、ファイルシステム上のファイルやディレクトリの名前が、`+dfx.json+` 設定ファイルで指定している名前と一致していることを確認してください。
+これらのファイルやディレクトリの名前は変更することができます。ただし、変更する場合は、ファイルシステム上のファイルやディレクトリの名前が、`+dfx.json+` 設定ファイルで指定している名前と一致していることを確認してください。
 デフォルトのディレクトリ名やファイル名を使用するつもりであれば、変更する必要はありません。
 . ファイルから `+actor_hello_assets+` 設定をすべて取り除きます。
 +
-このチュートリアルでのサンプル canister では、フロントエンドアセットを使用しないので、設定ファイルからこれらの設定を削除できます。
+このチュートリアルでのサンプル Canister では、フロントエンドアセットを使用しないので、設定ファイルからこれらの設定を削除できます。
 +
 例えば、`+actor_hello_assets+` セクションを取り除いた後、設定ファイルは以下のようになります。
 +
@@ -64,7 +64,7 @@ include::example$define-actor-dfx.json[]
 
 == デフォルト Canister を修正する
 
-link:explore-templates{outfilesuffix}[デフォルトプロジェクトを探索する] チュートリアルでは、新しいプロジェクトを作成することで、`+main.mo+` ファイルを含む `+src+` デフォルトディレクトリが作成されるのを見たことでしょう。このチュートリアルでは、アクターを定義することで、単純な "Hello, World!" Canister を作成するテンプレートコードを修正します。Motoko では、{IC} Canister は Motoko Actor として表現されます。
+link:explore-templates{outfilesuffix}[デフォルトプロジェクトを探索する] チュートリアルでは、新しいプロジェクトを作成することで、`+main.mo+` ファイルを含む `+src+` デフォルトディレクトリが作成されるのを見たことでしょう。このチュートリアルでは、Actor を定義することで、単純な "Hello, World!" Canister を作成するテンプレートコードを修正します。Motoko では、{IC} Canister は Motoko Actor として表現されます。
 
 デフォルトテンプレートソースコードを修正する:
 
@@ -83,7 +83,7 @@ cd src/actor_hello
 ----
 
 +
-次のステップは、伝統的な "Hello, World!" サンプル Canister のような文章を表示する Canister を書くことです。
+次のステップは、伝統的な "Hello, World!" のような文章を表示する Canister を書くことです。
 ただ {IC} の Canister をコンパイルするには、Motoko コードで Actor を定義する必要があります。  
 . 以下のサンプルコードをコピーして、`+main.mo+` ファイルに貼り付けます。
 +
@@ -222,7 +222,7 @@ dfx canister install actor_hello
 Installing code for canister actor_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
 ....
 
-== キャニスターに処理を要求する
+== Canister に処理を要求する
 
 これでローカル Canister 実行環境にデプロイした Canister がありますので、`+dfx canister call+` コマンドを使用して Canister をテストします。
 

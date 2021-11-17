@@ -9,7 +9,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 :company-id: DFINITY
 
-DFINITYのコマンドライン実行環境 (`+dfx+`) は、{platform}用のdappsを作成、デプロイ、管理するための主要なツールです。
+DFINITY のコマンドライン実行環境 (`+dfx+`) は、{platform}用の dapps を作成、デプロイ、管理するための主要なツールです。
 
 `+dfx+` 親コマンドは、さまざまなフラグやサブコマンドを使用して、さまざまな種類の操作を実行することができます。
 

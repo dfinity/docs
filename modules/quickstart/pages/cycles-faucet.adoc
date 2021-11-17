@@ -21,7 +21,7 @@ image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
 
 === Step 2: Principal ID
 
-Once you have logged in, open up a terminal window and run teh command +dfx identity get-principal+. Paste the output into the text input on the Step 2 screen. This Principal will uniquely identify your computer, and will be used to give you access to your Cycles Wallet and any canister smart contracts you deploy with it. Your Principal will look like a long series of numbers and letters separated by hyphens.
+Once you have logged in, open up a terminal window and run the command +dfx identity get-principal+. Paste the output into the text input on the Step 2 screen. This Principal will uniquely identify your computer, and will be used to give you access to your Cycles Wallet and any canister smart contracts you deploy with it. Your Principal will look like a long series of numbers and letters separated by hyphens.
 
 image:cycles-faucet/faucet_step_2.png[Enter a Principal ID]
 

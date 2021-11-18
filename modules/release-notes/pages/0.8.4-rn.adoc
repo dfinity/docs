@@ -1,0 +1,71 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+:release: 0.8.4
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+An overview of the {release} release:
+
+* Added first-class support for rust canisters.
+* The included replica now supports canister_heartbeat.
+
+== Changes to DFX
+
+=== New feature: Added "rust" canister type
+
+You can now declare "rust" canisters in dfx.json.
+[source, json]
+----
+{
+  "canisters": {
+    "canister_name": {
+      "type": "rust",
+      "package": "crate_name",
+      "candid": "path/to/canister_name.did"
+    }
+  }
+}
+----
+
+Don't forget to place a `Cargo.toml` in your project root.
+Then dfx will build the rust canister with your rust toolchain.
+Please also make sure that you have added the WebAssembly compilation target.
+
+[source, bash]
+----
+rustup target add wasm32-unknown-unknown
+----
+
+You can also create new dfx project with a default rust canister.
+
+[source, bash]
+----
+dfx new --type=rust <project-name>
+----
+
+=== Updated the new project template
+
+Updated dependencies to latest for Webpack, and updated the configuration. Additionally simplified environment variables for canister IDs in config.
+
+Additionally added some polish to the starter template, including a favicon and using more semantic html in the example app
+
+=== New feature: environment variable overrides for executable pathnames
+
+You can now override the location of any executable normally called from the cache by specifying
+an environment variable. For example, DFX_ICX_PROXY_PATH will specify the path for `icx-proxy`.
+
+=== New feature: dfx deploy --mode=reinstall <canister>
+
+`dfx deploy` can now reinstall a single canister, controlled by a new `--mode=reinstall` parameter.
+This is destructive (it resets the state of the canister), so it requires a confirmation
+and can only be performed on a single canister at a time.
+
+`dfx canister install --mode=reinstall <canister>` also requires the same confirmation,
+and no longer works with `--all`.
+
+== Changes to Replica
+
+The included replica now supports canister_heartbeat.  This only works with rust canisters for the time being,
+and does not work with the emulator (`dfx start --emulator`).

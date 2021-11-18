@@ -135,3 +135,28 @@ The [Internet Computer blockchain](https://dfinity.org/developers) is removing t
 If you are interested in learning more about the project, you can connect with other developers in the community through the [Developer Forum](https://forum.dfinity.org/) and follow us on social media for information about upcoming events and new developments.
 
 If you would like to contribute to the documentation, see our [CONTRIBUTING](.github/CONTRIBUTING.md) and [CODE OF CONDUCT](.github/CODE_OF_CONDUCT.md) to get started.
+
+## Updating the Site Navigation
+
+To update the left-side site navigation, make changes to [nav.adoc](modules/ROOT/nav.adoc).
+
+## Testing your changes locally
+
+To test your changes locally, clone the [dfinity-docs-playbook] https://github.com/dfinity/dfinity-docs-playbook and follow the installation instructions. Push the changes you want to preview up to a branch on GitHub. You will need to modify the 
+antora-playbook.yml to point to your branch, which will look something like
+
+```
+content:
+  sources:
+    # Remote repositories and branches
+    - url: git@github.com:dfinity/docs.git
+      branches: "your-branch-name"
+```
+
+> Note: the URL may be different if you are working from a fork
+
+Then, run `npm run build` to compile the documentation.
+
+You will then need to open the static directory in your browser with a simple static file server to preview your changes. 
+
+> Note - the root page of the site automatically redirects to https://smartcontracts.org, so you will need to skip past the index to another page. For example, http://127.0.0.1:5500/build/site/docs/quickstart/local-quickstart.html.

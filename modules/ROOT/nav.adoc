@@ -5,6 +5,8 @@
 
 * xref:quickstart:quickstart-intro.adoc[クイックスタート]
 ** xref:quickstart:newcomers.adoc[初めての人へ]
+** xref:quickstart:cycles-faucet.adoc[Claim Your Free Cycles]
+** xref:quickstart:host-a-website.adoc[Host a Static Website]
 ** xref:quickstart:local-quickstart.adoc[ローカル開発]
 ** xref:quickstart:network-quickstart.adoc[ネットワークへのデプロイ]
 
@@ -13,6 +15,7 @@
 *** Introducing the SDK
 **** xref:developers-guide:install-upgrade-remove.adoc[ソフトウェアのインストール・アップグレード・削除]
 **** xref:release-notes:sdk-release-notes.adoc[Release notes]
+***** xref:release-notes:0.8.4-rn.adoc[0.8.4]
 ***** xref:release-notes:0.8.3-rn.adoc[0.8.3]
 ***** xref:release-notes:0.8.2-rn.adoc[0.8.2]
 ***** xref:release-notes:0.8.1-rn.adoc[0.8.1]
@@ -171,6 +174,8 @@
 
 * xref:quickstart:quickstart-intro.adoc[Quick Start]
 ** xref:quickstart:newcomers.adoc[For Newcomers]
+** xref:quickstart:cycles-faucet.adoc[Claim Your Free Cycles]
+** xref:quickstart:host-a-website.adoc[Host a Static Website]
 ** xref:quickstart:local-quickstart.adoc[Local Development]
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
 
@@ -179,6 +184,7 @@
 *** Introducing the SDK
 **** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
 **** xref:release-notes:sdk-release-notes.adoc[Release notes]
+***** xref:release-notes:0.8.4-rn.adoc[0.8.4]
 ***** xref:release-notes:0.8.3-rn.adoc[0.8.3]
 ***** xref:release-notes:0.8.2-rn.adoc[0.8.2]
 ***** xref:release-notes:0.8.1-rn.adoc[0.8.1]

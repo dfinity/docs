@@ -4,7 +4,7 @@
       "main": "src/hello_world/main.mo",
       "type": "motoko",
       "declarations": {
-        "output": "",
+        "output": "src/declarations/",
         "bindings":["js", "ts", "did", "mo"],
         "env_override":"xxxxx"
       }

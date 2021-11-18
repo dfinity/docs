@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "hello_world": {
+      "main": "src/hello_world/main.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "",
+        "bindings":["js", "ts", "did", "mo"],
+        "env_override":"xxxxx"
+      }
+    }
+  },
+  "defaults": {
+      "build": {
+          "packtool": ""
+      }
+  },
+  "dfx": "0.8.4",
+  "networks": {
+      "local": {
+          "bind": "127.0.0.1:8000",
+          "type": "ephemeral"
+      }
+  },
+  "version": 1
+}

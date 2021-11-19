@@ -1,7 +1,7 @@
 = dfx generate
 
 Use the `+dfx generate+` command to generate canister type declarations for supported programming languages.
-Currently, `+dfx generate+` support four languages: Motoko, Candid, JavaScript, TypeScript.
+Currently, `+dfx generate+` supports four languages: Motoko, Candid, JavaScript, and TypeScript.
 
 You can use this command to generate type declarations for all canisters
 that are defined for a project in the project's `+dfx.json+` configuration file or a specific canister.

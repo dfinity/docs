@@ -48,7 +48,7 @@ If you don't specify this argument, `+dfx generate+` will generate type declarat
 
 == Configuration
 
-The behavior of `+dfx generate+` is controlled by `+dfx.json+` configuration file.
+The behavior of `+dfx generate+` is controlled by the `+dfx.json+` configuration file.
 Under `+dfx.json+` → `+canisters+` → `+<canister_name>+`, you can add a `+declarations+` section.
 In which, you can specify following fields:
 

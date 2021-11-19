@@ -42,7 +42,7 @@ You can specify the following arguments for the `+dfx generate+` command.
 
 |`+canister_name+` |Specifies the name of the canister for which to generate type declarations.
 The canister name must match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.
-If you don't specify this argument, all canisters declared in `+dfx.json+` will get types declarations generated.
+If you don't specify this argument, `+dfx generate+` will generate type declarations for all canisters declared in `+dfx.json+`.
 
 |===
 

@@ -95,7 +95,7 @@ In this example, the `+hello_world+` canister itself is written in Motoko. The `
 dfx generate hello_world
 ----
 
-Since there is only one canister in `+dfx.json+`, you can call `+dfx generate+` without argument.
+Since there is only one canister in `+dfx.json+`, calling `+dfx generate+` without an argument will have the same effect as the above command.  If there were multiple canisters defined in `+dfx.json+`, this would generate type declarations for all defined canisters.
 
 [source,bash]
 ----

@@ -188,6 +188,12 @@ For example, copy and paste the following sample styles into the file:
 include::example$mycontacts/mycontacts.css[]
 ----
 . Save your changes and close the `+main.css+` file to continue.
+. Rename the modified `+main.css+` file as `+mycontacts.css+` by running the following command:
++
+[source,bash]
+----
+mv main.css mycontacts.css
+----
 . Change to the `+src/contacts_assets/src+` directory.
 +
 [source,bash]
@@ -278,12 +284,6 @@ To deploy canisters on the {platform}, you must specify that you are deploying t
 ----
 dfx deploy --network=ic
 ----
-. Start the Webpack development server:
-+
-[source,bash]
-----
-npm start
-----
 
 == View the front-end
 
@@ -291,7 +291,23 @@ You can now access the front-end for the `+contacts+` dapp.
 
 To view the front-end:
 
-. Open a browser and navigate to the `http://localhost:8080`.
+. Find the front-end canister identifier. To do so, you can use the command `+dfx canister id <FRONT-END-CANISTER-NAME>+` where <FRONT-END-CANISTER-NAME> is the name of the canister used for the fron-end.
++
+For example:
++
+[source,bash]
+----
+dfx canister id contacts_assets
+----
+. Open a browser and navigate to `+http://localhost:8000/?canisterId=<FRONT-END-CANISTER-ID>+` where <FRONT-END-CANISTER-ID> is the front-end canister identifier you get in the previous step.
++
+For example:
++
+[source,bash]
+----
+http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
+----
+
 . Verify that you are prompted with a **My Contacts** form.
 +
 For example:

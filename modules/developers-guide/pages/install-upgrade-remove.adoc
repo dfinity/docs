@@ -34,7 +34,7 @@ The following table describes the development environment components that the in
 
 |uninstall.sh
 |Script to remove the {sdk-short-name} and all of its components
-|`~/.cache/dfinity`
+|`~/.cache/dfinity/uninstall.sh`
 
 |versions
 |Cache directory that contains a subdirectory for each version of the {sdk-short-name} you install.  

@@ -1,7 +1,7 @@
 = dfx replica
 
-Use the `+dfx replica+` command to start a {IC} replica process (without a web server) locally.
-This command enables you to deploy canisters locally to simulate network deployment and to test your programs during development.
+Use the `+dfx replica+` command to start a local canister execution environment (without a web server).
+This command enables you to deploy canisters locally and to test your dapps during development.
 
 Note that you can only run this command from within the project directory structure.
 For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
@@ -32,7 +32,7 @@ You can use the following option with the `+dfx replica+` command.
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Option |Description
-|`+--port port+` |Specifies the port the local replica should listen to.
+|`+--port port+` |Specifies the port the local canister execution environment should listen to.
 |===
 
 ////
@@ -42,7 +42,7 @@ You can use the following option with the `+dfx replica+` command.
 
 == Examples
 
-You can start the {IC} replica by running the following command:
+You can start the local canister execution environment by running the following command:
 
 [source,bash]
 ----

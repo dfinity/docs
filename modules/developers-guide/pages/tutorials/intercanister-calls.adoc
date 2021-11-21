@@ -5,34 +5,33 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 :company-id: DFINITY
 
-One of the most important features of the {IC} for developers is the ability to build, deploy, and call shared functions in one canister from a program in another canister.
-This capability to make calls between canisters—also sometimes referred to as **inter-canister calls**—enables you to reuse and share functionality in multiple applications.
+One of the most important features of the {IC} blockchain for developers is the ability to call functions in one canister smart contract from another canister smart contract.
+This capability to make calls between canisters—also sometimes referred to as **inter-canister calls**—enables you to reuse and share functionality in multiple dapps.
 
-For example, you might want to create an application for professional networking, organizing community events, or hosting fundraising activities.
-Each of these applications might have a social component that enables users to identify social relationships based on some criteria or shared interest, such as friends and family or current and former colleagues.
+For example, you might want to create a dapp for professional networking, organizing community events, or hosting fundraising activities.
+Each of these dapps might have a social component that enables users to identify social relationships based on some criteria or shared interest, such as friends and family or current and former colleagues.
 
-To address this social component, you might want to create a single canister for storing user relationships then write your professional networking, community organizing, or fundraising application to import and call functions that are defined in the canister for social connections.
-You could then build additional applications to use the social connections canister or extend the features provided by the social connections canister to make it useful to an even broader community of other developers.
+To address this social component, you might want to create a single canister smart contract for storing user relationships then write your professional networking, community organizing, or fundraising application to import and call functions that are defined in the canister for social connections.
+You could then build additional applications to use the social connections canister smart contract or extend the features provided by the social connections canister to make it useful to an even broader community of other developers.
 
-The Motoko-based LinkedUp sample application provides a simple implementation of an open professional network that demonstrates how to use inter-canister calls within a project.
+The Motoko-based LinkedUp sample dapp provides a simple implementation of an open professional network that demonstrates how to use inter-canister calls within a project.
 
-The LinkedUp sample application is implemented using the following canisters:
+The LinkedUp sample dapp is implemented using the following canister smart contracts:
 
-* The `linkedup` canister creates and stores basic profile information for a user, including work experience and educational background.
-* The `connectd` canister creates and stores a user's connections.
-* The `linkedup_assets` canister stores the front-end assets—including the JavaScript, HTML, and CSS files—that define the user interface
+* The `linkedup` canister smart contract creates and stores basic profile information for a user, including work experience and educational background.
+* The `connectd` canister smart contract creates and stores a user's connections.
+* The `linkedup_assets` canister smart contract stores the front-end assets—including the JavaScript, HTML, and CSS files—that define the user interface
 
 == Before you begin
 
-Before building the sample application, verify the following:
+Before building the sample dapp, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any {IC} network processes running on the local
-computer.
+* You have stopped the local canister execution environment provided by `dfx`.
 
 == Download the demo
 
-To experiment with inter-canister calls using the LinkedUp sample application:
+To experiment with inter-canister calls using the LinkedUp sample dapp:
 
 . Open a terminal shell and change to the folder you are using for your {IC} sample projects.
 . Clone the `linkedup` repository.
@@ -62,29 +61,29 @@ npm audit fix
 ----
 . Open the `+dfx.json+` file in a text editor and verify the `+dfx+` setting has same the version number as the `+dfx+` executable you have installed.
 
-== Start the local network
+== Start the local canister execution environment
 
-Before you can build the `+linkedup+` project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+For development purposes `dfx` provides a local canister execution environment. This requires a `+dfx.json+` file, so you should be sure you are in the linkedup root directory.
 
-To start the network locally:
+To start the local canister execution environment:
 
 [arabic]
 . Open a new terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
-. Start the {IC} network on your local computer by running the following command:
+. Start the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-After the local {IC} network completes its startup operations, you can continue to the next step.
+After the local canister execution environment completes its startup operations, you can continue to the next step.
 
 == Register canister identifiers
 
-After you connect to the {IC} network running locally in your development environment, you can register with the network to generate unique canister identifiers for your project.
+Once the local canister execution environment is up and running, you can generate unique canister identifiers for your project.
 
-To register canister identifiers for the local network:
+To register canister identifiers:
 
 . Check that you are still in your project directory, if needed.
 . Register unique canister identifiers for the project by running the following command:
@@ -94,7 +93,7 @@ To register canister identifiers for the local network:
 dfx canister create --all
 ----
 +
-The command displays the network-specific canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
+The command displays the canister identifiers for the canisters defined in the `+dfx.json+` configuration file.
 +
 ....
 "connectd" canister created with canister id: "75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
@@ -102,28 +101,28 @@ The command displays the network-specific canister identifiers for the canisters
 "linkedup_assets" canister created with canister id: "7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q"
 ....
 +
-Keep in mind that because you are running the {IC} locally, these identifiers are only valid on the local network.
-To deploy canisters on a remote network, you must connect to that network using the `+--network+` command-line option and a specific network name or address to register identifiers on that network.
+Keep in mind that because you are running the local canister execution environment, these identifiers are only valid on the local canister execution environment.
+To deploy canisters on the {IC} blockchain mainnet, you must specify the appropriate target using the `+--network+` command-line option.
 
 == Build and deploy the demo project
 
-To build and deploy the LinkUp sample application, take the following steps:
+To build and deploy the LinkUp sample dapp, take the following steps:
 
 . Check that you are still in your project directory by running the `+pwd+` command, if necessary.
-. Build the LinkedUp canisters by running the following command:
+. Build the LinkedUp canister smart contracts by running the following command:
 +
 [source,bash]
 ----
 dfx build
 ----
-. Deploy the project on the local network by running the following command:
+. Deploy the project on the local canister execution environment by running the following command:
 +
 [source,bash]
 ----
 dfx canister install --all
 ----
 +
-You should see canister identifiers for the `+connectd+`, `+linkedup+` and `+linkedup_assets+` canisters with a message similar to the following:
+You should see canister identifiers for the `+connectd+`, `+linkedup+` and `+linkedup_assets+` canister smart contracts with a message similar to the following:
 +
 ....
 Installing code for canister connectd, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
@@ -132,11 +131,11 @@ Installing code for canister linkedup_assets, with canister_id 7kncf-oidaa-aaaaa
 ....
 . Copy the `linkedup_assets` canister identifier returned by the `dfx canister install` command.
 +
-In this sample application, only the `linkedup_assets` canister includes the front-end assets used to access the application's features.
-To open the application in a browser, therefore, you need to specify the `linkedup_assets` canister identifier.
-. Open the `linkedup_assets` canister in your web browser.
+In this sample dapp, only the `linkedup_assets` canister smart contract includes the front-end assets used to access the dapp's user interface.
+To open the dapp in a browser, therefore, you need to specify the `linkedup_assets` canister identifier.
+. Open the `linkedup_assets` canister smart contract in your web browser.
 +
-For example, if binding to the default localhost address and port number, the URL looks similar to this:
+For example, if the local canister execution environment binds to the default localhost address and port number, the URL looks similar to this:
 +
 ....
 http://127.0.0.1:8000/?canisterId=7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
@@ -144,7 +143,7 @@ http://127.0.0.1:8000/?canisterId=7kncf-oidaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 
 == Create a profile and connections
 
-To run through a demonstration of the LinkedUp sample application, take the following steps:
+To run through a demonstration of the LinkedUp sample dapp, take the following steps:
 
 . Open a browser tab or window.
 . Type the web server host name, port, and the `canisterId` keyword, then paste the `linkedup_assets` canister identifier as the URL to display.
@@ -155,7 +154,7 @@ To run through a demonstration of the LinkedUp sample application, take the foll
 +
 The browser displays an introductory page.
 +
-A public-private key pair will be automatically generated to establish your identity for accessing the canister, so there's no need to provide a user name and password or register an account to store your identity before using the service.
+A public-private key pair will be automatically generated to establish your identity for accessing the canister smart contract, so there's no need to provide a user name and password or register an account to store your identity before using the service.
 . Click *Login*.
 +
 The browser displays an empty profile page.
@@ -177,7 +176,7 @@ image:linkedup-profile-maya.png[]
 At this point, there are no other profiles to search for or to add as connections.
 To try out the Search and Connect features, you can:
 
-- Run a script that populates the sample application with some additional profiles.
+- Run a script that populates the sample dapp with some additional profiles.
 - Create a profile manually by opening a private window.
 
 For this tutorial, you will create another profile manually.
@@ -225,39 +224,39 @@ If you want to create a connection between the original profile and the profile 
 
 == Explore the configuration file
 
-Now that you have explored the basic features of the sample application, you have some context for exploring how the configuration settings and source files are used.
+Now that you have explored the basic features of the sample dapp, you have some context for exploring how the configuration settings and source files are used.
 
 To explore the configuration file:
 
 . Change to the `+linkedup+` directory, then open the project’s `+dfx.json+` file.
-. Note that there are two main canisters defined—`+connectd+` and `+linkedup+`—each with a `+main.mo+` source file.
-. Note that the `+linkedup_assets+` canister specifies a frontend entry point of `+main.js+` and assets in the form of CSS and HTML files.
-. Note that the application uses the default server IP address and port number.
+. Note that there are two main canister smart contracts defined—`+connectd+` and `+linkedup+`—each with a `+main.mo+` source file.
+. Note that the `+linkedup_assets+` canister smart contract specifies a frontend entry point of `+main.js+` and assets in the form of CSS and HTML files.
+. Note that the dapp is configured to use the default IP address and port number for deployment on the local canister execution environment.
 
 == Explore the connectd source code
 
-The source code for the social connections canister, `+connectd+`, is organized into the following files:
+The source code for the social connections canister smart contract, `+connectd+`, is organized into the following files:
 
 * The `+digraph.mo+` file provides the functions to create a directed graph of vertices and edges to describe a user's connections.
-* The `+main.mo+` contains the actor and key functions for defining the connections associated with a user profile that can be called by the LinkedUp sample application.
+* The `+main.mo+` contains the actor and key functions for defining the connections associated with a user profile that can be called by the LinkedUp sample dapp.
 * The `+types.mo+` file defines the custom type that maps a vertex to a user identity for use in the `+digraph+` and `+main+` program files.
 
 == Explore the linkedup source code
 
 The source code for the professional profile with work history and educational background is organized into the following files:
 
-* The `+main.mo+` file contains the actor and key functions for the LinkedUp sample application.
-* The `+types.mo+` file defines the custom types that describe the user identity and profile fields that are imported and used in the `+main+` program file for the `linkedup` canister.
+* The `+main.mo+` file contains the actor and key functions for the LinkedUp sample dapp.
+* The `+types.mo+` file defines the custom types that describe the user identity and profile fields that are imported and used in the `+main+` program file for the `linkedup` canister smart contract.
 * The `+utils.mo+` file provides helper functions.
 
 === Query and update operations
 
-In working with the LinkedUp sample application, you might notice that some operations—such as viewing a profile or performing a search—returned results almost immediately.
+In working with the LinkedUp sample dapp, you might notice that some operations—such as viewing a profile or performing a search—returned results almost immediately.
 Other operations—such as creating a profile or adding a connection—took a little longer.
 
-These differences in performance illustrate the difference between using query and update calls in the `+linkedup+` canister.
+These differences in performance illustrate the difference between using query and update calls in the `+linkedup+` canister smart contract.
 
-For example, in the `+src/linkedup/main.mo+` file, the `+create+` and `+update+` functions are update calls that change the state of the canister, but the program uses query calls for the `+get+` and `+search+` functions to view or search for a profile:
+For example, in the `+src/linkedup/main.mo+` file, the `+create+` and `+update+` functions are update calls that change the state of the canister smart contract and therefore need to go through consensus, but the program uses query calls for the `+get+` and `+search+` functions to view or search for a profile:
 
 ....
   // Profiles
@@ -281,16 +280,16 @@ For example, in the `+src/linkedup/main.mo+` file, the `+create+` and `+update+`
   };
 ....
 
-=== Interaction between the canisters
+=== Interaction between the canister smart contracts
 
-In this sample application, the `linkedup` canister leverages functions defined in the `connectd` canister.
-This separation simplifies the code in each canister and illustrates how you can extend a project by calling common functions defined in one canister from one or more other canisters.
+In this sample dapp, the `linkedup` canister smart contract leverages functions defined in the `connectd` canister.
+This separation simplifies the code in each canister smart contract and, more importantly, illustrates how you can extend a project by calling common functions defined in one canister smart contract from one or more other canisters.
 
-To make the public functions defined in one canister available in the another canister:
+To make the public functions defined in one canister smart contract available in the another canister smart contract:
 
 . Add an `+import+` statement in the calling canister.
 +
-In this example, the public functions are defined in the `+connectd+` canister and are called by the `+linkedup+` canister.
+In this example, the public functions are defined in the `+connectd+` canister smart contract and are called by the `+linkedup+` canister smart contract.
 +
 Therefore, the `+src/linkedup/main.mo+` includes the following code:
 +
@@ -299,11 +298,11 @@ Therefore, the `+src/linkedup/main.mo+` includes the following code:
 // Make the Connectd app's public methods available locally
 import Connectd "canister:connectd";
 ----
-. Use the `+canister.function+` syntax to call public methods in the imported canister.
+. Use the `+canister.function+` syntax to call public methods in the imported canister smart contract.
 +
-In this example, the `+linkedup+` canister calls the `+connect+` and `+getConnections+` function in the imported `+connectd+` canister.
+In this example, the `+linkedup+` canister smart contract calls the `+connect+` and `+getConnections+` function in the imported `+connectd+` canister smart contract.
 
-You can see the code that enables interaction between the `+linkedup+` canister and the `+connectd+` canister in the `+main.mo+` source files.
+You can see the code that enables interaction between the `+linkedup+` canister smart contract and the `+connectd+` canister smart contract in the `+main.mo+` source files.
 
 For example, the `+src/connectd/main.mo+` defines the following functions:
 +
@@ -325,7 +324,7 @@ actor Connectd {
 };
 ----
 
-Because of the `+Import+` statement, the `+connectd+` functions are available to the `+linkedup+` canister and the `+src/linkedup/main.mo+` includes the following code:
+Because of the `+Import+` statement, the `+connectd+` functions are available to the `+linkedup+` canister smart contract and the `+src/linkedup/main.mo+` includes the following code:
 
 [source.copy,motoko,no-repl]
 ----
@@ -353,15 +352,15 @@ Because of the `+Import+` statement, the `+connectd+` functions are available to
 };
 ----
 
-== Stop the local network
+== Stop the local canister execution environment
 
-After you finish experimenting with the `+linkedup+` program, you can stop the local {IC} network so that it doesn’t continue running in the background.
+After you finish experimenting with the `+linkedup+` dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local canister execution environment:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal that displays the output of the local canister execution environment, press Control-C to interrupt the local process.
 
-. Stop the {IC} network by running the following command:
+. Stop the local canister execution environment by running the following command:
 +
 [source,bash]
 ----

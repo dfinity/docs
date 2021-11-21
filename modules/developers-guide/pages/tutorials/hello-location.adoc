@@ -5,7 +5,8 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 :company-id: DFINITY
 
-This tutorial provides a simple variation on the default program that lets you pass a single text argument to a single actor, compile the code to create a canister, then retrieve the argument.
+This tutorial provides a simple variation on the default program that lets you pass a single text argument to a single actor, compile the code to create a canister smart contract, then retrieve the argument.
+Throughout this document, the terms canister smart contract and canister are considered synonymous.
 
 This tutorial illustrates how to pass arguments on the command-line in a terminal using the Candid interface description language (IDL) and how to modify the program to allow it to accept more than one value for the text argument.
 
@@ -14,7 +15,7 @@ This tutorial illustrates how to pass arguments on the command-line in a termina
 Before you start this tutorial, verify the following:
 
 * You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any {IC} network processes running on the local
+* You have stopped any canister execution environments running on the local
 computer.
 
 This tutorial takes approximately 20 minutes to complete.
@@ -72,14 +73,14 @@ include::example$location_hello.mo[]
 ----
 . Save your changes and close the file to continue.
 
-== Start the local network
+== Start the local canister execution environment
 
-Before you can build your project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+Before you can build your project, you need to connect to a local canister execution environment or the Internet Computer blockchain mainnet.
 
-Starting the network locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
+Starting a canister execution environment locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
 For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
 
-To start the local network:
+To start the local canister execution environment:
 
 [arabic]
 . Open a new terminal window or tab on your local computer.
@@ -89,7 +90,7 @@ To start the local network:
 * You should now have **two terminals** open.
 * You should have the **project directory** as your **current working directory**.
 --
-. Start the {IC} network on your local computer by running the following command:
+. Start the canister execution environment on your local computer by running the following command:
 +
 [source,bash]
 ----
@@ -99,11 +100,11 @@ dfx start
 If you are prompted to allow or deny incoming network connections, click *Allow*.
 . Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
 
-== Register, build, and deploy the application
+== Register, build, and deploy the dapp
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
+After you connect to the local canister execution environment, you can register, build, and deploy your dapp locally.
 
-To deploy the application locally:
+To deploy the dapp locally:
 
 . Check that you are still in the root directory for your project, if needed.
 . Register, build, and deploy your application by running the following command:
@@ -117,7 +118,7 @@ The `+dfx deploy+` command output displays information about the operations it p
 
 == Pass a text argument
 
-You now have a program deployed as a *canister* on your local {IC} network and can test your program by using `+dfx canister call+` commands.
+You now have a program deployed as a *canister smart contract* in your local canister execution environment and can test your program by using `+dfx canister call+` commands.
 
 To test the program you have deployed locally:
 
@@ -179,7 +180,7 @@ To experiment with modifying the source code for this tutorial:
 
 . Open the `+dfx.json+` configuration file in a text editor and change the default `+location_hello+` settings to `+favorite_cities+`.
 +
-For this step, you should modify both the canister name and the path to the main program for the canister to use `+favorite_cities+`.
+For this step, you should modify both the canister name and the path to the main program for the canister smart contract to use `+favorite_cities+`.
 . Save your changes and close the `+dfx.json+` file to continue.
 . Copy the `+location_hello+` source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
 +
@@ -215,7 +216,7 @@ public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
 +
 For information about the functions that perform operations on arrays, see the description of the Array module in the {proglang} base library or the _{proglang} Programming Language Reference_.
 For another example focused on the use of arrays, see link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort] in the link:https://github.com/dfinity/examples/[examples] repository.
-. Register, build, and deploy the application by running the following command:
+. Register, build, and deploy the dapp by running the following command:
 +
 [source,bash]
 ----
@@ -255,15 +256,15 @@ In this example, each function accepts an array of text strings. Therefore, you 
 +
 image:candid-favorite-cities-result.png[Specifying an array]
 
-== Stop the local network
+== Stop the local canister execution environment
 
-After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After you finish experimenting with your program, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local canister execution environment:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal that displays network operations, press Control-C to interrupt the local process.
 
-. Stop the {IC} network by running the following command:
+. Stop the canister execution environment by running the following command:
 +
 [source,bash]
 ----

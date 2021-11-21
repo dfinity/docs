@@ -1,5 +1,5 @@
 = Local development
-:description: Download the DFINITY Canister SDK and deploy your first application locally.
+:description: Download the DFINITY Canister SDK and deploy your first dapp locally.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :experimental:
 // Define unicode for Apple Command key.
@@ -10,9 +10,9 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and are running the {IC} as part of your *local development environment*.
+This _Quick Start_ scenario assumes that you are installing the {sdk-short-name} for the first time and want to run a canister smart contract in a *local canister execution environment* instead of deploying it to the {IC} blockchain.
 
-To get started, let's build and deploy a simple Hello application that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the application using the command-line or in an HTML page if you access the application in a browser.
+To get started, let's build and deploy a simple Hello canister that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the canister using the command-line or in an HTML page if you access the canister in a browser.
 
 [[before-you-begin]]
 == Before you begin
@@ -71,7 +71,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.8.1
+dfx 0.8.4
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +
@@ -87,10 +87,10 @@ The command displays usage information for the `+dfx+` parent command and its su
 [[create-a-new-project]]
 == Create a new project
 
-Applications for the {IC} start as **projects**.
+Dapps on the {IC} start as **projects**.
 You create projects using the `+dfx+` parent command and its subcommands.
 
-For this tutorial, we'll start with the default sample application to illustrate creating an application using the starter files in a project.
+For this tutorial, we'll start with the default sample dapp to illustrate creating dapp using the starter files in a project.
 When you create a new project, the `+dfx+` command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the link:../developers-guide/tutorials/explore-templates{outfilesuffix}[Explore the default project] tutorial.
 
 To create a new project for your first application:
@@ -115,22 +115,19 @@ cd hello
 ----
 
 [[start-the-local-network]]
-== Start the local network
+== Start the local deployment
 
-Before you can build your first project, you need to connect to the {IC} network either running locally in your development environment or running remotely on a subnet that you can access.
+Before you can build your first project, you need to connect to the local canister execution environment.
+As a best practice, this step requires you to have **two terminal shells** open, so that you can start and see canister execution operations in one terminal and manage your project in another.
 
-These instructions assume you are running the {IC} locally. If you are connecting to an external {IC} network, you can skip this section. 
-
-As a best practice, this step requires you to have **two terminal shells** open, so that you can start and see network operations in one terminal and manage your project in another.
-
-To start the network locally:
+To prepare the local canister execution environment:
 
 [arabic]
 . Open a new second terminal window or tab on your local computer.
 . Navigate to the root directory for your project, if necessary.
 +
 You should now have **two terminals** open with your **project directory** as your **current working directory** in both terminals.
-. Start the {IC} network on your local computer in your second terminal by running the following command:
+. Start the local canister execution environment on your computer in your second terminal by running the following command:
 +
 [source,bash]
 ----
@@ -139,16 +136,16 @@ dfx start
 +
 Depending on your platform and local security settings, you might see a warning displayed.
 If you are prompted to allow or deny incoming network connections, click *Allow*.
-. Leave the terminal window that displays network operations open and switch your focus to the first terminal window where you created your new project.
+. Leave the terminal window that displays canister execution operations open and switch your focus to the first terminal window where you created your new project.
 +
-You perform the remaining steps in the terminal that doesn't display network operations.
+You perform the remaining steps in the terminal that doesn't display canister execution operations.
 
 [[register-ids]]
 == Register, build, and deploy the application
 
-After you connect to the {IC} network running locally in your development environment, you can register, build, and deploy your application locally.
+After you connect to the local canister execution environment you can register, build, and deploy your dapp locally.
 
-To deploy your first application locally:
+To deploy your first dapp locally:
 
 . Check that you are still in the root directory for your project, if needed.
 . Ensure that `+node+` modules are available in your project directory, if needed, by running the following command:
@@ -159,7 +156,7 @@ npm install
 ----
 +
 For more information about this step, see link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[Ensuring node is available in a project].
-. Register, build, and deploy your first application by running the following command:
+. Register, build, and deploy your first dapp by running the following command:
 +
 [source,bash]
 ----
@@ -167,7 +164,7 @@ dfx deploy
 ----
 +
 The `+dfx deploy+` command output displays information about the operations it performs.
-For example, this step registers two network-specific identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
+For example, this step registers two identifiers—one for the `+hello+` main program and one for the `+hello_assets+` front-end user interface—and installation information similar to the following:
 +
 ....
 Creating a wallet canister on the local network.
@@ -205,7 +202,7 @@ If you created a project with a different name, however, your canister names wil
 You should also note that the *first time you deploy*, `+dfx+` creates a `+default+` identity and a local cycle wallet controlled by your `+default+` identity.
 A cycles wallet is a special type of canister that enables you to transfer link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[cycles] to other canisters.
 +
-*To deploy this sample application locally*, you don't need to know anything about your default developer identity, using a cycles wallet, or managing cycles. We'll cover these topics later, but for now, just note that these are created for you automatically. 
+*To deploy this sample dapp locally*, you don't need to know anything about your default developer identity, using a cycles wallet, or managing cycles. We'll cover these topics later, but for now, just note that these are created for you automatically. 
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]
@@ -234,9 +231,9 @@ For example:
 ....
 
 [[quickstart-frontend]]
-== Test the application front-end
+== Test the dapp front-end
 
-Now that you have verified that your application has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
+Now that you have verified that your dapp has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
 
 . Start the development server with `+npm start+`
 . Open a browser.
@@ -253,17 +250,17 @@ For example:
 +
 image:front-end-result.png[Hello, everyone! greeting]
 
-== Stop the local network
+== Stop the local canister execution environment
 
-After testing the application in the browser, you can stop the local Internet Computer network so that it doesn’t continue running in the background.
+After testing the application in the browser, you can stop the local canister execution environment so that it doesn’t continue running in the background.
 
-To stop the local network:
+To stop the local deployment:
 
-. In the terminal that displays development server, press Control-C to interrupt the development server process.
+. In the terminal that displays the development server, press Control-C to interrupt the development server process.
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. In the terminal that displays canister execution operations, press Control-C to interrupt the local network process.
 
-. Stop the local {IC} network running on your local computer by running the following command:
+. Stop the local canister execution environment running on your local computer by running the following command:
 +
 [source,bash]
 ----
@@ -273,16 +270,16 @@ dfx stop
 [[next-steps]]
 == Next steps
 
-This _Quick Start_ touched on only a few key steps to introduce the basic workflow for developing programs of your own.
-You can find more detailed examples and tutorials to help you learn about how to use {proglang} and how to develop applications to run on the {IC} throughout the documentation.
+This _Quick Start_ touched on only a few key steps to introduce the basic workflow for developing dapps of your own.
+You can find more detailed examples and tutorials to help you learn about how to use {proglang} and how to develop dapps to run on the {IC} blockchain throughout the documentation.
 
 Here are some suggestions for where to go next:
 
-* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building simple applications using a local development environment.
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] to explore building simple dapps using a local canister execution environment.
 
-* link:network-quickstart{outfilesuffix}#convert-icp[Convert ICP tokens to cycles] if you have ICP tokens that you want to convert to cycles to enable you to deploy applications to the {IC} network.
+* link:network-quickstart{outfilesuffix}#convert-icp[Convert ICP tokens to cycles] if you have ICP tokens that you want to convert to cycles to enable you to deploy dapp to the {IC} blockchain.
 
-* link:network-quickstart{outfilesuffix}[Network deployment] if you have cycles and are ready to deploy an application to the {IC} network.
+* link:network-quickstart{outfilesuffix}[On-chain deployment] if you have cycles and are ready to deploy an application to the {IC} blockchain mainnet.
 
 * link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] to learn how the Candid interface description language enables service interoperability and composability.
 

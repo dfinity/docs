@@ -12,7 +12,7 @@ _クイックスタート_ チュートリアルでは、{sdk-short-name} を初
 
 説明をシンプルにして作業に集中できるように、 _クイックスタート_ は2つのシナリオに分かれています。
 
-* link:local-quickstart{outfilesuffix}[ローカル環境での開発] シナリオでは、 _ローカルの Canister 実行環境_ でサンプルアプリケーションを作成してデプロイします。
+* link:local-quickstart{outfilesuffix}[ローカル環境での開発] シナリオでは、 _ローカルの Canister 実行環境_ で実行するサンプルアプリケーションを作成してデプロイします。
 
 * link:network-quickstart{outfilesuffix}[オンチェーンへのデプロイ] シナリオでは、ローカルでサンプルアプリケーションを作成しますが、独立したデータセンターのノードマシン上で稼働している _{platform} に接続_ し、そこにアプリケーションをデプロイします。
 
@@ -62,7 +62,7 @@ The _Quick Start_ tutorial assumes that you are installing the {sdk-short-name} 
 
 To keep the instructions simple and focused on the task at hand, the _Quick start_ is split into two scenarios:
 
-* In the link:local-quickstart{outfilesuffix}[Local development] scenario, you create and deploy the sample dapp with processes that in a _local canister execution environment_.
+* In the link:local-quickstart{outfilesuffix}[Local development] scenario, you create and deploy the sample dapp with processes that run in a _local canister execution environment_.
 
 * In the link:network-quickstart{outfilesuffix}[On-chain deployment] scenario, you create the sample dapp locally but _connect to the {platform}_ running on node machines in independent data centers and deploy the dapp there.
 

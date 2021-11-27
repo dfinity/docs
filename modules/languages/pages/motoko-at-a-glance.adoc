@@ -54,7 +54,7 @@ Motoko は、{company-id} と {platform} のためのシンプルで使いやす
 この章では、{proglang} プログラミング言語の機能を簡単に紹介します。
 ここで紹介している機能やその他の機能の使い方については、link:../language-guide/language-manual{outfilesuffix}[言語のクイックリファレンス] の link:../language-guide/motoko{outfilesuffix}[_Motoko プログラミング言語のガイド_] を参照してください。
 
-=== 表現
+=== 式
 
 * `x`、`foo_bar`、`test'`、`List`、`Map` などの識別子
 

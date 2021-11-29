@@ -156,7 +156,7 @@ yarn create next-app
 
 | 用語                   | 和訳              |
 | ---------------------- | ----------------- |
-| Chain Key Cryptography | チェーンキー暗号  |
+| Chain Key Cryptography | Chain Key 暗号    |
 | web speed              | ウェブスピード    |
 | xx documentation       | xx のドキュメント |
 

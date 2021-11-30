@@ -59,13 +59,13 @@ Canister のスマートコントラクトは止めることができず、改�
 Internet Computer は、世界初のウェブスピード、ウェブサービスのパブリックブロックチェーンを形成しているインターネットコンピュータプロトコル (ICP) によって作られています。
 Internet Computer は自治権を持ち、必要に応じて容量を増やすことができます。世界中の独立したデータセンターが一斉に運営する特別なノードマシンを組み合わせています。他のブロックチェーンと同様に、止めることができず、ホストするコードは改ざんできません。
 
-まずは左の「概念」セクションをチェックして、xref:Developers-guide:concepts/what-is-IC.adoc[インターネットコンピュータとは？]から始めてください。
+まずは左の「概念」の章をチェックして、xref:Developers-guide:concepts/what-is-IC.adoc[{IC} とは？]から始めてください。
 
 Internet Computer のプロトコルについてさらに知りたい方は、以下の資料をご覧ください。
 
 * link:https://dfinity.org/technicals/[技術ライブラリ]は、世界トップクラスの研究開発チームが Internet Computer プロトコルの構成要素を詳細に説明したビデオです。特に注目していただきたいのは以下です。
 ** link:https://dfinity.org/technicals/chain-key-technology[Chain Key 暗号]は、 Internet Computer を数百万ノードにまで拡張することを可能にした基本的なブレークスルーの1つです。
-チェーンキー暗号の最大の特徴は、 Internet Computer が単一の公開鍵を持つことであり、これによって、スマートウォッチや携帯電話などのいかなるデバイスでも、 Internet Computer が生成したものを検証することができます。
+Chain Key 暗号の最大の特徴は、 Internet Computer が単一の公開鍵を持つことであり、これによって、スマートウォッチや携帯電話などのいかなるデバイスでも、 Internet Computer が生成したものを検証することができます。
 * xref:interface-spec:index.adoc[インターフェース仕様]: Internet Computer の低レベルな外部インターフェースの概要を説明した非常に技術的なドキュメント
 * link:https://dashboard.internetcomputer.org/[Internet Computer ダッシュボード]: Internet Computer ブロックチェーン上のリアルタイムな指標を監視するダッシュボード
 

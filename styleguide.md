@@ -156,7 +156,16 @@ yarn create next-app
 
 | 用語                   | 和訳              |
 | ---------------------- | ----------------- |
+| Base library           | 標準ライブラリ    |
 | Chain Key Cryptography | Chain Key 暗号    |
+| Lexical scope          | 字句スコープ      |
+| Out of bounds          | 範囲外            |
+| Shared function        | shared 関数       |
+| State                  | ステート/状態     |
+| Subtype                | サブタイプ        |
+| Suptyping              | サブタイピング    |
+| Supertype              | スーパータイプ    |
+| Syntax                 | 構文              |
 | web speed              | ウェブスピード    |
 | xx documentation       | xx のドキュメント |
 

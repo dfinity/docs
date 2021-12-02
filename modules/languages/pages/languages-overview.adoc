@@ -6,7 +6,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 == {proglang}
 
 * link:../language-guide/motoko{outfilesuffix}[Motoko 言語のガイド]
-* link:../base-libraries/stdlib-intro{outfilesuffix}[Motoko 基本ライブラリ]
+* link:../base-libraries/stdlib-intro{outfilesuffix}[Motoko 標準ライブラリ]
 * link:../language-guide/language-manual{outfilesuffix}[Motoko 言語のクイックリファレンス]
 
 == Candid
@@ -43,7 +43,7 @@ The Languages and API reference information is intended for advanced programmers
 == {proglang}
 
 * link:../language-guide/motoko{outfilesuffix}[Motoko Language Guide]
-* link:../base-libraries/stdlib-intro{outfilesuffix}[Motoko 基本ライブラリ]
+* link:../base-libraries/stdlib-intro{outfilesuffix}[Motoko Base Library]
 * link:../language-guide/language-manual{outfilesuffix}[Motoko Language Quick Reference]
 
 == Candid

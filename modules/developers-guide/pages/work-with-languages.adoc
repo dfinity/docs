@@ -13,7 +13,7 @@ This section provides a summary of the key steps involved in deploying a Rust pr
 You should note, however, that the steps described here only illustrate one approach. 
 Other implementation approaches are also possible. 
 
-Note that the link:https://github.com/dfinity/cdk-rs[Rust canister development kit (Rust CDK)] for provides some shortcuts to make it easier to write functions as query and update calls and includes several link:https://github.com/dfinity/cdk-rs/tree/next/examples[examples] to get you started building Rust-based projects, but you can also develop dapps for the {IC} without using the Rust CDK.
+Note that the link:https://github.com/dfinity/cdk-rs[Rust canister development kit (Rust CDK)] provides some shortcuts to make it easier to write functions as query and update calls and includes several link:https://github.com/dfinity/cdk-rs/tree/next/examples[examples] to get you started building Rust-based projects, but you can also develop dapps for the {IC} without using the Rust CDK.
 
 === Create a project
 

@@ -1,3 +1,276 @@
+= テキスト引数を渡す
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+//:!page-repl:
+:proglang: Motoko
+:sdk-short-name: SDK
+:IC: Internet Computer
+:company-id: DFINITY
+
+このチュートリアルでは、デフォルトプログラムの簡単なバリエーションとして、1つのテキスト引数を1つの Actor に渡し、コードをコンパイルして Canister スマートコントラクトを作成し、その引数を取得することを行います。
+このドキュメントでは、Canister スマートコントラクトと Canister という用語は同義語とします。
+
+このチュートリアルでは、Candid インターフェース記述言語（IDL）を使ってターミナルのコマンドラインで引数を渡す方法と、テキスト引数に複数の値を受け取れるようにプログラムを修正する方法を説明します。
+
+== 始める前に
+
+このチュートリアルを始める前に、以下のことを確認してください:
+
+* link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[ダウンロードとインストール] に記載されている {sdk-short-name} パッケージをダウンロードしてインストールしていること
+* ローカルコンピュータ上のすべての Canister 実行環境を止めていること
+
+このチュートリアルの所要時間は20分程度です。
+
+== 新しいプロジェクトを作成する
+
+このチュートリアルで利用する新しいプロジェクトを作成する手順は以下になります。
+
+[arabic]
+. ローカルコンピュータ上でターミナルシェルを、まだ開いていなければ開きます。
+. 別のフォルダを利用しているなら、{IC} プロジェクトで使うフォルダに移動します。
+. 以下のコマンドを実行して、新しいプロジェクトを作成します。
++
+[source,bash]
+----
+dfx new location_hello
+----
+. 以下のコマンドを実行して、プロジェクトディレクトリに移動します。
++
+[source,bash]
+----
+cd location_hello
+----
+
+== デフォルト設定を変更する
+
+link:explore-templates{outfilesuffix}[デフォルトプロジェクトを探索する] チュートリアルでは、新しいプロジェクトを作成すると、デフォルトの `+dfx.json+` 設定ファイルがプロジェクトディレクトリに追加されることを確認しました。
+ここではファイルのデフォルト設定を見て、使用したいプロジェクトの設定を正確に反映しているかどうかを常に確認する必要があります。
+このチュートリアルでは、デフォルトの設定を変更して、使用しない設定を削除します。
+
+設定ファイル `+dfx.json+` を変更するには以下のようにします。
+
+. `+dfx.json+` 設定ファイルをテキストエディタで開きます。
+. `+location_hello+` プロジェクトのデフォルト設定を確認します。
++
+. 不要な設定をすべて削除します。
++
+このチュートリアルでは、フロントエンドのアセットを作成しないので、ファイルから `+location_hello_assets+` の設定をすべて削除することができます。
+. 変更内容を保存し、ファイルを閉じて次に進みます。
+
+== デフォルトプログラムを変更する
+
+link:explore-templates{outfilesuffix}[デフォルトプロジェクトを探索する] チュートリアルでは、新しいプロジェクトを作成すると、デフォルト `+src+` ディレクトリが、テンプレート `+main.mo+` ファイルと共に作成されることがわかりました。
+
+デフォルトのテンプレートソースコードを変更するには以下のようにします。
+
+. `+src/location_hello/main.mo+` ソースコードファイルをテキストエディタで開きます。
+. デフォルトのソースコードを修正して、`+greet+` 関数を `+location+` 関数に、`+name+` 引数を `+city+` 引数に置き換えます。
++
+例:
++
+[source.copy,motoko,no-repl]
+----
+include::example$location_hello.mo[]
+----
+. 変更内容を保存し、ファイルを閉じて次に進みます。
+
+== ローカル Canister 実行環境を起動する
+
+プロジェクトをビルドする前に、ローカルの Canister 実行環境か、 Internet Computer ブロックチェーンメインネットに接続する必要があります。
+
+Canister 実行環境をローカルで起動するには、`+dfx.json+` ファイルが必要なので、プロジェクトのルートディレクトリにいることを確認してください。
+このチュートリアルでは、2つの独立したターミナルシェルを用意して、1つのターミナルでネットワーク操作を開始・確認し、別のターミナルでプロジェクトを管理できるようにします。
+
+ローカル Canister 実行環境を起動するには以下のようにします。
+
+[arabic]
+. 新しいターミナルウィンドウまたはタブを開きます。
+. 必要であれば、プロジェクトのルートディレクトリに移動してください。
++
+--
+* **2つのターミナル** を開いている必要があります。
+* **プロジェクトディレクトリ** を **カレントワーキングディレクトリ** にする必要があります。
+--
+. 以下のコマンドを実行して、ローカルコンピュータ上で Canister 実行環境を起動します。
++
+[source,bash]
+----
+dfx start
+----
++
+受信したネットワーク接続を許可するかどうかのプロンプトが表示されたら、*Allow* をクリックします。
+. ネットワーク操作が表示されているターミナルを開いたまま、プロジェクトを作成した元のターミナルに注目します。
+
+== Dapp の登録、ビルド、デプロイ
+
+ローカル Canister 実行環境に接続すると、ローカルで Dapp の登録、ビルド、デプロイを行うことができます。
+
+Dapp をローカルでデプロイするには以下のようにします。
+
+. 必要に応じて、プロジェクトのルートディレクトリにいることを確認します。
+. 以下のコマンドを実行して、アプリケーションの登録、ビルド、デプロイを行います。
++
+[source,bash]
+----
+dfx deploy
+----
++
+`+dfx deploy+` コマンドの出力には、実行する操作に関する情報が表示されます。
+
+== テキスト引数を渡す
+
+これで、ローカル Cansiter 実行環境に *Canister スマートコントラクト* としてプログラムがデプロイされ、`+dfx canister call+` コマンドを使ってプログラムをテストすることができます。
+
+ローカルにデプロイしたプログラムをテストするには以下のようにします。
+
+. 以下のコマンドを実行して、プログラムの中で `+location+` メソッドを呼び出し、`+text+` 型の `+city+` 引数を渡すには、次のコマンドを実行します。
++
+[source,bash]
+----
+dfx canister call location_hello location "San Francisco"
+----
++
+この場合の引数には、`+San+` と `+Francisco+` の間にスペースが含まれているため、引数を引用符で囲む必要があります。
+このコマンドは以下のような出力を表示します。
++
+....
+("Hello, San Francisco!")
+....
++
+引数がスペースを含んでおらず、テキストを引用符で囲む必要がなければ、Candid インターフェース記述言語に次のようにデータ型を推測させることができます。
++
+[source,bash]
+----
+dfx canister call location_hello location Paris
+----
++
+Candid はデータを `Text` 型と推測し、プログラムの出力を以下のようなテキストとして返します。
++
+....
+("Hello, Paris!")
+....
+. プログラム内で `+location+` メソッドを呼び出し、`+city+` の引数をCandid インターフェース記述言語のテキスト引数の構文を使って明示的に渡します。
++
+[source,bash]
+----
+dfx canister call location_hello location '("San Francisco and Paris")'
+----
+このコマンドは、以下のような出力を表示します。
++
+....
+("Hello, San Francisco and Paris!")
+....
++
+プログラムは1つのテキスト引数しか受け付けないため、複数の文字列を指定すると最初の引数のみが返されます。
++
+例えば、このコマンドを試してみてください。
++
+[source,bash]
+----
+dfx canister call location_hello location '("San Francisco","Paris","Rome")'
+----
++
+最初の引数である `+("Hello, San Francisco!")+` のみが返されます。
+
+== プログラムのソースコードを修正する
+
+このチュートリアルで学んだことを発展させるために、ソースコードを修正して異なる結果を返すようにしてみましょう。
+例えば、`+location+` 関数を修正して、複数の都市名を返すようにしてみましょう。
+
+ソースコードを変更して実験するには以下のようにします。
+
+. テキストエディタで設定ファイル `+dfx.json+` を開き、デフォルトの `+location_hello+` の設定を `+favorite_cities+` に変更します。
++
+このステップでは、Canister 名と Canister スマートコントラクトのメインプログラムへのパスの両方を、`+favorite_cities+` を使用するために変更する必要があります。
+. 変更内容を保存して、`+dfx.json+` ファイルを閉じて、次に進みます。
+. 以下のコマンドを実行して、`+location_hello+` のソースファイルディレクトリを、`+dfx.json+` 設定ファイルで指定した名前に合わせてコピーします。
++
+[source,bash]
+----
+cp -r src/location_hello src/favorite_cities
+----
+. テキストエディターで `+src/favorite_cities/main.mo+` ファイルを開きます。
+. 以下のコードサンプルをコピー＆ペーストして、`+location+` 関数を2つの新しい関数で置き換えます。
++
+例:
++
+[source.copy,motoko,no-repl]
+----
+include::example$favorite_cities.mo[]
+----
++
+このコード例では、`+Text+` が角括弧（`+[ ]+`）で囲まれていることにお気づきかもしれません。`Text` それ自体は UTF-8 の文字の集まりを表しています。
+角括弧で囲まれた型は、その型が *配列* であることを示しています。
+したがって、この文脈では、`+[Text]+` は、UTF-8 文字の集まりの配列を示し、プログラムが複数のテキスト文字列を受け入れて返すことができるようになります。
++
+また、このコードサンプルでは、配列に対する `+apply+` 処理の基本的なフォーマットを使用しており、次のように抽象化することができます。
++
+....
+public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
+    var ys : [B] = [];
+    for (f in fs.vals()) {
+      ys := append<B>(ys, map<A, B>(f, xs));
+    };
+    ys;
+};
+....
++
+配列に対する操作を行う関数については、{proglang} ベースライブラリの配列モジュールの説明や、_{proglang} プログラミング言語レファレンス_ を参照してください。
+配列の使用に焦点を当てた別の例については、link:https://github.com/dfinity/examples/[examples] リポジトリにある link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[クイックスタート] を参照してください。
+. 以下のコマンドを実行して、Dapp を登録、ビルド、デプロイします。
++
+[source,bash]
+----
+dfx deploy
+----
+. 以下のコマンドを実行して、プログラムの中で `+location+` メソッドを呼び出し、`+city+` 引数を Candid インターフェース記述の構文を使って渡します。
++
+[source,bash]
+----
+dfx canister call favorite_cities location '(vec {"San Francisco";"Paris";"Rome"})'
+----
++
+このコマンドは、Candid インターフェース記述の構文にある `+(vec { val1; val2; val3; })+` を用いて、値のベクトルを返します。
+インターフェイス記述言語 Candid の詳細については、link:../../candid-guide/candid-intro{outfilesuffix}[Candid] 言語ガイドをご覧ください。
++
+このコマンドは、以下のような出力を表示します。
++
+....
+("Hello, from ["San Francisco", "Paris", "Rome"]!")
+....
+. 以下のコマンドを実行して、プログラムの中で `+location_pretty+` メソッドを呼び出し、インターフェイス記述の構文を使って `+city+` の引数を渡します。
++
+[source,bash]
+----
+dfx canister call favorite_cities location_pretty '(vec {"San Francisco";"Paris";"Rome"})'
+----
++
+このコマンドは、以下のような出力を表示します。
++
+....
+("Hello from San Francisco, Paris, Rome, bon voyage!")
+....
+
+include::example$candid-ui.adoc[]
++
+この例では、各関数はテキスト文字列の配列を受け取ります。そのため、まず配列の長さを選択し、各項目に値を設定してから **Call** をクリックします。
++
+image:candid-favorite-cities-result.png[Specifying an array]
+
+== ローカル Canister 実行環境を停止する
+
+プログラムの実験が終わったら、ローカル Canister 実行環境を停止して、バックグラウンドで実行し続けないようにします。
+
+ローカル Canister 実行環境を停止するには以下のようにします。
+
+. ネットワーク処理を表示するターミナルで Control-C を押して、ローカルプロセスを中断します。
+
+. 以下のコマンドを実行して、Canister 実行環境を停止します。
++
+[source,bash]
+----
+dfx stop
+----
+////
 = Pass text arguments
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 //:!page-repl:
@@ -270,3 +543,4 @@ To stop the local canister execution environment:
 ----
 dfx stop
 ----
+////

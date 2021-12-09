@@ -320,10 +320,10 @@ For more information about the Internet Identity service and how to register mul
 For example, call the `+authorize+` method for the cycles wallet canister with a command similar to the following:
 +
 ....
-dfx canister --no-wallet --network ic call "gastn-uqaaa-aaaae-aaafq-cai" authorize '(principal "ejta3-neil3-qek6c-i7rdw-sxreh-lypfe-v6hjg-6so7x-5ugze-3iohr-2qe")'
+dfx canister --network ic call "gastn-uqaaa-aaaae-aaafq-cai" authorize '(principal "ejta3-neil3-qek6c-i7rdw-sxreh-lypfe-v6hjg-6so7x-5ugze-3iohr-2qe")'
 ....
 +
-Be sure that the command you copy has the `+--no-wallet+` option and the correct network (`+ic+`) alias.
+Be sure that the command you copy has the correct network (`+ic+`) alias.
 You should recognize the canister identifier—in this example, `+gastn-uqaaa-aaaae-aaafq-cai+`—as the cycles wallet associated with your identity.
 If this is your first wallet on the {platform}, however, you might not recognize the principal being authorized. The use of a different principal is the expected behavior in this case. 
 +

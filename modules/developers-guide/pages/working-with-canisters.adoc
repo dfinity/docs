@@ -144,7 +144,7 @@ dfx canister --network=ic id lookup
 [[add-wallet]]
 == Add a wallet for existing canister smart contracts
 
-When you are doing local development, creating a new project automatically creates a default wallet for you to use with the canisters in that project. If you want to add a wallet for projects with canisters that you have previously created, you can force `dfx` to generate one by taking a couple of manual steps.
+When you are doing local development, calling `+dfx identity get-wallet+` in a new project automatically creates a default wallet for you to use with the canisters in that project. If you want to add a wallet for projects with canisters that you have previously created, you can force `dfx` to generate one by taking a couple of manual steps.
 
 To add a wallet for use with an existing canister:
 
@@ -161,6 +161,7 @@ dfx stop
 [source,bash]
 ----
 dfx start --clean
+dfx identity get-wallet
 ----
 
 [[reinstall-canister]]

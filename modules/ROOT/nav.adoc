@@ -10,7 +10,7 @@
 ** xref:quickstart:local-quickstart.adoc[Local Development]
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
 
-* xref:example-code:index.adoc[Example Code]
+* xref:examples:index.adoc[Example Code]
 *** link:https://github.com/dfinity/examples[Dfinity Examples^]
 *** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 

@@ -17,11 +17,11 @@ In addition to our tutorials section, here are some quick references! You can al
 
 First, here are some basic examples for some introductory use-cases:
 
-
 - https://github.com/dfinity/examples/tree/master/motoko/hello-world[Hello World]
 - https://github.com/dfinity/examples/tree/master/motoko/whoami[Whoami] - a simple canister that reports the Principal of its caller
 - https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes] - a simple CRUD dapp
 - https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[Hello Cycles] - Receive and transfer cycles and check your balance
+- https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground] - Play with other Motoko examples on the playground
 
 [[motoko-intermediate]]
 === Intermediate
@@ -44,9 +44,12 @@ First, here are some basic examples for some introductory use-cases:
 
 - https://github.com/dfinity/examples/tree/master/rust/pub-sub[Pub Sub]
 
-[[rust-advanced]]
-=== Advanced
-- https://github.com/timohanke/icvault[IC Vault] - end-to-end encryption on the IC
+[[rust-videos]]
+=== Videos
+
+- https://www.youtube.com/watch?v=6wyIhzsFbKw[Community Conversations | Overview of Building a Dapp in Rust]
+- https://www.youtube.com/watch?v=36L33S_DYHY&ab_channel=DFINITY[Community Conversations | Best Practices for Canisters in Rust]
+
 
 
 More Rust examples coming soon!

@@ -82,9 +82,11 @@
 ****** xref:language-guide:caller-id.adoc[Principals and caller identification]
 ****** xref:language-guide:cycles.adoc[Managing cycles]
 ****** xref:language-guide:upgrades.adoc[Stable variables and upgrade methods]
+****** xref:language-guide:compatibility.adoc[Upgrade compatibility]
 ****** xref:language-guide:language-manual.adoc[Language quick reference]
 ****** xref:language-guide:compiler-ref.adoc[Compiler reference]
 ****** xref:language-guide:motoko-grammar.adoc[Motoko grammar]
+****** xref:language-guide:overview.adoc[Concise overview of Motoko]
 ****** xref:language-guide:style.adoc[Motoko style guidelines]
 
 **** xref:rust-guide:rust-intro.adoc[Rust]

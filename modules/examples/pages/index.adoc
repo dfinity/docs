@@ -1,0 +1,55 @@
+= Example Code
+:description: Quick links to example code for common use-cases for your dapp
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding,dapp,example,code,rust,Motoko
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+[[example-code-intro]]
+In addition to our tutorials section, here are some quick references! You can also check out our https://github.com/dfinity/examples[Examples Repo] or https://github.com/dfinity/awesome-dfinity[Awesome Dfinity], a curated set of open-source projects and examples from our community!
+
+[[motoko]]
+== Motoko Examples
+
+[[motoko-basic]]
+=== Basic
+
+First, here are some basic examples for some introductory use-cases:
+
+- https://github.com/dfinity/examples/tree/master/motoko/hello-world[Hello World]
+- https://github.com/dfinity/examples/tree/master/motoko/whoami[Whoami] - a simple canister that reports the Principal of its caller
+- https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes] - a simple CRUD dapp
+- https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[Hello Cycles] - Receive and transfer cycles and check your balance
+- https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground] - Play with other Motoko examples on the playground
+
+[[motoko-intermediate]]
+=== Intermediate
+
+- https://github.com/dfinity/examples/tree/master/motoko/life[Game of Life] - Conway's https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life[Game of Life], running in a Motoko Canister
+- https://github.com/krpeacock/auth-client-demo[Auth Client Demo] - Simple authentication with Internet Identity
+- https://github.com/krpeacock/ic-avatar[IC-Avatar] - Full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates
+
+[[motoko-advanced]]
+=== Advanced Examples
+
+- https://github.com/timohanke/icvault[IC Vault] - End-to-end Encryption
+
+
+[[rust]]
+== Rust Examples
+
+[[rust-beginner]]
+=== Beginner
+
+- https://github.com/dfinity/examples/tree/master/rust/pub-sub[Pub Sub]
+
+[[rust-videos]]
+=== Videos
+
+- https://www.youtube.com/watch?v=6wyIhzsFbKw[Community Conversations | Overview of Building a Dapp in Rust]
+- https://www.youtube.com/watch?v=36L33S_DYHY&ab_channel=DFINITY[Community Conversations | Best Practices for Canisters in Rust]
+
+
+
+More Rust examples coming soon!

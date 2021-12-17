@@ -60,7 +60,7 @@ Large examples contributed by the community and not necessarily up-to-date:
 - Reversi game, in Motoko https://github.com/ninegua/reversi[src] accompanying https://ninegua.github.io/reversi[Blog post]
 
 - QR code generator in Motoko https://github.com/enzoh/motoko-qr[src] accompanying
-  https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865bB[Medium article]
+  https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b[Medium article]
 
 - https://github.com/timohanke/icvault[IC Vault] - End-to-end Encryption
 

@@ -10,6 +10,9 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 In addition to our tutorials section, here are some quick references! You can also check out our https://github.com/dfinity/examples[Examples Repo] or https://github.com/dfinity/awesome-dfinity[Awesome Dfinity], a curated set of open-source projects and examples from our community!
 
 [[motoko]]
+== Motoko
+
+[[motoko-playground]]
 === Motoko Playground
 
 Some (but not all) of the following Motoko examples are available via the https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground]. The playground provides the simplest enviromnent for trying out pure Motoko examples without having to download and learn to use the {SDK}, but does not support applications with frontends.
@@ -61,7 +64,7 @@ Large examples contributed by the community and not necessarily up-to-date:
 
 - https://github.com/timohanke/icvault[IC Vault] - End-to-end Encryption
 
-- Certified asset canister in Motoko 
+- Certified asset canister in Motoko
   https://github.com/nomeata/motoko-certified-http[src]
   https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263[forum post] - demonstrating a larger application of {IC} certified variables.
 

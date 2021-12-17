@@ -24,8 +24,8 @@ Some (but not all) of the following Motoko examples are available via the https:
 - https://github.com/dfinity/examples/tree/master/motoko/echo[echo] -- basic query function demo.
 - https://github.com/dfinity/examples/tree/master/motoko/factorial[factorial] -- basic factorial demo.
 - https://github.com/dfinity/examples/tree/master/motoko/hello-world[hello-world] -- basic hello world demo.
-- https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[hello_cycles] -- basic cycle transfer demo.
-- https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami] -- basic caller identification demo.
+- https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[hello_cycles] -- Receive and transfer cycles and check your balance.
+- https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami] -- a simple canister that reports the Principal of its caller.
 
 === Intermediate
 
@@ -46,9 +46,9 @@ These examples use a minimal front end component.
 
 These examples use a "conventional" front end component (via `React.Component`).
 
-- https://github.com/dfinity/examples/tree/master/motoko/life[life] -- demonstrates upgrades among three versions and stable state migration.
+- https://github.com/dfinity/examples/tree/master/motoko/life[life] -- Conway's https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life[Game of Life], running in a Motoko Canister. Demonstrates upgrades among three versions and state migration using stable variables. 
 - https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] -- CRUD-like demo service.
-- https://github.com/dfinity/examples/tree/master/motoko/superheroes[superheroes] -- CRUD-like demo service.
+- https://github.com/dfinity/examples/tree/master/motoko/superheroes[superheroes] -- a simple CRUD dapp. 
 - https://github.com/krpeacock/auth-client-demo[Auth Client Demo] - Simple authentication with Internet Identity
 - https://github.com/krpeacock/ic-avatar[IC-Avatar] - Full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates
 

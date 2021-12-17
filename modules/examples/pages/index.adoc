@@ -49,20 +49,20 @@ These examples use a "conventional" front end component (via `React.Component`).
 - https://github.com/dfinity/examples/tree/master/motoko/life[life] -- Conway's https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life[Game of Life], running in a Motoko Canister. Demonstrates upgrades among three versions and state migration using stable variables. 
 - https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] -- CRUD-like demo service.
 - https://github.com/dfinity/examples/tree/master/motoko/superheroes[superheroes] -- a simple CRUD dapp. 
-- https://github.com/krpeacock/auth-client-demo[Auth Client Demo] - Simple authentication with Internet Identity
-- https://github.com/krpeacock/ic-avatar[IC-Avatar] - Full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates
+- https://github.com/krpeacock/auth-client-demo[Auth Client Demo] - simple authentication with Internet Identity.
+- https://github.com/krpeacock/ic-avatar[IC-Avatar] - full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates.
 
 [[motoko-advanced]]
 === Advanced Examples
 
 Large examples contributed by the community and not necessarily up-to-date:
 
-- Reversi game, in Motoko https://github.com/ninegua/reversi[src] accompanying https://ninegua.github.io/reversi[Blog post]
+- Reversi game, in Motoko https://github.com/ninegua/reversi[src] accompanying https://ninegua.github.io/reversi[Blog post].
 
 - QR code generator in Motoko https://github.com/enzoh/motoko-qr[src] accompanying
-  https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b[Medium article]
+  https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b[Medium article].
 
-- https://github.com/timohanke/icvault[IC Vault] - End-to-end Encryption
+- https://github.com/timohanke/icvault[IC Vault] - end-to-end Encryption.
 
 - Certified asset canister in Motoko
   https://github.com/nomeata/motoko-certified-http[src]

@@ -10,40 +10,42 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 In addition to our tutorials section, here are some quick references! You can also check out our https://github.com/dfinity/examples[Examples Repo] or https://github.com/dfinity/awesome-dfinity[Awesome Dfinity], a curated set of open-source projects and examples from our community!
 
 [[motoko]]
-== Motoko Examples
+=== Motoko Playground
+
+Some (but not all) of the following Motoko examples are available via the https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground]. The playground provides the simplest enviromnent for trying out pure Motoko examples without having to download and learn to use the {SDK}, but does not support applications with frontends.
 
 === Basic
 
-- https://github.com/dfinity/examples/tree/master/motoko/actor_reference[`actor_reference`] -- IC management canister as an actor (reference).
-- https://github.com/dfinity/examples/tree/master/motoko/counter[`counter`] -- basic (stable) variable demo.
-- https://github.com/dfinity/examples/tree/master/motoko/echo[`echo`] -- basic query function demo.
-- https://github.com/dfinity/examples/tree/master/motoko/factorial[`factorial`] -- basic factorial demo.
-- https://github.com/dfinity/examples/tree/master/motoko/hello-world[`hello-world`] -- basic hello world demo.
-- https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[`hello_cycles`] -- basic cycles demo.
-- https://github.com/dfinity/examples/tree/master/motoko/whoami[`whoami`] -- basic caller identification demo.
+- https://github.com/dfinity/examples/tree/master/motoko/actor_reference[actor_reference] -- IC management canister as an actor (reference).
+- https://github.com/dfinity/examples/tree/master/motoko/counter[counter] -- basic (stable) variable demo.
+- https://github.com/dfinity/examples/tree/master/motoko/echo[echo] -- basic query function demo.
+- https://github.com/dfinity/examples/tree/master/motoko/factorial[factorial] -- basic factorial demo.
+- https://github.com/dfinity/examples/tree/master/motoko/hello-world[hello-world] -- basic hello world demo.
+- https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[hello_cycles] -- basic cycle transfer demo.
+- https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami] -- basic caller identification demo.
 
 === Intermediate
 
-- https://github.com/dfinity/examples/tree/master/motoko/classes[`classes`] -- dynamic actor (class) instantiation.
-- https://github.com/dfinity/examples/tree/master/motoko/pub-sub[`pub-sub`]-- multiple canisters, with publisher-subscriber inter-canister calls.
-- https://github.com/dfinity/examples/tree/master/motoko/quicksort[`quicksort`] -- sorting an array, via Quick Sort, in Motoko.
-- https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[`simple-to-do`] -- CRUD-like demo service, sans a front end; see also: `phone-book` and `superheroes`.
-- https://github.com/dfinity/examples/tree/master/motoko/calc[`calc`] -- more advanced version of `counter` demo.
+- https://github.com/dfinity/examples/tree/master/motoko/classes[classes] -- dynamic actor (class) instantiation.
+- https://github.com/dfinity/examples/tree/master/motoko/pub-sub[pub-sub]-- multiple canisters, with publisher-subscriber inter-canister calls.
+- https://github.com/dfinity/examples/tree/master/motoko/quicksort[quicksort] -- sorting an array, via Quick Sort, in Motoko.
+- https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[simple-to-do] -- CRUD-like demo service, sans a front end; see also: phone-book and superheroes.
+- https://github.com/dfinity/examples/tree/master/motoko/calc[calc] -- more advanced version of counter demo.
 
 === Minimal front end.
 
 These examples use a minimal front end component.
 
-- https://github.com/dfinity/examples/tree/master/motoko/random_maze[`random_maze`] -- random maze generation, with IC-based randomness.
-- https://github.com/dfinity/examples/tree/master/motoko/cert-var[`cert_var`] -- simple certified variable (a single 32-bit number), with client-side certificate validation.
+- https://github.com/dfinity/examples/tree/master/motoko/random_maze[random_maze] -- random maze generation, with IC-based randomness.
+- https://github.com/dfinity/examples/tree/master/motoko/cert-var[cert_var] -- simple certified variable (a single 32-bit number), with client-side certificate validation.
 
 === Full stack.
 
 These examples use a "conventional" front end component (via `React.Component`).
 
-- https://github.com/dfinity/examples/tree/master/motoko/life[`life`] -- demonstrates upgrades among three versions and stable state migration.
-- https://github.com/dfinity/examples/tree/master/motoko/phone-book[`phone-book`] -- CRUD-like demo service.
-- https://github.com/dfinity/examples/tree/master/motoko/superheroes[`superheroes`] -- CRUD-like demo service.
+- https://github.com/dfinity/examples/tree/master/motoko/life[life] -- demonstrates upgrades among three versions and stable state migration.
+- https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] -- CRUD-like demo service.
+- https://github.com/dfinity/examples/tree/master/motoko/superheroes[superheroes] -- CRUD-like demo service.
 - https://github.com/krpeacock/auth-client-demo[Auth Client Demo] - Simple authentication with Internet Identity
 - https://github.com/krpeacock/ic-avatar[IC-Avatar] - Full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates
 
@@ -59,9 +61,9 @@ Large examples contributed by the community and not necessarily up-to-date:
 
 - https://github.com/timohanke/icvault[IC Vault] - End-to-end Encryption
 
-- Certified asset canister in Motoko (demonstrating one application of {IC} certified variables)
+- Certified asset canister in Motoko 
   https://github.com/nomeata/motoko-certified-http[src]
-  https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263[forum post]
+  https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263[forum post] - demonstrating a larger application of {IC} certified variables.
 
 [[rust]]
 == Rust Examples
@@ -79,3 +81,14 @@ Large examples contributed by the community and not necessarily up-to-date:
 
 
 More Rust examples coming soon!
+
+== C
+
+For examples of projects written in the C programming language for the {IC}, see link:https://github.com/dfinity/examples/tree/master/c[C++ sample projects].
+
+WARNING: these examples are likely to bit-rot and may need updating and are provided for illustration only.
+
+* link:https://github.com/dfinity/examples/tree/master/c/adventure[Adventure game]
+* link:https://github.com/dfinity/examples/tree/master/c/qr[QR code generator]
+* link:https://github.com/dfinity/examples/tree/master/c/reverse[Reverse game]
+

@@ -1,4 +1,4 @@
-# Write code for the Internet Computer
+# Write code for the Internet Computer 
 
 You can get started right away by downloading the Internet Computer Software Development Kit (SDK) and cloning an existing sample project or by exploring the documentation. Check out the links below to begin building smart contract canisters to run on the Internet Computer:
 

@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 In addition to our tutorials section, here are some quick references! You can also check out our https://github.com/dfinity/examples[Examples Repo] or https://github.com/dfinity/awesome-dfinity[Awesome Dfinity], a curated set of open-source projects and examples from our community!
 
 [[motoko]]
-== Motoko
+== Motoko Examples
 
 [[motoko-playground]]
 === Motoko Playground

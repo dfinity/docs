@@ -15,7 +15,7 @@ In addition to our tutorials section, here are some quick references! You can al
 [[motoko-playground]]
 === Motoko Playground
 
-Some (but not all) of the following Motoko examples are available via the https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground]. The playground provides the simplest enviromnent for trying out pure Motoko examples without having to download and learn to use the SDK, but does not support applications with frontends.
+Some (but not all) of the following Motoko examples are available via the https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground]. The playground provides the simplest environment for trying out pure Motoko examples without having to download and learn to use the SDK, but does not support applications with frontends.
 
 === Basic
 

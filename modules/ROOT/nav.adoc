@@ -10,6 +10,10 @@
 ** xref:quickstart:local-quickstart.adoc[ローカル開発]
 ** xref:quickstart:network-quickstart.adoc[ネットワークへのデプロイ]
 
+* xref:examples:index.adoc[Example Code]
+*** link:https://github.com/dfinity/examples[Dfinity Examples^]
+*** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
+
 * Developer Docs
 ** Getting Started
 *** Introducing the SDK
@@ -78,9 +82,11 @@
 ****** xref:language-guide:caller-id.adoc[Principals and caller identification]
 ****** xref:language-guide:cycles.adoc[Managing cycles]
 ****** xref:language-guide:upgrades.adoc[Stable variables and upgrade methods]
+****** xref:language-guide:compatibility.adoc[Upgrade compatibility]
 ****** xref:language-guide:language-manual.adoc[Language quick reference]
 ****** xref:language-guide:compiler-ref.adoc[Compiler reference]
 ****** xref:language-guide:motoko-grammar.adoc[Motoko grammar]
+****** xref:language-guide:overview.adoc[Concise overview of Motoko]
 ****** xref:language-guide:style.adoc[Motoko style guidelines]
 
 **** xref:rust-guide:rust-intro.adoc[Rust]
@@ -115,6 +121,7 @@
 *** xref:developers-guide:concepts/nodes-subnets.adoc[ノードとサブネット]
 *** xref:developers-guide:concepts/data-centers.adoc[分散型データセンター]
 *** xref:developers-guide:concepts/canisters-code.adoc[Canisters and code]
+*** xref:developers-guide:concepts/trust-in-canisters.adoc[Trust in canisters]
 *** xref:developers-guide:concepts/tokens-cycles.adoc[トークンと Cycle]
 *** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
 
@@ -149,11 +156,6 @@
 *** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
 *** link:https://github.com/dfinity/quill[Quill^]
 
-** Examples
-*** link:https://github.com/dfinity/awesome-dfinity[Awesome DFINITY^]
-*** link:https://github.com/dfinity/cancan[CanCan^]
-*** link:https://github.com/dfinity/examples[Mini Motoko examples^]
-
 ** Community created resources
 *** link:https://ic.rocks/[ic.rocks (Block explorer)^]
 *** link:https://plugwallet.ooo/[Plug (Browser-based wallet extension)^]
@@ -178,6 +180,10 @@
 ** xref:quickstart:host-a-website.adoc[Host a Static Website]
 ** xref:quickstart:local-quickstart.adoc[Local Development]
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
+
+* xref:examples:index.adoc[Example Code]
+*** link:https://github.com/dfinity/examples[Dfinity Examples^]
+*** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 
 * Developer Docs
 ** Getting Started
@@ -247,9 +253,11 @@
 ****** xref:language-guide:caller-id.adoc[Principals and caller identification]
 ****** xref:language-guide:cycles.adoc[Managing cycles]
 ****** xref:language-guide:upgrades.adoc[Stable variables and upgrade methods]
+****** xref:language-guide:compatibility.adoc[Upgrade compatibility]
 ****** xref:language-guide:language-manual.adoc[Language quick reference]
 ****** xref:language-guide:compiler-ref.adoc[Compiler reference]
 ****** xref:language-guide:motoko-grammar.adoc[Motoko grammar]
+****** xref:language-guide:overview.adoc[Concise overview of Motoko]
 ****** xref:language-guide:style.adoc[Motoko style guidelines]
 
 **** xref:rust-guide:rust-intro.adoc[Rust]
@@ -284,6 +292,7 @@
 *** xref:developers-guide:concepts/nodes-subnets.adoc[Nodes and sub-networks]
 *** xref:developers-guide:concepts/data-centers.adoc[Decentralized data centers]
 *** xref:developers-guide:concepts/canisters-code.adoc[Canisters and code]
+*** xref:developers-guide:concepts/trust-in-canisters.adoc[Trust in canisters]
 *** xref:developers-guide:concepts/tokens-cycles.adoc[Tokens and cycles]
 *** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
 
@@ -317,11 +326,6 @@
 *** link:https://github.com/dfinity/cycles-wallet[Cycles Wallet^]
 *** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
 *** link:https://github.com/dfinity/quill[Quill^]
-
-** Examples
-*** link:https://github.com/dfinity/awesome-dfinity[Awesome DFINITY^]
-*** link:https://github.com/dfinity/cancan[CanCan^]
-*** link:https://github.com/dfinity/examples[Mini Motoko examples^]
 
 ** Community created resources
 *** link:https://ic.rocks/[ic.rocks (Block explorer)^]

@@ -2,7 +2,7 @@
 
 Use the `+dfx ledger+` command to interact with the ledger canister.
 
-This command can be used to make ICP utlity token transactions from one canister to another, or top up canisters with cycles from ICP.
+This command can be used to make ICP utility token transactions from one canister to another, or top up canisters with cycles from ICP.
 
 The basic syntax for running `+dfx ledger+` commands is:
 

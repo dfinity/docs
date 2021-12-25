@@ -311,6 +311,13 @@ In addition to the files in the `+canisters/explore_hello+` and the `+canisters/
 . Verify that a new folder has been created, `src/declarations`.
 +
 This folder will include copies of the folders from `.dfx/local`, except for the wasm. They do not contain any secrets, and we recommend committing these files along with the rest of your source code.
++
+If the `src/declarations` folder was not created, use the the following command:
++
+[source,bash]
+----
+dfx generate
+----
 
 == Deploy the project locally
 

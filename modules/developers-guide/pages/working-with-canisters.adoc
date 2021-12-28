@@ -463,6 +463,7 @@ dfx build --check
 Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the {IC} blockchain.
 
 ////
+////
 === Register a unique network-wide identifier
 
 In the most common development workflow, you are assigned network-wide canister identifiers as part of the build process rather than before you have code ready to compile. 
@@ -482,6 +483,7 @@ dfx build
 ----
 
 == Generate interface bindings for a canister
+////
 ////
 
 [[deploy-canister]]

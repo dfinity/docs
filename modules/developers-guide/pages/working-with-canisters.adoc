@@ -14,9 +14,9 @@ link:tutorials-intro{outfilesuffix}[チュートリアル] を行ったり、lin
 
 ご希望の開発ワークフローに応じて、プログラムをコンパイルする前または後に、Canister スマートコントラクト用の一意の ID を取得することができます。
 例えば、コードを書く前にサブネット上の Canister スマートコントラクトの一意な ID を確保したい場合、`+dfx canister create+` コマンドを実行することで可能です。
-このコマンドは基本的に空の Canister プレースホルダーを作成し、そこに後でコードをインストールすることができます。作成された Canister は一意の ID を取得します。
+このコマンドは基本的に空の Canister を確保し、そこに後でコードをインストールすることができます。作成された Canister は一意の ID を取得します。
 
-Canister 用の一意の ID を取得する
+Canister 用の一意の ID を取得するには、
 
 . 新しいターミナルウィンドウまたはタブを開きます。
 . 以下のコマンドを実行して、作成する予定の Canister の新規プロジェクトを作成します。
@@ -53,13 +53,13 @@ dfx canister create --all
 このコマンドは `+.dfx/local+` ディレクトリを作成し、そのディレクトリに `+canister_ids.json+` ファイルを追加します。
 
 [[local-id]]
-== ローカル ID を持つ Canister スマートコントラクトを構築する
+== ローカル ID を持つ Canister スマートコントラクトをビルドする
 
 プロジェクトのソースコードを記述した後、それを WebAssembly モジュールにコンパイルしてから、Canister としてデプロイする必要があります。
 
 ローカルデバッグのためにのみプロジェクトをコンパイルする場合、プロジェクトのローカル定義 ID を生成することができます。
 
-ローカル定義 ID を生成する
+ローカル定義 ID を生成するには、
 
 . 必要な構成設定とプログラムロジックを持つプロジェクトを作成します。
 . 必要に応じて、ローカル Canister の実行環境を起動します。
@@ -103,7 +103,7 @@ dfx build
 
 事前またはビルドプロセス中に作成された Canister ID が、デプロイ時にコードがインストールされる場所を決定します。
 
-コードを初めてデプロイするには
+コードを初めてデプロイするには、
 
 . 新しいターミナルを開き、プロジェクトディレクトリに移動します。
 . 必要に応じて、ローカル Canister 実行環境を起動します。
@@ -147,7 +147,7 @@ dfx canister --network=ic id lookup
 
 ローカルで開発を行っている場合、新しいプロジェクトを作成すると、そのプロジェクト内の Canister で使用するためのデフォルトのウォレットが自動的に作成されます。もし、以前に作成した Canister のプロジェクトにウォレットを追加したい場合は、いくつかの手動ステップを踏むことで、強制的に `dfx` にウォレットを生成させることができます。
 
-既存の Canister で使用するためにウォレットを追加する
+既存の Canister で使用するためにウォレットを追加するには、
 
 . ターミナルを開いて、プロジェクトディレクトリに移動します。
 . 必要であれば、以下のコマンドを実行して、ローカルの Canister 実行環境を停止します。
@@ -172,7 +172,7 @@ dfx start --clean
 このような場合、登録した Canister ID を保持したいが、Canister のコードや状態は保持したくないと考えるかもしれません。
 例えば、Canister には保存したくないテストデータしかない場合や、プログラムを完全に変更することを決定したが、以前のプログラムのインストールに使用した Canister ID の下で再インストールしたい場合などです。
 
-Canister を再インストールするには:
+Canister を再インストールするには、
 
 . 新しいターミナルを開き、プロジェクトのディレクトリに移動します。
 . 必要であれば、ローカル Canister の実行環境を起動します。
@@ -195,12 +195,12 @@ dfx canister install --all --mode reinstall
 
 ほとんどの場合、`+dfx canister create+` コマンドを初めて実行すると、`+default+` というユーザー ID が自動的に作成されます。
 このデフォルトの ID は、ローカルのユーザーアカウント用に生成された公開鍵と秘密鍵のペアで構成されています。
-通常、この `+default+` アイデンティティは、あなたが作成するすべてのプロジェクトと、デプロイするすべての Canister のデフォルトの所有者にもなります。
+通常、この `+default+` ID は、あなたが作成するすべてのプロジェクトと、デプロイするすべての Canister のデフォルトの所有者にもなります。
 しかし、`+default+` のユーザー ID が使用されないように、積極的に自分の好きな ID を作成し、使用することができます。
 
 例として、次のシナリオでは `+registered_owner+` という ID を作成し、それを使って `+pubs+` プロジェクトの登録、ビルド、デプロイ、コールを行う例を示しています。
 
-プロジェクトに ID を設定するには
+プロジェクトに ID を設定するには、
 
 . 以下のコマンドを実行し、新しいプロジェクトを作成します。
 +
@@ -220,7 +220,7 @@ cd pubs
 ----
 dfx start --background
 ----
-. 以下のコマンドを実行して、新しい `+registered_owner+` アイデンティティを作成します。
+. 以下のコマンドを実行して、新しい `+registered_owner+` ID を作成します。
 +
 [source,bash]
 ----
@@ -250,7 +250,7 @@ dfx canister call pubs greet '("Sam")'
 ----
 
 [[running-state]]
-== Canister スマートコントラクトの実行状態の管理する
+== Canister スマートコントラクトの実行状態を管理する
 
 Canister をデプロイすると、ユーザや他の Canister からのリクエストの受信と処理を開始することができるようになります。
 リクエストの送信と返信の受信が可能な Canister は、**Running** 状態であるとみなされます。
@@ -324,7 +324,7 @@ Canister のアップグレードにより、プログラムの状態を失う�
 NOTE: {proglang} で書かれた Canister をアップグレードするときに状態を保持するには、必ず `+stable+` キーワードを使用して、保持したい変数を特定します。{proglang} で変数の状態を保持することについての詳しい情報は link:../language-guide/upgrades{outfilesuffix}[Stable variables and upgrade methods] を参照してください。
 Rust で書かれた Canister をアップグレードする場合は、link:https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage/src/asset_storage_rs/lib.rs[Rust CDK asset storage] のサンプルにあるように `+pre_upgrade+` と `+post_upgrade+` 関数を使用して、Canister のアップグレード後にデータが適切に保存されるようにする必要があります。
 
-Canister をアップグレードするには
+Canister をアップグレードするには、
 
 . 新しいターミナルを開き、プロジェクトディレクトリに移動します。
 . 必要であれば、ローカルの Canister 実行環境を起動します。
@@ -353,7 +353,7 @@ dfx canister install --all --mode upgrade
 Canister を削除すると、Canister の ID、コード、およびステートが削除されます。
 ただし、Canister を削除する前に、まず Canister を停止して、保留中のメッセージ要求や返信をクリアする必要があります。
 
-プロジェクトのすべての Canister を削除するには
+プロジェクトのすべての Canister を削除するには、
 
 . 新しいターミナルを開き、プロジェクトディレクトリに移動します。
 . 必要であれば、ローカル Canister 実行環境を起動します。
@@ -379,13 +379,13 @@ dfx canister stop --all
 ----
 dfx canister delete --all
 ----
-
+////
 == Canister をフォークする
 <TBD - not in this release>
 
 == Canister のコントローラを設定する
 <TBD - not in this release>
-
+////
 ////
 = Manage canister smart contracts
 March 2020 (Alpha)
@@ -462,7 +462,7 @@ dfx build --check
 +
 Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the {IC} blockchain.
 
-
+////
 === Register a unique network-wide identifier
 
 In the most common development workflow, you are assigned network-wide canister identifiers as part of the build process rather than before you have code ready to compile. 
@@ -482,7 +482,7 @@ dfx build
 ----
 
 == Generate interface bindings for a canister
-
+////
 
 [[deploy-canister]]
 == Deploy canister smart contracts

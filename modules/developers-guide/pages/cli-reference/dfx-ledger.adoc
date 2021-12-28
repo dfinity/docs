@@ -2,7 +2,7 @@
 
 Use the `+dfx ledger+` command to interact with the ledger canister.
 
-This command can be used to make ICP utlity token transactions from one canister to another, or top up canisters with cycles from ICP.
+This command can be used to make ICP utility token transactions from one canister to another, or top up canisters with cycles from ICP.
 
 The basic syntax for running `+dfx ledger+` commands is:
 
@@ -385,7 +385,7 @@ Use the `+dfx ledger transfer+` command to send some of your ICP balance to anot
 
 [source,bash]
 ----
-dfx ledger --network ic transfer dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb85b9b9850bd60766f --memo 12345 --icp 1
+dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb85b9b9850bd60766f --memo 12345 --icp 1
 ----
 
 This command displays output similar to the following:

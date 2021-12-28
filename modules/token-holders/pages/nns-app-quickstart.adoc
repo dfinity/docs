@@ -391,7 +391,6 @@ Currently, you can only submit proposals to the network nervous system by using 
 A separate command-line tool (`+icx-nns+`) for working with the `+governance+` canister is in development and this functionality will also be available in the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp soon.
 
 If you want to start submitting proposals right away, however, you can access a preliminary version of the `+icx-nns+` command-line tool by downloading a release from the link:https://github.com/dfinity/icx-nns/releases[icx-nns] repository. 
-For information about how to download the `+icx-nns+` command-line tool and how to use it to submit proposals, see https://www.internetcomputer.org/governance/submit-proposal[How to submit proposals to the Network Nervous System].
 
 == Deploy a canister with cycles
 

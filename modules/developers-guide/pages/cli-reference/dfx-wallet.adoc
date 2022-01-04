@@ -372,7 +372,7 @@ dfx wallet deauthorize dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em2
 
 == dfx wallet name
 
-Use the `+dfx wallet name+` command to display the name of the selected identity's cycles wallet if it has ben set using the `+dfx wallet set-name+` command. 
+Use the `+dfx wallet name+` command to display the name of the selected identity's cycles wallet if it has been set using the `+dfx wallet set-name+` command. 
 
 === Basic usage
 

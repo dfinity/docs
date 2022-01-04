@@ -57,7 +57,7 @@ After you have used the `+dfx identity deploy-wallet+` command to create a cycle
 
 == dfx wallet add-controller
 
-Use the `+dfx wallet add-controller+` to add a controller to the wallet. An identity assigned the role of Controller has the most privileges and can perform the flowing actions on the selected identity's cycles wallet:
+Use the `+dfx wallet add-controller+` to add a controller to the wallet. An identity assigned the role of Controller has the most privileges and can perform the following actions on the selected identity's cycles wallet:
 
 * Rename the cycles wallet.
 

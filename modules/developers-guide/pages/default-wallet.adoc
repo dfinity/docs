@@ -514,7 +514,7 @@ If you don't specify a controlling principal, the cycles wallet you use to creat
 For example, you can run a command similar to the following to create a new wallet and assign a principal as a controller:
 
 ....
-dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_wallet '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
+dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_wallet '(record { cycles = 5000000000000 : nat64; settings = record {controller = opt principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"};})'
 ....
 
 The command returns the principal for the new wallet:
@@ -533,7 +533,7 @@ After you have registered the canister principal, you can install code for your 
 For example, you can run a command similar to the following to create a new wallet and assign a principal as a controller:
 
 ....
-dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_canister '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
+dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_canister '(record { cycles = 5000000000000 : nat64; settings = record {controller = opt principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"};})'
 ....
 
 The command returns the principal for the new canister you created:

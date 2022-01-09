@@ -184,6 +184,7 @@
 * xref:examples:index.adoc[Example Code]
 *** link:https://github.com/dfinity/examples[Dfinity Examples^]
 *** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
+*** xref:examples:hackathon-projects.adoc[Hackathon Projects]
 
 * Developer Docs
 ** Getting Started

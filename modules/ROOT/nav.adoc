@@ -83,7 +83,7 @@
 ****** xref:language-guide:caller-id.adoc[プリンシパルと Caller の識別]
 ****** xref:language-guide:cycles.adoc[Cycle を管理する]
 ****** xref:language-guide:upgrades.adoc[ステーブル（Stable）変数とアップグレード方法]
-****** xref:language-guide:compatibility.adoc[アップグレードの互換性]
+****** xref:language-guide:compatibility.adoc[アップグレード互換性]
 ****** xref:language-guide:language-manual.adoc[Language quick reference]
 ****** xref:language-guide:compiler-ref.adoc[コンパイラリファレンス]
 ****** xref:language-guide:motoko-grammar.adoc[Motoko の文法]

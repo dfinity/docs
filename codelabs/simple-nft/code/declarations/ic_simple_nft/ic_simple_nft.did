@@ -1,0 +1,13 @@
+type TransferResponse = 
+ variant {
+   err: variant {InvalidToken: Owner__1;};
+   ok: opt Owner__1;
+ };
+type TokenIndex = nat32;
+type Owner__1 = principal;
+type Owner = principal;
+service : {
+  mintNFT: (Owner, text, text, text) -> (TokenIndex);
+  ownerOf: (TokenIndex) -> (opt Owner);
+  transfer: (Owner, Owner, TokenIndex) -> (TransferResponse);
+}

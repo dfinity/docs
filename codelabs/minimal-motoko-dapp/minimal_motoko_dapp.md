@@ -4,7 +4,7 @@ id: minimal_motoko_dapp
 categories: codelab,markdown
 environments: Web
 status: Published
-feedback link: https://github.com/dfinity
+feedback link: https://github.com/dfinity/docs
 
 # Minimalistic Motoko Dapp
 

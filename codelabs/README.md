@@ -28,6 +28,7 @@ The header information is used to configure the CodeLab
 - **feedback link**: URL used in the bug report link in the bottom left corner
 
 **Steps**
+
 The steps in the CodeLab is defined by `##` headings. In the screenshot above, the name in the navigation on the left side, and the heading in the content section in the middle, are defined by the `##` heading. 
 
 The first step in the screenshot looks like this in markdown code:
@@ -41,6 +42,7 @@ The Internet Computer features orthogonal persistence, which means the state of 
 ```
 
 **Time remaining**
+
 The time remaining in the CodeLab header is calculated based on the duration specified in each step. By adding this line under the step header, the duration of the step is set to 1 minute and added to the total shown in the CodeLab header:
 
 ```
@@ -50,6 +52,7 @@ Duration: 0:01:00
 The duration line in the markup will not be visible in the step content.
 
 **Examples**
+
 See the CodeLabs in this repo for learning how to write your own CodeLab, and for inspiration to how to structure the CodeLab content.
 
 ## Build the CodeLab

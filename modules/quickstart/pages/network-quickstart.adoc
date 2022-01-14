@@ -81,7 +81,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.8.5
+dfx 0.8.6
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +

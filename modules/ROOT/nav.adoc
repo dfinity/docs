@@ -20,8 +20,7 @@
 *** Introducing the SDK
 **** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
 **** xref:release-notes:sdk-release-notes.adoc[Release notes]
-***** xref:release-notes:0.8.6-rn.adoc[0.8.6]
-***** xref:release-notes:0.8.5-rn.adoc[0.8.5]
+***** xref:release-notes:0.9.0-rn.adoc[0.9.0]
 ***** xref:release-notes:0.8.4-rn.adoc[0.8.4]
 ***** xref:release-notes:0.8.3-rn.adoc[0.8.3]
 ***** xref:release-notes:0.8.2-rn.adoc[0.8.2]

@@ -147,6 +147,9 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
     var codelabsArray = [];
     var visibleArray = [];
 
+    var baseURL = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname
+    baseURL = baseURL.substring(0, baseURL.lastIndexOf("/"));
+
     function showTutorial(tutorial) {
         var node = document.createElement("DIV");                 
 
@@ -155,7 +158,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
         node.appendChild(htmlNode);
 
         htmlNode = document.createElement('span');
-        htmlNode.innerHTML = "<div class=\"info-duration\">25 minutes</div><div class=\"info-updated\">November 20, 2021</div>";
+        htmlNode.innerHTML = "<div class=\"info-duration\">" + length "</div><div class=\"info-updated\">November 20, 2021</div>";
         node.appendChild(htmlNode);
 
         textnode = document.createTextNode(tutorial.body); 
@@ -216,7 +219,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
               "Motoko",
               "Data"
           ],
-          "url": "https://smartcontracts.org/docs/examples/codelabs/data-persistence.html"
+          "url": baseURL + "/codelabs/data-persistence.html"
         },
         {
           "id": "",
@@ -229,7 +232,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
               "Motoko",
               "Web"
           ],
-          "url": "https://smartcontracts.org/docs/examples/codelabs/minimal-motoko-dapp.html"
+          "url": baseURL + "/codelabs/minimal-motoko-dapp.html"
         },
         {
           "id": "",
@@ -242,7 +245,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
               "Rust",
               "Web"
           ],
-          "url": "https://smartcontracts.org/docs/examples/codelabs/minimal-motoko-dapp.html"
+          "url": baseURL + "/codelabs/minimal-motoko-dapp.html"
         },
         {
           "id": "",
@@ -256,7 +259,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
               "NFT",
               "Candid"
           ],
-          "url": "https://smartcontracts.org/docs/examples/codelabs/simple-nft.html"
+          "url": baseURL + "/codelabs/simple-nft.html"
         },
         {
           "id": "",
@@ -269,7 +272,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
               "Web",
               "Hosting"
           ],
-          "url": "https://smartcontracts.org/docs/examples/codelabs/static-website.html"
+          "url": baseURL + "/codelabs/static-website.html"
         }
     ];
 
@@ -279,7 +282,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
     });
 
     var el = document.getElementById("codelabs_div");
-    el.style.height = el.scrollHeight + "px";
+    el.style.height = (el.scrollHeight*2) + "px";
 
 </script>
 

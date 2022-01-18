@@ -68,7 +68,7 @@
 <pre><code language="language-bash" class="language-bash">$ dfx new minimal_dapp
 </code></pre>
 <p>DFX will create a new directory called <em>minimal_dapp</em>, and in this directory you will find all the files, both frontend, backend, configurations etc. for the default project. The default project can be deployed without any changes as it is.</p>
-<p class="image-container"><img alt="Default project" src="https://smartcontracts.org/docs/examples/_images/3bd3a2a8bbbc3902.png"></p>
+<p class="image-container"><img alt="Default project" src="../_images/3bd3a2a8bbbc3902.png"></p>
 <p>The <code>src</code> directory will contain the default frontend and backend code.</p>
 <p>The <code>dfx.json</code> file contains the canister configuration. It defines the canister(s), where the source code for the canister(s) is located, the type of canister(s) and which version of DFX the project was created with.</p>
 

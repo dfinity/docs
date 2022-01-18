@@ -47,7 +47,7 @@
     
       <google-codelab-step label="Introduction" duration="1">
         <p>This CodeLab shows how to build a minimalistic, static website and deploy it on the Internet Computer. Since this is a very simple project, without any backend, most of the files the default project comes with when running <code>dfx new ...</code> is not needed, and therefore this project is created manually with only the needed files.</p>
-<p class="image-container"><img alt="Static Website" src="https://smartcontracts.org/docs/examples/_images/efd35606ec992f9.png"></p>
+<p class="image-container"><img alt="Static Website" src="../_images/efd35606ec992f9.png"></p>
 
 
       </google-codelab-step>

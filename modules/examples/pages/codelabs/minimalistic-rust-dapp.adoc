@@ -58,7 +58,7 @@
 <li>Test backend with Candid UI and command line using DFX, and test frontend in browser</li>
 </ul>
 <p>The frontend will look like this:</p>
-<p class="image-container"><img alt="Dapp frontend" src="https://smartcontracts.org/docs/examples/_images/d71d39c63ca9f522.png"></p>
+<p class="image-container"><img alt="Dapp frontend" src="../_images/d71d39c63ca9f522.png"></p>
 
 
       </google-codelab-step>
@@ -155,7 +155,7 @@ fn increment() -&gt; u64 {
 <p>The Candid UI provides an easy, user friendly interface for testing the backend. The UI is automatically generated, and the canister ID can be found in the <code>canister_ids.json</code> file.</p>
 <p>The localhost version of the <code>canister_ids.json</code> file can be found in <code>.dfx/local/canister_ids.json</code> and the URL is:</p>
 <p><strong>http://&lt;candid_canister_id&gt;.localhost:8000/?id=&lt;backend_canister_id&gt;</strong></p>
-<p class="image-container"><img alt="Candid UI" src="https://smartcontracts.org/docs/examples/_images/af3e45eb47eb3f14.png"></p>
+<p class="image-container"><img alt="Candid UI" src="../_images/af3e45eb47eb3f14.png"></p>
 
 
       </google-codelab-step>
@@ -207,7 +207,7 @@ document.getElementById(&#34;clickMeBtn&#34;).addEventListener(&#34;click&#34;, 
 </code></pre>
 <p>The URL for the frontend is depending on the canister ID. As described step 4, get the canister ID, the UI canister in this case, from the canister_IDs.json file. The URL will look like this:</p>
 <p><strong>https://&lt;ui_canister_id&gt;.localhost:8000</strong></p>
-<p class="image-container"><img alt="Dapp frontend" src="https://smartcontracts.org/docs/examples/_images/d71d39c63ca9f522.png"></p>
+<p class="image-container"><img alt="Dapp frontend" src="../d71d39c63ca9f522.png"></p>
 
 
       </google-codelab-step>

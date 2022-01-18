@@ -23,6 +23,8 @@
 <script>
     window.addEventListener('DOMContentLoaded', (e) => {
         var parentNode = document.body.parentNode
+        parentNode.getElementsByClassName('body')[0].style.width = "100%";
+        parentNode.getElementsByClassName('body')[0].style.height = "100%";
         parentNode.getElementsByClassName('doc')[0].style.maxWidth = "1000%";
         parentNode.getElementsByClassName('nav-container')[0].style.display = "none";
         parentNode.getElementsByClassName('toolbar')[0].style.display = "none";
@@ -32,8 +34,6 @@
         parentNode.getElementsByClassName('doc')[0].style.padding = "0px"; 
         parentNode.getElementsByClassName('main-content')[0].style.width = "100%";
         parentNode.getElementsByClassName('main-content')[0].style.height = "100%";
-        parentNode.getElementsByClassName('body')[0].style.width = "100%";
-        parentNode.getElementsByClassName('body')[0].style.height = "100%";
         
         document.getElementById('arrow-back').href = "javascript:window.close();";
         document.getElementById('done').href = "javascript:window.close();";

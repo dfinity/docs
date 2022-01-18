@@ -93,7 +93,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
     .block {
         display: block;
         border: none;
-        background-color: #8746bb;
+        background-color: #000000;
         color: white;
         padding: 10px 25px;
         font-size: 16px;

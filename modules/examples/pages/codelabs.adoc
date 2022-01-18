@@ -232,7 +232,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
               "Motoko",
               "Web"
           ],
-          "url": baseURL + "/codelabs/minimal-motoko-dapp.html"
+          "url": baseURL + "/codelabs/minimalistic-motoko-dapp.html"
         },
         {
           "id": "",
@@ -245,7 +245,7 @@ The CodeLab tutorials provide step-by-step guides to how to build dapps, how to 
               "Rust",
               "Web"
           ],
-          "url": baseURL + "/codelabs/minimal-motoko-dapp.html"
+          "url": baseURL + "/codelabs/minimalistic-rust-dapp.html"
         },
         {
           "id": "",

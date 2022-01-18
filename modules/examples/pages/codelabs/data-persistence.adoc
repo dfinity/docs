@@ -21,7 +21,7 @@
 </head>
 <body>
 <script>
-    window.addEventListener('DOMContentLoaded', (event) => {
+    window.addEventListener('DOMContentLoaded', (e) => {
         var parentNode = document.body.parentNode
         parentNode.getElementsByClassName('doc')[0].style.maxWidth = "1000%";
         parentNode.getElementsByClassName('nav-container')[0].style.display = "none";

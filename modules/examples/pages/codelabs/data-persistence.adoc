@@ -30,8 +30,8 @@
         parentNode.getElementsByClassName('doc')[0].style.width = "100%";
         parentNode.getElementsByClassName('doc')[0].style.margin = "0px";
         parentNode.getElementsByClassName('doc')[0].style.padding = "0px"; 
-        parentNode.getElementsByClassName('content')[0].style.width = "100%";
-        parentNode.getElementsByClassName('content')[0].style.height = "100%";
+        parentNode.getElementsByClassName('main-content')[0].style.width = "100%";
+        parentNode.getElementsByClassName('main-content')[0].style.height = "100%";
         parentNode.getElementsByClassName('body')[0].style.width = "100%";
         parentNode.getElementsByClassName('body')[0].style.height = "100%";
         

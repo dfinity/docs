@@ -11,7 +11,7 @@ This example is based on the default project created by running `dfx new` as des
 link:quickstart/local-quickstart{outfilesuffix}[Motoko] and
 link:rust-guide/rust-quickstart{outfilesuffix}[Rust] quickstart documents.
 
-The example is available from the 
+The example is available from the
 https://github.com/dfinity/examples[examples]
 repository in both Motoko and Rust versions:
 
@@ -29,6 +29,8 @@ service : {
 
 The frontend canister, ``hello_assets``, displays an HTML page with a text box for the argument and a button for calling the function greet with that argument.
 The result of the call is displayed in a message box.
+
+image:hello.png[hello frontend]
 
 The frontend canister is a generic canister provided by `dfx` but
 the assets it serves to browsers are determined by the dfx project settings and project files.

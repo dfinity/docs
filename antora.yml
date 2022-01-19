@@ -11,6 +11,7 @@ nav:
   #- modules/language-guide/lang-nav.adoc
   # - modules/interface-spec/ic-nav.adoc
   - modules/base-libraries/lib-nav.adoc
+  - modules/rosetta-api/rosetta-nav.adoc
   #- modules/rust-guide/rust-nav.adoc
   #- modules/integration/integration-nav.adoc
   #- modules/operators-guide/ops-nav.adoc

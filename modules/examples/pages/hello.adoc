@@ -8,8 +8,8 @@ This example demonstrates a dead simple dapp consisting of two canister smart co
 It is the dapp equivalent of the ubiquitous _hello world_ example.
 
 This example is based on the default project created by running `dfx new` as described in the
-link:quickstart/local-quickstart{outfilesuffix}[Motoko] and
-link:rust-guide/rust-quickstart{outfilesuffix}[Rust] quickstart documents.
+link:../quickstart/local-quickstart{outfilesuffix}[Motoko] and
+link:../rust-guide/rust-quickstart{outfilesuffix}[Rust] quickstart documents.
 
 The example is available from the
 https://github.com/dfinity/examples[examples]

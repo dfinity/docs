@@ -86,3 +86,14 @@ This incorporates the following executed proposals:
 * https://dashboard.internetcomputer.org/proposal/26833[26833]
 * https://dashboard.internetcomputer.org/proposal/25343[25343]
 * https://dashboard.internetcomputer.org/proposal/23633[23633]
+
+=== Repeated warning about missing max_block_payload_size registry setting
+
+The replica logs will display a warning about a missing registry setting approximately every five minutes.
+The replica will use the required minimum value.  You can ignore this warning.
+
+The warnings look like this:
+
+----
+Jan 19 19:03:42.719 WARN s:crz25-qujie-7jqyj-d5ldq-p3psu-y2hmg-c32rf-pnfda-xskfm-dtnmc-iqe/n:fw7p7-4ynfm-s6e5c-axkum-76532-d2k4j-aowre-7twtq-gabts-hfs2e-cae/ic_consensus/payload_builder max_block_payload_size too small. current value: 0, required minimum: 3670016! max_block_payload_size must be larger than max_ingress_bytes_per_message and MAX_XNET_PAYLOAD_IN_BYTES. Update registry!
+----

@@ -1,22 +1,22 @@
 * xref:introduction:welcome.adoc[**Introduction**]
-** xref:introduction:welcome.adoc#for-first-timers[For: First-Timers]
-** xref:introduction:welcome.adoc#for-developers[For: Developers]
-** xref:introduction:welcome.adoc#for-protocol-enthusiasts[For: Protocol Enthusiasts]
+** xref:introduction:welcome.adoc#for-first-timers[For first-timers]
+** xref:introduction:welcome.adoc#for-developers[For developers]
+** xref:introduction:welcome.adoc#for-protocol-enthusiasts[For protocol enthusiasts]
 
-* xref:quickstart:quickstart-intro.adoc[Quick Start]
-** xref:quickstart:newcomers.adoc[For Newcomers]
-** xref:quickstart:cycles-faucet.adoc[Claim Your Free Cycles]
-** xref:quickstart:host-a-website.adoc[Host a Static Website]
-** xref:quickstart:local-quickstart.adoc[Local Development]
-** xref:quickstart:network-quickstart.adoc[Network Deployment]
+* xref:quickstart:quickstart-intro.adoc[Quick start]
+** xref:quickstart:newcomers.adoc[For newcomers]
+** xref:quickstart:cycles-faucet.adoc[Claim your free cycles]
+** xref:quickstart:host-a-website.adoc[Host a static website]
+** xref:quickstart:local-quickstart.adoc[Local development]
+** xref:quickstart:network-quickstart.adoc[Network deployment]
 
 * xref:examples:index.adoc[Example Code]
-*** link:https://github.com/dfinity/examples[Dfinity Examples^]
-*** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
-*** xref:examples:hackathon-projects.adoc[Hackathon Projects]
+*** link:https://github.com/dfinity/examples[Dfinity examples^]
+*** link:https://github.com/dfinity/awesome-dfinity[Open-source community projects^]
+*** xref:examples:hackathon-projects.adoc[Hackathon projects]
 
-* Developer Docs
-** Getting Started
+* Developer docs
+** Getting started
 *** Introducing the SDK
 **** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
 **** xref:release-notes:sdk-release-notes.adoc[Release notes]
@@ -64,9 +64,9 @@
 
 **** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
 **** xref:language-guide:motoko.adoc[Motoko]
-***** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
-***** xref:base-libraries:stdlib-intro.adoc[Motoko Base Library]
-***** Motoko Guide
+***** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko playground^]
+***** xref:base-libraries:stdlib-intro.adoc[Motoko base library]
+***** Motoko guide
 ****** xref:language-guide:about-this-guide.adoc[About the language guide]
 ****** xref:language-guide:motoko-introduction.adoc[Introduction]
 ****** xref:language-guide:basic-concepts.adoc[Basic concepts and terms]
@@ -91,7 +91,7 @@
 ****** xref:language-guide:style.adoc[Motoko style guidelines]
 
 **** xref:rust-guide:rust-intro.adoc[Rust]
-***** xref:rust-guide:rust-quickstart.adoc[Hello, World! Quick Start]
+***** xref:rust-guide:rust-quickstart.adoc[Hello, World! Quick start]
 ***** xref:rust-guide:rust-counter.adoc[Simple counter tutorial]
 ***** xref:rust-guide:multiply-dependency.adoc[Basic dependency tutorial]
 ***** xref:rust-guide:rust-profile.adoc[Profile tutorial]
@@ -108,17 +108,17 @@
 *** Introducing the Internet Identity
 **** xref:ic-identity-guide:what-is-ic-identity.adoc[What is Internet Identity]
 **** xref:ic-identity-guide:auth-how-to.adoc[How to use the Internet Identity]
-**** xref:ic-identity-guide:hello-guide.adoc[Windows Hello Guide]
+**** xref:ic-identity-guide:hello-guide.adoc[Windows Hello guide]
 
 *** Frontend development
 **** xref:developers-guide:webpack-config.adoc[Add frontend assets]
 **** xref:developers-guide:tutorials/custom-frontend.adoc[Customize the front-end]
 **** xref:developers-guide:tutorials/my-contacts.adoc[Add a stylesheet]
 
-* Protocol Docs
+* Protocol docs
 ** .xref:developers-guide:concepts/concepts-intro.adoc[Concepts]
 *** xref:developers-guide:concepts/what-is-IC.adoc[What is the {IC}]
-*** xref:interface-spec:index.adoc[Internet Computer Interface Specification]
+*** xref:interface-spec:index.adoc[Internet Computer interface specification]
 *** xref:developers-guide:concepts/nodes-subnets.adoc[Nodes and sub-networks]
 *** xref:developers-guide:concepts/data-centers.adoc[Decentralized data centers]
 *** xref:developers-guide:concepts/canisters-code.adoc[Canisters and code]
@@ -126,14 +126,14 @@
 *** xref:developers-guide:concepts/tokens-cycles.adoc[Tokens and cycles]
 *** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
 
-* General Docs
+* General docs
 ** Overview of self-custody
 *** xref:token-holders:custody-options-intro.adoc[Choosing self-custody for digital assets]
 *** xref:token-holders:self-custody-quickstart.adoc[Self-custody quick start]
 ** Overview of ledger
 *** xref:integration:ledger-quick-start.adoc[Ledger quick start]
-** Overview of the NNS App
-*** xref:token-holders:nns-app-quickstart.adoc[NNS App quick start]
+** Overview of the NNS app
+*** xref:token-holders:nns-app-quickstart.adoc[NNS app quick start]
 
 * Additional Resources
 ** Developer videos
@@ -149,22 +149,22 @@
 ** Developer tooling
 *** xref:ROOT:download.adoc[DFINITY Canister SDK]
 *** link:https://github.com/dfinity/cdk-rs[Rust CDK^]
-*** link:https://github.com/kritzcreek/vessel[Vessel Package Manager^]
-*** link:https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko[Motoko VS Code Extension^]
+*** link:https://github.com/kritzcreek/vessel[Vessel package manager^]
+*** link:https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko[Motoko VS Code extension^]
 *** link:https://github.com/dfinity/agent-js[Agent JS^]
 *** link:https://github.com/sudograph/sudograph[Sudograph^]
-*** link:https://github.com/dfinity/cycles-wallet[Cycles Wallet^]
-*** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
+*** link:https://github.com/dfinity/cycles-wallet[Cycles wallet^]
+*** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko playground^]
 *** link:https://github.com/dfinity/quill[Quill^]
 
 ** Community created resources
 *** link:https://ic.rocks/[ic.rocks (Block explorer)^]
-*** link:https://plugwallet.ooo/[Plug (Browser-based wallet extension)^]
+*** link:https://plugwallet.ooo/[Plug (browser-based wallet extension)^]
 *** link:https://fleek.co/[Fleek (Netlify for the open web)^]
 *** link:http://faucet.dfinity.org/[Cycles Faucet^]
 
-** xref:developers-guide:computation-and-storage-costs.adoc[Computation and Storage Costs]
+** xref:developers-guide:computation-and-storage-costs.adoc[Computation and storage costs]
 
 * Community
-** link:https://discord.gg/cA7y6ezyE2[Developer Discord^]
-** link:https://forum.dfinity.org/[Developer Forum^]
+** link:https://discord.gg/cA7y6ezyE2[Developer discord^]
+** link:https://forum.dfinity.org/[Developer forum^]

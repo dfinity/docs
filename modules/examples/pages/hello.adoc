@@ -1,0 +1,46 @@
+# Hello Example
+
+This example demonstrates a dead simple dapp consisting of two canister smart contracts:
+
+* a simple backend canister, ``hello``, implementing the logic of the application, and
+* a simple frontend asset canister, ``hello_assets``, serving the assets of the dapp's web user interface.
+
+It is the dapp equivalent of the ubiquitous _hello world_ example.
+
+This example is based on the default project created by running `dfx new` as described in the
+link:../quickstart/local-quickstart{outfilesuffix}[Motoko] and
+link:../rust-guide/rust-quickstart{outfilesuffix}[Rust] quickstart documents.
+
+The example is available from the
+https://github.com/dfinity/examples[examples]
+repository in both Motoko and Rust versions:
+
+* https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko]
+* https://github.com/dfinity/examples/tree/master/motoko/hello[Rust]
+
+
+Canister ``hello``, whether implemented in Motoko or Rust, presents the same Candid interface:
+
+```candid
+service : {
+  greet: (text) -> (text);
+}
+```
+
+The frontend canister, ``hello_assets``, displays an HTML page with a text box for the argument and a button for calling the function greet with that argument.
+The result of the call is displayed in a message box.
+
+image:hello.png[hello frontend]
+
+The frontend canister is a generic canister provided by `dfx` but
+the assets it serves to browsers are determined by the dfx project settings and project files.
+
+The frontend canister and its assets are identical for both projects.
+
+
+
+
+
+
+
+

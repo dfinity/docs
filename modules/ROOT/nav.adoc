@@ -16,11 +16,6 @@
 *** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 *** xref:examples:hackathon-projects.adoc[Hackathon Projects]
 
-
-
-
-
-
 * Getting Set Up
 ** Introducing the SDK
 *** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]

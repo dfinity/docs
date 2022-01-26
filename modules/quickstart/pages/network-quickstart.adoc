@@ -209,6 +209,7 @@ For example, you should see output similar to the following:
 ....
 03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223
 ....
+. Send at least 1 ICP to the account identifier for your developer identity (the destination crypto address). You can buy ICP on Coinbase or if you have ICP in a self-custodied wallet, you can send ICP via creating a new transaction at https://nns.ic0.app.
 . Check your account balance by running the following command:
 +
 [source,bash]

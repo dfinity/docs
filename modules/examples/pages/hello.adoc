@@ -16,7 +16,7 @@ https://github.com/dfinity/examples[examples]
 repository in both Motoko and Rust versions:
 
 * https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko]
-* https://github.com/dfinity/examples/tree/master/motoko/hello[Rust]
+* https://github.com/dfinity/examples/tree/master/rust/hello[Rust]
 
 
 Canister ``hello``, whether implemented in Motoko or Rust, presents the same Candid interface:

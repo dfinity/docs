@@ -183,6 +183,7 @@
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
 
 * xref:examples:index.adoc[Example Code]
+** xref:examples:hello.adoc[Hello Example]
 *** link:https://github.com/dfinity/examples[Dfinity Examples^]
 *** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 *** xref:examples:hackathon-projects.adoc[Hackathon Projects]
@@ -192,6 +193,7 @@
 *** Introducing the SDK
 **** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
 **** xref:release-notes:sdk-release-notes.adoc[Release notes]
+***** xref:release-notes:0.9.0-rn.adoc[0.9.0]
 ***** xref:release-notes:0.8.4-rn.adoc[0.8.4]
 ***** xref:release-notes:0.8.3-rn.adoc[0.8.3]
 ***** xref:release-notes:0.8.2-rn.adoc[0.8.2]
@@ -256,6 +258,8 @@
 ****** xref:language-guide:cycles.adoc[Managing cycles]
 ****** xref:language-guide:upgrades.adoc[Stable variables and upgrade methods]
 ****** xref:language-guide:compatibility.adoc[Upgrade compatibility]
+****** xref:language-guide:stablememory.adoc[The ExperimentalStableMemory library]
+****** xref:language-guide:heartbeats.adoc[Heartbeats]
 ****** xref:language-guide:language-manual.adoc[Language quick reference]
 ****** xref:language-guide:compiler-ref.adoc[Compiler reference]
 ****** xref:language-guide:motoko-grammar.adoc[Motoko grammar]

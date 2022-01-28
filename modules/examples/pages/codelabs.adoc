@@ -1,0 +1,321 @@
+= CodeLabs
+:description: CodeLab tutorials
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding,dapp,example,code,rust,Motoko
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+The CodeLab tutorials provide step-by-step guides to how to build dapps, how to use specific features, use Motoko and much more.
+
+++++
+<style>
+
+    #cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .btn-wrapper{
+        width:200px;
+        padding:20px;
+        height: 50px;
+    }
+
+    .codelabs_container {
+        align-content: left;
+        position: relative;
+        margin: 0px;
+        height: 1000px;
+    }
+
+    .card {
+        padding: 27px 20px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        color: black;
+
+    }
+
+    .card h1 {
+        font-size: 24px;
+        line-height: 32px;
+        
+        margin: 0 0 8px;
+    }
+
+    
+    .info-updated {
+        font-size: 12px;
+        line-height: 20px;
+        margin-bottom: 12px;
+    }
+
+    .body {
+        margin-bottom: 12px;
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .pill {
+        pointer-events: none;
+        background-color: #f0f0f0;
+        border: 1px solid #a0a0a0;
+        color: #000;
+        padding: 6px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 13px;
+        margin-left: -1px;
+        margin-bottom: 10px;
+        border-radius: 100px;
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .filler {
+        flex:1;
+    }
+
+    .pills {
+        margin-bottom: 10px;
+    }
+
+    .open-tutorial {
+        border: none;
+        background-color: #000000;
+        color: white;
+        padding: 10px 25px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .info-duration {
+        font-size: 12px;
+        padding-left: 10px;
+        line-height: 20px;
+    }
+
+
+    .codelab-controls {
+        margin: 25px 0px 50px 0px;
+        display: flex;
+    }
+    .codelabs-search-container .search-icon {
+        left: 12px;
+    }
+    .codelabs-search-container {
+        position: relative;
+    }
+
+    .codelabs-search-container .search-input {
+        width: 100%;
+        max-width: 380px;
+        box-shadow: 0 0 0 1px var(--input-border-color);
+        background: var(--input-background-color);
+    }
+
+
+    body.dark-mode .card {
+        background: #222326;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        color: white;
+    }
+    body.dark-mode .pill {
+        background-color: #444549;
+        color: #ddd;
+        border: 1px solid #535353;
+    }
+    body.dark-mode .open-tutorial  {
+        background-color: white;
+        color: black;
+    }
+    body.dark-mode .body  {
+        color: #EFEFEF;
+    }
+    @media (max-width: 768px) {
+        #cards {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+    }
+</style>
+
+<div class="codelab-controls">
+  <div class="codelabs-search-container">
+   <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M11.8654 12.5892C10.8213 13.4695 9.47259 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.47209 13.4699 10.8204 12.5901 11.8643L17.3625 16.6367L16.6377 17.3615L11.8654 12.5892ZM12.9333 8C12.9333 10.7246 10.7246 12.9333 8 12.9333C5.2754 12.9333 3.06667 10.7246 3.06667 8C3.06667 5.2754 5.2754 3.06667 8 3.06667C10.7246 3.06667 12.9333 5.2754 12.9333 8Z"
+      fill="black" />
+     </svg>
+    <input class="search-input" placeholder="Search Tutorials" type="search" oninput="search(this.value)" />
+  </div>
+</div>
+
+<div id="codelabs_div">
+
+  <div class="codelabs_container">
+    
+    <div id="cards">
+
+    </div>
+  </div>
+</div>
+
+<script>
+    /*
+    fetch("../_images/tutorials.json")
+        .then(response => {
+        return response.json();
+        })
+        .then(data => {
+        console.log({data: data})
+        codelabsArray = data;
+        data.forEach(tutorial => {
+            console.log({tutorial: tutorial})
+            //showTutorial(tutorial)
+        });
+        });
+    */
+
+    var codelabsArray = [];
+    var visibleArray = [];
+
+    var baseURL = window.location.protocol + "//" + window.location.host + window.location.pathname
+    baseURL = baseURL.substring(0, baseURL.lastIndexOf("/"));
+
+    function showTutorial(tutorial) {
+
+        const template = 
+`
+    <div class="card">
+        <h1>${tutorial.headline}</h1>
+        <div class="info-updated">${tutorial.updated}</div>
+        <div class="body">${tutorial.body}</div>
+        <div class="pills">
+            ${tutorial.keywords.map(kw=>`<span class="pill">${kw}</span>`).join('')}
+        </div>
+        <div class="filler"></div>
+        <div>
+            <button class="open-tutorial" onClick=popTutorial('${tutorial.url}');>Start</button>
+            <span class="info-duration">${tutorial.length}</span>
+        </div>
+    </div>
+`;
+
+        document.getElementById("cards").innerHTML += template;
+    }
+
+    function popTutorial(url) {
+        let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+        width=1200,height=600,left=100,top=100`;
+        
+        open(url, 'test', params);
+    }
+
+    function search(str) {
+        var newArray = codelabsArray.filter(function (el) {
+            var searchStr = str.toLowerCase();
+
+            return el.headline.toLowerCase().includes(str) ||
+                    el.body.toLowerCase().includes(str) ||
+                    el.category.toLowerCase().includes(str);
+        });
+
+        visibleArray = newArray;
+        document.getElementById("cards").innerHTML = ""; 
+            
+        let outlist = str.length > 0 ? visibleArray : codelabsArray;
+
+        outlist.forEach(tutorial => {
+            showTutorial(tutorial)
+        });
+    }
+
+    var tutorials = [
+        {
+          "id": "",
+          "headline": "Data Persistence",
+          "body": "The Internet Computer features orthogonal persistence, which means the state of the canisters are automatically stored, so data persist when canister code is updated.",
+          "length": "12 minutes",
+          "updated": "January 18, 2022",
+          "category": "motoko",
+          "keywords": [
+              "Motoko",
+              "Data"
+          ],
+          "url": baseURL + "/codelabs/data-persistence.html"
+        },
+        {
+          "id": "",
+          "headline": "Minimalistic Motoko Dapp",
+          "body": "This CodeLab shows how to build a minimalistic dapp based on the default dapp template installed by DFX when creating a new project. The dapp is a simple website with a counter.",
+          "length": "22 minutes",
+          "updated": "January 18, 2022",
+          "category": "Motoko",
+          "keywords": [
+              "Motoko",
+              "Web"
+          ],
+          "url": baseURL + "/codelabs/minimalistic-motoko-dapp.html"
+        },
+        {
+          "id": "",
+          "headline": "Minimalistic Rust Dapp",
+          "body": "This CodeLab shows how to build a minimalistic dapp based on the default dapp template installed by DFX when creating a new Rust project. The dapp is a simple website with a counter.",
+          "length": "22 minutes",
+          "updated": "January 18, 2022",
+          "category": "Rust",
+          "keywords": [
+              "Rust",
+              "Web"
+          ],
+          "url": baseURL + "/codelabs/minimalistic-rust-dapp.html"
+        },
+        {
+          "id": "",
+          "headline": "Simple NFT Demo",
+          "body": "This CodeLab shows a very simple implementation of NFT minting. The project does not include functionality for payment transactions or an UI, but the functionality can be tested through the Candid interface.",
+          "length": "31 minutes",
+          "updated": "January 18, 2022",
+          "category": "Motoko",
+          "keywords": [
+              "Motoko",
+              "NFT",
+              "Candid"
+          ],
+          "url": baseURL + "/codelabs/simple-nft.html"
+        },
+        {
+          "id": "",
+          "headline": "Static Website on the IC",
+          "body": "This CodeLab shows how to build a minimalistic, static website and deploy it on the Internet Computer. This is a very simple project, without any backend.",
+          "length": "10 minutes",
+          "updated": "January 18, 2022",
+          "category": "Web",
+          "keywords": [
+              "Web",
+              "Hosting"
+          ],
+          "url": baseURL + "/codelabs/static-website.html"
+        }
+    ];
+
+    codelabsArray = tutorials;
+    tutorials.forEach(tutorial => {
+        showTutorial(tutorial)
+    });
+
+    var el = document.getElementById("codelabs_div");
+    el.style.height = (el.scrollHeight*2) + "px";
+
+</script>
+
+
+++++

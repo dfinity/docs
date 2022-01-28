@@ -213,7 +213,7 @@ The following questions are taken from the most commonly reported questions and 
 
 === The Rosetta node
 
-==== How to I run an instance of the Rosetta node?
+==== How do I run an instance of the Rosetta node?
 
 An easy way to accomplish this is to use the link:https://hub.docker.com/r/dfinity/rosetta-api/tags?page=1&ordering=last_updated[`dfinity/rosetta-api`] Docker image. Once the node initializes and syncs all blocks, you can perform queries and submit transactions by invoking the Rosetta API on the node. The node listens on the `8080` port.
 

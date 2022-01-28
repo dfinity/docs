@@ -34,11 +34,11 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 . 環境変数である `DFX_VERSION` に、`+curl+` コマンドのプレフィックスとしてインストールしたい {sdk-short-name} パッケージのバージョンを設定します。
 +
-例えば、バージョン 0.8.4 をインストールするには、以下のコマンドを実行します:
+例えば、バージョン 0.9.0 をインストールするには、以下のコマンドを実行します:
 +
 [source,bash]
 ----
-DFX_VERSION=0.8.4 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.9.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
 NOTE: 環境変数 DFX_VERSION を使用して、まだ一般に公開されていないバージョンの {sdk-short-name} をインストールしている場合は、変更点の概要についてこの link:http-middleware{outfilesuffix}[記事]を参照してください。
@@ -91,11 +91,11 @@ To download and install a specific version from a terminal shell:
 
 . Set the `DFX_VERSION` environment variable to the version of the {sdk-short-name} package you want to install as a prefix to `+curl+` command.
 +
-For example, to install version 0.8.4, you would run the following command:
+For example, to install version 0.9.0, you would run the following command:
 +
 [source,bash]
 ----
-DFX_VERSION=0.8.4 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.9.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
 NOTE: If you are using the DFX_VERSION environment variable to install a version of the {sdk-short-name} not yet publicly available, see this link:http-middleware{outfilesuffix}[article] for an overview of what's changed. 

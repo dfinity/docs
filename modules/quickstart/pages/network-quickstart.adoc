@@ -83,7 +83,7 @@ dfx --version
 このコマンドは、以下のような `+dfx+` コマンドのバージョン情報を表示します。
 +
 ....
-dfx 0.8.4
+dfx 0.9.0
 ....
 . 他の `+dfx+` コマンドの使用方法は、以下のコマンドを実行してください。
 +
@@ -567,7 +567,7 @@ dfx --version
 The command displays version information for the `+dfx+` command-line executable similar to the following:
 +
 ....
-dfx 0.8.4
+dfx 0.9.0
 ....
 . Preview usage information for the other `+dfx+` command-line sub-commands by running the following command:
 +

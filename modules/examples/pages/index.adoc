@@ -9,6 +9,13 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 [[example-code-intro]]
 In addition to our tutorials section, here are some quick references! You can also check out our https://github.com/dfinity/examples[Examples Repo], https://github.com/dfinity/awesome-dfinity[Awesome Dfinity], a curated set of open-source projects and examples from our community, or link:./hackathon-projects.html[Hackathon Projects]!
 
+[[motoko-rust]]
+== Motoko and Rust Examples
+
+We first list the examples that are available in both Motoko _and_ Rust:
+
+* link:hello{outfilesuffix}[Hello]: the dapp equivalent of _hello world_, with a separate backend and frontend canister serving a web page.
+
 [[motoko]]
 == Motoko Examples
 

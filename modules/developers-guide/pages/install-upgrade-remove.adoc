@@ -46,7 +46,7 @@ include::ROOT:page$download.adoc[leveloffset=0,tag=install_jp]
 
 `~/.cache/dfinity/versions` ディレクトリには、{sdk-short-name} の各バージョンのサブディレクトリが格納されています。
 各バージョンのサブディレクトリには、{sdk-short-name} の特定のバージョンに必要な全てのディレクトリとファイルが含まれています。
-例えば、`~/.cache/dfinity/versions/0.8.4` ディレクトリの内容をリストアップすると、以下のような主要コンポーネントが表示されます。
+例えば、`~/.cache/dfinity/versions/0.9.0` ディレクトリの内容をリストアップすると、以下のような主要コンポーネントが表示されます。
 
 ....
 total 349192
@@ -159,7 +159,7 @@ The following table describes the development environment components that the in
 
 The `~/.cache/dfinity/versions` directory stores one or more versioned subdirectories of the {sdk-short-name}. 
 Each versioned subdirectory contains the all of the directories and files required for a specific version of the {sdk-short-name}.
-For example, if you list the contents of the `~/.cache/dfinity/versions/0.8.4` directory you would see the following core components:
+For example, if you list the contents of the `~/.cache/dfinity/versions/0.9.0` directory you would see the following core components:
 
 ....
 total 349192

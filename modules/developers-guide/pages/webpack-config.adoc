@@ -54,7 +54,7 @@ export const createActor = (canisterId, options) => {
 export const hello = createActor(canisterId);
 ----
 
-Then, if you return to `+index.js+`, you can see see that it takes the generated actor, and uses it to make a call to the `+hello+` canister's `greet` method:
+Then, if you return to `+index.js+`, you can see that it takes the generated actor, and uses it to make a call to the `+hello+` canister's `greet` method:
 
 [source,js]
 ----

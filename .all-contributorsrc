@@ -58,6 +58,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "hokosugi",
+      "name": "hokosugi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38212038?v=4",
+      "profile": "https://github.com/hokosugi",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,

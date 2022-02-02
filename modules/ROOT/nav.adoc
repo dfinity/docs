@@ -130,6 +130,7 @@
 *** xref:developers-guide:concepts/trust-in-canisters.adoc[Trust in canisters]
 *** xref:developers-guide:concepts/tokens-cycles.adoc[Tokens and cycles]
 *** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
+*** xref:developers-guide:concepts/bitcoin-integration.adoc[Bitcoin integration]
 
 * General Docs
 ** Overview of self-custody

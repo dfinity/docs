@@ -30,7 +30,7 @@ https://github.com/dfinity/bitcoin-developer-preview[GitHub repository].
 NOTE: The Bitcoin functionality will be offered on the Internet Computer in the
 form of _virtual canisters_, similar to the
 https://smartcontracts.org/docs/interface-spec/index.html#ic-management-canister[management canister],
-once the feature will be generally available on the IC mainnet.
+once the feature is generally available on the IC mainnet.
 The API may change slightly but is expected to remain essentially the same between
 the developer preview and mainnet release, so minor code adaptations in canister code may be required
 when switching to the mainnet release later.

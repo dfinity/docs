@@ -11,10 +11,11 @@
 ** xref:quickstart:network-quickstart.adoc[ネットワークへのデプロイ]
 
 * xref:examples:index.adoc[コードの例]
-** xref:examples:hello.adoc[Hello Example]
+*** xref:examples:hello.adoc[Hello Example]
 *** link:https://github.com/dfinity/examples[Dfinity Examples^]
 *** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 *** xref:examples:hackathon-projects.adoc[Hackathon Projects]
+*** xref:examples:codelabs.adoc[CodeLabs]
 
 * 開発者ドキュメント
 ** はじめる
@@ -129,6 +130,7 @@
 *** xref:developers-guide:concepts/trust-in-canisters.adoc[Trust in canisters]
 *** xref:developers-guide:concepts/tokens-cycles.adoc[トークンと Cycle]
 *** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
+*** xref:developers-guide:concepts/bitcoin-integration.adoc[Bitcoin integration]
 
 * 一般ドキュメント
 ** Overview of self-custody
@@ -187,10 +189,11 @@
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
 
 * xref:examples:index.adoc[Example Code]
-** xref:examples:hello.adoc[Hello Example]
+*** xref:examples:hello.adoc[Hello Example]
 *** link:https://github.com/dfinity/examples[Dfinity Examples^]
 *** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 *** xref:examples:hackathon-projects.adoc[Hackathon Projects]
+*** xref:examples:codelabs.adoc[CodeLabs]
 
 * Developer Docs
 ** Getting Started
@@ -305,6 +308,7 @@
 *** xref:developers-guide:concepts/trust-in-canisters.adoc[Trust in canisters]
 *** xref:developers-guide:concepts/tokens-cycles.adoc[Tokens and cycles]
 *** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
+*** xref:developers-guide:concepts/bitcoin-integration.adoc[Bitcoin integration]
 
 * General Docs
 ** Overview of self-custody

@@ -1,0 +1,40 @@
+= Bitcoin integration
+
+The goal of the
+https://dfinity.org/howitworks/direct-integration-with-bitcoin[Bitcoin integration]
+is to bridge the gap between the Internet Computer and the Bitcoin blockchain,
+enabling powerful Bitcoin smart contracts to run on the Internet Computer.
+
+With this integration, canisters on the Internet Computer will be able to receive,
+hold, and transfer Bitcoin on the Bitcoin network.
+The integration between the two blockchain networks will operate in a _trustless manner_, i.e.,
+without any additional parties being involved or additional trust assumptions being made.
+It is the most secure means of integrating two blockchain networks, and builds on advanced
+cryptography and engineering.
+
+Developers can already start the development of smart contracts against the Bitcoin API using
+the  _developer preview_, which includes
+https://github.com/dfinity/bitcoin-developer-preview/tree/master/examples[sample projects]
+in both Rust and Motoko.
+The developer preview can be run locally to explore the Bitcoin API.
+In the developer preview, the Bitcoin network is replaced with a single, locally-running
+https://bitcoin.org/en/full-node[bitcoind]
+node that can be fully controlled by the user for smart contract testing purposes.
+
+NOTE: The developer preview does not support any interaction with the Bitcoin mainnet or testnet.
+
+The main component of the integration is the *Bitcoin canister*.
+The source code plus documentation of its API can be found in this
+https://github.com/dfinity/bitcoin-developer-preview[GitHub repository].
+
+NOTE: The Bitcoin functionality will be offered on the Internet Computer in the
+form of _virtual canisters_, similar to the
+https://smartcontracts.org/docs/interface-spec/index.html#ic-management-canister[management canister],
+once the feature is generally available on the IC mainnet.
+The API may change slightly but is expected to remain essentially the same between
+the developer preview and mainnet release, so minor code adaptations in canister code may be required
+when switching to the mainnet release later.
+
+More information about the inner workings of the integration can be found
+on the
+https://wiki.internetcomputer.org/wiki/Bitcoin_integration[Bitcoin integration wiki page].

@@ -1,3 +1,347 @@
+= フロントエンドをカスタマイズする
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+
+シンプルな Dapp の作成、ビルド、デプロイの基本的な方法を理解しデフォルトのプロジェクトファイルとサンプルのフロントエンドにも慣れたところで、プロジェクトのフロントエンドのユーザーエクスペリエンスをカスタマイズするさまざまな方法を試してみたくなったのではないでしょうか。
+
+このチュートリアルでは、 React フレームワークを使って、デフォルトのサンプル Dapp の新しいフロントエンドを作成し、表示されるインターフェイスをカスタマイズするための基本的な修正方法を説明します。
+後のチュートリアルでは、ここで紹介したテクニックをさらに発展させていきますが、CSS 、HTML 、JavaScript 、React や他のフレームワークを使ってユーザーインターフェースを構築する方法をすでに知っている場合は、このチュートリアルを読み飛ばしても構いません。
+
+
+NOTE: このチュートリアルでは、React フレームワークを使用して、 Canister スマートコントラクトの Document Object Model (DOM) を管理する方法を説明します。
+React には独自のカスタム DOM 構文があるため、 JSX で書かれたフロントエンドコードをコンパイルするためには、 webpack の設定を変更する必要があります。React と JSX の使い方の学習については、 https://reactjs.org/[React のウェブサイト] の link:https://reactjs.org/docs/getting-started.html[Getting start] を参照してください。
+
+== 始める前に
+
+チュートリアルを始める前に、以下のことを確認してください：
+
+* フロントエンド開発のために `+node.js+` がインストールされており、プロジェクトで `+npm install+` を使用してパッケージをインストールすることができること。
+ローカルのオペレーティングシステムやパッケージマネージャに node をインストールする方法については、link:https://nodejs.org/en/[Node] のウェブサイトを参照してください。
+
+* {sdk-short-name} パッケージを link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[ダウンロード＆インストール] からダウンロードしてインストールする。
+
+* IDE として Visual Studio Code を使用している場合、 link:./../quickstart/local-quickstart{outfilesuffix}#install-vscode[言語編集プラグインのインストール] で説明されているように、{proglang} の Visual Studio Code プラグインがインストールされていること。
+
+* ローカルコンピュータ上で実行されている {sdk-short-name} プロセスをすべて停止していること。
+
+NOTE: このチュートリアルでは、 {sdk-short-name} のバージョン `+0.8.0+` 以降を使用する必要があります。
+
+このチュートリアルは約30分で終了します。
+
+== 新しいプロジェクト生成
+
+カスタムフロントエンド Dapp 用の新しいプロジェクトディレクトリを作成する：
+
+[arabic]
+. ローカルコンピューターでターミナルシェルを開きます（まだ開いていない場合）。
+. {IC} プロジェクトで使用しているフォルダがあれば、そのフォルダに変更します。
+. 以下のコマンドを実行して、ローカルに `+node.js+` がインストールされていることを確認します：
++
+[source,bash]
+----
+which node
+which npm
+----
++
+もし `+node.js+` がインストールされていない場合は、次のステップに進む前にダウンロードしてインストールする必要があります。
+お使いのローカル OS やパッケージマネージャーに合わせて node をインストールする方法については、 link:https://nodejs.org/en/[Node] のウェブサイトをご覧ください。
+. 次のコマンドを実行して、新しいプロジェクトを作成します：
++
+[source,bash]
+----
+dfx new custom_greeting
+----
++
+`+ dfx new custom_greeting+` コマンドは、新しい `+custom_greeting+` プロジェクトを作成します。
+. 以下のコマンドを実行して、プロジェクト・ディレクトリに移動します：
++
+[source,bash]
+----
+cd custom_greeting
+----
+
+== React フレームワークのインストール
+
+これまで React を使ったことがない場合は、フロントエンドのコードを編集する前に、link:https://reactjs.org/tutorial/tutorial.html[Reactイントロダクション] チュートリアルや link:https://reactjs.org/[React ウェブサイト] を調べてみるといいでしょう。
+
+必要なフレームワークモジュールをインストールする：
+
+. 以下のコマンドを実行して、 React モジュールをインストールします：
++
+[source,bash]
+----
+npm install --save react react-dom
+----
+. 以下のコマンドを実行して、必要な TypeScript 言語のコンパイラ・ローダをインストールします：
++
+[source,bash]
+----
+npm install --save-dev typescript ts-loader
+----
++
+NOTE: これらのモジュールをインストールする代わりに、デフォルトの `+package.json+` ファイルを編集して、プロジェクトの依存関係を追加することができます。
++
+....
+include::example$custom-frontend-package.json[]
+....
+
+== 初期設定の確認
+
+このチュートリアルで React を使用するための変更を行う前に、プロジェクトの `+dfx.json+` 設定ファイルにあるデフォルトのフロントエンド設定を確認しましょう。
+
+デフォルトの `+dfx.json+` 設定ファイルを確認するには以下の様にします：
+
+. 設定ファイル `+dfx.json+` をテキストエディターで開きます。
+. また、 `+canisters+` キーには、 `custom_greeting_assets` Canister の設定が含まれています。
++
+....
+{
+  "canisters": {
+    ...
+
+    "custom_greeting_assets": {
+      "dependencies": [
+        "custom_greeting"
+      ],
+      "frontend": {
+        "entrypoint": "src/custom_greeting_assets/src/index.html"
+      },
+      "source": [
+        "src/custom_greeting_assets/assets",
+        "dist/custom_greeting_assets/"
+      ],
+      "type": "assets"
+    }
+  }
+}
+....
++
+このセクションの設定を見てみましょう。
++
+--
+* プロジェクトのフロントエンドアセットは、独自の Canister にコンパイルされます。ここでは、 `+custom_greeting_assets+` という名前の Canister になります。
+* アセット Canister は、プロジェクトの メイン Canister にデフォルトで依存しています。
+
+* `+frontend.entrypoint+` は、 Dapp のエントリーポイントとして使用するファイル（ここでは、 `+index.html+` ファイル）のパスを指定します。
+たとえば、カスタムの  `first-page.html` ファイルのように、別のエントリーポイントがある場合には、この設定を変更します。
+
+* `+source+` の設定では、 `src` と `dist` のディレクトリのパスを指定します。 `src` 設定は、プロジェクトをビルドするアセット Canister に含まれる静的アセットに使用するディレクトリを指定します。
+カスケードスタイルシート (CSS ) や JavaScript のカスタムファイルがある場合は、このパスで指定されたフォルダにインクルードします。
+プロジェクトをビルドすると、 `+dist+` の設定で指定したディレクトリからプロジェクトのアセットが提供されます。
+
+* `+type+` の設定は、 `+custom_greeting_assets+` が、 https://github.com/dfinity/certified-assets[認証済みアセット Canister] を使用することを指定します。この Canister には、 {platform} 上で静的アセットをホストするために必要なものがすべて付属しています。
+--
++
+このチュートリアルでは、 React の JavaScript を `+index.jsx+` ファイルに追加しますが、そのためには `dfx.json` ファイルのデフォルト設定を変更する必要はありません。
+. 続けるには、 `+dfx.json+` ファイルを閉じてください。
+
+== デフォルトのフロントエンドファイルの確認
+
+このチュートリアルでは、カスタムフロントエンドを使って、デフォルトの  `+main.mo+` Canister を呼び出すことになっています。
+しかし、変更を加える前に、プロジェクトのデフォルトのフロントエンドファイルに何があるかを見てみましょう。
+
+デフォルトのデフォルトのフロントエンドファイルを確認するには以下のようにします：
+
+. テキストエディタで `+src/custom_greeting_assets/src/index.html+` ファイルを開きます。
++
+このテンプレートファイルは、 `dfx.json` ファイルの `+frontend.entrypoint+` 設定で指定された  Dapp のデフォルトのフロントエンドエントリーポイントとなります。
++
+このファイルは標準的な HTML で、 `+src/custom_greeting_assets/assets+` ディレクトリにある CSS ファイルと画像への参照を含んでいます。
+デフォルトの `+index.html+` ファイルには、 `+name+` 引数の入力フィールドとクリック可能なボタンを表示するための標準的な HTML 構文も含まれています。
++
+これは、 link:explore-templates{outfilesuffix}#default-frontend[デフォルトのフロントエンドを確認する] で見たのと同じデフォルトのフロントエンドです。
+. テキストエディターで、 `+src/custom_greeting_assets/src/index.js+` ファイルを開きます。
++
+....
+import { custom_greeting } from "../../declarations/custom_greeting";
+
+document.getElementById("clickMeBtn").addEventListener("click", async () => {
+  const name = document.getElementById("name").value.toString();
+  // custom_greetingアクターを動かしてgreetメソッドを呼び出す
+  const greeting = await custom_greeting.greet(name);
+
+  document.getElementById("greeting").innerText = greeting;
+});
+....
++
+--
+* `import` ステートメントは、 `”../declarations"` から `custom_greeting` Canister への呼び出しを可能にする Actor を指しています。
+* declarations はまだ作成されていませんが、それについてはまた改めて説明します。
+--
+. 続けるには `+index.js+` ファイルを閉じてください。
+
+== フロントエンドファイルの修正
+
+これで、デフォルトの Dapps に新しいフロントエンドを作成する準備が整いました。
+
+フロントエンドのファイルを準備するために：
+
+. テキストエディターで、 webpack の設定ファイル (`webpack.config.js`) を開きます。
+. フロントエンドのエントリーを変更して、デフォルトの `+index.html+` を `+index.jsx+` に置き換えます。
++
+[source,js]
+----
+entry: {
+  //frontend.entrypoint は、このビルドの HTML ファイルを指しているので
+  //拡張子を `.js` に変更する必要があります。
+  index: path.join(__dirname, asset_entry).replace(/\.html$/, ".jsx"),
+},
+----
+. 以下の `+module+` キーを `+plugins+` セクションの上に追加します：
++
+[source,json]
+----
+module: {
+  rules: [
+    { test: /\.(js|ts)x?$/, loader: "ts-loader" }
+  ]
+},
+----
++
+この設定は、プロジェクトが React JavaScript の `+index.jsx+` ファイルに `+ts-loader+` コンパイラーを使用することを可能にします。
+デフォルトの `webpack.config.js` ファイルにはコメントされたセクションがあり、これを修正して `module` キーを追加することができることに注意してください。
+. プロジェクトのルートディレクトリに、 `+tsconfig.json+` という名前の新規ファイルを作成します。
+. テキストエディターで `+tsconfig.json+` ファイルを開き、以下をコピーしてファイルに貼り付けます：
++
+[source,json]
+----
+include::example$sample-tsconfig.json[]
+----
+. 変更内容を保存し、 `+tsconfig.json+` ファイルを閉じて次に進みます。
+. デフォルトの `+src/custom_greeting_assets/src/index.js+` ファイルをテキストエディターで開き、2行目から9行目までを削除します。
+. 以下のサンプルコードをコピーして、 `+index.js+` ファイルに貼り付けてください：
++
+[source,react]
+----
+include::example$react-index.jsx[]
+----
+. 以下のコマンドを実行して、修正した `index.js` ファイルの名前を `index.jsx` に変更します：
++
+[source,bash]
+----
+mv src/custom_greeting_assets/src/index.js src/custom_greeting_assets/src/index.jsx
+----
+. デフォルトの `+src/custom_greeting_assets/src/index.html+` ファイルをテキストエディタで開き、 body の内容を `+<div id="app"></div>+` で置き換えます。
++
+例：
++
+[source,html]
+----
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>custom_greeting</title>
+    <base href="/">
+    <link type="text/css" rel="stylesheet" href="main.css" />
+ </head>
+ <body>
+    <div id="app"></div>
+ </body>
+</html>
+----
+
+== ローカル Canister 実行環境の起動
+
+`+custom_greeting+` プロジェクトをビルドする前に、ライブの {platform} か、開発環境でローカルに実行されている Canister 実行環境に接続する必要があります。
+
+実行環境をローカルで起動する：
+
+. ローカルコンピュータで新しいターミナルウィンドウまたはタブを開きます。
+. 必要に応じて、プロジェクトのルートディレクトリに移動します。
+. 次のコマンドを実行して、ローカルコンピュータ上でローカル Canister 実行環境を起動します：
++
+[source,bash]
+----
+dfx start --background
+----
++
+ローカル Canister 実行環境の起動操作が完了したら、次のステップに進みます。
+
+== Dapp の登録、ビルド、デプロイ
+
+ローカル Canister 実行環境に接続すると、ローカルで Dapp の登録、ビルド、デプロイを行うことができます。
+
+Dapp をローカルにデプロイする：
+
+. 必要に応じて、プロジェクトのルートディレクトリにいることを確認します。
+. 以下のコマンドを実行して、 Dapp の登録、ビルド、デプロイを行います：
++
+[source,bash]
+----
+dfx deploy
+----
++
+`+dfx deploy+` コマンドの出力には、実行した操作に関する情報が表示されます。
+
+== 新しいフロントエンドを確認する
+
+ブラウザで アセット Canister の Canister 識別子を入力すると、デフォルトの Dapp の新しいフロントエンドにアクセスできるようになりました。
+
+カスタム・フロントエンドを確認する：
+
+. ターミナルの新しいタブまたはウィンドウを開き、以下を実行します。
++
+[source,bash]
+----
+npm start
+----
+. ブラウザを開き、 http://localhost:8080 に移動します。
+
+. greeting を入力するプロンプトが表示されていることを確認します。
++
+例：
++
+image:react-greeting.png[Sample front-end]
+. 入力フィールドの *Name* を表示したいテキストに置き換えて、 *Get Greeting* をクリックすると、結果が表示されます。
++
+例：
++
+image:greeting-response.png[Greeting result]
+
+== フロントエンドを修正し、変更点をテストする
+
+フロントエンドを見た後に、いくつかの変更を加えたいと思うかもしれません。
+
+フロントエンドを変更するには：
+
+. テキストエディタで  `index.jsx`  ファイルを開き，そのスタイル設定を変更します。
+例えば、フォントファミリーを変更したり、入力フィールドにプレースホルダーを使用したりするには、以下のように変更します：
++
+[source,react]
+....
+include::example$react-revised-index.jsx[]
+....
+. ファイルを保存し、更新されたページをブラウザで表示してください。
++
+例：
++
+image:revised-greeting.png[Modified styles on your entry page]
+. 新しいメッセージを入力すると、新しい greeting 表示されます。例：
++
+image:modified-result.png[Modified greeting result]
+
+== ローカル Caninster の実行環境の停止
+
+Dapp のフロントエンドのテストが終わったら、ローカルの Canister 実行環境を停止して、バックグラウンドでの実行が続かないようにします。
+ローカルネットワーク停止するには：
+
+. webpack の開発サーバーが表示されているターミナルで、 Control-C を押して dev-server を中断します。
+
+. ネットワーク操作を表示する端末で Control-C を押して、ローカルネットワークの処理を中断する。
+
+. 以下のコマンドを実行して、ローカル Canister 実行環境を停止します：
++
+[source,bash]
+----
+dfx stop
+----
+
+
+////
 = Customize the front-end
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
@@ -342,3 +686,4 @@ To stop the local network:
 ----
 dfx stop
 ----
+////

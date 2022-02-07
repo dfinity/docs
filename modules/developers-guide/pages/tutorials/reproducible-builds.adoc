@@ -119,7 +119,7 @@ RUN curl --fail https://sh.rustup.rs -sSf \
     rustup target add wasm32-unknown-unknown
 
 # Install dfx; the version is picked up from the DFX_VERSION environment variable
-ENV DFX_VERSION=0.9.0
+ENV DFX_VERSION=0.8.4
 RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 COPY . /canister
@@ -231,7 +231,7 @@ RUN curl --fail https://sh.rustup.rs -sSf \
     rustup target add wasm32-unknown-unknown
 
 # Install dfx; the version is picked up the DFX_VERSION environment variable
-ENV DFX_VERSION=0.9.0
+ENV DFX_VERSION=0.8.4
 RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 RUN apt -yqq install --no-install-recommends reprotest disorderfs faketime sudo wabt

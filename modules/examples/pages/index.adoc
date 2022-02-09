@@ -45,6 +45,7 @@ The intermediate examples demonstrate how to use some of the basic concepts in c
 - https://github.com/dfinity/examples/tree/master/motoko/quicksort[quicksort] -- sorting an array, via Quick Sort, in Motoko.
 - https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[simple-to-do] -- CRUD-like demo service, sans a front end; see also: phone-book and superheroes.
 - https://github.com/dfinity/examples/tree/master/motoko/calc[calc] -- more advanced version of counter demo.
+- https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Ledger Transfer] -- a canister that transfers ICP to its users.
 
 === Minimal front end.
 
@@ -88,6 +89,7 @@ Large examples contributed by the community and not necessarily up-to-date:
 This Rust example is similar to the intermediate Motoko pub-sub example.
 
 - https://github.com/dfinity/examples/tree/master/rust/pub-sub[Pub Sub]
+- https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Tokens Transfer] -- demonstrates how to make ledger transfers and query account balance from a Rust canister.
 
 [[rust-videos]]
 === Videos

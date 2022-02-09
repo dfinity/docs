@@ -3,7 +3,7 @@
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
-:release: 0.9.0
+:release: 0.8.4
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 The {sdk-long-name} enables developers to develop applications to run on the {IC}.

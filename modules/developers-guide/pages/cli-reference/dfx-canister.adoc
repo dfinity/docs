@@ -781,9 +781,7 @@ You can use `+raw+` as the argument type if you want to pass raw bytes.
 
 Use the `+dfx canister sign+` command to create a signed `message.json` file using the principal associated with the identity you created using the Privacy Enhanced Mail (PEM) file by running a command similar to the following:
 
-`+dfx canister --no-wallet --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’+`
-
-Currently, the `+--no-wallet+` command must be used to execute the command using the user identity instead of the cycles wallet canister identifier. 
+`+dfx canister --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’+`
 
 This command illustrates how to creates a `+message.json+` file to create neurons on the {platform} specified by the `+ic+` alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
 

@@ -139,7 +139,7 @@
 ** Overview of the NNS app
 *** xref:token-holders:nns-app-quickstart.adoc[NNS app quick start]
 
-* Additional Resources
+* Additional resources
 ** Developer videos
 *** link:https://www.youtube.com/watch?v=oxEr8UzGeBo&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=11&ab_channel=DFINITY[Internet Identity^]
 *** link:https://www.youtube.com/watch?v=4eSceDOS-Ms&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=21&ab_channel=DFINITY[Motoko^]

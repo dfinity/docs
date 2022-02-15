@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc maxdepth="1"?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Command-line reference</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The DFINITY command-line execution environment (<literal>dfx</literal>) is the primary tool for creating, deploying, and managing the applications you develop for the Internet Computer platform.</simpara>
+<simpara>You can use the <literal>dfx</literal> parent command with different flags and subcommands to perform different types of operations.</simpara>
+<simpara>The basic syntax for running <literal>dfx</literal> commands is:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx [option] [subcommand] [flag]</programlisting>
+<simpara>Depending on the subcommand, the options and flags you specify might apply to the parent command or to a specific subcommand.
+For example, the flags for enabling or suppressing verbose logging are specified for the <literal>dfx</literal> parent command, then applied to any subcommands.</simpara>
+<simpara>When you have the {sdk-short-name} installed, you can use the following commands to specify the operation you want to perform.
+For reference information and examples that illustrate using these commands, select an appropriate command.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-parent.xml">dfx</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-bootstrap.xml">dfx bootstrap</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-build.xml">dfx build</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-cache.xml">dfx cache</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-canister.xml">dfx canister</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-config.xml">dfx config</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-deploy.xml">dfx deploy</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-help.xml">dfx help</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-identity.xml">dfx identity</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-ledger.xml">dfx ledger</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-new.xml">dfx new</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-ping.xml">dfx ping</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-replica.xml">dfx replica</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-start.xml">dfx start</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-stop.xml">dfx stop</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-upgrade.xml">dfx upgrade</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="cli-reference/dfx-wallet.xml">dfx wallet</link></simpara>
+</listitem>
+</itemizedlist>
+</article>

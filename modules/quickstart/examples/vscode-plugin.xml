@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Install the language editor plug-in</title>
+<date>2021-05-09</date>
+</info>
+<section xml:id="install-vscode">
+<title>Install the language editor plug-in</title>
+<simpara>If you are planning to write a program using {proglang} and use Visual Studio Code (VSCode) as your editor, you can install the {proglang} language client plug-in for VSCode.
+The {proglang} plug-in provides syntax highlighting, type information, and auto-completion features.</simpara>
+<simpara>To install the plug-in:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Download and install <link xl:href="https://code.visualstudio.com/download">Visual Studio Code</link>, if it not already installed on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Click View, then select <emphasis role="strong">Extensions</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Type <literal>motoko</literal> in the Search field.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">Motoko language support</emphasis> published by DFINITY Foundation, then click <emphasis role="strong">Install</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+<simpara>If your program has dependencies, you might also want to install the Vessel package manager for {proglang}.
+For instructions, see the <link xl:href="https://github.com/kritzcreek/vessel">ReadMe</link>.
+To download the latest release, go to the <link xl:href="https://github.com/kritzcreek/vessel/releases">vessel</link> GitHub repository.</simpara>
+</section>
+</article>

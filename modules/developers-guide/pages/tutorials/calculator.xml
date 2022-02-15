@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Use integers in calculator functions</title>
+<date>2021-08-05</date>
+</info>
+<simpara>In this tutorial, you are going to write a simple calculator program that creates a single actor with several public entry-point functions to perform basic arithmetic operations.</simpara>
+<simpara>For this tutorial, the actor is named <literal>Calc</literal>.
+The program uses the <literal>cell</literal> variable to contain an integer number that represents the current result of a calculator operation.</simpara>
+<simpara>This program supports the following function calls:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>add</literal> function call accepts input and performs addition.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>sub</literal> function call accepts input and performs subtraction.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>mul</literal> function call accepts input and performs multiplication.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>div</literal> function call accepts input and performs division.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>clearall</literal> function clears the <literal>cell</literal> value stored as the result of previous operations, resetting the <literal>cell</literal> value to zero.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The <literal>div</literal> function also includes code to prevent the program from attempting to divide by zero.</simpara>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before starting the tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local
+computer.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial takes approximately 20 minutes to complete.</simpara>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project for this tutorial:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already
+have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new calc</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd calc</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_configuration">
+<title>Modify the default configuration</title>
+<simpara>For this tutorial, let&#8217;s modify the default <literal>dfx.json</literal> configuration file to use a more specific name for its main program.</simpara>
+<simpara>To modify the default <literal>dfx.json</literal> configuration file:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> configuration file in a text editor.</simpara>
+</listitem>
+<listitem>
+<simpara>Change the <literal>main</literal> key setting from the default <literal>main.mo</literal> program name to <literal>calc_main.mo</literal>.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">"main": "src/calc/calc_main.mo",</programlisting>
+<simpara>For this tutorial, changing the name of the source file from <literal>main.mo</literal> to <literal>calc_main.mo</literal> simply illustrates how the setting in the <literal>dfx.json</literal> configuration file determines the source file to be compiled.</simpara>
+<simpara>In a more complex application, you might have multiple source files instead of a single <literal>main</literal> program file.
+More complex applications might also have specific dependencies between multiple source files that you need to manage using settings in the <literal>dfx.json</literal> configuration file.
+In a scenario like that—with multiple canisters and programs defined in your <literal>dfx.json</literal> file—having multiple files all named <literal>main.mo</literal> might make navigating your workspace more difficult.
+The name you choose for each program isn&#8217;t significant, but it is important that the name you set in the <literal>dfx.json</literal> file matches the name of your program in the file system.</simpara>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_program">
+<title>Modify the default program</title>
+<simpara>For this tutorial, you need to replace the default program with a program that performs basic arithmetic operations.</simpara>
+<simpara>To replace the default program:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy the template <literal>main.mo</literal> file to create a new file named <literal>calc_main.mo</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cp src/calc/main.mo src/calc/calc_main.mo</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the <literal>src/calc/calc_main.mo</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the <literal>calc_main.mo</literal> file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in calculator.adoc - include::example$calc_main.mo[]</programlisting>
+<simpara>You might notice that this sample code uses integer (<literal>Int</literal>) data types, enabling you to use positive or negative numbers.
+If you wanted to restrict the functions in this calculator code to only use positive numbers, you could change the data type to only allow natural (<literal>Nat</literal>) data.</simpara>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_start_the_local_network">
+<title>Start the local network</title>
+<simpara>Before you can build the <literal>calc</literal> project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>Starting the network locally requires a <literal>dfx.json</literal> file, so you should be sure you are in your project&#8217;s root directory.
+For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You should now have <emphasis role="strong">two terminals</emphasis> open.</simpara>
+</listitem>
+<listitem>
+<simpara>You should have the <emphasis role="strong">project directory</emphasis> as your <emphasis role="strong">current working directory</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start</programlisting>
+<simpara>After you start the local network, the terminal displays messages about network operations.</simpara>
+</listitem>
+<listitem>
+<simpara>Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_build_and_deploy_the_application">
+<title>Register, build, and deploy the application</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.</simpara>
+<simpara>To deploy the application locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy your application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy</programlisting>
+<simpara>The <literal>dfx deploy</literal> command output displays information about the operations it performs.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_verify_calculator_functions_on_the_canister">
+<title>Verify calculator functions on the canister</title>
+<simpara>You now have a program deployed as a <emphasis role="strong">canister</emphasis> on your local Internet Computer network.
+You can test the program by using <literal>dfx canister call</literal> commands.</simpara>
+<simpara>To test the program you have deployed:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Use the <literal>dfx canister call</literal> command to call the <literal>calc</literal> canister <literal>add</literal> function and pass it the input argument <literal>10</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call calc add '(10)'</programlisting>
+<simpara>When you pass an argument enclosed by the single quotation marks and parentheses,the interface description language (IDL) parses the argument type, so you don&#8217;t need to specify the argument type manually.</simpara>
+<simpara>Verify that the command returns the value expected for the <literal>add</literal> function.
+For example, the program displays output similar to the following:</simpara>
+<literallayout class="monospaced">(10)</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>mul</literal> function and pass it the input argument <literal>3</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call calc mul '(3)'</programlisting>
+<simpara>Verify that the command returns the value expected for the <literal>mul</literal> function.
+For example, the program displays output similar to the following:</simpara>
+<literallayout class="monospaced">(30)</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>sub</literal> function and pass it the input argument <literal>5</literal> of type <literal>number</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call calc sub '(5)'</programlisting>
+<simpara>Verify that the command returns the value expected for the <literal>sub</literal> function.
+For example, the program displays output similar to the following:</simpara>
+<literallayout class="monospaced">(25)</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>div</literal> function and pass it the input argument <literal>5</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call calc div '(5)'</programlisting>
+<simpara>Verify that the command returns the value expected for the <literal>div</literal> function.
+For example, the program displays output similar to the following:</simpara>
+<literallayout class="monospaced">(opt 5)</literallayout>
+<simpara>You might notice that the <literal>div</literal> function returns an optional result.
+The program makes the result optional to enable the <literal>div</literal> function to return <literal>null</literal> in the case of a division-by-zero error.</simpara>
+<simpara>Because the cell variable in this program is an integer, you can also call its functions and specify negative input values.
+For example, you might run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call calc mul '(-4)'</programlisting>
+<simpara>which returns:</simpara>
+<literallayout class="monospaced">(-20)</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>clearall</literal> function and verify it resets the <literal>cell</literal> value to zero:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call calc clearall</programlisting>
+<simpara>For example, the program displays output similar to the following:</simpara>
+<literallayout class="monospaced">(0)</literallayout>
+</listitem>
+</orderedlist>
+<simpara>Unresolved directive in calculator.adoc - include::example$candid-ui.adoc[]</simpara>
+<simpara>+
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="candid-calc.png"/>
+</imageobject>
+<textobject><phrase>Calculator functions</phrase></textobject>
+</inlinemediaobject></simpara>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

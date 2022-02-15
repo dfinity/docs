@@ -1,0 +1,83 @@
+---
+date: 2021-08-05
+title: Highlights of what's new in 0.6.22
+---
+
+The 0.6.22 release consists of changes to support new features that are
+not yet complete, including fixes and updates to DFX commands, Motoko,
+the Motoko base library, and Candid.
+
+# New features and capabilities {#_new_features_and_capabilities}
+
+The most significant new features and capabilities include updates in
+the following functional areas:
+
+-   [DFX](#_dfx)
+
+-   [Sample applications](#Apps)
+
+-   [Candid](#_candid)
+
+-   [Motoko](#_motoko)
+
+## DFX {#_dfx}
+
+-   The `dfx canister call` command can now pass a randomly-generated
+    value to a canister method when an argument is required but not
+    provided.
+
+-   The `dfx canister call` command can take canister identifiers for
+    local canisters even if the canister is installed on a remote
+    network.
+
+-   The `dfx replica` command has been fixed so that it does not attempt
+    to write the replica `pid` to a nonexistent directory.
+
+-   The default `webpack.config.js` file used when you create new
+    projects has been modified to comment out the configuration to
+    enable TypeScript.
+
+    Previously, the `webpack.config.js` file configured `ts-loader` to
+    process files with the `.js` file extension, which could lead to
+    errors. This configuration is now disabled by default and the
+    commented-out configuration only processes `.ts`, `.tsx`, and `.jsx`
+    files through `ts-loader`.
+
+## Sample applications {#Apps}
+
+-   There have been updates, improvements, and new sample applications
+    added to the
+    [examples](https://github.com/dfinity/examples/tree/master/motoko)
+    repository.
+
+    All of Motoko sample apps in the
+    [examples](https://github.com/dfinity/examples/tree/master/motoko)
+    repository have been updated to work with the latest release of the
+    {sdk-short-name}.
+
+    There are also new sample apps to illustrate using arrays
+    ([Quicksort](https://github.com/dfinity/examples/tree/master/motoko/quicksort))
+    and building create/read/update/delete (CRUD) operations for a web
+    application
+    [Superheroes](https://github.com/dfinity/examples/tree/master/motoko/superheroes).
+
+-   The [LinkedUp](https://github.com/dfinity/linkedup) sample
+    application has been updated to work with the latest release of
+    Motoko and the SDK.
+
+## Candid {#_candid}
+
+-   [Candid
+    changelog](https://github.com/dfinity/candid/blob/master/Changelog.md)
+
+## Motoko {#_motoko}
+
+-   The Motoko compiler now reports errors and warnings with an
+    additional error code.
+
+    You can use the error code to look up a more detailed description
+    for a given error by passing the `--explain` flag with a code to the
+    compiler.
+
+    Note that detailed descriptions are not yet available for most error
+    codes and will be added incrementally in upcoming releases.

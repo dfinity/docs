@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx cache</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx cache</literal> command with flags and subcommands to manage the <literal>dfx</literal> version cache.</simpara>
+<simpara>The basic syntax for running <literal>dfx cache</literal> commands is:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache [subcommand] [flag]</programlisting>
+<simpara>Depending on the <literal>dfx cache</literal> subcommand you specify, additional arguments, options, and flags might apply.
+For reference information and examples that illustrate using <literal>dfx cache</literal> commands, select an appropriate command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Command</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="delete"><literal>delete</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Deletes the specified version of <literal>dfx</literal> from the local cache.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information message for a specified subcommand.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="install"><literal>install</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Installs the specified version of <literal>dfx</literal> from the local cache.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_cache_list"><literal>list</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Lists the versions of <literal>dfx</literal> currently installed and used in current projects.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_cache_show"><literal>show</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Show the path of the cache used by this version of the <literal>dfx</literal> executable.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<simpara>To view usage information for a specific subcommand, specify the subcommand and the <literal>--help</literal> flag.
+For example, to see usage information for <literal>dfx cache delete</literal>, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache delete --help</programlisting>
+<section xml:id="delete">
+<title>dfx cache delete</title>
+<simpara>Use the <literal>dfx cache delete</literal> command to delete a specified version of <literal>dfx</literal> from the version cache on the local computer.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache delete [version] [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx cache delete</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You can specify the following argument for the <literal>dfx cache delete</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Command</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the version of <literal>dfx</literal> you to delete from the local cache.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx cache delete</literal> command to permanently delete versions of <literal>dfx</literal>  that you no longer want to use.
+For example, you can run the following command to delete <literal>dfx</literal> version <literal>0.6.2</literal>:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache delete 0.6.2</programlisting>
+</section>
+</section>
+<section xml:id="install">
+<title>dfx cache install</title>
+<simpara>Use the <literal>dfx cache install</literal> command to install <literal>dfx</literal> using the version currently found in the <literal>dfx</literal> cache.</simpara>
+<section xml:id="_basic_usage_2">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache install [flag]</programlisting>
+</section>
+<section xml:id="_flags_2">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx cache install</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_2">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx cache install</literal> command to force the installation of <literal>dfx</literal> from the version in the cache.
+For example, you can run the following command to install <literal>dfx</literal>:</simpara>
+<simpara>+</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache install</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_cache_list">
+<title>dfx cache list</title>
+<simpara>Use the <literal>dfx cache list</literal> command to list the <literal>dfx</literal> versions you have currently installed and used in projects.</simpara>
+<simpara>If you have multiple versions of <literal>dfx</literal> installed, the cache list displays an asterisk (*) to indicate the currently active version.</simpara>
+<section xml:id="_basic_usage_3">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache list [flag]</programlisting>
+</section>
+<section xml:id="_flags_3">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx cache list</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_3">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx cache list</literal> command to list the <literal>dfx</literal> versions you have currently installed and used in projects.
+For example, you can run the following command to list versions of <literal>dfx</literal> found in the cache:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache list</programlisting>
+<simpara>This command displays the list of <literal>dfx</literal> versions found similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">0.6.4 *
+0.6.3
+0.6.0</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_cache_show">
+<title>dfx cache show</title>
+<simpara>Use the <literal>dfx cache show</literal> command to display the full path to the cache used by the <literal>dfx</literal> version you are currently using.</simpara>
+<section xml:id="_basic_usage_4">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache show [flag]</programlisting>
+</section>
+<section xml:id="_flags_4">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx cache show</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_4">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx cache show</literal> command to display the path to the cache used by the <literal>dfx</literal> version you are currently using:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx cache show</programlisting>
+<simpara>This command displays the path to the cache used by the <literal>dfx</literal> version you are currently using:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">/Users/pubs/.cache/dfinity/versions/0.6.4</programlisting>
+</section>
+</section>
+</article>

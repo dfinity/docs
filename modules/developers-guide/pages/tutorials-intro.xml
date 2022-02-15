@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Tutorials</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The <link xl:href="../quickstart/quickstart-intro.xml">Quick start</link> provided a simplified introduction to the basic work flow for creating and deploying a new project without exploring the contents of the project directory or sample code.</simpara>
+<simpara>Next, we’ll explore writing a few simple programs to give you hands-on experience creating programs that run on the {IC}.</simpara>
+<note>
+<simpara>Most of these tutorials illustrate how to write programs using the {proglang} programming language.
+For additional examples of programs written in other languages, see the {company-id} <link xl:href="https://github.com/dfinity/examples">examples</link> repository.</simpara>
+</note>
+<simpara>The following tutorials introduce the basics for writing programs that run on the {IC}:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="tutorials/explore-templates.xml">Explore the default project</link> takes a closer look at the work flow for creating projects by exploring the default files and folders that are added to your workspace when you create a new project.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/define-an-actor.xml">Query using an actor</link> highlights how to replace the typical <literal>print</literal> function usually defined in a "Hello, World!" program by defining an actor (object) with a <literal>hello</literal> function.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/hello-location.xml">Pass text arguments</link> introduces different ways you can pass arguments to a function using the command-line in a terminal shell.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/counter-tutorial.xml">Increment a natural number</link> guides you through the process of writing a program that creates an actor with functions to increment and return the value of a counter.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/calculator.xml">Use integers in calculator functions</link> shows you how to write a simple calculator program for more practice working with {proglang} and to learn more about how you can customize your project environment.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/phonebook.xml">Import library modules</link> illustrates how to import and use a few basic {proglang} base library functions for working with key-value pairs in a list.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/multiple-actors.xml">Use multiple actors</link> describes how to include multiple unrelated actors in a single project to illustrate how you can compile multiple canisters for the same project.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/custom-frontend.xml">Customize the front-end</link> illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed.
+If you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/my-contacts.xml">Add a stylesheet</link> illustrates how to add a stylesheet when you use React to create a new front-end for your project.
+If you already know how to add stylesheets to React, you can skip this tutorial.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/intercanister-calls.xml">Make inter-canister calls</link> illustrates how to make simple calls to functions defined in one canister from another canister in the same project.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/scalability-cancan.xml">Create scalable apps</link> describes using multiple canisters to create applications that scale.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/access-control.xml">Add access control with identities</link> describes how to create and switch between multiple user identities.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="tutorials/simple-cycles.xml">Accept cycles from a wallet</link> illustrates how to accept cycles sent from the default wallet canister.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Additional tutorials covering more advanced programs and more detailed examples of how to use the basic building blocks are available in the <link xl:href="https://github.com/dfinity/examples">examples</link> repository and <link xl:href="../language-guide/motoko.xml"><emphasis>{proglang} Programming Language Guide</emphasis></link>.</simpara>
+</article>

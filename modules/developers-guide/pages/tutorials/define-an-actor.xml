@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Query using an actor</title>
+<date>2021-08-05</date>
+</info>
+<simpara>In the <link xl:href="../../quickstart/quickstart-intro.xml">Quick start</link>, you had your first look at a simple program for the Internet Computer involving an actor object and asynchronous messaging.
+As the next step in learning to write programs that take advantage of actor-based messaging, this tutorial illustrates how to modify a traditional <literal>Hello, World!</literal> program to define an actor, then deploy and test your program on a local network.</simpara>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before starting the tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local computer.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial takes approximately 20 minutes to complete.</simpara>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project for this tutorial:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already
+have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new actor_hello</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd actor_hello</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_configuration">
+<title>Modify the default configuration</title>
+<simpara>In the <link xl:href="explore-templates.xml">Exploring the default project</link> tutorial, you saw that creating a new project adds a default <literal>dfx.json</literal> configuration file to your project directory.
+In this tutorial, you need to modify a few of the default settings to reflect your project.</simpara>
+<simpara>To modify the <literal>dfx.json</literal> configuration file:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> configuration file in a text editor.</simpara>
+</listitem>
+<listitem>
+<simpara>Check the default settings for the <literal>actor_hello</literal> project.</simpara>
+</listitem>
+<listitem>
+<simpara>Notice that the names and paths to source and output files all use the <literal>actor_hello</literal> project name.</simpara>
+<simpara>For example, the default canister name is <literal>actor_hello</literal> and the default path to the main program file is <literal>src/actor_hello/main.mo</literal>.</simpara>
+<simpara>You can rename any of these files or directories.
+If you make any changes, however, be sure that the names you use for your files and directories on the file system match the names you specify in the <literal>dfx.json</literal> configuration file.
+If you plan to use the default directory and file names, no changes are necessary.</simpara>
+</listitem>
+<listitem>
+<simpara>Remove all of the <literal>actor_hello_assets</literal> configuration settings from the file.</simpara>
+<simpara>The sample program for this tutorial doesn&#8217;t use any front-end assets, so you can remove those settings from the configuration file.</simpara>
+<simpara>For example, the configuration file looks like this after you remove the <literal>actor_hello_assets</literal> section:</simpara>
+<literallayout class="monospaced">Unresolved directive in define-an-actor.adoc - include::example$define-actor-dfx.json[]</literallayout>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_program">
+<title>Modify the default program</title>
+<simpara>In the <link xl:href="explore-templates.xml">Exploring the default project</link> tutorial, you saw that creating a new project creates a default <literal>src</literal> directory with a template <literal>main.mo</literal> file.
+In this tutorial, you modify the template code to create a simple "Hello, World!" program that uses an actor.</simpara>
+<simpara>To modify the default template source code:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Change to the source code directory for your project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd src/actor_hello</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the template <literal>main.mo</literal> file in a text editor and delete the existing content.</simpara>
+<simpara>The next step is to write a program that prints a statement like the traditional "Hello, World!" sample program.
+To compile the program for the Internet Computer, however, your program must include an <literal>actor</literal> object with a <literal>public</literal> function.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the <literal>main.mo</literal> file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in define-an-actor.adoc - include::example$actor_hello.mo[]</programlisting>
+<simpara>Let&#8217;s take a closer look at this simple program:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The program imports a <literal>Debug</literal> module to provide the <literal>print</literal> functionality.</simpara>
+</listitem>
+<listitem>
+<simpara>The program uses the <literal>public query func</literal> to define a query method because, in this case, the <literal>actor_hello</literal> program doesn&#8217;t make any changes to the state of the canister or perform any operations that would update the data you are accessing.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For more information about using a query call, see <link xl:href="../concepts/canisters-code.xml#query-update">query calls</link> in <link xl:href="../concepts/canisters-code.xml#canister-state">Canisters include both program and state</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the <literal>main.mo</literal> file.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_build_the_program_with_a_local_identifier">
+<title>Build the program with a local identifier</title>
+<simpara>You are probably only going to use this simple program for some local testing.
+Therefore, there&#8217;s no need to reserve a unique canister identifier on the Internet Computer network to hold the compiled output for the program.</simpara>
+<simpara>In this scenario, you can compile the program without connecting to an Internet Computer network at all.
+Instead, the <literal>dfx build</literal> command creates a local, hard-coded canister identifier for you to use.</simpara>
+<simpara>You can use this local identifier while you are testing your program or any time you want to compile your program without starting the Internet Computer replica process locally or connecting to a replica on a remote subnet.</simpara>
+<simpara>To build the program executable:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Navigate back to the root of your project directory.</simpara>
+</listitem>
+<listitem>
+<simpara>Build the program with a locally-defined identifier by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx build --check</programlisting>
+<simpara>The <literal>--check</literal> option enables you to build a project locally to verify that it compiles and to inspect the files produced.
+Because the <literal>dfx build --check</literal> command only generates a temporary identifier, you should see output similar to the following:</simpara>
+<literallayout class="monospaced">Building canisters to check they build ok. Canister IDs might be hard coded.
+Building canisters...</literallayout>
+<simpara>If the program compiles successfully, you can inspect the output in the default <literal>.dfx/local/canisters</literal> directory and <literal>.dfx/local/canisters/actor_hello/</literal> subdirectory.</simpara>
+<simpara>For example, you might use the <literal>tree</literal> command to review the files created:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">tree .dfx/local/canisters</programlisting>
+<simpara>The command displays output similar to the following</simpara>
+</listitem>
+</orderedlist>
+<literallayout class="monospaced">.dfx/local/canisters
+├── actor_hello
+│   ├── actor_hello.d.ts
+│   ├── actor_hello.did
+│   ├── actor_hello.did.js
+│   ├── actor_hello.js
+│   └── actor_hello.wasm
+└── idl
+
+2 directories, 5 files</literallayout>
+</section>
+<section xml:id="_deploy_the_project">
+<title>Deploy the project</title>
+<simpara>You cannot deploy the output from the <literal>dfx build --check</literal> command to any Internet Computer network.
+If you wanted to deploy this project, you would need to do the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Connect to the Internet Computer network.</simpara>
+</listitem>
+<listitem>
+<simpara>Register a network-specific canister identifier.</simpara>
+</listitem>
+<listitem>
+<simpara>Deploy the canister.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Let&#8217;s consider these steps in a bit more detail.
+Before you can deploy this project, you must connect to the Internet Computer network either running <emphasis role="strong">locally</emphasis> in your development environment or running <emphasis role="strong">remotely</emphasis> on a subnet that you can access.
+After you connect to a local or remote network, you must also generate a unique, <emphasis role="strong">network-specific</emphasis> canister identifier to replace your locally-defined identifier.
+To see the steps involved for yourself, let&#8217;s deploy the project locally.</simpara>
+<simpara>To deploy this project locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal and navigate to your project directory, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --background</programlisting>
+<simpara>For this tutorial, you can use the <literal>--background</literal> option to start the Internet Computer network as background processes.
+With this option, you can continue to the next step without opening another terminal shell on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Generate a new canister identifier for your project on the local Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create actor_hello</programlisting>
+<simpara>You should see output similar to the following:</simpara>
+<literallayout class="monospaced">Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "pubs-id" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Creating canister "actor_hello"...
+"actor_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"</literallayout>
+<simpara>The <literal>dfx canister create</literal> command also stores the network-specific canister identifier in a <literal>canister_ids.json</literal> file in the <literal>.dfx/local</literal> directory.</simpara>
+<simpara>For example:</simpara>
+<literallayout class="monospaced">{
+  "actor_hello": {
+    "local": "rrkah-fqaaa-aaaaa-aaaaq-cai"
+  }
+}</literallayout>
+</listitem>
+<listitem>
+<simpara>Deploy your <literal>actor_hello</literal> project on the local network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister install actor_hello</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Installing code for canister actor_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_query_the_canister">
+<title>Query the canister</title>
+<simpara>You now have a program deployed as a <emphasis role="strong">canister</emphasis> on your local Internet Computer network and can test your program by using the <literal>dfx canister call</literal> command.</simpara>
+<simpara>To test the program you have deployed on the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Use <literal>dfx canister call</literal> to call the <literal>hello</literal> function by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call actor_hello hello</programlisting>
+</listitem>
+<listitem>
+<simpara>Verify that the command returns the text specified for the <literal>hello</literal> function along with a checkpoint message in the terminal running the local network process.</simpara>
+<simpara>For example, the program displays "Hello, World from DFINITY" in output similar to the following:</simpara>
+<literallayout class="monospaced">[Canister rrkah-fqaaa-aaaaa-aaaaq-cai] Hello, World from DFINITY</literallayout>
+<simpara>Note that if you are running the Internet Computer network in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays network activity.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

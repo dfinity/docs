@@ -1,0 +1,87 @@
+---
+date: 2021-08-05
+title: Quick start
+---
+
+This {sdk-long-name} provides tools, sample code, and documentation to
+help you create programs to run on the Internet Computer. The *Quick
+Start* tutorial assumes that you are installing the {sdk-short-name} for
+the first time and illustrates how to create, build, and deploy your
+first application.
+
+To keep the instructions simple and focused on the task at hand, the
+*Quick start* is split into two scenarios:
+
+-   In the [Local development](local-quickstart.xml) scenario, you
+    create and deploy the sample application with Internet Computer
+    processes that run *locally to simulate connecting to the network*.
+
+-   In the [Network deployment](network-quickstart.xml) scenario, you
+    create the sample application locally but *connect to the Internet
+    Computer running remotely* on computers in an external data center.
+
+If you need some help setting up your development environment---for
+example, if you aren't sure how to open a new terminal, install
+packages, or create folders and navigate between directories---you might
+want to start with the [Preliminary steps for newcomers](newcomers.xml).
+
+# Default application {#default-app}
+
+Both scenarios build and deploy a simple Hello application that has just
+one function---called `greet`. The `greet` function accepts one text
+argument and returns the result with a greeting similar to
+**Hello, everyone!** in a terminal if you run the application using the
+command-line or in an alert pop-up window if you access the application
+in a browser.
+
+The default application consists of back-end code written in Motoko, a
+programming language specifically designed for interacting with the
+Internet Computer, and a simple webpack-based front-end.
+
+# Getting ICP tokens and cycles {#_getting_icp_tokens_and_cycles}
+
+As discussed in [Tokens and
+cycles](../developers-guide/concepts/tokens-cycles.xml), **cycles** are
+required to power canister operations for applications running on the
+Internet Computer. As a developer, you have a few different options for
+acquiring and managing cycles for your applications:
+
+-   Purchase or claim ICP tokens through an exchange that lists ICP
+    tokens available for trade, then convert your tokens to cycles using
+    the [{sdk-short-name} command-line
+    interface](network-quickstart.xml#convert-tokens) or the [Network
+    Nervous System application](https://nns.ic0.app/#/auth).
+
+-   Register for cycles by signing up for an account or [cycles
+    wallet](../developers-guide/default-wallet.xml#wallet-create-wallets)
+    through a provider offering those services.
+
+-   Coordinate with other developers to
+    [send](../developers-guide/default-wallet.xml#wallet-send) and
+    [receive](../developers-guide/default-wallet.xml#wallet-receive)
+    cycles directly to and from canisters through a cycles wallet or
+    another application.
+
+Because only canisters require and consume cycles---to perform
+operations and to pay for the resources they use---cycles are always
+transferred between canisters and not to users or developers. You can
+manage the distribution of cycles, however, through a cycles wallet
+created for you or using a similar application.
+
+# Want to learn more? {#_want_to_learn_more}
+
+If you are looking for more information before getting started or want
+to view a demonstration of how to deploy before you try it for yourself,
+check out the following related resources:
+
+-   [How you can use ICP tokens
+    (overview)](../developers-guide/concepts/tokens-cycles.xml#using-tokens)
+
+-   [Building on the Internet Computer: Fundamentals
+    (video)](https://www.youtube.com/watch?v=jduSMHxdYD8)
+
+-   [What is the DFINITY Canister SDK
+    (video)](https://www.youtube.com/watch?v=60uHQfoA8Dk)
+
+-   [Deploying your first application
+    (video)](https://www.youtube.com/watch?v=yqIoiyuGYNA)

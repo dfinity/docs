@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx ledger</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx ledger</literal> command to interact with the ledger canister.</simpara>
+<simpara>This command can be used to make ICP utlity token transactions from one   to another, or top up canisters with cycles from ICP.</simpara>
+<simpara>The basic syntax for running <literal>dfx ledger</literal> commands is:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger [options] [subcommand]</programlisting>
+<simpara>Depending on the <literal>dfx ledger</literal> subcommand you specify, additional arguments, options, and flags might apply. For reference information and examples that illustrate using <literal>dfx ledger</literal> commands, select an appropriate command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Command</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="account-id"><literal>account-id</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Prints the selected identity&#8217;s Account Identifier.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="balance"><literal>balance</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Prints the account balance of the user.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="create-canister"><literal>create-canister</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Creates a canister from ICP.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information message for a specified subcommand.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="notify"><literal>notify</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Notifies the ledger when there is a send transaction to the cycles minting canister.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="top-up"><literal>top-up</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Tops up a canister with cycles minted from ICP.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="transfer"><literal>transfer</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Transfers ICP from the user to the destination Account Identifier.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<simpara>To view usage information for a specific subcommand, specify the subcommand and the <literal>--help</literal> flag.
+For example, to see usage information for <literal>dfx ledger transfer</literal>, you can run the following command:</simpara>
+<simpara><literal>dfx ledger transfer --help</literal></simpara>
+<section xml:id="account-id">
+<title>dfx ledger account-id</title>
+<simpara>Use the <literal>dfx ledger account-id</literal> command to display the account identifier associated with the currently-active identity.
+Like the textual representation of your developer identity principal, the account identifier is derived from your private key and used to represent your identity in the ledger canister.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger account-id [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx ledger account-id</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>If you have created more than one identity, check the identity you are currently using by running the <literal>dfx identity whoami</literal> command or the <literal>dfx identity get-principal</literal> command. You can then check the account identifier for your currently-selected developer identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger account-id</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223</literallayout>
+</section>
+</section>
+<section xml:id="balance">
+<title>dfx ledger balance</title>
+<simpara>Use the <literal>dfx ledger balance</literal> command to print your account balance or that of another user.</simpara>
+<section xml:id="_basic_usage_2">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic balance [of] [flag]</programlisting>
+</section>
+<section xml:id="_flags_2">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx ledger balance</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You can specify the following argument for the <literal>dfx ledger balance</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;of&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify an Account Identifier to get the balance. If this command is not specified, the command returns the balance of ICP tokens for the currently-selected user identity.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_2">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx ledger balance</literal> command to check the balance of another user.
+For example, you can run the following command to see the ICP utlity tokens associated with a known Account Identifier:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic balance 03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223</programlisting>
+<simpara>This command displays an ICP amount similar to the following:</simpara>
+<literallayout class="monospaced">2.49798000 ICP</literallayout>
+</section>
+</section>
+<section xml:id="create-canister">
+<title>dfx ledger create-canister</title>
+<simpara>Use the <literal>dfx ledger create-canister</literal> command to convert ICP tokens to cycles and to register a new canister identifier on the {IC}.</simpara>
+<section xml:id="_basic_usage_3">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic create-canister <emphasis>controller</emphasis> [options]  [flag]</programlisting>
+</section>
+<section xml:id="_flags_3">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx ledger create-canister</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_2">
+<title>Arguments</title>
+<simpara>You can specify the following argument for the <literal>dfx ledger create-canister</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;controller&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the principal identifier to set as the controller of the new canister.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can specify the following argument for the <literal>dfx ledger create-canister</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--amount &lt;amount&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify the number of ICP tokens to mint into cycles and deposit into destination canister. You can specify an amount as a number with up to eight (8) decimal places.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--e8s &lt;e8s&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify ICP token fractional units—called e8s—as a whole number, where one e8 is smallest partition of an ICP token. For example, 1.05000000 is 1 ICP and 5000000 e8s. You can use this option on its own or in conjunction with the <literal>--icp</literal> option.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--fee &lt;fee&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify a transaction fee. The default is 10000 e8s.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--icp &lt;icp&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify ICP tokens as a whole number. You can use this option on its own or in conjunction with <literal>--e8s</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--max-fee &lt;max-fee&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify a maximum transaction fee. The default is 10000 e8s.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_3">
+<title>Examples</title>
+<simpara>To create a new canister with cycles, transfer ICP tokens from your ledger account by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 1.25</programlisting>
+<simpara>This command converts the number of ICP tokens you specify for the <literal>--amount</literal> argument into cycles, and associates the cycles with a new canister identifier controlled by the principal you specify.</simpara>
+<simpara>In this example, the command converts 1.25 ICP tokens into cycles and specifies the principal identifier for the default identity as the controller of the new canister.</simpara>
+<simpara>If the transaction is successful, the ledger records the event and you should see output similar to the following:</simpara>
+<literallayout class="monospaced">Transfer sent at BlockHeight: 20
+Canister created with id: "53zcu-tiaaa-aaaaa-qaaba-cai"</literallayout>
+<simpara>You can create a new canister by specifying separate values for ICP tokens and e8s by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --icp 3 --e8s 5000</programlisting>
+</section>
+</section>
+<section xml:id="notify">
+<title>dfx ledger notify</title>
+<simpara>Use the <literal>dfx ledger notify</literal> command to notify the ledger about a send transaction to the cycles minting canister.
+This command should only be used if <literal>dfx ledger create-canister</literal> or <literal>dfx ledger top-up</literal> successfully sent a message to the ledger, and a transaction was recorded at some block height, but for some reason the subsequent notify failed.</simpara>
+<section xml:id="_basic_usage_4">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger notify [options] _block-height_ _destination-principal_</programlisting>
+</section>
+<section xml:id="_flags_4">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx ledger notify</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_3">
+<title>Arguments</title>
+<simpara>You can specify the following argument for the <literal>dfx ledger notify</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;block-height&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the block height at which the send transaction was recorded.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;destination-principal&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the principal of the destination, either a canister identifier or the textual representation of a user principal.
+If the send transaction was for the <literal>create-canister</literal> command, specify the <literal>controller</literal> principal.
+If the send transaction was for the <literal>top-up</literal> command, specify the <literal>canister ID</literal>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_4">
+<title>Examples</title>
+<simpara>The following example illustrates sending a <literal>notify</literal> message to the ledger in response to a <literal>_send+</literal> transaction that was recorded at the block height <literal>75948</literal>.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic notify 75948 tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe</programlisting>
+</section>
+</section>
+<section xml:id="top-up">
+<title>dfx ledger top-up</title>
+<simpara>Use the <literal>dfx ledger top-up</literal> command to top up a canister with cycles minted from ICP tokens.</simpara>
+<section xml:id="_basic_usage_5">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic top-up [options] <emphasis>canister</emphasis> [flag]</programlisting>
+</section>
+<section xml:id="_flags_5">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx ledger top-up</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_4">
+<title>Arguments</title>
+<simpara>You can specify the following argument for the <literal>dfx ledger top-up</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>canister</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the canister identifier that you would like to top up.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options_2">
+<title>Options</title>
+<simpara>You can specify the following options for the <literal>dfx ledger top-up</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--amount &lt;amount&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the number of ICP tokens to mint into cycles and deposit into the destination canister.
+You can specify the amount as a number with up to eight (8) decimal places.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--e8s &lt;e8s&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies fractional units of an ICP token—called e8s—as a whole number, where one e8 is the smallest unit of an ICP token. For example, 1.05000000 is 1 ICP and 5000000 e8s. You can use this option on its own or in conjunction with the <literal>--icp</literal> option.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--fee &lt;fee&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the transaction fee for the operation. The default is 10000 e8s.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--icp &lt;icp&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies ICP tokens as a whole number. You can use this option on its own or  in conjunction with <literal>--e8s</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--max-fee &lt;max-fee&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies a maximum transaction fee. The default is 10000 e8s.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_5">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx ledger top-up</literal> command to top up the cycles of a specific canister from the balance of ICP tokens you control.
+The canister identifier must be associated with a cycles wallet canister that is able to receive cycles. Alternatively, you can modify a non-cycles wallet canister to implement a method to receive cycles using system APIs described in the <link xl:href="../../interface-spec/index.xml">Internet Computer Interface Specification</link>.</simpara>
+<simpara>For example, you can run the following command to top-up a cycles wallet canister deployed on the Internet Computer with 1 ICP worth of cycles:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic top-up --icp 1 5a46r-jqaaa-aaaaa-qaadq-cai</programlisting>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Transfer sent at BlockHeight: 59482
+Canister was topped up!</literallayout>
+</section>
+</section>
+<section xml:id="transfer">
+<title>dfx ledger transfer</title>
+<simpara>Use the <literal>dfx ledger transfer</literal> command to transfer ICP tokens from your account address in the ledger canister to a destination address.</simpara>
+<section xml:id="_basic_usage_6">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger transfer [options] <emphasis>to</emphasis> --memo <emphasis>memo</emphasis></programlisting>
+</section>
+<section xml:id="_flags_6">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx ledger transfer</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_5">
+<title>Arguments</title>
+<simpara>You can specify the following argument for the <literal>dfx ledger transfer</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;to&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify the Account Identifier or address to which you want to transfer ICP tokens.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options_3">
+<title>Options</title>
+<simpara>You can specify the following argument for the <literal>dfx ledger transfer</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--amount &lt;amount&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the number of ICP tokens to transfer.
+Can be specified as a number with up to eight (8) decimal places.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--e8s &lt;e8s&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies e8s as a whole number, where one e8 is smallest partition of an ICP token. For example, 1.05000000 is 1 ICP and 5000000 e8s. You can use this option alone or in conjunction with the <literal>--icp</literal> option.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--fee &lt;fee&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies a transaction fee. The default is 10000 e8s.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--icp &lt;icp&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies ICP as a whole number. You can use this option alone or in conjunction with <literal>--e8s</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>--memo &lt;memo&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies a numeric memo for this transaction.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_6">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx ledger transfer</literal> command to send ICP to the Account Identifier of the destination.</simpara>
+<simpara>For example, you can run the following command to check the account identifier associated with the principal you are currently using:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger account-id</programlisting>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">30e596fd6c5ff5ad7b7d70bbbda1187c833e646c6251464da7f82bc217bba397</literallayout>
+<simpara>You can check the balance of this account by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic balance</programlisting>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">64.89580000 ICP</literallayout>
+<simpara>Use the <literal>dfx ledger transfer</literal> command to send some of your ICP balance to another known destination using the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ledger --network ic transfer dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb85b9b9850bd60766f --memo 12345 --icp 1</programlisting>
+<simpara>This command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Transfer sent at BlockHeight: 59513</literallayout>
+<simpara>You can then use the <literal>dfx ledger --network ic balance</literal> command to check that your account balance reflects the transaction you just made.</simpara>
+</section>
+</section>
+</article>

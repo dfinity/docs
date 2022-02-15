@@ -1,0 +1,65 @@
+---
+date: 2021-08-05
+title: dfx upgrade
+---
+
+Use the `dfx upgrade` command to upgrade the {sdk-short-name} components
+running on your local computer. This command checks the version of the
+{sdk-short-name} that you have currently installed against the latest
+publicly-available version specified in the `manifest.json` file. If an
+older version of the {sdk-short-name} is detected locally, the
+`dfx upgrade` command automatically fetches the latest version from the
+CDN.
+
+# Basic usage {#_basic_usage}
+
+``` bash
+dfx upgrade [flag] [option]
+```
+
+# Flags {#_flags}
+
+You can use the following optional flags with the `dfx upgrade` command.
+
++----------------------+-----------------------------------------------+
+| Flag                 | Description                                   |
++======================+===============================================+
+| `-h`, `--help`       | Displays usage information.                   |
++----------------------+-----------------------------------------------+
+| `-V`, `--version`    | Displays version information.                 |
++----------------------+-----------------------------------------------+
+
+# Options {#_options}
+
+You can use the following option with the `dfx upgrade` command.
+
++----------------------+-----------------------------------------------+
+| Option               | Description                                   |
++======================+===============================================+
+| `--curren            | Specifies the version you want to identify as |
+| t-version <version>` | the current version. This option enables you  |
+|                      | to override the version of the software       |
+|                      | currently identified as the latest version    |
+|                      | with the version you pass on the              |
+|                      | command-line.                                 |
++----------------------+-----------------------------------------------+
+
+# Examples {#_examples}
+
+You can upgrade the version of the {sdk-short-name} that you have
+currently installed by running the following command:
+
+``` bash
+dfx upgrade
+```
+
+This command checks the version of `dfx` you have currently installed
+and the latest version available published on the {sdk-short-name}
+website in a manifest file. If a newer version of `dfx` is available,
+the command automatically downloads and installs the latest version.
+
+``` bash
+Current version: 0.6.8
+Fetching manifest \https://sdk.dfinity.org/manifest.json
+Already up to date
+```

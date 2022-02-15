@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Create scalable apps</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The CanCan sample application is a simplified video-sharing service that demonstrates several features that you can use as models for your own applications.
+For example, here are a few things you can learn by exploring the CanCan sample application:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>How to build a scalable application by splitting content into fragments for upload and storage then using queries to retrieve and reassemble the fragments for efficient streaming.</simpara>
+</listitem>
+<listitem>
+<simpara>How to configure interoperability for an application that uses canisters written in different back-end languages.</simpara>
+</listitem>
+<listitem>
+<simpara>How to implement a basic authentication model for storing videos uploaded by different users.</simpara>
+</listitem>
+<listitem>
+<simpara>How to build a front-end that implements more sophisticated user interface features for desktop or mobile apps.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_splitting_uploaded_content_into_multiple_canisters">
+<title>Splitting uploaded content into multiple canisters</title>
+<simpara>Because canisters are compiled WebAssembly modules, they have certain known limitations.
+For example, currently WebAssembly modules have a maximum of 4GB for memory and an upper limit on the number of object calls allowed.</simpara>
+<simpara>For a video-sharing sample applications like CanCan, these limitations mean that multiple canisters are required and that data must be broken into smaller chunks for storage and retrieval.</simpara>
+<section xml:id="_implementing_a_distributed_hash_table">
+<title>Implementing a distributed hash table</title>
+<simpara>The initial attempt to build a scalable video-sharing service for the Internet Computer used a distributed hash table (DHT) as a back-end service with simple get and put functions that distributed data—chunks of the video to be uploaded or streamed—into a predefined set of canisters.
+In the early phases of the project, this approach was sufficient for a proof-of-concept and verifying that the video data could be properly transcoded for storage and retrieval.</simpara>
+<simpara>However, the scalability of the application was limited because the distributed hash table relied on a specific number of canisters that it could populate with data for storage and retrieve data from for viewing.
+In addition, the original implementation of the distributed hash table back-end service included code to accommodate common network connectivity issues that could cause nodes to be unavailable or lose data.</simpara>
+</section>
+<section xml:id="_simplifying_scalability">
+<title>Simplifying scalability</title>
+<simpara>Because the Internet Computer protocol relies on replicated state across nodes in a subnet, it provides certain guarantees about fault tolerance and failover natively that are not generally available to applications running on other platforms or protocols.</simpara>
+<simpara>With the realization that the Internet Computer could ensure that canisters were available to receive and respond to requests,the original distributed hash table back-end service was replaced with a simpler but more scalable back-end service called BigMap.</simpara>
+<simpara>BigMap provides a simple, plug-in library for building scalable applications using key-value storage on the Internet Computer.
+By using the BigMap library as a back-end service, the CanCan sample application can dynamically chunk, serialize, and distribute data to multiple canisters.</simpara>
+<simpara>The library offers building blocks for application-specific, in-memory data abstractions that scale using any number of canisters.
+Each canister still has limited capacity, but the application instantiates the canisters it needs and keeps track of the fragments that make up the full video content for each user&#8217;s videos in an index file called the <literal>manifest</literal>.</simpara>
+<simpara>The code required for the <literal>BigMap</literal> service is much simpler than a traditional distributed hash table because the Internet Computer as a platform provides scalability, replication, failover, and fault tolerance.</simpara>
+</section>
+</section>
+<section xml:id="_demonstrating_interoperability">
+<title>Demonstrating interoperability</title>
+<simpara>The BigMap service included in the CanCan sample application repository is written in the Rust programming language.
+However, the CanCan sample application also demonstrates interoperability between canisters written in different languages.</simpara>
+<simpara>In this case, the <literal>BigMap</literal> functionality is implemented using the Rust programming language and other services—such as encoding and decoding of video content and the management of user principals for authentication—are implemented using Motoko.</simpara>
+<simpara>By deploying different parts of the sample application as canisters, the interaction between them provides a seamless user experience.</simpara>
+<simpara>Although the <literal>BigMap</literal> service you see in the CanCan repository is written in Rust, the service was actually implemented in both Rust and Motoko programming languages to demonstrate the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You can run both Motoko code and Rust code deployed as canisters on the Internet Computer.</simpara>
+</listitem>
+<listitem>
+<simpara>You can switch between back-end languages without affecting the operation of the CanCan sample application.</simpara>
+</listitem>
+<listitem>
+<simpara>Both language implementation work seamlessly because the Candid language provides a common language for describing the BigMap API, independent of JavaScript, Rust, or Motoko.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_authentication_model">
+<title>Authentication model</title>
+<simpara>Much like the LinkedUp sample application, the CanCan sample application uses the public-private key pair, browser-based local storage, and the <literal>Principal</literal> data type to authenticate users.</simpara>
+</section>
+<section xml:id="_implementing_front_end_features">
+<title>Implementing front-end features</title>
+<simpara>The CanCan sample application uses the React library in combination with TypeScript to implement front-end user interface.</simpara>
+</section>
+<section xml:id="_data_model_overview">
+<title>Data model overview</title>
+<simpara>The application stores information about users and information about videos.
+To support most browsers, the videos are serialized into byte arrays with video data stored in 500kb segments of bytes that are referred to as <link xl:href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array">Uint8Array</link> objects.
+When a video is requested, the manifest loads the list of chunks required to play the video and concatenates the chunks before displaying the video in a standard <literal>&lt;video&gt;</literal>  element.</simpara>
+<section xml:id="_user_profiles">
+<title>User profiles</title>
+<simpara>User profiles are stored as <literal>profiles/{username}</literal> and are defined using the following data model:</simpara>
+<literallayout class="monospaced">export interface Profile {
+  username: string;         // maya
+  following: string[];      // [`alice`, `bob]`
+  followers: string[];      // ['palice']
+  uploadedVideos: string[]; // ['profiles/maya/videos/a5b54646-2ea3-4e0e-82d1-da3ab8148df2']
+  likedVideos: string[];    // ['profiles/bob/videos/b74e4eb0-dea8-4a4a-a1ae-d4593dc86930']
+  avatar?: string;          // ?ImageData (TODO)
+}</literallayout>
+</section>
+<section xml:id="_videos">
+<title>Videos</title>
+<simpara>Uploaded videos are identified by a unique identifier stored at <literal>profiles/{username}/videos/{videoId}</literal> and in <literal>public/videos</literal> (an array of all existing videos on the platform).</simpara>
+<simpara>Metadata for videos is stored at <literal>profiles/{username}/videos/{videoId}/metadata</literal>
+Individual video fragments are stored at <literal>profiles/{username}/videos/{videoId}/chunks/chunk.{0-10}</literal>.</simpara>
+<simpara>Videos are stored as <literal>profiles/{username}</literal> and are defined using the following data model:</simpara>
+<literallayout class="monospaced">export interface Video {
+  src: string;       // 'profiles/maya/videos/f5a44646-2ea3-4e0f-83d2-da3ab8148df2'
+  userId: string;    // 'maya'
+  createdAt: string; // Date.now()
+  caption: string;   // 'cool movie, punk'
+  tags: string[];    // ['outside', 'grilling', 'beveragino']
+  likes: string[];    // ['sam', 'kelly']
+  viewCount: number; // 102
+  name: string; // 'grilling'
+}</literallayout>
+</section>
+</section>
+</article>

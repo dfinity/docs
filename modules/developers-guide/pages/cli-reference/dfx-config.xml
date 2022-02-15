@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx config</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx config</literal> command to view or configure settings in the configuration file for a current project.
+Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx config [config_path] [value] [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx config</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can use the following option with the <literal>dfx config</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--format</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the format of the configuration file output.
+By default, the file is displayed using JSON format.
+The valid values are <literal>json</literal> and <literal>text</literal>.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You can specify the following arguments for the <literal>dfx config</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="144.5*"/>
+<colspec colname="col_2" colwidth="280.5*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>config_path</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the name of the configuration option that you want to set or read.
+You must specify the configuration file option using its period-delineated path to set or read the specific option you want to change or view.
+If you don&#8217;t specify the path to a specific configuration option, the command displays the full configuration file.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>value</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the new value for the option you are changing.
+If you don’t specify a value, the command returns the current value for the option from the configuration file.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx config</literal> command to change configuration settings such as the location of the default output directory or the name of your main program file.</simpara>
+<simpara>For example, to change the default build output directory from <literal>canisters</literal> to <literal>staging</literal>, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx config defaults.build.output "staging/"</programlisting>
+<simpara>To view the current value for a configuration setting, you can specify the path to the setting in the configuration file without specifying a value.
+For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx config defaults.build.output</programlisting>
+<simpara>The command returns the current value for the configuration option:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">"staging/"</programlisting>
+<simpara>Similarly, you can change the name of the main source file or the port number for the local network replica by running commands similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx config canisters.hello.main "src/hello_world/hello-main.mo"
+dfx config networks.local.bind 127.0.0.1:5050</programlisting>
+<simpara>You can also verify your configuration changes by viewing the <literal>dfx.json</literal> configuration file after running the <literal>dfx config</literal> command.</simpara>
+</section>
+</article>

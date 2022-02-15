@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.6.25</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.6.25 release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, Motoko, the Motoko base library, and Candid.</simpara>
+<section xml:id="_new_features_and_capabilities">
+<title>New features and capabilities</title>
+<simpara>The most significant new features and capabilities include the following updates:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>This release introduces environment variables for specifying canister identifiers.</simpara>
+<simpara>You can now use the <literal>CANISTER_ID_{canister.name}</literal> and <literal>CANISTER_CANDID_PATH_{canister.name}</literal>
+environment variables to reference canister identifiers and the path to the canister Candid description (<literal>.did</literal> file) during the build process.
+These environment variables enable you to construct the JavaScript for front-end assets using the correct canister identifiers.</simpara>
+<simpara>The environment variables are intended to replace the <literal>import</literal> syntax for dependent canisters described in <link xl:href="../developers-guide/webpack-config.xml">Entry and output configuration</link> which is being deprecated and will be removed in a future release.</simpara>
+</listitem>
+<listitem>
+<simpara>A new <literal>dfx identity import</literal> subcommand enables you to import a security certificate to create an identity.</simpara>
+<simpara>For example, if you use a hardware wallet or a key generation utility to generate a PEM file for authenticating your identity, you can now import that PEM file into <literal>dfx</literal> to create a new identity.
+After importing the PEM file, you can run the <literal>dfx identity use</literal> command to set that identity as your default context.</simpara>
+<simpara>For example, to import the <literal>my-external-id.pem</literal> and create an identity named <literal>alice</literal>, you would run the following command:</simpara>
+<literallayout class="monospaced">dfx identity import alice my-external-id.pem</literallayout>
+<simpara>After running this command, you would run the following command to begin using the new identity:</simpara>
+<literallayout class="monospaced">dfx identity use alice</literallayout>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_issues_fixed_in_this_release">
+<title>Issues fixed in this release</title>
+<simpara>This section covers any reported issues that have been fixed in this release.</simpara>
+</section>
+<section xml:id="_known_issues_and_limitations">
+<title>Known issues and limitations</title>
+<simpara>This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.</simpara>
+</section>
+</article>

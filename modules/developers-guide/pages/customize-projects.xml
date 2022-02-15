@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Manage projects</title>
+<date>2021-08-05</date>
+</info>
+<simpara>You can modify some key settings for individual projects by modifying each project’s <literal>dfx.json</literal> configuration file.
+You can use the <literal>dfx config</literal> command to change these settings programmatically or manually edit the <literal>dfx.json</literal> file directly.</simpara>
+<section xml:id="_how_to_change_your_source_directory">
+<title>How to change your source directory</title>
+<simpara>Before you compile source code for your project using the <literal>dfx build</literal> command, you might want to check the default location for storing the source code for your program.
+By default, the name you use to create a new project is the name used for one data smart contract canister (<literal>canister_name</literal>) and one assets canister (<literal>canister_name_assets</literal>), and program source code is expected to be in the <literal>src/canister_name</literal> directory. Similarly, the default location for front-end source code is in the <literal>src/canister_name_assets/src</literal> directory and front-end output is located in the <literal>dist/canister_name_assets</literal> directory.</simpara>
+<simpara>Depending on your application&#8217;s complexity and architecture, however, you might want to modify the default location for the program source code, the front-end source code, or front-end output.</simpara>
+<simpara>For example, for a simple program, you might want to eliminate one directory level and place the source code in the <literal>src</literal> directory:</simpara>
+<programlisting language="text" linenumbering="unnumbered">  "main": "src/main.mo",</programlisting>
+<simpara>For more complex applications, you might want to use a multi-tiered directory structure:</simpara>
+<programlisting language="text" linenumbering="unnumbered">"canisters": {
+  "profiles": {
+    "main": "src/profiles/utils/main.mo"
+  },
+  "events": {
+    "main": "src/events/calendar/main.mo"
+  },
+  "media": {
+    "main": "src/events/reports/main.mo"
+  }
+}</programlisting>
+<note>
+<simpara>If you modify the default settings for a source code directory, be sure that the settings in the <literal>dfx.json</literal> configuration file match the directory location on the file system.</simpara>
+</note>
+</section>
+<section xml:id="_how_to_change_the_main_program_file_name">
+<title>How to change the main program file name</title>
+<simpara>Before you compile source code for your project using the <literal>dfx build</literal> command, you should verify the location and file name used for your program’s source code.</simpara>
+<simpara>For example, if you want to build a smart contract canister for the <literal>factorial</literal> program and the source code for the program is located in <literal>src/math/factorial.mo</literal>, you should be sure that you have the correct
+path specified for the <literal>main</literal> setting in the <literal>canisters</literal> section of the configuration file.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="json" linenumbering="unnumbered">"main": "src/math/factorial.mo",</programlisting>
+<simpara>Keep in mind that changing the configuration setting for the program file name only affects where the <literal>dfx build</literal> command looks for the source code to compile. Making changes in the configuration file does not rename any files or directories on the file system.
+If you change the path to the main program file or the name of the file itself, be sure to change the name and location within your project directory.</simpara>
+</section>
+<section xml:id="_how_to_change_the_location_for_serving_the_application_front_end">
+<title>How to change the location for serving the application front-end</title>
+<simpara>You can change the default host name and port number for serving the application front-end by modifying the local network settings in the <literal>dfx.json</literal> configuration file.</simpara>
+<simpara>For example, you can change the IP address for the local network by modifying the <literal>bind</literal> setting:</simpara>
+<programlisting language="json" linenumbering="unnumbered">"networks": {
+  "local": {
+    "bind": "192.168.47.1:8000",
+    "type": "ephemeral"
+  }
+}</programlisting>
+</section>
+</article>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.6.26</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.6.26 release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, Motoko, the Motoko base library, and Candid.</simpara>
+<section xml:id="_new_features_and_capabilities">
+<title>New features and capabilities</title>
+<simpara>The most significant new feature included in this release is the publication of the <link xl:href="../interface-spec/index.xml"><emphasis>Internet Computer Interface Specification</emphasis></link>.</simpara>
+<simpara>The <emphasis>Internet Computer Interface Specification</emphasis> details many technical properties that describe the lower-level interfaces for interacting with the Internet Computer.
+For example, the <emphasis>Internet Computer Interface Specification</emphasis> describes the HTTPS endpoints that are exposed to handle incoming requests and how low-level bindings enable canisters to interact with system components.</simpara>
+<simpara>If you use existing tools—like the DFINITY Canister SDK or Canister Development Kit for Rust—to work with canisters, these tools interact with  the lower-level interfaces described in the <emphasis>Internet Computer Interface Specification</emphasis> on your behalf.
+If you want to create your own tooling for working with canisters, however, the <emphasis>Internet Computer Interface Specification</emphasis> includes the technical details you need to understand how the Internet Computer external interfaces work.</simpara>
+<simpara>If you are interested in expanding the Internet Computer ecosystem, you&#8217;ll also find information in the <emphasis>Internet Computer Interface Specification</emphasis> to help you in developing the following types of projects:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Building <emphasis role="strong">front-end agents</emphasis> for user-facing interaction in any programming language, including popular languages such as Python, Golang, or C.</simpara>
+</listitem>
+<listitem>
+<simpara>Building <emphasis role="strong">back-end Canister Development Kits</emphasis> (CDKs) in any language that can compile down to WebAssembly bytecode.</simpara>
+</listitem>
+<listitem>
+<simpara>Building <emphasis role="strong">local development tools</emphasis> such as command line interfaces or Internet Computer emulators and debuggers.</simpara>
+</listitem>
+<listitem>
+<simpara>Implementing <emphasis role="strong">features and enhancements</emphasis> to improve the developer experience for deploying and managing canisters running remotely on the network.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_issues_fixed_in_this_release">
+<title>Issues fixed in this release</title>
+<simpara>This section covers any reported issues that have been fixed in this release.</simpara>
+<simpara>This release fixes an issue with memory allocation in the default cycles wallet that caused an error after creating and deploying canisters.
+If you encountered this issue, you might have seen an error message similar to the following:</simpara>
+<literallayout class="monospaced">The Replica returned an error: code 5, message: "Canister 6dtaa-vaaaa-aaaab-aaipa-cai exceeded its allowed memory allocation"</literallayout>
+<simpara>This release updates the default cycles wallet to provide better handling of unused memory and how memory is allocated when creating and deploying canisters.</simpara>
+</section>
+<section xml:id="_known_issues_and_limitations">
+<title>Known issues and limitations</title>
+<simpara>This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.</simpara>
+<section xml:id="_only_the_default_wallet_canister_principal_can_perform_canister_management_tasks">
+<title>Only the default wallet canister principal can perform canister management tasks</title>
+<simpara>The introduction of the cycles wallet canister changes the default principal used to perform key canister management tasks, such as registering a new canister identifier and deploying a new canister on the Internet Computer.
+This change introduces some inconsistencies in the identity used to perform certain tasks and can result in potential access control issues.</simpara>
+<simpara>You should note that none of the tutorials have been updated to reflect this specific change in behavior yet and the current version of the <link xl:href="../developers-guide/tutorials/access-control.xml">Add access control with identities</link> tutorial is known to be invalid for this release.
+If you want to experiment with access control using the <link xl:href="../developers-guide/tutorials/access-control.xml">Add access control with identities</link> tutorial, you should install the {sdk-short-name} version 0.6.23 (or older).</simpara>
+</section>
+<section xml:id="_incompatibility_when_using_the_javascript_agent_directly_in_a_project">
+<title>Incompatibility when using the JavaScript agent directly in a project</title>
+<simpara>If you access the <literal>@dfinity/agent</literal> JavaScript agent directly in a project—that is, without going through the bootstrap server—you will not be able to import the <literal>bls</literal> certification scheme with the <literal>agent-js</literal> release.</simpara>
+<simpara>If your application uses the JavaScript agent directly, you should use the latest version of the agent.</simpara>
+</section>
+</section>
+</article>

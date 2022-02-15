@@ -1,0 +1,139 @@
+---
+date: 2021-08-05
+title: Tokens and cycles
+---
+
+Within the Internet Computer ecosystem, Internet Computer Protocol
+tokens (ICP tokens) are a native utility token with a value determined
+on the open market. ICP tokens play a key role in both the governance
+and economics of the Internet Computer.
+
+# How you can get ICP tokens {#get-cycles}
+
+As a utility token for the Internet Computer, there are a few different
+ways you might acquire ICP tokens. For example, you might:
+
+-   Purchase ICP tokens directly through an exchange that lists ICP
+    tokens available for trade.
+
+-   Claim tokens as a result of your investment.
+
+-   Receive a grant of tokens through the Internet Computer Association
+    (ICA) or the DFINITY Foundation.
+
+-   Receive tokens as remuneration for providing computing capacity as a
+    node provider or data center.
+
+# How you can use ICP tokens {#using-cycles}
+
+If you have ICP tokens, but aren't sure how to use them, the following
+diagram provides a simplified overview to illustrate the three most
+common scenarios.
+
+![icp tokens how to use](icp-tokens-how-to-use.svg)
+
+As this diagram suggests, how you use ICP tokens depends primarily on
+your goals in acquiring them. For example, if you are a developer or
+entrepreneur, ICP tokens can be converted to **cycles**. Cycles can then
+be used to build and deploy applications to deliver products and
+services to the market. If you are a member of the community interested
+in participating in governance and influencing the the direction of the
+Internet Computer, you can lock up ICP tokens in a stake---called a
+neuron---so that you can submit and vote on proposals.
+
+# How cycles work
+
+For developers, ICP tokens are important because they can be converted
+to cycles that, in turn, are used to pay for computation and resource
+consumption.
+
+As an example, imagine you have a house where propane is used for a
+water heater, kitchen stove, dryer, and space heater. As you use these
+appliances, you deplete the supply of gas you have on hand, so
+periodically you contact a provider to refill your supply so you can
+continue to use your appliances without interruption. This is similar to
+smart contract canisters in that each canister must have an account with
+cycles available to pay for the communication, computation, and storage
+that the canister's application consumes.
+
+Internet Computer Protocol token holders can exchange tokens when they
+need to replenish the cycles available in each canister's account.
+
+# Cost of computation {#cost-of-compute}
+
+-   Cycles reflect the real costs of operations for applications hosted
+    in the Internet Computer platform including resources such physical
+    hardware, rack space, energy, storage devices, and bandwidth.
+
+-   In simple terms, cycles represent the cost of executing each
+    application's WebAssembly instructions.
+
+-   Programs must be able to pay for complete execution (all or
+    nothing), but the platform sets limits on how many cycles a canister
+    can hold and consume to prevent malicious code from draining
+    resources.
+
+-   The relative stability of operational costs makes it easier to
+    predict the cycles required to process, for example, a million
+    messages.
+
+-   The costs associated with communication, computation, and storage
+    are more likely to decrease than to increase over time---for
+    example, because disk space becomes cheaper or hardware more
+    efficient.
+
+-   Although Internet Computer Protocol tokens can be used to add cycles
+    to canisters, cycles themselves are not currency and have no
+    liquidity or value as an asset.
+
+-   Cycles cannot be converted back to value in the form of Internet
+    Computer Protocol tokens, but they can be transferred between
+    canisters to enable canisters to pay for operations.
+
+# Token value and volatility {#volatility}
+
+-   Tokens reflect the value of the Internet Computer and can fluctuate.
+    To prevent the token value from affecting the number of messages a
+    canister can process, tokens are not used to pay for resources
+    directly.
+
+-   Tokens can be exchanged between token holders or locked up in
+    **neurons** to secure voting rights as part of the platform
+    governance system.
+
+-   Tokens are used to reward data centers for providing compute
+    capacity and platform stakeholders for participating in secure
+    operation of the Internet Computer by voting on proposals submitted
+    to the governance system.
+
+# Payment to data centers and node providers {#data-centers}
+
+With this model, the Internet Computer platform provides data center
+providers with a predictable economic model for computing power capacity
+to ensure resources are available when and where they are needed. Data
+center providers receive compensation for both active and spare nodes so
+that the Internet Computer has capacity to handle both normal traffic
+and workload spikes.
+
+If the Internet Computer network requires additional capacity, it can
+request bids from potential data center providers. If a bid is accepted,
+a data center provider might be contracted to provide a given number of
+servers with an acceptable level of service availability for a specific
+period of time. For example, a data center provider might be contracted
+to provide ten servers with 99% uptime for 30 days. Even if those nodes
+do not host any canisters and are only used as spare nodes, the data
+center provider receives compensation for availability as part of the
+network.
+
+The Internet Computer economic model places much of the power and
+responsibility of managing capacity on the governance system---the
+Network Nervous System. Specific details about compensation and service
+level requirements are outside the scope of this document.
+
+# Want to learn more? {#_want_to_learn_more}
+
+If you are looking for more information about tokens and cycles, check
+out the following related resources:
+
+-   [Overview of Token Economics
+    (video)](https://www.youtube.com/watch?v=H2p5q0PR2pc)

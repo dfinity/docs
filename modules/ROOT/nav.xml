@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Untitled</title>
+<date>2021-08-05</date>
+</info>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="introduction:welcome.xml"><emphasis role="strong">Introduction</emphasis></link></simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="introduction:welcome.xml#for-first-timers">For: First-Timers</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="introduction:welcome.xml#for-developers">For: Developers</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="introduction:welcome.xml#for-protocol-enthusiasts">For: Protocol Enthusiasts</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><link xl:href="quickstart:quickstart-intro.xml">Quick Start</link></simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="quickstart:local-quickstart.xml">Local Development</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="quickstart:network-quickstart.xml">Network Deployment</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Developer Docs</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Getting Started</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Introducing the SDK</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="developers-guide:install-upgrade-remove.xml">Install, upgrade, or remove software</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:sdk-release-notes.xml">Release notes</link></simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="release-notes:0.8.0-rn.xml">0.8.0</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.7.7-rn.xml">0.7.7</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.7.2-rn.xml">0.7.2</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.7.1-rn.xml">0.7.1</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.7.0-rn.xml">0.7.0</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.6.26-rn.xml">0.6.26</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.6.25-rn.xml">0.6.25</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.6.24-rn.xml">0.6.24</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.6.23-rn.xml">0.6.23</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.6.22-rn.xml">0.6.22</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.6.21-rn.xml">0.6.21</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="release-notes:0.6.20-rn.xml">0.6.20</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Introducing DFX</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="developers-guide:cli-reference.xml">DFX commands</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:cli-reference/dfx-envars.xml">DFX environment variables</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:glossary.xml">Glossary</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Building on the Internet Computer</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Learn how to:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="developers-guide:sdk-guide.xml">Develop software on the IC</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:design-apps.xml">Design apps</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:customize-projects.xml">Manage projects</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:working-with-canisters.xml">Manage canisters</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:default-wallet.xml">Use the default cycles wallet</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/explore-templates.xml">Explore the default project</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/define-an-actor.xml">Query using an actor</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/hello-location.xml">Pass text arguments</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/counter-tutorial.xml">Increment a natural number</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/calculator.xml">Use integers in calculator functions</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/phonebook.xml">Import library modules</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/multiple-actors.xml">Use multiple actors</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/intercanister-calls.xml">Make inter-canister calls</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/access-control.xml">Add access control with identities</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/simple-cycles.xml">Accept cycles from a wallet</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:troubleshooting.xml">Troubleshoot issues</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Explore our languages</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="developers-guide:work-with-languages.xml">Develop using different languages</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:motoko.xml">Motoko</link></simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/">Motoko Playground</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="base-libraries:stdlib-intro.xml">Motoko Base Library</link></simpara>
+</listitem>
+<listitem>
+<simpara>Motoko Guide</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="language-guide:about-this-guide.xml">About the language guide</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:motoko-introduction.xml">Introduction</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:basic-concepts.xml">Basic concepts and terms</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:mutable-state.xml">Mutable state</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:local-objects-classes.xml">Local objects and classes</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:actors-async.xml">Actors and async data</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:errors.xml">Error handling</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:pattern-matching.xml">Pattern matching</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:sharing.xml">Sharing data and behavior</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:modules-and-imports.xml">Modules and imports</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:control-flow.xml">Imperative control flow</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:structural-equality.xml">Structural equality</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:actor-classes.xml">Actor classes</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:caller-id.xml">Principals and caller identification</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:cycles.xml">Managing cycles</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:upgrades.xml">Stable variables and upgrade methods</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:language-manual.xml">Language quick reference</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:compiler-ref.xml">Compiler reference</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:motoko-grammar.xml">Motoko grammar</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="language-guide:style.xml">Motoko style guidelines</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><link xl:href="rust-guide:rust-intro.xml">Rust</link></simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="rust-guide:rust-quickstart.xml">Hello, World! Quick Start</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="rust-guide:rust-counter.xml">Simple counter tutorial</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="rust-guide:multiply-dependency.xml">Basic dependency tutorial</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="rust-guide:rust-profile.xml">Profile tutorial</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="rust-guide:rust-optimize.xml">Optimize a Rust program</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><link xl:href="candid-guide:candid-intro.xml">Candid</link></simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="candid-guide:candid-concepts.xml">What is Candid?</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="candid-guide:candid-howto.xml">How to</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="candid-guide:candid-ref.xml">Reference</link></simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="candid-guide:candid-types.xml">Supported types</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/candid">Candid specification</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://docs.rs/candid">Candid Rust crate</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Introducing the Internet Identity</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="ic-identity-guide:what-is-ic-identity.xml">What is Internet Identity</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="ic-identity-guide:auth-how-to.xml">How to use the Internet Identity</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Frontend development</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="developers-guide:webpack-config.xml">Add frontend assets</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/custom-frontend.xml">Customize the front-end</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:tutorials/my-contacts.xml">Add a stylesheet</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Protocol Docs</simpara>
+<itemizedlist>
+<listitem>
+<simpara>.<link xl:href="developers-guide:concepts/concepts-intro.xml">Concepts</link></simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="developers-guide:concepts/what-is-IC.xml">What is the {IC}</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="interface-spec:index.xml">Internet Computer Interface Specification</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:concepts/nodes-subnets.xml">Nodes and sub-networks</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:concepts/data-centers.xml">Decentralized data centers</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:concepts/canisters-code.xml">Canisters and code</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:concepts/tokens-cycles.xml">Tokens and cycles</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:concepts/governance.xml">Neurons and governance</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>General Docs</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Overview of self-custody</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="token-holders:custody-options-intro.xml">Choosing self-custody for digital assets</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="token-holders:self-custody-quickstart.xml">Self-custody quick start</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Overview of ledger</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="integration:ledger-quick-start.xml">Ledger quick start</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Overview of the NNS App</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="token-holders:nns-app-quickstart.xml">NNS App quick start</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Additional Resources</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Developer videos</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://www.youtube.com/watch?v=oxEr8UzGeBo&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=11&amp;ab_channel=DFINITY">Internet Identity</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://www.youtube.com/watch?v=4eSceDOS-Ms&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=21&amp;ab_channel=DFINITY">Motoko</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://www.youtube.com/watch?v=GzkRsbqPaA0&amp;ab_channel=DFINITY">Building a multiplayer game for the Internet Computer</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://www.youtube.com/watch?v=b_nc6yx5_DQ&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=7&amp;ab_channel=DFINITY">Deploying static sites to the Internet Computer</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://www.youtube.com/watch?v=2miweY9-vZc&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=6&amp;ab_channel=DFINITY">Zero to fullstack: web apps on the Internet Computer </link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Protocol videos</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://dfinity.org/technicals/">Technical library</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Developer tooling</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="ROOT:download.xml">DFINITY Canister SDK</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/cdk-rs">Rust CDK</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/kritzcreek/vessel">Vessel Package Manager</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko">Motoko VS Code Extension</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/agent-js">Agent JS</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/sudograph/sudograph">Sudograph</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/cycles-wallet">Cycles Wallet</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/">Motoko Playground</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/quill">Quill</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Examples</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/awesome-dfinity">Awesome DFINITY</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/cancan">CanCan</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/examples">Mini Motoko examples</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Community created resources</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://ic.rocks/">ic.rocks (Block explorer)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://plugwallet.ooo/">Plug (Browser-based wallet extension)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://fleek.co/">Fleek (Netlify for the open web)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="http://faucet.dfinity.org/">Cycles Faucet</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><link xl:href="developers-guide:computation-and-storage-costs.xml">Computation and Storage Costs</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Community</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://discord.gg/cA7y6ezyE2">Developer Discord</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://forum.dfinity.org/">Developer Forum</link></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</article>

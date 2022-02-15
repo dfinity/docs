@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Preliminary steps for newcomers</title>
+<date>2021-08-05</date>
+</info>
+<simpara>If this is the first time you are installing developer tools on your computer, you might need to take a few extra steps to prepare your environment.</simpara>
+<simpara>However, there are often multiple ways to perform each of these tasks.
+If you need more help than provided here, see the documentation for the operating system you are using.</simpara>
+<note>
+<simpara>The instructions here assume that you are using a macOS computer.
+If you have a Linux development environment, the steps to follow depend on the specific Linux distribution and version you use.</simpara>
+</note>
+<simpara>Before you install the {sdk-short-name}, you need to know:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>How to open and run commands in a terminal</simpara>
+</listitem>
+<listitem>
+<simpara>How to check for and install packages and dependencies</simpara>
+</listitem>
+<listitem>
+<simpara>How to create and navigate to new directories</simpara>
+</listitem>
+<listitem>
+<simpara>How to view and update your PATH on the platform you use</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The steps in this section describe how to prepare a basic development environment.</simpara>
+<section xml:id="open-terminal">
+<title>Open a terminal</title>
+<simpara>You need to know how to open a terminal and navigate to directories to install the {sdk-short-name} and to start and stop the {IC} running locally when trying any of the <link xl:href="../developers-guide/tutorials-intro.xml">tutorials</link>.</simpara>
+<simpara>To open the Terminal application on macOS:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the Finder.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Applications</emphasis>, open <emphasis role="strong">Utilities</emphasis>, then double-click <emphasis role="strong">Terminal</emphasis>.</simpara>
+<simpara>Alternatively, you can press the <keycombo><keycap>&#8984;</keycap><keycap>spacebar</keycap></keycombo> keyboard keys to open Search, then type <literal>terminal</literal>.</simpara>
+<simpara>The terminal is where you are going to execute command-line instructions.
+To execute a command, you type or copy and paste an instruction, then press <keycap>Return</keycap>.</simpara>
+</listitem>
+<listitem>
+<simpara>Check your current path by running the print working directory–<literal>pwd</literal>—command, then pressing <keycap>Return</keycap>.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">pwd</programlisting>
+<simpara>This command displays your current directory with a path like <literal>/Users/&lt;your-user-name&gt;</literal>.</simpara>
+<simpara>After you open the Terminal application, you can open new terminal shell at any time by clicking <emphasis role="strong">Shell</emphasis>, then selecting <emphasis role="strong">New Window</emphasis> or <emphasis role="strong">New Tab</emphasis>.</simpara>
+<simpara>By default, a new terminal shell always opens in your home directory with a path like <literal>/Users/&lt;your-user-name&gt;</literal>.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="check-pkgs">
+<title>Check for packages</title>
+<simpara>The Homebrew application is a package manager for macOS that makes it easy to install and update packages—that is, external programs—that you need to have available in a local development environment.</simpara>
+<simpara>The <literal>node.js</literal> package provides a JavaScript runtime environment and modules for front-end user interface development.
+The <literal>node.js</literal> package is not required to build programs, but you&#8217;ll probably need it if you want to add a graphical user interface to your program.</simpara>
+<note>
+<simpara>If your development environment is Linux, you can use a package manager of your choice instead of Homebrew to install packages and manage dependencies.</simpara>
+</note>
+<simpara>To check and install packages:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check whether you have the Homebrew package manager installed by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">brew --version</programlisting>
+<simpara>If the command returns version information, continue to the next step.
+If Homebrew isn&#8217;t installed, copy and paste the following command in your terminal:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"</programlisting>
+</listitem>
+<listitem>
+<simpara>Check whether you have the <literal>node.js</literal> package manager installed by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">node --version</programlisting>
+<simpara>If the command returns version information, continue to <xref linkend="working-folder"/>.
+If <literal>node.js</literal> isn&#8217;t installed, copy and paste the following command in your terminal:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">brew install node</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="working-folder">
+<title>Create a working folder</title>
+<simpara>By default, a new terminal shell always opens in your home directory with a path like <literal>/Users/&lt;your-user-name&gt;</literal>.
+To keep your workspace tidy, you can create a separate folder for your {IC} projects.</simpara>
+<simpara>Creating a working folder for {IC} projects is optional, but can make it easier to find and navigate between projects.
+A separate folder is especially useful if you plan to experiment with any of the <link xl:href="../developers-guide/tutorials-intro.xml">tutorials</link> beyond the <link xl:href="quickstart-intro.xml">Quick start</link>.</simpara>
+<simpara>To create a new working folder:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new folder called <literal>ic-projects</literal> in your home directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">mkdir ic-projects</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to the new working folder by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd ic-projects</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="check-path">
+<title>View directories in your PATH</title>
+<simpara>The <literal>PATH</literal> environment variable is an important setting that your operating system uses to locate
+the set of directories where executable programs are located.
+Because every operating system has its own set of directories where it expects to find programs, you need to know how to view and update the PATH environment variable so that you can verify that the {sdk-short-name} command-line executable—<literal>dfx</literal>—is in one of the directories listed.</simpara>
+<simpara>On macOS computers, the default location for the <literal>dfx</literal> executable is <literal>/usr/local/bin</literal> and this directory is typically included in the default set of paths.
+Therefore, updating the <literal>PATH</literal> variable is usually not necessary for computers running macOS.
+If you are using a Linux distribution, however, you should know how to do the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Verify the location of the <literal>dfx</literal> executable.</simpara>
+</listitem>
+<listitem>
+<simpara>View the set of directories in your current <literal>PATH</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Update the <literal>PATH</literal> environment variable, if necessary.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>On most operating systems, you can run a command similar to the following to view the set of directories in your current <literal>PATH</literal>:</simpara>
+<literallayout class="monospaced">export $PATH</literallayout>
+<simpara>To check the location of the <literal>dfx</literal> executable after you install the {sdk-short-name}, you might run a command similar to the following:</simpara>
+<literallayout class="monospaced">which dfx</literallayout>
+<simpara>If the <literal>dfx</literal> executable is not in one of the directories listed in your current <literal>$PATH</literal>, you need to move the executable or update the <literal>PATH</literal> setting.
+The specific steps for updating the <literal>PATH</literal> depend on your operating system, but, in many cases, you can run a command similar to the following and specifying the appropriate directory, such as <literal>~/bin</literal>:</simpara>
+<literallayout class="monospaced">export PATH=&lt;path-to-directory-for-dfx&gt;</literallayout>
+<simpara>Now you&#8217;re ready to <link xl:href="local-quickstart.xml#download-and-install">install</link> the {sdk-short-name} and get coding!</simpara>
+</section>
+</article>

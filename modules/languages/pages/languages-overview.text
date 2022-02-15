@@ -1,0 +1,41 @@
+---
+date: 2021-05-09
+title: Languages and API reference
+---
+
+The Languages and API reference information is intended for advanced
+programmers or system architects who want more details about the lower
+level structures, libraries, and modules that support the higher-level
+developer tools.
+
+# {proglang} {#_proglang}
+
+-   [Motoko Language Guide](../language-guide/motoko.xml)
+
+-   [Motoko Base Library](../base-libraries/stdlib-intro.xml)
+
+-   [Motoko Language Quick
+    Reference](../language-guide/language-manual.xml)
+
+# Candid {#_candid}
+
+-   [Candid Guide](../candid-guide/candid-intro.xml)
+
+-   [Candid
+    specification](https://github.com/dfinity/candid/tree/master/spec)
+
+-   [Candid crate](https://docs.rs/candid)
+
+# Rust {#_rust}
+
+-   [Introduction to working with Rust](../rust-guide/rust-intro.xml)
+
+-   [{IC} Type Library (ic-types)](https://crates.io/crates/ic-types)
+
+-   [{IC} Agent Library (ic-agent)](https://crates.io/crates/ic-agent)
+
+-   [{IC} Canister Development Kit
+    (ic-cdk)](https://crates.io/crates/ic-cdk)
+
+-   [Rust Canister Development Kit (CDK)
+    examples](https://github.com/dfinity/cdk-rs/tree/master/examples)

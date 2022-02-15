@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Motoko at-a-glance</title>
+<date>2021-08-05</date>
+</info>
+<simpara>This summary provides a simple but comprehensive overview of Motoko with examples of key features to help you identify operations and patterns that you might know in other languages and what they look like in Motoko.</simpara>
+<section xml:id="_motoko_motivation_and_goals">
+<title>Motoko motivation and goals</title>
+<simpara>A simple, useful language for DFINITY and the {platform}.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Familiar syntax</simpara>
+</listitem>
+<listitem>
+<simpara>Safe by default</simpara>
+</listitem>
+<listitem>
+<simpara>Incorporates smart contracts using the <emphasis role="strong">canister</emphasis> model</simpara>
+</listitem>
+<listitem>
+<simpara>Provides seamless integration of DFINITY and the {platform} features</simpara>
+</listitem>
+<listitem>
+<simpara>Makes the most of present and future WebAssembly</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_key_design_points">
+<title>Key design points</title>
+<simpara>Motoko takes inspiration from several programming languages, including Java, JavaScript, C#, Swift, Pony, ML, Haskell.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Object-oriented, functional, and imperative</simpara>
+</listitem>
+<listitem>
+<simpara>Objects as records of members</simpara>
+</listitem>
+<listitem>
+<simpara><literal>async</literal>/<literal>await</literal> for sequential programming of asynchronous messaging</simpara>
+</listitem>
+<listitem>
+<simpara>Structural typing with simple generics and subtyping</simpara>
+</listitem>
+<listitem>
+<simpara>Safe arithmetic (unbounded and checked)</simpara>
+</listitem>
+<listitem>
+<simpara>Non-nullable types by default</simpara>
+</listitem>
+<listitem>
+<simpara>JavaScript-like syntax but statically typed and sane</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_semantics">
+<title>Semantics</title>
+<itemizedlist>
+<listitem>
+<simpara>call-by-value (like Java, C, JS, and ML; unlike Haskell and Nix)</simpara>
+</listitem>
+<listitem>
+<simpara>declarations are locally mutually recursive</simpara>
+</listitem>
+<listitem>
+<simpara>parametric, bounded polymorphism</simpara>
+</listitem>
+<listitem>
+<simpara>subtyping as subsumption, not coercion</simpara>
+</listitem>
+<listitem>
+<simpara>no dynamic casts</simpara>
+</listitem>
+<listitem>
+<simpara>no inheritance</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_implementations">
+<title>Implementations</title>
+<itemizedlist>
+<listitem>
+<simpara>implemented in OCaml (leverages <literal>wasm</literal> library)</simpara>
+</listitem>
+<listitem>
+<simpara>simple reference interpreter</simpara>
+</listitem>
+<listitem>
+<simpara>less simple compiler to WebAssembly</simpara>
+</listitem>
+<listitem>
+<simpara>multipass with typed IR in each pass</simpara>
+</listitem>
+<listitem>
+<simpara>uniform representation, unboxed arithmetic</simpara>
+</listitem>
+<listitem>
+<simpara>two-space gc, gc between messages</simpara>
+</listitem>
+<listitem>
+<simpara>polymorphism by erasure</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_language_features">
+<title>Language features</title>
+<simpara>The next sections highlight Motoko programming language features in simplified form.
+For additional information about using these and other features, see the <link xl:href="../language-guide/language-manual.xml">Language quick reference</link> in the ink:../language-guide/motoko.xml[<emphasis>Motoko Programming Language Guide</emphasis>].</simpara>
+<section xml:id="_expressions">
+<title>Expressions</title>
+<itemizedlist>
+<listitem>
+<simpara>identifiers such as <literal>x</literal>, <literal>foo_bar</literal>, <literal>test'</literal>, <literal>List</literal>, <literal>Map</literal></simpara>
+</listitem>
+<listitem>
+<simpara>parentheses for grouping</simpara>
+</listitem>
+<listitem>
+<simpara>type annotations to help type inference, for example <literal>(42 : Int)</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_blocks_and_declarations">
+<title>Blocks and declarations</title>
+<itemizedlist>
+<listitem>
+<simpara>semi-colons are required after each declaration</simpara>
+</listitem>
+<listitem>
+<simpara>mutually recursive</simpara>
+</listitem>
+<listitem>
+<simpara>mutable variables marked explicitly</simpara>
+</listitem>
+</itemizedlist>
+<screen linenumbering="unnumbered">type Delta = Nat;
+func print() {
+  Debug.print(Int.toText(counter));
+};
+let d : Delta = 42;
+var counter = 1;
+counter := counter + tmp;
+print();</screen>
+</section>
+<section xml:id="_control_flow">
+<title>Control flow</title>
+<simpara>if and if - else</simpara>
+<screen linenumbering="unnumbered">if (b) …
+if (b) … else …</screen>
+<simpara>switch and case</simpara>
+<screen linenumbering="unnumbered">switch x { case (pat1) e1; …; case _ en }</screen>
+<simpara>while and loop</simpara>
+<screen linenumbering="unnumbered">while (b) …
+
+loop …
+loop … while (b)`</screen>
+<simpara>for</simpara>
+<screen linenumbering="unnumbered">for (pat in e) …</screen>
+</section>
+</section>
+<section xml:id="_primitive_types">
+<title>Primitive types</title>
+<simpara>The next sections highlight the primitive types in the Motoko programming language.</simpara>
+<section xml:id="_unbounded_integers">
+<title>Unbounded integers</title>
+<simpara><literal>Int</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>inferred by default for negative literals</simpara>
+</listitem>
+<listitem>
+<simpara>literals: <literal>13</literal>, <literal>0xf4</literal>, <literal>-20</literal>, <literal>+1</literal>, <literal>1_000_000</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_unbounded_naturals">
+<title>Unbounded naturals</title>
+<simpara><literal>Nat</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>non-negative numbers, trap upon underflow</simpara>
+</listitem>
+<listitem>
+<simpara>inferred by default for non-negative literals</simpara>
+</listitem>
+<listitem>
+<simpara>literals: <literal>13</literal>, <literal>0xf4</literal>, <literal>1_000_000</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_bounded_numbers_trapping">
+<title>Bounded numbers (trapping)</title>
+<simpara><literal>Nat8</literal>, <literal>Nat16</literal>, <literal>Nat32</literal>, <literal>Nat64</literal>, <literal>Int8</literal>, <literal>Int16</literal>, <literal>Int32</literal>, <literal>Int64</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>trap on over- and underflow</simpara>
+</listitem>
+<listitem>
+<simpara>need type annotations specified</simpara>
+</listitem>
+<listitem>
+<simpara>literals: <literal>13</literal>, <literal>0xf4</literal>, <literal>-20</literal>, <literal>1_000_000</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_floating_point_numbers">
+<title>Floating point numbers</title>
+<simpara><literal>Float</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>IEEE 754 double precision (64 bit) semantics, normalized NaN</simpara>
+</listitem>
+<listitem>
+<simpara>inferred for fractional literals</simpara>
+</listitem>
+<listitem>
+<simpara>literals: <literal>0</literal>, <literal>-10</literal>, <literal>2.71</literal>, <literal>-0.3e+15</literal>, <literal>3.141_592_653_589_793_12</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_numeric_operations">
+<title>Numeric operations</title>
+<simpara>operators behave as you would expect (no surprises)</simpara>
+<screen linenumbering="unnumbered">a - b
+a + b
+a &amp; b</screen>
+</section>
+<section xml:id="_characters_and_text">
+<title>Characters and text</title>
+<simpara><literal>Char</literal>, <literal>Text</literal></simpara>
+<simpara>Unicode, no random access</simpara>
+<screen linenumbering="unnumbered">'x', '\u{\6a}', '☃'
+"boo", "foo \u{\62}ar ☃"
+"Concat" # "enation"</screen>
+</section>
+<section xml:id="_booleans">
+<title>Booleans</title>
+<simpara><literal>Bool</literal></simpara>
+<simpara>literals: <literal>true</literal>, <literal>false</literal></simpara>
+<screen linenumbering="unnumbered">a or b
+a and b
+not b
+if (b) e1 else e2</screen>
+</section>
+</section>
+<section xml:id="_functions">
+<title>Functions</title>
+<simpara>The next sections provide examples for working with functions in the Motoko programming language.</simpara>
+<section xml:id="_function_types">
+<title>Function types</title>
+<simpara>simple functions</simpara>
+<screen linenumbering="unnumbered">Int.toText : Int -&gt; Text</screen>
+<simpara>multiple arguments and return values</simpara>
+<screen linenumbering="unnumbered">divRem : (Int, Int) -&gt; (Int, Int)</screen>
+<simpara>can be generic/polymorphic</simpara>
+<screen linenumbering="unnumbered">Option.unwrapOr : &lt;T&gt;(?T, default : T) -&gt; T</screen>
+<simpara>first-class (can be passed around, stored)</simpara>
+<screen linenumbering="unnumbered">map : &lt;A, B&gt;(f : A -&gt; B, xs : [A]) -&gt; [B]
+let funcs : [&lt;T&gt;(T) -&gt; T] = …</screen>
+</section>
+<section xml:id="_function_declarations_and_use">
+<title>Function declarations and use</title>
+<simpara><literal>func() { … }</literal> short for <literal>func() : () = { … }</literal></simpara>
+<simpara>parametric functions</simpara>
+<simpara>type instantiations may sometimes be omitted</simpara>
+<simpara>anonymous functions (a.k.a. lambdas)</simpara>
+<screen linenumbering="unnumbered">func add(x : Int, y : Int) : Int = x + y;</screen>
+<screen linenumbering="unnumbered">func applyNTimes&lt;T&gt;(n : Nat, x : T, f : T -&gt; ()) {
+  if (n == 0) return;
+  f(x);
+  applyNTimes(n-1, x, f);
+}</screen>
+<screen linenumbering="unnumbered">applyNTimes&lt;Text&gt;(10, "Hello!", func(x) = { Debug.print(x) } );</screen>
+</section>
+</section>
+<section xml:id="_composite_types">
+<title>Composite types</title>
+<simpara>The next sections provide examples for working with composite types in the Motoko programming language.</simpara>
+<section xml:id="_tuples">
+<title>Tuples</title>
+<simpara><literal>(Bool, Float, Text)</literal></simpara>
+<simpara>immutable, heterogeneous, fixed size</simpara>
+<screen linenumbering="unnumbered">let tuple = (true, 1.2, "foo");
+tuple.1 &gt; 0.0;
+let (_,_,t) = tuple;</screen>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara><literal>?Text</literal></simpara>
+<simpara>is either a value of that type, or <literal>null</literal></simpara>
+<screen linenumbering="unnumbered">func foo(x : ?Text) : Text {
+  switch x {
+    case (null) { "No value" };
+    case (?y) { "Value: " # y };
+  };
+};
+foo(null);
+foo(?"Test");</screen>
+</section>
+<section xml:id="_arrays_immutable">
+<title>Arrays (immutable)</title>
+<simpara><literal>[Text]</literal></simpara>
+<screen linenumbering="unnumbered">let days = ["Monday", "Tuesday", … ];
+assert(days.len() == 7);
+assert(days[1] == "Tuesday");
+// days[7] will trap (fixed size)
+for (d in days.vals()) { Debug.print(d) };</screen>
+</section>
+<section xml:id="_arrays_mutable">
+<title>Arrays (mutable)</title>
+<simpara><literal>[var Nat]</literal></simpara>
+<screen linenumbering="unnumbered">let counters = [var 1, 2, 3];
+assert(counters.len() == 3);
+counters[1] := counters[1] + 1;
+// counters[3] will trap (fixed size)</screen>
+</section>
+<section xml:id="_records">
+<title>Records</title>
+<simpara><literal>{name : Text; points : var Int}</literal></simpara>
+<screen linenumbering="unnumbered">let player = { name = "Joachim";  var points = 0 };
+Debug.print(
+  player.name # " has " #
+  Int.toText(player.points) # " points."
+);
+player.points += 1;</screen>
+</section>
+<section xml:id="_objects">
+<title>Objects</title>
+<simpara><literal>{ get : () &#8594; Int; add : Int &#8594; () }</literal></simpara>
+<simpara>different syntax, same type as records</simpara>
+<screen linenumbering="unnumbered">object self {
+  var points = 0; // private by default
+  public func get() = points;
+  public func add(p : Int) { points += p };
+}</screen>
+</section>
+<section xml:id="_variants">
+<title>Variants</title>
+<simpara><literal>{ #invincible; #alive : Int; #dead }</literal></simpara>
+<simpara>similar to enumerated types</simpara>
+<screen linenumbering="unnumbered">type Health = { #invincible; #alive : Nat; #dead };
+func takeDamage(h : Health, p : Nat) : Health {
+  switch (h) {
+    case (#invincible) #invincible;
+    case (#alive hp) {
+      if (hp &gt; p) (#alive (hp-p)) else #dead
+    };
+    case (#dead) #dead;
+  }
+}</screen>
+</section>
+</section>
+<section xml:id="_packages_and_modules">
+<title>Packages and modules</title>
+<simpara>The next sections provide examples for working with packages and modules in the Motoko programming language.</simpara>
+<section xml:id="_modules">
+<title>Modules</title>
+<itemizedlist>
+<listitem>
+<simpara>types and values like objects</simpara>
+</listitem>
+<listitem>
+<simpara>restricted to <emphasis>static</emphasis> content (pure, no state, …)</simpara>
+</listitem>
+</itemizedlist>
+<screen linenumbering="unnumbered">// the type of base/Int.mo
+module {
+  toText : Int -&gt; Text;
+  abs : Int -&gt; Nat;
+  …
+}</screen>
+</section>
+<section xml:id="_module_imports">
+<title>Module imports</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>base</literal> package provides basic features</simpara>
+</listitem>
+<listitem>
+<simpara>additional libraries evolving with community support</simpara>
+</listitem>
+</itemizedlist>
+<screen linenumbering="unnumbered">import Debug "mo:base/Debug";
+import Int "mo:base/Int";</screen>
+</section>
+</section>
+<section xml:id="_platform_features">
+<title>Platform features</title>
+<simpara>The next sections provide examples of the Motoko programming language platform-specific features.</simpara>
+<section xml:id="_actor_types">
+<title>Actor types</title>
+<itemizedlist>
+<listitem>
+<simpara>like object types, but marked as <literal>actor</literal>:</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis>sharable</emphasis> arguments and <emphasis>no</emphasis> or <emphasis>async</emphasis> result type.</simpara>
+</listitem>
+<listitem>
+<simpara>“canister” ≈ “actor”</simpara>
+</listitem>
+</itemizedlist>
+<screen linenumbering="unnumbered">type Receiver = actor { recv : Text -&gt; async Nat };
+type Broadcast = actor {
+  register : Receiver -&gt; ();
+  send : Text -&gt; async Nat;
+}</screen>
+</section>
+<section xml:id="_sharable_serializable">
+<title>Sharable ≈ serializable</title>
+<itemizedlist>
+<listitem>
+<simpara>all primitive types</simpara>
+</listitem>
+<listitem>
+<simpara>records, tuples, arrays, variants, options with immutable sharable components</simpara>
+</listitem>
+<listitem>
+<simpara><literal>actor</literal> types</simpara>
+</listitem>
+<listitem>
+<simpara><literal>shared</literal> function type</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The following are <emphasis role="strong">not sharable:</emphasis></simpara>
+<itemizedlist>
+<listitem>
+<simpara>mutable things</simpara>
+</listitem>
+<listitem>
+<simpara>local functions</simpara>
+</listitem>
+<listitem>
+<simpara>objects (with methods)</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_complete_actor_example">
+<title>Complete actor example</title>
+<simpara>typical canister main file</simpara>
+<screen linenumbering="unnumbered">import Array "mo:base/Array";
+actor {
+  var r : [Receiver] = [];
+  public func register(a : Receiver) {
+    r := Array.append(r, [a]);
+  };
+  public func send(t : Text) : async Nat {
+    var sum := 0;
+    for (a in r.values()) {
+      sum += await a.recv(t);
+    };
+    return sum;
+  };
+}</screen>
+</section>
+<section xml:id="_asyncawait">
+<title>Async/await</title>
+<simpara><literal>async T</literal></simpara>
+<itemizedlist>
+<listitem>
+<simpara>asynchronous future or promise</simpara>
+</listitem>
+<listitem>
+<simpara>introduced by <literal>async { … }</literal> (implicit in async function declaration)</simpara>
+</listitem>
+<listitem>
+<simpara><literal>await e</literal> suspends computation pending `e&#8217;s result</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_actor_import">
+<title>Actor import</title>
+<screen linenumbering="unnumbered">import Broadcast "ic:ABCDEF23";
+actor Self {
+  public func go() {
+    Broadcast.register(Self);
+  };
+  public func recv(msg : Text) : async Nat {
+    …
+  }
+}</screen>
+</section>
+<section xml:id="_principal_and_caller">
+<title>Principal and caller</title>
+<simpara>a <literal>Principal</literal> type represents the identity of a user or canister/actor</simpara>
+<screen linenumbering="unnumbered">actor Self {
+  let myself : Principal = Principal.fromActor(Self);
+  public shared(context) func hello() : async Text {
+    if (context.caller == myself) {
+      "Talking to yourself is the first sign of madness";
+    } else {
+      "Hello, nice to see you";
+    };
+  };
+}</screen>
+</section>
+</section>
+<section xml:id="_type_system">
+<title>Type system</title>
+<simpara>The next sections highlight details about type system used in the Motoko programming language.</simpara>
+<section xml:id="_structural">
+<title>Structural</title>
+<simpara>type definitions do not create types, but name existing types</simpara>
+<screen linenumbering="unnumbered">type Health1 = { #invincible; #alive : Nat; #dead };
+type Health2 = { #invincible; #alive : Nat; #dead };
+
+let takeDamage : (Health1, Nat) -&gt; Health1 = …;
+let h : Health2 = #invincible;
+let h' = takeDamage(h, 100); // works</screen>
+</section>
+<section xml:id="_subtyping">
+<title>Subtyping</title>
+<simpara><literal>Mortal &lt;: Health</literal></simpara>
+<screen linenumbering="unnumbered">type Health = { #invincible; #alive : Nat; #dead };
+type Mortal = { #alive : Nat; #dead };
+
+let takeDamage : (Health, Nat) -&gt; Health = …;
+let h : Mortal = #alive 1000;
+let h' = takeDamage(h, 100); // also works</screen>
+<simpara><literal>t1 &lt;: t2</literal>: <literal>t1</literal> can be used wherever <literal>t2</literal> is expected</simpara>
+</section>
+<section xml:id="_generic_types">
+<title>Generic types</title>
+<screen linenumbering="unnumbered">type List&lt;T&gt; = ?{head : T; tail : List&lt;T&gt;};
+
+let l : List&lt;Nat&gt; = ?{head = 0; tail = ?{head = 1 ; tail = null }};</screen>
+</section>
+</section>
+<section xml:id="_error_handling">
+<title>Error handling</title>
+<screen linenumbering="unnumbered">try … catch …
+
+throw …</screen>
+</section>
+<section xml:id="_class_declaration_example">
+<title>Class declaration example</title>
+<simpara>The following table compares class declarations in Motoko with class declarations in JavaScript and TypeScript.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="212.5*"/>
+<colspec colname="col_2" colwidth="212.5*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Motoko</entry>
+<entry align="left" valign="top">JavaScript/TypeScript</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><screen>class Counter(initValue:Nat) {
+  var _value = initValue;
+  public func get() : Nat {
+    _value
+  };
+  func f(x: Nat) {};
+}</screen></entry>
+<entry align="left" valign="top"><screen>class Counter {
+  private _value;
+  constructor(initValue) { _value = initValue }
+  public get() { return _value }
+  private f(x) {}
+}</screen></entry>
+</row>
+<row>
+<entry align="left" valign="top"><screen>class Foo() = Self {
+  func f() : Foo = Self
+}</screen></entry>
+<entry align="left" valign="top"></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+</article>

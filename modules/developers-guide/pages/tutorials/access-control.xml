@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Add access control with identities</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Applications often require role-based permissions to control the operations different users can perform.</simpara>
+<simpara>To illustrate how to create and switch between user identities, this tutorial creates a simple program that displays a different greeting for users who are assigned to different roles.</simpara>
+<simpara>In this example, there are three named roles—<literal>owner</literal>, <literal>admin</literal>, and <literal>authorized</literal>.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Users who are assigned an <literal>admin</literal> role see a greeting that displays <literal>You have a role with administrative privileges</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Users who are assigned an <literal>authorized</literal> role see a greeting that displays <literal>Would you like to play a game?</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Users who are not assigned one of these roles see a greeting that displays <literal>Nice to meet you!</literal>.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>In addition, only the user identity that initialized the canister is assigned the <literal>owner</literal> role and only the <literal>owner</literal> and <literal>admin</literal> roles can assign roles to other users.</simpara>
+<simpara>At a high-level, each user has a public/private key pair. The public key combines with the canister identifier the user accesses forms a security principal that can then be used as a message caller to authenticate function calls made to the canister running on the Internet Computer.
+The following diagram provides a simplified view of how user identities authenticate message callers.</simpara>
+<informalfigure>
+<mediaobject>
+<imageobject>
+<imagedata fileref="principal-identities.svg"/>
+</imageobject>
+<textobject><phrase>principal identities</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before starting the tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have run at least one command that resulted in your <literal>default</literal> user identity being created.
+Your default user identity is stored globally for all projects in the <literal>$HOME/.config/dfx/identity/</literal> directory.</simpara>
+</listitem>
+<listitem>
+<simpara>You have installed the Visual Studio Code plugin for Motoko as described in <link xl:href="../../quickstart/local-quickstart.xml#install-vscode">Install the language editor plug-in</link> if you are using Visual Studio Code as your IDE.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local computer.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project directory for testing access control and switching user identities:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new access_hello</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd access_hello</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_program">
+<title>Modify the default program</title>
+<simpara>For this tutorial, you are going to replace the template source code file with a program that has functions for assigning and retrieving roles.</simpara>
+<simpara>To modify the default program:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>src/access_hello/main.mo</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in access-control.adoc - include::example$access-hello/main.mo[]</programlisting>
+<simpara>Let&#8217;s take a look at a few key elements of this program:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You might notice that the <literal>greet</literal> function is a variation on the <literal>greet</literal> function you have seen in previous tutorials.</simpara>
+<simpara>In this program, however, the <literal>greet</literal> function uses a message caller to determine the permissions that should be applied and, based on the permissions associated with the caller, which greeting to display.</simpara>
+</listitem>
+<listitem>
+<simpara>The program defines two custom types—one for <literal>Roles</literal> and one for <literal>Permissions</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>assign_roles</literal> function enables the message caller to assign a role to the principal associated with an identity.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>callerPrincipal</literal> function enables you to return the principal associated with an identity.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>my_role</literal> function enables you to return the role that is associated with an identity.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the <literal>main.mo</literal> file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_start_the_local_network">
+<title>Start the local network</title>
+<simpara>Before you can build the <literal>access_hello</literal> project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --background</programlisting>
+<simpara>After the local Internet Computer network completes its startup operations, you can continue to the next step.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_build_and_deploy_the_application">
+<title>Register, build, and deploy the application</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application in a single step by running the <link xl:href="../cli-reference/dfx-deploy.xml"><literal>dfx deploy</literal></link> command.
+You can also perform each of these steps independently using separate <link xl:href="../cli-reference/dfx-canister.xml#dfx_canister_create"><literal>dfx canister create</literal></link>, <link xl:href="../cli-reference/dfx-build.xml"><literal>dfx build</literal></link>, and <link xl:href="../cli-reference/dfx-canister.xml#dfx_canister_install"><literal>dfx canister install</literal></link> commands.</simpara>
+<simpara>To deploy the application locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy the <literal>access_hello</literal> back-end program by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy access_hello</programlisting>
+<literallayout class="monospaced">Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+Deploying: access_hello
+Creating canisters...
+Creating canister "access_hello"...
+"access_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Building canisters...
+Installing canisters...
+Installing code for canister access_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Deployed canisters.</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_check_the_current_identity_context">
+<title>Check the current identity context</title>
+<simpara>Before we create any additional identities, let&#8217;s review the principal identifiers associated with your <literal>default</literal> identity and the cycles wallet for your <literal>default</literal> identity.
+On the Internet Computer, a principal is the internal representative for a user, canister, node, or subnet. The textual representation for a principal is the external identifier you see displayed with working with the principal data type.</simpara>
+<simpara>To review your current identity and principle:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Verify the currently-active identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity whoami</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">default</literallayout>
+</listitem>
+<listitem>
+<simpara>Check the principal for the <literal>default</literal> user identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity get-principal</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">zen7w-sjxmx-jcslx-ey4hf-rfxdq-l4soz-7ie3o-hti3o-nyoma-nrkwa-cqe</literallayout>
+</listitem>
+<listitem>
+<simpara>Check the role associated with the <literal>default</literal> user identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --wallet=$(dfx identity get-wallet) call access_hello my_role</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">(opt variant { owner })</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_create_a_new_user_identity">
+<title>Create a new user identity</title>
+<simpara>To begin testing the access controls in our program, let&#8217;s create some new user identities and assign those users to different roles.</simpara>
+<simpara>To create a new user identity:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new administrative user identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity new ic_admin</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Creating identity: "ic_admin".
+Created identity: "ic_admin".</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>my_role</literal> function to see that your new user identity has not been assigned to any role.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --identity ic_admin canister call access_hello my_role</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "ic_admin" is "ryjl3-tyaaa-aaaaa-aaaba-cai"
+(null)</literallayout>
+</listitem>
+<listitem>
+<simpara>Switch your currently-active identity context to use the new <literal>ic_admin</literal> user identity and display the principal associated with the <literal>ic_admin</literal> user by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity use ic_admin &amp;&amp; dfx identity get-principal</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Using identity: "ic_admin".
+c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae</literallayout>
+</listitem>
+<listitem>
+<simpara>Check the principal used to call the <literal>access_hello</literal> canister by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call access_hello callerPrincipal</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">(principal "ryjl3-tyaaa-aaaaa-aaaba-cai")</literallayout>
+<simpara>By default, the cycles wallet identifier is the principal used to call the methods in the <literal>access_hello</literal> canister.
+To illustrate access control, however, we want to use the principal associated with the user context, not the cycles wallet.
+Before we get to that step, though, let&#8217;s assign a role to the <literal>ic_admin</literal> user. To do that, we need to switch to the <literal>default</literal> user identity that has the <literal>owner</literal> role.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_assign_a_role_to_an_identity">
+<title>Assign a role to an identity</title>
+<simpara>To assign the admin role to the ic_admin identity:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Switch your currently-active identity context to use the <literal>default</literal> user identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity use default</programlisting>
+</listitem>
+<listitem>
+<simpara>Assign the <literal>ic_admin</literal> principal the <literal>admin</literal> role by running a command similar to the following using Candid syntax:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister --wallet=$(dfx identity get-wallet) call access_hello assign_role '((principal "c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae"),opt variant{admin})'</programlisting>
+</listitem>
+</orderedlist>
+<note>
+<simpara>Be sure to replace the <literal>principal</literal> hash with the one returned by the <literal>dfx identity get-principal</literal> command for the <literal>ic_admin</literal> identity.</simpara>
+</note>
+<simpara>+
+Optionally, you can rerun the command to call the <literal>my_role</literal> function to verify the role assignment.</simpara>
+<simpara>+</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --identity ic_admin canister call access_hello my_role</programlisting>
+<simpara>+
+The command displays output similar to the following:</simpara>
+<simpara>+</simpara>
+<literallayout class="monospaced">(opt variant { admin })</literallayout>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Call the <literal>greet</literal> function using the <literal>ic_admin</literal> user identity that you just assigned the <literal>admin</literal> role by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --identity ic_admin canister call access_hello greet "Internet Computer Admin"</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">(
+  "Hello, Internet Computer Admin. You have a role with administrative privileges.",
+)</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_add_an_authorized_user_identity">
+<title>Add an authorized user identity</title>
+<simpara>At this point, you have a <literal>default</literal> user identity with the <literal>owner</literal> role and an <literal>ic_admin</literal> user identity with the <literal>admin</literal> role.
+Let&#8217;s add another user identity and assign it to the <literal>authorized</literal> role.
+For this example, however, we&#8217;ll use an environment variable to store the user&#8217;s principal.</simpara>
+<simpara>To add a new authorized user identity:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new authorized user identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity new alice_auth</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Creating identity: "alice_auth".
+Created identity: "alice_auth".</literallayout>
+</listitem>
+<listitem>
+<simpara>Switch your currently-active identity context to use the new <literal>alice_auth</literal> user identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity use alice_auth</programlisting>
+</listitem>
+<listitem>
+<simpara>Store the principal for the <literal>alice_auth</literal> user in an environment variable by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">ALICE_ID=$(dfx identity get-principal)</programlisting>
+<simpara>You can verify the principal stored by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">echo $ALICE_ID</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe</literallayout>
+</listitem>
+<listitem>
+<simpara>Use the <literal>ic_admin</literal> identity to assign the <literal>authorized</literal> role to <literal>alice_auth</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --identity ic_admin canister call access_hello assign_role "(principal \"$ALICE_ID\", opt variant{authorized})"</programlisting>
+</listitem>
+<listitem>
+<simpara>Call the <literal>my_role</literal> function to verify the role assignment.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --identity alice_auth canister call access_hello my_role</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">(opt variant { authorized })</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>greet</literal> function using the <literal>alice_auth</literal> user identity that you just assigned the <literal>authorized</literal> role by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call access_hello greet "Alice"</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">(
+  "Welcome, Alice. You have an authorized account. Would you like to play a game?",
+)</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_add_an_unauthorized_user_identity">
+<title>Add an unauthorized user identity</title>
+<simpara>You have now seen a simple example of creating users with specific roles and permissions.
+The next step is to create a user identity that is not assigned to a role or given any special permissions.</simpara>
+<simpara>To add an unauthorized user identity:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Check your currently-active identity, if needed, by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity whoami</programlisting>
+</listitem>
+<listitem>
+<simpara>Create a new user identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity new bob_standard</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Creating identity: "bob_standard".
+Created identity: "bob_standard".</literallayout>
+</listitem>
+<listitem>
+<simpara>Store the principal for the <literal>bob_standard</literal> user in an environment variable by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">BOB_ID=$(dfx --identity bob_standard identity get-principal)</programlisting>
+</listitem>
+<listitem>
+<simpara>Attempt to use the <literal>bob_standard</literal> identity to assign a role.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --identity bob_standard canister call access_hello assign_role "(principal \"$BOB_ID\", opt variant{authorized})"</programlisting>
+<simpara>This command returns an <literal>unauthorized</literal> error.</simpara>
+</listitem>
+<listitem>
+<simpara>Attempt to use the <literal>default</literal> user identity to assign <literal>bob_standard</literal> the <literal>owner</literal> role by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --identity default canister --wallet=$(dfx --identity default identity get-wallet) call access_hello assign_role "(principal \"$BOB_ID\", opt variant{owner})"</programlisting>
+<simpara>This command fails because users cannot be assigned the <literal>owner</literal> role.</simpara>
+</listitem>
+<listitem>
+<simpara>Call the <literal>greet</literal> function using the <literal>bob_standard</literal> user identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx --identity bob_standard canister --no-wallet call access_hello greet "Bob"</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">("Greetings, Bob. Nice to meet you!")</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_set_the_user_identity_for_multiple_commands">
+<title>Set the user identity for multiple commands</title>
+<simpara>So far, you have seen how to create and switch between user identities for individual commands.
+You can also specify a user identity you want to use, then run multiple commands in the context of that user identity.</simpara>
+<simpara>To run multiple commands under one user identity:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in your project directory, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>List the user identities currently available by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity list</programlisting>
+<simpara>The command displays output similar to the following with an asterisk indicating the currently-active user identity.</simpara>
+<literallayout class="monospaced">alice_auth
+bob_standard
+default *
+ic_admin</literallayout>
+<simpara>In this example, the <literal>default</literal> user identity is used unless you explicitly select a different identity.</simpara>
+</listitem>
+<listitem>
+<simpara>Select a new user identity from the list and make it the active user context by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity use ic_admin</programlisting>
+<simpara>+ The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Using identity: "ic_admin".</literallayout>
+<simpara>If you rerun the <literal>dfx identity list</literal> command, the <literal>ic_admin</literal> user identity displays an asterisk to indicate it is the currently active user context.</simpara>
+<simpara>You can now run commands using the selected user identity without specifying <literal>--identity</literal> on the command-line.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with the program and using identities, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_want_to_learn_more">
+<title>Want to learn more?</title>
+<simpara>If you are looking for more information about identity and authentication, check out the following related resources:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="../cli-reference/dfx-identity.xml">dfx identity (command reference)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../working-with-canisters.xml#set-owner">Set an identity to own a canister (how-to)</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

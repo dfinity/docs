@@ -1,0 +1,78 @@
+---
+date: 2021-08-05
+title: What is the Internet Computer?
+---
+
+The **Internet Computer** is a blockchain that enables developers,
+organizations, and entrepreneurs to build and deploy secure, autonomous,
+and tamper-proof software programs.
+
+As an application developer, you might find it useful to think of the
+Internet Computer as providing the following key elements:
+
+-   An **open communication protocol** that enables general-purpose
+    computations to run transparently directly on the internet
+
+-   A **network** that runs the protocol to provide computing
+    capacity---for example, the hardware, CPU, and memory required to
+    run programs---through **independent data centers**.
+
+-   A **globally-accessible and scalable blockchain platform** for
+    running software applications.
+
+# Open blockchain platform {#_open_blockchain_platform}
+
+The Internet Computer is not physical hardware that exists in any
+physical location. Instead, the Internet Computer combines computing
+resources provided by independent data centers around the world to give
+users and organizations secure access to applications and transaction
+processing services.
+
+The {platform} enables multiple computers to operate like one, very
+powerful, virtual machine. The computers that make up the virtual
+machine are organized into sub-networks---subnet blockchains---with data
+centers around the world. The distributed architecture enables secure
+communication without firewalls or technologies that are vulnerable to
+attack. Independent data centers receive remuneration for contributing
+computing capacity and hosting services to support applications running
+on the {platform}.
+
+# Building the next generation of software and services {#next-gen}
+
+The Internet Computer protocol reduces platform-based risks and paves
+the way for innovation by re-imagining how software is built, deployed,
+and accessed.
+
+For example, with the Internet Computer, developers can focus on writing
+code using smart contracts without environment-related distractions such
+as:
+
+-   physical or virtual network configuration requirements
+
+-   load balancing services
+
+-   firewalls, network topology, or port management
+
+-   database configuration and maintenance
+
+-   storage volumes and devices
+
+By enabling developers to focus on building applications and delivering
+value, the Internet Computer helps simplify the development process,
+reduce time to market, and foster innovation.
+
+For end-users, the Internet Computer provides a secure environment for
+accessing applications with fewer risks. Because of the inherent
+security of the blockchain, programs running on the Internet Computer
+cannot be hijacked by malicious code, which also reduces the total cost
+of ownership for both application end-users or organizations.
+
+In addition, because software services can be \"autonomous\" and public,
+developers can write services that communicate with each other and share
+functions in ways that increase productivity and efficiency while
+leaving room to innovate and improve projects with confidence.
+
+The Internet Computer also enables developers to use
+cryptographically-secure identities to enforce access controls, reducing
+the need to rely on user names and passwords or external identity
+management plug-ins.

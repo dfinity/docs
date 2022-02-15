@@ -1,0 +1,352 @@
+---
+date: 2021-08-05
+title: Untitled
+---
+
+-   [**Introduction**](introduction:welcome.xml)
+
+    -   [For: First-Timers](introduction:welcome.xml#for-first-timers)
+
+    -   [For: Developers](introduction:welcome.xml#for-developers)
+
+    -   [For: Protocol
+        Enthusiasts](introduction:welcome.xml#for-protocol-enthusiasts)
+
+-   [Quick Start](quickstart:quickstart-intro.xml)
+
+    -   [Local Development](quickstart:local-quickstart.xml)
+
+    -   [Network Deployment](quickstart:network-quickstart.xml)
+
+-   Developer Docs
+
+    -   Getting Started
+
+        -   Introducing the SDK
+
+            -   [Install, upgrade, or remove
+                software](developers-guide:install-upgrade-remove.xml)
+
+            -   [Release notes](release-notes:sdk-release-notes.xml)
+
+                -   [0.8.0](release-notes:0.8.0-rn.xml)
+
+                -   [0.7.7](release-notes:0.7.7-rn.xml)
+
+                -   [0.7.2](release-notes:0.7.2-rn.xml)
+
+                -   [0.7.1](release-notes:0.7.1-rn.xml)
+
+                -   [0.7.0](release-notes:0.7.0-rn.xml)
+
+                -   [0.6.26](release-notes:0.6.26-rn.xml)
+
+                -   [0.6.25](release-notes:0.6.25-rn.xml)
+
+                -   [0.6.24](release-notes:0.6.24-rn.xml)
+
+                -   [0.6.23](release-notes:0.6.23-rn.xml)
+
+                -   [0.6.22](release-notes:0.6.22-rn.xml)
+
+                -   [0.6.21](release-notes:0.6.21-rn.xml)
+
+                -   [0.6.20](release-notes:0.6.20-rn.xml)
+
+        -   Introducing DFX
+
+            -   [DFX commands](developers-guide:cli-reference.xml)
+
+            -   [DFX environment
+                variables](developers-guide:cli-reference/dfx-envars.xml)
+
+            -   [Glossary](developers-guide:glossary.xml)
+
+    -   Building on the Internet Computer
+
+        -   Learn how to:
+
+            -   [Develop software on the
+                IC](developers-guide:sdk-guide.xml)
+
+            -   [Design apps](developers-guide:design-apps.xml)
+
+            -   [Manage
+                projects](developers-guide:customize-projects.xml)
+
+            -   [Manage
+                canisters](developers-guide:working-with-canisters.xml)
+
+            -   [Use the default cycles
+                wallet](developers-guide:default-wallet.xml)
+
+            -   [Explore the default
+                project](developers-guide:tutorials/explore-templates.xml)
+
+            -   [Query using an
+                actor](developers-guide:tutorials/define-an-actor.xml)
+
+            -   [Pass text
+                arguments](developers-guide:tutorials/hello-location.xml)
+
+            -   [Increment a natural
+                number](developers-guide:tutorials/counter-tutorial.xml)
+
+            -   [Use integers in calculator
+                functions](developers-guide:tutorials/calculator.xml)
+
+            -   [Import library
+                modules](developers-guide:tutorials/phonebook.xml)
+
+            -   [Use multiple
+                actors](developers-guide:tutorials/multiple-actors.xml)
+
+            -   [Make inter-canister
+                calls](developers-guide:tutorials/intercanister-calls.xml)
+
+            -   [Add access control with
+                identities](developers-guide:tutorials/access-control.xml)
+
+            -   [Accept cycles from a
+                wallet](developers-guide:tutorials/simple-cycles.xml)
+
+            -   [Troubleshoot
+                issues](developers-guide:troubleshooting.xml)
+
+        -   Explore our languages
+
+            -   [Develop using different
+                languages](developers-guide:work-with-languages.xml)
+
+            -   [Motoko](language-guide:motoko.xml)
+
+                -   [Motoko
+                    Playground](https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/)
+
+                -   [Motoko Base
+                    Library](base-libraries:stdlib-intro.xml)
+
+                -   Motoko Guide
+
+                    -   [About the language
+                        guide](language-guide:about-this-guide.xml)
+
+                    -   [Introduction](language-guide:motoko-introduction.xml)
+
+                    -   [Basic concepts and
+                        terms](language-guide:basic-concepts.xml)
+
+                    -   [Mutable
+                        state](language-guide:mutable-state.xml)
+
+                    -   [Local objects and
+                        classes](language-guide:local-objects-classes.xml)
+
+                    -   [Actors and async
+                        data](language-guide:actors-async.xml)
+
+                    -   [Error handling](language-guide:errors.xml)
+
+                    -   [Pattern
+                        matching](language-guide:pattern-matching.xml)
+
+                    -   [Sharing data and
+                        behavior](language-guide:sharing.xml)
+
+                    -   [Modules and
+                        imports](language-guide:modules-and-imports.xml)
+
+                    -   [Imperative control
+                        flow](language-guide:control-flow.xml)
+
+                    -   [Structural
+                        equality](language-guide:structural-equality.xml)
+
+                    -   [Actor
+                        classes](language-guide:actor-classes.xml)
+
+                    -   [Principals and caller
+                        identification](language-guide:caller-id.xml)
+
+                    -   [Managing cycles](language-guide:cycles.xml)
+
+                    -   [Stable variables and upgrade
+                        methods](language-guide:upgrades.xml)
+
+                    -   [Language quick
+                        reference](language-guide:language-manual.xml)
+
+                    -   [Compiler
+                        reference](language-guide:compiler-ref.xml)
+
+                    -   [Motoko
+                        grammar](language-guide:motoko-grammar.xml)
+
+                    -   [Motoko style
+                        guidelines](language-guide:style.xml)
+
+            -   [Rust](rust-guide:rust-intro.xml)
+
+                -   [Hello, World! Quick
+                    Start](rust-guide:rust-quickstart.xml)
+
+                -   [Simple counter
+                    tutorial](rust-guide:rust-counter.xml)
+
+                -   [Basic dependency
+                    tutorial](rust-guide:multiply-dependency.xml)
+
+                -   [Profile tutorial](rust-guide:rust-profile.xml)
+
+                -   [Optimize a Rust
+                    program](rust-guide:rust-optimize.xml)
+
+            -   [Candid](candid-guide:candid-intro.xml)
+
+                -   [What is Candid?](candid-guide:candid-concepts.xml)
+
+                -   [How to](candid-guide:candid-howto.xml)
+
+                -   [Reference](candid-guide:candid-ref.xml)
+
+                    -   [Supported types](candid-guide:candid-types.xml)
+
+                    -   [Candid
+                        specification](https://github.com/dfinity/candid)
+
+                    -   [Candid Rust crate](https://docs.rs/candid)
+
+        -   Introducing the Internet Identity
+
+            -   [What is Internet
+                Identity](ic-identity-guide:what-is-ic-identity.xml)
+
+            -   [How to use the Internet
+                Identity](ic-identity-guide:auth-how-to.xml)
+
+        -   Frontend development
+
+            -   [Add frontend
+                assets](developers-guide:webpack-config.xml)
+
+            -   [Customize the
+                front-end](developers-guide:tutorials/custom-frontend.xml)
+
+            -   [Add a
+                stylesheet](developers-guide:tutorials/my-contacts.xml)
+
+-   Protocol Docs
+
+    -   .[Concepts](developers-guide:concepts/concepts-intro.xml)
+
+        -   [What is the {IC}](developers-guide:concepts/what-is-IC.xml)
+
+        -   [Internet Computer Interface
+            Specification](interface-spec:index.xml)
+
+        -   [Nodes and
+            sub-networks](developers-guide:concepts/nodes-subnets.xml)
+
+        -   [Decentralized data
+            centers](developers-guide:concepts/data-centers.xml)
+
+        -   [Canisters and
+            code](developers-guide:concepts/canisters-code.xml)
+
+        -   [Tokens and
+            cycles](developers-guide:concepts/tokens-cycles.xml)
+
+        -   [Neurons and
+            governance](developers-guide:concepts/governance.xml)
+
+-   General Docs
+
+    -   Overview of self-custody
+
+        -   [Choosing self-custody for digital
+            assets](token-holders:custody-options-intro.xml)
+
+        -   [Self-custody quick
+            start](token-holders:self-custody-quickstart.xml)
+
+    -   Overview of ledger
+
+        -   [Ledger quick start](integration:ledger-quick-start.xml)
+
+    -   Overview of the NNS App
+
+        -   [NNS App quick start](token-holders:nns-app-quickstart.xml)
+
+-   Additional Resources
+
+    -   Developer videos
+
+        -   [Internet
+            Identity](https://www.youtube.com/watch?v=oxEr8UzGeBo&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=11&ab_channel=DFINITY)
+
+        -   [Motoko](https://www.youtube.com/watch?v=4eSceDOS-Ms&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=21&ab_channel=DFINITY)
+
+        -   [Building a multiplayer game for the Internet
+            Computer](https://www.youtube.com/watch?v=GzkRsbqPaA0&ab_channel=DFINITY)
+
+        -   [Deploying static sites to the Internet
+            Computer](https://www.youtube.com/watch?v=b_nc6yx5_DQ&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=7&ab_channel=DFINITY)
+
+        -   [Zero to fullstack: web apps on the Internet Computer
+            ](https://www.youtube.com/watch?v=2miweY9-vZc&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=6&ab_channel=DFINITY)
+
+    -   Protocol videos
+
+        -   [Technical library](https://dfinity.org/technicals/)
+
+    -   Developer tooling
+
+        -   [DFINITY Canister SDK](ROOT:download.xml)
+
+        -   [Rust CDK](https://github.com/dfinity/cdk-rs)
+
+        -   [Vessel Package
+            Manager](https://github.com/kritzcreek/vessel)
+
+        -   [Motoko VS Code
+            Extension](https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko)
+
+        -   [Agent JS](https://github.com/dfinity/agent-js)
+
+        -   [Sudograph](https://github.com/sudograph/sudograph)
+
+        -   [Cycles Wallet](https://github.com/dfinity/cycles-wallet)
+
+        -   [Motoko
+            Playground](https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/)
+
+        -   [Quill](https://github.com/dfinity/quill)
+
+    -   Examples
+
+        -   [Awesome
+            DFINITY](https://github.com/dfinity/awesome-dfinity)
+
+        -   [CanCan](https://github.com/dfinity/cancan)
+
+        -   [Mini Motoko examples](https://github.com/dfinity/examples)
+
+    -   Community created resources
+
+        -   [ic.rocks (Block explorer)](https://ic.rocks/)
+
+        -   [Plug (Browser-based wallet
+            extension)](https://plugwallet.ooo/)
+
+        -   [Fleek (Netlify for the open web)](https://fleek.co/)
+
+        -   [Cycles Faucet](http://faucet.dfinity.org/)
+
+    -   [Computation and Storage
+        Costs](developers-guide:computation-and-storage-costs.xml)
+
+-   Community
+
+    -   [Developer Discord](https://discord.gg/cA7y6ezyE2)
+
+    -   [Developer Forum](https://forum.dfinity.org/)

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Introducing the Internet Computer</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Hello there!</simpara>
+<simpara>If you’ve landed here, you’re interested in learning more about the Internet Computer. You’re in the right place — take a look below for where to get started!</simpara>
+<section xml:id="for-first-timers">
+<title>For: First-Timers</title>
+<simpara>The Internet Computer is a blockchain that runs at web speed with unbounded capacity.</simpara>
+<simpara>As a crash course in blockchain history, Bitcoin created digital gold. Then, in the next step of the evolution, Ethereum developed smart contracts and pioneered DeFi and NFT use cases.</simpara>
+<simpara>The Internet Computer is the third major blockchain innovation — a blockchain that scales smart contract computation and data, runs them at web speed, processes and stores data efficiently, and provides powerful software frameworks to developers. By making this possible, the Internet Computer enables the complete reimagination of how systems and apps operate.</simpara>
+<simpara>Interested in learning more? Check out the following resources:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://www.youtube.com/watch?v=YWHTNr8RZHg&amp;list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&amp;index=17&amp;ab_channel=DFINITY">Primer to the Internet Computer</link>, a high-level overview of the Internet Computer in under 10 minutes</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://medium.com/dfinity">The Internet Computer Review</link>, our blog covering updates for the Internet Computer</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://thereboot.com/">The Reboot</link>, our tech publication exploring the issues with the current internet</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Follow us on the official <link xl:href="https://twitter.com/dfinity">DFINITY Twitter</link> for the latest updates.</simpara>
+</section>
+<section xml:id="for-developers">
+<title>For: Developers</title>
+<simpara>The Internet Computer hosts special smart contracts, called <link xl:href="https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb">canisters</link>. A canister is a bundle of <link xl:href="https://webassembly.org/">WebAssembly</link> bytecode logic and memory pages. Apps on the Internet Computer are created from one or more canisters.</simpara>
+<simpara>Canisters can serve web content directly to end-users, and users can interact with blockchain services without holding tokens. When building on the Internet Computer, you can deploy code directly to the Internet.</simpara>
+<simpara>The Internet Computer can eventually host any number of canisters (i.e., code &amp; state). Moreover, it can run them concurrently with unbounded on-chain capacity. This means you can create dapps that scale.</simpara>
+<simpara>Canisters are unstoppable and tamperproof. Imagine building without having to worry about databases, caches, firewalls, CDNs, cloud providers, VPNs, DNS, and even usernames &amp; passwords — all because the Internet Computer abstracts these needs away.</simpara>
+<simpara>Excited to take the leap? Check out our <link xl:href="quickstart:quickstart-intro.xml">Quick Start</link> to get started with a simple hello world app.</simpara>
+<simpara>Interested in getting plugged into our developer community? Check out the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://discord.gg/cA7y6ezyE2">Developer Discord</link>, our official Discord for the developer community</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://forum.dfinity.org/">Developer Forum</link>, a welcoming space for technical discussions about building on the Internet Computer</simpara>
+</listitem>
+</itemizedlist>
+<simpara>You can follow us on the <link xl:href="https://twitter.com/dfinitydev">DFINITY Developer Twitter</link> for the latest developer-specific updates.</simpara>
+</section>
+<section xml:id="for-protocol-enthusiasts">
+<title>For: Protocol Enthusiasts</title>
+<simpara>The Internet Computer is created by the Internet Computer Protocol (“ICP”), which has formed the world’s first web-speed, web-serving public blockchain network. The Internet Computer can grow its capacity with demand and is self-governing. It combines special node machines run en masse by independent data centers all around the world. Like all blockchains, it is unstoppable, and the code it hosts is tamperproof.</simpara>
+<simpara>Get started by checking out our “Concepts” section to the left, starting with <link xl:href="developers-guide:concepts/what-is-IC.xml">What is the Internet Computer?</link></simpara>
+<simpara>To learn more about the Internet Computer Protocol, check out the following resources:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://dfinity.org/technicals/">Technical Library</link>, for in-depth videos with our world-class R&amp;D team explaining components of the Internet Computer Protocol. Worth noting in particular:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://dfinity.org/technicals/chain-key-technology">Chain Key Cryptography</link>, one of the fundamental breakthroughs enabling the Internet Computer to scale to millions of nodes. The most notable innovation of Chain Key cryptography is that the Internet Computer has a single public key, which enables any device to verify the authenticity of artifacts generated by the Internet Computer, even smart watches and mobile phones.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><link xl:href="interface-spec:index.xml">Interface Specification</link>, for a deeply technical document that provides an overview of the lower-level external interfaces of the Internet Computer</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://dashboard.internetcomputer.org/">Internet Computer Dashboard</link>, to monitor real-time metrics around the Internet Computer network</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx help</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use this command to view usage information for the <literal>dfx</literal> parent command or for any specified subcommand.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx help [subcommand]</programlisting>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You can specify any <literal>dfx</literal> subcommand as an argument to view usage information for that subcommand using the <literal>dfx help</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="144.5*"/>
+<colspec colname="col_2" colwidth="280.5*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>subcommand</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the subcommand usage information you want to display.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>To display the usage information for <literal>dfx</literal>, run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx help</programlisting>
+<simpara>To display the usage information for <literal>dfx bew</literal>, run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx help new</programlisting>
+</section>
+</article>

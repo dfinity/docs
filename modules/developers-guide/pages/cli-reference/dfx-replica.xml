@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx replica</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx replica</literal> command to start a {IC} replica process (without a web server) locally.
+This command enables you to deploy canisters locally to simulate network deployment and to test your programs during development.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx replica [option] [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx replica</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can use the following option with the <literal>dfx replica</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--port port</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the port the local replica should listen to.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can start the {IC} replica by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx replica</programlisting>
+</section>
+</article>

@@ -1,0 +1,65 @@
+---
+date: 2021-08-05
+title: Download center
+---
+
+Currently, you can download the {sdk-long-name} directly from within a
+terminal shell on your local computer. With this installation option,
+you can be logged on as any user and no additional software is required.
+
+# Install the latest directly from a terminal {#install-latest}
+
+To download and install from a terminal shell:
+
+1.  Open a terminal shell on your local computer.
+
+    For example, on macOS open the Applications folder, then open
+    Utilities and double-click **Terminal**.
+
+2.  Download and install the SDK package by running the following `curl`
+    command:
+
+    ``` bash
+    sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+    ```
+
+# Install a specific version from a terminal {#install-version}
+
+If you want to install a specific version, for example, to test against
+a previous version, you can modify the installation command to include a
+version.
+
+To download and install a specific version from a terminal shell:
+
+1.  Open a terminal shell on your local computer.
+
+2.  Set the `DFX_VERSION` environment variable to the version of the
+    {sdk-short-name} package you want to install as a prefix to `curl`
+    command.
+
+    For example, to install version 0.8.0, you would run the following
+    command:
+
+    ``` bash
+    DFX_VERSION=0.8.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+    ```
+
+::: note
+If you are using the DFX_VERSION environment variable to install a
+version of the {sdk-short-name} not yet publicly available, see this
+[article](http-middleware.xml) for an overview of what's changed.
+:::
+
+# Next steps {#_next_steps}
+
+For information about the next steps to take, see
+[Tutorials](developers-guide/tutorials-intro.xml) in the [*SDK Developer
+Tools*](developers-guide/sdk-guide.xml).
+
+To learn more about writing programs for the Internet Computer before
+you start experimenting with code, see
+[Concepts](developers-guide/concepts/concepts-intro.xml).
+
+For information about writing programs for the Internet Computer using
+Motoko, see the [*Motoko Programming Language
+Guide*](language-guide/motoko.xml).

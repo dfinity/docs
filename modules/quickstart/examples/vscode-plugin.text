@@ -1,0 +1,31 @@
+---
+date: 2021-05-09
+title: Install the language editor plug-in
+---
+
+# Install the language editor plug-in {#install-vscode}
+
+If you are planning to write a program using {proglang} and use Visual
+Studio Code (VSCode) as your editor, you can install the {proglang}
+language client plug-in for VSCode. The {proglang} plug-in provides
+syntax highlighting, type information, and auto-completion features.
+
+To install the plug-in:
+
+1.  Download and install [Visual Studio
+    Code](https://code.visualstudio.com/download), if it not already
+    installed on your local computer.
+
+2.  Click View, then select **Extensions**.
+
+3.  Type `motoko` in the Search field.
+
+4.  Select the **Motoko language support** published by DFINITY
+    Foundation, then click **Install**.
+
+If your program has dependencies, you might also want to install the
+Vessel package manager for {proglang}. For instructions, see the
+[ReadMe](https://github.com/kritzcreek/vessel). To download the latest
+release, go to the
+[vessel](https://github.com/kritzcreek/vessel/releases) GitHub
+repository.

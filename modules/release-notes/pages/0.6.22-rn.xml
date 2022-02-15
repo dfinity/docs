@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.6.22</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.6.22 release consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, Motoko, the Motoko base library, and Candid.</simpara>
+<section xml:id="_new_features_and_capabilities">
+<title>New features and capabilities</title>
+<simpara>The most significant new features and capabilities include updates in the following functional areas:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="_dfx">DFX</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="Apps">Sample applications</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="_candid">Candid</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="_motoko">Motoko</link></simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_dfx">
+<title>DFX</title>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>dfx canister call</literal> command can now pass a randomly-generated value to a canister method when an argument is required but not provided.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>dfx canister call</literal> command can take canister identifiers for local canisters even if the canister is installed on a remote network.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>dfx replica</literal> command has been fixed so that it does not attempt to write the replica <literal>pid</literal> to a nonexistent directory.</simpara>
+</listitem>
+<listitem>
+<simpara>The default <literal>webpack.config.js</literal> file used when you create new projects has been modified to comment out the configuration to enable TypeScript.</simpara>
+<simpara>Previously, the <literal>webpack.config.js</literal> file configured <literal>ts-loader</literal> to process files with the <literal>.js</literal> file extension, which could lead to errors.
+This configuration is now disabled by default and the commented-out configuration only processes <literal>.ts</literal>, <literal>.tsx</literal>, and <literal>.jsx</literal> files through <literal>ts-loader</literal>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="Apps">
+<title>Sample applications</title>
+<itemizedlist>
+<listitem>
+<simpara>There have been updates, improvements, and new sample applications added to the <link xl:href="https://github.com/dfinity/examples/tree/master/motoko">examples</link> repository.</simpara>
+<simpara>All of Motoko sample apps in the <link xl:href="https://github.com/dfinity/examples/tree/master/motoko">examples</link> repository have been updated to work with the latest release of the {sdk-short-name}.</simpara>
+<simpara>There are also new sample apps to illustrate using arrays (<link xl:href="https://github.com/dfinity/examples/tree/master/motoko/quicksort">Quicksort</link>) and building create/read/update/delete (CRUD) operations for a web application <link xl:href="https://github.com/dfinity/examples/tree/master/motoko/superheroes">Superheroes</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>The <link xl:href="https://github.com/dfinity/linkedup">LinkedUp</link> sample application has been updated to work with the latest release of Motoko and the SDK.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_candid">
+<title>Candid</title>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="https://github.com/dfinity/candid/blob/master/Changelog.md">Candid changelog</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_motoko">
+<title>Motoko</title>
+<itemizedlist>
+<listitem>
+<simpara>The Motoko compiler now reports errors and warnings with an additional error code.</simpara>
+<simpara>You can use the error code to look up a more detailed description for a given error by passing the <literal>--explain</literal> flag with a code to the compiler.</simpara>
+<simpara>Note that detailed descriptions are not yet available for most error codes and will be added incrementally in upcoming releases.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+</article>

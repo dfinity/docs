@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx wallet</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx wallet</literal> command with subcommands and flags to manage the cycles wallets of your identities and to send cycles to the wallets of other account cycles wallet canisters.</simpara>
+<simpara>The basic syntax for running the <literal>dfx wallet</literal> commands is:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet [option] &lt;subcommand&gt; [flag]</programlisting>
+<simpara>Depending on the <literal>dfx wallet</literal> subcommand you specify, additional arguments, options, and flags might apply or be required.
+To view usage information for a specific <literal>dfx wallet</literal> subcommand, specify the subcommand and the <literal>--help</literal> flag.
+For example, to see usage information for <literal>dfx wallet send</literal>, you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet send --help</programlisting>
+<simpara>For reference information and examples that illustrate using <literal>dfx wallet</literal> commands, select an appropriate command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Command</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_add_controller"><literal>add-controller</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Add a controller using the selected identity&#8217;s principal.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_addresses"><literal>addresses</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays the address book of the cycles wallet.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_authorize"><literal>authorize</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Authorize a custodian by principal for the selected identity&#8217;s cycles wallet</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_balance"><literal>balance</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays the cycles wallet balance of the selected identity.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_controllers"><literal>controllers</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays a list of the selected identity&#8217;s cycles wallet controllers.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_custodians"><literal>custodians</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays a list of the selected identity&#8217;s cycles wallet custodians.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_deauthorize"><literal>deauthorize</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Deauthorize a cycles wallet custodian using the custodian&#8217;s principal.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays a usage message and the help of the given subcommand(s).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_name"><literal>name</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Returns the name of the cycles wallet if you&#8217;ve used the <literal>dfx wallet set-name</literal> command.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_remove_controller"><literal>remove-controller</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Removes a specified controller from the selected identity&#8217;s cycles wallet.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_send"><literal>send</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Sends a specified amount of cycles from the selected identity&#8217;s cycles wallet to another cycles wallet using the destination wallet canister ID.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_set_name"><literal>set-name</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify a name for your cycles wallet.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><link linkend="_dfx_wallet_upgrade"><literal>upgrade</literal></link></simpara></entry>
+<entry align="left" valign="top"><simpara>Upgrade the cycles wallet&#8217;s Wasm module to the current Wasm bundled with DFX.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<section xml:id="_using_your_wallet">
+<title>Using your wallet</title>
+<simpara>After you have used the <literal>dfx identity deploy-wallet</literal> command to create a cycles wallet canister tied to an identity, you can use <literal>dfx wallet</literal> commands to modify your cycles wallet settings, send cycles to other cycles wallets, and add or remove controllers and custodians.</simpara>
+</section>
+<section xml:id="_dfx_wallet_add_controller">
+<title>dfx wallet add-controller</title>
+<simpara>Use the <literal>dfx wallet add-controller</literal> to add a controller to the wallet. An identity assigned the role of Controller has the most priviledges and can perform the flowing actions on the selected identity&#8217;s cycles wallet:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Rename the cycles wallet.</simpara>
+</listitem>
+<listitem>
+<simpara>Add entries to the address book.</simpara>
+</listitem>
+<listitem>
+<simpara>Add and remove controllers.</simpara>
+</listitem>
+<listitem>
+<simpara>Authorize and deauthorize custodians.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>A controller is also a custodian and can perform the following actions associated with that role:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Access wallet information.</simpara>
+</listitem>
+<listitem>
+<simpara>Send cycles.</simpara>
+</listitem>
+<listitem>
+<simpara>Forward calls.</simpara>
+</listitem>
+<listitem>
+<simpara>Create canisters.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet add-controller [option] <controller> [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet add-controller</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can use the following options with the <literal>dfx canister call</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--network &lt;network&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the network of the controller you want to add.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You can specify the following arguments for the <literal>dfx wallet add-controller</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>controller</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the principal of the controller to add to the wallet.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx wallet add-controller</literal> command to add a controller to your wallet. If the controller you want to add is on a different network on the {IC}, specify the network using the <literal>--network</literal> option. For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet --network=https://192.168.74.4 add-controller hpff-grjfd-tg7cj-hfeuj-olrjd-vbego-lpcax-ou5ld-oh7kr-kl9kt-yae</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_wallet_addresses">
+<title>dfx wallet addresses</title>
+<simpara>Use the <literal>dfx wallet addresses</literal> command to display the wallet&#8217;s address book.The address entries contain the principal and <literal>role</literal> (<literal>Contact</literal>, <literal>Custodian</literal>, or <literal>Controller</literal>), and might contain a <literal>name</literal>, and <literal>kind</literal> (<literal>Unknown</literal>, <literal>User</literal>, or <literal>Canister</literal>) associated with the address.</simpara>
+<section xml:id="_basic_usage_2">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet addresses</programlisting>
+</section>
+<section xml:id="_flags_2">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet add-controller</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="131.75*"/>
+<colspec colname="col_2" colwidth="293.25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_2">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx wallet addresses</literal> command to retrieve information on the addresses in your wallet&#8217;s address book. For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet addresses
+Id: hpff-grjfd-tg7cj-hfeuj-olrjd-vbego-lpcax-ou5ld-oh7kr-kl9kt-yae, Kind: Unknown, Role: Controller, Name: ic_admin.
+Id: e7ptl-4x43t-zxcvh-n6s6c-k2dre-doy7l-bbo6h-ok8ik-msiz3-eoxhl-6qe, Kind: Unknown, Role: Custodian, Name: alice_auth.</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_wallet_authorize">
+<title>dfx wallet authorize</title>
+<simpara>Use the <literal>dfx wallet authorize</literal> command to authorize a custodian for the wallet. An identity assigned the role of custodian can perform the following actions on the cycles wallet:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Access wallet information.</simpara>
+</listitem>
+<listitem>
+<simpara>Send cycles.</simpara>
+</listitem>
+<listitem>
+<simpara>Forward calls.</simpara>
+</listitem>
+<listitem>
+<simpara>Create canisters.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_basic_usage_3">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet authorize &lt;custodian&gt; [flag]</programlisting>
+</section>
+<section xml:id="_flags_3">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet authorize</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_2">
+<title>Arguments</title>
+<simpara>Use the following necessary argument with the <literal>dfx wallet authorize</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;custodian&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify the principal of the identity you would like to add as a custodian to the selected identity&#8217;s cycles wallet.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example">
+<title>Example</title>
+<simpara>For example, to add alice_auth as a custodian, specify her principal in the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet authorize dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_wallet_balance">
+<title>dfx wallet balance</title>
+<simpara>Use the <literal>dfx wallet balance</literal> command to display the balance of the cycles wallet of the selected identity.</simpara>
+<section xml:id="_basic_usage_4">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet balance</programlisting>
+</section>
+<section xml:id="_flags_4">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet balance</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_3">
+<title>Examples</title>
+<simpara>Check the balance of the selected identity&#8217;s cycles wallet.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet balance</programlisting>
+<simpara>This command displays the number of cycles in your cycles wallet. For example:</simpara>
+<literallayout class="monospaced">89000000000000 cycles.</literallayout>
+</section>
+</section>
+<section xml:id="_dfx_wallet_controllers">
+<title>dfx wallet controllers</title>
+<simpara>Use the <literal>dfx wallet controllers</literal> command to list the principals of the identities that are controllers of the selected identity&#8217;s cycles wallet.</simpara>
+<section xml:id="_basic_usage_5">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet controllers</programlisting>
+</section>
+<section xml:id="_flags_5">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet controllers</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_4">
+<title>Examples</title>
+<simpara>List the controllers of your selected identity&#8217;s cycles wallet.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet controllers</programlisting>
+<simpara>The information returned should look similar to the following if there are two controllers:</simpara>
+<literallayout class="monospaced">dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
+hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae</literallayout>
+</section>
+</section>
+<section xml:id="_dfx_wallet_custodians">
+<title>dfx wallet custodians</title>
+<simpara>Use the <literal>dfx wallet custodians</literal> command to list the principals of the identities that are custodians of the selected identity&#8217;s cycles wallet. Identities that are added as controllers are also listed as custodians.</simpara>
+<section xml:id="_basic_usage_6">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet custodians</programlisting>
+</section>
+<section xml:id="_flags_6">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet custodians</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_5">
+<title>Examples</title>
+<simpara>List the custodians of your selected identity&#8217;s cycles wallet.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet custodians</programlisting>
+<simpara>The information returned should look similar to the following if there are two custodians:</simpara>
+<literallayout class="monospaced">dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
+hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae</literallayout>
+</section>
+</section>
+<section xml:id="_dfx_wallet_deauthorize">
+<title>dfx wallet deauthorize</title>
+<simpara>Use the <literal>dfx wallet deauthorize</literal> command to remove a custodian from the cycles wallet.</simpara>
+<note>
+<simpara>that this will also remove the role of controller if the custodian is also a controller.</simpara>
+</note>
+<section xml:id="_basic_usage_7">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet deauthorize &lt;custodian&gt; [flag]</programlisting>
+</section>
+<section xml:id="_flags_7">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet deauthorize</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_3">
+<title>Arguments</title>
+<simpara>Use the following necessary argument with the <literal>dfx wallet deauthorize</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;custodian&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify the principal of the custodian you want to remove.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example_2">
+<title>Example</title>
+<simpara>For example, to remove "alice_auth" as a custodian, specify her principal in the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet deauthorize dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_wallet_name">
+<title>dfx wallet name</title>
+<simpara>Use the <literal>dfx wallet name</literal> command to display the name of the selected identity&#8217;s cycles wallet if it has ben set using the <literal>dfx wallet set-name</literal> command.</simpara>
+<section xml:id="_basic_usage_8">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet name [flag]</programlisting>
+</section>
+<section xml:id="_flags_8">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet name</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example_3">
+<title>Example</title>
+<simpara>If you have named your cycles wallet "Terrances_wallet", then the command would return the following:</simpara>
+<literallayout class="monospaced">Terrances_wallet</literallayout>
+</section>
+</section>
+<section xml:id="_dfx_wallet_remove_controller">
+<title>dfx wallet remove-controller</title>
+<simpara>Use the <literal>dfx wallet remove-controller</literal> command to remove a controller of your selected identity&#8217;s cycles wallet.</simpara>
+<section xml:id="_basic_usage_9">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet remove-controller &lt;controller&gt; [flag]</programlisting>
+</section>
+<section xml:id="_flags_9">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet remove-controller</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_4">
+<title>Arguments</title>
+<simpara>Use the following necessary argument with the <literal>dfx wallet remove-controller</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;controller&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify the principal of the controller you want to remove.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example_4">
+<title>Example</title>
+<simpara>For example, to remove alice_auth as a controller, specify her principal in the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet remove-controller dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_wallet_send">
+<title>dfx wallet send</title>
+<simpara>Use the <literal>dfx wallet send</literal> command to send cycles from the selected identity&#8217;s cycles wallet to another cycles wallet using the destination cycle wallet&#8217;s Canister ID.</simpara>
+<section xml:id="_basic_usage_10">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet [network] send [flag] &lt;destination&gt; &lt;amount&gt;</programlisting>
+</section>
+<section xml:id="_flags_10">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet send</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options_2">
+<title>Options</title>
+<simpara>You can use the following option with the <literal>dfx wallet send</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--network</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Override the compute network to connect to. By default, the local network is used. A valid URL (starting with <literal>http:</literal> or <literal>https:</literal>) can be specified here, and a special ephemeral network will be created specifically for this request. E.g. "http://localhost:12345/" is a valid network name.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments_5">
+<title>Arguments</title>
+<simpara>You must specify the following arguments for the <literal>dfx wallet send</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;destination&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify the destination cycle wallet using its Canister ID.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;amount&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify the number of cycles to send.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples_6">
+<title>Examples</title>
+<simpara>Send cycles from the selected identity&#8217;s cycles wallet to another cycles wallet.</simpara>
+<simpara>For example, to send 2,000,000,000 cycles from the cycles wallet of the selected identity, <literal>&lt;ic_admin&gt;</literal>, to the cycles wallet of the destination identity, <literal>&lt;buffy_standard&gt;</literal> with a wallet address <literal>r7inp-6aaaa-aaaaa-aaabq-cai</literal>, run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet send r7inp-6aaaa-aaaaa-aaabq-cai 2000000000</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_wallet_set_name">
+<title>dfx wallet set-name</title>
+<simpara>Use the <literal>dfx wallet set-name</literal> command to assign a name to the selected identity&#8217;s cycles wallet.</simpara>
+<section xml:id="_basic_usage_11">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">    dfx wallet set-name [flag] &lt;name&gt;</programlisting>
+</section>
+<section xml:id="_arguments_6">
+<title>Arguments</title>
+<simpara>You must specify the following arguments for the <literal>dfx wallet set-name</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;name&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specify a name for the cycles wallet.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_flags_11">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet set-name</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example_5">
+<title>Example</title>
+<simpara>If you want to set the name of the current identity&#8217;s cycles wallet to "Terrances_wallet" you can run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet set-name Terrances_wallet</programlisting>
+</section>
+</section>
+<section xml:id="_dfx_wallet_upgrade">
+<title>dfx wallet upgrade</title>
+<simpara>Use the <literal>dfx wallet upgrade</literal> command to upgrade the cycle wallet&#8217;s Wasm module to the current Wasm bundled with DFX.</simpara>
+<section xml:id="_basic_usage_12">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">    dfx wallet upgrade [flag]</programlisting>
+</section>
+<section xml:id="_flags_12">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx wallet upgrade</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_example_6">
+<title>Example</title>
+<simpara>To upgrade the Wasm module to the latest version, run the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx wallet upgrade</programlisting>
+</section>
+</section>
+</article>

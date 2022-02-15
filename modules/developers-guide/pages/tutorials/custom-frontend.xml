@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Customize the front-end</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Now that you have a basic understanding of how to create, build, and deploy a simple program and are familiar with the default project files and sample front-end, you might want to start experimenting with different ways to customize the front-end user experience for your project.</simpara>
+<simpara>This tutorial illustrates using a simple React framework to create a new front-end for the default sample program and guides you through some basic modifications to customize the interface displayed.
+Later tutorials expand on the techniques introduced here, but if you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.</simpara>
+<note>
+<simpara>This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister.
+Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see <link xl:href="https://reactjs.org/docs/getting-started.html">Getting started</link> on the <link xl:href="https://reactjs.org/">React website</link>.</simpara>
+</note>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before starting the tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have <literal>node.js</literal> installed for front-end development and can install packages using <literal>npm install</literal> in your project.
+For information about installing node for your local operating system and package manager, see the <link xl:href="https://nodejs.org/en/">Node</link> website.</simpara>
+</listitem>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have installed the Visual Studio Code plugin for Motoko as described in <link xl:href="../../quickstart/local-quickstart.xml#install-vscode">Install the language editor plug-in</link> if you are using Visual Studio Code as your IDE.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local
+computer.</simpara>
+</listitem>
+</itemizedlist>
+<note>
+<simpara>Because of significant changes to the handling of HTTP requests and front-end assets, this tutorial requires you to use the {sdk-short-name} version <literal>0.7.0</literal> or later. For an overview of what&#8217;s changed, see this <link xl:href="../../http-middleware.xml">article</link>.</simpara>
+</note>
+<simpara>This tutorial takes approximately 30 minutes to complete.</simpara>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project directory for your custom front-end application:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Check that you have <literal>node.js</literal> installed locally by running the following commands:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">which node
+which npm</programlisting>
+<simpara>If you don&#8217;t have <literal>node.js</literal> installed, you should download and install it before continuing to the next step.
+For information about installing node for your local operating system and package manager, see the <link xl:href="https://nodejs.org/en/">Node</link> website.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new custom_greeting</programlisting>
+<simpara>The <literal>dfx new custom_greeting</literal> command creates a new <literal>custom_greeting</literal> project.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd custom_greeting</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_install_the_react_framework">
+<title>Install the React framework</title>
+<simpara>If you&#8217;ve never used React before, you might want to explore the <link xl:href="https://reactjs.org/tutorial/tutorial.html">Intro to React</link> tutorial or the <link xl:href="https://reactjs.org/">React website</link> before editing the front-end code.</simpara>
+<simpara>To install required framework modules:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Install the React module by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm install --save react react-dom</programlisting>
+</listitem>
+<listitem>
+<simpara>Install the required TypeScript language compiler loader by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm install --save-dev typescript ts-loader</programlisting>
+<note>
+<simpara>As an alternative to installing these modules, you can edit the default <literal>package.json</literal> file to add dependencies for your project.</simpara>
+</note>
+<literallayout class="monospaced">Unresolved directive in custom-frontend.adoc - include::example$custom-frontend-package.json[]</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_review_the_default_configuration">
+<title>Review the default configuration</title>
+<simpara>Before we make any changes to use React for this tutorial, let&#8217;s review the default front-end settings in the <literal>dfx.json</literal> configuration file for your project.</simpara>
+<simpara>To review the default <literal>dfx.json</literal> configuration file:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>dfx.json</literal> configuration file in a text editor.</simpara>
+</listitem>
+<listitem>
+<simpara>Notice that the <literal>canisters</literal> key includes settings for a <literal>custom_greeting_assets</literal> canister.</simpara>
+<literallayout class="monospaced">{
+  "canisters": {
+    ...
+
+    "custom_greeting_assets": {
+      "dependencies": [
+        "custom_greeting"
+      ],
+      "frontend": {
+        "entrypoint": "src/custom_greeting_assets/src/index.html"
+      },
+      "source": [
+        "src/custom_greeting_assets/assets",
+        "dist/custom_greeting_assets/"
+      ],
+      "type": "assets"
+    }
+  }
+}</literallayout>
+<simpara>Let&#8217;s take a look at the settings in this section.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Front-end assets for your project are compiled into their own canister, in this case, a canister named <literal>custom_greeting_assets</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>The assets canister has a default dependency on the main canister for the project.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>frontend.entrypoint</literal> setting specifies the path to a file—in this case, the <literal>index.html</literal> file—to use as your application entry point.
+If you had a different starting point—for example, a custom <literal>first-page.html</literal> file—you would modify this setting.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>source</literal> settings specify the path to your <literal>src</literal> and <literal>dist</literal> directories. The <literal>src</literal> setting specifies the directory to use for static assets that will be included in your assets canister when you build your project.
+If you have custom cascading stylesheet (CSS) or JavaScript files, you would include them in the folder specified by this path.
+After building the project, the project assets are served from the directory specified by the <literal>dist</literal> setting.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>type</literal> setting specifies that the <literal>custom_greeting_assets</literal> is an asset canister rather than a program canister.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For this tutorial, we are going to add React JavaScript in an <literal>index.jsx</literal> file, but that won&#8217;t require any changes to the default settings in the <literal>dfx.json</literal> file.</simpara>
+</listitem>
+<listitem>
+<simpara>Close the <literal>dfx.json</literal> file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_review_the_default_front_end_files">
+<title>Review the default front-end files</title>
+<simpara>For this tutorial, you are going to use the default <literal>main.mo</literal> program and only manipulate the application by modifying the front-end.
+Before you make any changes, though, let&#8217;s take a look at what&#8217;s in the default front-end files for a project.</simpara>
+<simpara>To review the default front-end files:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>src/custom_greeting_assets/src/index.html</literal> file in a text editor.</simpara>
+<simpara>This template file is the default front-end entry point for the application as specified by the <literal>frontend.entrypoint</literal> setting in the <literal>dfx.json</literal> file.</simpara>
+<simpara>This file contains standard HTML with references to a CSS file and an image that are located in the <literal>src/custom_greeting_assets/assets</literal> directory.
+The default <literal>index.html</literal> file also includes standard HTML syntax for displaying an input field for the <literal>name</literal> argument and a clickable button.</simpara>
+<simpara>This is the same default front-end you saw in <link xl:href="explore-templates.xml#default-frontend">Viewing the default front-end</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Open the <literal>src/custom_greeting_assets/src/index.js</literal> file in a text editor.</simpara>
+<literallayout class="monospaced">import { custom_greeting } from "../../declarations/custom_greeting";
+
+document.getElementById("clickMeBtn").addEventListener("click", async () =&gt; {
+  const name = document.getElementById("name").value.toString();
+  // Interact with custom_greeting actor, calling the greet method
+  const greeting = await custom_greeting.greet(name);
+
+  document.getElementById("greeting").innerText = greeting;
+});</literallayout>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>import</literal> statement points to an actor that will allow us to make calls to our <literal>custom_greeting</literal> canister from <literal>"../declarations"</literal></simpara>
+</listitem>
+<listitem>
+<simpara>The declarations haven&#8217;t been created yet, but we will come back to that.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Close the <literal>index.js</literal> file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_front_end_files">
+<title>Modify the front-end files</title>
+<simpara>You are now ready to create a new front-end for the default program.</simpara>
+<simpara>To prepare the front-end files:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the webpack configuration file (<literal>webpack.config.js</literal>) in a text editor.</simpara>
+</listitem>
+<listitem>
+<simpara>Modify the front-end entry to replace the default <literal>index.html</literal> with <literal>index.jsx</literal>.</simpara>
+<programlisting language="js" linenumbering="unnumbered">entry: {
+  // The frontend.entrypoint points to the HTML file for this build, so we need
+  // to replace the extension to `.js`.
+  index: path.join(__dirname, asset_entry).replace(/\.html$/, ".jsx"),
+},</programlisting>
+</listitem>
+<listitem>
+<simpara>Add the following <literal>module</literal> key above the <literal>plugins</literal> section:</simpara>
+<programlisting language="json" linenumbering="unnumbered">module: {
+  rules: [
+    { test: /\.(js|ts)x?$/, loader: "ts-loader" }
+  ]
+},</programlisting>
+<simpara>This setting enables the program to use the <literal>ts-loader</literal> compiler for a React JavaScript <literal>index.jsx</literal> file.
+Note that there&#8217;s a commented section in the default <literal>webpack.config.js</literal> file that you can modify to add the <literal>module</literal> key.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new file named <literal>tsconfig.json</literal> in the root directory for your project.</simpara>
+</listitem>
+<listitem>
+<simpara>Open the <literal>tsconfig.json</literal> file in a text editor, then copy and paste the following into the file:</simpara>
+<programlisting language="json" linenumbering="unnumbered">Unresolved directive in custom-frontend.adoc - include::example$sample-tsconfig.json[]</programlisting>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the <literal>tsconfig.json</literal> file to continue.</simpara>
+</listitem>
+<listitem>
+<simpara>Open the default <literal>src/custom_greeting_assets/src/index.js</literal> file in a text editor and delete lines 2 to 9.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the <literal>index.js</literal> file:</simpara>
+<programlisting language="react" linenumbering="unnumbered">Unresolved directive in custom-frontend.adoc - include::example$react-index.jsx[]</programlisting>
+</listitem>
+<listitem>
+<simpara>Rename the modified <literal>index.js</literal> file as <literal>index.jsx</literal> by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">mv src/custom_greeting_assets/src/index.js src/custom_greeting_assets/src/index.jsx</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the default <literal>src/custom_greeting_assets/src/index.html</literal> file in a text editor, then replace the body contents with <literal>&lt;div id="app"&gt;&lt;/div&gt;</literal>.</simpara>
+<simpara>For example:</simpara>
+<programlisting language="html" linenumbering="unnumbered">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;title&gt;custom_greeting&lt;/title&gt;
+    &lt;base href="/"&gt;
+    &lt;link type="text/css" rel="stylesheet" href="main.css" /&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_start_the_local_network">
+<title>Start the local network</title>
+<simpara>Before you can build the <literal>custom_greeting</literal> project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --background</programlisting>
+<simpara>After the local Internet Computer network completes its startup operations, you can continue to the next step.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_build_and_deploy_the_application">
+<title>Register, build, and deploy the application</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.</simpara>
+<simpara>To deploy the application locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy your application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy</programlisting>
+<simpara>The <literal>dfx deploy</literal> command output displays information about the operations it performs.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_view_the_new_front_end">
+<title>View the new front-end</title>
+<simpara>You can now access the new front-end for the default program by entering the canister identifier for the assets canister in a browser.</simpara>
+<simpara>To view the custom front-end:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new tab or window of your terminal and run</simpara>
+<programlisting language="bash" linenumbering="unnumbered">npm start</programlisting>
+</listitem>
+<listitem>
+<simpara>Open a browser and navigate to <link xl:href="http://localhost:8080">http://localhost:8080</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>Verify that you are prompted to type a greeting.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="react-greeting.png"/>
+</imageobject>
+<textobject><phrase>Sample front-end</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Replace <emphasis role="strong">Name</emphasis> in the input field with the text you want to display, then click <emphasis role="strong">Get Greeting</emphasis> to see the result.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="greeting-response.png"/>
+</imageobject>
+<textobject><phrase>Greeting result</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_revise_the_front_end_and_test_your_changes">
+<title>Revise the front-end and test your changes</title>
+<simpara>After viewing the front-end, you might want to make some changes.</simpara>
+<simpara>To modify the front-end:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>index.jsx</literal> file in a text editor and modify its style settings.
+For example, you might want to change the font family and use a placeholder for the input field by making changes similar to the following:</simpara>
+<programlisting language="react" linenumbering="unnumbered">Unresolved directive in custom-frontend.adoc - include::example$react-revised-index.jsx[]</programlisting>
+</listitem>
+<listitem>
+<simpara>Save the file and view the updated page in your browser.</simpara>
+<simpara>For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="revised-greeting.png"/>
+</imageobject>
+<textobject><phrase>Modified styles on your entry page</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+<listitem>
+<simpara>Type a new message and see your new greeting.
+For example:</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="modified-result.png"/>
+</imageobject>
+<textobject><phrase>Modified greeting result</phrase></textobject>
+</inlinemediaobject></simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with the front-end for your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays the webpack development server, press Control-C to interrupt the dev-server.</simpara>
+</listitem>
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

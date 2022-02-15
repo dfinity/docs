@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Accept cycles from a wallet</title>
+<date>2021-08-05</date>
+</info>
+<simpara>When you are doing local development, you can use the default wallet in your project to send cycles and check your cycle balance.
+But what about the programs that need to receive and burn those cycles to execute their functions and provide services to users?
+This tutorial provides a simple example to illustrate how you might add the functions to receive cycles and check your cycle balance to the default template program.</simpara>
+<simpara>This example consists of the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>wallet_balance</literal> function enables you to check the current cycle balance for the canister.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>wallet_receive</literal> function enables the program to accept cycles that are sent to the canister.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>greet</literal> function accepts a text argument and displays a greeting in a terminal.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>owner</literal> function returns the principal used by the message caller.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before starting the tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have installed the Visual Studio Code plugin for Motoko as described in <link xl:href="../../quickstart/local-quickstart.xml#install-vscode">Install the language editor plug-in</link> if you are using Visual Studio Code as your IDE.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local
+computer.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project directory for testing access control and switching user identities:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new cycles_hello</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd cycles_hello</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_program">
+<title>Modify the default program</title>
+<simpara>For this tutorial, you are going to modify the template source code to include new functions for accepting cycles and checking the cycle balance.</simpara>
+<simpara>To modify the default program:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>src/cycles_hello/main.mo</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in simple-cycles.adoc - include::example$cycles-main.mo[]</programlisting>
+<simpara>Let&#8217;s take a look at a few key elements of this program:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The program imports a Motoko base library—<literal>ExperimentalCycles</literal>—that provides basic functions for working with cycles.</simpara>
+</listitem>
+<listitem>
+<simpara>The program uses an <literal>actor class</literal> instead of a single actor so that it can have multiple actor instances to accept different cycle amounts up to a <literal>capacity</literal> for all instances.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>capacity</literal> is passed as an argument to the actor class.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>msg.caller</literal> identifies the principal associated with the call.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Save your changes and close the <literal>main.mo</literal> file to continue.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_start_the_local_network">
+<title>Start the local network</title>
+<simpara>Before you can build the <literal>access_hello</literal> project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --clean --background</programlisting>
+<simpara>After the local Internet Computer network completes its startup operations, you can continue to the next step.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_build_and_deploy_the_application">
+<title>Register, build, and deploy the application</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.</simpara>
+<simpara>To deploy the application locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy your application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy --argument '(360000000000)'</programlisting>
+<simpara>This example sets the <literal>capacity</literal> for the canister to 360,000,000,000 cycles.
+The <literal>dfx deploy</literal> command output then displays information about the operations it performs, including the identity associated with the wallet canister created for this local project and the wallet canister identifier.</simpara>
+<simpara>For example:</simpara>
+<literallayout class="monospaced">Deploying all canisters.
+Creating canisters...
+Creating canister "cycles_hello"...
+Creating the canister using the wallet canister...
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+"cycles_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Creating canister "cycles_hello_assets"...
+Creating the canister using the wallet canister...
+"cycles_hello_assets" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
+Building canisters...
+Building frontend...
+Installing canisters...
+Installing code for canister cycles_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister cycles_hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+Authorizing our identity (default) to the asset canister...
+Uploading assets to asset canister...
+Deployed canisters.</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_test_the_application">
+<title>Test the application</title>
+<simpara>After you have deployed the application on your local Internet Computer network, you can experiment with the wallet functions and test your program by using <literal>dfx canister call</literal> commands.</simpara>
+<simpara>To test the application:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check the principal for the <literal>default</literal> user identity by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call cycles_hello owner</programlisting>
+<simpara>The command displays output similar to the following for the current identity:</simpara>
+<literallayout class="monospaced">(principal "g3jww-sbmtm-gxsag-4mecu-72yc4-kef5v-euixq-og2kd-sav2v-p2sb3-pae")</literallayout>
+<simpara>If you haven&#8217;t made changes to the identity you were using to run the <literal>dfx deploy</literal> command, you should get the same principal by running the <literal>dfx identity get-principal</literal> command.
+This is important because you must be the owner of the wallet canister to perform certain tasks such as sending cycles or granting other <emphasis role="strong">custodian</emphasis> identities permission to send cycles.</simpara>
+</listitem>
+<listitem>
+<simpara>Check the initial wallet cycle balance by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call cycles_hello wallet_balance</programlisting>
+<simpara>You haven&#8217;t sent any cycles to the canister, so the command displays the following balance:</simpara>
+<literallayout class="monospaced">(0)</literallayout>
+</listitem>
+<listitem>
+<simpara>Send some cycles from your default wallet canister to the <literal>cycles_hello</literal> canister using the canister principal by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call rwlgt-iiaaa-aaaaa-aaaaa-cai wallet_send '(record { canister = principal "rrkah-fqaaa-aaaaa-aaaaq-cai"; amount = (256000000000:nat64); } )'</programlisting>
+</listitem>
+<listitem>
+<simpara>Call the <literal>wallet_balance</literal> function to see that the <literal>cycles_hello</literal> canister has the number of cycles you transferred, if you specified an amount under the allowed capacity, or the <literal>capacity</literal> you specified when you ran the <literal>dfx deploy</literal> command.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call cycles_hello wallet_balance</programlisting>
+<simpara>The command displays output similar to the following:</simpara>
+<literallayout class="monospaced">(256_000_000_000)</literallayout>
+</listitem>
+<listitem>
+<simpara>Call the <literal>wallet_balance</literal> function to see the number of cycles in your default wallet by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call rwlgt-iiaaa-aaaaa-aaaaa-cai wallet_balance</programlisting>
+<simpara>The command returns the balance for the wallet canister identifier you specified as a record using Candid format.
+For example, the command might display a record with an <literal>amount</literal> field (represented by the hash <literal>3_573_748_184</literal>) and a balance of 97,738,624,621,042 cycles like this:</simpara>
+<literallayout class="monospaced">(record { 3_573_748_184 = 97_738_624_621_042 })</literallayout>
+<simpara>For this simple tutorial, cycles are only consumed from the balance in the default wallet canister, not from the <literal>cycles_hello</literal> canister.</simpara>
+</listitem>
+<listitem>
+<simpara>Call the <literal>greet</literal> function by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call cycles_hello greet '("from DFINITY")'</programlisting>
+</listitem>
+<listitem>
+<simpara>Rerun the call to the <literal>wallet_balance</literal> function to see the number of cycles deducted from your default wallet:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call rwlgt-iiaaa-aaaaa-aaaaa-cai wallet_balance</programlisting>
+<simpara>For example, you might a result similar to this:</simpara>
+<literallayout class="monospaced">(record { 3_573_748_184 = 97_638_622_179_500 })</literallayout>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with the program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_want_to_learn_more">
+<title>Want to learn more?</title>
+<simpara>If you are looking for more information about working with cycles, check out the following related resources:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link xl:href="../concepts/tokens-cycles.xml">Tokens and cycles (overview)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../cli-reference/dfx-identity.xml">dfx identity (command reference)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../working-with-canisters.xml#set-owner">Set an identity to own a canister (how-to)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../../language-guide/cycles.xml">Managing cycles (language reference)</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="../../base-libraries/ExperimentalCycles.xml">ExperimentalCycles (base module)</link></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</article>

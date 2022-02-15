@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>What is the Internet Computer?</title>
+<date>2021-08-05</date>
+</info>
+<simpara xml:id="ic-overview">The <emphasis role="strong">Internet Computer</emphasis> is a blockchain that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof software programs.</simpara>
+<simpara>As an application developer, you might find it useful to think of the Internet Computer as providing the following key elements:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>An <emphasis role="strong">open communication protocol</emphasis> that enables general-purpose computations to run transparently directly on the internet</simpara>
+</listitem>
+<listitem>
+<simpara>A <emphasis role="strong">network</emphasis> that runs the protocol to provide computing capacity—for example, the hardware, CPU, and memory required to run programs—through <emphasis role="strong">independent data centers</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>A <emphasis role="strong">globally-accessible and scalable blockchain platform</emphasis> for running software applications.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_open_blockchain_platform">
+<title>Open blockchain platform</title>
+<simpara>The Internet Computer is not physical hardware that exists in any physical location.
+Instead, the Internet Computer combines computing resources provided by independent data centers around the world to give users and organizations secure access to applications and transaction processing services.</simpara>
+<simpara>The {platform} enables multiple computers to operate like one, very powerful, virtual machine.
+The computers that make up the virtual machine are organized into sub-networks—subnet blockchains—with data centers around the world.
+The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
+Independent data centers receive remuneration for contributing computing capacity and hosting services to support applications running on the {platform}.</simpara>
+</section>
+<section xml:id="next-gen">
+<title>Building the next generation of software and services</title>
+<simpara>The Internet Computer protocol reduces platform-based risks and paves the way for innovation by re-imagining how software is built, deployed, and accessed.</simpara>
+<simpara>For example, with the Internet Computer, developers can focus on writing code using smart contracts without environment-related distractions such as:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>physical or virtual network configuration requirements</simpara>
+</listitem>
+<listitem>
+<simpara>load balancing services</simpara>
+</listitem>
+<listitem>
+<simpara>firewalls, network topology, or port management</simpara>
+</listitem>
+<listitem>
+<simpara>database configuration and maintenance</simpara>
+</listitem>
+<listitem>
+<simpara>storage volumes and devices</simpara>
+</listitem>
+</itemizedlist>
+<simpara>By enabling developers to focus on building applications and delivering value, the Internet Computer helps simplify the development process, reduce time to market, and foster innovation.</simpara>
+<simpara>For end-users, the Internet Computer provides a secure environment for accessing applications with fewer risks.
+Because of the inherent security of the blockchain, programs running on the Internet Computer cannot be hijacked by malicious code, which also reduces the total cost of ownership for both application end-users or organizations.</simpara>
+<simpara>In addition, because software services can be "autonomous" and public, developers can write services that communicate with each other and share functions in ways that increase productivity and efficiency while leaving room to innovate and improve projects with confidence.</simpara>
+<simpara>The Internet Computer also enables developers to use cryptographically-secure identities to enforce access controls, reducing the need to rely on user names and passwords or external identity management plug-ins.</simpara>
+</section>
+</article>

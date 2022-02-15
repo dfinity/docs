@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Import library modules</title>
+<date>2021-08-05</date>
+</info>
+<simpara>In this tutorial, you are going to write a simple program that enables you to store and look up telephone numbers.
+This tutorial illustrates how to import and use a few basic Motoko library functions.</simpara>
+<simpara>For this tutorial, the Motoko base library functions are defined in the  <literal>List</literal> and <literal>AssocList</literal> modules and enable you to work with lists as linked key-value pairs.
+In this example, the <emphasis role="strong">key</emphasis> is a <literal>name</literal> and the <emphasis role="strong">value</emphasis> is the <literal>phone</literal> text string associated with that name.</simpara>
+<simpara>This program supports the following function calls:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The <literal>insert</literal> function accepts the <literal>name</literal> and <literal>phone</literal> key-value pair as input stored in the <literal>book</literal> variable.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>lookup</literal> function is a query that uses the specified <literal>name</literal> key as input to find the associated phone number.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_before_you_begin">
+<title>Before you begin</title>
+<simpara>Before starting the tutorial, verify the following:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You have downloaded and installed the {sdk-short-name} package as described in <link xl:href="../../quickstart/local-quickstart.xml#download-and-install">Download and install</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have stopped any Internet Computer network processes running on the local
+computer.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>This tutorial takes approximately 10 minutes to complete.</simpara>
+</section>
+<section xml:id="_create_a_new_project">
+<title>Create a new project</title>
+<simpara>To create a new project for this tutorial:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a terminal shell on your local computer, if you don’t already
+have one open.</simpara>
+</listitem>
+<listitem>
+<simpara>Change to the folder you are using for your Internet Computer projects, if you are using one.</simpara>
+</listitem>
+<listitem>
+<simpara>Create a new project by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx new phonebook</programlisting>
+</listitem>
+<listitem>
+<simpara>Change to your project directory by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">cd phonebook</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_modify_the_default_program">
+<title>Modify the default program</title>
+<simpara>For this tutorial, let&#8217;s create a new <literal>main.mo</literal> file for the simple phone number lookup program.</simpara>
+<simpara>To modify the default template:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open the <literal>src/phonebook/main.mo</literal> file in a text editor and delete the existing content.</simpara>
+</listitem>
+<listitem>
+<simpara>Copy and paste the following sample code into the <literal>main.mo</literal> file:</simpara>
+<programlisting role="copy" language="motoko" linenumbering="numbered">Unresolved directive in phonebook.adoc - include::example$phonebook.mo[]</programlisting>
+<simpara>In looking at this sample program, you might notice the following key elements:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>The code defines <literal>Name</literal> and <literal>Phone</literal> as custom Text types.
+Creating user-defined types improves the readability of the code.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>insert</literal> function is an update call and the <literal>lookup</literal> function is a query call.</simpara>
+</listitem>
+<listitem>
+<simpara>The <literal>Phone</literal> type is identified as an optional value by using the <literal>?Phone</literal> syntax.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_start_the_local_network">
+<title>Start the local network</title>
+<simpara>Before you can build the <literal>phonebook</literal> project, you need to connect to the Internet Computer network either running locally in your development environment or running remotely on a subnet that you can access.</simpara>
+<simpara>Starting the network locally requires a <literal>dfx.json</literal> file, so you should be sure you are in your project&#8217;s root directory.
+For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.</simpara>
+<simpara>To start the network locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Open a new terminal window or tab on your local computer.</simpara>
+</listitem>
+<listitem>
+<simpara>Navigate to the root directory for your project, if necessary.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>You should now have <emphasis role="strong">two terminals</emphasis> open.</simpara>
+</listitem>
+<listitem>
+<simpara>You should have the <emphasis role="strong">project directory</emphasis> as your <emphasis role="strong">current working directory</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Start the Internet Computer network on your local computer by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --clean</programlisting>
+<simpara>For this tutorial, we&#8217;re using the <literal>--clean</literal> option to start the Internet Computer network in a clean state.</simpara>
+<simpara>This option removes any orphan background processes or canister identifiers that might disrupt normal operations.
+For example, if you forgot to issue a <literal>dfx stop</literal> when moving between projects, you might have a process running in the background or in another terminal.
+The <literal>--clean</literal> option ensures the you can start the Internet Computer network and continue to the next step without manually finding and terminating any running processes.</simpara>
+</listitem>
+<listitem>
+<simpara>Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_register_build_and_deploy_the_application">
+<title>Register, build, and deploy the application</title>
+<simpara>After you connect to the Internet Computer network running locally in your development environment, you can register, build, and deploy your application locally.</simpara>
+<simpara>To deploy the application locally:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Check that you are still in the root directory for your project, if needed.</simpara>
+</listitem>
+<listitem>
+<simpara>Register, build, and deploy your application by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx deploy phonebook</programlisting>
+<simpara>The <literal>dfx.json</literal> file provides default settings for creating an application front-end entry point and <literal>assets</literal> canister.</simpara>
+<simpara>In previous tutorials, we deleted the entries for the asset canister because we weren’t adding a front-end for the sample application. That change kept our project workspace tidy by eliminating files that would go unused. There’s no requirement to do this, however, and there’s no harm in leaving the asset canister description in the <literal>dfx.json</literal> file. For example, you might want to use it as a placeholder if you intend to add front-end assets later.</simpara>
+<simpara>For this tutorial, you can deploy just the phonebook back-end canister using the <literal>dfx deploy phonebook</literal> command because the project is a terminal-based application that doesn&#8217;t include any front-end assets.</simpara>
+<simpara>Although this tutorial illustrates how to skip compiling a front-end canister, you can add a simple user interface to this application later by exploring the <link xl:href="https://github.com/dfinity/examples/tree/master/motoko/phone-book">phone-book</link> project in the <link xl:href="https://github.com/dfinity/examples">examples</link> repository.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_add_names_and_numbers_using_the_insert_function">
+<title>Add names and numbers using the insert function</title>
+<simpara>You now have a program deployed as a <emphasis role="strong">canister</emphasis> on your local replica network and can test your program by using <literal>dfx canister call</literal> commands.</simpara>
+<simpara>To test the program you have deployed on the local replica network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Use the <literal>dfx canister call</literal> command to call the canister <literal>phonebook</literal> using the <literal>insert</literal> function and pass it a name and phone number by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call phonebook insert '("Chris Lynn", "01 415 792 1333")'</programlisting>
+</listitem>
+<listitem>
+<simpara>Add a second name and number pair by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call phonebook insert '("Maya Garcia", "01 408 395 7276")'</programlisting>
+</listitem>
+<listitem>
+<simpara>Verify that the command returns the number associated with "Chris Lynn" using the <literal>lookup</literal> function by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call phonebook lookup '("Chris Lynn")'</programlisting>
+<simpara>The command returns output similar to the following:</simpara>
+<literallayout class="monospaced">(opt "01 415 792 1333")</literallayout>
+</listitem>
+<listitem>
+<simpara>Try to call the <literal>lookup</literal> function with the number associated with "Maya Garcia" by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call phonebook lookup '("01 408 395 7276")'</programlisting>
+<simpara>Note that, in this case, the command returns <literal>(null)</literal> because the phone number is not a key associated with the "Maya Garcia" name entry.</simpara>
+</listitem>
+<listitem>
+<simpara>Try to call the <literal>lookup</literal> function again to return the phone numbers for both "Maya Garcia" and "Chris Lynn" by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister call phonebook lookup '("Maya Garcia","Chris Lynn")'</programlisting>
+<simpara>Because the program is written to return one value for one key, the command only returns information associated with the first key, in this example the phone number for <literal>Maya Garcia</literal>.</simpara>
+</listitem>
+</orderedlist>
+<simpara>Unresolved directive in phonebook.adoc - include::example$candid-ui.adoc[]</simpara>
+<simpara>+
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="candid-phonebook.png"/>
+</imageobject>
+<textobject><phrase>Phonebook functions</phrase></textobject>
+</inlinemediaobject></simpara>
+</section>
+<section xml:id="_revise_the_source_code_in_your_program">
+<title>Revise the source code in your program</title>
+<simpara>To extend what you have learned in this tutorial, you might want to try modifying the source code to return different results.</simpara>
+<simpara>For example, you might want to change the source code so that instead of a program that inserts and looks up a current key-value (name-phone) pair to create a program that stores contact information similar to a database "record" in which a primary key is associated with multiple fields.
+In this example, your program might enable users or another program to add information—such as a home phone number, a cell phone number, an email address, and a street address—and selectively return all or specific field values.</simpara>
+</section>
+<section xml:id="_stop_the_local_network">
+<title>Stop the local network</title>
+<simpara>After you finish experimenting with your program, you can stop the local Internet Computer network so that it doesn’t continue running in the background.</simpara>
+<simpara>To stop the local network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</article>

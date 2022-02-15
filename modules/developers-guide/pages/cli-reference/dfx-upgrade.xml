@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx upgrade</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx upgrade</literal> command to upgrade the {sdk-short-name} components running on your local computer.
+This command checks the version of the {sdk-short-name} that you have currently installed against the latest publicly-available version specified in the <literal>manifest.json</literal> file.
+If an older version of the {sdk-short-name} is detected locally, the <literal>dfx upgrade</literal> command automatically fetches the latest version from the CDN.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx upgrade [flag] [option]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx upgrade</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_options">
+<title>Options</title>
+<simpara>You can use the following option with the <literal>dfx upgrade</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Option</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>--current-version &lt;version&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the version you want to identify as the current version.
+This option enables you to override the version of the software currently identified as the latest version with the version you pass on the command-line.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can upgrade the version of the {sdk-short-name} that you have currently installed by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx upgrade</programlisting>
+<simpara>This command checks the version of <literal>dfx</literal> you have currently installed and the latest version available published on the {sdk-short-name} website in a manifest file.
+If a newer version of <literal>dfx</literal> is available, the command automatically downloads and installs the latest version.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">Current version: 0.6.8
+Fetching manifest \https://sdk.dfinity.org/manifest.json
+Already up to date</programlisting>
+</section>
+</article>

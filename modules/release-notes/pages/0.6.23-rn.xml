@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.6.23</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.6.23 release consists of changes to support new features and enhancements that are not yet complete.</simpara>
+<section xml:id="_new_features_and_capabilities">
+<title>New features and capabilities</title>
+<simpara>The most significant new feature enables you to use a locally-installed <literal>@dfinity/bootstrap</literal> server.</simpara>
+<simpara>For information about updates to Candid, see the <link xl:href="https://github.com/dfinity/candid/blob/master/Changelog.md">Candid changelog</link>.</simpara>
+</section>
+</article>

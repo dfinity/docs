@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Integrate with the Internet Computer ledger</title>
+<date>2021-08-05</date>
+</info>
+<simpara xml:id="ledger-intro">This guide is an introduction to the Internet Computer Protocol (ICP) components for token distribution, transaction management, token-based staking, and payments for services.
+The document includes an overview of the design, implementation, security guarantees, system requirements, and the application programming interface (API) that support token management for the Internet Computer Protocol.</simpara>
+<simpara><emphasis>Integrate with the Internet Computer ledger</emphasis> is intended as a high-level overview for organizations and developers who need to understand the terminology and overall transaction management flow for Internet Computer Protocol (ICP) utility tokens.</simpara>
+<simpara>While you read this guide, be aware that additional details about specific components or interfaces might be available in subsequent documents to supplement the overview provided in this document.
+In addition, this overview focuses on how to integrate with the Internet Computer using the <link xl:href="https://www.rosetta-api.org/docs/welcome.html">Rosetta API</link>.
+Other options for integration are possible.
+Information about other integration options and procedures might be available in future documentation.</simpara>
+<section xml:id="_basic_terminology">
+<title>Basic terminology</title>
+<simpara>The Internet Computer is primarily a distributed and decentralized platform for running software.
+When you write applications that run on the Internet Computer, you deploy your programs in the form of a conceptual computational unit called a <emphasis role="strong">canister</emphasis>.
+A canister is similar to a "smart contract" in that it consists of the source code of a program as well as its running state, and is replicated on a blockchain network that guarantees security as well as liveness.</simpara>
+<simpara>End-users or other canisters can send messages to canister functions to perform specific operations.
+The messages can be either <emphasis role="strong">query calls</emphasis> that retrieve information without saving the state of application data or <emphasis role="strong">update calls</emphasis> that change and preserve the state.
+The order in which updates are executed is agreed upon by using a consensus protocol between all Internet Computer nodes that run the canister.</simpara>
+</section>
+<section xml:id="_ledger_canister_overview">
+<title>Ledger canister overview</title>
+<simpara>The Internet Computer Protocol (ICP) implements token management using a specialized canister, called the <emphasis role="strong">ledger canister</emphasis>.
+There is a single ledger canister which runs alongside all other canisters on the Internet Computer.
+The ledger canister is basically a smart contract that holds <emphasis role="strong">accounts</emphasis> and <emphasis role="strong">transactions</emphasis>.
+These transactions either <emphasis role="strong">mint ICP tokens</emphasis> for accounts,  <emphasis role="strong">transfer ICP tokens</emphasis> from one account to another, or <emphasis role="strong">burn ICP tokens</emphasis>, eliminating them from existence.
+The ledger canister maintains a traceable history of all transactions starting from its genesis, or beginning, state.</simpara>
+<section xml:id="_accounts">
+<title>Accounts</title>
+<simpara>An account belongs to and is controlled by the account owner who must be an IC principal. No account can be owned by two or more IC principals (no "joint accounts").</simpara>
+<simpara>An account owner may control more than one account. In this case, each account corresponds to a pair (account_owner, sub_account). The sub-account is an optional bitstring which helps distinguish between the different sub-accounts of the same owner.</simpara>
+<simpara>An account on the ledger is identified by its address, which is derived from the principal ID and sub-account identifier.</simpara>
+<simpara>In this context, you can think of principal identifiers as a rough equivalent to the hash of a user&#8217;s public key for Bitcoin or Ethereum. You use the corresponding secret key to sign messages and therefore authenticate to the ledger canister and operate on the principal&#8217;s account. Canisters can also have accounts in the ledger canister, but currently the functionality of such accounts is limited.
+The ledger canister is initialized using administrative operations that are internal to the Internet Computer.
+As part of the initialization process, the canister is created with the set of accounts and associated ICP token balances.</simpara>
+</section>
+<section xml:id="_transaction_types">
+<title>Transaction types</title>
+<simpara>There are three operations that can change the internal state of the ledger canister:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Minting ICP tokens</emphasis> for accounts.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Transferring ICP tokens</emphasis> between accounts.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Burning ICP tokens</emphasis>.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>All operations are recorded as transactions in the ledger canister.</simpara>
+<simpara>The ledger maintains the transactions as a hashed blockchain.
+As state changes are recorded, each new transaction is placed in a block and assigned a unique index.
+The entire chain is regularly authenticated by signing the latest chain link. The signature used to authenticate the chain can be verified by any third party who has access to the root public key of the Internet Computer.
+Specific transactions can be retrieved by querying the ledger.</simpara>
+</section>
+</section>
+<section xml:id="_integrate_with_the_internet_computer_ledger_canister_using_the_rosetta_api">
+<title>Integrate with the Internet Computer ledger canister using the Rosetta API</title>
+<simpara>One can interact with the Internet Computer and ledger canister in several ways.
+This document outlines how to integrate with the ledger canister using the <link xl:href="https://www.rosetta-api.org/">Rosetta application programming interface</link>. This is a <link xl:href="https://www.rosetta-api.org/docs/welcome.html">well-documented and open standard</link> designed to support multiple blockchain data formats and structured communication for exchange transactions.</simpara>
+<simpara>The interface is implemented by the integration software—`dfinity/rosetta-api. This piece of software enables you to deploy a passive Rosetta node outside of the Internet Computer network and use the node to communicate with the ledger canister running on the Internet Computer.</simpara>
+<simpara>The following diagram provides a simplified view of the communication between the Rosetta node and the Internet Computer using the <literal>dfinity/rosetta-api</literal> integration software.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="basic-rosetta-api-integration.svg"/>
+</imageobject>
+<textobject><phrase>basic rosetta api integration</phrase></textobject>
+</inlinemediaobject></simpara>
+<simpara>As this diagram suggests, the Rosetta node maintains a local copy of the Internet Computer ledger canister.
+Periodically, the <literal>dfinity/rosetta-api</literal> software running on the Rosetta node updates its local view of the ledger by querying the ledger canister for the latest block of the ledger chain, then querying for any missing ledger blocks.
+The Rosetta node uses the root key of the Internet Computer to ensure that the local copy of the ledger is genuine.
+The integration software also allows you to use the Rosetta node to submit transactions to the Internet Computer ledger.</simpara>
+<section xml:id="_integration_workflow_overview">
+<title>Integration workflow overview</title>
+<simpara>The following summarizes the basic operational workflow for transferring ICP tokens if you&#8217;re using a Rosetta node to communicate with the Internet Computer ledger canister. In this scenario, you must be an Internet Computer principal who authenticates to the Internet Computer using a signing key stored in a wallet.</simpara>
+<simpara>After a user submits a request to the Rosetta node to make a transaction, the request is passed to the integration software running on that node to interact with the Internet Computer and completes the following operations:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>It reads from the local copy of the ledger to determine the state of the latest transaction index and block height identified by the <literal>latest_index</literal> label.</simpara>
+</listitem>
+<listitem>
+<simpara>It generates a random <literal>nonce</literal> value&#8201;&#8212;&#8201;used to ensure transactions are unique.</simpara>
+</listitem>
+<listitem>
+<simpara>It creates an ingress message for the ledger canister that invokes the <literal>send</literal> function and specifies the amount and the destination for the transaction:</simpara>
+<literallayout class="monospaced">send(nonce, latest_index, dst, amount)</literallayout>
+</listitem>
+<listitem>
+<simpara>It signs the ingress message using the key stored in the wallet to identify the principal ID for the owner.</simpara>
+</listitem>
+<listitem>
+<simpara>It forwards the message to the ledger canister on the Internet Computer.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_set_up_a_rosetta_node">
+<title>Set up a Rosetta node</title>
+<simpara>You can set up a Rosetta API-compliant node to interact with the Internet Computer and exchange Internet Computer Protocol (ICP) tokens.
+To keep the instructions simple, we use a Docker image to create the integration with the Rosetta API &#8201;&#8212;&#8201;one can also build and run binary using the source code.
+If you don&#8217;t already have Docker on your local computer, download and install the latest version.</simpara>
+<simpara>To set up a Rosetta node (which connects to a testnet):</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara><link xl:href="https://docs.docker.com/get-docker/">Install Docker</link> and <link xl:href="https://docs.docker.com/config/daemon/">start the Docker daemon</link>.</simpara>
+<simpara>The Docker daemon (<literal>dockerd</literal>) should automatically start when you reboot your computer. If you start the Docker daemon manually, the instructions vary depending on the local operating system.</simpara>
+</listitem>
+<listitem>
+<simpara>Pull the latest <literal>dfinity/rosetta-api</literal> image from the Docker Hub by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">docker pull dfinity/rosetta-api</programlisting>
+</listitem>
+<listitem>
+<simpara>Start the integration software by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">docker run \
+    --interactive \
+    --tty \
+    --publish 8080:8080 \
+    --rm \
+   dfinity/rosetta-api</programlisting>
+<simpara>This command starts the software on the local host and displays output similar to the following:</simpara>
+<literallayout class="monospaced">Listening on 0.0.0.0:8080
+Starting Rosetta API server</literallayout>
+<simpara>By default, the software <emphasis role="strong">does not</emphasis> connect to the ledger canister running on the Internet Computer production network, but rather it connects to one of the testnets.</simpara>
+<simpara>If you have been assigned a test network and corresponding ledger canister identifier, you can run the command against that network by specifying an additional <literal>canister</literal> argument. For example, the following command illustrates connecting to the ledger canister on a test network by setting the <literal>canister</literal> argument to <literal>2xh5f-viaaa-aaaab-aae3q-cai</literal>.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">docker run \
+    --interactive \
+    --tty \
+    --publish 8080:8080 \
+    --rm \
+   dfinity/rosetta-api
+   --canister 2xh5f-viaaa-aaaab-aae3q-cai</programlisting>
+<note>
+<simpara>The first time you run the command it might take some time for the node to catch up to the current link of the chain.
+When the node is caught up, you should see output similar to the following:</simpara>
+</note>
+<literallayout class="monospaced">You are all caught up to block height 109</literallayout>
+<simpara>After completing this step, the node continues to run as a <emphasis role="strong">passive</emphasis> node that does not participate in block making.</simpara>
+</listitem>
+<listitem>
+<simpara>Open a new terminal window or tab and run the <literal>ps</literal> command to verify the status of the service.</simpara>
+<simpara>If you need to stop the service, press CONTROL-C. You might want to do this to change the canister identifier you are using, for example.</simpara>
+<simpara>To test the integration after setting up the node, you will need to write a program to simulate a principal submitting a transaction or looking up an account balance.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_run_the_rosetta_node_in_production">
+<title>Run the Rosetta node in production</title>
+<simpara>When you are finished testing, you should run the Docker image in production mode without the <literal>--interactive</literal>, <literal>--tty</literal>, and <literal>--rm</literal> command-line options.
+These command-line options are used to attach an interactive terminal session and remove the container, and are primarily intended for testing purposes.</simpara>
+<simpara>To run the software in a production environment, you can start the Docker image using the <literal>--detach</literal> option to run the container in the background and, optionally, specify the <literal>--volume</literal> command for storing blocks.</simpara>
+<simpara>To connect the Rosetta node instance to the mainnet, add flags:
+<literal>--mainnet</literal> and <literal>--not-whitelisted</literal>.</simpara>
+<simpara>For more information about Docker command-line options, see the <link xl:href="https://docs.docker.com/engine/reference/commandline/run/">Docker reference documentation</link>.</simpara>
+</section>
+<section xml:id="_requirements_and_limitations">
+<title>Requirements and limitations</title>
+<simpara>The integration software provided in the Docker image has one requirement that is not part of the standard Rosetta API specification.</simpara>
+<simpara>For transactions involving ICP tokens, the unsigned transaction must be created less than 24 hours before the network receives the signed transaction. The reason is that the 'created_at' field of each transaction refers to an existing transaction (essentially last_index available locally at the time of transaction creation). Any submitted transaction that refers to a transaction that is too old is rejected to maintain operational efficiency.</simpara>
+<simpara>Other than this requirement, the Rosetta API integration software is fully-compliant with all standard Rosetta endpoints and passes all of the <literal>rosetta-cli</literal> tests.
+The software can accept any valid Rosetta request.
+However, the integration software only prompts for transactions to be signed using Ed25519, rather than <link xl:href="https://www.rosetta-api.org/docs/models/SignatureType.html#values">all the signature schemes listed here</link> and only replies with a small subset of the potential responses that the specification supports. For example, the software doesn&#8217;t implement any of the UTXO features of Rosetta, so you won&#8217;t see any UTXO messages in any of the software responses.</simpara>
+</section>
+<section xml:id="_basic_properties_for_icp_utility_tokens">
+<title>Basic properties for ICP utility tokens</title>
+<simpara>The ICP token is similar to utility tokens governing decentralized networks such as Bitcoin, but also differs in important ways.</simpara>
+<simpara>The ICP token is similar to Bitcoin in the following ways:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Each ICP token is divisible 10^8 times.</simpara>
+</listitem>
+<listitem>
+<simpara>All transactions are stored in the ledger starting with the genesis initial state.</simpara>
+</listitem>
+<listitem>
+<simpara>Tokens are entirely fungible.</simpara>
+</listitem>
+<listitem>
+<simpara>Account identifiers are 32 bytes and are roughly the equivalent of the hash of a public key, optionally together with some additional sub-account specifier.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>The ICP token differs from Bitcoin in the following ways:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Rather than using proof of work, staked participant nodes use a variant of threshold BLS signatures to agree on a valid state of the chain.</simpara>
+</listitem>
+<listitem>
+<simpara>Any transaction can store an 8-byte memo&#8201;&#8212;&#8201;this memo field is used by the Rosetta API to store the nonce that distinguishes between transactions. However, other uses for the field are possible.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="_frequently_asked_questions">
+<title>Frequently asked questions</title>
+<simpara>The following questions are taken from the most commonly reported questions and blockers from the developer community regarding Rosetta integration with the Internet Computer.</simpara>
+<section xml:id="_the_rosetta_node">
+<title>The Rosetta node</title>
+<section xml:id="_how_to_i_run_an_instance_of_the_rosetta_node">
+<title>How to I run an instance of the Rosetta node?</title>
+<simpara>An easy way to accomplish this is to use the <link xl:href="https://hub.docker.com/r/dfinity/rosetta-api/tags?page=1&amp;ordering=last_updated"><literal>dfinity/rosetta-api</literal></link> Docker image. Once the node initializes and syncs all blocks, you can perform queries and submit transactions by invoking the Rosetta API on the node. The node listens on the <literal>8080</literal> port.</simpara>
+</section>
+<section xml:id="_how_do_i_connect_the_rosetta_node_to_the_mainnet">
+<title>How do I connect the Rosetta node to the mainnet?</title>
+<simpara>Use flags <literal>--mainnet</literal> and <literal>--not-whitelisted</literal></simpara>
+</section>
+<section xml:id="_how_do_i_know_if_the_node_has_caught_up_with_the_test_net">
+<title>How do I know if the node has caught up with the test net?</title>
+<simpara>Search the <literal>Starting Rosetta API server</literal> startup log. There will be a log entry that says <literal>You are all caught up to block XX</literal>. This message confirms that you are caught up with all blocks.</simpara>
+</section>
+<section xml:id="_how_to_persist_synced_blocks_data">
+<title>How to persist synced blocks data?</title>
+<simpara>Mount the <literal>/data</literal> directory elsewhere.</simpara>
+</section>
+<section xml:id="_is_the_rosetta_node_versioned">
+<title>Is the Rosetta node versioned?</title>
+<simpara>Not yet. Before launch, when we push to the <literal>dfinity/rosetta-api:latest</literal> image, it&#8217;s usually a major update that we&#8217;ll announce in our communication channels beforehand.</simpara>
+<simpara>We&#8217;ll soon implement nightly builds of the image, and CI will ensure it works before pushing. Other than <literal>latest</literal>, those images will also be tagged with the build date, so for more reproducibility, it&#8217;s possible to use the image of a specific date tag rather than <literal>latest</literal>. We&#8217;ll announce when nightly builds become available.</simpara>
+</section>
+<section xml:id="_how_do_i_connect_to_the_main_net_instead_of_the_test_net">
+<title>How do I connect to the main net instead of the test net?</title>
+<simpara>Start <literal>dfinity/rosetta-api</literal> with <literal>--help</literal>, you can see some additional CLI arguments that can be passed. Among those there are <literal>--canister-id</literal> and <literal>--ic-url</literal> which can be used to configure the ledger destination. At the moment, they default to the test net.</simpara>
+<simpara><emphasis role="strong">Note</emphasis>: The main net is not live yet; it will be live some time before the publicly announced date, and we&#8217;ll push the updated image to point to the main net to ensure you can perform testing on the main net beforehand.</simpara>
+</section>
+</section>
+<section xml:id="_icp_specific_rosetta_api_details">
+<title>ICP-specific Rosetta API details</title>
+<section xml:id="_how_are_accounts_generated_and_verified">
+<title>How are accounts generated and verified?</title>
+<itemizedlist>
+<listitem>
+<simpara>Generate an ED25519 keypair.</simpara>
+</listitem>
+<listitem>
+<simpara>The secret key is used for signing transactions.</simpara>
+</listitem>
+<listitem>
+<simpara>The public key is used for generating a self-authenticating Principal ID. For more information, see: <link xl:href="https://sdk.dfinity.org/docs/interface-spec/index.html#_principals">https://sdk.dfinity.org/docs/interface-spec/index.html#_principals</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>The Principal ID is hashed to generate the account address.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_how_to_use_the_public_key_to_generate_its_account_address">
+<title>How to use the public key to generate its account address?</title>
+<itemizedlist>
+<listitem>
+<simpara>Call the <link xl:href="https://www.rosetta-api.org/docs/ConstructionApi.html#constructionderive"><literal>/construction/derive</literal></link> endpoint with the hex-encoded 32-byte public key.</simpara>
+</listitem>
+<listitem>
+<simpara>Call the <literal>pub_key_to_address</literal> function in the JavaScript SDK.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_how_to_verify_the_checksum_of_an_account_address">
+<title>How to verify the checksum of an account address?</title>
+<itemizedlist>
+<listitem>
+<simpara>After hex decoding, the first 4 bytes is the big-endian CRC32 checksum of the rest of the address.</simpara>
+</listitem>
+<listitem>
+<simpara>Call <link xl:href="https://github.com/dfinity/rosetta-client#working-with-account-addresses"><literal>address_from_hex</literal></link> in the JavaScript SDK. It returns and error if checksum doesn&#8217;t match.</simpara>
+</listitem>
+<listitem>
+<simpara><link xl:href="https://gist.github.com/TerrorJack/d6c79b33e5b5d0f5d52f3a2c5cdacc60">Here</link> is a Java implementation of address validation logic.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_what_are_signature_type_and_curve_type_for_ed25519">
+<title>What are <literal>signature_type</literal> and <literal>curve_type</literal> for ED25519?</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>signature_type</literal> is <literal>"ed25519"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>curve_type</literal> is <literal>"edwards25519"</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_what_kinds_of_transactions_can_appear_in_a_block_and_what_do_they_mean">
+<title>What kinds of transactions can appear in a block, and what do they mean?</title>
+<itemizedlist>
+<listitem>
+<simpara>Each block as queried from the <link xl:href="https://www.rosetta-api.org/docs/BlockApi.html#block"><literal>/block</literal></link> endpoint contains exactly one transaction. Note that some operations, such as <literal>burn</literal>, are not suppoted in Rosetta API calls.</simpara>
+</listitem>
+<listitem>
+<simpara>Transfer</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Operation 0: type <literal>"TRANSACTION"</literal>, subtracts the transfer amount from the source account.</simpara>
+</listitem>
+<listitem>
+<simpara>Operation 1: type <literal>"TRANSACTION"</literal>, adds the same transfer amount to the destination account.</simpara>
+</listitem>
+<listitem>
+<simpara>Operation 2: type <literal>"FEE"</literal>, subtracts the fee from the source account.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Don&#8217;t rely on the order above, you can rearrange them in the <literal>/construction/payloads</literal> call, and when parsing transactions in a block, you should check for transaction type and amount sign instead.</simpara>
+</listitem>
+<listitem>
+<simpara>Mint</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Operation 0: type <literal>"MINT"</literal>, adds the minted amount to the destination account.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Burn</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Operation 0: type <literal>"BURN"</literal>, subtract the burned amount from the source account.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><literal>"status"</literal> is always <literal>"COMPLETED"</literal>, failed transactions don&#8217;t show up in the polled blocks</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_what_fee_is_needed_can_i_customize_the_fee">
+<title>What fee is needed? Can I customize the fee?</title>
+<itemizedlist>
+<listitem>
+<simpara>By calling <link xl:href="https://www.rosetta-api.org/docs/ConstructionApi.html#constructionmetadata"><literal>/construction/metadata</literal></link>, you can get <literal>suggested_fee</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>At the moment, <literal>suggested_fee</literal> is a constant, and the fee specified in a transfer must be equal to it.</simpara>
+</listitem>
+<listitem>
+<simpara>Fees do not apply to Mint or Burn operations.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_how_do_i_know_if_the_submitted_transaction_hit_the_chain">
+<title>How do I know if the submitted transaction hit the chain?</title>
+<itemizedlist>
+<listitem>
+<simpara>The Rosetta server will wait for a short period of time after a <literal>/construction/submit</literal> call, if the transaction hit the chain, it&#8217;ll be returned.</simpara>
+</listitem>
+<listitem>
+<simpara>In case of an error from the ledger, the error information will be available in the <literal>/construction/submit</literal> result.</simpara>
+</listitem>
+<listitem>
+<simpara>It&#8217;s still possible that a <literal>/construction/submit</literal> call has returned successfully, but there&#8217;s still some time before it hits the chain. You can poll latest blocks and search for the transaction hash. We also implemented a subset of the <link xl:href="https://www.rosetta-api.org/docs/SearchApi.html#searchtransactions"><literal>/search/transactions</literal></link> endpoint which allows searching for a transaction given its hash.</simpara>
+</listitem>
+<listitem>
+<simpara>5 minutes is a worst case timeout.</simpara>
+</listitem>
+<listitem>
+<simpara>Don&#8217;t use <literal>mempool</literal> APIs, our implementation is an empty stub.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_what_kinds_of_errors_might_i_get_from_rosetta_api_calls">
+<title>What kinds of errors might I get from Rosetta API calls?</title>
+<itemizedlist>
+<listitem>
+<simpara>Successful calls always have <literal>200</literal> response status code.</simpara>
+</listitem>
+<listitem>
+<simpara>Failed calls always have <literal>500</literal> response status code, with a JSON payload containing more information. The possible Rosetta error codes and their text descriptions can be seen in the <literal>/network/options</literal> call result.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_how_do_i_send_mint_or_burn_transactions">
+<title>How do I send Mint or Burn transactions?</title>
+<itemizedlist>
+<listitem>
+<simpara>Mint is a privileged operation; we don&#8217;t support Burn through Rosetta API calls at the moment.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_what_happens_if_the_same_signed_transaction_is_submitted_multiple_times">
+<title>What happens if the same signed transaction is submitted multiple times?</title>
+<simpara>The ledger rejects duplicate transactions. Only the first transaction will make it to the chain and for the duplicate submissions the <literal>/construction/submit</literal> call will fail.</simpara>
+</section>
+<section xml:id="_how_to_sign_a_transaction_without_calling_rosetta_api">
+<title>How to sign a transaction without calling Rosetta API?</title>
+<simpara>The JavaScript SDK contains an <link xl:href="https://github.com/dfinity/rosetta-client/blob/master/lib/construction_combine.js">implementation</link> of the offline signing logic. This is deeply coupled with internal implementation details, so we strongly advise you to call <literal>/construction/combine</literal> to sign a transaction if possible.</simpara>
+</section>
+<section xml:id="_how_to_configure_the_ingress_time_period">
+<title>How to configure the ingress time period?</title>
+<simpara>In the <literal>/construction/payloads</literal> call, you can add one or all of the <literal>ingress_start</literal> / <literal>ingress_end</literal> fields to specify the ingress time period. They are nanoseconds since the Unix epoch, and must be within the next 24 hours. This enables generating &amp; signing a transaction, but delaying the actual submission to a later time.</simpara>
+</section>
+<section xml:id="_how_to_deserialize_a_signed_transaction">
+<title>How to deserialize a signed transaction?</title>
+<simpara>The JavaScript SDK supports <link xl:href="https://github.com/dfinity/rosetta-client/blob/master/lib/signed_transaction_decode.js">deserializing</link> a <literal>signed_transaction</literal> hex string and recovering some information about the transfer. This may be useful in the case that you&#8217;d like to perform a sanity check.</simpara>
+</section>
+</section>
+</section>
+</article>

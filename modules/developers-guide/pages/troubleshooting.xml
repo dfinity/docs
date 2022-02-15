@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Troubleshoot issues</title>
+<date>2021-08-05</date>
+<author>
+<personname>
+<firstname>December 2019 (Alpha)</firstname>
+</personname>
+</author>
+<authorinitials>D</authorinitials>
+</info>
+<simpara>This section provides information to help you troubleshoot and resolve or work around common issues that are related to the following tasks:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>downloading and installing the {sdk-short-name}</simpara>
+</listitem>
+<listitem>
+<simpara>creating, building, or deploying canisters</simpara>
+</listitem>
+<listitem>
+<simpara>using the <literal>dfx</literal> command-line interface</simpara>
+</listitem>
+<listitem>
+<simpara>running the Internet Computer network locally in a development environment</simpara>
+</listitem>
+</itemizedlist>
+<simpara><link xl:href="developers-guide:page$webpack-config.adoc">developers-guide:page$webpack-config.adoc</link></simpara>
+<section xml:id="_migrating_an_existing_project">
+<title>Migrating an existing project</title>
+<simpara>Currently, there is no automatic migration or backward compatibility for any projects that you might have created using previous versions of the <literal>dfx</literal> command-line interface.
+After upgrading to the latest version, you might see error or failure messages if you attempt to build or install a project created with a previous version of the <literal>dfx</literal> command-line interface.</simpara>
+<simpara>In many cases, however, you can continue to work with projects from a previous release by manually changing the dfx setting in the dfx.json configuration file, then rebuilding the project to be compatible with the version of the <literal>dfx</literal> command-line interface you have currently installed.</simpara>
+<simpara>For example, if you have a project that was created with <literal>dfx</literal> version <literal>0.4.9</literal>, open the <literal>dfx.json</literal> file in a text editor and change the <literal>dfx</literal> setting to the latest version or remove the section entirely.</simpara>
+</section>
+<section xml:id="_restarting_the_local_internet_computer_network">
+<title>Restarting the local Internet Computer network</title>
+<simpara>In some cases, starting the Internet Computer network locally fails because of replicated state errors.
+If you encounter issues when running <literal>dfx start</literal> to start the local Internet Computer network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>In the terminal that displays network operations, press Control-C to interrupt the local network process.</simpara>
+</listitem>
+<listitem>
+<simpara>Stop the Internet Computer network by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx stop</programlisting>
+</listitem>
+<listitem>
+<simpara>Restart the Internet Computer in a clean state by running the following command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --clean</programlisting>
+<simpara>The <literal>--clean</literal> option removes checkpoints and stale state information from your project&#8217;s cache so that you can restart the Internet Computer replica and web server processes in a clean state.</simpara>
+</listitem>
+</orderedlist>
+<simpara>Keep in mind, however, that if you reset the state information by running <literal>dfx start --clean</literal>, your existing canisters are also removed.</simpara>
+<simpara>After running <literal>dfx start --clean</literal>, recreate your canisters by running the following commands:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx canister create --all
+dfx build
+dfx canister install --all</programlisting>
+</section>
+<section xml:id="_removing_the_canisters_directory">
+<title>Removing the canisters directory</title>
+<simpara>If you run into problems building or deploying canisters after successfully connecting to the Internet Computer and registering canister identifiers, you should remove the <literal>canisters</literal> directory before attempting to rebuild or redeploy the canisters.</simpara>
+<simpara>You can remove the <literal>canisters</literal> directory for a project by running the following command in the project&#8217;s root directory:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">rm -rf ./.dfx/* canisters/*</programlisting>
+</section>
+<section xml:id="_reinstalling_dfx">
+<title>Reinstalling dfx</title>
+<simpara>Many of the bugs you might encounter can be addressed by uninstalling and reinstalling the <literal>dfx</literal> command-line interface.
+Here are a few ways to reinstall <literal>dfx</literal>.</simpara>
+<simpara>If you only have one version of <literal>dfx</literal> installed in your development environment, you can usually run the following command to uninstall and reinstall the latest version of <literal>dfx</literal>:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">~/.cache/dfinity/uninstall.sh &amp;&amp; sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"</programlisting>
+<simpara>If you have modified the location of the <literal>dfx</literal> binary, you might want run the following command to uninstall the version of <literal>dfx</literal> that is in your PATH, then reinstall the latest version of <literal>dfx</literal>:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">rm -rf ~/.cache/dfinity &amp;&amp; rm $(which dfx) &amp;&amp; sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"</programlisting>
+</section>
+<section xml:id="_xcode_prerequisite">
+<title>Xcode prerequisite</title>
+<simpara>Some versions of the {sdk-short-name} prompted you to install Xcode when creating a new project on a macOS computer.
+The prompt has been removed and the <literal>dfx new</literal> command does not require you to install any macOS developer tools.
+However, you should have Developer Command Line Tools installed if you want to create a Git repository for your project.</simpara>
+<simpara>You can check whether you have the developer tools installed by running <literal>xcode-select -p</literal>.
+You can install the developer tools by running <literal>xcode-select --install</literal>.</simpara>
+</section>
+<section xml:id="_failed_build_when_using_vms">
+<title>Failed build when using VMs</title>
+<simpara>If you are running <literal>dfx</literal> using a virtual machine image on Ubuntu or CentOS, you might see an error message that looks like this when you attempt to run the <literal>dfx build</literal> command:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">Building hello...
+An error occurred:
+Io(
+    Os {
+        code: 2,
+        kind: NotFound,
+        message: "No such file or directory",
+    },
+)</programlisting>
+</section>
+<section xml:id="_address_in_use_error_or_orphan_processes">
+<title>Address in use error or orphan processes</title>
+<simpara>If you are developing projects locally, you often have a local version of core Internet Computer processes—collectively referred to as the <literal>replica</literal>—running either is a separate terminal or in the background.
+If the running Internet Computer processes do not get properly terminated, you might see operating system errors indicating that an address is already in use or or be unable to stop processes normally using the <literal>dfx stop</literal> command.</simpara>
+<simpara>There are several scenarios in which you might encounter this issue. For example, if you run <literal>dfx start</literal> in a local project directory then change to a different local project directory without first stopping Internet Computer processes, you might see this issue.</simpara>
+<simpara>If you encounter an issue where you suspect or you receive a message that an address is already in use or that a process is already running in the background, perform the following steps:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Run the following command to see which process is listening to the 8000 port if you are using the default local network binding:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">lsof -i tcp:8000</programlisting>
+</listitem>
+<listitem>
+<simpara>Run the following command to terminate any orphan processes:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">killall dfx replica</programlisting>
+</listitem>
+<listitem>
+<simpara>Close the current terminal and open a new terminal window.</simpara>
+</listitem>
+<listitem>
+<simpara>In the new terminal, run the following command to run the local Internet Computer in a clean state:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx start --clean --background</programlisting>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_memory_leak">
+<title>Memory leak</title>
+<simpara>Fixing memory leaks is an ongoing process. If you encounter any error messages related to memory leaks, you should do the following:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Run <literal>dfx stop</literal> to stop currently running processes.</simpara>
+</listitem>
+<listitem>
+<simpara>Uninstall <literal>dfx</literal> to prevent further degradation.</simpara>
+</listitem>
+<listitem>
+<simpara>Re-install <literal>dfx</literal></simpara>
+</listitem>
+<listitem>
+<simpara>Run <literal>dfx start</literal> to restart replica processes.</simpara>
+</listitem>
+</orderedlist>
+<simpara>Alternatively, you can remove the <literal>.cache/dfinity</literal> directory and re-install the latest <literal>dfx</literal> binary.
+For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">rm -rf ~/.cache/dfinity &amp;&amp; sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"</programlisting>
+</section>
+</article>

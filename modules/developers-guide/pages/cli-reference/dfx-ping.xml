@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>dfx ping</title>
+<date>2021-08-05</date>
+</info>
+<simpara>Use the <literal>dfx ping</literal> command to check connectivity between a local computer and an {IC} network provider.
+This command enables you to verify that you can connect to a specific {IC} network and that the remote network services are running.</simpara>
+<simpara>Note that you can only run this command from within the project directory structure.
+For example, if your project name is <literal>hello_world</literal>, your current working directory must be the <literal>hello_world</literal> top-level project directory or one of its subdirectories.</simpara>
+<section xml:id="_basic_usage">
+<title>Basic usage</title>
+<programlisting language="bash" linenumbering="unnumbered">dfx ping [provider] [flag]</programlisting>
+</section>
+<section xml:id="_flags">
+<title>Flags</title>
+<simpara>You can use the following optional flags with the <literal>dfx ping</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Flag</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>-h</literal>, <literal>--help</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays usage information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-V</literal>, <literal>--version</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Displays version information.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_arguments">
+<title>Arguments</title>
+<simpara>You can specify the following argument for the <literal>dfx ping</literal> command.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="136*"/>
+<colspec colname="col_2" colwidth="289*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Argument</entry>
+<entry align="left" valign="top">Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>provider</simpara></entry>
+<entry align="left" valign="top"><simpara>Specifies the network provider URL that you want to use.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_examples">
+<title>Examples</title>
+<simpara>You can use the <literal>dfx ping</literal> command to check whether the {IC} is currently available at a specific network address by running a command similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx ping https://testgw.dfinity.network</programlisting>
+<simpara>If the {IC} is running on the specified network provider address, the command returns output similar to the following:</simpara>
+<literallayout class="monospaced">{
+  "ic_api_version": "0.8"
+}</literallayout>
+</section>
+</article>

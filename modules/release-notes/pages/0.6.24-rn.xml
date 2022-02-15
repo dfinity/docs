@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Highlights of what&#8217;s new in 0.6.24</title>
+<date>2021-08-05</date>
+</info>
+<simpara>The 0.6.24 release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, Motoko, the Motoko base library, and Candid.</simpara>
+<section xml:id="_new_features_and_capabilities">
+<title>New features and capabilities</title>
+<simpara>The most significant new features and capabilities include updates in the following functional areas:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><link linkend="_dfx">DFX</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="_candid">Candid</link></simpara>
+</listitem>
+<listitem>
+<simpara><link linkend="_motoko">Motoko</link></simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_dfx">
+<title>DFX</title>
+<itemizedlist>
+<listitem>
+<simpara>With this release, you must have a <emphasis role="strong">wallet canister</emphasis> with <emphasis role="strong">cycles</emphasis> to deploy or manage applications on the Internet Computer.</simpara>
+<simpara>For local development, <literal>dfx</literal> automatically creates a wallet for you when you run <literal>dfx canister create</literal> or <literal>dfx deploy</literal> commands within each project.</simpara>
+<simpara>Wallets are also created automatically if you deploy to the Internet Computer using the <literal>ic</literal> network alias before the network is upgraded to require a cycle balance.</simpara>
+<simpara>To deploy and manage applications on the main Internet Computer network, you must provide the DFINITY Foundation with a principal associated with your user identity and receive a <emphasis role="strong">wallet canister identifier</emphasis> in return.</simpara>
+<simpara>To deploy applications on the Internet Computer network:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Download and install the {sdk-short-name}.</simpara>
+</listitem>
+<listitem>
+<simpara>Run the <literal>dfx identity get-principal</literal> command to create your default identity and principal:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity get-principal</programlisting>
+<simpara>Running the command displays output similar to the following:</simpara>
+<literallayout class="monospaced">Creating the "default" identity.
+  - generating new key at /Users/pubs/.config/dfx/identity/default/identity.pem
+Created the "default" identity.
+wre5u-xietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe</literallayout>
+</listitem>
+<listitem>
+<simpara>Run the <literal>dfx identity set-wallet</literal> command to associate your wallet canister identifier with your default identity.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">dfx identity set-wallet &lt;wallet-canister-identifier&gt;</programlisting>
+</listitem>
+<listitem>
+<simpara>Open the wallet application in a web browser by navigating to the canister with a URL similar to the following:</simpara>
+<literallayout class="monospaced">https://&lt;WALLET-CANISTER-ID&gt;.ic0.app</literallayout>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>A new command-line option enables you to specify the number of initial cycles to transfer to a newly-created canister.</simpara>
+<simpara>The <literal>dfx canister create</literal> and <literal>dfx deploy</literal> commands now support a new <literal>--with-cycles &lt;number-of-cycles&gt;</literal> option.
+This option allows you to specify the initial cycle balance of a canister created by your wallet.</simpara>
+<simpara>You can use this option when running the Internet Computer network locally or connected to the current <literal>ic</literal> network (Sodium) for testing purposes. However, because wallets and cycle balances are not currently used for canisters you create while connected to the current <literal>ic</literal> network (Sodium), the <literal>--with-cycles</literal> option does not affect any canister operations.</simpara>
+<simpara>For example, you might run the following <literal>dfx canister create</literal> command to initialize <literal>8000000000</literal> cycles for all of the canisters in a project:</simpara>
+<literallayout class="monospaced">dfx canister create --with-cycles 8000000000 --all</literallayout>
+<simpara>If using <literal>dfx deploy</literal>, you might run the following command to initialize <literal>8000000000</literal> cycles for the <literal>backend</literal> canister in a project:</simpara>
+<literallayout class="monospaced">dfx deploy --with-cycles 8000000000 backend</literallayout>
+<note>
+<simpara>You must have a wallet canister with a cycles balance on the network where you want to create or deploy additional canisters.</simpara>
+</note>
+</listitem>
+<listitem>
+<simpara>You can now use the new <literal>dfx toolchain</literal> command to manage the version of the <literal>dfx</literal> command-line interface you are using for your projects.</simpara>
+<simpara>The <literal>dfx toolchain</literal> command enables you to install, uninstall, and set the default version of <literal>dfx</literal> that you want to use.
+You can specify the version by the complete version number, the major and minor version number, or a tag name.
+For example:</simpara>
+<literallayout class="monospaced">dfx toolchain install 0.6.24 # complete version
+dfx toolchain install 0.6    # major minor version
+dfx toolchain install latest # tag name</literallayout>
+</listitem>
+<listitem>
+<simpara>A new <literal>deploy-wallet</literal> subcommand enables you to specify the canister identifier for your cycles wallet WebAssembly module (WASM).</simpara>
+<simpara>For example, if you have an account with a third party exchange provider and receive a wallet canister identifier, you can run a command similar to the following to deploy the wallet and uses its cycles for development:</simpara>
+<literallayout class="monospaced">dfx identity deploy-wallet &lt;canister-identifier&gt;</literallayout>
+<note>
+<simpara>The <literal>deploy-wallet</literal> feature is intended for a future use case. The command is only applicable if you received the wallet canister identifier as part of a transfer operation that converted ICP tokens to cycles.
+In addition, the <literal>deploy-wallet</literal> subcommand is <emphasis role="strong">not intended for use</emphasis> with the current version of Internet Computer running locally or on the remote network.</simpara>
+</note>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_candid">
+<title>Candid</title>
+<itemizedlist>
+<listitem>
+<simpara>New <link xl:href="../candid-guide/candid-intro.xml">Candid documentation</link> for developers provides type mapping information for Rust and JavaScript.</simpara>
+</listitem>
+<listitem>
+<simpara>Candid now supports additional native Rust types and Typescript.</simpara>
+</listitem>
+<listitem>
+<simpara>For additional information, see the <link xl:href="https://github.com/dfinity/candid/blob/master/Changelog.md">Candid changelog</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_motoko">
+<title>Motoko</title>
+<itemizedlist>
+<listitem>
+<simpara>The Motoko compiler (<literal>moc</literal>) now accepts the <literal>-Werror</literal> flag to turn warnings into errors.</simpara>
+</listitem>
+<listitem>
+<simpara>The language server now returns documentation comments alongside
+completions and hover notifications.</simpara>
+</listitem>
+<listitem>
+<simpara>Motoko supports wrapping arithmetic and bit-wise operations on <literal>NatN</literal> and <literal>IntN</literal>.</simpara>
+<simpara>The conventional arithmetic operators on <literal>NatN</literal> and <literal>IntN</literal> trap on overflow.
+If wrap-around semantics is desired, the operators <literal>+%</literal>, <literal>-%</literal>, <literal><emphasis role="strong">%</literal> and <literal></emphasis>*%</literal> can be used. The corresponding assignment operators (<literal>+%=</literal> etc.) are also available.</simpara>
+<simpara>Likewise, the bit fiddling operators (<literal>&amp;</literal>, <literal>|</literal>, <literal>^</literal>, <literal>&lt;&lt;</literal>, <literal>&gt;&gt;</literal>, <literal>&lt;&lt;&gt;</literal>,<literal>&lt;&gt;&gt;</literal> etc.) are now also available on <literal>NatN</literal> and <literal>IntN</literal>. The right shift operator (<literal>&gt;&gt;</literal>) is an unsigned right shift on <literal>NatN</literal> and a signed right shift on <literal>IntN</literal>; the <literal>+&gt;&gt;</literal> operator is <emphasis>not</emphasis> available on these types.</simpara>
+<simpara>The motivation for this change is to eventually deprecate and remove the
+<literal>WordN</literal> types.
+Therefore, the wrapping arithmetic operations on <literal>WordN</literal> are deprecated and their use will print a warning.
+For information about replacing Word types, see <link xl:href="../language-guide/language-manual.xml#word-types">Word types</link>.</simpara>
+</listitem>
+<listitem>
+<simpara>For values <literal>x</literal> of type <literal>Blob</literal>, an iterator over the elements of the blob <literal>x.vals()</literal> is introduced.
+It works like <literal>x.bytes()</literal>, but returns the elements as type <literal>Nat8</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>The base library documentation tool <literal>mo-doc</literal> now generates cross-references for types in signatures.
+With this enhancement, when you view a signature like <literal>fromIter : I.Iter&lt;Nat&gt; &#8594; List.List&lt;Nat&gt;</literal>, you can click <literal>I.Iter</literal> or <literal>List.List</literal> to navigate to the appropriate definition.</simpara>
+</listitem>
+<listitem>
+<simpara>Improvements to the type checker and compiler provide better handling for object literals.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="_issues_fixed_in_this_release">
+<title>Issues fixed in this release</title>
+<simpara>This section covers any reported issues that have been fixed in this release.</simpara>
+</section>
+<section xml:id="_known_issues_and_limitations">
+<title>Known issues and limitations</title>
+<simpara>This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.</simpara>
+</section>
+</article>

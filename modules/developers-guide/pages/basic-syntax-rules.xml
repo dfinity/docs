@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Learning the basics of Motoko</title>
+<date>2021-05-09</date>
+<author>
+<personname>
+<firstname>December 2019 (Alpha)</firstname>
+</personname>
+</author>
+<authorinitials>D</authorinitials>
+</info>
+<simpara>One key feature of the Internet Computer platform is the Motoko programming language.
+The Motoko programming language is a high-level, general purpose language that is similar to other modern programming languages, but specifically designed to handle asynchronous messaging efficiently.</simpara>
+<simpara>Although Motoko provides an interpreter that can be used interactively and a standalone compiler, you can write programs and compile your code without using either one directly.
+Instead, in most cases, you interact with the programming language indirectly through an editor of your choice and using the <literal>dfx</literal> command-line execution tool.</simpara>
+<simpara>To help you get started using this new language, this section provides a brief overview of the language and describes a few basic conventions for writing programs using Motoko.
+For more complete information about programming in Motoko, including specific language features and detailed examples, see the <emphasis>Language Reference Guide</emphasis>.</simpara>
+<section xml:id="_actors_and_asynchronous_messaging">
+<title>Actors and asynchronous messaging</title>
+<simpara>As you start to explore the Motoko programming language, you should keep in mind that each application consists of an <emphasis role="strong">actor</emphasis> that communicates with other actors by passing messages asynchronously.</simpara>
+<simpara>An actor is a special kind of object that passes its messages in an isolated state.
+When you define an actor, its messages are processed in sequence but in isolation from on each other. As an example of using actors, consider the following program:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">let result1 = await service1.computeAnswer(params);
+let result2 = await service2.computeAnswer(params);
+finalStep(result1, result2)</programlisting>
+<simpara>In this example, the program makes two requests to two distinct
+services.
+Each service is implemented internally as an actor (object).
+The program waits using the <literal>await</literal> keyword to wait for each result value in sequence.
+The program then uses the result from each request them in the final step, calling the function <literal>finalStep</literal>.</simpara>
+<simpara>The actor-based programming model is particularly well-suited for writing programs intended to run on the Internet Computer platform.
+However, you can also write programs in Motoko to run on other platforms and inside of other frameworks.
+If you are writing programs to run on other platforms, you might not use actor objects or asynchronous messaging at all.</simpara>
+</section>
+<section xml:id="_interface_descriptions_and_motoko">
+<title>Interface descriptions and Motoko</title>
+<simpara>To support multiple languages and cross-language communication, the Motoko compiler automates the production and consumption of interface descriptions.
+The Motoko compiler generates the interface descriptions using the type signatures in your Motoko programs and the structure of imported pre-defined interfaces.</simpara>
+</section>
+<section xml:id="_prelude_and_standard_library_functions">
+<title>Prelude and standard library functions</title>
+<simpara>Like other languages, Motoko includes many common functions in predefined prelude and standard library files that you can import into your programs.
+By importing the prelude or standard library, you can use common functions like <literal>println</literal> without explicitly defining them in your programs.</simpara>
+<simpara>For example, you might include a line similar to the following to import list functions from the standard library:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">import List "../../motoko/base/list";</programlisting>
+</section>
+<section xml:id="_basic_language_features">
+<title>Basic language features</title>
+<simpara>This section describes the basic language conventions you need to know for programming in Motoko.</simpara>
+<section xml:id="_comments">
+<title>Comments</title>
+<simpara>You can use single-line, multi-line, or nested multi-line comments to include descriptive non-executable text in your code.
+For example, use comments to add context about a code block as a note to yourself or as information you want to share with anyone reviewing or maintaining your code.
+Properly-formatted comments are treated as whitespace and ignored by the compiler.</simpara>
+<section xml:id="_single_line_comments">
+<title>Single-line comments</title>
+<simpara>Single-line comments begin with two forward-slashes (//) and consist of the characters following <literal>//</literal> to the end of the same line.
+For example, you can have single-line comments above, below, or on the same line as the code to which the comment applies.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">// This is a single-line comment on its own line above relevant code
+import List = "ListLib";</programlisting>
+</section>
+<section xml:id="_multi_line_and_nested_comments">
+<title>Multi-line and nested comments</title>
+<simpara>You can also include single-line, multi-line, and nested multi-line comments by starting with a forward-slash followed by an asterisk (/*) and ending with an asterisk followed by a forward-slash (*/).
+For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">/*
+This is a comment that is split into
+multiple lines.
+*/</programlisting>
+<simpara>You can also write nested multi-line comments by starting a multi-line comment block, then starting a second multi-line comment within the first block.
+For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">/* This is the start of the first multi-line comment block.
+   /* This is the second, nested multi-line comment. */
+This is the end of the first multi-line comment block. */</programlisting>
+</section>
+</section>
+<section xml:id="_programs_declarations_and_expressions">
+<title>Programs, declarations, and expressions</title>
+<simpara>Each Motoko program consists of zero or more declarations, followed by an optional expression.
+For example, the following snippet consists of two declarations for the variables <literal>x</literal> and <literal>y</literal> followed by an expression, forming a single program:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">let x = 1;
+let y = x + 1;
+x * y + x;</programlisting>
+<simpara>As illustrated in this example, you use a semi-colon (;) to terminate declarations and expressions. For example, to evaluate a simple equation:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">1 + 3; // When executed, the result would be "4 : Nat" value and type</programlisting>
+</section>
+</section>
+<section xml:id="_numbers_text_and_operators">
+<title>Numbers, text and operators</title>
+<simpara>Motoko supports the following number types:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Natural numbers (<literal>Nat</literal>) are positive whole integers.</simpara>
+</listitem>
+<listitem>
+<simpara>Integer numbers (<literal>Int</literal>) are positive, negative, or zero whole number values.</simpara>
+</listitem>
+<listitem>
+<simpara>Floating point numbers (<literal>Float</literal>) are fractional numeric 32-bit or 64-bit values.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Basic arithmetic operators work as you would expect. For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">1 + 1;      // = 2
+0.1 + 0.2;  // = 0.3
+8 - 1;      // = 7
+10 * 2;     // = 20
+35 / 5;     // = 7</programlisting>
+<simpara>You can use double (") quotes to enclose text. For example:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">let name = "Chris"; // let name : Text = "Chris"</programlisting>
+<section xml:id="_relational_operators">
+<title>Relational operators</title>
+<simpara>You can use the following relational operators in Motoko programs.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Use this</entry>
+<entry align="left" valign="top">To define this relationship</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>␣&lt;␣</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Less than. The operator must be enclosed in whitespace.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>␣&gt;␣</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Greater than. The operator must be enclosed in whitespace.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>==</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Equals.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>!=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Not equals.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Less than or equal to.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&gt;=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Greater than or equal to.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_numeric_binary_operators">
+<title>Numeric binary operators</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Use this</entry>
+<entry align="left" valign="top">For this operation</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>+</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Addition.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Subtraction.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>*</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Multiplication.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>/</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Division.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>%</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Modulo.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>**</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Exponentiation.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_bitwise_binary_operators">
+<title>Bitwise binary operators</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Use this</entry>
+<entry align="left" valign="top">For this operation</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>&amp;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Bitwise AND.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>|</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Bitwise OR.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>^</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Exclusive OR.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;&lt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Shift left.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>␣&gt;&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Shift right. The operator must be preceded by whitespace.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;&lt;&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Rotate left.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;&gt;&gt;</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Rotate right.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_string_operators">
+<title>String operators</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Use this</entry>
+<entry align="left" valign="top">For this operation</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>#</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Text concatenation.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_assignment_operators">
+<title>Assignment operators</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Use this</entry>
+<entry align="left" valign="top">For this operation</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><literal>:=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>Assignment using an in-place update.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>+=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place addition.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>-=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place subtraction.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>*=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place multiplication.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>/=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place divide.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>%=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place modulo.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>**=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place exponentiation.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&amp;=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place logical AND.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>|=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place logical OR.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>^=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place exclusive OR.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;&lt;=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place shift left.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&gt;&gt;=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place shift right.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;&lt;&gt;=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place rotate left.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>&lt;&gt;&gt;=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place rotate right.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><literal>#=</literal></simpara></entry>
+<entry align="left" valign="top"><simpara>In place concatenation.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_variables">
+<title>Variables</title>
+<simpara>Variables enable you to relate static names and types with dynamic values that are present only when a program is executed.</simpara>
+<simpara>You can declare variable names, and if necessary the data type, using the <literal>let</literal> keyword. For example, you can use the following notation to set the variable <literal>x</literal> to the natural number 1:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">let x : Nat = 1;</programlisting>
+<simpara>In this example, the compiler can infer that the expression 1 has type <literal>Nat</literal>, and that <literal>x</literal> has the same type. Therefore, you can use the following annotation without changing the meaning of the program:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">let x = 1</programlisting>
+</section>
+<section xml:id="_primitive_values">
+<title>Primitive values</title>
+<simpara>Motoko supports the following primitive types:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Booleans (true, false)</simpara>
+</listitem>
+<listitem>
+<simpara>Integers (…​,-2, -1, 0, 1, 2, …​)</simpara>
+</listitem>
+<listitem>
+<simpara>Natural numbers (0, 1, 2, …​)</simpara>
+</listitem>
+<listitem>
+<simpara>Words (fixed-width numbers)</simpara>
+</listitem>
+<listitem>
+<simpara>Characters (Unicode code points)</simpara>
+</listitem>
+<listitem>
+<simpara>Text values (strings of Unicode characters)</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Integers and natural numbers do not silently over- or under-flow.
+Instead, they use representations that grow to accommodate any finite number. There are also fixed-width integers and natural numbers (in 8-, 16-, 32-, and 64-bit) types that trap on arithmetic over- and under-flow. The fixed-width integers are signed. The fixed-width natural numbers are unsigned.</simpara>
+<simpara>Word values have fixed width. Arithmetic for Word types is performed using modulo 2**N where N is the width of the word type in bits.</simpara>
+<simpara>Motoko does not allow unchecked, uncaught overflows.</simpara>
+<simpara>All primitive types are shareable so that they can be sent and received across remote function calls.</simpara>
+</section>
+<section xml:id="_non_primitive_values">
+<title>Non-primitive values</title>
+<simpara>Building on the primitive values and types above, the language permits user-defined types, and each of the following non-primitive value forms and associated types:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Tuples, including the unit value (the <quote>empty tuple</quote>).</simpara>
+</listitem>
+<listitem>
+<simpara>Arrays, in both immutable and mutable forms.</simpara>
+</listitem>
+<listitem>
+<simpara>Objects, with named, unordered fields and methods.</simpara>
+</listitem>
+<listitem>
+<simpara>Variants, with named constructors and optional payload values.</simpara>
+</listitem>
+<listitem>
+<simpara>Function values, including shareable functions that can be called remotely.</simpara>
+</listitem>
+<listitem>
+<simpara>Async values, otherwise known as <emphasis role="strong">futures</emphasis> or <emphasis role="strong">promises</emphasis>, that can be synchronized with using <literal>await</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Optional values, that can either be <literal>null</literal> or of the form <literal>? v</literal>, for a proper value <literal>v</literal>.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Note that if your function is returning an optional value of type <literal>T</literal>, then the function&#8217;s return type should be of the form '? T':
+prefixing a type with question mark (?) adds the <literal>null</literal> value.
+For example, you would use the following syntax to indicate that the return value of the type identified by <literal>?Phone</literal> is optional (for example, the return value can be <literal>null</literal> as well as a proper phone number):</simpara>
+<programlisting language="motoko" linenumbering="numbered">public query func lookup(name: Name): async <emphasis role="strong">?Phone</emphasis> {
+        return A.find<Name, Phone>(book, name, nameEq);
+    };</programlisting>
+</section>
+<section xml:id="_functions">
+<title>Functions</title>
+<simpara>First-class functions support multiple arguments and returns and can be polymorphic.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>T -&gt; U</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>(T, U) -&gt; (V, W)</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>(x : T, y : U) -&gt; V</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>&lt;A, B&gt;(x : T, y : U) -&gt; (V, W)</literal></simpara>
+</listitem>
+</itemizedlist>
+<simpara>Functions can be defined as <literal>public</literal> or <literal>private</literal>, <literal>shared</literal>, or locally-scoped.</simpara>
+</section>
+<section xml:id="_objects_and_actors">
+<title>Objects and actors</title>
+<simpara>Objects are structural record types with fields that can be mutable or immutable.
+Objects with immutable fields are shareable.</simpara>
+<literallayout class="monospaced">{var x : Int; color : Color}
+{x : Int; color: Color}</literallayout>
+<simpara>Actors are restricted objects with the following characteristics:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>State must be isolated.</simpara>
+</listitem>
+<listitem>
+<simpara>Public methods are implicitly <literal>shared</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>All interactions are asynchronous.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Actor objects are marked as <literal>actor</literal> with syntax similar to the
+following:</simpara>
+<literallayout class="monospaced">actor {
+  private var c = 0;
+  public func inc() { c += 1 };
+  public func get() : async Int { c }
+}</literallayout>
+<simpara>The fields of an actor are functions that return either:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>An empty unit return type <literal>()</literal> which is similar to a <literal>void</literal> return value.</simpara>
+</listitem>
+<listitem>
+<simpara>An <literal>async</literal> return type, which is essentially a <literal>promise</literal> to return a future value.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_arrays">
+<title>Arrays</title>
+<simpara>You can define immutable or mutable arrays.
+The assignment syntax you use is the same for both immutable and mutable arrays, but you cannot change immutable arrays after allocation.</simpara>
+<simpara>The following is an example of a simple, immutable array that holds three natural numbers, and has the type <literal>[Nat]</literal>:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">let test_array : [Nat] = [1, 2, 3] ;</programlisting>
+<simpara>In general, an immutable array uses square brackets around the type of the array’s elements, which must share a single common type.
+Because immutable arrays cannot be modified,immutable arrays are safe to send and share.</simpara>
+<simpara>Unlike immutable arrays, each mutable array in Motoko introduces a private actor state which can be used locally but cannot be used in cases where immutable arrays are expected.
+Mutable arrays cannot be shared or sent in messages.
+For more information about working with arrays, see the <emphasis>Motoko Language Reference</emphasis>.</simpara>
+</section>
+<section xml:id="_tuples">
+<title>Tuples</title>
+<simpara>A tuple is a data structure that contains a sequence of elements.
+The number of element in the sequence is fixed, but the elements can consist of different data types.
+Tuples are often used when you want to have a data structure for an object with specific properties, but you don&#8217;t want to create a separate type for it.</simpara>
+<simpara>The following example defines a tuple for a three-dimensional point using integers to specify locations to represent the point on the x-axis, y-axis, and z-axis and a color.</simpara>
+<programlisting language="bash" linenumbering="unnumbered">  type Point3D = (Int, Int, Int, Color);
+  let origin = (0, 0, 0, Color.Red);
+  let (x, y, z, _) = origin;
+
+  func isOrigin(p : Point3D) : Bool {
+    switch p {
+      case (0, 0, 0, _) true; // pattern match
+      case _ false;
+    }
+  }</programlisting>
+</section>
+<section xml:id="_conditional_and_switching">
+<title>Conditional and switching</title>
+<simpara>Motoko supports all the common constructs for expressing conditions and switching between cases.</simpara>
+<simpara>For example, you can write <literal>if</literal> and <literal>if else</literal> conditions with syntax similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">if &lt;exp&gt;
+  ...</programlisting>
+<programlisting language="bash" linenumbering="unnumbered">if &lt;exp&gt;
+  ...
+else &lt;exp&gt;
+  ...</programlisting>
+<simpara>You can also use <literal>switch</literal> and <literal>case</literal> syntax similar to the following:</simpara>
+<programlisting language="bash" linenumbering="unnumbered">switch &lt;exp&gt; {
+  case 1
+    ...;
+  case 2
+    ...;
+  case 3
+    ...}</programlisting>
+</section>
+<section xml:id="_while_loops_and_iteration">
+<title>While, Loops, and iteration</title>
+<itemizedlist>
+<listitem>
+<simpara><literal>while (p()) ...</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>loop ...</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>loop ... while (p())</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>for (x in f()) ...</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_label_break_and_continue">
+<title>Label, break, and continue</title>
+<simpara>Labels help ensure control flow is structured and can be used with the <literal>break</literal> and <literal>continue</literal> keywords.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>label l exp</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>break l</literal> (more generally, <literal>break l exp</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara><literal>continue l</literal></simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="_identifiers">
+<title>Identifiers</title>
+<simpara>Identifiers are alphanumeric.
+They must start with an uppercase or lowercase letter and can include a combination of uppercase or lowercase letters, numbers, and underscores.</simpara>
+</section>
+<section xml:id="_reserved_keywords">
+<title>Reserved keywords</title>
+<simpara>The following keywords are reserved for specific purposes and cannot be used as identifiers or for any other purpose in Motoko code:</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<?dbhtml table-width="100%"?>
+<?dbfo table-width="100%"?>
+<?dblatex table-width="100%"?>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="170*"/>
+<colspec colname="col_2" colwidth="255*"/>
+<thead>
+<row>
+<entry align="left" valign="top">This keyword</entry>
+<entry align="left" valign="top">Is reserved for this purpose</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>actor</simpara></entry>
+<entry align="left" valign="top"><simpara>Declare actor identifiers, actor objects and actor classes.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>and</simpara></entry>
+<entry align="left" valign="top"><simpara>Boolean conjunction (short-circuiting).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>async</simpara></entry>
+<entry align="left" valign="top"><simpara>Declare an asynchronous function or create a future.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>assert</simpara></entry>
+<entry align="left" valign="top"><simpara>Assert a Boolean property (trapping when false).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>await</simpara></entry>
+<entry align="left" valign="top"><simpara>Await the result of an asynchronous computation.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>break</simpara></entry>
+<entry align="left" valign="top"><simpara>Exit from a labelled expression or loop (possibly with a value).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>case</simpara></entry>
+<entry align="left" valign="top"><simpara>Case of a preceding <literal>switch</literal> expression, consisting of a pattern and expression.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>catch</simpara></entry>
+<entry align="left" valign="top"><simpara>Failure branch of a preceding <literal>try</literal> expression.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>class</simpara></entry>
+<entry align="left" valign="top"><simpara>Class declaration (actor, object and module classes).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>continue</simpara></entry>
+<entry align="left" valign="top"><simpara>Continue with the next iteration of <literal>loop</literal> or <literal>while</literal> or <literal>for</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>debug</simpara></entry>
+<entry align="left" valign="top"><simpara>Conditional debug expressions, excluded from <literal>release</literal> code.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>debug_show</simpara></entry>
+<entry align="left" valign="top"><simpara>Display a debug message.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>else</simpara></entry>
+<entry align="left" valign="top"><simpara>False branch of a conditional expression.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>false</simpara></entry>
+<entry align="left" valign="top"><simpara>Boolean literal value <emphasis role="strong">false</emphasis>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>for</simpara></entry>
+<entry align="left" valign="top"><simpara>Iterate over the items of an iterator.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>func</simpara></entry>
+<entry align="left" valign="top"><simpara>Declare a name function or anonymous function value.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>if</simpara></entry>
+<entry align="left" valign="top"><simpara>Branch on a Boolean value.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ignore</simpara></entry>
+<entry align="left" valign="top"><simpara>Discard the value of an expression.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>import</simpara></entry>
+<entry align="left" valign="top"><simpara>Import a source file or other resource as a named module.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>in</simpara></entry>
+<entry align="left" valign="top"><simpara>Indicate the domain of <literal>for</literal> loop.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>module</simpara></entry>
+<entry align="left" valign="top"><simpara>Declare a module identifier or module expression.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>not</simpara></entry>
+<entry align="left" valign="top"><simpara>Negate a Boolean value.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>null</simpara></entry>
+<entry align="left" valign="top"><simpara>The literal value of type <literal>Null</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>object</simpara></entry>
+<entry align="left" valign="top"><simpara>Declare an object identifier or object expression.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>or</simpara></entry>
+<entry align="left" valign="top"><simpara>Boolean disjunction (short-circuiting).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>label</simpara></entry>
+<entry align="left" valign="top"><simpara>Label an expression for early exit via <literal>break</literal>.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>let</simpara></entry>
+<entry align="left" valign="top"><simpara>Bind an identifier (or pattern) to a value.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>loop</simpara></entry>
+<entry align="left" valign="top"><simpara>Enter a loop (possibly with a guarded exit).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>private</simpara></entry>
+<entry align="left" valign="top"><simpara>Restrict the visibility of a declaration to the enclosing
+actor, object, module or class.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>public</simpara></entry>
+<entry align="left" valign="top"><simpara>Publish a declaration as member(s) of the enclosing
+actor, object, module or class.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>query</simpara></entry>
+<entry align="left" valign="top"><simpara>A modifier on shared functions that return results without modifying state.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>return</simpara></entry>
+<entry align="left" valign="top"><simpara>Exit from a function or async block (possibly with a value).</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>shared</simpara></entry>
+<entry align="left" valign="top"><simpara>Declare a function that can be called remotely.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>switch</simpara></entry>
+<entry align="left" valign="top"><simpara>Conditional pattern matching, defined by cases.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>throw</simpara></entry>
+<entry align="left" valign="top"><simpara>Exit from an expression with an error.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>true</simpara></entry>
+<entry align="left" valign="top"><simpara>A Boolean value returned as the result of a comparison.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>try</simpara></entry>
+<entry align="left" valign="top"><simpara>Declare a scoped error handler.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>type</simpara></entry>
+<entry align="left" valign="top"><simpara>Declare a type abbreviation.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>var</simpara></entry>
+<entry align="left" valign="top"><simpara>Specify a (mutable) variable, field or array that can be updated.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>while</simpara></entry>
+<entry align="left" valign="top"><simpara>Enter a guarded loop.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+</article>

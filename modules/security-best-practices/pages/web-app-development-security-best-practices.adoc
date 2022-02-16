@@ -33,7 +33,7 @@ Note: Idle timeouts might be introduced soon, see link:https://forum.dfinity.org
 
 ==== Recommendation
 
-Never use `agent.fetchRootKey()`only in test builds, but not in production builds. Not calling this method will result in the hard coded root subnet public key of mainnet being used for signature verification, which is the desired behavior in production.
+Never use `agent.fetchRootKey()` in production builds, only in test builds. Not calling this method will result in the hard coded root subnet public key of mainnet being used for signature verification, which is the desired behavior in production.
 
 == Nonspecific to the Internet Computer
 

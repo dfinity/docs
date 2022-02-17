@@ -10,7 +10,9 @@ The controller of a canister can change / update the canister whenever they like
 
 ==== Recommendation
 
-To implement an immutable canister smart contract, you cannot be the controller of the canister. Control must be passed to the service nervous system (SNS) or a decentralized governance system.
+* To implement an immutable canister smart contract, you cannot be the controller of the canister. Control must be passed to the service nervous system (SNS) or a decentralized governance system.
+* Another option to create an immutable canister smart contract is to remove the canister controller completely. But note that this implies that the canister cannot be upgraded, which may have severe implications in case e.g. a bug would be found.
+* Note that, contrary to some other blockchains, also immutable smart contracts need cycles to run, and they can receive cycles.
 
 === Verify the immutability of smart contracts you depend on
 
@@ -152,10 +154,13 @@ By default, canisters provide integrity but not confidentiality. Data stored on 
 
 ==== Security Concern
 
-Bugs in the upgrade methods or inconsistent state could render a canister unusable.
+A canister could be rendered unusable so it could never be upgraded again e.g. due to the following reasons:
+
+* It has a faulty upgrade process (due to some bug from the dapp developer).
+* The state becomes inconsistent / corrupt because of a bug in the code that persists data.
 
 ==== Recommendation
-
+- Make sure methods used in upgrading are tested or the canister becomes immutable.
 - It may be useful to have a disaster recovery strategy that makes it possible to reinstall the canister.
 - See the "Backup and recovery" section in link:https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[How to audit an Internet Computer canister]
 

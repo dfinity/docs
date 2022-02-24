@@ -46,7 +46,7 @@ The following table describes the development environment components that the in
 
 The `~/.cache/dfinity/versions` directory stores one or more versioned subdirectories of the {sdk-short-name}. 
 Each versioned subdirectory contains the all of the directories and files required for a specific version of the {sdk-short-name}.
-For example, if you list the contents of the `~/.cache/dfinity/versions/0.8.4` directory you would see the following core components:
+For example, if you list the contents of the `~/.cache/dfinity/versions/0.9.2` directory you would see the following core components:
 
 ....
 total 349192

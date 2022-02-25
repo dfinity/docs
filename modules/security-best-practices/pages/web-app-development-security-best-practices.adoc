@@ -65,7 +65,7 @@ Note that also loading other assets such as CSS from untrusted domains is a secu
 
 - Loading JavaScript and other assets from other origins should be avoided. Especially for security critical applications, we can't assume other domains to be trustworthy.
 - Make sure all the content delivered to the browser is served and certified by the canister using asset certification. This holds in particular for any JavaScript, but also for fonts, CSS, etc.
-- Use a link:https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP[Content Security Policy] to prevent scripts and other content from other origins to be loaded at all. See also link:web-app-development-security-best-practices.adoc#define-security-headers[Define security headers including a Content Security Policy (CSP)].
+- Use a link:https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP[Content Security Policy] to prevent scripts and other content from other origins to be loaded at all. See also link:web-app-development-security-best-practices#define-security-headers[Define security headers including a Content Security Policy (CSP)].
 
 [[define-security-headers]]
 === Define security headers including a Content Security Policy (CSP)
@@ -86,7 +86,7 @@ Security headers can be used to cover many security concerns, e.g. disallow link
 
 ==== Security Concern
 
-Storing key material in browser storage (such as link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[sessionStorage] or link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[localStorage]) is considered unsafe because these keys can be accessed by JavaScript code. This could happen through an XSS attack or when loading untrusted scripts from other domains (see also link:web-app-development-security-best-practices.adoc#dont-load-untrusted-content[Don’t load JavaScript from untrusted domains].
+Storing key material in browser storage (such as link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[sessionStorage] or link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[localStorage]) is considered unsafe because these keys can be accessed by JavaScript code. This could happen through an XSS attack or when loading untrusted scripts from other domains (see also link:web-app-development-security-best-practices#dont-load-untrusted-content[Don’t load JavaScript from untrusted domains].
 
 ==== Recommendation
 

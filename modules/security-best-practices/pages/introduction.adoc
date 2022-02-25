@@ -16,9 +16,9 @@ Some excellent canister best practices linked here are from link:https://mmapped
 
 We provide the following security best practices in the subsequent pages:
 
-* link:general-security-best-practices.adoc[General Security Best Practices]
-* link:web-app-development-security-best-practices.adoc[Web App Specific Security Best Practices],
-* link:rust-canister-development-security-best-practices.adoc[Rust Canister Development Security Best Practices]
+* link:general-security-best-practices[General Security Best Practices]
+* link:web-app-development-security-best-practices[Web App Specific Security Best Practices],
+* link:rust-canister-development-security-best-practices[Rust Canister Development Security Best Practices]
 
 == Target Audience
 

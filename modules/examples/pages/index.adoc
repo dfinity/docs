@@ -15,6 +15,7 @@ In addition to our tutorials section, here are some quick references! You can al
 We first list the examples that are available in both Motoko _and_ Rust:
 
 * link:hello{outfilesuffix}[Hello]: the dapp equivalent of _hello world_, with a separate backend and frontend canister serving a web page.
+* link:nft{outfilesuffix}[NFT]: an NFT container dapp, hosting tradeable digital assets.
 
 [[motoko]]
 == Motoko Examples

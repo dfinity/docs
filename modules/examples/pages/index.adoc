@@ -80,6 +80,8 @@ Large examples contributed by the community and not necessarily up-to-date:
   https://github.com/nomeata/motoko-certified-http[src]
   https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263[forum post] - demonstrating a larger application of {IC} certified variables.
 
+- https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/[Encrypted Notes dapp] -- create/access/modify confidential notes from multiple devices using https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] service and end-to-end encryption.
+
 [[rust]]
 == Rust Examples
 
@@ -101,6 +103,11 @@ These videos from our Community Conversations series cover an introduction to bu
 
 
 More Rust examples coming soon!
+
+[[rust-advanced]]
+=== Advanced Examples
+
+- https://github.com/dfinity/examples/tree/master/rust/encrypted-notes-dapp/[Encrypted Notes dapp] -- create/access/modify confidential notes from multiple devices using https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] service and end-to-end encryption.
 
 == C
 

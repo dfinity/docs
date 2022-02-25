@@ -52,7 +52,7 @@ If this is not the case, an attacker may be able to perform sensitive actions on
 
 
 - In Rust, the `ic_cdk` crate can be used to authenticate the caller using `ic_cdk::api::caller`. Make sure the returned principal is of type `Principal::self_authenticating`  and identify the user’s account using the public key of that principal, see the example code above.
-- Do authentication as early as possible in the call to avoid unauthenticated actions and potentially expensive operations before authentication. It is also a good idea to link:rust-canister-development-security-best-practices.adoc#disallow-the-anonymous-principal[deny service to anonymous users].
+- Do authentication as early as possible in the call to avoid unauthenticated actions and potentially expensive operations before authentication. It is also a good idea to link:rust-canister-development-security-best-practices#disallow-the-anonymous-principal[deny service to anonymous users].
 
 [[disallow-the-anonymous-principal]]
 === Disallow the anonymous principal in authenticated calls
@@ -376,7 +376,7 @@ The data sent in link:https://smartcontracts.org/docs/interface-spec/index.html#
 
 - If unvalidated data is rendered in web UIs or displayed in other systems, this can lead to injection attacks (e.g. XSS).
 - Messages of big size could be sent and potentially stored in the canister, consuming an excessive amount of storage.
-- Big inputs (e.g. big lists or strings) could trigger an excessive amount of computation, resulting in DoS and consuming many cycles. See also link:rust-canister-development-security-best-practices.adoc#protect-against-draining-the-cycles-balance[Protect against draining the cycles balance]
+- Big inputs (e.g. big lists or strings) could trigger an excessive amount of computation, resulting in DoS and consuming many cycles. See also link:rust-canister-development-security-best-practices#protect-against-draining-the-cycles-balance[Protect against draining the cycles balance]
 
 ==== Recommendation
 

@@ -67,7 +67,7 @@ Having small test coverage is risky, as code changes become difficult and may vi
 Write tests for canister implementations and front-end code, especially for security relevant properties and invariants.
 
 - In link:https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters]: link:https://mmapped.blog/posts/01-effective-rust-canisters.html#test-upgrades[test upgrades], link:https://mmapped.blog/posts/01-effective-rust-canisters.html#target-independent[make code target-independent]
-- See also link:rust-canister-development-security-best-practices.adoc#test-your-canister-code[Test your canister code even in presence of System API calls]
+- See also link:rust-canister-development-security-best-practices#test-your-canister-code[Test your canister code even in presence of System API calls]
 - Consider the link:https://docs.dfinity.systems/dfinity/spec/meta/rust.html#_tests[DFINITY Rust guidelines on testing]
 - For wasm-level unit testing, consider using link:https://github.com/kritzcreek/motoko-matchers[Motoko Matchers]
 - For Motoko-level unit testing, consider link:https://kritzcreek.github.io/motoko-matchers/Canister.html[the Canister module]. There are also some example tests link:https://github.com/dfinity/motoko-base/blob/master/test/resultTest.mo[here] and link:https://github.com/dfinity/motoko-base/blob/master/test/textTest.mo[here]. As an example see also the end-to-end tests and unit tests for the link:https://github.com/dfinity/invoice-canister[invoice canister].

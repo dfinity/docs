@@ -177,15 +177,15 @@ As an alternative to running the `+dfx wallet add-controller+` command, you can 
 For example:
 
 ....
-dfx canister --network ic --no-wallet call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe")'
+dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe")'
 ....
 
-In this example, the principal for the currently-active identity is a controller of the `+f3yw6-7qaaa-aaaab-qaabq-cai+` cycles wallet. The `+--no-wallet+` option enables the call to the `+add_controller+` method to use the principal for the currently-active identity (a controller) and not the cycles wallet (which is not a controller).
+In this example, the principal for the currently-active identity is a controller of the `+f3yw6-7qaaa-aaaab-qaabq-cai+` cycles wallet.
 
 To make the cycles wallet a controller of itself, you would run a command similar to the following:
 
 ....
-dfx canister --network ic --no-wallet call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "f3yw6-7qaaa-aaaab-qaabq-cai")'
+dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "f3yw6-7qaaa-aaaab-qaabq-cai")'
 ....
 ////
 

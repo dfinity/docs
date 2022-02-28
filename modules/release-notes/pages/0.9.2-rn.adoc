@@ -8,7 +8,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 An overview of the {release} release:
 
-Be sure to see the link:0.9.0-rn.adoc[0.9.0 Release Notes] and follow the instructions due to breaking changes since dfx 0.8.4.
+Be sure to see the link:0.9.0-rn[0.9.0 Release Notes] and follow the instructions due to breaking changes since dfx 0.8.4.
 
 == Changes to DFX
 

@@ -415,7 +415,7 @@ This command fails because users cannot be assigned the `+owner+` role.
 +
 [source,bash]
 ----
-dfx --identity bob_standard canister --no-wallet call access_hello greet "Bob"
+dfx --identity bob_standard canister call access_hello greet "Bob"
 ----
 +
 The command displays output similar to the following:

@@ -88,10 +88,11 @@ Large examples contributed by the community and not necessarily up-to-date:
 [[rust-beginner]]
 === Beginner
 
-This Rust example is similar to the intermediate Motoko pub-sub example.
+Simple examples written in Rust
 
-- https://github.com/dfinity/examples/tree/master/rust/pub-sub[Pub Sub]
+- https://github.com/dfinity/examples/tree/master/rust/pub-sub[Pub Sub] -- This example is similar to the intermediate Motoko pub-sub example.
 - https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Tokens Transfer] -- demonstrates how to make ledger transfers and query account balance from a Rust canister.
+- https://github.com/dfinity/examples/tree/master/rust/basic_dao[Basic DAO] -- demonstrates a basic Decentralized Autonomous Organization 
 
 [[rust-videos]]
 === Videos

@@ -11,9 +11,9 @@
 ** xref:quickstart:network-quickstart.adoc[Network Deployment]
 
 * xref:examples:index.adoc[Example Code]
+** xref:examples:hello.adoc[Hello Example]
 ** Dfinity Examples
 *** link:https://github.com/dfinity/examples[Dfinity Examples Repo]
-*** xref:examples:hello.adoc[Hello Example]
 *** xref:examples:defi.adoc[DEFI Example]
 ** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 ** xref:examples:hackathon-projects.adoc[Hackathon Projects]

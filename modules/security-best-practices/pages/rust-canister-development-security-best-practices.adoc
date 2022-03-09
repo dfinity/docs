@@ -148,7 +148,7 @@ By default, canisters provide integrity but not confidentiality. Data stored on 
 ==== Recommendation
 
 - Consider end-to-end encrypting any private or personal data (e.g. user’s personal or private information) on canisters.
-- We are currently working on an example dApp (encrypted notes) to illustrate how end-to-end encryption can be done.
+- The example dApp link:https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp[Encrypted Notes] illustrates how end-to-end encryption can be done.
 
 === Create backups
 

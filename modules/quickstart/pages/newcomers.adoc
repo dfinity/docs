@@ -79,12 +79,12 @@ If Homebrew isn't installed, copy and paste the following command in your termin
 node --version
 ----
 +
-The minumum version of node.js we support is 12. If the command returns version information and your node version is at least 12, continue to <<Create a working folder>>.
+The minumum version of node.js we support is 12, and we only support node versions with long-term support. (These will have even version numbers). If the command returns version information and your node version is at least 12, continue to <<Create a working folder>>.
 If `node.js` isn't installed, or if your installation is out of date, copy and paste the following command in your terminal:
 +
 [source,bash]
 ----
-brew install node
+brew install node@16
 ----
 
 [[working-folder]]

@@ -8,19 +8,15 @@ This is a fast and minimalist tutorial for deploying a "hello world" smart contr
 === Concepts for dapp running locally
 
 ==== 1. Canister smart contract/dapp
-A '''canister''' is a type of smart contract that bundles code and state. A canister can be deployed as a smart contract on the Internet Computer and accessed over the Internet.
+A *canister smart contract/dapp* is a type of smart contract that bundles code and state. A canister can be deployed as a smart contract on the Internet Computer and accessed over the Internet.
 
 === Concepts for dapp running on-chain
 
-==== 1. Cycles
+==== Cycles
 
-On the Internet Computer, a *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer’s utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in [SDR] using the convention that one trillion cycles correspond to one SDR.
+On the Internet Computer, a *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer’s utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in [SDR] using the convention that one trillion cycles correspond to one SDR. 
 
-==== 2. NNS Frontend dapp
-For the context of this tutorial, the '''NNS frontend dapp''' is a wallet which will store one's ICP (which will be converted to cycles).
-
-==== 3. Internet Identity
-For the context of this tutorial, '''Internet Identity''' is an anonymizing blockchain authentication system running on the Internet Computer.
+In this tutorial, you will get free cycles from the cycles faucet.
 
 == Platforms and operating systems supported 
 
@@ -34,11 +30,11 @@ To build a dapp, users need to install the following:
 
 === 1.1 Node.js and supporting software
 
-There are many ways of installing node.js, including from [https://nodejs.org/en/download/ nodejs.org website].
+There are many ways of installing node.js, including from link:https://nodejs.org/en/download[nodejs.org website].
 
 Besides installing node.js, users need to also install:
 * Node Package Manager (NPM).
-* Node Version Manager (NVM), see [https://github.com/nvm-sh/nvm#installing-and-updating installing NVM]
+* Node Version Manager (NVM), see link:https://github.com/nvm-sh/nvm#installing-and-updating[installing NVM].
 
 === 1.2 The Canister SDK (AKA "dfx") 
 

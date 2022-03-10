@@ -1,13 +1,17 @@
 How to deploy a "hello world" smart contract/dapp
 ================================================
 
-This is a fast and minimalist tutorial for deploying a "hello world" smart contract or dapp in 20 minutes or less.
+This is a fast and minimalist tutorial for deploying a "hello world" smart contract or dapp in 20 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
 
-== Concepts
+== Introduction
+
+In this tutorial, we will deploy a simple Hello canister smart contract that has just one function—called `greet`. The `greet` function accepts one text argument and returns the result with a greeting similar to `Hello, everyone!` in a terminal if you run the canister using the command-line or in an alert pop-up window if you access the dapp in a browser.
+
+While the code comes ready out of the box for you, this dapp consists of back-end code written in Motoko, a programming language specifically designed for interacting with the Internet Computer, and a simple webpack-based front-end. 
 
 === Concepts for dapp running locally
 
-==== 1. Canister smart contract/dapp
+==== Canister smart contract/dapp
 A *canister smart contract/dapp* is a type of smart contract that bundles code and state. A canister can be deployed as a smart contract on the Internet Computer and accessed over the Internet.
 
 === Concepts for dapp running on-chain

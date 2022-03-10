@@ -225,7 +225,7 @@ dfx stop
 
 === Important note about cycles
 
-In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles can be converted from [[ICP token]]. 
+In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles can be converted from ICP token. 
 
 This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens."
 

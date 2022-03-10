@@ -181,7 +181,7 @@ This flow may be surprising to people familiar with Web2 software where they can
 
 === 4.1 Acquiring cycles (5 min)
 
-To acquire free cycles for your "hell world" dapp, you can get use the cycles faucet provided for developers.
+For the purposes of this tutorial, you can acquire free cycles for your "hello world" dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
 
 === 4.2 Loading the canister with cycles (2 min)
 

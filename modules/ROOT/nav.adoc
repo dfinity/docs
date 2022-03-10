@@ -9,11 +9,12 @@
 
 
 
-* xref:examples:index.adoc[Example Code]
+* xref:examples:index.adoc[Sample Code]
 ** xref:examples:hello.adoc[Hello Example]
 ** Dfinity Examples
 *** link:https://github.com/dfinity/examples[Dfinity Examples Repo]
 *** xref:examples:defi.adoc[DEFI Example]
+*** xref:examples:encrypted-notes.adoc[Encrypted Notes]
 ** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 ** xref:examples:hackathon-projects.adoc[Hackathon Projects]
 ** xref:examples:codelabs.adoc[CodeLabs]

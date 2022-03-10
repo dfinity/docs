@@ -1,0 +1,54 @@
+= Hackathon Projects
+:description: Quick links to example code for common use-cases for your dapp
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding,dapp,example,code,rust,Motoko
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+Developers from around the world are participating in hackathons, building dapps, tools and other types of projects on the IC. Get inspired, and see the source code of some of the winning projects.
+
+[[dfinihack]]
+== DFINIHack
+
+Hackathons are a great way to learn, and that's why we, in addition to external hackathons, run internal hackathons at DFINITY. Everyone from all departments can participate, with or without coding experience. The objective is to explore new use cases, assess the documentation and tools we provide developer, and to promote a builder's culture internally. 
+
+=== Sidekick
+Sidekick is a dapp running on the Internet Computer that can build canister smart contracts from a few lines of code.
+
+- https://github.com/blynn/sidekick[See code on GitHub]
+- https://ffgig-jyaaa-aaaae-aaaoa-cai.raw.ic0.app[Live Canister]
+
+=== IC Vault
+IC Vault ensures the secure synchronization of data between devices via the Internet Computer via end-to-end encryption (i.e., the Internet Computer cannot see any cleartext).
+
+- https://github.com/timohanke/hack13[See code on GitHub]
+- https://xggrc-cyaaa-aaaaj-aaasq-cai.raw.ic0.app[Live Canister]
+- https://youtu.be/16xxA8EKEhE[Presentation on YouTube]
+
+=== PrivIC
+PrivIC (pronounced “privacy”) provides identity management on the Internet Computer. Users can visit the PrivIC app directly to manage their identity, which consists of attributes such as name, date of birth, email, and phone number, or do so as part of the register/sign-in flow from an app.
+
+- https://github.com/open-ic/priv-ic[See code on GitHub]
+
+=== DeFind
+DeFind is a staking-based search engine. With the internet today, search engines use web crawlers to feed data into secret algorithms. For advertisers, this creates the wrong incentives — they may be incentivized to trick the web crawler with invisible text, for example, or generate fake traffic through bots.
+
+- https://github.com/IC-Search/ic-search[See code on GitHub]
+- https://jbioa-siaaa-aaaai-qanfq-cai.ic0.app[Live Canister]
+
+=== IC Notary
+IC Notary is a timestamped notarization service that allows users to prove that they held a document (or an arbitrary file) at a certain point in time. The user can upload the file to IC Notary, and also search and download previously uploaded files.
+
+- https://github.com/jplevyak/dfnhack7[See code on GitHub]
+- https://jbxh5-eqaaa-aaaae-qaaoq-cai.ic0.app[Live Canister]
+
+=== IC Netboot
+IC Netboot allows developers to boot a virtual machine (VM) directly from a canister, making the boot infrastructure decentralized and unstoppable. Furthermore, it can be a failover for VM data for applications like zookeeper. Lastly, this is a proof of concept for talking to the Internet computer over legal protocols like TFTP/DHCP/iPXE.
+
+- https://github.com/farazshaikh/team14[See code on GitHub]
+
+
+
+
+

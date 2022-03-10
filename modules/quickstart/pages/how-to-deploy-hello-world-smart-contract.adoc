@@ -28,13 +28,15 @@ In this tutorial, you will get free cycles from the cycles faucet.
 
 To build a dapp, users need to install the following:
 
-=== 1.1 Node.js and supporting software
+=== 1.1 Node.js
 
 There are many ways of installing node.js, including from link:https://nodejs.org/en/download[nodejs.org website].
 
 Besides installing node.js, users need to also install:
 * Node Package Manager (NPM).
 * Node Version Manager (NVM), see link:https://github.com/nvm-sh/nvm#installing-and-updating[installing NVM].
+
+Note: A fresh install of node.js can take anywhere from 2-15 minutes depending on your internet connection.
 
 === 1.2 The Canister SDK (AKA "dfx") 
 

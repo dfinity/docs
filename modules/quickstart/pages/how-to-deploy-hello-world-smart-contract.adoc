@@ -165,7 +165,61 @@ $ dfx deploy
 
 image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
 
-=== 3.3 Testing your dapp is deployed
+=== 3.3 Testing the dapp locally via command line (Terminal B)
+
+Now that the canister is deployed to local replica, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
+
+[source,bash]
+----
+$ dfx canister call hello greet everyone
+----
+
+* The `+dfx canister call+` command requires you to specify a canister name and a method—or function—to call.
+* `+hello+` specifies the name of the *canister* you want to call.
+* `+greet+` specifies the name of the *function* you want to call in the `+hello+` canister.
+* `+everyone+` is the text data type argument that you want to pass to the `+greet+` function.
+
+=== 3.4 Testing the dapp locally via the browser
+
+Now that you have verified that your dapp has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
+
+3.4.1 On terminal B, start the development server with:
+
+[source,bash]
+----
+$ npm start
+----
+
+3.4.2  Open a browser.
+3.4.2 Navigate to http://localhost:8080/
+
+Navigating to this URL displays a simple HTML page with a sample asset image file, an input field, and a button.
+For example:
++
+image:front-end-prompt.png[Sample HTML page]
+
+. Type a greeting, then click *Click Me* to return the greeting.
++
+For example:
++
+image:front-end-result.png[Hello, everyone! greeting]
+
+== 3.5 Stop the local canister execution environment
+
+After testing the application in the browser, you can stop the local canister execution environment so that it does not continue running in the background.
+
+To stop the local deployment:
+
+. In the terminal A, press Control-C to interrupt the local network process.
+
+. In the terminal B, press Control-C to interrupt the development server process.
+
+. Stop the local canister execution environment running on your local computer by running the following command:
++
+[source,bash]
+----
+dfx stop
+----
 
 == 4. Deploying on-chain (10 min)
 
@@ -259,7 +313,7 @@ Deployed canisters.
 
 Note, a common error one may get in section 4.4: `Error: The replica returned an HTTP Error: Http Error: status 403 Forbidden`. This error means that the canister does not have enough cycles to deploy. 
 
-=== 4.4 Testing the dapp (Terminal B)
+=== 4.4 Testing the on-chain dapp via command line (Terminal B)
 
 Now that the canister is deployed on-chain, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
 

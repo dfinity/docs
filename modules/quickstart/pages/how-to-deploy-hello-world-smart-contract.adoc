@@ -59,7 +59,7 @@ Terminal should look like this (at least version 0.9.2):
 
 image:quickstart/dfx-version.png[dfx version]
 
-== 2. Create a default project (5 min)
+== 2. Create a default project (2 min)
 
 === 2.1 Create a new project 
 Dapps on the Internet Computer start as projects. You create projects using the `dfx` parent command and its subcommands.
@@ -96,7 +96,7 @@ Your directory should look like this:
 image:quickstart/cd-hello.png[cd new]
 
 
-== 3. Deploying dapp to local machine (1 min
+== 3. Deploying dapp to local machine (3 min)
 
 === Using two terminal windows/tabs
 
@@ -167,9 +167,9 @@ image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
 
 === 3.3 Testing your dapp is deployed
 
-== 4. Deploying on-chain (10 min)==
+== 4. Deploying on-chain (10 min)
 
-=== Important note about cycles===
+=== Important note about cycles
 
 In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles can be converted from [[ICP token]]. 
 

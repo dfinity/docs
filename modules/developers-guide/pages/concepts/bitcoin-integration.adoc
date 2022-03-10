@@ -1,5 +1,15 @@
 = Bitcoin integration
 
+The Internet Computer’s distributed ECDSA suite of protocols allows canisters to obtain ECDSA public keys and to securely sign messages under that public key using chain key cryptography.
+Thus canisters can have a Bitcoin public key, i.e., a Bitcoin address, and sign Bitcoin transactions.
+
+To make this easy, https://dfinity.org/howitworks/direct-integration-with-bitcoin[Bitcoin integration] gives canisters direct access to the UTXO set of Bitcoin and also allows canisters to send transactions to the Bitcoin network.
+This is achieved by a subnet’s replicas pulling the latest blocks from various Bitcoin miners (and reaching consensus on the current UTXO set) and by replicas sending transactions signed by a canister to the Bitcoin network.
+Notice that this direct integration with the Bitcoin blockchain does not relying on any intermediate parties such as a bridge and hence does not require any extra trust assumption.
+
+Developers can already start developing smart contracts using the IC Bitcoin API with the developer preview, which includes https://github.com/dfinity/bitcoin-developer-preview/tree/master/examples[sample projects] in both Rust and Motoko. The developer preview can be run locally to explore the Bitcoin API. In the developer preview, the Bitcoin network is replaced with a single, locally-running https://bitcoin.org/en/full-node[bitcoin] node that can be fully controlled by the user for smart contract testing purposes.
+
+////
 The goal of the
 https://dfinity.org/howitworks/direct-integration-with-bitcoin[Bitcoin integration]
 is to bridge the gap between the Internet Computer and the Bitcoin blockchain,
@@ -20,6 +30,7 @@ The developer preview can be run locally to explore the Bitcoin API.
 In the developer preview, the Bitcoin network is replaced with a single, locally-running
 https://bitcoin.org/en/full-node[bitcoind]
 node that can be fully controlled by the user for smart contract testing purposes.
+////
 
 NOTE: The developer preview does not support any interaction with the Bitcoin mainnet or testnet.
 

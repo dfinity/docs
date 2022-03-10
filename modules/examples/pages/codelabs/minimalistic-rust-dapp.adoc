@@ -1,0 +1,233 @@
+:page-layout: empty
+++++
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Minimalistic Motoko Dapp</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        var parentNode = document.body.parentNode
+        parentNode.getElementsByClassName('doc')[0].style.maxWidth = "1000%";
+        parentNode.getElementsByClassName('nav-container')[0].style.display = "none";
+        parentNode.getElementsByClassName('toolbar')[0].style.display = "none";
+        parentNode.getElementsByClassName('footer')[0].style.display = "none";
+        parentNode.getElementsByClassName('doc')[0].style.width = "100%";
+        parentNode.getElementsByClassName('doc')[0].style.margin = "0px";
+        parentNode.getElementsByClassName('doc')[0].style.padding = "0px"; 
+        parentNode.getElementsByClassName('content')[0].style.width = "100%";
+        parentNode.getElementsByClassName('content')[0].style.height = "100%";
+        parentNode.getElementsByClassName('body')[0].style.width = "100%";
+        parentNode.getElementsByClassName('body')[0].style.height = "100%";
+        
+        document.getElementById('arrow-back').href = "javascript:window.close();";
+        document.getElementById('done').href = "javascript:window.close();";
+    });   
+</script>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="minimal_rust_dapp"
+                  title="Minimalistic Motoko Dapp"
+                  environment="web"
+                  feedback-link="https://github.com/dfinity/docs">
+    
+      <google-codelab-step label="Introduction" duration="1">
+        <p>This CodeLab shows how to build a minimalistic dapp based on the default dapp template installed by DFX when creating a new Rust project. The dapp is a simple website with a counter. Every time a button is pressed, a counter is incremented.</p>
+<p>This CodeLab covers:</p>
+<ul>
+<li>Create new canister smart contract using the SDK (DFX)</li>
+<li>Use the default project as a template as the starting point for the new project</li>
+<li>Add backend functions for a counter (count, get count and reset count)</li>
+<li>Implement backend functions in the frontend</li>
+<li>Deploy the canister smart contract locally</li>
+<li>Test backend with Candid UI and command line using DFX, and test frontend in browser</li>
+</ul>
+<p>The frontend will look like this:</p>
+<p class="image-container"><img alt="Dapp frontend" src="../_images/d71d39c63ca9f522.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create New Project" duration="3">
+        <p>Run this command to create project:</p>
+<pre><code language="language-bash" class="language-bash">$ dfx new --type=rust minimal_rust_dapp
+</code></pre>
+<p>DFX will create a new directory called <em>minimal_rust_dapp</em>, and in this directory you will find all the files, both frontend, backend, configurations etc. for the default project. The default project can be deployed without any changes as it is.</p>
+<p class="image-container"><img alt="Default project" src="https://smartcontracts.org/docs/examples/_images/f824214c6a3e694a.png"></p>
+<p>The <code>src</code> directory will contain the default frontend and backend code.</p>
+<p>The <code>dfx.json</code> file contains the canister configuration. It defines the canister(s), where the source code for the canister(s) is located, the type of canister(s) and which version of DFX the project was created with.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Modify the Backend" duration="5">
+        <p>As the first step, add a few backend functions. The backend functions are located in the <code>src/minimal_rust_dapp/lib.rs</code> Rust file.</p>
+<p>The existing code from the default project is not needed, so the greet() function is deleted.</p>
+<h2 is-upgraded>Counter variable</h2>
+<p>Two functions are created to make the counter work: get() and increment(). The current counter value is stored as a number.</p>
+<pre><code language="language-rust" class="language-rust">static mut COUNTER: u64 = 0;
+</code></pre>
+<h2 is-upgraded>get()</h2>
+<p>The <code>get()</code> function returns the current counter value.</p>
+<pre><code language="language-rust" class="language-rust">#[ic_cdk_macros::query]
+fn get() -&gt; u64 {
+    unsafe { COUNTER }
+}
+</code></pre>
+<h2 is-upgraded>increment()</h2>
+<p>The <code>increment()</code> function increments the counter variable. This function is envoked when the user is clicking the button on the frontend, or when the function is called through the Candid interface.</p>
+<pre><code language="language-rust" class="language-rust">#[ic_cdk_macros::update]
+fn increment() -&gt; u64 {
+    unsafe {
+        COUNTER += 1;
+        COUNTER
+    }
+}
+</code></pre>
+<p>The function is returning the incremented counter variable.</p>
+<h2 is-upgraded>The completed backend file</h2>
+<p>The <code>main.mo</code> file looks like this when it&#39;s all put together:</p>
+<pre><code language="language-rust" class="language-rust">static mut COUNTER: u64 = 0;
+    
+#[ic_cdk_macros::query]
+fn get() -&gt; u64 {
+    unsafe { COUNTER }
+}
+
+#[ic_cdk_macros::update]
+fn increment() -&gt; u64 {
+    unsafe {
+        COUNTER += 1;
+        COUNTER
+    }
+}
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Modify the Candid interface" duration="2">
+        <p>After modifying the backend, the Candid interface must be modified to match the backend. The Candid interface is located in the <code>src/minimal_rust_dapp/minimal_rust_dapp.did</code> Candid file.</p>
+<p>Remove the existing code in the Candid interface file, and replace it with the following:</p>
+<pre><code language="language-rust" class="language-rust">service : {
+    &#34;get&#34;: () -&gt; (nat64) query;
+    &#34;increment&#34;: () -&gt; (nat64);
+}
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Test the Backend" duration="7">
+        <p>At this point the backend can be deployed and its functionality can be tested. The backend can be tested in different ways, and in this step the backend is tested by making requests through DFX calls and by using the web interface created by Candid.</p>
+<h2 is-upgraded>Deploy canisters</h2>
+<p>First the dapp has to be deployed, which is done locally for this CodeLab. The local network is started by running this command:</p>
+<pre><code language="language-bash" class="language-bash">$ dfx start --background
+</code></pre>
+<p>When the local network is up and running, run this command to deploy the canisters:</p>
+<pre><code language="language-bash" class="language-bash">$ dfx deploy
+</code></pre>
+<h2 is-upgraded>DFX</h2>
+<p>DFX has a subset of commands for canister operations, and one of them enables calling the functions added to the <code>lib.rs</code> file in the previous steps. In the following examples the initial value is 0. <code>increment</code> will increment value and return 1 and  <code>get</code> will return the current value.</p>
+<p>Command usage: <code>dfx canister call &#60project&#62  &#60function&#62</code></p>
+<pre><code language="language-bash" class="language-bash">$ dfx canister call minimal_rust_dapp increment
+(1 : Nat)
+</code></pre>
+<pre><code language="language-bash" class="language-bash">$ dfx canister call minimal_rust_dapp get
+(1 : Nat)
+</code></pre>
+<h2 is-upgraded>Candid UI</h2>
+<p>The Candid UI provides an easy, user friendly interface for testing the backend. The UI is automatically generated, and the canister ID can be found in the <code>canister_ids.json</code> file.</p>
+<p>The localhost version of the <code>canister_ids.json</code> file can be found in <code>.dfx/local/canister_ids.json</code> and the URL is:</p>
+<p><strong>http://&lt;candid_canister_id&gt;.localhost:8000/?id=&lt;backend_canister_id&gt;</strong></p>
+<p class="image-container"><img alt="Candid UI" src="../_images/af3e45eb47eb3f14.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Modify the Frontend" duration="5">
+        <p>The default project has an <code>index.html</code> file with page HTML and an <code>index.js</code> file with an implementation of the backend functions.</p>
+<h2 is-upgraded>HTML</h2>
+<p>For this CodeLab the changes to the <code>index.html</code> file is minor. The button is kept and so is the section showing the result, just simplified.</p>
+<pre><code language="language-html" class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&#34;en&#34;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&#34;UTF-8&#34;&gt;
+        &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width&#34;&gt;
+        &lt;title&gt;hack&lt;/title&gt;
+        &lt;base href=&#34;/&#34;&gt;
+
+        &lt;link type=&#34;text/css&#34; rel=&#34;stylesheet&#34; href=&#34;main.css&#34; /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;img src=&#34;logo.png&#34; alt=&#34;DFINITY logo&#34; /&gt;
+        &lt;section&gt;
+            &lt;button id=&#34;clickMeBtn&#34;&gt;Click Me!&lt;/button&gt;
+        &lt;/section&gt;
+        &lt;section id=&#34;counter&#34;&gt;&lt;/section&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 is-upgraded>Javascript</h2>
+<p>The existing event listener for button click is modified to call the <code>increment()</code> function, and an event listener for page load is added to get the initial value of the counter with <code>get()</code>. The backend functions are still imported through the Candid interface.</p>
+<pre><code language="language-javascript" class="language-javascript">import { minimaldapp } from &#34;../../declarations/minimal_rust_dapp&#34;;
+
+document.addEventListener(&#39;DOMContentLoaded&#39;, async function () {
+  const counter = await minimaldapp.get();
+  document.getElementById(&#34;counter&#34;).innerText = &#34;Counter: &#34; + counter;
+})
+
+document.getElementById(&#34;clickMeBtn&#34;).addEventListener(&#34;click&#34;, async () =&gt; {
+  const counter = await minimaldapp.increment();
+  document.getElementById(&#34;counter&#34;).innerText = &#34;Counter: &#34; + counter;
+});
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Test the Frontend" duration="3">
+        <p>The canisters must be re-deployed since the frontend has changed since the deployment of the backend changes in step . Assuming the local network is still running, re-deploy with this command:</p>
+<pre><code language="language-bash" class="language-bash">$ dfx deploy
+</code></pre>
+<p>The URL for the frontend is depending on the canister ID. As described step 4, get the canister ID, the UI canister in this case, from the canister_IDs.json file. The URL will look like this:</p>
+<p><strong>https://&lt;ui_canister_id&gt;.localhost:8000</strong></p>
+<p class="image-container"><img alt="Dapp frontend" src="../d71d39c63ca9f522.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Summary" duration="1">
+        <p>This CodeLab walks through the very basic steps of creating and deploying a dapp locally, using Motoko and HTML/Javascript.</p>
+<p>For information about deploying the dapp to the Internet Computer, see the documentation <a href="https://smartcontracts.org/docs/quickstart/network-quickstart.html" target="_blank">here</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
+++++

@@ -1,0 +1,247 @@
+:page-layout: empty
+++++
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Simple NFT Demo</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        var parentNode = document.body.parentNode
+        parentNode.getElementsByClassName('doc')[0].style.maxWidth = "1000%";
+        parentNode.getElementsByClassName('nav-container')[0].style.display = "none";
+        parentNode.getElementsByClassName('toolbar')[0].style.display = "none";
+        parentNode.getElementsByClassName('footer')[0].style.display = "none";
+        parentNode.getElementsByClassName('doc')[0].style.width = "100%";
+        parentNode.getElementsByClassName('doc')[0].style.margin = "0px";
+        parentNode.getElementsByClassName('doc')[0].style.padding = "0px"; 
+        parentNode.getElementsByClassName('content')[0].style.width = "100%";
+        parentNode.getElementsByClassName('content')[0].style.height = "100%";
+        parentNode.getElementsByClassName('body')[0].style.width = "100%";
+        parentNode.getElementsByClassName('body')[0].style.height = "100%";
+        
+        document.getElementById('arrow-back').href = "javascript:window.close();";
+        document.getElementById('done').href = "javascript:window.close();";
+    });   
+</script>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="ic_simple_nft"
+                  title="Simple NFT Demo"
+                  environment="web"
+                  feedback-link="https://github.com/dfinity/docs">
+    
+      <google-codelab-step label="Intro" duration="2">
+        <p>This CodeLab shows a very simple implementation of NFT minting. The project does not include functionality for payment transactions or an UI, but the functionality can be tested through the Candid interface.<br><br>The project has the following functionality:</p>
+<ul>
+<li>Minting a NFT</li>
+<li>Transfer ownership</li>
+<li>Checking ownership of a NFT</li>
+</ul>
+<p>Other features like payment, approvals and file uploads will be covered in future CodeLabs, as an extension of this project.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Before you begin" duration="2">
+        <p>Before you start this tutorial, verify the following:</p>
+<ul>
+<li>You have an internet connection and access to a shell terminal on your local macOS or Linux computer.</li>
+<li>You have node.js installed if you want to include the default template files for front-end development in your project.</li>
+<li>You have downloaded and installed the DFINITY Canister SDK package as described in Download and install.</li>
+<li>You have installed the Visual Studio Code plugin for Motoko as described in Install the language editor plug-in if you are using Visual Studio Code as your IDE.</li>
+<li>You have stopped any Internet Computer network processes running on the local computer.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="NFT Metadata" duration="2">
+        <p>This project is <em>inspired</em> by the ERC721 token standard, and the standard&#39;s metadata format is being used. The functions are not strictly following the ERC721 standard.</p>
+<h2 is-upgraded>Metadata format</h2>
+<pre><code>{
+    &#34;title&#34;: &#34;Asset Metadata&#34;,
+    &#34;type&#34;: &#34;object&#34;,
+    &#34;properties&#34;: {
+        &#34;name&#34;: {
+            &#34;type&#34;: &#34;string&#34;,
+            &#34;description&#34;: &#34;Identifies the asset to which this NFT represents&#34;
+        },
+        &#34;description&#34;: {
+            &#34;type&#34;: &#34;string&#34;,
+            &#34;description&#34;: &#34;Describes the asset to which this NFT represents&#34;
+        },
+        &#34;image&#34;: {
+            &#34;type&#34;: &#34;string&#34;,
+            &#34;description&#34;: &#34;A URI pointing to a resource with mime type image/* representing the asset to which this NFT represents. Consider making any images at a width between 320 and 1080 pixels and aspect ratio between 1.91:1 and 4:5 inclusive.&#34;
+        }
+    }
+}
+</code></pre>
+<p>For more information about the ERC721 standard <a href="https://eips.ethereum.org/EIPS/eip-721" target="_blank">see here</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Mint NFT" duration="13">
+        <p>In this simplified NFT dapp uploading an image, and filling out name and description in a form in an UI, is not covered. Instead it&#39;s assumed that the URL for the image is already known.</p>
+<p>Minting the NFT is done in two steps. First the metadata is stored with a consecutive token ID. The next step is to register the token ID with the owner ID.</p>
+<h2 is-upgraded>Variables</h2>
+<p>Two HashMaps are used to store the metadata and the registry with token and owner IDs. The concurrent token ID is stored as a Nat32.</p>
+<pre><code>   private stable var _registryState : [(TokenIndex, Owner)] = [];
+   private var _registry : HashMap.HashMap&lt;TokenIndex, Owner&gt; = HashMap.fromIter(_registryState.vals(), 0, Core.TokenIndex.equal, Core.TokenIndex.hash);
+
+   private stable var _tokenState : [(TokenIndex, Metadata)] = [];
+   private var _token : HashMap.HashMap&lt;TokenIndex, Metadata&gt; = HashMap.fromIter(_tokenState.vals(), 0, Core.TokenIndex.equal, Core.TokenIndex.hash);
+
+   private stable var _nextTokenId : TokenIndex  = 0;
+</code></pre>
+<h2 is-upgraded>Metadata</h2>
+<p>The metadata is defined as described in the previous step, following the ERC721 token standard, and it&#39;s implemented like this:</p>
+<pre><code>public type Properties = {
+   kind        : Text;
+   description : Text;
+};
+
+public type Property = {
+   name        : Properties;
+   description : Properties;
+   image       : Properties;
+};
+
+public type Metadata = {
+   title       : Text;
+   kind        : Text;
+   properties  : Property;
+};
+</code></pre>
+<h2 is-upgraded>Minting function</h2>
+<p>The function will take the parameter <code>to</code>, which is the owner of the NFT, and the metadata parameters <code>name</code>, <code>description</code> and <code>tokenURI</code>.</p>
+<p>First the metadata variable is populated with the parameter values, and then the metadata is stored in the token HashMap with the next token ID as the key and the metadata as the value.</p>
+<p>After storing the token metadata, the relationship between the owner and the token is stored in the registry HashMap, with the token ID as the key and the owner ID as the value. Finally the concurrent token ID is incremented.</p>
+<pre><code>public func mintNFT(to: Owner, name: Text, description: Text, tokenURI: Text) : async TokenIndex {
+
+   let tokenId = _nextTokenId;
+
+   let _name : Properties = {
+      kind = &#34;string&#34;;
+      description =  name;
+   };
+
+   let _description : Properties = {
+      kind = &#34;string&#34;;
+      description = description;
+   };
+
+   let _image : Properties = {
+      kind = &#34;string&#34;;
+      description =  tokenURI;
+   };
+
+   let _properties : Property = {
+      name = _name;
+      description = _description;
+      image = _image;
+   };
+
+   let metadata : Metadata = {
+      title = &#34;Asset Metadata&#34;;
+      kind = &#34;object&#34;;
+      properties = _properties;
+   };
+
+   _token.put(tokenId, metadata);
+   _registry.put(tokenId, to);
+   _nextTokenId := _nextTokenId + 1;
+
+   return tokenId;
+};
+</code></pre>
+<p>The token ID will be returned on success.</p>
+<h2 is-upgraded>Test Minting</h2>
+<p>Deploy the project with <code>dfx deploy</code> (locally) and use dfx canister call to test the function:</p>
+<pre><code>dfx canister call ic_simple_nft mintNFT &#39;(principal &#34;xxxxx-...-xxx&#34;, &#34;My NFT&#34;, &#34;My first NFT&#34;, &#34;http://link-to-nft.com/img.gif&#34;)&#39;
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Transfer NFT" duration="8">
+        <p>Once created, the NFT&#39;s ownership can be transferred to a new owner. The <code>transfer()</code> function takes the three parameters <code>from</code>, <code>to</code> and <code>tokenId</code> and will register the <code>to</code> owner as the new owner of the NFT.</p>
+<pre><code>public func transfer(from: Owner, to: Owner, tokenId: TokenIndex) : async TransferResponse {
+
+   switch (_registry.get(tokenId)) {
+      case (?token_owner) {
+         if(Principal.equal(from, to)) {
+            return #err(#InvalidToken(to));
+         };
+
+         let prev = _registry.replace(tokenId, to);
+         return #ok(?to);
+      };
+      case (_) {
+         return #err(#InvalidToken(to));
+      };
+   };
+}; 
+</code></pre>
+<p>First the function checks if the NFT&#39;s token ID exists in the registry. If it does, and if <code>from</code> and <code>to</code> are not the same, the registry is updated, and the NFT has transferred the NFT to a different owner.</p>
+<h2 is-upgraded>Test Transfer</h2>
+<p>Deploy the project with <code>dfx deploy</code> (locally) and use dfx canister call to test the function:</p>
+<pre><code>dfx canister call ic_simple_nft transfer &#39;(principal &#34;xxxxx-...-xxx&#34;, principal &#34;yyyyy-...-yyy&#34;, 20)&#39;
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Owner of NFT" duration="5">
+        <p>The function <code>ownerOf</code> simply looks up the owner of a given NFT. This can be useful in many ways and in this small sample project the function can be used to verify a transfer was successfully.</p>
+<pre><code>public func ownerOf(tokenId : TokenIndex) : async ?Owner {   
+
+   let owner = _registry.get(tokenId);
+
+   return owner;
+}; 
+</code></pre>
+<h2 is-upgraded>Test Transfer</h2>
+<p>Deploy the project with <code>dfx deploy</code> (locally) and use dfx canister call to test the function:</p>
+<pre><code>dfx canister call ic_simple_nft ownerOf 20
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Get the code" duration="1">
+        <p>The full code for the project in this CodeLab can be found <a href="https://github.com/dfinity/docs/codelabs/ic-simple-nft" target="_blank">here</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
+++++

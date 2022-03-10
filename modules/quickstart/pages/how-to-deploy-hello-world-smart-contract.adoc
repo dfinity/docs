@@ -14,7 +14,7 @@ A '''canister''' is a type of smart contract that bundles code and state. A cani
 
 ==== 1. Cycles
 
-On the Internet Computer, a '''cycle''' is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer’s utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in [SDR] using the convention that one trillion cycles correspond to one SDR.
+On the Internet Computer, a *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer’s utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in [SDR] using the convention that one trillion cycles correspond to one SDR.
 
 ==== 2. NNS Frontend dapp
 For the context of this tutorial, the '''NNS frontend dapp''' is a wallet which will store one's ICP (which will be converted to cycles).
@@ -42,7 +42,7 @@ Besides installing node.js, users need to also install:
 
 === 1.2 The Canister SDK (AKA "dfx") 
 
-The Canister SDK used in this article is called '''dfx''' and it is maintained by the DFINITY foundation. There are many SDK's so this is just one.
+The Canister SDK used in this article is called `dfx` and it is maintained by the DFINITY foundation. There are many SDK's so this is just one.
 
 To install, one needs to run:
 [source,bash]
@@ -64,13 +64,13 @@ image:quickstart/dfx-version.png[dfx version]
 == 2. Create a default project (5 min)
 
 === 2.1 Create a new project 
-Dapps on the Internet Computer start as projects. You create projects using the dfx parent command and its subcommands.
+Dapps on the Internet Computer start as projects. You create projects using the `dfx` parent command and its subcommands.
 
-For this tutorial, we’ll start with the default sample dapp to illustrate creating dapp using the starter files in a project. When you create a new project, the dfx command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the Explore the default project tutorial.
+For this tutorial, we’ll start with the default sample dapp to illustrate creating dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the Explore the default project tutorial.
 
 To create a new project for your first application:
 
-2.1 Open a '''terminal shell''' on your local computer, if you don’t already have one open.
+2.1 Open a terminal shell on your local computer, if you don’t already have one open.
 
 2.2 Create a new project named hello by running the following command:
 
@@ -80,7 +80,7 @@ $ dfx new hello
 ----
 
 
-The <code>dfx new hello</code> command creates a new <code>hello</code> project directory, template files, and a new hello Git repository for your project. Your terminal should look like this:
+The `dfx new hello` command creates a new project directory named `hello`, template files, and a new `hello` Git repository for your project. Your terminal should look like this:
 
 image:quickstart/dfx-new-hello-1.png[dfx new]
 
@@ -95,7 +95,6 @@ $ cd hello
 
 Your directory should look like this:
 
-[[File:Cd hello.png||500px| frameless]]
 image:quickstart/cd-hello.png[cd new]
 
 
@@ -104,6 +103,7 @@ image:quickstart/cd-hello.png[cd new]
 === Using two terminal windows/tabs
 
 Now that the code is there, the next step is to spin up a local version of the IC on local machine. For this, developers should keep two terminals open:
+
 * *Terminal window/tab A:* This will show the local version of the IC running
 ** This is analogous to how developers often start local servers in web2 projects (e.g. node.js's Express, python's Django, Ruby's Rails, etc...)
 * *Terminal window/tab B:* This will be used to send *messages* to the local version of the IC
@@ -125,7 +125,7 @@ image:quickstart/terminal-b-ls.png[terminal b ls]
 
 1. Use the Terminal window or tab on your local computer.
 
-2. Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder <code>/hello</code> because that is the name of the project created in section 2 above.
+2. Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
 
 3. Start the local canister execution environment on your computer in your second terminal by running the following command:
 
@@ -180,6 +180,8 @@ In order to run on-chain, IC dapps require cycles to pay for compute and storage
 This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume ''something'' (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens."
 
 === 4.1 Acquiring cycles (5 min)
+
+To acquire free cycles for your "hell world" dapp, you can get use the cycles faucet provided for developers.
 
 === 4.2 Loading the canister with cycles (2 min)
 

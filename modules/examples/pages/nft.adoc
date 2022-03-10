@@ -19,4 +19,5 @@ Command-line length limitations would prevent you from minting an NFT with a lar
 there is a https://github.com/dfinity/experimental-minting-tool[command-line minting tool] provided for minting simple NFTs.
 
 The interface is meant to be programmatic, but the Rust version additionally contains HTTP functionality so you can view a metadata file
-at ``<canister URL>/<NFT ID>/<file ID>``.
+at ``<canister URL>/<NFT ID>/<file ID>``. A running instance of this canister for demonstration purposes is available as
+https://t5l7c-7yaaa-aaaab-qaehq-cai.ic0.app[t5l7c-7yaaa-aaaab-qaehq-cai].

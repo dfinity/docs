@@ -3,12 +3,13 @@
 ** xref:introduction:welcome.adoc#for-developers[For: Developers]
 ** xref:introduction:welcome.adoc#for-protocol-enthusiasts[For: Protocol Enthusiasts]
 
-* xref:quickstart:quickstart-intro.adoc[Quick Start]
-** xref:quickstart:newcomers.adoc[For Newcomers]
+* xref:quickstart:how-to-deploy-hello-world-smart-contract.adoc.adoc[Quickstart: Deploy "hello world" dapp in 20 minutes]
+// ** xref:quickstart:newcomers.adoc[For Newcomers]
 ** xref:quickstart:cycles-faucet.adoc[Claim Your Free Cycles]
-** xref:quickstart:host-a-website.adoc[Host a Static Website]
-** xref:quickstart:local-quickstart.adoc[Local Development]
-** xref:quickstart:network-quickstart.adoc[Network Deployment]
+// ** xref:quickstart:host-a-website.adoc[Host a Static Website]
+// ** xref:quickstart:local-quickstart.adoc[Local Development]
+// ** xref:quickstart:network-quickstart.adoc[Network Deployment]
+
 
 * xref:examples:index.adoc[Example Code]
 ** xref:examples:hello.adoc[Hello Example]

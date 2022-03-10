@@ -59,7 +59,7 @@ $ dfx --version
 
 Terminal should look like this (at least version 0.9.2):
 
-[[File:Dfx version.png|500px|frameless]]
+image:quickstart/dfx-version.png[dfx version]
 
 == 2. Create a default project (5 min)
 
@@ -82,9 +82,10 @@ $ dfx new hello
 
 The <code>dfx new hello</code> command creates a new <code>hello</code> project directory, template files, and a new hello Git repository for your project. Your terminal should look like this:
 
-[[File:Dfx new hello 1.png|500px| frameless]]
+image:quickstart/dfx-new-hello-1.png[dfx new]
 
-[[File:Dfx new hello 2.png|500px| frameless]]
+image:quickstart/dfx-new-hello-2.png[dfx new]
+
 
 2.3 Move to your project directory by running the following command:
 [source,bash]
@@ -95,6 +96,8 @@ $ cd hello
 Your directory should look like this:
 
 [[File:Cd hello.png||500px| frameless]]
+image:quickstart/cd-hello.png[cd new]
+
 
 == 3. Deploying dapp to local machine (1 min
 
@@ -110,11 +113,13 @@ For ease, this tutorial will distinguish between both windows by color scheme:
 
 *Terminal A*
 
-[[File:Dfx new hello 2.png|500px| frameless]]
+image:quickstart/dfx-new-hello-2.png[dfx new]
+
 
 *Terminal B*
 
-[[File:Terminal b ls.png|500px|frameless]]
+image:quickstart/terminal-b-ls.png[terminal b ls]
+
 
 === 3.1 Start the local version of the IC (Terminal A)
 
@@ -129,8 +134,8 @@ For ease, this tutorial will distinguish between both windows by color scheme:
 $ dfx start
 ----
 
+image:quickstart/terminal-a-dfx-start.png[dfx start]
 
-[[File:Terminal a dfx start.png|500px|frameless]]
 
 Note: Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click Allow. 
 
@@ -151,7 +156,8 @@ Ensure that node modules are available in your project directory, if needed, by 
 $ npm install
 ----
 
-[[File:Terminal b npm install.png|500px|frameless]]
+image:quickstart/terminal-b-npm-install.png[npm install]
+
 
 
 2. Register, build, and deploy your first dapp by running the following command:
@@ -161,7 +167,7 @@ $ npm install
 $ dfx deploy
 ----
 
-[[File:Terminal b dfx deploy.png|500px|frameless]]
+image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
 
 === 3.3 Testing your dapp is deployed
 

@@ -1,5 +1,10 @@
-How to deploy a "hello world" smart contract/dapp
-================================================
+= Quick start: How to deploy a "hello world" smart contract/dapp
+:description: Download the DFINITY Canister SDK and learn how to deploy your first application.
+:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 This is a fast and minimalist tutorial for deploying a "hello world" smart contract or dapp to the IC in 20 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
 

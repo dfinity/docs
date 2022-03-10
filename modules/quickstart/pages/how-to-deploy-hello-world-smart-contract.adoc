@@ -1,7 +1,7 @@
 How to deploy a "hello world" smart contract/dapp
 ================================================
 
-This is a fast and minimalist tutorial for deploying a "hello world" smart contract or dapp in 20 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
+This is a fast and minimalist tutorial for deploying a "hello world" smart contract or dapp to the IC in 20 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
 
 == Introduction
 

@@ -1,0 +1,149 @@
+= Preliminary steps for newcomers
+:experimental:
+:commandkey: &#8984;
+
+If this is the first time you are installing developer tools on your computer, you might need to take a few extra steps to prepare your environment.
+
+However, there are often multiple ways to perform each of these tasks.
+If you need more help than provided here, see the documentation for the operating system you are using.
+
+NOTE: The instructions here assume that you are using a macOS computer.
+If you have a Linux development environment, the steps to follow depend on the specific Linux distribution and version you use.
+
+Before you install the {sdk-short-name}, you need to know:
+
+* How to open and run commands in a terminal
+* How to check for and install packages and dependencies
+* How to create and navigate to new directories
+* How to view and update your PATH on the platform you use
+
+The steps in this section describe how to prepare a basic development environment.
+
+[[open-terminal]]
+== Open a terminal
+
+You need to know how to open a terminal and navigate to directories to install the {sdk-short-name} and to start and stop the {IC} running locally when trying any of the link:../developers-guide/tutorials-intro{outfilesuffix}[tutorials].
+
+To open the Terminal application on macOS:
+
+. Open the Finder. 
+. Click *Applications*, open *Utilities*, then double-click *Terminal*.
++
+Alternatively, you can press the kbd:[{commandkey} + spacebar] keyboard keys to open Search, then type `terminal`.
++
+The terminal is where you are going to execute command-line instructions. 
+To execute a command, you type or copy and paste an instruction, then press kbd:[Return].
+. Check your current path by running the print working directory–`pwd`—command, then pressing kbd:[Return].
++
+[source,bash]
+----
+pwd
+----
++
+This command displays your current directory with a path like `/Users/<your-user-name>`.
++
+After you open the Terminal application, you can open new terminal shell at any time by clicking *Shell*, then selecting *New Window* or *New Tab*.
++
+By default, a new terminal shell always opens in your home directory with a path like `/Users/<your-user-name>`.
+
+[[check-pkgs]]
+== Check for packages
+
+The Homebrew application is a package manager for macOS that makes it easy to install and update packages—that is, external programs—that you need to have available in a local development environment.
+
+The `node.js` package provides a JavaScript runtime environment and modules for front-end user interface development. 
+The `node.js` package is not required to build programs, but you'll probably need it if you want to add a graphical user interface to your program.
+
+NOTE: If your development environment is Linux, you can use a package manager of your choice instead of Homebrew to install packages and manage dependencies. 
+
+To check and install packages:
+
+. Check whether you have the Homebrew package manager installed by running the following command:
++
+[source,bash]
+----
+brew --version
+----
++
+If the command returns version information, continue to the next step.
+If Homebrew isn't installed, copy and paste the following command in your terminal:
++
+[source,bash]
+----
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+----
+. Check whether you have the `node.js` package manager installed by running the following command:
++
+[source,bash]
+----
+node --version
+----
++
+The minumum version of node.js we support is 12, and we only support node versions with long-term support. (These will have even version numbers). If the command returns version information and your node version is at least 12, continue to <<Create a working folder>>.
+If `node.js` isn't installed, or if your installation is out of date, copy and paste the following command in your terminal:
++
+[source,bash]
+----
+brew install node@16
+----
+
+[[working-folder]]
+== Create a working folder
+
+By default, a new terminal shell always opens in your home directory with a path like `/Users/<your-user-name>`.
+To keep your workspace tidy, you can create a separate folder for your {IC} projects.
+
+Creating a working folder for {IC} projects is optional, but can make it easier to find and navigate between projects.
+A separate folder is especially useful if you plan to experiment with any of the link:../developers-guide/tutorials-intro{outfilesuffix}[tutorials] beyond the link:quickstart-intro{outfilesuffix}[Quick start].
+
+To create a new working folder:
+
+. Open a terminal shell on your local computer, if you don’t already have one open.
+. Create a new folder called `+ic-projects+` in your home directory by running the following command:
++
+[source,bash]
+----
+mkdir ic-projects
+----
+. Change to the new working folder by running the following command:
++
+[source,bash]
+----
+cd ic-projects
+----
+
+[[check-path]]
+== View directories in your PATH
+
+The `+PATH+` environment variable is an important setting that your operating system uses to locate
+the set of directories where executable programs are located. 
+Because every operating system has its own set of directories where it expects to find programs, you need to know how to view and update the PATH environment variable so that you can verify that the {sdk-short-name} command-line executable—`+dfx+`—is in one of the directories listed.
+
+On macOS computers, the default location for the `+dfx+` executable is `+/usr/local/bin+` and this directory is typically included in the default set of paths. 
+Therefore, updating the `+PATH+` variable is usually not necessary for computers running macOS.
+If you are using a Linux distribution, however, you should know how to do the following:
+
+* Verify the location of the `+dfx+` executable.
+* View the set of directories in your current `+PATH+`.
+* Update the `+PATH+` environment variable, if necessary.
+
+On most operating systems, you can run a command similar to the following to view the set of directories in your current `+PATH+`:
+
+....
+export $PATH
+....
+
+To check the location of the `+dfx+` executable after you install the {sdk-short-name}, you might run a command similar to the following:
+
+....
+which dfx
+....
+
+If the `+dfx+` executable is not in one of the directories listed in your current `+$PATH+`, you need to move the executable or update the `+PATH+` setting.
+The specific steps for updating the `+PATH+` depend on your operating system, but, in many cases, you can run a command similar to the following and specifying the appropriate directory, such as `+~/bin+`:
+
+....
+export PATH="<path-to-directory-for-dfx>:$PATH"
+....
+
+Now you're ready to link:local-quickstart{outfilesuffix}#download-and-install[install] the {sdk-short-name} and get coding!

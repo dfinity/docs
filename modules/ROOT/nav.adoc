@@ -3,18 +3,19 @@
 ** xref:introduction:welcome.adoc#for-developers[For: Developers]
 ** xref:introduction:welcome.adoc#for-protocol-enthusiasts[For: Protocol Enthusiasts]
 
-* xref:quickstart:quickstart-intro.adoc[Quickstart intro]
-* xref:quickstart:how-to-deploy-hello-world-smart-contract.adoc[Quickstart: Deploy "hello world" dapp in 20 minutes]
+* xref:quickstart:quickstart-intro.adoc[Quick Start]
+** xref:quickstart:newcomers.adoc[For Newcomers]
 ** xref:quickstart:cycles-faucet.adoc[Claim Your Free Cycles]
+** xref:quickstart:host-a-website.adoc[Host a Static Website]
+** xref:quickstart:local-quickstart.adoc[Local Development]
+** xref:quickstart:network-quickstart.adoc[Network Deployment]
 
 
-
-* xref:examples:index.adoc[Sample Code]
+* xref:examples:index.adoc[Example Code]
 ** xref:examples:hello.adoc[Hello Example]
 ** Dfinity Examples
 *** link:https://github.com/dfinity/examples[Dfinity Examples Repo]
 *** xref:examples:defi.adoc[DEFI Example]
-*** xref:examples:encrypted-notes.adoc[Encrypted Notes]
 ** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 ** xref:examples:hackathon-projects.adoc[Hackathon Projects]
 ** xref:examples:codelabs.adoc[CodeLabs]

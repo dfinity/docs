@@ -24,7 +24,7 @@ To support multiple devices per user, IC-Vault employs a device manager, a canis
 
 For further details and user stories, please refer to the link:https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md[README file].
 
-image:encrypted-notes-arch.png[hello frontend]
+image:encrypted-notes-arch.png[High-level architecture overview diagram of the Encrypted Notes dapp]
 
 ## Note management
 

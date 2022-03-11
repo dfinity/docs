@@ -7,45 +7,44 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[example-code-intro]]
-To show the possibilites of building on the IC it's worth taking a look at some sample dapps. You can also check out our https://github.com/dfinity/examples[Examples Repo], https://github.com/dfinity/awesome-dfinity[Awesome Dfinity], a curated set of open-source projects and examples from our community, or link:./hackathon-projects.html[Hackathon Projects]!
+Take a look at some sample dapps below and see the possibilities of building on the IC. All samples and further projects can be found in the https://github.com/dfinity/examples[Samples Repo]. Additional resources can be found in the https://github.com/dfinity/awesome-dfinity[Awesome Dfinity] (a curated set of open-source projects and examples from our community) or link:./hackathon-projects.html[Hackathon Projects]!
 
-== Browse Dapps
 === Hello World 
 The dapp equivalent of _hello world_, with a separate backend and frontend canister serving a web page. +
-https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko] • https://github.com/dfinity/examples/tree/master/rust/hello[Rust] • link:hello{outfilesuffix}[Technical Docs]
+https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko] • https://github.com/dfinity/examples/tree/master/rust/hello[Rust] • link:hello{outfilesuffix}[Technical docs]
 
-=== Host a Static Website
+=== Static Website
 This tutorial shows how to quickly set up a static website structure, add content and basic styling, and deploy to the IC. + 
-link:host-a-website{outfilesuffix}[Technical Docs]
+link:host-a-website{outfilesuffix}[Technical docs] • https://www.youtube.com/watch?v=JAQ1dkFvfPI[Video guide]
 
 === Basic DEX
 To enable DEFI applications on the IC, canisters need to interact with token canisters and the ledger canister. This example dapp illustrates these interactions by showing how to enable an Exchange to take custody of funds, update an internal balance book as users trade, and give custody back to the user as funds are withdrawn. +
-https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] • https://github.com/dfinity/examples/tree/master/rust/defi[Rust] • https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/[See Running] •link:dex{outfilesuffix}[Technical Docs]
+https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] • https://github.com/dfinity/examples/tree/master/rust/defi[Rust] • https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/[See running] •link:dex{outfilesuffix}[Technical docs]
 
 === NFT Minting
 This NFT minting dapp showcases how easy it can be to create a user generated NFT and share it. This dapp uses the https://github.com/Psychedelic/DIP721[DIP721] NFT standard. +
-https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container[Rust] • xref:examples:nft.adoc[Technical Docs]
+https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container[Rust] • xref:examples:nft.adoc[Technical docs]
 
 === Basic DAO
 Decentralised governance is higlight of the IC and is illustrated by the basic DAO sample code. It illustrates how to initialize a set of accounts and corresponding tokens, how account owners can sumit proposals for other account owners to vote on, and how a proposal is executed given enough favorable votes.  + 
-https://github.com/dfinity/examples/tree/master/motoko/basic_dao[Motoko] • https://github.com/dfinity/examples/tree/master/rust/basic_dao[Rust] • link:dao{outfilesuffix}[Technical Docs]
+https://github.com/dfinity/examples/tree/master/motoko/basic_dao[Motoko] • https://github.com/dfinity/examples/tree/master/rust/basic_dao[Rust] • link:dao{outfilesuffix}[Technical docs]
 
 === Encrypted Note-taking
 Create/access/modify confidential notes from multiple devices using https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] service and end-to-end encryption. The sample code relies upon the _web-serving_ and _storage capabilities_ of the IC, and highlights two key functionalities: (1) client-side, end-to-end encryption and (2) multi-user and multi-device support. + 
 https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_motoko[Motoko] •
-https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_rust[Rust] • https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[See Running] • link:encrypted-notes{outfilesuffix}[Technical Docs]
+https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_rust[Rust] • https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[See running] • link:encrypted-notes{outfilesuffix}[Technical docs]
 
 === Token Transfer
 This sample code demonstrates how a dapp can transfer tokens to its most active users. + 
-https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] • https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Rust] • link:tokentransfer{outfilesuffix}[Technical Docs]
+https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] • https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Rust] • link:tokentransfer{outfilesuffix}[Technical docs]
 
 
 == Explore further Samples in Motoko
 
-Some (but not all) of the following Motoko samples are available via the https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground]. The playground provides the simplest enviromnent for trying out pure Motoko samples without having to download and learn to use the SDK, but does not support dapps with frontends.
+This is a collection of repo-links to additional code samples written in Motoko. Most are also available in the https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko playground]. The playground provides the simplest enviromnent for trying out pure Motoko samples without having to download and learn to use the SDK, but does not support dapps with frontends.
 
 
-=== Basic Motoko Dapps
+=== Basic
 
 This is collection of basic getting-started Motoko samples, which demonstrate basic concepts of the IC and the Motoko language. 
 
@@ -53,7 +52,6 @@ This is collection of basic getting-started Motoko samples, which demonstrate ba
 - https://github.com/dfinity/examples/tree/master/motoko/counter[counter] -- basic (stable) variable demo.
 - https://github.com/dfinity/examples/tree/master/motoko/echo[echo] -- basic query function demo.
 - https://github.com/dfinity/examples/tree/master/motoko/factorial[factorial] -- basic factorial demo.
-// - https://github.com/dfinity/examples/tree/master/motoko/hello-world[hello-world] -- basic hello world demo.
 - https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[hello_cycles] -- Receive and transfer cycles and check your balance.
 - https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami] -- a simple canister that reports the Principal of its caller.
 
@@ -68,14 +66,14 @@ The intermediate samples demonstrate how to use some of the basic concepts in co
 - https://github.com/dfinity/examples/tree/master/motoko/calc[calc] -- more advanced version of counter demo.
 // - https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Ledger Transfer] -- a canister that transfers ICP to its users.
 
-=== Minimal front end.
+=== Minimal front end
 
 These two samples show how to create simple frontends in JavaScript. Where the previous samples did not provide a frontend, these two samples provide both a frontend and a backend.
 
 - https://github.com/dfinity/examples/tree/master/motoko/random_maze[random_maze] -- random maze generation, with IC-based randomness.
 - https://github.com/dfinity/examples/tree/master/motoko/cert-var[cert_var] -- simple certified variable (a single 32-bit number), with client-side certificate validation.
 
-=== Full stack.
+=== Full stack
 
 These samples demonstrate how to build dapps on the IC, with frontends based on React and TypeScript.  
 
@@ -86,7 +84,7 @@ These samples demonstrate how to build dapps on the IC, with frontends based on 
 - https://github.com/krpeacock/ic-avatar[IC-Avatar] - full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates.
 
 [[motoko-advanced]]
-=== Advanced Samples
+=== Advanced
 
 Large samples contributed by the community and not necessarily up-to-date:
 
@@ -117,12 +115,13 @@ Large samples contributed by the community and not necessarily up-to-date:
 // - https://github.com/dfinity/examples/tree/master/rust/basic_dao[Basic DAO] -- demonstrates a basic Decentralized Autonomous Organization 
 
 [[rust-videos]]
-== Videos
+== Video Guides for Building Dapps
 
-These videos from our Community Conversations series cover an introduction to building dapps in Rust, and best practices for building dapps in Rust. 
+These videos from our community conversations series cover an introduction to building dapps in Rust, and best practices for building dapps in Rust. 
 
-- https://www.youtube.com/watch?v=6wyIhzsFbKw[Community Conversations | Overview of Building a Dapp in Rust]
-- https://www.youtube.com/watch?v=36L33S_DYHY&ab_channel=DFINITY[Community Conversations | Best Practices for Canisters in Rust]
+- https://www.youtube.com/watch?v=M2XnywvwxFM&list=PLuhDt1vhGcrfQGLWqhUo9-DFD5JaHqCh1[Coding with Kyle | YouTube series]
+- https://www.youtube.com/watch?v=6wyIhzsFbKw[Community conversations | overview of building a dapp in Rust]
+- https://www.youtube.com/watch?v=36L33S_DYHY&ab_channel=DFINITY[Community conversations | best practices for canisters in Rust]
 
 // More Rust examples coming soon!
 

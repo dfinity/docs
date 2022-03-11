@@ -11,7 +11,7 @@ Take a look at some sample dapps below and see the possibilities of building on 
 
 === Hello world 
 The dapp equivalent of _hello world_, with a separate backend and frontend canister serving a web page. +
-https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko] • https://github.com/dfinity/examples/tree/master/rust/hello[Rust] • link:hello{outfilesuffix}[Technical docs]
+https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko] • https://github.com/dfinity/examples/tree/master/rust/hello[Rust] • https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/[See running] • link:hello{outfilesuffix}[Technical docs]
 
 === Static website
 This tutorial shows how to quickly set up a static website structure, add content and basic styling, and deploy to the IC. + 
@@ -19,7 +19,7 @@ link:host-a-website{outfilesuffix}[Technical docs] • https://www.youtube.com/w
 
 === Basic DEX
 To enable DEFI applications on the IC, canisters need to interact with token canisters and the ledger canister. This example dapp illustrates these interactions by showing how to enable an Exchange to take custody of funds, update an internal balance book as users trade, and give custody back to the user as funds are withdrawn. +
-https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] • https://github.com/dfinity/examples/tree/master/rust/defi[Rust] • https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/[See running] •link:dex{outfilesuffix}[Technical docs]
+https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] • https://github.com/dfinity/examples/tree/master/rust/defi[Rust] • https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/[See running] • link:dex{outfilesuffix}[Technical docs]
 
 === NFT minting
 This NFT minting dapp showcases how easy it can be to create a user generated NFT and share it. This dapp uses the https://github.com/Psychedelic/DIP721[DIP721] NFT standard. +

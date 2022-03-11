@@ -64,4 +64,4 @@ and then increments `counter`.
 
 ### Adding New Device
 
-image:encrypted-notes-seq.png[hello frontend]
+image:encrypted-notes-seq.png[UML sequence diagram showing device registration and synchronization]

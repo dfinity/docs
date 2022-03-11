@@ -5,9 +5,12 @@ This is a fast and minimalist tutorial for deploying a "hello world" smart contr
 
 == Introduction
 
-In this tutorial, we will deploy a simple Hello canister smart contract that has just one function—called `greet`. The `greet` function accepts one text argument and returns the result with a greeting similar to `Hello, everyone!` in a terminal if you run the canister using the command-line or in an alert pop-up window if you access the dapp in a browser.
+In this tutorial, we will deploy a simple `Hello` canister smart contract that has just one function—called `greet`. The `greet` function accepts one text argument and returns the result with a greeting. For example, if you call the `greet` method with the text argument `Alice`.
 
-While the code comes ready out of the box for you, this dapp consists of back-end code written in Motoko, a programming language specifically designed for interacting with the Internet Computer, and a simple webpack-based front-end. 
+a. If you call it via the command-line, dapp will return `Hello, Alice!` in a terminal
+b. If you access the dapp in a browser, it will alert pop-up window reading `Hello, Alice!`
+
+While the code comes ready out of the box for you, this dapp consists of back-end code written in Motoko, a programming language specifically designed for interacting with the Internet Computer (IC), and a simple webpack-based front-end. 
 
 === Concepts for dapp running locally
 
@@ -335,4 +338,4 @@ Note the way the message is constructed:
 
 === Resources
 
-* Developers who hit any blockers are encouraged to search or post in [https://forum.dfinity.org/ the IC developer forum].
+* Developers who hit any blockers are encouraged to search or post in link:https://forum.dfinity.org[IC developer forum].

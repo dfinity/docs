@@ -45,6 +45,6 @@ Now you are ready to host a website on the IC or follow one of our dapp tutorial
 
 === Next, people often look at these guides:
 
-* link:./host-a-website.html[Host a Static Website]
+* link:./examples/host-a-website.html[Host a Static Website]
 * link:./local-quickstart.html[Local Development]
 * link:./network-quickstart.html[Network Deployment]

@@ -9,6 +9,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 [[example-code-intro]]
 To show the possibilites of building on the IC it's worth taking a look at some sample applications. You can also check out our https://github.com/dfinity/examples[Examples Repo], https://github.com/dfinity/awesome-dfinity[Awesome Dfinity], a curated set of open-source projects and examples from our community, or link:./hackathon-projects.html[Hackathon Projects]!
 
+== Browse Applications
 === Hello World 
 The dapp equivalent of _hello world_, with a separate backend and frontend canister serving a web page. +
 https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko] • https://github.com/dfinity/examples/tree/master/rust/hello[Rust] • link:hello{outfilesuffix}[Technical Docs]
@@ -32,14 +33,14 @@ link:host-a-website{outfilesuffix}[Technical Docs]
 === Encrypted Note-taking
 Create/access/modify confidential notes from multiple devices using https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] service and end-to-end encryption. The sample code relies upon the _web-serving_ and _storage capabilities_ of the IC, and highlights two key functionalities: (1) client-side, end-to-end encryption and (2) multi-user and multi-device support. + 
 https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_motoko[Motoko] •
-https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_rust[Rust] • link:encrypted-notes{outfilesuffix}[Technical Docs]
+https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_rust[Rust] • https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[See Running] • link:encrypted-notes{outfilesuffix}[Technical Docs]
 
 === Token Transfer
-This sample code demonstrates an application can transfer tokens to its most active users. + 
+This sample code demonstrates how an application can transfer tokens to its most active users. + 
 https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] • https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Rust] • link:tokentransfer{outfilesuffix}[Technical Docs]
 
 
-== Explore Motoko Further
+== Explore further Samples in Motoko
 
 Some (but not all) of the following Motoko examples are available via the https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground]. The playground provides the simplest enviromnent for trying out pure Motoko examples without having to download and learn to use the SDK, but does not support applications with frontends.
 
@@ -65,7 +66,7 @@ The intermediate examples demonstrate how to use some of the basic concepts in c
 - https://github.com/dfinity/examples/tree/master/motoko/quicksort[quicksort] -- sorting an array, via Quick Sort, in Motoko.
 - https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[simple-to-do] -- CRUD-like demo service, sans a front end; see also: phone-book and superheroes.
 - https://github.com/dfinity/examples/tree/master/motoko/calc[calc] -- more advanced version of counter demo.
-- https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Ledger Transfer] -- a canister that transfers ICP to its users.
+// - https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Ledger Transfer] -- a canister that transfers ICP to its users.
 
 === Minimal front end.
 
@@ -116,7 +117,7 @@ Large examples contributed by the community and not necessarily up-to-date:
 // - https://github.com/dfinity/examples/tree/master/rust/basic_dao[Basic DAO] -- demonstrates a basic Decentralized Autonomous Organization 
 
 [[rust-videos]]
-=== Videos
+== Videos
 
 These videos from our Community Conversations series cover an introduction to building dapps in Rust, and best practices for building dapps in Rust. 
 

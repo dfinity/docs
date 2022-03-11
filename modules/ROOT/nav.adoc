@@ -12,9 +12,9 @@
 
 * xref:examples:index.adoc[Sample Code]
 ** xref:examples:hello.adoc[Hello World]
-// ** xref:examples:dao.adoc[Basic DAO]
+** xref:examples:dao.adoc[Basic DAO]
 ** xref:examples:dex.adoc[Basic DEX]
-// ** xref:examples:nft.adoc[NFT Minting]
+** xref:examples:nft.adoc[NFT Minting]
 // ** xref:examples:tokentransfer.adoc[Token Transfer]
 ** xref:examples:host-a-website.adoc[Static Website]
 ** xref:examples:encrypted-notes.adoc[Encrypted Note-taking]

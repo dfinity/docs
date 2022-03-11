@@ -53,7 +53,7 @@
 **** xref:developers-guide:design-apps.adoc[Design apps]
 **** xref:developers-guide:customize-projects.adoc[Manage projects]
 **** xref:developers-guide:working-with-canisters.adoc[Manage canisters]
-**** xref:developers-guide:default-wallet.adoc[Use the default cycles wallet]
+// **** xref:developers-guide:default-wallet.adoc[Use the default cycles wallet]  commented out because it had error in netlify logs
 **** xref:developers-guide:tutorials/explore-templates.adoc[Explore the default project]
 **** xref:developers-guide:tutorials/define-an-actor.adoc[Query using an actor]
 **** xref:developers-guide:tutorials/hello-location.adoc[Pass text arguments]
@@ -80,7 +80,7 @@
 ****** xref:language-guide:mutable-state.adoc[Mutable state]
 ****** xref:language-guide:local-objects-classes.adoc[Local objects and classes]
 ****** xref:language-guide:actors-async.adoc[Actors and async data]
-****** xref:language-guide:errors.adoc[Error handling]
+// ****** xref:language-guide:errors.adoc[Error handling] commented out because it had error in netlify logs
 ****** xref:language-guide:pattern-matching.adoc[Pattern matching]
 ****** xref:language-guide:sharing.adoc[Sharing data and behavior]
 ****** xref:language-guide:modules-and-imports.adoc[Modules and imports]
@@ -109,7 +109,7 @@
 **** xref:candid-guide:candid-intro.adoc[Candid]
 ***** xref:candid-guide:candid-concepts.adoc[What is Candid?]
 ***** xref:candid-guide:candid-howto.adoc[How to]
-***** xref:candid-guide:candid-ref.adoc[Reference]
+// ***** xref:candid-guide:candid-ref.adoc[Reference] commented out because it had error in netlify logs
 ****** xref:candid-guide:candid-types.adoc[Supported types]
 ****** link:https://github.com/dfinity/candid[Candid specification^]
 ****** link:https://docs.rs/candid[Candid Rust crate^]

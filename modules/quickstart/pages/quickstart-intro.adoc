@@ -10,31 +10,14 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 This {sdk-long-name} provides tools, sample code, and documentation to help you create canister smart contract dapps and deploy them on the {IC} blockchain mainnet.
 The _Quick Start_ tutorial assumes that you are installing the {sdk-short-name} for the first time and illustrates how to create, build, and deploy your first dapp. 
 
-To keep the instructions simple and focused on the task at hand, the _Quick start_ is split into two scenarios:
+== Getting Started
+To keep the instructions simple and focused on the task at hand, the _Quick start_ is deliberately hyper-focused in helping you deploy your first smart contract or dapp in 20 minutes or less.
 
-* In the link:local-quickstart{outfilesuffix}[Local development] scenario, you create and deploy the sample dapp with processes that run in a _local canister execution environment_.
+See link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy hello world smart contract in 20 minutes].
 
-* In the link:network-quickstart{outfilesuffix}[On-chain deployment] scenario, you create the sample dapp locally but _connect to the {platform}_ running on node machines in independent data centers and deploy the dapp there.
+== More Sample Code
 
-If you need some help setting up your development environment—for example, if you aren’t sure how to open a new terminal, install packages, or create folders and navigate between directories—you might want to start with the link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
-
-[[default-app]]
-== Default dapp
-
-Both scenarios build and deploy a simple Hello canister smart contract that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the canister using the command-line or in an alert pop-up window if you access the dapp in a browser.
-
-The default dapp consists of back-end code written in  {proglang}, a programming language specifically designed for interacting with the {IC}, and a simple webpack-based front-end.
-
-== Getting ICP tokens and cycles
-
-As discussed in link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and cycles], *cycles* are required to power canister smart contract operations for dapps running on the {platform}. 
-As a developer, you have a few different options for acquiring and managing cycles for your dapps:
-
-* Purchase or claim ICP tokens through an exchange that lists ICP tokens available for trade, then convert your tokens to cycles using the link:network-quickstart{outfilesuffix}#convert-tokens[{sdk-short-name} command-line interface] or the link:https://nns.ic0.app/#/auth[Network Nervous System application].
-* Register for cycles by signing up for an account or link:../developers-guide/default-wallet{outfilesuffix}#wallet-create-wallets[cycles wallet] through a provider offering those services.
-* Coordinate with other developers to link:../developers-guide/default-wallet{outfilesuffix}#wallet-send[send] and link:../developers-guide/default-wallet{outfilesuffix}#wallet-receive[receive] cycles directly to and from canisters through a cycles wallet or another canister.
-
-Because only canisters require and consume cycles—to perform operations and to pay for the resources they use—cycles are always transferred between canisters and not to users or developers. You can manage the distribution of cycles, however, through a cycles wallet created for you or using a similar dapp. 
+Once you finish your first dap, you can see more robust examples (e.g. DAOs, NFTs, etc...) in link:../examples/index.adoc[Sample code and dapps].
 
 == Want to learn more?
 

@@ -305,7 +305,7 @@ image:disburse.png[]
 For example, you might select the `+dev-projects+` linked account:
 +
 
-image:select-account.png[]
+// image:select-account.png[]
 . Verify the transaction information, then click **Confirm and Send**.
 +
 For example, check that the Destination address matches the intended address of the `+dev-projects+` linked account:

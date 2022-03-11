@@ -48,56 +48,53 @@ This is a collection of repo-links to additional code samples written in Motoko.
 
 This is collection of basic getting-started Motoko samples, which demonstrate basic concepts of the IC and the Motoko language. 
 
-- https://github.com/dfinity/examples/tree/master/motoko/actor_reference[actor_reference] -- IC management canister as an actor (reference).
-- https://github.com/dfinity/examples/tree/master/motoko/counter[counter] -- basic (stable) variable demo.
-- https://github.com/dfinity/examples/tree/master/motoko/echo[echo] -- basic query function demo.
-- https://github.com/dfinity/examples/tree/master/motoko/factorial[factorial] -- basic factorial demo.
-- https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[hello_cycles] -- Receive and transfer cycles and check your balance.
-- https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami] -- a simple canister that reports the Principal of its caller.
+- https://github.com/dfinity/examples/tree/master/motoko/actor_reference[Actor_reference] shows the IC management canister as an actor (reference).
+- https://github.com/dfinity/examples/tree/master/motoko/counter[Counter] shows a basic (stable) variable demo.
+- https://github.com/dfinity/examples/tree/master/motoko/echo[Echo] gives a basic query function demo.
+- https://github.com/dfinity/examples/tree/master/motoko/factorial[Factorial] shows a basic factorial demo.
+- https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[Hello_cycles] illustrates how to receive and transfer cycles and check a balance.
+- https://github.com/dfinity/examples/tree/master/motoko/whoami[Whoami] is a simple canister that reports the Principal of its caller.
 
 === Intermediate
 
 The intermediate samples demonstrate how to use some of the basic concepts in common use cases. The samples show how to build simple backend functionalities in Motoko.
 
-- https://github.com/dfinity/examples/tree/master/motoko/classes[classes] -- dynamic actor (class) instantiation.
-- https://github.com/dfinity/examples/tree/master/motoko/pub-sub[pub-sub]-- multiple canisters, with publisher-subscriber inter-canister calls.
-- https://github.com/dfinity/examples/tree/master/motoko/quicksort[quicksort] -- sorting an array, via Quick Sort, in Motoko.
-- https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[simple-to-do] -- CRUD-like demo service, sans a front end; see also: phone-book and superheroes.
-- https://github.com/dfinity/examples/tree/master/motoko/calc[calc] -- more advanced version of counter demo.
-// - https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Ledger Transfer] -- a canister that transfers ICP to its users.
+- https://github.com/dfinity/examples/tree/master/motoko/classes[Classes] shows a dynamic actor (class) instantiation.
+- https://github.com/dfinity/examples/tree/master/motoko/pub-sub[Pub-sub] shows multiple canisters, with publisher-subscriber inter-canister calls.
+- https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort] shows how to sort an array, via Quick Sort, in Motoko.
+- https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[Simple-to-do] is a CRUD-like demo service, sans a front end; see also: phone-book and superheroes.
+- https://github.com/dfinity/examples/tree/master/motoko/calc[Calc] is a more advanced version of counter demo.
 
-=== Minimal front end
+=== Minimal frontend
 
 These two samples show how to create simple frontends in JavaScript. Where the previous samples did not provide a frontend, these two samples provide both a frontend and a backend.
 
-- https://github.com/dfinity/examples/tree/master/motoko/random_maze[random_maze] -- random maze generation, with IC-based randomness.
-- https://github.com/dfinity/examples/tree/master/motoko/cert-var[cert_var] -- simple certified variable (a single 32-bit number), with client-side certificate validation.
+- https://github.com/dfinity/examples/tree/master/motoko/random_maze[Random_maze] is a random maze generation, with IC-based randomness.
+- https://github.com/dfinity/examples/tree/master/motoko/cert-var[Cert_var] shows a simple certified variable (a single 32-bit number), with client-side certificate validation.
 
 === Full stack
 
 These samples demonstrate how to build dapps on the IC, with frontends based on React and TypeScript.  
 
-- https://github.com/dfinity/examples/tree/master/motoko/life[life] -- Conway's https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life[Game of Life], running in a Motoko Canister. Demonstrates upgrades among three versions and state migration using stable variables. 
-- https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] -- CRUD-like demo service.
-- https://github.com/dfinity/examples/tree/master/motoko/superheroes[superheroes] -- a simple CRUD dapp. 
-- https://github.com/krpeacock/auth-client-demo[Auth Client Demo] - simple authentication with Internet Identity.
-- https://github.com/krpeacock/ic-avatar[IC-Avatar] - full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates.
+- https://github.com/dfinity/examples/tree/master/motoko/life[Life] demonstrates Conway's https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life[Game of Life], running in a Motoko Canister. Demonstrates upgrades among three versions and state migration using stable variables. 
+- https://github.com/dfinity/examples/tree/master/motoko/phone-book[Phone-book] is a CRUD-like demo service.
+- https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes] is a simple CRUD dapp. 
+- https://github.com/krpeacock/auth-client-demo[Auth Client Demo] is a simple authentication with Internet Identity.
+- https://github.com/krpeacock/ic-avatar[IC-Avatar] is a full-stack Motoko + React with more advanced authentication, image uploads, and optimistic updates.
 
 [[motoko-advanced]]
 === Advanced
 
 Large samples contributed by the community and not necessarily up-to-date:
 
-- Reversi game, in https://github.com/ninegua/reversi[Motoko] accompanying https://ninegua.github.io/reversi[Blog post].
+- https://github.com/ninegua/reversi[Reversi] with accompanying https://ninegua.github.io/reversi[blog post].
 
-- QR code generator in https://github.com/enzoh/motoko-qr[Motoko] accompanying
+- https://github.com/enzoh/motoko-qr[QR code generator] with accompanying
   https://medium.com/@ehaussecker/my-first-microservice-on-dfinity-3ac5c142865b[Medium article].
 
-- https://github.com/timohanke/icvault[IC Vault] - end-to-end Encryption.
+- https://github.com/timohanke/icvault[IC Vault] demonstrates end-to-end content encryption.
 
-- Certified asset canister in
-  https://github.com/nomeata/motoko-certified-http[Motoko]
-  https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263[forum post] - demonstrating a larger application of {IC} certified variables.
+- https://github.com/nomeata/motoko-certified-http[Certified asset canister] and https://forum.dfinity.org/t/certified-assets-from-motoko-poc-tutorial/7263[forum post] demonstrates a larger application of {IC} certified variables.
 
 
 // - xref:examples:encrypted-notes.adoc[Encrypted Notes dapp] -- create/access/modify confidential notes from multiple devices using https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] service and end-to-end encryption.
@@ -122,7 +119,7 @@ These videos from the https://www.youtube.com/playlist?list=PLuhDt1vhGcrez-f3I0_
 - https://www.youtube.com/watch?v=6wyIhzsFbKw[Community conversations | overview of building a dapp in Rust]
 - https://www.youtube.com/watch?v=36L33S_DYHY&ab_channel=DFINITY[Community conversations | best practices for canisters in Rust]
 
-Additional video series https://www.youtube.com/watch?v=M2XnywvwxFM&list=PLuhDt1vhGcrfQGLWqhUo9-DFD5JaHqCh1[Coding with Kyle].
+Additional useful video series can be found at https://www.youtube.com/watch?v=M2XnywvwxFM&list=PLuhDt1vhGcrfQGLWqhUo9-DFD5JaHqCh1[Coding with Kyle].
 
 // More Rust examples coming soon!
 

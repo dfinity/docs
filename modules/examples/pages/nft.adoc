@@ -1,4 +1,4 @@
-= NFT Example =
+= NFT Minting =
 :dip: https://github.com/Psychedelic/DIP721
 :ic: Internet Computer
 

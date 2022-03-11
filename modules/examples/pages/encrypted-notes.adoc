@@ -2,6 +2,8 @@
 
 link:https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp[Encrypted Notes] is an experimental dapp for authoring and storing confidential information in the form of short pieces of text. The user can access their notes via any number of automatically synchronized devices authenticated via link:https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity]. Thanks to the end-to-end encryption performed by the dapp’s frontend, the user does not need to trust the dapp’s backend. 
 
+You can play around with the link:https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[dapp deployed on the IC].
+
 ## Idea
 
 We wanted to build an example of a simple (but not too simple) dapp running purely on the IC. This example relies upon the _web-serving_ and _storage capabilities_ of the IC. We focused on the following two key features for our example dapp: (1) client-side, _end-to-end encryption_ and (2) _multi-user_ and _multi-device_ support. 
@@ -22,7 +24,7 @@ To support multiple devices per user, IC-Vault employs a device manager, a canis
 
 For further details and user stories, please refer to the link:https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md[README file].
 
-image:encrypted-notes-arch.png[hello frontend]
+image:encrypted-notes-arch.png[High-level architecture overview diagram of the Encrypted Notes dapp]
 
 ## Note management
 
@@ -62,4 +64,4 @@ and then increments `counter`.
 
 ### Adding New Device
 
-image:encrypted-notes-seq.png[hello frontend]
+image:encrypted-notes-seq.png[UML sequence diagram showing device registration and synchronization]

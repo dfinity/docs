@@ -117,11 +117,12 @@ Large samples contributed by the community and not necessarily up-to-date:
 [[rust-videos]]
 == Video Guides for Building Dapps
 
-These videos from our community conversations series cover an introduction to building dapps in Rust, and best practices for building dapps in Rust. 
+These videos from the https://www.youtube.com/playlist?list=PLuhDt1vhGcrez-f3I0_hvbwGZHZzkZ7Ng[community conversations] series cover an introduction to building dapps in Rust, and best practices for building dapps in Rust. 
 
-- https://www.youtube.com/watch?v=M2XnywvwxFM&list=PLuhDt1vhGcrfQGLWqhUo9-DFD5JaHqCh1[Coding with Kyle | YouTube series]
 - https://www.youtube.com/watch?v=6wyIhzsFbKw[Community conversations | overview of building a dapp in Rust]
 - https://www.youtube.com/watch?v=36L33S_DYHY&ab_channel=DFINITY[Community conversations | best practices for canisters in Rust]
+
+Additional video series https://www.youtube.com/watch?v=M2XnywvwxFM&list=PLuhDt1vhGcrfQGLWqhUo9-DFD5JaHqCh1[Coding with Kyle].
 
 // More Rust examples coming soon!
 

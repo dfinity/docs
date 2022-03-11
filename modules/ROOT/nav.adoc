@@ -7,9 +7,9 @@
 // ** xref:quickstart:newcomers.adoc[For Newcomers]
 ** xref:quickstart:how-to-deploy-hello-world-smart-contract.adoc[Deploy your first dapp in 20 minutes]
 ** xref:quickstart:cycles-faucet.adoc[Claim Your Free Cycles]
+// ** xref:quickstart:host-a-website.adoc[Host a Static Website]
 // ** xref:quickstart:local-quickstart.adoc[Local Development]
 // ** xref:quickstart:network-quickstart.adoc[Network Deployment]
-// ** xref:quickstart:host-a-website.adoc[Host a Static Website]
 
 * xref:examples:index.adoc[Sample Code]
 ** xref:examples:hello.adoc[Hello World]

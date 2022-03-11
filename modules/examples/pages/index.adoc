@@ -7,7 +7,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[example-code-intro]]
-Take a look at some sample dapps below and see the possibilities of building on the IC. All samples and further projects can be found in the https://github.com/dfinity/examples[Samples repo]. Additional resources can be found in the https://github.com/dfinity/awesome-dfinity[Awesome Dfinity repo] (a curated set of open-source projects and examples from our community) or link:./hackathon-projects.html[Hackathon Projects]!
+Take a look at some sample dapps below and see the possibilities of building on the IC. All samples and further projects can be found in the https://github.com/dfinity/examples[Samples repo]. Additional resources can be found in the https://github.com/dfinity/awesome-dfinity[Awesome Dfinity repo] (a curated set of open-source projects and examples from our community) or link:./hackathon-projects.html[Hackathon projects]!
 
 === Hello world 
 The dapp equivalent of _hello world_, with a separate backend and frontend canister serving a web page. +

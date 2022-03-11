@@ -15,7 +15,8 @@ or following the instructions at link:https://smartcontracts.org[].
 
 === Step 1: Authenticate
 
-First, you will need to navigate to link:https://faucet.dfinity.org[]. You will need to connect an active GitHub account to continue. If your account is not eligible, please follow the xref:quickstart:network-quickstart.html[Network Deployment] guide.
+First, you will need to navigate to link:https://faucet.dfinity.org[]. You will need to connect an active GitHub account to continue. 
+// If your account is not eligible, please follow the xref:quickstart:network-quickstart.html[Network Deployment] guide.
 
 image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
 

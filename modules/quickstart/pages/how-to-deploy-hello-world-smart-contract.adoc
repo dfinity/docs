@@ -245,7 +245,7 @@ Few notes about cycles:
 
 * It takes 4 trillion cycles to deploy a canister.
 
-* You can see a table of compute and storage costs here: link:computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
+* You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
 
 === 4.3 Check the connection to the Internet Computer blockchain mainnet (Terminal B)
 

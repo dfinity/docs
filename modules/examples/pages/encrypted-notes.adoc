@@ -1,0 +1,67 @@
+# Encrypted Notes Dapp
+
+link:https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp[Encrypted Notes] is an experimental dapp for authoring and storing confidential information in the form of short pieces of text. The user can access their notes via any number of automatically synchronized devices authenticated via link:https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity]. Thanks to the end-to-end encryption performed by the dapp’s frontend, the user does not need to trust the dapp’s backend. 
+
+You can play around with the link:https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[dapp deployed on the IC].
+
+## Idea
+
+We wanted to build an example of a simple (but not too simple) dapp running purely on the IC. This example relies upon the _web-serving_ and _storage capabilities_ of the IC. We focused on the following two key features for our example dapp: (1) client-side, _end-to-end encryption_ and (2) _multi-user_ and _multi-device_ support. 
+
+To demonstrate the potential of the IC as a platform for developing such dapps, we implemented this example using two distinct Canister Development Kits (CDKs). The Motoko CDK allows developers to implement actor-based dapps using the link:https://smartcontracts.org/docs/language-guide/motoko.html[Motoko] language. The Rust CDK allows implementing dapps in link:https://smartcontracts.org/docs/rust-guide/rust-intro.html[Rust]. In both cases, canisters are compiled into WebAssembly files that are then deployed onto the IC. 
+
+## Approach
+
+The basic functionality of Encrypted Notes consists of two main components. 
+
+First, we re-used the code of a (non-encrypted) dapp called link:https://github.com/pattad/ic_notes[IC-Notes]. In particular IC-Notes relies on the link:https://smartcontracts.org/docs/ic-identity-guide/auth-how-to.html[Internet Identity] (II) canister for user authentication, an approach that is also inherited by Encrypted Notes. For development purposes, we deploy a local instance of the II canister (along with a local instance of Encrypted Notes); when deploying Encrypted Notes onto the mainnet, the real-world instance of II is used for authentication. 
+
+Second, we enabled client-side, end-to-end encryption for the note contents, borrowing the solution from another existing dapp called link:https://github.com/timohanke/icvault[IC-Vault]. Our Encrypted Notes dapp follows the approach of IC-Vault to support managing multiple devices. 
+
+In the context of the canisters discussed in this document, a device is not necessarily a separate physical device but a logical instance device, e.g., a web browser, with its own local data storage. For example, we consider two web browsers running on the same laptop as two independent devices; these browsers generate their own encryption keys. In contrast, the II canister relies on hardware-generated encryption keys, distinguishing only hardware devices.
+
+To support multiple devices per user, IC-Vault employs a device manager, a canister that securely synchronizes device-specific keys across all the devices that are associated with a user. The remainder of this document focuses on the Encrypted Notes canister that implements a device manager in a similar way but as part of its main canister.
+
+For further details and user stories, please refer to the link:https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md[README file].
+
+image:encrypted-notes-arch.png[High-level architecture overview diagram of the Encrypted Notes dapp]
+
+## Note management
+
+* Users are linked to II in the frontend, getting the user a principal that can be used for calling API queries and updates. 
+* Internally, we store the map of the form `Principal → [Notes]`
+and a `counter`.
+* `counter` stores the number of notes the canister has created (across all principals).
+* Method `create` adds a note to its principal’s entry (if it exists), 
+or adds the principal to the map with the `note_id == counter`, 
+and then increments `counter`.
+* Method `update` pulls a note, for the caller’s Principal and for the provided `note_id` and replaces it with the provided `text` (this `text` is assumed to be encrypted by the frontend). 
+* Method `delete` finds the note with the given `note_id` in the map and removes it. To ensure that note IDs are always globally unique, we do not decrease `counter`.
+
+## Cryptography
+
+* Encryption of notes is entirely client-side. However, our example dapp is still not protected against potentially data-revealing attacks by a possibly malicious node provider. For example, the attacker can infer how many notes a particular user has, user activity statistics, etc. Therefore, please carefully read the link:https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md#disclaimer-please-read-carefully[disclaimer] before using any of the code or patterns from this dapp. 
+* Recall that, in our definition, a device is not necessarily a separate physical device but simply a web browser instance with an independent local storage. 
+* The dapp uses three different kinds of keys:
+** Symmetric AES-GCM _secret key_: used to encrypt the notes of a given principal. The notes of a principal are stored in the Encrypted Notes canister encrypted with this secret key. Thus the frontend of the dapp needs to know this secret key to decrypt notes from this user and to send encrypted notes to be stored in the Encrypted Notes canister.
+** Device RSA-OAEP _public key_: used to encrypt the symmetric AES _secret key_ of the principal. The encrypted secret key is stored in the canister for each device registered to the principal. The same key is used for different principals using that device. 
+** Device RSA-OAEP _private key_: used to decrypt the symmetric AES _secret key_ stored in the Encrypted Notes canister for a given principal. Once the frontend  decrypts the secret key, it can use this key for decrypting the notes stored in the Encrypted Notes canister.
+* We store a map of the form: 
+
+    Principal → (DeviceAlias → PublicKey,
+                 DeviceAlias → CipherText)
+
+* This map is used for managing user devices, as explained next.
+* To register a device, the frontend generates a device alias, a public key, and a private key (held in its local storage).
+* Adding a device:
+** *Device registration:* If this identity is already known, a new device will remain unsynced at first; at this time, only the `alias` and `publickey` of this device will be added to the Encrypted Notes canister. 
+** *Device synchronization:* Once an unsynced device obtains the list of all unsynced devices for this II, it will encrypt the symmetric AES _secret key_ under each unsynced device's public key. Afterwards, the unsynced device obtains the encrypted symmetric AES _secret key_, decrypts it, and then uses it to decrypt the existing notes stored in the Encrypted Notes canister.
+* Once authenticated with II: 
+** If this identity is not known, then the frontend generates a symmetric AES _secret key_ and encrypts it with its own public key. Then the frontend calls `seed(publickey, ciphertext)`, adding that ciphertext and its associated `publickey` to the map.
+** If a user wants to register a subsequent device, the frontend calls `register_device`, passing in the `alias` and `publickey` of that device. The frontend then calls `submit_ciphertexts([publickey, ciphertext])` for all the devices it needs to register. This allows the registered devices to pull and decrypt the AES key to encrypt and decrypt the user notes. 
+
+## Sequence Diagrams
+
+### Adding New Device
+
+image:encrypted-notes-seq.png[UML sequence diagram showing device registration and synchronization]

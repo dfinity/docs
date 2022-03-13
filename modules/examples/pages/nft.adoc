@@ -1,0 +1,23 @@
+= NFT Minting
+:dip: https://github.com/Psychedelic/DIP721
+:ic: Internet Computer
+
+This example demonstrates implementing an NFT canister. NFTs (non-fungible tokens) are unique tokens with arbitrary
+metadata - usually an image of some kind, to form the digital equivalent of trading cards. There are a few different
+NFT standards for the {ic}, but the most cycles-efficient and feature-complete one is the {dip}[DIP-721] standard, so
+that is the standard that this canister uses.
+
+This example is available from the https://github.com/dfinity/examples[examples] repository in both Rust and Motoko
+versions:
+
+* https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container[Rust]
+* Motoko (coming soon)
+
+The canister is a basic implementation of the standard, with support for the minting, burning, and notification interface extensions.
+
+Command-line length limitations would prevent you from minting an NFT with a large file, like an image or video, via `dfx`. To that end,
+there is a https://github.com/dfinity/experimental-minting-tool[command-line minting tool] provided for minting simple NFTs.
+
+The interface is meant to be programmatic, but the Rust version additionally contains HTTP functionality so you can view a metadata file
+at ``<canister URL>/<NFT ID>/<file ID>``. 
+// A running instance of this canister for demonstration purposes is available as https://t5l7c-7yaaa-aaaab-qaehq-cai.ic0.app[t5l7c-7yaaa-aaaab-qaehq-cai].

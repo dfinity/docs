@@ -73,7 +73,7 @@ Let's take a look at a few key elements of this program:
 
 == Start the local canister execution environment
 
-Before you can build the `+access_hello+` project, you need to connect to the canister execution environment running locally in your development environment, or you need to connect toa subnet that you can access.
+Before you can build the `+access_hello+` project, you need to connect to the canister execution environment running locally in your development environment, or you need to connect to a subnet that you can access.
 
 To start the local canister execution environment:
 

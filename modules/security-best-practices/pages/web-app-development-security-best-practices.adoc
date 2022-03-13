@@ -1,0 +1,126 @@
+= Web App Development Security Best Practices
+
+== Authentication
+
+=== Use a well-audited authentication service and client side IC libraries
+
+==== Security Concern
+
+Implementing user authentication and canister calls yourself in your web app is error prone and risky. For example, if canister calls are implemented from scratch, there may be bugs around signature creation or verification.
+
+==== Recommendation
+
+- Consider using e.g. link:https://github.com/dfinity/internet-identity[Internet Identity] for authentication, use link:https://github.com/dfinity/agent-js[agent-js] for making canister calls, and the link:https://github.com/dfinity/agent-js/tree/main/packages/auth-client[auth-client] for interacting with internet identity from your dApp.
+- It is of course also an option to consider alternative authentication frameworks on the IC for authentication.
+
+=== Set an appropriate session timeout
+
+==== Security Concern
+
+Currently, Internet Identity issues delegations with an expiry time. This expiry time can be set in the link:https://github.com/dfinity/agent-js/tree/main/packages/auth-client[auth-client]. After a delegation expires, the user has to re-authenticate. Setting a good value is a trade-off between security and usability.
+
+==== Recommendation
+
+See the link:https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#session-expiration[OWASP Recommendations]. A timeout of 30min should be set for security sensitive applications.
+
+Note: Idle timeouts might be introduced soon, see link:https://forum.dfinity.org/t/authclient-update-idle-timeouts/10464[this].
+
+=== Don’t use fetchRootKey in agent-js in production
+
+==== Security Concern
+
+`agent.fetchRootKey()` can be used in link:https://github.com/dfinity/agent-js[agent-js] to fetch the root subnet threshold public key from a status call in test environments. This key is used to verify threshold signatures on certified data received through canister update calls. Using this method in a production web app gives an attacker the option to supply their own public key, invalidating all authenticity guarantees of update responses.
+
+==== Recommendation
+
+Never use `agent.fetchRootKey()` in production builds, only in test builds. Not calling this method will result in the hard coded root subnet public key of mainnet being used for signature verification, which is the desired behavior in production.
+
+== Nonspecific to the Internet Computer
+
+The best practices in this section are very general and not specific to the Internet Computer. This list is by no means complete and only lists a few very specific concerns that have led to issues in the past.
+
+=== Validate input in the front-end
+
+==== Security Concern
+
+Missing input validation of data from untrusted sources (e.g. users) can lead to malformed data being persisted and delivered back to users. This may lead to DoS, injection attacks, phishing, etc.
+
+==== Recommendation
+
+- Perform data validation already in the front end, in addition to data validation in the canister. Data validation should happen as early as possible.
+- See the link:https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation[OWASP Input Validation Cheat Sheet]
+
+[[dont-load-untrusted-content]]
+=== Don’t load JavaScript (and other assets) from untrusted domains
+
+==== Security Concern
+
+Loading untrusted JavaScript from domains other than `<canister-id>.ic0.app` means you completely trust that domain. Also, assets loaded from these domains (incl. `<canister-id>.raw.ic0.app`) will not use asset certification.
+
+If they deliver malicious JavaScript they can take over the web app/account by e.g. reading the private key managed by agent-js from LocalStorage.
+
+Note that also loading other assets such as CSS from untrusted domains is a security risk, see e.g. link:https://xsleaks.dev/docs/attacks/css-injection/[here].
+
+==== Recommendation
+
+- Loading JavaScript and other assets from other origins should be avoided. Especially for security critical applications, we can't assume other domains to be trustworthy.
+- Make sure all the content delivered to the browser is served and certified by the canister using asset certification. This holds in particular for any JavaScript, but also for fonts, CSS, etc.
+- Use a link:https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP[Content Security Policy] to prevent scripts and other content from other origins to be loaded at all. See also link:web-app-development-security-best-practices#define-security-headers[Define security headers including a Content Security Policy (CSP)].
+
+[[define-security-headers]]
+=== Define security headers including a Content Security Policy (CSP)
+
+==== Security Concern
+
+Security headers can be used to cover many security concerns, e.g. disallow link:https://owasp.org/www-community/attacks/Clickjacking[clickjacking], link:https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html[harden TLS], make sure link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src[JavaScript or other content from untrusted domains cannot be executed in the browser], etc. Not configuring these headers appropriately can lead to concrete security issues and missing defense-in-depth.
+
+==== Recommendation
+
+- Check your site using link:https://securityheaders.com/[https://securityheaders.com/]
+- Use link:https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html[HSTS], link:https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP[CSP], link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options[X-Frame-Options], link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy[Referrer-Policy], Permissions-Policy (link:https://www.permissionspolicy.com/[generator])
+- These headers (including CSP) have been successfully integrated e.g. in link:https://github.com/dfinity/internet-identity[internet identity].
+- Check your CSP against link:https://csp-evaluator.withgoogle.com/[CSP evaluator]
+- See also the link:https://owasp.org/www-project-secure-headers/[OWASP secure headers project]
+
+=== Crypto: Protect key material against XSS using Web Crypto API
+
+==== Security Concern
+
+Storing key material in browser storage (such as link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[sessionStorage] or link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[localStorage]) is considered unsafe because these keys can be accessed by JavaScript code. This could happen through an XSS attack or when loading untrusted scripts from other domains (see also link:web-app-development-security-best-practices#dont-load-untrusted-content[Don’t load JavaScript from untrusted domains].
+
+==== Recommendation
+
+Use link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API[WebCrypto API] to hide key material from JavaScript, by using `extractable=false` in `generateKey` , see link:https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/generateKey[this]. An example for this can be found in the people parties project, see link:https://github.com/dfinity/people-parties/blob/06208183a2679189d02bc5e64dcbd71c5f5dfbed/frontend/src/services/auth.ts#L111-L120[here]. This makes it impossible to access the private key from JavaScript.
+
+=== Use a secure web framework
+
+==== Security Concern
+
+Modern web frameworks make attacks such as XSS very difficult since they safely escape / sanitize any potentially user-provided data that is rendered on a web page. Not using such a framework is risky as it is hard to avoid attacks like XSS.
+
+==== Recommendation
+
+- Use a web framework that has a secure templating mechanism such as link:https://github.com/dfinity/nns-dapplink:https://svelte.dev/[Svelte] to avoid XSS. This is used e.g. in the [NNS dApp] projects.
+- Don’t use insecure features of the framework, such as e.g. link:https://svelte.dev/docs#template-syntax-html[@html in Svelte].
+
+=== Make sure the logout is effective
+
+==== Security Concern
+
+If a logout action by a user is not effective, this may lead to account takeover e.g. if a shared or public device is used.
+
+==== Recommendation
+
+- Clear all session data (especially link:https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage[sessionStorage] and link:https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage[localStorage]), clear link:https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API[IndexedDB], etc. on logout.
+- Make sure also other browser tabs showing the same origin are logged out if the logout is triggered in one tab. This does not happen automatically when agent-js is used, since agent-js keeps the private key in memory once initialized.
+
+=== Use prompts to warn the user on any security critical actions, let the user explicitly confirm
+
+==== Security Concern
+
+If this is not the case, a user may by accident execute some sensitive actions.
+
+==== Recommendation
+
+- Show the user a prompt with a security warning describing the exact consequences of the action and let them confirm explicitly.
+- For applications with high security requirements, consider the use of transaction approval, i.e. using e.g. a WebAuthn device to let the user confirm certain critical actions or transactions. This is recommended e.g. when token or cycle transfers is involved. For example, using a hardware wallet in the link:https://github.com/dfinity/nns-dapp[NNS dApp] achieves this.

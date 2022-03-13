@@ -1,0 +1,86 @@
+= General Best Practices
+
+== Certify query responses if they are relevant for security
+
+=== Security Concern
+
+The responses to link:https://smartcontracts.org/docs/interface-spec/index.html#http-interface[query calls] (as opposed to update calls) are not threshold-signed by the canister/subnet. Thus, a single malicious replica or boundary node may change the data, violating its authenticity. This is especially risky if update calls depend on the response to query calls.
+
+=== Recommendation
+
+- All security-relevant query response data that needs authenticity guarantees (this needs to be assessed for each dApp) should be certified by the IC using certified variables. Consider using existing data structures such as link:https://github.com/dfinity/cdk-rs/tree/main/src/ic-certified-map[certified-map]. The data certification must be validated in the front-end.
+- Alternatively, these calls have to be issued as update calls by the caller (e.g. in agent-js), but that impacts performance: it takes a few seconds. Note that every query can also be issued as an update by the caller.
+- Examples are asset certification in link:https://github.com/dfinity/internet-identity/blob/b29a6f68bbe5a49d048e12bc7a3263a9f43d080b/src/internet_identity/src/main.rs#L775-L808[Internet Identity], link:https://github.com/dfinity/nns-dapp/blob/372c3562127d70c2fde059bc9c268e8ae858583e/rs/src/assets.rs#L121-L145[NNS dApp], or the link:https://github.com/dfinity/internet-identity/blob/main/src/internet_identity/src/signature_map.rs[canister signature implementation in Internet Identity].
+
+== Nonspecific to the Internet Computer
+
+The best practices in this section are very general and not specific to the Internet Computer. This list is by no means complete and only lists a few very specific concerns that have led to issues in the past.
+
+=== Don’t use third-party components with known vulnerabilities
+
+==== Security Concern
+
+Using vulnerable and outdated components is a link:https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/[big security risk].
+
+==== Recommendation
+
+- Regularly check your third party components against databases of known vulnerabilities:
+- Rust: use link:https://crates.io/crates/cargo-audit[cargo audit].
+- JavaScript / NPM: use link:https://docs.npmjs.com/cli/v8/commands/npm-audit[npm audit]
+- This should be integrated into the build process, the build should fail if there are known vulnerabilities.
+- Don’t use forked versions of repositories that are not maintained and may not be trustworthy.
+- Avoid using third party components that are not widely used and may not have had sufficient (ideally third party) review.
+- Pin the versions of the components you are using to avoid switching to corrupt updates automatically.
+
+=== Don’t implement crypto yourself
+
+==== Security Concern
+
+It is easy to make mistakes when implementing cryptographic algorithms, leading to security bugs.
+
+==== Recommendation
+
+- Use well known libraries that may be open source and have been reviewed by many people. For example, use the https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API[Web Crypto API] in JavaScript, use crates such as link:https://crates.io/crates/sha256[sha256] in Rust
+
+=== Use secure cryptographic schemes
+
+==== Security Concern
+
+Some cryptographic schemes have been broken (old TLS versions, MD5, SHA1, DES, ...), or they could be so new that they have not yet been appropriately researched. Using these introduces security issues.
+
+==== Recommendation
+
+If you need to use crypto, only use cryptographic schemes that have not been broken and do not have known issues. Ideally use algorithms that have been standardized by e.g. NIST or IETF.
+
+References:
+
+- link:https://owasp.org/Top10/A02_2021-Cryptographic_Failures/[OWASP Cryptographic Failures]
+
+=== Test your code
+
+==== Security Concern
+
+Having small test coverage is risky, as code changes become difficult and may violate correctness and security properties, leading to bugs. It is hard to verify correctness and security properties in reviews (and security reviews) if there are no corresponding tests.
+
+==== Recommendation
+
+Write tests for canister implementations and front-end code, especially for security relevant properties and invariants.
+
+- In link:https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters]: link:https://mmapped.blog/posts/01-effective-rust-canisters.html#test-upgrades[test upgrades], link:https://mmapped.blog/posts/01-effective-rust-canisters.html#target-independent[make code target-independent]
+- See also link:rust-canister-development-security-best-practices#test-your-canister-code[Test your canister code even in presence of System API calls]
+- Consider the link:https://docs.dfinity.systems/dfinity/spec/meta/rust.html#_tests[DFINITY Rust guidelines on testing]
+- For wasm-level unit testing, consider using link:https://github.com/kritzcreek/motoko-matchers[Motoko Matchers]
+- For Motoko-level unit testing, consider link:https://kritzcreek.github.io/motoko-matchers/Canister.html[the Canister module]. There are also some example tests link:https://github.com/dfinity/motoko-base/blob/master/test/resultTest.mo[here] and link:https://github.com/dfinity/motoko-base/blob/master/test/textTest.mo[here]. As an example see also the end-to-end tests and unit tests for the link:https://github.com/dfinity/invoice-canister[invoice canister].
+- For long-running test scenarios, consider link:https://github.com/matthewhammer/motoko-bigtest[Motoko BigTest]
+
+=== Avoid test and dev code in production
+
+==== Security Concern
+
+It is risky to include code paths in production code that are only used for development or testing setups. If something goes wrong (and it sometimes does!), this may introduce security bugs in production.
+
+For example, we have seen issues where the public key to verify certification was fetched from an untrusted source, since this is what is done on test networks.
+
+==== Recommendation
+
+Avoid test and dev code in production code whenever possible.

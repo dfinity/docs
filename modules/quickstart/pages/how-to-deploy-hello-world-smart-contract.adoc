@@ -18,7 +18,7 @@ While the code comes ready out of the box for you, this dapp consists of back-en
 A *canister smart contract/dapp* is a type of smart contract that bundles code and state. A canister can be deployed as a smart contract on the Internet Computer and accessed over the Internet.
 
 ==== Cycles
-On the Internet Computer, a *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum's gas: it is what one needs to run their dapp, but it is much more stable and cheaper for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in [SDR] using the convention that one trillion cycles correspond to one SDR. 
+On the Internet Computer, a *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum's gas: it is what one needs to run their dapp, but it is much more stable and cheaper for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] using the convention that one trillion cycles correspond to one SDR.
 
 In this tutorial, you will get free cycles from the cycles faucet.
 

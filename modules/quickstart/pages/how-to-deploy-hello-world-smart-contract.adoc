@@ -26,7 +26,6 @@ In this tutorial, you will get free cycles from the cycles faucet.
 
 * Linux
 * macOS (12.* Monterey)
-* Windows
 
 == 1. Installing tools (5 min)
 

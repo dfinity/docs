@@ -239,9 +239,20 @@ Few notes about cycles:
 
 * Cycles faucet will grant developers 15 trillion cycles 
 
-* It takes 4 trillion cycles to deploy a canister.
+* It takes 100 billion cycles to deploy a canister.
 
 * You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
+
+==== 4.2.1 Check your cycles balance
+
+Now that you have used the cycles faucet, you can check your cycles balance by running: 
+
+[source,bash]
+----
+$ dfx wallet --network ic balance
+----
+
+You should see around 15 Trillion cycles if you run this after using the cycles wallet. If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work.
 
 === 4.3 Check the connection to the Internet Computer blockchain mainnet (Terminal B)
 
@@ -311,7 +322,10 @@ Uploading assets to asset canister...
 Deployed canisters.
 ----
 
-Note, a common error one may get in section 4.4: `Error: The replica returned an HTTP Error: Http Error: status 403 Forbidden`. This error means that the canister does not have enough cycles to deploy. 
+In the example above, we created a `hello` dapp that has two canisters: 
+
+a. `hello` canister `"5o6tz-saaaa-aaaaa-qaacq-cai"` which contains the backend logic.
+b. `hello_assets` canister `"5o6tz-saaaa-aaaaa-qaacq-cai"` which contains the frontend assets (e.g. HTML, JS, CSS).
 
 === 4.4 Testing the on-chain dapp via command line (Terminal B)
 
@@ -327,7 +341,32 @@ Note the way the message is constructed:
 * `hello greet` means we are sending a message to a canister named `hello` and evoking its `greet` method
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 
-== 5. Troubleshooting
+=== 4.5 Seeing and testing your dapp live on-chain
+
+Find your new canister's ID by running:
+
+[source, sh]
+----
+dfx canister --network ic id hello
+----
+
+Take that canister ID and visit +https://<canister-id>.ic0.app+, inserting your own canister ID as the subdomain in the URL.
+
+== 5. Conclusion
+
+== 5.1 What you have done
+You have done the following in this tutorial:
+
+* Installed the Canister SDK
+* Built and deployed a dap locally
+* Received free cycles for your dapp
+* Deployed your dapp on-chain
+
+== 5.2 Using your free cycles to power other dapps
+
+You can use the cycles you received earlier for other dapps.
+
+== 6. Troubleshooting
 
 === Resources
 

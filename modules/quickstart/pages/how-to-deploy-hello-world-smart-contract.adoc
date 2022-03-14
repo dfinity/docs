@@ -128,6 +128,8 @@ image:quickstart/terminal-b-ls.png[terminal b ls]
 
 ==== 3.1.3. Start the local canister execution environment on your computer in your second terminal by running the following command:
 
+
+
 [source,bash]
 ----
 $ dfx start
@@ -136,7 +138,11 @@ $ dfx start
 image:quickstart/terminal-a-dfx-start.png[dfx start]
 
 
-Note: Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click Allow. 
+Notes: 
+
+*  Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click Allow. 
+
+* Check no other network process is running that would create a port conflict on 8000.
 
 *That is it, there is now a local version of the IC running on your machine. Leave this window/tab open and running while you continue.* If the window/tab is closed, the local version of the IC will not be running and the rest of the tutorial will fail.
 
@@ -191,9 +197,12 @@ Now that you have verified that your dapp has been deployed and tested its opera
 $ npm start
 ----
 
-==== 3.4.2  Open a browser and navigate to http://localhost:8080/
+==== 3.4.2  Open a browser and see dapp
 
-Navigating to this URL displays a simple HTML page with a sample asset image file, an input field, and a button.
+To see your dapp running locally in the browser you need your canister id from step 3.2.2 when you deployed to your local server.
+
+Navigating to +http://localhost:8080/?canisterId=$canisterID+ where `canisterId` is the id displays a simple HTML page with a sample asset image file, an input field, and a button.
+
 For example:
 +
 image:front-end-prompt.png[Sample HTML page]

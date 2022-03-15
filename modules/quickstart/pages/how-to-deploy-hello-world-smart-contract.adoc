@@ -213,8 +213,6 @@ $ npm start
 
 To see your dapp running locally in the browser on +http://localhost:8080+.
 
-For example:
-
 image:front-end-prompt.png[Sample HTML page]
 
 . Type a greeting, then click *Click Me* to return the greeting.

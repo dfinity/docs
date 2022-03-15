@@ -64,10 +64,8 @@ image:quickstart/dfx-version.png[dfx version]
 
 == 2. Create a default project (2 min)
 
-=== 2.1 Create a new project 
-Dapps on the Internet Computer start as projects. You create projects using the `dfx` parent command and its subcommands.
-
-For this tutorial, we’ll start with the default sample dapp to illustrate creating dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace. 
+=== 2.1 Launch a new project 
+Dapps on the Internet Computer start as projects, which are initiated by using the dfx parent command and its subcommands. You create projects using the `dfx` parent command and its subcommands. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the `dfx`` command-line interface adds a default project directory structure to your workspace. 
 
 To create a new project for your first application:
 
@@ -103,10 +101,14 @@ image:quickstart/cd-hello.png[cd new]
 
 Now that the code is there, the next step is to spin up a local version of the IC on local machine. For this, developers should keep two terminals open:
 
-* *Terminal window/tab A:* This will show the local version of the IC running
-** This is analogous to how developers often start local servers in web2 projects (e.g. node.js's Express, python's Django, Ruby's Rails, etc...)
-* *Terminal window/tab B:* This will be used to send *messages* to the local version of the IC
-** This is analogous to how developers send HTTP API messages to servers running locally (e.g. Postman, Panic).
+* *Terminal window/tab A:* 
+
+** Shows the local version of the IC running
+** Is analogous to how developers often start local servers in web2 projects (e.g. node.js's Express, python's Django, Ruby's Rails, etc...)
+
+* *Terminal window/tab B:* 
+** Used to send *messages* to the local version of the IC
+** Is analogous to how developers send HTTP API messages to servers running locally (e.g. Postman, Panic).
 
 For ease, this tutorial will distinguish between both windows by color scheme:
 

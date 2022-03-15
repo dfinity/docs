@@ -18,7 +18,7 @@ While the code comes ready out of the box for you, this dapp consists of back-en
 A *canister smart contract/dapp* is a type of smart contract that bundles code and state. A canister can be deployed as a smart contract on the Internet Computer and accessed over the Internet.
 
 ==== Cycles
-On the Internet Computer, a *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in [SDR] using the convention that one trillion cycles correspond to one SDR. 
+On the Internet Computer, a *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum's gas: it is what one needs to run their dapp, but it is much more stable and cheaper for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] using the convention that one trillion cycles correspond to one SDR.
 
 In this tutorial, you will get free cycles from the cycles faucet.
 
@@ -26,7 +26,6 @@ In this tutorial, you will get free cycles from the cycles faucet.
 
 * Linux
 * macOS (12.* Monterey)
-* Windows
 
 == 1. Installing tools (5 min)
 
@@ -44,7 +43,7 @@ Besides installing node.js, users need to also install:
 
 === 1.2 The Canister SDK (AKA "dfx") 
 
-The Canister SDK used in this article is called `dfx` and it is maintained by the DFINITY foundation. There are many SDK's so this is just one.
+The Canister SDK used in this tutorial is called `dfx` and it is maintained by the DFINITY foundation. There are many SDK's so this is just one.
 
 To install, one needs to run:
 [source,bash]
@@ -68,19 +67,18 @@ image:quickstart/dfx-version.png[dfx version]
 === 2.1 Create a new project 
 Dapps on the Internet Computer start as projects. You create projects using the `dfx` parent command and its subcommands.
 
-For this tutorial, we’ll start with the default sample dapp to illustrate creating dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace. We cover the template files that make up a project directory in the Explore the default project tutorial.
+For this tutorial, we’ll start with the default sample dapp to illustrate creating dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace. 
 
 To create a new project for your first application:
 
-2.1 Open a terminal shell on your local computer, if you don’t already have one open.
+==== 2.1.1 Open a terminal shell on your local computer, if you don’t already have one open.
 
-2.2 Create a new project named hello by running the following command:
+==== 2.1.2 Create a new project named hello by running the following command:
 
 [source,bash]
 ----
 $ dfx new hello
 ----
-
 
 The `dfx new hello` command creates a new project directory named `hello`, template files, and a new `hello` Git repository for your project. Your terminal should look like this:
 
@@ -88,8 +86,7 @@ image:quickstart/dfx-new-hello-1.png[dfx new]
 
 image:quickstart/dfx-new-hello-2.png[dfx new]
 
-
-2.3 Move to your project directory by running the following command:
+==== 2.1.3 Move to your project directory by running the following command:
 [source,bash]
 ----
 $ cd hello
@@ -125,11 +122,13 @@ image:quickstart/terminal-b-ls.png[terminal b ls]
 
 === 3.1 Start the local version of the IC (Terminal A)
 
-1. Use the Terminal window or tab on your local computer.
+==== 3.1.1 Use the Terminal window or tab on your local computer.
 
-2. Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
+==== 3.1.2. Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
 
-3. Start the local canister execution environment on your computer in your second terminal by running the following command:
+==== 3.1.3. Start the local canister execution environment on your computer in your second terminal by running the following command:
+
+
 
 [source,bash]
 ----
@@ -139,7 +138,11 @@ $ dfx start
 image:quickstart/terminal-a-dfx-start.png[dfx start]
 
 
-Note: Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click Allow. 
+Notes: 
+
+*  Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click Allow. 
+
+* Check no other network process is running that would create a port conflict on 8000.
 
 *That is it, there is now a local version of the IC running on your machine. Leave this window/tab open and running while you continue.* If the window/tab is closed, the local version of the IC will not be running and the rest of the tutorial will fail.
 
@@ -149,7 +152,7 @@ Note: since this is a local version of the IC, this has fewer steps than deployi
 
 To deploy your first dapp locally:
 
-1. Check that you are still in the root directory for your project, if needed.
+==== 3.2.1. Check that you are still in the root directory for your project, if needed.
 
 Ensure that node modules are available in your project directory, if needed, by running the following command (it does not hurt to run this many times):
 
@@ -160,7 +163,7 @@ $ npm install
 
 image:quickstart/terminal-b-npm-install.png[npm install]
 
-2. Register, build and deploy dapp:
+==== 3.2.2. Register, build and deploy dapp:
 
 [source,bash]
 ----
@@ -168,6 +171,18 @@ $ dfx deploy
 ----
 
 image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
+
+Your dapp is now composed of two canister smart contracts, as you can see in the copy below (from terminal B):
+
+[source, bash]
+----
+Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+----
+
+a. `hello` canister `rrkah-fqaaa-aaaaa-aaaaq-cai` which contains the backend logic.
+
+b. `hello_assets` canister `yjl3-tyaaa-aaaaa-aaaba-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
 
 === 3.3 Testing the dapp locally via command line (Terminal B)
 
@@ -187,19 +202,17 @@ $ dfx canister call hello greet everyone
 
 Now that you have verified that your dapp has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
 
-3.4.1 On terminal B, start the development server with:
+==== 3.4.1 On terminal B, start the development server with:
 
 [source,bash]
 ----
 $ npm start
 ----
 
-3.4.2  Open a browser.
-3.4.2 Navigate to http://localhost:8080/
+==== 3.4.2  See dapp in your browser
 
-Navigating to this URL displays a simple HTML page with a sample asset image file, an input field, and a button.
-For example:
-+
+To see your dapp running locally in the browser on +http://localhost:8080+.
+
 image:front-end-prompt.png[Sample HTML page]
 
 . Type a greeting, then click *Click Me* to return the greeting.
@@ -243,9 +256,20 @@ Few notes about cycles:
 
 * Cycles faucet will grant developers 15 trillion cycles 
 
-* It takes 4 trillion cycles to deploy a canister.
+* It takes 100 billion cycles to deploy a canister.
 
 * You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
+
+==== 4.2.1 Check your cycles balance
+
+Now that you have used the cycles faucet, you can check your cycles balance by running: 
+
+[source,bash]
+----
+$ dfx wallet --network ic balance
+----
+
+You should see around 15 Trillion cycles if you run this after using the cycles wallet. If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work.
 
 === 4.3 Check the connection to the Internet Computer blockchain mainnet (Terminal B)
 
@@ -315,7 +339,11 @@ Uploading assets to asset canister...
 Deployed canisters.
 ----
 
-Note, a common error one may get in section 4.4: `Error: The replica returned an HTTP Error: Http Error: status 403 Forbidden`. This error means that the canister does not have enough cycles to deploy. 
+In the example above, we created a `hello` dapp that is composed of two canisters: 
+
+a. `hello` canister `"5o6tz-saaaa-aaaaa-qaacq-cai"` which contains the backend logic.
+
+b. `hello_assets` canister `"5o6tz-saaaa-aaaaa-qaacq-cai"` which contains the frontend assets (e.g. HTML, JS, CSS).
 
 === 4.4 Testing the on-chain dapp via command line (Terminal B)
 
@@ -331,7 +359,32 @@ Note the way the message is constructed:
 * `hello greet` means we are sending a message to a canister named `hello` and evoking its `greet` method
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 
-== 5. Troubleshooting
+=== 4.5 Seeing and testing your dapp live on-chain
+
+Find your new canister's ID by running:
+
+[source, sh]
+----
+dfx canister --network ic id hello
+----
+
+Take that canister ID and visit +https://<canister-id>.ic0.app+, inserting your own canister ID as the subdomain in the URL.
+
+== 5. Conclusion
+
+== 5.1 What you have done
+You have done the following in this tutorial:
+
+* Installed the Canister SDK
+* Built and deployed a dap locally
+* Received free cycles for your dapp
+* Deployed your dapp on-chain
+
+== 5.2 Using your free cycles to power other dapps
+
+You can use the cycles you received earlier for other dapps.
+
+== 6. Troubleshooting
 
 === Resources
 

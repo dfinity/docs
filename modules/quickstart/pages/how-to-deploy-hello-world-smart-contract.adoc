@@ -351,6 +351,7 @@ $ dfx canister --network ic call hello greet '("everyone": text)'
 ----
 
 Note the way the message is constructed:
+
 * `dfx canister --network ic call` is setup for calling a canister on the IC
 
 * `hello greet` means we are sending a message to a canister named `hello` and evoking its `greet` method

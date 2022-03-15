@@ -193,10 +193,10 @@ Now that the canister is deployed to local replica, you can send it a message. S
 $ dfx canister call hello greet everyone
 ----
 
-* The `+dfx canister call+` command requires you to specify a canister name and a method—or function—to call.
-* `+hello+` specifies the name of the *canister* you want to call.
-* `+greet+` specifies the name of the *function* you want to call in the `+hello+` canister.
-* `+everyone+` is the text data type argument that you want to pass to the `+greet+` function.
+* The `dfx canister call` command requires you to specify a canister name and a method—or function—to call.
+* `hello` specifies the name of the *canister* you want to call.
+* `greet` specifies the name of the *function* you want to call in the `hello` canister.
+* `everyone` is the text data type argument that you want to pass to the `greet` function.
 
 === 3.4 Testing the dapp locally via the browser
 

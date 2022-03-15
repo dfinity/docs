@@ -267,7 +267,7 @@ Now that you have used the cycles faucet, you can check your cycles balance by r
 $ dfx wallet --network ic balance
 ----
 
-You should see around 15 Trillion cycles if you run this after using the cycles wallet. If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work.
+You should see around 15 trillion cycles if you run this after using the cycles wallet. If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work.
 
 === 4.3 Check the connection to the Internet Computer blockchain mainnet (Terminal B)
 

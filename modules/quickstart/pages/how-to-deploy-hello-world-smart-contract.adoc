@@ -25,7 +25,7 @@ In this tutorial, you will get free cycles from the cycles faucet.
 == Platforms and operating systems supported 
 
 * Linux
-* macOS (12.*.*)
+* macOS (12.\*.*)
 
 == 1. Installing tools (5 min)
 
@@ -69,9 +69,7 @@ Dapps on the Internet Computer start as projects, which are initiated by using t
 
 To create a new project for your first application:
 
-==== 2.1.1 Open a terminal shell on your local computer, if you don’t already have one open.
-
-==== 2.1.2 Create a new project named hello by running the following command:
+==== 2.1.1 Open a terminal shell on your computer and create a new project named "hello"
 
 [source,bash]
 ----
@@ -84,7 +82,7 @@ image:quickstart/dfx-new-hello-1.png[dfx new]
 
 image:quickstart/dfx-new-hello-2.png[dfx new]
 
-==== 2.1.3 Move to your project directory by running the following command:
+==== 2.1.2 Move to your project directory
 [source,bash]
 ----
 $ cd hello
@@ -112,12 +110,12 @@ Now that the code is there, the next step is to spin up a local version of the I
 
 For ease, this tutorial will distinguish between both windows by color scheme:
 
-*Terminal A*
+=== Terminal A
 
 image:quickstart/dfx-new-hello-2.png[dfx new]
 
 
-*Terminal B*
+=== Terminal B
 
 image:quickstart/terminal-b-ls.png[terminal b ls]
 
@@ -126,7 +124,7 @@ image:quickstart/terminal-b-ls.png[terminal b ls]
 
 Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
 
-Start the local canister execution environment in Terminal A by running:
+Start the local canister execution environment in Terminal A:
 
 [source,bash]
 ----
@@ -229,7 +227,7 @@ To stop the local deployment:
 
 . In the terminal B, press Control-C to interrupt the development server process.
 
-. Stop the local canister execution environment running on your local computer by running the following command:
+. Stop the local canister execution environment running on your local computer:
 +
 [source,bash]
 ----
@@ -258,7 +256,7 @@ For the purposes of this tutorial, you can acquire free cycles for your "hello w
 
 ==== 4.2.1 Check your cycles balance (Terminal B)
 
-Now that you have used the cycles faucet, you can check your cycles balance by running: 
+Now that you have used the cycles faucet, you can check your cycles balance: 
 
 [source,bash]
 ----
@@ -271,7 +269,7 @@ You should see around 15 trillion cycles if you run this after using the cycles 
 
 As sanity check, it is good practice to check if your connection to the IC is stable:
 
-Verify the current status of the Internet Computer blockchain and your ability to connect to it by running the following command for the network alias `ic`:
+Verify the current status of the Internet Computer blockchain and your ability to connect to it:
 
 [source,bash]
 ----
@@ -361,7 +359,7 @@ Note the way the message is constructed:
 
 === 4.6 See your dapp live on-chain via a browser
 
-Find your new canister's ID by running:
+Find your new canister's ID:
 
 [source,bash]
 ----

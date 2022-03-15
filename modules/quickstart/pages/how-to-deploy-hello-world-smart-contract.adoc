@@ -124,11 +124,9 @@ image:quickstart/terminal-b-ls.png[terminal b ls]
 
 === 3.1 Start the local version of the IC (Terminal A)
 
-1. Use the Terminal window/tab A on your local computer.
+Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
 
-2. Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
-
-3. Start the local canister execution environment on your computer in your Terminal A by running the following command:
+Start the local canister execution environment in Terminal A by running:
 
 [source,bash]
 ----

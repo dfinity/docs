@@ -209,7 +209,7 @@ Now that you have verified that your dapp has been deployed and tested its opera
 $ npm start
 ----
 
-==== 3.4.2  See dapp in your browser
+==== 3.4.2  Test dapp locally in the browser
 
 To see your dapp running locally in the browser on +http://localhost:8080+.
 
@@ -258,7 +258,7 @@ Additional notes about cycles:
 
 For the purposes of this tutorial, you can acquire free cycles for your "hello world" dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
 
-==== 4.2.1 Check your cycles balance
+==== 4.2.1 Check your cycles balance (Terminal B)
 
 Now that you have used the cycles faucet, you can check your cycles balance by running: 
 
@@ -343,7 +343,9 @@ a. `hello` canister `5o6tz-saaaa-aaaaa-qaacq-cai` which contains the backend log
 
 b. `hello_assets` canister `5o6tz-saaaa-aaaaa-qaacq-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
 
-=== 4.4 Testing the on-chain dapp via command line (Terminal B)
+Note: you will notice that the canister ids of for the same project are different between the local and the on-chain environments.
+
+=== 4.5 Testing the on-chain dapp via command line (Terminal B)
 
 Now that the canister is deployed on-chain, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
 
@@ -359,11 +361,11 @@ Note the way the message is constructed:
 
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 
-=== 4.5 Seeing and testing your dapp live on-chain
+=== 4.6 See your dapp live on-chain via a browser
 
 Find your new canister's ID by running:
 
-[source, sh]
+[source,bash]
 ----
 dfx canister --network ic id hello
 ----
@@ -389,3 +391,6 @@ You can use the cycles you received earlier for other dapps.
 === Resources
 
 * Developers who hit any blockers are encouraged to search or post in link:https://forum.dfinity.org[IC developer forum].
+
+* link:https://wiki.internetcomputer.org/wiki/Internet_Computer_wiki[Internet Computer wiki].
+

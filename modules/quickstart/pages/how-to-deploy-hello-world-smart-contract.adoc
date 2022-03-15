@@ -246,19 +246,17 @@ In order to run on-chain, IC dapps require cycles to pay for compute and storage
 
 This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens."
 
-=== 4.2 Acquiring cycles and adding them to your canister (Terminal B)
-
-For the purposes of this tutorial, you can acquire free cycles for your "hello world" dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
-
-Few notes about cycles: 
-
-* Cycles pay for computation and storage
+Additional notes about cycles: 
 
 * Cycles faucet will grant developers 15 trillion cycles 
 
 * It takes 100 billion cycles to deploy a canister.
 
 * You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
+
+=== 4.2 Acquiring cycles and adding them to your canister (Terminal B)
+
+For the purposes of this tutorial, you can acquire free cycles for your "hello world" dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
 
 ==== 4.2.1 Check your cycles balance
 
@@ -341,9 +339,9 @@ Deployed canisters.
 
 In the example above, we created a `hello` dapp that is composed of two canisters: 
 
-a. `hello` canister `"5o6tz-saaaa-aaaaa-qaacq-cai"` which contains the backend logic.
+a. `hello` canister `5o6tz-saaaa-aaaaa-qaacq-cai` which contains the backend logic.
 
-b. `hello_assets` canister `"5o6tz-saaaa-aaaaa-qaacq-cai"` which contains the frontend assets (e.g. HTML, JS, CSS).
+b. `hello_assets` canister `5o6tz-saaaa-aaaaa-qaacq-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
 
 === 4.4 Testing the on-chain dapp via command line (Terminal B)
 
@@ -356,7 +354,9 @@ $ dfx canister --network ic call hello greet '("everyone": text)'
 
 Note the way the message is constructed:
 * `dfx canister --network ic call` is setup for calling a canister on the IC
+
 * `hello greet` means we are sending a message to a canister named `hello` and evoking its `greet` method
+
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 
 === 4.5 Seeing and testing your dapp live on-chain
@@ -368,11 +368,11 @@ Find your new canister's ID by running:
 dfx canister --network ic id hello
 ----
 
-Take that canister ID and visit +https://<canister-id>.ic0.app+, inserting your own canister ID as the subdomain in the URL.
+Take that canister id and visit +https://<canister-id>.ic0.app+, inserting your own canister id as the subdomain in the URL.
 
 == 5. Conclusion
 
-== 5.1 What you have done
+=== 5.1 Wrap-up: What you have done
 You have done the following in this tutorial:
 
 * Installed the Canister SDK
@@ -380,7 +380,7 @@ You have done the following in this tutorial:
 * Received free cycles for your dapp
 * Deployed your dapp on-chain
 
-== 5.2 Using your free cycles to power other dapps
+=== 5.2 Using your free cycles to power other dapps
 
 You can use the cycles you received earlier for other dapps.
 

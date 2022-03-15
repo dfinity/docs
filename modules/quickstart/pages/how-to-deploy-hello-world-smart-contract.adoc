@@ -221,7 +221,7 @@ For example:
 +
 image:front-end-result.png[Hello, everyone! greeting]
 
-== 3.5 Stop the local canister execution environment
+=== 3.5 Stop the local canister execution environment
 
 After testing the application in the browser, you can stop the local canister execution environment so that it does not continue running in the background.
 

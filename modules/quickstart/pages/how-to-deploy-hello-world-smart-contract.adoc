@@ -25,7 +25,7 @@ In this tutorial, you will get free cycles from the cycles faucet.
 == Platforms and operating systems supported 
 
 * Linux
-* macOS (12.* Monterey)
+* macOS (12.*.*)
 
 == 1. Installing tools (5 min)
 
@@ -122,13 +122,11 @@ image:quickstart/terminal-b-ls.png[terminal b ls]
 
 === 3.1 Start the local version of the IC (Terminal A)
 
-==== 3.1.1 Use the Terminal window or tab on your local computer.
+1. Use the Terminal window/tab A on your local computer.
 
-==== 3.1.2. Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
+2. Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
 
-==== 3.1.3. Start the local canister execution environment on your computer in your second terminal by running the following command:
-
-
+3. Start the local canister execution environment on your computer in your Terminal A by running the following command:
 
 [source,bash]
 ----
@@ -140,15 +138,15 @@ image:quickstart/terminal-a-dfx-start.png[dfx start]
 
 Notes: 
 
-*  Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click Allow. 
+*  Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click "Allow." 
 
 * Check no other network process is running that would create a port conflict on 8000.
 
-*That is it, there is now a local version of the IC running on your machine. Leave this window/tab open and running while you continue.* If the window/tab is closed, the local version of the IC will not be running and the rest of the tutorial will fail.
+*Congratulations - there is now a local version of the IC running on your machine. Leave this window/tab open and running while you continue.* If the window/tab is closed, the local version of the IC will not be running and the rest of the tutorial will fail.
 
 === 3.2 Deploy the "hello" dapp to the local version of the IC (Terminal B)
 
-Note: since this is a local version of the IC, this has fewer steps than deploying to mainnet (which requires cycles).
+Note: since this is a local version of the IC, this section has fewer steps than deploying to mainnet (which requires cycles).
 
 To deploy your first dapp locally:
 
@@ -271,16 +269,16 @@ You should see around 15 Trillion cycles if you run this after using the cycles 
 
 === 4.3 Check the connection to the Internet Computer blockchain mainnet (Terminal B)
 
-As sanity check, it is good practice to check your connection to the IC is stable:
+As sanity check, it is good practice to check if your connection to the IC is stable:
 
-Check the current status of the Internet Computer blockchain and your ability to connect to it by running the following command for the network alias ic:
+Verify the current status of the Internet Computer blockchain and your ability to connect to it by running the following command for the network alias `ic`:
 
 [source,bash]
 ----
 $ dfx ping ic
 ----
 
-If successful you should see output similar to the following:
+If successful you will see an output resembling the following:
 
 [source,bash]
 ----

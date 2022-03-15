@@ -172,6 +172,18 @@ $ dfx deploy
 
 image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
 
+Your dapp is now composed of two canister smart contracts, as you can see in the copy below (from terminal B):
+
+[source, bash]
+----
+Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+----
+
+a. `hello` canister `rrkah-fqaaa-aaaaa-aaaaq-cai` which contains the backend logic.
+
+b. `hello_assets` canister `yjl3-tyaaa-aaaaa-aaaba-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
+
 === 3.3 Testing the dapp locally via command line (Terminal B)
 
 Now that the canister is deployed to local replica, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
@@ -197,11 +209,9 @@ Now that you have verified that your dapp has been deployed and tested its opera
 $ npm start
 ----
 
-==== 3.4.2  Open a browser and see dapp
+==== 3.4.2  See dapp in your browser
 
-To see your dapp running locally in the browser you need your canister id from step 3.2.2 when you deployed to your local server.
-
-Navigating to +http://localhost:8080/?canisterId=$canisterID+ where `canisterId` is the id displays a simple HTML page with a sample asset image file, an input field, and a button.
+To see your dapp running locally in the browser on +http://localhost:8080+.
 
 For example:
 +
@@ -331,9 +341,10 @@ Uploading assets to asset canister...
 Deployed canisters.
 ----
 
-In the example above, we created a `hello` dapp that has two canisters: 
+In the example above, we created a `hello` dapp that is composed of two canisters: 
 
 a. `hello` canister `"5o6tz-saaaa-aaaaa-qaacq-cai"` which contains the backend logic.
+
 b. `hello_assets` canister `"5o6tz-saaaa-aaaaa-qaacq-cai"` which contains the frontend assets (e.g. HTML, JS, CSS).
 
 === 4.4 Testing the on-chain dapp via command line (Terminal B)

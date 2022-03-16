@@ -380,15 +380,15 @@ $ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
 
 [source,bash]
 ----
-// This is just an example, this will only work with YOUR principal
+// This is just the structure, this will only work with YOUR principal
 $ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
 ----
 
-Filling it in with our example `principal` (**do not copy/paste this or your will lose your cycles**).
+Filling it in with our example `principal` and amount (**do not copy/paste this or your will lose your cycles**).
 [source,bash]
 ----
 // This is just an example, this will only work with YOUR principal
-$ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
+$ dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 0.5
 ----
 
 If the transaction is successful, the ledger records the event and you should see output similar to the following:
@@ -399,13 +399,13 @@ Transfer sent at BlockHeight: 20
 Canister created with id: "gastn-uqaaa-aaaae-aaafq-cai"
 ----
 
-This returned a canister with id `gastn-uqaaa-aaaae-aaafq-cai`. **This is NOT the `hello` canister we are creating in this tutorial.** This is a canister created for you and for only one purpose: hold your cycles and transfer them to your dapps.
+This returned a canister with id `gastn-uqaaa-aaaae-aaafq-cai`. **This is NOT the `hello` canister we are creating in this tutorial.** This is a canister created for you and for only one purpose: *hold your cycles and transfer them to your dapps.*
 
-The reason is simple: by design, cycles can only be contained within canisters (unlike ICP which are held in Ledger Canister). Since it has no other purpose, This is why this "cycle-holding canister" created for you above is sometimes referred to as the "cycles wallet". 
+The reason for this new canister is simple: by design, cycles can only be contained within canisters. Since this new "cycle-holding canister" has no other purpose, it is sometimes referred to as the "cycles wallet". 
 
 **3. Create a canister which will hold all your cycles and transfer them to your dapps**
 
-However there is only one last step: the canister created (while it does hold cycles)) is a generic canister and it does not have all the features required from a "cycles wallet", so we will use `dfx` to update its code with the code containing all the cycles wallet features: 
+However there is only one last step: the canister created above (while it does hold cycles) is a generic canister and it does not have all the features required from a "cycles wallet", so we will use `dfx` to update it with the code containing all the cycles wallet features: 
 
 [source,bash]
 ----

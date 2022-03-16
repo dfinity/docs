@@ -233,31 +233,9 @@ dfx stop
 ----
 
 
-== 4 Deploying on-chain (10-15 min)
+== 4. Acquiring cycles to deploy on-chain (10-15 min)
 
-Deploying on-chain is as simple as modifying the `dfx deploy` command. 95% of the work in this section will be in acquiring and managing cycles which you will use to deploy.
-
-=== 4.1 Check the connection to the Internet Computer blockchain (Terminal B)
-
-As sanity check, it is good practice to check if your connection to the IC is stable:
-
-Verify the current status of the Internet Computer blockchain and your ability to connect to it:
-
-[source,bash]
-----
-$ dfx ping ic
-----
-
-If successful you will see an output resembling the following:
-
-[source,bash]
-----
-$ {
-  "ic_api_version": "0.18.0"  "impl_hash": "d639545e0f38e075ad240fd4ec45d4eeeb11e1f67a52cdd449cd664d825e7fec"  "impl_version": "8dc1a28b4fb9605558c03121811c9af9701a6142"  "replica_health_status": "healthy"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 129, 76, 14, 110, 199, 31, 171, 88, 59, 8, 189, 129, 55, 60, 37, 92, 60, 55, 27, 46, 132, 134, 60, 152, 164, 241, 224, 139, 116, 35, 93, 20, 251, 93, 156, 12, 213, 70, 217, 104, 95, 145, 58, 12, 11, 44, 197, 52, 21, 131, 191, 75, 67, 146, 228, 103, 219, 150, 214, 91, 155, 180, 203, 113, 113, 18, 248, 71, 46, 13, 90, 77, 20, 80, 95, 253, 116, 132, 176, 18, 145, 9, 28, 95, 135, 185, 136, 131, 70, 63, 152, 9, 26, 11, 170, 174]
-}
-----
-
-=== 4.2 Cycles: an Introduction
+=== 4.1 Cycles: an Introduction
 
 In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles are created from ICP token. 
 
@@ -279,6 +257,26 @@ In this tutorial, we present two ways of acquiring cycles:
 * **Option 1:** Section **4.3** shows one how to get cycles via the cycles faucet (most common for new developers)
 * **Option 2:** Section **4.4** shows one how to get cycles via ICP token (most common for developers who want more cycles)
 
+=== 4.2 Check the connection to the Internet Computer blockchain (Terminal B)
+
+As sanity check, it is good practice to check if your connection to the IC is stable:
+
+Verify the current status of the Internet Computer blockchain and your ability to connect to it:
+
+[source,bash]
+----
+$ dfx ping ic
+----
+
+If successful you will see an output resembling the following:
+
+[source,bash]
+----
+$ {
+  "ic_api_version": "0.18.0"  "impl_hash": "d639545e0f38e075ad240fd4ec45d4eeeb11e1f67a52cdd449cd664d825e7fec"  "impl_version": "8dc1a28b4fb9605558c03121811c9af9701a6142"  "replica_health_status": "healthy"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 129, 76, 14, 110, 199, 31, 171, 88, 59, 8, 189, 129, 55, 60, 37, 92, 60, 55, 27, 46, 132, 134, 60, 152, 164, 241, 224, 139, 116, 35, 93, 20, 251, 93, 156, 12, 213, 70, 217, 104, 95, 145, 58, 12, 11, 44, 197, 52, 21, 131, 191, 75, 67, 146, 228, 103, 219, 150, 214, 91, 155, 180, 203, 113, 113, 18, 248, 71, 46, 13, 90, 77, 20, 80, 95, 253, 116, 132, 176, 18, 145, 9, 28, 95, 135, 185, 136, 131, 70, 63, 152, 9, 26, 11, 170, 174]
+}
+----
+
 === 4.3 Option 1: Acquiring cycles via free cycles faucet (2 min)
 
 This is option is best for people who want minimal time investment and have never used cycles faucet (faucet can be used only once).
@@ -294,9 +292,9 @@ Now that you have used the cycles faucet, you can check your cycles balance:
 $ dfx wallet --network ic balance
 ----
 
-You should see around 15 trillion cycles if you run this after using the cycles wallet. If so, you can skip to section **4.4**.
+You should see around 15 trillion cycles if you run this after using the cycles wallet. If so, skip to section **5. Deploying on-chain**.
 
-If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try section **4.3**.
+If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try **4.4 Option 2: Converting ICP token into cycles**.
 
 === 4.4 Option 2: Converting ICP token into cycles (5 min)
 
@@ -464,7 +462,7 @@ Transfer sent at BlockHeight: 81520
 Canister was topped up!
 ----
 
-=== 4.5 Deploying on-chain (Terminal B)
+== 5. Deploying on-chain (Terminal B)
 
 Now that you have your cycles and your dfx is configured to transfer cycles, you are now ready to deploy your `Hello` dapp on-chain.
 
@@ -520,7 +518,7 @@ b. `hello_assets` canister `5h5yf-eiaaa-aaaaa-qaada-cai` which contains the fron
 
 Note: you will notice that the canister ids of for the same project are different between the local (section 3 of this tutorial) and the on-chain environments.
 
-=== 4.6 Testing the on-chain dapp via command line (Terminal B)
+=== 5.1 Testing the on-chain dapp via command line (Terminal B)
 
 Now that the canister is deployed on-chain, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
 
@@ -537,7 +535,7 @@ Note the way the message is constructed:
 
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 
-=== 4.7 See your dapp live on-chain via a browser
+=== 5.2 See your dapp live on-chain via a browser
 
 Find your new canister's ID:
 
@@ -548,9 +546,9 @@ dfx canister --network ic id hello
 
 Take that canister id and visit +https://<canister-id>.ic0.app+, inserting the `hello_assets` canister id as the subdomain in the URL. In this tutorial, it is `5h5yf-eiaaa-aaaaa-qaada-cai`so it would be https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app+.
 
-== 5. Conclusion
+== 6. Conclusion
 
-=== 5.1 Wrap-up: What you have done
+=== 6.1 Wrap-up: What you have done
 You have done the following in this tutorial:
 
 * Installed the Canister SDK
@@ -559,11 +557,11 @@ You have done the following in this tutorial:
 * Created a "cycles wallet" that can transfer cycles to any other dapps you want to power
 * Deployed your dapp on-chain
 
-=== 5.2 Using your free cycles to power other dapps
+=== 6.2 Using your free cycles to power other dapps
 
 You can use the cycles you received earlier for other dapps.
 
-== 6. Troubleshooting
+== 7. Troubleshooting
 
 === Resources
 

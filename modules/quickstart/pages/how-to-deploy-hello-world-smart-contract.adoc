@@ -279,11 +279,11 @@ In this tutorial, we present two ways of acquiring cycles:
 * Option 1: Section **4.2** shows one how to get cycles via the cycles faucet (most common for new developers)
 * Option 2: Section **4.3** shows one how to get cycles via ICP token (most common for developers who want more cycles)
 
-=== 4.2 Option 1: Acquiring cycles via free cycles faucet (2 min)
+=== 4.3 Option 1: Acquiring cycles via free cycles faucet (2 min)
 
 For the purposes of this tutorial, you can acquire free cycles for your "hello world" dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
 
-==== 4.2.1 Check your cycles balance (Terminal B)
+==== 4.3.1 Check your cycles balance (Terminal B)
 
 Now that you have used the cycles faucet, you can check your cycles balance: 
 
@@ -296,7 +296,7 @@ You should see around 15 trillion cycles if you run this after using the cycles 
 
 If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try section **4.3**.
 
-=== 4.3 Option 2: Converting ICP token into cycles (5 min)
+=== 4.4 Option 2: Converting ICP token into cycles (5 min)
 
 ==== Basic Summary of this section
 To create cycles from ICP, the basic steps (which we will dive deeper in this **4.3**):
@@ -307,7 +307,7 @@ To create cycles from ICP, the basic steps (which we will dive deeper in this **
   * Note: This only works if the `account id` controlled `dfx` has ICP tokens.
 3. Create a canister which will hold all your cycles and transfer them to your dapps
 
-==== 4.3.1 Transfer ICP to the `account id` controlled *by your local version of `dfx`* (Terminal B)
+==== 4.4.1 Transfer ICP to the `account id` controlled *by your local version of `dfx`* (Terminal B)
 
 When you first installed `dfx`, it created and saved locally "developer identity" composed of:
 
@@ -337,7 +337,7 @@ $ dfx ledger --network ic balance
 
 If there is no ICP in the account, the rest of the tutorial will not work.
 
-==== 4.3.2 Use `dfx` to tell the Ledger canister holding your ICP tokens to convert your ICP into cycles (Terminal B)
+==== 4.4.2 Use `dfx` to tell the Ledger canister holding your ICP tokens to convert your ICP into cycles (Terminal B)
 
 Now that your `account id` has ICP tokens, we need to tell the Ledger Canister to convert it into cycles for us. The Ledger canister needs to know WHICH PRINCIPAL will control the cycles created, so we will send it the `principal` created locally by `dfx` as part of the developer identity.
 
@@ -425,7 +425,7 @@ The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae
 
 In the next section, we will deploy the `hello` dapp. This will require transfering cycles from the recently-created cycles-holding canister (`gastn-uqaaa-aaaae-aaafq-cai` in the example above).
 
-==== 4.3.3 Check your cycles are properly configured with your dfx (Terminal B)
+==== 4.4.3 Check your cycles are properly configured with your dfx (Terminal B)
 
 Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
 
@@ -458,7 +458,7 @@ Transfer sent at BlockHeight: 81520
 Canister was topped up!
 ----
 
-=== 4.4 Deploying on-chain (Terminal B)
+=== 4.5 Deploying on-chain (Terminal B)
 
 Now that you have your cycles and your dfx is configured to transfer cycles, you are now ready to deploy your `hello` dapp on-chain.
 
@@ -514,7 +514,7 @@ b. `hello_assets` canister `5o6tz-saaaa-aaaaa-qaacq-cai` which contains the fron
 
 Note: you will notice that the canister ids of for the same project are different between the local (section 3 of this tutorial) and the on-chain environments.
 
-=== 4.5 Testing the on-chain dapp via command line (Terminal B)
+=== 4.6 Testing the on-chain dapp via command line (Terminal B)
 
 Now that the canister is deployed on-chain, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
 
@@ -531,7 +531,7 @@ Note the way the message is constructed:
 
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 
-=== 4.6 See your dapp live on-chain via a browser
+=== 4.7 See your dapp live on-chain via a browser
 
 Find your new canister's ID:
 
@@ -550,6 +550,7 @@ You have done the following in this tutorial:
 * Installed the Canister SDK
 * Built and deployed a dap locally
 * Received free cycles for your dapp
+* Created a "cycles wallet" that can transfer cycles to any other dapps you want to power
 * Deployed your dapp on-chain
 
 === 5.2 Using your free cycles to power other dapps

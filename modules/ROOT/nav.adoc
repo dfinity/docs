@@ -20,7 +20,7 @@
 ** xref:samples:tokentransfer.adoc[Token Transfer]
 // ** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 // ** xref:samples:hackathon-projects.adoc[Hackathon Projects]
-** xref:samples:codelabs.adoc[CodeLabs]
+// ** xref:samples:codelabs.adoc[CodeLabs]
 
 * Developer Docs
 ** Getting Started

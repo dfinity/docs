@@ -17,7 +17,7 @@ See link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy h
 
 == More Sample Code
 
-Once you finish your first dap, you can see more robust examples (e.g. DAOs, NFTs, etc...) in link:../examples/index{outfilesuffix}[Sample code and dapps].
+Once you finish your first dap, you can see more robust sample code (e.g. DAOs, NFTs, etc...) in link:../samples/index{outfilesuffix}[Sample code and dapps].
 
 == Want to learn more?
 

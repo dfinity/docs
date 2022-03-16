@@ -22,6 +22,8 @@ While the code comes ready out of the box for you, this dapp consists of back-en
 
 * Linux
 * macOS (12.\*.*)
+** Intel
+** M1 (may require link:https://support.apple.com/en-us/HT211861[Apple's Rosetta]) that enables a Mac with Apple silicon to use apps built for a Mac with an Intel processor.
 
 == 1. Installing tools (5 min)
 

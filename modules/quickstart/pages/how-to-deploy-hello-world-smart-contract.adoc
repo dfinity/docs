@@ -261,9 +261,11 @@ $ {
 
 In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles are created from ICP token. 
 
-This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto or blockchain, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens."
+This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto or blockchain, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens." 
 
-Additional notes about cycles: 
+You may wonder why dapps do not just on ICP tokens. Why create a new construct of cycles? The reason is that ICP tokens afluctuate wildly with the crypto market, but cycles are pedictable and relatively stable token which is pegged to link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR]. One trillion cycles will always cost one SDR, regardless of the price of ICP.
+
+Practical notes about cycles: 
 
 * There is a free link:cycles-faucet{outfilesuffix}[free cycles faucet] that grants new developers 15 trillion cycles 
 
@@ -271,12 +273,13 @@ Additional notes about cycles:
 
 * You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
 
+
 In this tutorial, we present two ways of acquiring cycles: 
 
 * Option 1: Section **4.2** shows one how to get cycles via the cycles faucet (most common for new developers)
 * Option 2: Section **4.3** shows one how to get cycles via ICP token (most common for developers who want more cycles)
 
-=== 4.2 Option1: Acquiring cycles via free cycles faucet (2 min)
+=== 4.2 Option 1: Acquiring cycles via free cycles faucet (2 min)
 
 For the purposes of this tutorial, you can acquire free cycles for your "hello world" dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
 
@@ -293,7 +296,7 @@ You should see around 15 trillion cycles if you run this after using the cycles 
 
 If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try section **4.3**.
 
-=== 4.3 Option 2: Acquiring cycles via ICP token (5 min)
+=== 4.3 Option 2: Converting ICP token into cycles (5 min)
 
 ==== Basic Summary of this section
 To create cycles from ICP (to power your canisters), the basic steps (which we will dive deeper in are):

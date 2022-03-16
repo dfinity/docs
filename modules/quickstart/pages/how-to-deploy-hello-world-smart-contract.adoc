@@ -229,7 +229,7 @@ To stop the local deployment:
 +
 [source,bash]
 ----
-dfx stop
+$ dfx stop
 ----
 
 
@@ -442,7 +442,7 @@ The command returns the balance for the your cycles wallet. For example:
 
 [source, bash]
 ----
-$ 15430122328028812 cycles.
+15430122328028812 cycles.
 ----
 
 For this tutorial, make sure you have at least 3 trillion cycles (3000000000000).
@@ -543,7 +543,7 @@ Find your new canister's ID:
 
 [source,bash]
 ----
-dfx canister --network ic id hello
+$ dfx canister --network ic id hello
 ----
 
 Take that canister id and visit +https://<canister-id>.ic0.app+, inserting the `hello_assets` canister id as the subdomain in the URL. In this tutorial, it is `5h5yf-eiaaa-aaaaa-qaada-cai`so it would be https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app+.

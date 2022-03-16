@@ -100,7 +100,7 @@ Now that the code is there, the next step is to spin up a local version of the I
 * *Terminal window/tab A:* 
 
 ** Shows the local version of the IC running
-** Is analogous to how developers often start local servers in web2 projects (e.g. node.js's Express, python's Django, Ruby's Rails, etc...)
+** Is analogous to how developers often start local servers in web2 projects (e.g. Node.js's Express, Python's Django, Ruby's Rails, etc...)
 
 * *Terminal window/tab B:* 
 ** Used to send *messages* to the local version of the IC

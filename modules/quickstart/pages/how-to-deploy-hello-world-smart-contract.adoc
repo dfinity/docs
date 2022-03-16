@@ -5,7 +5,7 @@ This is a fast and minimalist tutorial for deploying a "hello world" smart contr
 
 == Introduction
 
-In this tutorial, we will deploy a simple `Hello` canister smart contract that has just one function—called `greet`. The `greet` function accepts one text argument and returns the result with a greeting. For example, if you call the `greet` method with the text argument `Alice`.
+In this tutorial, we will deploy a simple `Hello` dapp that has just one function—called `greet`. The `greet` function accepts one text argument and returns the result with a greeting. For example, if you call the `greet` method with the text argument `Alice`.
 
 a. If you call it via the command-line, dapp will return `Hello, Alice!` in a terminal
 b. If you access the dapp in a browser, it will alert pop-up window reading `Hello, Alice!`
@@ -22,8 +22,10 @@ While the code comes ready out of the box for you, this dapp consists of back-en
 
 * Linux
 * macOS (12.\*.*)
+** Intel
+** M1 (may require link:https://support.apple.com/en-us/HT211861[Apple's Rosetta]) that enables a Mac with Apple silicon to use apps built for a Mac with an Intel processor.
 
-== 1. Installing tools (5 min)
+== 1. Installing tools
 
 To build a dapp, users need to install the following:
 
@@ -58,10 +60,10 @@ Terminal should look like this (at least version 0.9.2):
 
 image:quickstart/dfx-version.png[dfx version]
 
-== 2. Create a default project (2 min)
+== 2. Create a default project (1 min)
 
 === 2.1 Launch a new project 
-Dapps on the Internet Computer start as projects, which are initiated by using the dfx parent command and its subcommands. You create projects using the `dfx` parent command and its subcommands. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the `dfx`` command-line interface adds a default project directory structure to your workspace. 
+Dapps on the Internet Computer start as projects, which are initiated by using the dfx parent command and its subcommands. You create projects using the `dfx` parent command and its subcommands. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace. 
 
 To create a new project for your first application:
 
@@ -98,7 +100,7 @@ Now that the code is there, the next step is to spin up a local version of the I
 * *Terminal window/tab A:* 
 
 ** Shows the local version of the IC running
-** Is analogous to how developers often start local servers in web2 projects (e.g. node.js's Express, python's Django, Ruby's Rails, etc...)
+** Is analogous to how developers often start local servers in web2 projects (e.g. Node.js's Express, Python's Django, Ruby's Rails, etc...)
 
 * *Terminal window/tab B:* 
 ** Used to send *messages* to the local version of the IC
@@ -144,7 +146,7 @@ Note: since this is a local version of the IC, this section has fewer steps than
 
 To deploy your first dapp locally:
 
-==== 3.2.1. Check that you are still in the root directory for your project, if needed.
+==== 3.2.1 Check that you are still in the root directory for your project, if needed.
 
 Ensure that node modules are available in your project directory, if needed, by running the following command (it does not hurt to run this many times):
 
@@ -155,7 +157,7 @@ $ npm install
 
 image:quickstart/terminal-b-npm-install.png[npm install]
 
-==== 3.2.2. Register, build and deploy dapp:
+==== 3.2.2 Register, build and deploy dapp:
 
 [source,bash]
 ----
@@ -215,7 +217,7 @@ image:front-end-result.png[Hello, everyone! greeting]
 
 === 3.5 Stop the local canister execution environment
 
-After testing the application in the browser, you can stop the local canister execution environment so that it does not continue running in the background.
+After testing the application in the browser, you can stop the local canister execution environment so that it does not continue running in the background. We will not need it running to deploy on-chain.
 
 To stop the local deployment:
 
@@ -227,41 +229,35 @@ To stop the local deployment:
 +
 [source,bash]
 ----
-dfx stop
+$ dfx stop
 ----
 
-== 4. Deploying on-chain (10 min)
 
-=== Important note about cycles
+== 4. Acquiring cycles to deploy on-chain (10-15 min)
 
-In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles can be converted from ICP token. 
+=== 4.1 Cycles: an Introduction
 
-This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens."
+In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles are created from ICP token. 
 
-Additional notes about cycles: 
+This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto or blockchain, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens." 
 
-* Cycles faucet will grant developers 15 trillion cycles 
+You may wonder why dapps do not just on ICP tokens. Why create a new construct of cycles? The reason is that ICP tokens afluctuate wildly with the crypto market, but cycles are pedictable and relatively stable token which is pegged to link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR]. One trillion cycles will always cost one SDR, regardless of the price of ICP.
 
-* It takes 100 billion cycles to deploy a canister.
+Practical notes about cycles: 
+
+* There is a free link:cycles-faucet{outfilesuffix}[free cycles faucet] that grants new developers 15 trillion cycles 
+
+* It takes 100 billion cycles to deploy a canister, but in order to load up the canister with sufficient cycles, `dfx` injects 3 trillion cycles for any canister created (this is a parameter that can be changed).
 
 * You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
 
-=== 4.2 Acquiring cycles and adding them to your canister (Terminal B)
 
-For the purposes of this tutorial, you can acquire free cycles for your "hello world" dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
+In this tutorial, we present two ways of acquiring cycles: 
 
-==== 4.2.1 Check your cycles balance (Terminal B)
+* **Option 1:** Section **4.3** shows one how to get cycles via the cycles faucet (most common for new developers)
+* **Option 2:** Section **4.4** shows one how to get cycles via ICP token (most common for developers who want more cycles)
 
-Now that you have used the cycles faucet, you can check your cycles balance: 
-
-[source,bash]
-----
-$ dfx wallet --network ic balance
-----
-
-You should see around 15 trillion cycles if you run this after using the cycles wallet. If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work.
-
-=== 4.3 Check the connection to the Internet Computer blockchain mainnet (Terminal B)
+=== 4.2 Check the connection to the Internet Computer blockchain (Terminal B)
 
 As sanity check, it is good practice to check if your connection to the IC is stable:
 
@@ -281,9 +277,196 @@ $ {
 }
 ----
 
-=== 4.4 Deploying on-chain (Terminal B)
+=== 4.3 Option 1: Acquiring cycles via free cycles faucet (2 min)
 
-You are now ready to deploy your dapp on-chain.
+This is option is best for people who want minimal time investment and have never used cycles faucet (faucet can be used only once).
+
+For the purposes of this tutorial, you can acquire free cycles for your `Hello` dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
+
+==== 4.3.1 Check your cycles balance (Terminal B)
+
+Now that you have used the cycles faucet, you can check your cycles balance: 
+
+[source,bash]
+----
+$ dfx wallet --network ic balance
+----
+
+You should see around 15 trillion cycles if you run this after using the cycles wallet. If so, skip to section **5. Deploying on-chain**.
+
+If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try **4.4 Option 2: Converting ICP token into cycles**.
+
+=== 4.4 Option 2: Converting ICP token into cycles (5 min)
+
+This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
+
+==== Basic Summary of this section
+To create cycles from ICP, the basic steps (which we will dive deeper in this **4.3**):
+
+1. Transfer ICP to the `account id` controlled *by your local version of `dfx`*.
+  * Note: Ths typicall requires transferring ICP *from an exchange, wallet, or NNS Frontend dapp* to the `acccount id` controlled by `dfx`.
+2. Use `dfx` to tell Ledger canister to convert your ICP into cycles. 
+  * Note: This only works if the `account id` controlled `dfx` has ICP tokens.
+3. Create a canister which will hold all your cycles and transfer them to your dapps
+
+==== 4.4.1 Transfer ICP to the `account id` controlled *by your local version of `dfx`* (Terminal B)
+
+When you first installed `dfx`, it created and saved locally "developer identity" composed of:
+
+a. Ledger `account id`
+** this is where ICP controlled by `dfx` are stored. 
+** Example: `03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223`. 
+
+b. `principal`
+** an identifier for an entity on the IC such as a user, a canister (dapps/smart contracts), or a subnet. In this case, `dfx` has a principal which is how it identifies itself to the IC.
+** Example: `tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`.
+
+
+**1. Find your Ledger `account id` controlled by dfx**
+[source,bash]
+----
+$ dfx ledger account-id
+----
+
+**2. Transfer ICP to your Ledger `account id`**
+
+You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP tokens to the `account id` from Step #1 above. For the sake of this tutorial, sending it 2 ICP tokens would be more than enough to deploy.
+
+**3. Confirm there is ICP in the account**
+
+[source,bash]
+----
+$ dfx ledger --network ic balance
+----
+
+If there is no ICP in the account, the rest of the tutorial will not work.
+
+==== 4.4.2 Use `dfx` to tell Ledger canister to convert your ICP into cycles (Terminal B)
+
+Now that your `account id` has ICP tokens, we need to tell the Ledger Canister to convert it into cycles for us. The Ledger canister needs to know WHICH PRINCIPAL will control the cycles created, so we will send it the `principal` created locally by `dfx` as part of the developer identity.
+
+Note: Savvy readers may wonder why Ledger Canister needs to know the `principal` at all since the `principal` controls `account id`. The answer is that `dfx` can actually set a *different* principal in case it wants another entity to controls the cycles created in this step.
+
+**1. Find the `principal` used by your dfx**
+
+[source,bash]
+----
+$ dfx identity get-principal
+----
+Example output: 
+[source,bash]
+----
+$ tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+----
+
+This is the `principal` you will use in following sections.
+
+**2. Tell Ledger Canister to convert your ICP to cycles (and give the `principal` control of the cycles)**
+
+We will use this structure:
+
+[source,bash]
+----
+// This is just the structure, this will not run
+$ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
+----
+
+* $PRINCIPAL = the `principal` from step 1 above.
+** Example: `tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`
+* $ICP_TOKEN_AMOUNT = the amount of ICP to convert into cycles.
+** Example: 0.5
+
+[source,bash]
+----
+// This is just the structure, this will only work with YOUR principal
+$ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
+----
+
+Filling it in with our example `principal` and amount (**do not copy/paste this or your will lose your cycles**).
+[source,bash]
+----
+// This is just an example, this will only work with YOUR principal
+$ dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 0.5
+----
+
+If the transaction is successful, the ledger records the event and you should see output similar to the following:
+
+[source,bash]
+----
+Transfer sent at BlockHeight: 20
+Canister created with id: "gastn-uqaaa-aaaae-aaafq-cai"
+----
+
+This returned a canister with id `gastn-uqaaa-aaaae-aaafq-cai`. **This is NOT the `Hello` dapp we are creating in this tutorial.** This is a canister created for you and for only one purpose: *hold your cycles and transfer them to your dapps.*
+
+The reason for this new canister is simple: by design, cycles can only be contained within canisters. Since this new "cycle-holding canister" has no other purpose, it is sometimes referred to as the "cycles wallet". 
+
+**3. Create a canister which will hold all your cycles and transfer them to your dapps**
+
+However there is only one last step: the canister created above (while it does hold cycles) is a generic canister and it does not have all the features required from a "cycles wallet", so we will use `dfx` to update it with the code containing all the cycles wallet features: 
+
+[source,bash]
+----
+// This is just an example, this will only work with YOUR CYCLE WALLET principal from above
+$ dfx identity --network ic deploy-wallet $CYCLES_WALLET_CANISTER_ID
+----
+
+In our example, $CYCLES_WALLET_CANISTER_ID is `gastn-uqaaa-aaaae-aaafq-cai` so the command 
+
+Filling it in with our example `$CYCLES_WALLET_CANISTER_ID` (**do not copy/paste this or your will lose your cycles**).
+[source,bash]
+----
+// This is just an example, this will only work with YOUR principal
+$ dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai
+----
+
+If the transaction is successful, the ledger records the event and you should see output similar to the following:
+[source,bash]
+----
+Creating a wallet canister on the ic network.
+The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae-aaafq-cai"
+----
+
+In the next section, we will deploy the `Hello` dapp. This will require transfering cycles from the recently-created cycles-holding canister (`gastn-uqaaa-aaaae-aaafq-cai` in the example above).
+
+==== 4.4.3 Check your cycles are properly configured with your dfx (Terminal B)
+
+Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
+
+[source, bash]
+----
+$ dfx wallet --network ic balance
+----
+
+The command returns the balance for the your cycles wallet. For example:
+
+[source, bash]
+----
+15430122328028812 cycles.
+----
+
+For this tutorial, make sure you have at least 3 trillion cycles (3000000000000).
+
+If you didn’t convert enough ICP tokens to cycles to complete the operation, you can add cycles to your cycles wallet by running a command similar to the following:
+
+[source, bash]
+----
+$ dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005
+----
+
+This command converts an additional 1.005 ICP tokens to cycles for the `gastn-uqaaa-aaaae-aaafq-cai` cycles wallet created in step 2 of 4.3.2. The command returns output similar to the following:
+
+[source, bash]
+----
+Transfer sent at BlockHeight: 81520
+Canister was topped up!
+----
+
+== 5. Deploying on-chain (1 min)
+
+=== 5.1 Deploy the dapp on-chain via dfx (Terminal B)
+
+Now that you have your cycles and your dfx is configured to transfer cycles, you are now ready to deploy your `Hello` dapp on-chain.
 
 [source,bash]
 ----
@@ -329,15 +512,15 @@ Uploading assets to asset canister...
 Deployed canisters.
 ----
 
-In the example above, we created a `hello` dapp that is composed of two canisters: 
+In the example above, we created a `Hello` dapp that is composed of two canisters: 
 
 a. `hello` canister `5o6tz-saaaa-aaaaa-qaacq-cai` which contains the backend logic.
 
-b. `hello_assets` canister `5o6tz-saaaa-aaaaa-qaacq-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
+b. `hello_assets` canister `5h5yf-eiaaa-aaaaa-qaada-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
 
-Note: you will notice that the canister ids of for the same project are different between the local and the on-chain environments.
+Note: you will notice that the canister ids of for the same project are different between the local (section 3 of this tutorial) and the on-chain environments.
 
-=== 4.5 Testing the on-chain dapp via command line (Terminal B)
+=== 5.2 Testing the on-chain dapp via command line (Terminal B)
 
 Now that the canister is deployed on-chain, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
 
@@ -354,32 +537,33 @@ Note the way the message is constructed:
 
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 
-=== 4.6 See your dapp live on-chain via a browser
+=== 5.3 See your dapp live on-chain via a browser
 
 Find your new canister's ID:
 
 [source,bash]
 ----
-dfx canister --network ic id hello
+$ dfx canister --network ic id hello
 ----
 
-Take that canister id and visit +https://<canister-id>.ic0.app+, inserting your own canister id as the subdomain in the URL.
+Take that canister id and visit +https://<canister-id>.ic0.app+, inserting the `hello_assets` canister id as the subdomain in the URL. In this tutorial, it is `5h5yf-eiaaa-aaaaa-qaada-cai` so it would be https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app+.
 
-== 5. Conclusion
+== 6. Conclusion
 
-=== 5.1 Wrap-up: What you have done
+=== 6.1 Wrap-up: What you have done
 You have done the following in this tutorial:
 
 * Installed the Canister SDK
 * Built and deployed a dap locally
 * Received free cycles for your dapp
+* Created a "cycles wallet" that can transfer cycles to any other dapps you want to power
 * Deployed your dapp on-chain
 
-=== 5.2 Using your free cycles to power other dapps
+=== 6.2 Using your free cycles to power other dapps
 
 You can use the cycles you received earlier for other dapps.
 
-== 6. Troubleshooting
+== 7. Troubleshooting
 
 === Resources
 

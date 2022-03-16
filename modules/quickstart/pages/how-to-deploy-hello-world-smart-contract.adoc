@@ -276,12 +276,14 @@ Practical notes about cycles:
 
 In this tutorial, we present two ways of acquiring cycles: 
 
-* Option 1: Section **4.2** shows one how to get cycles via the cycles faucet (most common for new developers)
-* Option 2: Section **4.3** shows one how to get cycles via ICP token (most common for developers who want more cycles)
+* **Option 1:** Section **4.3** shows one how to get cycles via the cycles faucet (most common for new developers)
+* **Option 2:** Section **4.4** shows one how to get cycles via ICP token (most common for developers who want more cycles)
 
 === 4.3 Option 1: Acquiring cycles via free cycles faucet (2 min)
 
-For the purposes of this tutorial, you can acquire free cycles for your "hello world" dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
+This is option is best for people who want minimal time investment and have never used cycles faucet (faucet can be used only once).
+
+For the purposes of this tutorial, you can acquire free cycles for your `hello` dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
 
 ==== 4.3.1 Check your cycles balance (Terminal B)
 
@@ -298,6 +300,8 @@ If you do not see any cycles, deploying on-chain in the rest of the tutorial wil
 
 === 4.4 Option 2: Converting ICP token into cycles (5 min)
 
+This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
+
 ==== Basic Summary of this section
 To create cycles from ICP, the basic steps (which we will dive deeper in this **4.3**):
 
@@ -311,24 +315,26 @@ To create cycles from ICP, the basic steps (which we will dive deeper in this **
 
 When you first installed `dfx`, it created and saved locally "developer identity" composed of:
 
-a. Ledger `account id` - this is where ICP controlled by `dfx` are stored. 
+a. Ledger `account id`
+** this is where ICP controlled by `dfx` are stored. 
 ** Example: `03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223`. 
 
-b. `principal` - an identifier for an entity on the IC such as a user, a canister (dapps/smart contracts), or a subnet. In this case, `dfx` has a principal which is how it identifies itself to the IC.
+b. `principal`
+** an identifier for an entity on the IC such as a user, a canister (dapps/smart contracts), or a subnet. In this case, `dfx` has a principal which is how it identifies itself to the IC.
 ** Example: `tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`.
 
 
-1. Find your Ledger `account id` controlled by dfx
+**1. Find your Ledger `account id` controlled by dfx**
 [source,bash]
 ----
 $ dfx ledger account-id
 ----
 
-2. Transfer ICP to your Ledger `account id`
+**2. Transfer ICP to your Ledger `account id`**
 
 You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP tokens to the `account id` from Step #1 above. For the sake of this tutorial, sending it 2 ICP tokens would be more than enough to deploy.
 
-3. Confirm there is ICP in the account
+**3. Confirm there is ICP in the account**
 
 [source,bash]
 ----
@@ -337,7 +343,7 @@ $ dfx ledger --network ic balance
 
 If there is no ICP in the account, the rest of the tutorial will not work.
 
-==== 4.4.2 Use `dfx` to tell the Ledger canister holding your ICP tokens to convert your ICP into cycles (Terminal B)
+==== 4.4.2 Use `dfx` to tell Ledger canister to convert your ICP into cycles (Terminal B)
 
 Now that your `account id` has ICP tokens, we need to tell the Ledger Canister to convert it into cycles for us. The Ledger canister needs to know WHICH PRINCIPAL will control the cycles created, so we will send it the `principal` created locally by `dfx` as part of the developer identity.
 

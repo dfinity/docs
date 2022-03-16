@@ -60,7 +60,7 @@ Terminal should look like this (at least version 0.9.2):
 
 image:quickstart/dfx-version.png[dfx version]
 
-== 2. Create a default project (2 min)
+== 2. Create a default project (1 min)
 
 === 2.1 Launch a new project 
 Dapps on the Internet Computer start as projects, which are initiated by using the dfx parent command and its subcommands. You create projects using the `dfx` parent command and its subcommands. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace. 

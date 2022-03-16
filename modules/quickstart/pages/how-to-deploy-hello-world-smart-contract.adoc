@@ -462,7 +462,9 @@ Transfer sent at BlockHeight: 81520
 Canister was topped up!
 ----
 
-== 5. Deploying on-chain (Terminal B)
+== 5. Deploying on-chain (1 min)
+
+=== 5.1 Deploy the dapp on-chain via dfx (Terminal B)
 
 Now that you have your cycles and your dfx is configured to transfer cycles, you are now ready to deploy your `Hello` dapp on-chain.
 
@@ -518,7 +520,7 @@ b. `hello_assets` canister `5h5yf-eiaaa-aaaaa-qaada-cai` which contains the fron
 
 Note: you will notice that the canister ids of for the same project are different between the local (section 3 of this tutorial) and the on-chain environments.
 
-=== 5.1 Testing the on-chain dapp via command line (Terminal B)
+=== 5.2 Testing the on-chain dapp via command line (Terminal B)
 
 Now that the canister is deployed on-chain, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
 
@@ -535,7 +537,7 @@ Note the way the message is constructed:
 
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 
-=== 5.2 See your dapp live on-chain via a browser
+=== 5.3 See your dapp live on-chain via a browser
 
 Find your new canister's ID:
 

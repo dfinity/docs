@@ -5,7 +5,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: Internet Computer
 :company-id: DFINITY
 
-Cascading stylesheets are an important part of any front-end user interface. The default starter is configured to import a `main.css` file that you can edit, but you may prefer to import your stylesheet into a JavaScript file, or to use an alternate format such as Syntactically Awesome Style Sheets, aka SCSS.
+Cascading stylesheets are an important part of any front-end user interface. The default starter is configured to import a `main.css` file that you can edit, but you may prefer to import your stylesheet into a JavaScript file, or to use an alternate format such as Syntactically Awesome Style Sheets, aka SASS.
 This tutorial illustrates how to configure webpack to import a stylesheet by walking through building a contact dapp.
 If you already know how to add cascading stylesheets (CSS) to a webpack-based project, you can skip this tutorial.
 
@@ -131,7 +131,7 @@ Note: if you want to add support for `+.scss+` or `+.sass+` files, you should in
 +
 [source,bash]
 ----
-npm install --save react react-dom
+npm install --save-dev sass-loader
 ----
 + 
 and then add this additional rule beneath the `+css-loader+` rule in `+webpack.config.js+`:

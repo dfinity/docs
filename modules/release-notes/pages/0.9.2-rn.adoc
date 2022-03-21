@@ -161,7 +161,7 @@ definitions defined by mock.mo, but `dfx build --network ic` will build app agai
 
 This way, you can define public update/query functions to aid in local testing, but
 when building/deploying to mainnet, references to methods not found in `ledger.public.did`
-will be reports as compilation errors.
+will be reported as compilation errors.
 
 [source, json]
 ----

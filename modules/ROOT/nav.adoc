@@ -16,7 +16,7 @@
 ** xref:samples:dex.adoc[Basic DEX]
 ** xref:samples:nft.adoc[NFT Minting]
 ** xref:samples:dao.adoc[Basic DAO]
-** xref:samples:encrypted-notes.adoc[Encrypted Note-taking]
+** xref:samples:encrypted-notes.adoc[Encrypted Notes]
 ** xref:samples:tokentransfer.adoc[Token Transfer]
 // ** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
 // ** xref:samples:hackathon-projects.adoc[Hackathon Projects]

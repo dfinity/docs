@@ -46,14 +46,14 @@ The Canister SDK used in this tutorial is called `dfx` and it is maintained by t
 To install, one needs to run:
 [source,bash]
 ----
-$ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
 
 To verify it is properly installed:
 [source,bash]
 ----
-$ dfx --version
+dfx --version
 ----
 
 Terminal should look like this (at least version 0.9.3):

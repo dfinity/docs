@@ -10,7 +10,6 @@ An overview of the {release} release:
 
 == Changes to DFX
 
-
 === New feature: dfx deploy now displays URLs for the frontend and candid interface
 
 === dfx.json

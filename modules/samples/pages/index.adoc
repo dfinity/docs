@@ -23,7 +23,7 @@ https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] • https://
 
 === NFT minting
 This NFT minting dapp showcases how easy it can be to create a user generated NFT and share it. This dapp uses the https://github.com/Psychedelic/DIP721[DIP721] NFT standard. +
-https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container[Rust] • xref:examples:nft.adoc[Technical docs]
+https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container[Rust] • xref:samples:nft.adoc[Technical docs]
 
 === Basic DAO
 Decentralised governance is higlight of the IC and is illustrated by the basic DAO sample code. It illustrates how to initialize a set of accounts and corresponding tokens, how account owners can sumit proposals for other account owners to vote on, and how a proposal is executed given enough favorable votes.  + 

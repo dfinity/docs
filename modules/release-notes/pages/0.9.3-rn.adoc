@@ -10,6 +10,7 @@ An overview of the {release} release:
 
 == Changes to DFX
 
+
 === New feature: dfx deploy now displays URLs for the frontend and candid interface
 
 === dfx.json
@@ -41,6 +42,8 @@ Updated icx-proxy to commit 594b6c81cde6da4e08faee8aa8e5a2e6ae815602, now static
 Updated replica to blessed commit 257c24b257ca4a4c129232665f6696e245caa441.
 This incorporates the following executed proposals:
 
+* https://dashboard.internetcomputer.org/proposal/49653[49653]
+* https://dashboard.internetcomputer.org/proposal/49011[49011]
 * https://dashboard.internetcomputer.org/proposal/48427[48427]
 * https://dashboard.internetcomputer.org/proposal/47611[47611]
 * https://dashboard.internetcomputer.org/proposal/47512[47512]

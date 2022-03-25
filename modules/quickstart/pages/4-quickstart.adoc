@@ -27,7 +27,7 @@ By the end of this section, you will now have three canisters:
 * `hello_assets` canister in your project (not yet deployed to the IC)
 * Your cycles wallet canister that holds your cycles (deployed on the IC)
 
-image:quickstart/3-canisters-hello-dapp.png[hello Dapp and cycles wallet]
+image:quickstart/3-canisters-hello-dapp.png[hello dapp and cycles wallet]
 
 == 4.2 Check the connection to the Internet Computer blockchain (Terminal B)
 

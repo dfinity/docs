@@ -1,0 +1,81 @@
+= 4. Acquiring Cycles to Deploy On-chain (10-15 min)
+
+== 4.1 Cycles: an Introduction
+
+In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles are created from ICP token. 
+
+This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto or blockchain, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens." 
+
+You may wonder why dapps do not just on ICP tokens. Why create a new construct of cycles? The reason is that ICP tokens fluctuate wildly with the crypto market, but cycles are predictable and relatively stable token which is pegged to link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR]. One trillion cycles will always cost one SDR, regardless of the price of ICP.
+
+Practical notes about cycles: 
+
+* There is a free link:cycles-faucet{outfilesuffix}[free cycles faucet] that grants new developers 15 trillion cycles 
+
+* It takes 100 billion cycles to deploy a canister, but in order to load up the canister with sufficient cycles, `dfx` injects 3 trillion cycles for any canister created (this is a parameter that can be changed).
+
+* You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
+
+In this tutorial, we present two ways of acquiring cycles: 
+
+* **Option 1:** Section **4.3** shows one how to get cycles via the cycles faucet (most common for new developers)
+* **Option 2:** Section **4.4** shows one how to get cycles via ICP token (most common for developers who want more cycles)
+
+By the end of this section, you will now have three canisters: 
+
+* `hello` canister (not yet deployed to the IC)
+* `hello_assets` canister in your project (not yet deployed to the IC)
+* Your cycles wallet canister that holds your cycles (deployed on the IC)
+
+image:quickstart/3-canisters-hello-dapp.png[hello dapp and cycles wallet]
+
+== 4.2 Check the connection to the Internet Computer blockchain (Terminal B)
+
+As sanity check, it is good practice to check if your connection to the IC is stable:
+
+Verify the current status of the Internet Computer blockchain and your ability to connect to it:
+
+[source,bash]
+----
+$ dfx ping ic
+----
+
+If successful you will see an output resembling the following:
+
+[source,bash]
+----
+$ {
+  "ic_api_version": "0.18.0"  "impl_hash": "d639545e0f38e075ad240fd4ec45d4eeeb11e1f67a52cdd449cd664d825e7fec"  "impl_version": "8dc1a28b4fb9605558c03121811c9af9701a6142"  "replica_health_status": "healthy"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 129, 76, 14, 110, 199, 31, 171, 88, 59, 8, 189, 129, 55, 60, 37, 92, 60, 55, 27, 46, 132, 134, 60, 152, 164, 241, 224, 139, 116, 35, 93, 20, 251, 93, 156, 12, 213, 70, 217, 104, 95, 145, 58, 12, 11, 44, 197, 52, 21, 131, 191, 75, 67, 146, 228, 103, 219, 150, 214, 91, 155, 180, 203, 113, 113, 18, 248, 71, 46, 13, 90, 77, 20, 80, 95, 253, 116, 132, 176, 18, 145, 9, 28, 95, 135, 185, 136, 131, 70, 63, 152, 9, 26, 11, 170, 174]
+}
+----
+
+== 4.3 Option 1: Acquiring cycles via free cycles faucet (2 min)
+
+This is option is best for people who want minimal time investment and have never used cycles faucet (faucet can be used only once).
+
+For the purposes of this tutorial, you can acquire free cycles for your `Hello` dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
+
+=== 4.3.1 Check your cycles balance (Terminal B)
+
+Now that you have used the cycles faucet, you can check your cycles balance: 
+
+[source,bash]
+----
+$ dfx wallet --network ic balance
+----
+
+You should see around 15 trillion cycles if you run this after using the cycles wallet. If so, skip to section **5. Deploying on-chain**.
+
+If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try **4.4 Option 2: Converting ICP token into cycles**.
+
+== 4.4 Option 2: Converting ICP token into cycles (5 min)
+
+This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
+
+link:4-2-convert-ICP-to-cycles{outfilesuffix}[Convert ICP into cycles].
+
+== Conclusion
+
+You have now acquired cycles and stored them in your cycles wallet. You are ready to deploy the dapp on-chain.
+
+Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].

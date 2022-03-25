@@ -13,8 +13,8 @@ See the dapp on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/
 
 [source,bash]
 ----
-$ dfx canister call hello greet everyone
-$ "Hello, everyone"
+$ dfx canister call hello greet Everyone
+$ "Hello, Everyone"
 ----
 
 **b. By accessing the dapp in a browser, it will alert pop-up window reading `Hello, Everyone!`**

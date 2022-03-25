@@ -27,7 +27,7 @@ b. `principal`
 **1. Find your Ledger `account id` controlled by dfx**
 [source,bash]
 ----
-$ dfx ledger account-id
+dfx ledger account-id
 ----
 
 **2. Transfer ICP to your Ledger `account id`**
@@ -38,7 +38,7 @@ You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP 
 
 [source,bash]
 ----
-$ dfx ledger --network ic balance
+dfx ledger --network ic balance
 ----
 
 If there is no ICP in the account, the rest of the tutorial will not work.
@@ -53,12 +53,12 @@ Note: Savvy readers may wonder why Ledger Canister needs to know the `principal`
 
 [source,bash]
 ----
-$ dfx identity get-principal
+dfx identity get-principal
 ----
 Example output: 
 [source,bash]
 ----
-$ tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
 ----
 
 This is the `principal` you will use in following sections.
@@ -70,7 +70,7 @@ We will use this structure:
 [source,bash]
 ----
 // This is just the structure, this will not run
-$ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
+dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
 ----
 
 * $PRINCIPAL = the `principal` from step 1 above.
@@ -81,14 +81,14 @@ $ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
 [source,bash]
 ----
 // This is just the structure, this will only work with YOUR principal
-$ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
+dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
 ----
 
 Filling it in with our example `principal` and amount (**do not copy/paste this or your will lose your cycles**).
 [source,bash]
 ----
 // This is just an example, this will only work with YOUR principal
-$ dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 0.5
+dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 2
 ----
 
 If the transaction is successful, the ledger records the event and you should see output similar to the following:
@@ -110,7 +110,7 @@ However there is only one last step: the canister created above (while it does h
 [source,bash]
 ----
 // This is just an example, this will only work with YOUR CYCLE WALLET principal from above
-$ dfx identity --network ic deploy-wallet $CYCLES_WALLET_CANISTER_ID
+dfx identity --network ic deploy-wallet $CYCLES_WALLET_CANISTER_ID
 ----
 
 In our example, $CYCLES_WALLET_CANISTER_ID is `gastn-uqaaa-aaaae-aaafq-cai` so the command 
@@ -119,7 +119,7 @@ Filling it in with our example `$CYCLES_WALLET_CANISTER_ID` (**do not copy/paste
 [source,bash]
 ----
 // This is just an example, this will only work with YOUR principal
-$ dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai
+dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai
 ----
 
 If the transaction is successful, the ledger records the event and you should see output similar to the following:
@@ -137,7 +137,7 @@ Check that your cycles wallet canister is properly configured and holds a balanc
 
 [source, bash]
 ----
-$ dfx wallet --network ic balance
+dfx wallet --network ic balance
 ----
 
 The command returns the balance for the your cycles wallet. For example:
@@ -153,7 +153,7 @@ If you didn’t convert enough ICP tokens to cycles to complete the operation, y
 
 [source, bash]
 ----
-$ dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005
+dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005
 ----
 
 This command converts an additional 1.005 ICP tokens to cycles for the `gastn-uqaaa-aaaae-aaafq-cai` cycles wallet created in step 2 of 4.3.2. The command returns output similar to the following:

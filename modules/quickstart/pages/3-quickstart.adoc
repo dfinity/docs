@@ -32,7 +32,7 @@ Start the local canister execution environment in Terminal A:
 
 [source,bash]
 ----
-$ dfx start
+dfx start
 ----
 
 image:quickstart/terminal-a-dfx-start.png[dfx start]
@@ -58,7 +58,7 @@ Ensure that node modules are available in your project directory, if needed, by 
 
 [source,bash]
 ----
-$ npm install
+npm install
 ----
 
 image:quickstart/terminal-b-npm-install.png[npm install]
@@ -67,7 +67,7 @@ image:quickstart/terminal-b-npm-install.png[npm install]
 
 [source,bash]
 ----
-$ dfx deploy
+dfx deploy
 ----
 
 image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
@@ -90,7 +90,7 @@ Now that the canister is deployed to local replica, you can send it a message. S
 
 [source,bash]
 ----
-$ dfx canister call hello greet everyone
+dfx canister call hello greet everyone
 ----
 
 * The `dfx canister call` command requires you to specify a canister name and a method—or function—to call.
@@ -106,7 +106,7 @@ Now that you have verified that your dapp has been deployed and tested its opera
 
 [source,bash]
 ----
-$ npm start
+npm start
 ----
 
 === 3.4.2  Test dapp locally in the browser
@@ -135,7 +135,7 @@ To stop the local deployment:
 +
 [source,bash]
 ----
-$ dfx stop
+dfx stop
 ----
 
 == Conclusion

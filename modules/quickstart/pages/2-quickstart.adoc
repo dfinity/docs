@@ -10,7 +10,7 @@ To create a new project for your first application:
 
 [source,bash]
 ----
-$ dfx new hello
+dfx new hello
 ----
 
 The `dfx new hello` command creates a new project directory named `hello`, template files, and a new `hello` Git repository for your project. Your terminal should look like this:
@@ -22,7 +22,7 @@ image:quickstart/dfx-new-hello-2.png[dfx new]
 === 2.3 Move to your project directory
 [source,bash]
 ----
-$ cd hello
+cd hello
 ----
 
 Your directory should look like this:

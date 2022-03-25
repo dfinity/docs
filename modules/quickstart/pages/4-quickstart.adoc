@@ -37,7 +37,7 @@ Verify the current status of the Internet Computer blockchain and your ability t
 
 [source,bash]
 ----
-$ dfx ping ic
+dfx ping ic
 ----
 
 If successful you will see an output resembling the following:
@@ -61,7 +61,7 @@ Now that you have used the cycles faucet, you can check your cycles balance:
 
 [source,bash]
 ----
-$ dfx wallet --network ic balance
+dfx wallet --network ic balance
 ----
 
 You should see around 15 trillion cycles if you run this after using the cycles wallet. If so, skip to section **5. Deploying on-chain**.

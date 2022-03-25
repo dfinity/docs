@@ -2,7 +2,7 @@
 
 This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
 
-== Basic Summary of this section
+== Basic Summary of this Section
 To create cycles from ICP, the basic steps (which we will dive deeper in this **4.3**):
 
 1. Transfer ICP to the `account id` controlled *by your local version of `dfx`*.
@@ -11,7 +11,7 @@ To create cycles from ICP, the basic steps (which we will dive deeper in this **
   * Note: This only works if the `account id` controlled `dfx` has ICP tokens.
 3. Create a canister which will hold all your cycles and transfer them to your dapps
 
-== 4.4.1 Transfer ICP to the `account id` controlled *by your local version of `dfx`* (Terminal B)
+== 4.4.1 Transfer ICP to the `account id` Controlled *by your Local Version of `dfx`* (Terminal B)
 
 When you first installed `dfx`, it created and saved locally "developer identity" composed of:
 
@@ -24,7 +24,7 @@ b. `principal`
 ** Example: `tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`.
 
 
-**1. Find your Ledger `account id` controlled by dfx**
+**1. Find your Ledger `account id` Controlled by dfx**
 [source,bash]
 ----
 $ dfx ledger account-id
@@ -34,7 +34,7 @@ $ dfx ledger account-id
 
 You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP tokens to the `account id` from Step #1 above. For the sake of this tutorial, sending it 2 ICP tokens would be more than enough to deploy.
 
-**3. Confirm there is ICP in the account**
+**3. Confirm there is ICP in the Account**
 
 [source,bash]
 ----

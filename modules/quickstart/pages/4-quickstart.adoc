@@ -2,11 +2,11 @@
 
 == 4.1 Cycles: an Introduction
 
-In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles are created from ICP token. 
+In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles are created from ICP tokens. 
 
 This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto or blockchain, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens." 
 
-You may wonder why dapps do not just on ICP tokens. Why create a new construct of cycles? The reason is that ICP tokens fluctuate wildly with the crypto market, but cycles are predictable and relatively stable token which is pegged to link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR]. One trillion cycles will always cost one SDR, regardless of the price of ICP.
+You may wonder why dapps do not just run on ICP tokens. Why create a new construct of cycles? The reason is that the cost of ICP tokens fluctuate wildly with the crypto market, but cycles are predictable and relatively stable tokens which are pegged to link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR]. One trillion cycles will always cost one SDR, regardless of the price of ICP.
 
 Practical notes about cycles: 
 
@@ -29,9 +29,9 @@ By the end of this section, you will now have three canisters:
 
 image:quickstart/3-canisters-hello-dapp.png[hello dapp and cycles wallet]
 
-== 4.2 Check the connection to the Internet Computer blockchain (Terminal B)
+== 4.2 Check the Connection to the Internet Computer Blockchain (Terminal B)
 
-As sanity check, it is good practice to check if your connection to the IC is stable:
+As a sanity check, it is good practice to check if your connection to the IC is stable:
 
 Verify the current status of the Internet Computer blockchain and your ability to connect to it:
 
@@ -49,7 +49,7 @@ $ {
 }
 ----
 
-== 4.3 Option 1: Acquiring cycles via free cycles faucet (2 min)
+== 4.3 Option 1: Acquiring Cycles via the Free Cycles Faucet (2 min)
 
 This is option is best for people who want minimal time investment and have never used cycles faucet (faucet can be used only once).
 
@@ -68,7 +68,7 @@ You should see around 15 trillion cycles if you run this after using the cycles 
 
 If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try **4.4 Option 2: Converting ICP token into cycles**.
 
-== 4.4 Option 2: Converting ICP token into cycles (5 min)
+== 4.4 Option 2: Converting ICP Token into Cycles (5 min)
 
 This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
 

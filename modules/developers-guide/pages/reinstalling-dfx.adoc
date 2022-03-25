@@ -1,0 +1,78 @@
+= Reinstalling the Internet Computer SDK
+
+In certain circumstances, it may be desirable to delete the Internet Computer SDK (`dfx`) entirely from your system and reinstall it as a fresh installation. When performing such an action, it is important to be able to so safely, preserving any previously created identities and only deleting the necessary files.
+
+This guide assumes you already have `dfx` installed on your machine and that you have installed it using the https://smartcontracts.org/install.sh[install script].
+
+== Preserving Identities
+It is possible to use and manage many identities while using `dfx`. Some of these identities may be used strictly for local development, while others may be used to deploy canisters on mainnet. In the latter case, it is critical for one to safeguard these identities in the same way one would safeguard a password or private key.
+
+`dfx` stores identities in a hidden directory on your machine. Before reinstalling `dfx`, you should copy these identities somewhere else so that you do not lose access to them. If you do not save these identities, you may lose access to existing canisters or cycles when reinstalling `dfx`.
+
+=== Locate Identities
+Navigate to the `dfx` directory on your machine
+[source,sh]
+----
+cd ~/.config/dfx/
+----
+
+You should see a folder named `identity`:
+
+image:identities-directory.png[Enter a Principal ID]
+
+This folder contains all of the identities that you have previously used in conjunction with `dfx`. You should save this entire folder in a separate location on your file system or in an encrypted vault like 1password. Alternatively, if you know which identities you would like to preserve, you can choose just save those. 
+
+Be sure to preserve the folder structure and file names so that your new installation of `dfx` correctly locates your identities. The files you want to make sure you save are the `.pem` files.
+
+image:identities-folders.png[Enter a Principal ID]
+
+== Deleting `dfx`
+
+With your identities preserved, you can now safely remove `dfx` related files.
+
+Delete the `dfx` directory
+[source,sh]
+----
+rm -rf ~/.config/dfx
+----
+
+Delete the `dfx` cache
+[source,sh]
+----
+rm -rf ~/.cache/dfinity
+----
+
+Delete the `dfx` executable
+[source,sh]
+----
+rm -rf /usr/local/bin/dfx
+----
+
+== Reinstall
+
+You can now reinstall the Internet computer SDK
+[source,sh]
+----
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
+----
+
+=== Replacing Identities
+With a fresh installation of `dfx` now installed, you can replace the identities you set aside earlier so that `dfx` can be aware of them.
+
+Navigate back to the `dfx/identity` directory
+[source,sh]
+----
+cd ~/.config/dfx/identity
+----
+
+Place each `identity.pem` file you stored earlier back here, using the following convention:
+
+`<identity name>/identity.pem`
+
+For example, if you had an identity named `alice`, your `pem` file for this identity should be placed in `~/.config/dfx/identity/alice/identity.pem`
+
+== Conclusion
+You should now have a fresh installation of `dfx` installed with your previous identities properly preserved. Be sure to safeguard your `.pem` files and treat them like you would treat passwords or other private keys. These are an important part of your interaction with the Internet Computer and SDK.
+
+=== Related resources:
+* link:./developers-guide/install-upgrade-remove.html[Install, upgrade, or remove software]

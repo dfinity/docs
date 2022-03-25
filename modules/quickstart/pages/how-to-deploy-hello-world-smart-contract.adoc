@@ -23,7 +23,7 @@ image:front-end-result.png[Hello, everyone! greeting]
 
 While the code comes ready out of the box for you, this dapp consists of back-end code written in Motoko, a programming language specifically designed for interacting with the Internet Computer (IC), and a simple webpack-based front-end. 
 
-== Concepts necessary for this tutorial
+== Internet Computer concepts related to for this tutorial
 
 * A *canister smart contract/dapp* is a type of smart contract that bundles code and state. As in this tutorial, it is common for a dapp to be composed of multiple canister smart contracts.
 

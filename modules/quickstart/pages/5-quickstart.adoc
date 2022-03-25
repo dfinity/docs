@@ -88,4 +88,4 @@ Take that canister id and visit +https://<canister-id>.ic0.app+, inserting the `
 
 You have now deployed the dapp on-chain! You can read the conclusion of the tutorial.
 
-Continue with main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].
+Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].

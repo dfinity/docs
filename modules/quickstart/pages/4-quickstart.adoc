@@ -231,4 +231,4 @@ Canister was topped up!
 
 You have now acquired cycles and stored them in your cycles wallet. You are ready to deploy the dapp on-chain.
 
-Continue with main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].
+Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].

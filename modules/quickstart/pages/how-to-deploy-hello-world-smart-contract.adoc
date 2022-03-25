@@ -5,7 +5,9 @@ This is a fast, minimalist tutorial for deploying a "hello world" smart contract
 
 == Introduction
 
-In this tutorial, we will deploy a simple `Hello` dapp accepts text argument as input, and returns the result as a greeting. For example, if you call the `greet` method with the text argument `Everyone`,
+In this tutorial, we will deploy a simple `Hello` dapp accepts text argument as input, and returns the result as a greeting. For example, if you call the `greet` method with the text argument `Everyone`.
+
+See the dapp on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/ 
 
 **a. Via the command-line, the dapp will return `Hello, Everyone!` in a terminal**
 

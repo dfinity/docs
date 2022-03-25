@@ -88,27 +88,26 @@ Creating a wallet canister on the ic network.
 The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae-aaafq-cai"
 ----
 
-In the next section, we will deploy the `Hello` dapp. This will require transferring cycles from the cycles wallet above.
+In the next section, we will deploy the `Hello` dapp. This will require transferring cycles from the cycles wallet to the `hello` dapp in section 5.
 
-== 4.4.3 Check your cycles are properly configured with your dfx (Terminal B)
+== Conclusion
 
-Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
+You have now converted ICP into cycles and stored them in your cycles wallet. You are ready to deploy the dapp on-chain.
+
+Continue with part 4 of the main tutorial: Acquiring Cycles to Deploy On-chain link:4-quickstart{outfilesuffix}[Acquiring Cycles to Deploy On-chain].
+
+== Troubleshooting
+
+=== Check your cycles are properly configured with your dfx (Terminal B)
+
+Check that your cycles wallet canister is properly configured and holds the necessary balance of cycles. For this tutorial, make sure you have at least 3 trillion cycles (3000000000000) by running
 
 [source, bash]
 ----
 dfx wallet --network ic balance
 ----
 
-The command returns the balance for the your cycles wallet. For example:
-
-[source, bash]
-----
-27271044568451 cycles.
-----
-
-For this tutorial, make sure you have at least 3 trillion cycles (3000000000000).
-
-If you didn’t convert enough ICP tokens to cycles to complete the operation, you can add cycles to your cycles wallet by running a command similar to the following:
+If you did not convert enough ICP tokens to cycles to complete the operation, you can add cycles to your cycles wallet by running a command similar to the following:
 
 [source, bash]
 ----
@@ -122,9 +121,3 @@ This command converts an additional 1.005 ICP tokens to cycles for the `gastn-uq
 Transfer sent at BlockHeight: 81520
 Canister was topped up!
 ----
-
-== Conclusion
-
-You have now converted ICP into cycles and stored them in your cycles wallet. You are ready to deploy the dapp on-chain.
-
-Continue with part 4 of the main tutorial: Acquiring Cycles to Deploy On-chain link:4-quickstart{outfilesuffix}[Acquiring Cycles to Deploy On-chain].

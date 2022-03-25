@@ -1,8 +1,8 @@
-== 4.4 Option 2: Converting ICP token into cycles (5 min)
+= 4.4 Option 2: Converting ICP token into cycles (5 min)
 
 This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
 
-=== Basic Summary of this section
+== Basic Summary of this section
 To create cycles from ICP, the basic steps (which we will dive deeper in this **4.3**):
 
 1. Transfer ICP to the `account id` controlled *by your local version of `dfx`*.
@@ -11,7 +11,7 @@ To create cycles from ICP, the basic steps (which we will dive deeper in this **
   * Note: This only works if the `account id` controlled `dfx` has ICP tokens.
 3. Create a canister which will hold all your cycles and transfer them to your dapps
 
-=== 4.4.1 Transfer ICP to the `account id` controlled *by your local version of `dfx`* (Terminal B)
+== 4.4.1 Transfer ICP to the `account id` controlled *by your local version of `dfx`* (Terminal B)
 
 When you first installed `dfx`, it created and saved locally "developer identity" composed of:
 
@@ -43,7 +43,7 @@ $ dfx ledger --network ic balance
 
 If there is no ICP in the account, the rest of the tutorial will not work.
 
-=== 4.4.2 Use `dfx` to tell Ledger canister to convert your ICP into cycles (Terminal B)
+== 4.4.2 Use `dfx` to tell Ledger canister to convert your ICP into cycles (Terminal B)
 
 Now that your `account id` has ICP tokens, we need to tell the Ledger Canister to convert it into cycles for us. The Ledger canister needs to know WHICH PRINCIPAL will control the cycles created, so we will send it the `principal` created locally by `dfx` as part of the developer identity.
 
@@ -131,7 +131,7 @@ The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae
 
 In the next section, we will deploy the `Hello` dapp. This will require transferring cycles from the recently-created cycles-holding canister (`gastn-uqaaa-aaaae-aaafq-cai` in the example above).
 
-=== 4.4.3 Check your cycles are properly configured with your dfx (Terminal B)
+== 4.4.3 Check your cycles are properly configured with your dfx (Terminal B)
 
 Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
 

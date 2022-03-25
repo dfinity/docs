@@ -5,7 +5,7 @@ This is a fast, minimalist tutorial for deploying a "hello world" smart contract
 
 == Introduction
 
-In this tutorial, we will deploy a simple `Hello` dapp that has just one function—called `greet`. The `greet` function accepts one text argument as input, and returns the result as a greeting. For example, if you call the `greet` method with the text argument `Everyone`,
+In this tutorial, we will deploy a simple `Hello` dapp accepts text argument as input, and returns the result as a greeting. For example, if you call the `greet` method with the text argument `Everyone`,
 
 a. Via the command-line, the dapp will return `Hello, Everyone!` in a terminal
 
@@ -17,11 +17,6 @@ $ "Hello, everyone"
 
 b. By accessing the dapp in a browser, it will alert pop-up window reading `Hello, Everyone!`
 
-image:front-end-prompt.png[Sample HTML page]
-
-. Input a name, then click *Click Me* to return a greeting.
-+
-For example:
 +
 image:front-end-result.png[Hello, everyone! greeting]
 
@@ -29,9 +24,11 @@ While the code comes ready out of the box for you, this dapp consists of back-en
 
 === Concepts necessary for this tutorial
 
-* A *canister smart contract/dapp* is a type of smart contract that bundles code and state. A canister can be deployed as a smart contract on the Internet Computer and accessed over the Internet.
+* A *canister smart contract/dapp* is a type of smart contract that bundles code and state. A canister can be deployed as a dapp or smart contract on the IC and accessed over the Internet.
 
 * A *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum's gas: it is what one needs to run their dapp, yet it is much more stable and less expensive for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] using the convention that one trillion cycles correspond to one SDR. **In this tutorial, you can get free cycles from the cycles faucet.**
+
+* A *cycles wallet* is a type of canister that holds your cycles for you. You will use this canister to power up your dapps.
 
 == 1. Installing Tools
 

@@ -34,7 +34,7 @@ $ dfx ledger account-id
 
 You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP tokens to the `account id` from Step #1 above. For the sake of this tutorial, sending it 2 ICP tokens would be more than enough to deploy.
 
-**3. Confirm there is ICP in the Account**
+**3. Confirm there is ICP in the account**
 
 [source,bash]
 ----

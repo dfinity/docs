@@ -17,14 +17,13 @@ $ "Hello, everyone"
 
 **b. By accessing the dapp in a browser, it will alert pop-up window reading `Hello, Everyone!`**
 
-+
 image:front-end-result.png[Hello, everyone! greeting]
 
 While the code comes ready out of the box for you, this dapp consists of back-end code written in Motoko, a programming language specifically designed for interacting with the Internet Computer (IC), and a simple webpack-based front-end. 
 
-=== Concepts necessary for this tutorial
+== Concepts necessary for this tutorial
 
-* A *canister smart contract/dapp* is a type of smart contract that bundles code and state. A canister can be deployed as a dapp or smart contract on the IC and accessed over the Internet.
+* A *canister smart contract/dapp* is a type of smart contract that bundles code and state. As in this tutorial, it is common for a dapp to be composed of multiple canister smart contracts.
 
 * A *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum's gas: it is what one needs to run their dapp, yet it is much more stable and less expensive for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] using the convention that one trillion cycles correspond to one SDR. **In this tutorial, you can get free cycles from the cycles faucet.**
 

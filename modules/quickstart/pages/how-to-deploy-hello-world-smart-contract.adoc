@@ -9,7 +9,7 @@ In this tutorial, we will deploy a simple `Hello` dapp accepts text argument as 
 
 See the dapp on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/ 
 
-**a. Via the command-line, the dapp will return `Hello, Everyone!` in a terminal**
+**a. Accessed on the command-line via dfx (see instructions below on how to install dfx), the dapp will return `Hello, Everyone!` in your terminal**
 
 [source,bash]
 ----

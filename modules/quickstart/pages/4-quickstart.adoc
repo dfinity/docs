@@ -1,0 +1,228 @@
+= 4. Acquiring Cycles to Deploy On-chain (10-15 min)
+
+== 4.1 Cycles: an Introduction
+
+In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles are created from ICP token. 
+
+This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto or blockchain, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens." 
+
+You may wonder why dapps do not just on ICP tokens. Why create a new construct of cycles? The reason is that ICP tokens fluctuate wildly with the crypto market, but cycles are predictable and relatively stable token which is pegged to link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR]. One trillion cycles will always cost one SDR, regardless of the price of ICP.
+
+Practical notes about cycles: 
+
+* There is a free link:cycles-faucet{outfilesuffix}[free cycles faucet] that grants new developers 15 trillion cycles 
+
+* It takes 100 billion cycles to deploy a canister, but in order to load up the canister with sufficient cycles, `dfx` injects 3 trillion cycles for any canister created (this is a parameter that can be changed).
+
+* You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
+
+
+In this tutorial, we present two ways of acquiring cycles: 
+
+* **Option 1:** Section **4.3** shows one how to get cycles via the cycles faucet (most common for new developers)
+* **Option 2:** Section **4.4** shows one how to get cycles via ICP token (most common for developers who want more cycles)
+
+== 4.2 Check the connection to the Internet Computer blockchain (Terminal B)
+
+As sanity check, it is good practice to check if your connection to the IC is stable:
+
+Verify the current status of the Internet Computer blockchain and your ability to connect to it:
+
+[source,bash]
+----
+$ dfx ping ic
+----
+
+If successful you will see an output resembling the following:
+
+[source,bash]
+----
+$ {
+  "ic_api_version": "0.18.0"  "impl_hash": "d639545e0f38e075ad240fd4ec45d4eeeb11e1f67a52cdd449cd664d825e7fec"  "impl_version": "8dc1a28b4fb9605558c03121811c9af9701a6142"  "replica_health_status": "healthy"  "root_key": [48, 129, 130, 48, 29, 6, 13, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 1, 2, 1, 6, 12, 43, 6, 1, 4, 1, 130, 220, 124, 5, 3, 2, 1, 3, 97, 0, 129, 76, 14, 110, 199, 31, 171, 88, 59, 8, 189, 129, 55, 60, 37, 92, 60, 55, 27, 46, 132, 134, 60, 152, 164, 241, 224, 139, 116, 35, 93, 20, 251, 93, 156, 12, 213, 70, 217, 104, 95, 145, 58, 12, 11, 44, 197, 52, 21, 131, 191, 75, 67, 146, 228, 103, 219, 150, 214, 91, 155, 180, 203, 113, 113, 18, 248, 71, 46, 13, 90, 77, 20, 80, 95, 253, 116, 132, 176, 18, 145, 9, 28, 95, 135, 185, 136, 131, 70, 63, 152, 9, 26, 11, 170, 174]
+}
+----
+
+== 4.3 Option 1: Acquiring cycles via free cycles faucet (2 min)
+
+This is option is best for people who want minimal time investment and have never used cycles faucet (faucet can be used only once).
+
+For the purposes of this tutorial, you can acquire free cycles for your `Hello` dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
+
+=== 4.3.1 Check your cycles balance (Terminal B)
+
+Now that you have used the cycles faucet, you can check your cycles balance: 
+
+[source,bash]
+----
+$ dfx wallet --network ic balance
+----
+
+You should see around 15 trillion cycles if you run this after using the cycles wallet. If so, skip to section **5. Deploying on-chain**.
+
+If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try **4.4 Option 2: Converting ICP token into cycles**.
+
+== 4.4 Option 2: Converting ICP token into cycles (5 min)
+
+This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
+
+=== Basic Summary of this section
+To create cycles from ICP, the basic steps (which we will dive deeper in this **4.3**):
+
+1. Transfer ICP to the `account id` controlled *by your local version of `dfx`*.
+  * Note: Ths typical requires transferring ICP *from an exchange, wallet, or NNS Frontend dapp* to the `account id` controlled by `dfx`.
+2. Use `dfx` to tell Ledger canister to convert your ICP into cycles. 
+  * Note: This only works if the `account id` controlled `dfx` has ICP tokens.
+3. Create a canister which will hold all your cycles and transfer them to your dapps
+
+=== 4.4.1 Transfer ICP to the `account id` controlled *by your local version of `dfx`* (Terminal B)
+
+When you first installed `dfx`, it created and saved locally "developer identity" composed of:
+
+a. Ledger `account id`
+** this is where ICP controlled by `dfx` are stored. 
+** Example: `03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223`. 
+
+b. `principal`
+** an identifier for an entity on the IC such as a user, a canister (dapps/smart contracts), or a subnet. In this case, `dfx` has a principal which is how it identifies itself to the IC.
+** Example: `tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`.
+
+
+**1. Find your Ledger `account id` controlled by dfx**
+[source,bash]
+----
+$ dfx ledger account-id
+----
+
+**2. Transfer ICP to your Ledger `account id`**
+
+You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP tokens to the `account id` from Step #1 above. For the sake of this tutorial, sending it 2 ICP tokens would be more than enough to deploy.
+
+**3. Confirm there is ICP in the account**
+
+[source,bash]
+----
+$ dfx ledger --network ic balance
+----
+
+If there is no ICP in the account, the rest of the tutorial will not work.
+
+=== 4.4.2 Use `dfx` to tell Ledger canister to convert your ICP into cycles (Terminal B)
+
+Now that your `account id` has ICP tokens, we need to tell the Ledger Canister to convert it into cycles for us. The Ledger canister needs to know WHICH PRINCIPAL will control the cycles created, so we will send it the `principal` created locally by `dfx` as part of the developer identity.
+
+Note: Savvy readers may wonder why Ledger Canister needs to know the `principal` at all since the `principal` controls `account id`. The answer is that `dfx` can actually set a *different* principal in case it wants another entity to controls the cycles created in this step.
+
+**1. Find the `principal` used by your dfx**
+
+[source,bash]
+----
+$ dfx identity get-principal
+----
+Example output: 
+[source,bash]
+----
+$ tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
+----
+
+This is the `principal` you will use in following sections.
+
+**2. Tell Ledger Canister to convert your ICP to cycles (and give the `principal` control of the cycles)**
+
+We will use this structure:
+
+[source,bash]
+----
+// This is just the structure, this will not run
+$ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
+----
+
+* $PRINCIPAL = the `principal` from step 1 above.
+** Example: `tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`
+* $ICP_TOKEN_AMOUNT = the amount of ICP to convert into cycles.
+** Example: 0.5
+
+[source,bash]
+----
+// This is just the structure, this will only work with YOUR principal
+$ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
+----
+
+Filling it in with our example `principal` and amount (**do not copy/paste this or your will lose your cycles**).
+[source,bash]
+----
+// This is just an example, this will only work with YOUR principal
+$ dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 0.5
+----
+
+If the transaction is successful, the ledger records the event and you should see output similar to the following:
+
+[source,bash]
+----
+Transfer sent at BlockHeight: 20
+Canister created with id: "gastn-uqaaa-aaaae-aaafq-cai"
+----
+
+This returned a canister with id `gastn-uqaaa-aaaae-aaafq-cai`. **This is NOT the `Hello` dapp we are creating in this tutorial.** This is a canister created for you and for only one purpose: *hold your cycles and transfer them to your dapps.*
+
+The reason for this new canister is simple: by design, cycles can only be contained within canisters. Since this new "cycle-holding canister" has no other purpose, it is sometimes referred to as the "cycles wallet". 
+
+**3. Create a canister which will hold all your cycles and transfer them to your dapps**
+
+However there is only one last step: the canister created above (while it does hold cycles) is a generic canister and it does not have all the features required from a "cycles wallet", so we will use `dfx` to update it with the code containing all the cycles wallet features: 
+
+[source,bash]
+----
+// This is just an example, this will only work with YOUR CYCLE WALLET principal from above
+$ dfx identity --network ic deploy-wallet $CYCLES_WALLET_CANISTER_ID
+----
+
+In our example, $CYCLES_WALLET_CANISTER_ID is `gastn-uqaaa-aaaae-aaafq-cai` so the command 
+
+Filling it in with our example `$CYCLES_WALLET_CANISTER_ID` (**do not copy/paste this or your will lose your cycles**).
+[source,bash]
+----
+// This is just an example, this will only work with YOUR principal
+$ dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai
+----
+
+If the transaction is successful, the ledger records the event and you should see output similar to the following:
+[source,bash]
+----
+Creating a wallet canister on the ic network.
+The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae-aaafq-cai"
+----
+
+In the next section, we will deploy the `Hello` dapp. This will require transferring cycles from the recently-created cycles-holding canister (`gastn-uqaaa-aaaae-aaafq-cai` in the example above).
+
+=== 4.4.3 Check your cycles are properly configured with your dfx (Terminal B)
+
+Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
+
+[source, bash]
+----
+$ dfx wallet --network ic balance
+----
+
+The command returns the balance for the your cycles wallet. For example:
+
+[source, bash]
+----
+15430122328028812 cycles.
+----
+
+For this tutorial, make sure you have at least 3 trillion cycles (3000000000000).
+
+If you didn’t convert enough ICP tokens to cycles to complete the operation, you can add cycles to your cycles wallet by running a command similar to the following:
+
+[source, bash]
+----
+$ dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005
+----
+
+This command converts an additional 1.005 ICP tokens to cycles for the `gastn-uqaaa-aaaae-aaafq-cai` cycles wallet created in step 2 of 4.3.2. The command returns output similar to the following:
+
+[source, bash]
+----
+Transfer sent at BlockHeight: 81520
+Canister was topped up!
+----

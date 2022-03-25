@@ -1,0 +1,29 @@
+== 2. Create a Default Project (1 min)
+
+=== 2.1 Launch a new project 
+Dapps on the Internet Computer start as projects, which are initiated by using the dfx parent command and its subcommands. You create projects using the `dfx` parent command and its subcommands. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace. 
+
+To create a new project for your first application:
+
+==== 2.1.1 Open a terminal shell on your computer and create a new project named "hello"
+
+[source,bash]
+----
+$ dfx new hello
+----
+
+The `dfx new hello` command creates a new project directory named `hello`, template files, and a new `hello` Git repository for your project. Your terminal should look like this:
+
+image:quickstart/dfx-new-hello-1.png[dfx new]
+
+image:quickstart/dfx-new-hello-2.png[dfx new]
+
+==== 2.1.2 Move to your project directory
+[source,bash]
+----
+$ cd hello
+----
+
+Your directory should look like this:
+
+image:quickstart/cd-hello.png[cd new]

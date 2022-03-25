@@ -226,3 +226,9 @@ This command converts an additional 1.005 ICP tokens to cycles for the `gastn-uq
 Transfer sent at BlockHeight: 81520
 Canister was topped up!
 ----
+
+== Conclusion
+
+You have now acquired cycles and stored them in your cycles wallet. You are ready to deploy the dapp on-chain.
+
+Continue with main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].

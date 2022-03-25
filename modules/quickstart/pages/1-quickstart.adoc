@@ -30,3 +30,7 @@ dfx --version
 Terminal should look like this (at least version 0.9.2):
 
 image:quickstart/dfx-version.png[dfx version]
+
+== Conclusion
+
+You now have the SDK properly installed. Continue with main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].

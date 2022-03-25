@@ -27,3 +27,9 @@ $ cd hello
 Your directory should look like this:
 
 image:quickstart/cd-hello.png[cd new]
+
+== Conclusion
+
+You now have the default project created ready to be deployed locally. 
+
+Continue with main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].

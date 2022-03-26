@@ -5,10 +5,10 @@ This is option is best for people who have already exhausted the cycles wallet o
 == Basic Summary of this section
 To create cycles from ICP, the basic steps:
 
-1. Transfer ICP to the ICP Ledger account controlled `dfx`
+1. Transfer tokens to the Ledger account controlled by `dfx`
 2. Tell IC Ledger convert your ICP tokens into cycles 
 
-== 4.4.1 Transfer ICP to the ICP Ledger account controlled by `dfx` (Terminal B)
+== 4.4.1 Transfer tokens to the Ledger account controlled by `dfx` (Terminal B)
 
 When you first installed `dfx`, it created and saved locally "developer identity" which contains ledger `account id`.This is where ICP tokens controlled by `dfx` are stored.  
 
@@ -24,7 +24,7 @@ Example output
 03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223
 ----
 
-**2. Transfer ICP to your Ledger `account id`**
+**2. Transfer tokens to your Ledger `account id`**
 
 You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP tokens to the `account id` from Step #1 above. For the sake of this tutorial, we recommend sending it 2 ICP tokens.
 
@@ -37,7 +37,7 @@ dfx ledger --network ic balance
 
 If there is no ICP in the account, the rest of the tutorial will not work.
 
-== 4.4.2 Tell IC Ledger convert your ICP tokens into cycles (Terminal B)
+== 4.4.2 Tell Ledger convert your tokens into cycles (Terminal B)
 
 Now that your `account id` has ICP tokens, we need to tell the Ledger Canister to convert it into cycles for us. 
 

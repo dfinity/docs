@@ -1,4 +1,4 @@
-= 4. Acquiring Cycles to Deploy On-chain (10-15 min)
+= 4. Acquiring Cycles to Deploy On-chain (5 min)
 
 == 4.1 Cycles: an Introduction
 
@@ -37,7 +37,7 @@ Verify the current status of the Internet Computer blockchain and your ability t
 
 [source,bash]
 ----
-$ dfx ping ic
+dfx ping ic
 ----
 
 If successful you will see an output resembling the following:
@@ -61,7 +61,7 @@ Now that you have used the cycles faucet, you can check your cycles balance:
 
 [source,bash]
 ----
-$ dfx wallet --network ic balance
+dfx wallet --network ic balance
 ----
 
 You should see around 15 trillion cycles if you run this after using the cycles wallet. If so, skip to section **5. Deploying on-chain**.
@@ -78,4 +78,4 @@ link:4-2-convert-ICP-to-cycles{outfilesuffix}[Convert ICP into cycles].
 
 You have now acquired cycles and stored them in your cycles wallet. You are ready to deploy the dapp on-chain.
 
-Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].
+Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 10 minutes].

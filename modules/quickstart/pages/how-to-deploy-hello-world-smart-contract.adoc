@@ -1,7 +1,7 @@
-How to deploy a "hello world" smart contract/dapp in 20 minutes
+How to deploy a "hello world" smart contract/dapp in 10 minutes
 ===============================================================
 
-This is a fast, minimalist tutorial for deploying a "hello world" smart contract or dapp to the IC in 20 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
+This is a fast, minimalist tutorial for deploying a "hello world" smart contract or dapp to the IC in 10 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
 
 == Introduction
 
@@ -13,8 +13,8 @@ See the dapp on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/
 
 [source,bash]
 ----
-$ dfx canister call hello greet everyone
-$ "Hello, everyone"
+$ dfx canister call hello greet Everyone
+$ "Hello, Everyone"
 ----
 
 **b. By accessing the dapp in a browser, it will alert pop-up window reading `Hello, Everyone!`**
@@ -49,7 +49,7 @@ With the project created, you can test it by deploying it to your local machine.
 
 link:3-quickstart{outfilesuffix}[3-Deploying dapp locally] 
 
-== 4. Acquiring Cycles to Deploy On-chain (10-15 min)
+== 4. Acquiring Cycles to Deploy On-chain (5 min)
 
 To deploy on-chain, you will need to add cycles to your account.
 
@@ -61,9 +61,11 @@ Now that you have cycles, you can deploy the "hello world" dapp on-chain.
 
 link:5-quickstart{outfilesuffix}[5-Deploying on-chain] 
 
-== 6. Conclusion
+== Conclusion
 
-=== 6.1 Wrap-up: What you have done
+In 10 minutes you have deployed an entire dapp on-chain. This is rare among other smart contract platforms because the IC has dapps fully on-chain (both frontend and backend).
+
+=== Wrap-up: What you have done
 You have done the following in this tutorial:
 
 * Installed the Canister SDK
@@ -72,11 +74,11 @@ You have done the following in this tutorial:
 * Created a "cycles wallet" that can transfer cycles to any other dapps you want to power
 * Deployed your dapp on-chain
 
-=== 6.2 Using your free cycles to power other dapps
+=== Using your free cycles to power other dapps
 
 You can use the cycles you received earlier for other dapps.
 
-== 7. Troubleshooting
+== Troubleshooting
 
 === Resources
 
@@ -84,3 +86,6 @@ You can use the cycles you received earlier for other dapps.
 
 * link:https://wiki.internetcomputer.org/wiki/Internet_Computer_wiki[Internet Computer wiki].
 
+=== Starting from scratch
+
+If you wish to start from scratch, you can delete SDK and associated profiles and re-install it. Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].

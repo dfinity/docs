@@ -89,3 +89,24 @@ Note the way the message is constructed:
 You have now deployed the dapp on-chain! You can read the conclusion of the tutorial.
 
 Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].
+
+== Troubleshooting
+
+=== 403 Error
+
+If you receive a 403 error, it is possible the identity you are using does not have enough cycles. You should try the following to debug:
+
+== 1. Confirm you are using the identity you assume are using
+
+[source,bash]
+----
+dfx identity whoami
+----
+
+== 2. Confirm the identity you are using has enough cycles on-chain
+
+[source,bash]
+----
+dfx wallet --network ic balance
+----
+

@@ -61,7 +61,7 @@ The canister `gastn-uqaaa-aaaae-aaafq-cai` above **is NOT the `Hello` dapp we ar
 
 The reason for this new canister is simple: by design, cycles can only be contained within canisters. Since this new "cycle-holding canister" has no other purpose and it referred to as the "cycles wallet". 
 
-image:1-cycles-wallet.png[Cycles wallet]
+image:quickstart/1-cycles-wallet.png[Cycles wallet]
 
 **3. Upgrade canister holding your cycles into a "cycles wallet"**
 

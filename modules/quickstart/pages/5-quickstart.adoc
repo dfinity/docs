@@ -6,7 +6,7 @@ Now that you have your cycles and your dfx is configured to transfer cycles, you
 
 [source,bash]
 ----
-$ npm install
+npm install
 ----
 
 [source,bash]

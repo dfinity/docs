@@ -1,4 +1,4 @@
-= 4. Acquiring Cycles to Deploy On-chain (10-15 min)
+= 4. Acquiring Cycles to Deploy On-chain (5 min)
 
 == 4.1 Cycles: an Introduction
 
@@ -78,4 +78,4 @@ link:4-2-convert-ICP-to-cycles{outfilesuffix}[Convert ICP into cycles].
 
 You have now acquired cycles and stored them in your cycles wallet. You are ready to deploy the dapp on-chain.
 
-Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].
+Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 10 minutes].

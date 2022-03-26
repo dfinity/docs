@@ -1,7 +1,7 @@
-How to deploy a "hello world" smart contract/dapp in 20 minutes
+How to deploy a "hello world" smart contract/dapp in 10 minutes
 ===============================================================
 
-This is a fast, minimalist tutorial for deploying a "hello world" smart contract or dapp to the IC in 20 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
+This is a fast, minimalist tutorial for deploying a "hello world" smart contract or dapp to the IC in 10 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
 
 == Introduction
 
@@ -49,7 +49,7 @@ With the project created, you can test it by deploying it to your local machine.
 
 link:3-quickstart{outfilesuffix}[3-Deploying dapp locally] 
 
-== 4. Acquiring Cycles to Deploy On-chain (10-15 min)
+== 4. Acquiring Cycles to Deploy On-chain (5 min)
 
 To deploy on-chain, you will need to add cycles to your account.
 

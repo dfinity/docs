@@ -44,4 +44,4 @@ You may wonder "why two canisters?" These canisters are created for you to help 
 
 You now have the default project created ready to be deployed locally. 
 
-Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].
+Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 10 minutes].

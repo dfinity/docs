@@ -63,6 +63,8 @@ link:5-quickstart{outfilesuffix}[5-Deploying on-chain]
 
 == 6. Conclusion
 
+In 10 minutes you have deployed an entire dapp on-chain. This is rare among other smart contract platforms because the IC has dapps fully on-chain (both frontend and backend).
+
 === 6.1 Wrap-up: What you have done
 You have done the following in this tutorial:
 

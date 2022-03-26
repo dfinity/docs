@@ -61,11 +61,11 @@ Now that you have cycles, you can deploy the "hello world" dapp on-chain.
 
 link:5-quickstart{outfilesuffix}[5-Deploying on-chain] 
 
-== 6. Conclusion
+== Conclusion
 
 In 10 minutes you have deployed an entire dapp on-chain. This is rare among other smart contract platforms because the IC has dapps fully on-chain (both frontend and backend).
 
-=== 6.1 Wrap-up: What you have done
+=== Wrap-up: What you have done
 You have done the following in this tutorial:
 
 * Installed the Canister SDK
@@ -74,11 +74,11 @@ You have done the following in this tutorial:
 * Created a "cycles wallet" that can transfer cycles to any other dapps you want to power
 * Deployed your dapp on-chain
 
-=== 6.2 Using your free cycles to power other dapps
+=== Using your free cycles to power other dapps
 
 You can use the cycles you received earlier for other dapps.
 
-== 7. Troubleshooting
+== Troubleshooting
 
 === Resources
 
@@ -88,6 +88,4 @@ You can use the cycles you received earlier for other dapps.
 
 === Starting from scratch
 
-If you wish to start from scratch, you can delete SDK and associated profiles and re-install it.
-
-Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].
+If you wish to start from scratch, you can delete SDK and associated profiles and re-install it. Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].

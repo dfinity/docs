@@ -1,6 +1,6 @@
 = 3. Deploying Dapp on Local Machine (3 min)
 
-== 3.0 Using two terminal windows/tabs
+== 3.0 Using two Terminal Windows/tabs
 
 Now that the code is there, the next step is to spin up a local version of the IC on machine. For this, developers should keep two terminals open:
 
@@ -24,7 +24,7 @@ image:quickstart/dfx-new-hello-2.png[dfx new]
 
 image:quickstart/terminal-b-ls.png[terminal b ls]
 
-== 3.1 Start the local version of the IC (Terminal A)
+== 3.1 Start the Local Version of the IC (Terminal A)
 
 Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
 
@@ -32,7 +32,7 @@ Start the local canister execution environment in Terminal A:
 
 [source,bash]
 ----
-$ dfx start
+dfx start
 ----
 
 image:quickstart/terminal-a-dfx-start.png[dfx start]
@@ -46,7 +46,7 @@ Notes:
 
 *Congratulations - there is now a local version of the IC running on your machine. Leave this window/tab open and running while you continue.* If the window/tab is closed, the local version of the IC will not be running and the rest of the tutorial will fail.
 
-== 3.2 Deploy the "hello" dapp to the local version of the IC (Terminal B)
+== 3.2 Deploy the "hello" Dapp to the Local Version of the IC (Terminal B)
 
 Note: since this is a local version of the IC, this section has fewer steps than deploying to mainnet (which requires cycles).
 
@@ -58,7 +58,7 @@ Ensure that node modules are available in your project directory, if needed, by 
 
 [source,bash]
 ----
-$ npm install
+npm install
 ----
 
 image:quickstart/terminal-b-npm-install.png[npm install]
@@ -67,7 +67,7 @@ image:quickstart/terminal-b-npm-install.png[npm install]
 
 [source,bash]
 ----
-$ dfx deploy
+dfx deploy
 ----
 
 image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
@@ -84,13 +84,13 @@ a. `hello` canister `rrkah-fqaaa-aaaaa-aaaaq-cai` which contains the backend log
 
 b. `hello_assets` canister `yjl3-tyaaa-aaaaa-aaaba-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
 
-== 3.3 Testing the dapp locally via command line (Terminal B)
+== 3.3 Testing the Dapp Locally via the Command Line (Terminal B)
 
 Now that the canister is deployed to local replica, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
 
 [source,bash]
 ----
-$ dfx canister call hello greet everyone
+dfx canister call hello greet everyone
 ----
 
 * The `dfx canister call` command requires you to specify a canister name and a method—or function—to call.
@@ -98,7 +98,7 @@ $ dfx canister call hello greet everyone
 * `greet` specifies the name of the *function* you want to call in the `hello` canister.
 * `everyone` is the text data type argument that you want to pass to the `greet` function.
 
-== 3.4 Testing the dapp locally via the browser
+== 3.4 Testing the Dapp Locally via the Browser
 
 Now that you have verified that your dapp has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
 
@@ -106,10 +106,10 @@ Now that you have verified that your dapp has been deployed and tested its opera
 
 [source,bash]
 ----
-$ npm start
+npm start
 ----
 
-=== 3.4.2  Test dapp locally in the browser
+=== 3.4.2  Test the dapp locally in the browser
 
 To see your dapp running locally in the browser on +http://localhost:8080+.
 
@@ -135,11 +135,11 @@ To stop the local deployment:
 +
 [source,bash]
 ----
-$ dfx stop
+dfx stop
 ----
 
 == Conclusion
 
 You have now tested the dapp by deploing it locally. You are ready to acquire cycles to deploy on-chain.
 
-Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 20 minutes].
+Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 10 minutes].

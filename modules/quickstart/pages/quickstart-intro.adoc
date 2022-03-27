@@ -11,9 +11,9 @@ This {sdk-long-name} provides tools, sample code, and documentation to help you 
 The _Quick Start_ tutorial assumes that you are installing the {sdk-short-name} for the first time and illustrates how to create, build, and deploy your first dapp. 
 
 == Getting Started
-To keep the instructions simple and focused on the task at hand, the _Quick start_ is deliberately hyper-focused in helping you deploy your first smart contract or dapp in 20 minutes or less.
+To keep the instructions simple and focused on the task at hand, the _Quick start_ is deliberately hyper-focused in helping you deploy your first smart contract or dapp in 10 minutes or less.
 
-See link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy hello world smart contract in 20 minutes].
+See link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy hello world smart contract in 10 minutes].
 
 == More Sample Code
 

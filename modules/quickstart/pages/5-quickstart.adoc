@@ -2,7 +2,7 @@
 
 == 5.1 Deploy the Dapp On-chain via dfx (Terminal B)
 
-Now that you have your cycles and your dfx is configured to transfer cycles, you are now ready to deploy your `Hello` dapp on-chain.
+Now that you have your link:developers-guide/concepts/tokens-cycles[cycles] and your `dfx` is configured to transfer cycles, you are now ready to deploy your `Hello` dapp on-chain.
 
 [source,bash]
 ----

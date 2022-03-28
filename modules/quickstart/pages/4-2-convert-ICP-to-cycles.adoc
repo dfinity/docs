@@ -1,6 +1,6 @@
 = 4.4 Option 2: Converting ICP Tokens into Cycles (5 min)
 
-This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
+This is option is best for people who have already exhausted the link:developers-guide/default-wallet[cycles wallet] or who want to set up their environment to add more link:developers-guide/concepts/tokens-cycles[cycles] in the future.
 
 == Basic Summary of this Section
 To create cycles from ICP, the basic steps:
@@ -26,7 +26,9 @@ Example output
 
 **2. Transfer tokens to your Ledger `account id`**
 
-You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP tokens to the `account id` from Step #1 above. For the sake of this tutorial, we recommend sending it 2 ICP tokens.
+You can acquire ICP tokens in link:https://wiki.internetcomputer.org/wiki/Managing_ICP_holdings[multiple exchanges].
+
+You can transfer from any exchange, wallet, or link:https://wiki.internetcomputer.org/wiki/ICP_custody_with_NNS_frontend_dapp[NNS Frontend dapp] by sending ICP tokens to the `account id` from Step #1 above. For the sake of this tutorial, we recommend sending it 2 ICP tokens.
 
 **3. Confirm there is ICP in the account**
 

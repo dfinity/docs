@@ -3,7 +3,7 @@ Cycles Faucet Quickstart
 
 Ready to deploy your first smart contract on the Internet Computer blockchain? You can use our Cycles Faucet to get set up with $20 in free cycles in just a few minutes.
 
-Before you begin, make sure you have the {sdk-short-name} (DFX) installed by running
+Before you begin, make sure you have the {sdk-short-name} (`dfx`) installed by running
 [source,sh]
 ----
 sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"

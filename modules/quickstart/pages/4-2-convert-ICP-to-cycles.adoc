@@ -1,4 +1,4 @@
-= 4.4 Option 2: Converting ICP Tokens into Cycles (5 min)
+= 4.4 Converting ICP Tokens into Cycles (5 min)
 
 This is option is best for people who have already exhausted the link:developers-guide/default-wallet[cycles wallet] or who want to set up their environment to add more link:developers-guide/concepts/tokens-cycles[cycles] in the future.
 
@@ -66,13 +66,15 @@ image:quickstart/1-cycles-wallet.png[Cycles wallet]
 
 The canister created above (while it does hold cycles) is a generic canister and does not have all the features required from a **"cycles wallet"**, so we will use `dfx` to update it with the code containing all the cycles wallet features: 
 
+In our example, $CYCLES_WALLET_CANISTER_ID is `gastn-uqaaa-aaaae-aaafq-cai` so we use the following structure: 
+
 [source,bash]
 ----
 // This is just an example, this will only work with YOUR CYCLE WALLET principal from above
 dfx identity --network ic deploy-wallet $CYCLES_WALLET_CANISTER_ID
 ----
 
-In our example, $CYCLES_WALLET_CANISTER_ID is `gastn-uqaaa-aaaae-aaafq-cai` so the command would be:
+In our example, the command would be:
 
 [source,bash]
 ----

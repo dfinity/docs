@@ -88,7 +88,7 @@ Note the way the message is constructed:
 
 You have now deployed the dapp on-chain! You can read the conclusion of the tutorial.
 
-Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 10 minutes].
+Continue with the main tutorial: link:quickstart-intro{outfilesuffix}[quickstart intro].
 
 == Troubleshooting
 

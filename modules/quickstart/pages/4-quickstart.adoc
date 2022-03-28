@@ -78,4 +78,4 @@ link:4-2-convert-ICP-to-cycles{outfilesuffix}[Convert ICP into cycles].
 
 You have now acquired cycles and stored them in your cycles wallet. You are ready to deploy the dapp on-chain.
 
-Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 10 minutes].
+Continue with the main tutorial: link:quickstart-intro{outfilesuffix}[quickstart intro].

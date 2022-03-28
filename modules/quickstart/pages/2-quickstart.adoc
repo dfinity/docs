@@ -2,7 +2,7 @@
 
 === 2.1 Launch a new project 
 
-Dapps on the Internet Computer start as projects, which are initiated using the dfx parent command and its subcommands. Projects are created using the `dfx` parent command and its subcommands. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace.
+Dapps on the Internet Computer start as projects, which are initiated using the `dfx` parent command and its subcommands. Projects are created using the `dfx` parent command and its subcommands. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace.
 
 To create a new project for your first application:
 
@@ -44,4 +44,4 @@ You may wonder "why two canisters?" These canisters are created for you to help 
 
 You now have the default project created ready to be deployed locally. 
 
-Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 10 minutes].
+Continue with the main tutorial: link:quickstart-intro{outfilesuffix}[quickstart intro].

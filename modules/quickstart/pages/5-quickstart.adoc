@@ -1,4 +1,4 @@
-== 5. Deploying On-chain (1 min)
+= 5. Deploying On-chain (1 min)
 
 == 5.1 Deploy the Dapp On-chain via dfx (Terminal B)
 

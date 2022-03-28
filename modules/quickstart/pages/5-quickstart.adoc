@@ -84,9 +84,9 @@ dfx canister --network ic call hello greet '("everyone": text)'
 
 Note the way the message is constructed:
 
-* `dfx canister --network ic call` is setup for calling a canister on the IC
+* `dfx canister --network ic call` is setup for calling a canister on the IC.
 
-* `hello greet` means we are sending a message to a canister named `hello` and evoking its `greet` method
+* `hello greet` means we are sending a message to a canister named `hello` and evoking its `greet` method. `dfx` knows which `hello` canister (out of the many in the IC), one refers to because a mapping of `hello` to a canister id is stored locally in `.dfx/local/canister_ids.json`.
 
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 

@@ -16,6 +16,8 @@ Practical notes about cycles:
 
 * You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
 
+* You can learn more about acquiring and managing ICP in link:https://wiki.internetcomputer.org/wiki/Managing_ICP_holdings[Acquiring and managing ICP tokens].
+
 In this tutorial, we present two ways of acquiring cycles: 
 
 * **Option 1:** Section **4.3** shows one how to get cycles via the cycles faucet (most common for new developers)

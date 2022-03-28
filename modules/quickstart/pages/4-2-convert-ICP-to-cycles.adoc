@@ -1,14 +1,14 @@
-= 4.4 Option 2: Converting ICP token into cycles (5 min)
+= 4.4 Option 2: Converting ICP Tokens into Cycles (5 min)
 
 This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
 
-== Basic Summary of this section
+== Basic Summary of this Section
 To create cycles from ICP, the basic steps:
 
 1. Transfer tokens to the Ledger account controlled by `dfx`
 2. Tell IC Ledger convert your ICP tokens into cycles 
 
-== 4.4.1 Transfer tokens to the Ledger account controlled by `dfx` (Terminal B)
+== 4.4.1 Transfer Tokens to the Ledger Account Controlled by `dfx` (Terminal B)
 
 When you first installed `dfx`, it created and saved locally "developer identity" which contains ledger `account id`.This is where ICP tokens controlled by `dfx` are stored.  
 
@@ -115,4 +115,3 @@ This command converts an additional 1.005 ICP tokens to cycles for the `gastn-uq
 ----
 Transfer sent at BlockHeight: 81520
 Canister was topped up!
-----

@@ -1,6 +1,6 @@
 == 5. Deploying On-chain (1 min)
 
-== 5.1 Deploy the dapp on-chain via dfx (Terminal B)
+== 5.1 Deploy the Dapp On-chain via dfx (Terminal B)
 
 Now that you have your cycles and your dfx is configured to transfer cycles, you are now ready to deploy your `Hello` dapp on-chain.
 
@@ -61,13 +61,13 @@ a. `hello` canister `5o6tz-saaaa-aaaaa-qaacq-cai` which contains the backend log
 
 b. `hello_assets` canister `5h5yf-eiaaa-aaaaa-qaada-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
 
-== 5.2 See your dapp live on-chain via a browser
+== 5.2 See your Dapp Live On-chain via a Browser
 
 Navigate to and enter a name: https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app/
 
 image:front-end-result.png[Hello, everyone! greeting]
 
-== 5.3 Testing the on-chain dapp via command line (Terminal B)
+== 5.3 Testing the On-chain Dapp via the Command Line (Terminal B)
 
 Since the canister has a method called `greet` (which accepts a string as a parameter), we can send it a message via `dfx`.
 
@@ -109,4 +109,3 @@ dfx identity whoami
 ----
 dfx wallet --network ic balance
 ----
-

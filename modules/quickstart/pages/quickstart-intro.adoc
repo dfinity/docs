@@ -6,13 +6,15 @@
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-This is a fast, minimalist tutorial for deploying a "hello world" smart contract or dapp to the IC in 10 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
+This is a fast, minimalist tutorial for deploying a "hello world" dapp to the IC in 10 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
 
 See the dapp on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/ 
 
 == Introduction
 
-In this tutorial, we will deploy a simple `Hello` dapp which accepts a text argument as input, and returns the result as a greeting. For example, if you call the `greet` method with the text argument `Everyone`:
+In this tutorial, we will deploy a simple `Hello` dapp. This dapp is composed of two link:https://wiki.internetcomputer.org/wiki/Glossary#C[canister smart contracts] (one for backend and one for frontend).
+
+The dapp's functionality is sipmple: accepts a text argument as input, and returns the result as a greeting. For example, if you call the `greet` method with the text argument `Everyone`:
 
 * on the command-line via dfx (see instructions below on how to install dfx), the dapp will return `Hello, Everyone!` in your terminal**
 
@@ -44,7 +46,7 @@ link:1-quickstart{outfilesuffix}[1-Installing Tools]
 
 == 2. Create a Default Project (1 min)
 
-With the SDK installed, you can create the default "Hello, World!" project described in this tutorial. This project will have the necessary canister smart contract and frontend code.
+With the SDK installed, you can create the default "Hello, World!" project described in this tutorial. This project will have the two canisters you need (backend and frontend).
 
 link:2-quickstart{outfilesuffix}[2-Create default project] 
 
@@ -68,7 +70,7 @@ link:5-quickstart{outfilesuffix}[5-Deploying on-chain]
 
 == Conclusion
 
-In 10 minutes you have deployed an entire dapp on-chain. This is rare among other smart contract platforms because the IC has dapps fully on-chain (both frontend and backend).
+In 10 minutes you have deployed an entire dapp on-chain. This is rare among other smart contract platforms because the IC has dapps fully on-chain (both backend and frontend).
 
 === Wrap-up: What you have done
 You have done the following in this tutorial:

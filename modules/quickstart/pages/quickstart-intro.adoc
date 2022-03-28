@@ -6,7 +6,7 @@
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-This is a fast, minimalist tutorial for deploying a "hello world" dapp to the IC in 10 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
+This is a fast, minimalist tutorial for deploying a "hello world" dapp to the the Internet Computer (IC) in 10 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
 
 See the dapp on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/ 
 
@@ -28,15 +28,15 @@ $ "Hello, Everyone"
 
 image:front-end-result.png[Hello, everyone! greeting]
 
-While the code comes ready out of the box for you, this dapp consists of back-end code written in Motoko, a programming language specifically designed for interacting with the Internet Computer (IC), and a simple webpack-based front-end. 
+While the code comes ready out of the box for you, this dapp consists of back-end code written in link:language-guide/motoko[Motoko], a programming language specifically designed for interacting with the (IC), and a simple webpack-based front-end. 
 
 == Topics Discussed in this Tutorial
 
 * *Canister smart contract/dapp* which are types of smart contracts that bundle code and state. As in this tutorial, it is common for a dapp to be composed of multiple canister smart contracts.
 
-* *Cycles* which are the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum's gas: it is what one needs to run their dapp, yet it is much more stable and less expensive for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] using the convention that one trillion cycles correspond to one SDR. **In this tutorial, you can get free cycles from the cycles faucet.**
+* *link:developers-guide/concepts/tokens-cycles[Cycles]* which are the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum's gas: it is what one needs to run their dapp, yet it is much more stable and less expensive for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] using the convention that one trillion cycles correspond to one SDR. **In this tutorial, you can get free cycles from the cycles faucet.**
 
-* A *cycles wallet* which is a type of canister that holds your cycles for you. You will use this canister to power up your dapps.
+* A *link:developers-guide/default-wallet[cycles wallet]* which is a type of canister that holds your cycles for you. You will use this canister to power up your dapps.
 
 == 1. Installing Tools
 

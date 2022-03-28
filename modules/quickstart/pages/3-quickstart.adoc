@@ -48,7 +48,7 @@ Notes:
 
 == 3.2 Deploy the "hello" Dapp to the Local Version of the IC (Terminal B)
 
-Note: since this is a local version of the IC, this section has fewer steps than deploying to mainnet (which requires cycles).
+Note: since this is a local version of the IC, this section has fewer steps than deploying to mainnet (which requires link:developers-guide/concepts/tokens-cycles[cycles]).
 
 To deploy your first dapp locally:
 

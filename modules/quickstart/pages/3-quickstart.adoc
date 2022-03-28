@@ -143,3 +143,14 @@ dfx stop
 You have now tested the dapp by deploing it locally. You are ready to acquire cycles to deploy on-chain.
 
 Continue with the main tutorial: link:quickstart-intro{outfilesuffix}[quickstart intro].
+
+== Troubleshooting
+
+=== Node.js is not properly installed
+
+If your dapp does not show in the browser, it is possible that Node.js is not installed. Confirm it is installed by running: 
+
+[source,bash]
+----
+node --version
+----

@@ -95,7 +95,9 @@ You can use the cycles you received earlier for other dapps.
 
 === Starting from scratch
 
-If you wish to start from scratch, you can delete SDK and associated profiles and re-install it. Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].
+If you wish to start from scratch, You can delete the SDK and associated profiles and re-install it. **Be sure to save your previous identities if they control dapps or ICP.** 
+
+Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].
 
 == More Sample Code
 

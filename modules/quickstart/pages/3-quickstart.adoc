@@ -150,6 +150,10 @@ Continue with the main tutorial: link:quickstart-intro{outfilesuffix}[quickstart
 
 If your dapp does not show in the browser, it is possible that Node.js is not installed. Confirm it is installed by running: 
 
+== Prior installations of dfx
+
+If you have previously created IC dapps before February 2022, you may need to do a clean install. You can delete SDK and associated profiles and re-install it. Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].
+
 [source,bash]
 ----
 node --version

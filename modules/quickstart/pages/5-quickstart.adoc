@@ -1,8 +1,8 @@
-== 5. Deploying On-chain (1 min)
+= 5. Deploying On-chain (1 min)
 
 == 5.1 Deploy the Dapp On-chain via dfx (Terminal B)
 
-Now that you have your cycles and your dfx is configured to transfer cycles, you are now ready to deploy your `Hello` dapp on-chain.
+Now that you have your link:developers-guide/concepts/tokens-cycles[cycles] and your `dfx` is configured to transfer cycles, you are now ready to deploy your `Hello` dapp on-chain.
 
 [source,bash]
 ----
@@ -65,6 +65,12 @@ b. `hello_assets` canister `5h5yf-eiaaa-aaaaa-qaada-cai` which contains the fron
 
 Navigate to and enter a name: https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app/
 
+Before your dapp loads, your browser will quickly show a message that reads: Installing "Internet Computer Validating Service Worker". This link:https://developer.chrome.com/docs/workbox/service-worker-overview/[service worker] comes from the IC and it is used to make sure the web app the user sees is the correct, untampered frontend. Once loaded, your browser will cache the service worker and your web app will load much quicker.
+
+image:quickstart/service-worker.png[Hello, everyone! greeting]
+
+After loading the service worker, your dapp will load: 
+
 image:front-end-result.png[Hello, everyone! greeting]
 
 == 5.3 Testing the On-chain Dapp via the Command Line (Terminal B)
@@ -78,9 +84,9 @@ dfx canister --network ic call hello greet '("everyone": text)'
 
 Note the way the message is constructed:
 
-* `dfx canister --network ic call` is setup for calling a canister on the IC
+* `dfx canister --network ic call` is setup for calling a canister on the IC.
 
-* `hello greet` means we are sending a message to a canister named `hello` and evoking its `greet` method
+* `hello greet` means we are sending a message to a canister named `hello` and evoking its `greet` method. `dfx` knows which `hello` canister (out of the many in the IC), one refers to because a mapping of `hello` to a canister id is stored locally in `.dfx/local/canister_ids.json`.
 
 * `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
 
@@ -88,7 +94,7 @@ Note the way the message is constructed:
 
 You have now deployed the dapp on-chain! You can read the conclusion of the tutorial.
 
-Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 10 minutes].
+Continue with the main tutorial: link:quickstart-intro{outfilesuffix}[quickstart intro].
 
 == Troubleshooting
 

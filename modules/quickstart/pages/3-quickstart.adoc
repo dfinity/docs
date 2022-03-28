@@ -48,7 +48,7 @@ Notes:
 
 == 3.2 Deploy the "hello" Dapp to the Local Version of the IC (Terminal B)
 
-Note: since this is a local version of the IC, this section has fewer steps than deploying to mainnet (which requires cycles).
+Note: since this is a local version of the IC, this section has fewer steps than deploying to mainnet (which requires link:developers-guide/concepts/tokens-cycles[cycles]).
 
 To deploy your first dapp locally:
 
@@ -72,7 +72,7 @@ dfx deploy
 
 image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
 
-Your dapp is now composed of two canister smart contracts, as you can see in the copy below (from terminal B):
+Your dapp is now composed of two canisters as you can see in the copy below (from terminal B):
 
 [source, bash]
 ----
@@ -142,4 +142,19 @@ dfx stop
 
 You have now tested the dapp by deploing it locally. You are ready to acquire cycles to deploy on-chain.
 
-Continue with the main tutorial: link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy a "hello world" smart contract/dapp in 10 minutes].
+Continue with the main tutorial: link:quickstart-intro{outfilesuffix}[quickstart intro].
+
+== Troubleshooting
+
+=== Node.js is not properly installed
+
+If your dapp does not show in the browser, it is possible that Node.js is not installed. Confirm it is installed by running: 
+
+== Prior installations of dfx
+
+If you have previously created IC dapps before February 2022, you may need to do a clean install. You can delete SDK and associated profiles and re-install it. Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].
+
+[source,bash]
+----
+node --version
+----

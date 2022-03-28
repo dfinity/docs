@@ -72,7 +72,7 @@ dfx deploy
 
 image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
 
-Your dapp is now composed of two canister smart contracts, as you can see in the copy below (from terminal B):
+Your dapp is now composed of two canisters as you can see in the copy below (from terminal B):
 
 [source, bash]
 ----

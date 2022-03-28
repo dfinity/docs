@@ -31,7 +31,7 @@ image:quickstart/cd-hello.png[cd new]
 
 == 2.4 Understanding your dapp project
 
-Your `Hello` dapp project is composed of two canister smart contracts.
+Your `Hello` dapp project is composed of two canisters
 
 * `hello` canister which contains your backend logic
 * `hello_assets` canister which contains your assets

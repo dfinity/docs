@@ -1,4 +1,4 @@
-= How to Deploy a "hello world" dapp in 10 Minutes
+= How to Deploy a "hello world" Dapp in 10 Minutes
 :description: Download the DFINITY Canister SDK and learn how to deploy your first application.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :proglang: Motoko

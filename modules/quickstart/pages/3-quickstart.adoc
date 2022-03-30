@@ -1,14 +1,16 @@
 = 3. Deploying the Hello Dapp on Local Machine (3 min)
 
-Now that the code is there, the next step is to spin up a local version of the IC on machine. For this, developers should keep two terminals open:
+Now that your `hello` project is created, the next step is to deploy it locally. To deploy locally, `dfx` can start a local instance of the execution environment. This environment is not a full IC replica, nor does it download any of the state of an IC replica. It is a lightweight environment designed exlcusively for deploying dapps.
+
+For this, developers should keep two terminals open:
 
 * *Terminal window/tab A:* 
 
-** Shows the local version of the IC running
+** Shows the local instance of the execution environment running
 ** Is analogous to how developers often start local servers in web2 projects (e.g. Node.js's Express, Python's Django, Ruby's Rails, etc...)
 
 * *Terminal window/tab B:* 
-** Used to send *messages* to the local version of the IC
+** Used to send *messages* to the local instance of the execution environment
 ** Is analogous to how developers send HTTP API messages to servers running locally (e.g. Postman, Panic).
 
 For ease, this tutorial will distinguish between both windows by color scheme:
@@ -22,7 +24,7 @@ image:quickstart/dfx-new-hello-2.png[dfx new]
 
 image:quickstart/terminal-b-ls.png[terminal b ls]
 
-== 3.1 Start the Local Version of the IC (Terminal A)
+== 3.1 Start the Local Instance of the Execution Environment (Terminal A)
 
 Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
 
@@ -42,11 +44,11 @@ Notes:
 
 * Check no other network process is running that would create a port conflict on 8000.
 
-*Congratulations - there is now a local version of the IC running on your machine. Leave this window/tab open and running while you continue.* If the window/tab is closed, the local version of the IC will not be running and the rest of the tutorial will fail.
+*Congratulations - there is now a local Instance of the execution environmentof the IC running on your machine. Leave this window/tab open and running while you continue.* If the window/tab is closed, the local instance of the execution environment of the IC will not be running and the rest of the tutorial will fail.
 
-== 3.2 Deploy the "hello" Dapp to the Local Version of the IC (Terminal B)
+== 3.2 Deploy the "hello" Dapp to the Locally (Terminal B)
 
-Note: since this is a local version of the IC, this section has fewer steps than deploying to mainnet (which requires link:developers-guide/concepts/tokens-cycles[cycles]).
+Note: since this is a local deployment, this section has fewer steps than deploying to mainnet (which requires link:developers-guide/concepts/tokens-cycles[cycles]).
 
 To deploy your first dapp locally:
 

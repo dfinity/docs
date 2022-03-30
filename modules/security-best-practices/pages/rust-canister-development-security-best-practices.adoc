@@ -1,6 +1,6 @@
 = Rust Canister Development Security Best Practices
 
-== Immutable Smart Contracts
+== Smart contracts under decentralized governance control
 
 === Use a decentralized governance system like SNS to make a canister have a decentralized controller
 
@@ -10,19 +10,20 @@ The controller of a canister can change / update the canister whenever they like
 
 ==== Recommendation
 
-* To implement an immutable canister smart contract, you cannot be the controller of the canister. Control must be passed to the service nervous system (SNS) or a decentralized governance system.
-* Another option to create an immutable canister smart contract is to remove the canister controller completely. But note that this implies that the canister cannot be upgraded, which may have severe implications in case e.g. a bug would be found.
-* Note that, contrary to some other blockchains, also immutable smart contracts need cycles to run, and they can receive cycles.
+* Consider passing canister control to a decentralized governance system such as the Internet Computer's Service Nervous System (SNS), so that changes to the canister must be proposed and voted upon. If the SNS is used, use an NNS-blessed version running on the SNS subnet, meaning that SNS is under NNS control. The SNS will be available soon.
+* Another option would be to create an immutable canister smart contract by removing the canister controller completely. However, note that this implies that the canister cannot be upgraded, which may have severe implications in case e.g. a bug were found. The option to use a decentralized governance system and thus being able to upgrade smart contracts is a big advantage of the Internet Computer ecosystem.
+* It is also possible to implement a DAO (link:https://en.wikipedia.org/wiki/Decentralized_autonomous_organization[Decentralized Autonomous Organization]) on the IC from scratch. If you decide to do this (e.g. along the lines of the link:https://smartcontracts.org/docs/samples/dao.html[basic DAO example]), be aware that this is security critical and must be security reviewed carefully.
+* Note that, contrary to some other blockchains, smart contracts (also immutable ones) need cycles to run, and they can receive cycles.
 
-=== Verify the immutability of smart contracts you depend on
+=== Verify the ownership of smart contracts you depend on
 
 ==== Security Concern
 
-If a canister depends on a canister smart contract (i.e. makes inter-canister calls to it), it is essential that the canister smart contract is immutable. Otherwise, i.e. if it has a controller, they could modify the smart contract whenever they like, e.g. to steal assets held by the canister.
+If a canister depends on a canister smart contract (i.e. makes inter-canister calls to it), it is essential that the canister smart contract is owned by a decentralized governance system. Otherwise, i.e. if it has a controller, they could modify the smart contract whenever they like, e.g. to steal assets held by the canister.
 
 ==== Recommendation
 
-If you interact with a canister that must be an immutable smart contract, make sure it is controlled by the NNS, service nervous system (SNS) or a decentralized governance system.
+If you interact with a canister that must be an smart contract, make sure it is controlled by the NNS, service nervous system (SNS) or a decentralized governance system, and review under what conditions and by whom the smart contract can be changed.
 
 == Authentication
 

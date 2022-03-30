@@ -18,7 +18,7 @@ To verify it is properly installed:
 dfx --version
 ----
 
-The terminal should look like this (at least version 0.9.2):
+The terminal should look like this (at least version 0.9.3):
 
 image:quickstart/dfx-version.png[dfx version]
 

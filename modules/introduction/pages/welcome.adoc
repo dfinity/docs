@@ -10,6 +10,13 @@ Hello there!
 
 If you’ve landed here, you’re interested in learning more about the Internet Computer. You’re in the right place — take a look below for where to get started!
 
+To download the Internet Computer SDK, run the following command in your terminal.
+
+[source,bash]
+----
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+----
+
 NOTE: Qualified developers can access $20 worth of free cycles to begin deploying canister smart contracts to the Internet Computer blockchain. https://faucet.dfinity.org/auth[Claim your free cycles]
 
 [[for-first-timers]]

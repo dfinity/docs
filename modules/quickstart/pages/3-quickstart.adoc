@@ -1,6 +1,4 @@
-= 3. Deploying Dapp on Local Machine (3 min)
-
-== 3.0 Using two Terminal Windows/tabs
+= 3. Deploying the Hello Dapp on Local Machine (3 min)
 
 Now that the code is there, the next step is to spin up a local version of the IC on machine. For this, developers should keep two terminals open:
 

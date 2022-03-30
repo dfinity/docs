@@ -8,13 +8,11 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 This is a fast, minimalist tutorial for deploying a "hello world" dapp to the the Internet Computer (IC) in 10 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
 
-See the dapp on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/ 
-
-== Introduction
+See a version of this dapp running on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/
 
 In this tutorial, we will deploy a simple `Hello` dapp. This dapp is composed of two link:https://wiki.internetcomputer.org/wiki/Glossary#C[canister smart contracts] (one for backend and one for frontend).
 
-The dapp's functionality is sipmple: accepts a text argument as input, and returns the result as a greeting. For example, if you call the `greet` method with the text argument `Everyone`:
+The dapp's functionality is simple: it accepts a text argument as input, and returns the result as a greeting. For example, if you call the `greet` method with the text argument `Everyone`:
 
 * on the command-line via dfx (see instructions below on how to install dfx), the dapp will return `Hello, Everyone!` in your terminal**
 
@@ -28,21 +26,21 @@ $ "Hello, Everyone"
 
 image:front-end-result.png[Hello, everyone! greeting]
 
-While the code comes ready out of the box for you, this dapp consists of back-end code written in link:language-guide/motoko[Motoko], a programming language specifically designed for interacting with the (IC), and a simple webpack-based front-end. 
+This dapp consists of back-end code written in link:language-guide/motoko[Motoko], a programming language specifically designed for interacting with the (IC), and a simple webpack-based front-end. 
 
 == Topics Discussed in this Tutorial
 
-* *Canister smart contract/dapp* which are types of smart contracts that bundle code and state. As in this tutorial, it is common for a dapp to be composed of multiple canister smart contracts.
+* *Canisters* are the type of smart contracts that are installed on the IC. They contain the code that to be run and a state that is produced as a result of running the code. As is the case this tutorial, it is common for a dapp to be composed of multiple canister smart contracts.
 
-* *link:developers-guide/concepts/tokens-cycles[Cycles]* which are the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum's gas: it is what one needs to run their dapp, yet it is much more stable and less expensive for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] using the convention that one trillion cycles correspond to one SDR. **In this tutorial, you can get free cycles from the cycles faucet.**
+* *link:developers-guide/concepts/tokens-cycles[Cycles]* are the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, cycles are analogous to Ethereum's gas: they are what one needs to run their dapp, yet they are stable and less expensive for developers to use. Every canister has a cycles account from which the resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] (a basket of currencies) using the convention that one trillion cycles correspond to one SDR. **You can get free cycles from the cycles faucet.**
 
-* A *link:developers-guide/default-wallet[cycles wallet]* which is a type of canister that holds your cycles for you. You will use this canister to power up your dapps.
+* A *link:developers-guide/default-wallet[cycles wallet]* is a canister that holds your cycles for you. You will use this canister to power up your dapps.
 
 == 1. Installing Tools
 
-To build a dapp, there are some tools which need to be installed. 
+To build a dapp, we need to install the canister SDK and node.js.  
 
-link:1-quickstart{outfilesuffix}[1-Installing Tools] 
+link:1-quickstart{outfilesuffix}[Installing tools tutorial] 
 
 == 2. Create a Default Project (1 min)
 

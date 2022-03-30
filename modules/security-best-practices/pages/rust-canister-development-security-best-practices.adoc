@@ -1,6 +1,6 @@
 = Rust Canister Development Security Best Practices
 
-== Smart contracts under decentralized governance control
+== Smart Contracts under Decentralized Governance Control
 
 === Use a decentralized governance system like SNS to make a canister have a decentralized controller
 

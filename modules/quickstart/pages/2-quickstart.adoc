@@ -1,6 +1,10 @@
 = 2. Create a Dapp Project (1 min)
 
-Dapps on the Internet Computer start as projects, which are initiated using `dfx`. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace.
+The SDK comes with a starter default project that has backend (in Motoko) and frontend code (HTML, CSS, JS) which developers can start with. In this tutorial, we will build and deploy this bundled project, so there is no need to download any other dapp code.
+
+The `dfx new hello` command uses the template code to create a new project directory named `hello`, template files, and a new `hello` Git repository for your project. You can create many projects with many names.
+
+This is roughly analogus in Web2 to Rail's `rails new`, React.js's `create-react-app`, or Rust's `cargo new`.
 
 To create a new project for your first application:
 
@@ -10,8 +14,6 @@ To create a new project for your first application:
 ----
 dfx new hello
 ----
-
-The `dfx new hello` command creates a new project directory named `hello`, template files, and a new `hello` Git repository for your project. 
 
 // Your terminal should look like this:
 

@@ -1,6 +1,6 @@
 = 3. Deploying the Hello Dapp on Local Machine (3 min)
 
-Now that your `hello` project is created, the next step is to deploy it locally. To deploy locally, `dfx` can start a local instance of the execution environment. This environment is not a full IC replica, nor does it download any of the stat of an IC replica. It is a lightweight environment designed exlcusively for deploying dapps.
+Now that your `hello` project is created, the next step is to deploy it locally. To deploy locally, `dfx` can start a local instance of the execution environment. This environment is not a full IC replica, nor does it download any of the state of an IC replica. It is a lightweight environment designed exlcusively for deploying dapps.
 
 For this, developers should keep two terminals open:
 

@@ -1,6 +1,6 @@
 = 2. Create a Dapp Project (1 min)
 
-The SDK comes with a starter default project that has backend (in Motoko) and frontend code (HTML, CSS, JS) which developers can start with. In this tutorial, we will build and deploy this bundled project, so there is no need to download any other dapp code.
+The SDK comes with a starter default project that has a backend in Motoko and frontend code in HTML, CSS, and JS. Developers can use this default project to start their own dapps. In this tutorial, we will build and deploy this bundled project, so there is no need to download any other dapp code.
 
 The `dfx new hello` command uses the template code to create a new project directory named `hello`, template files, and a new `hello` Git repository for your project. You can create many projects with many names.
 

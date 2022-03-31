@@ -33,6 +33,9 @@ You can use the following option with the `+dfx replica+` command.
 |===
 |Option |Description
 |`+--port port+` |Specifies the port the local canister execution environment should listen to.
+
+|`+--btc-adapter-config <path>+` | Also launch the ic-btc-adapter process, with the specified
+configuration file.  This defaults to the value `.defaults.bitcoin.btc_adapter_config` in dfx.json.
 |===
 
 ////

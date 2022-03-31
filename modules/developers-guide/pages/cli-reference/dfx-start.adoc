@@ -25,6 +25,9 @@ You can use the following optional flags with the `+dfx start+` command.
 |`+--clean+` |Starts the local canister execution environment and web server processes in a clean state by removing checkpoints from your project cache.
 You can use this flag to set your project cache to a new state when troubleshooting or debugging.
 
+|`+--btc-adapter-config <path>+` | Also launch the ic-btc-adapter process, with the specified
+configuration file.  This defaults to the value `.defaults.bitcoin.btc_adapter_config` in dfx.json.
+
 |`+-h+`, `+--help+` |Displays usage information.
 
 |`+-V+`, `+--version+` |Displays version information.

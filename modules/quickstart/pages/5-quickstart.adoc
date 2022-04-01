@@ -14,7 +14,7 @@ npm install
 dfx deploy --network ic --with-cycles 1000000000000
 ----
 
-The `--network` option specifies the network alias or URL for deploying the dapp. This option is required to install on the Internet Computer blockchain mainnet. `--wth-cycles` explicitly tells `dfx` how many cycles to use, otherwise it will use the default of 3 trillion.
+The `--network` option specifies the network alias or URL for deploying the dapp. This option is required to install on the Internet Computer blockchain mainnet. `--with-cycles` explicitly tells `dfx` how many cycles to use, otherwise it will use the default of 3 trillion.
 
 If successful, your terminal should look like this: 
 

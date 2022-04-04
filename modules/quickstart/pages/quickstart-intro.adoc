@@ -1,4 +1,4 @@
-= How to Deploy a "hello world" Dapp in 10 Minutes
+= Deploy a "Hello World" Dapp in 10 Minutes
 :description: Download the DFINITY Canister SDK and learn how to deploy your first application.
 :keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
 :proglang: Motoko
@@ -6,15 +6,22 @@
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-This is a fast, minimalist tutorial for deploying a "hello world" dapp to the the Internet Computer (IC) in 10 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
+This is a quick tutorial for deploying a "Hello World" dapp to the  Internet Computer (IC) in 10 minutes or less. Deployment of the dapp requires basic knowledge of using a terminal. Code editing knowledge is not necessary.
 
-See a version of this dapp running on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/
+Before starting, take a look at a version of this dapp running on-chain: https://6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/
 
-In this tutorial, we will deploy a simple `Hello` dapp. This dapp is composed of two link:https://wiki.internetcomputer.org/wiki/Glossary#C[canister smart contracts] (one for backend and one for frontend).
+In this tutorial,  you will learn how to:
 
-The dapp's functionality is simple: it accepts a text argument as input, and returns the result as a greeting. For example, if you call the `greet` method with the text argument `Everyone`:
+1. Install the Canister SDK
 
-* on the command-line via dfx (see instructions below on how to install dfx), the dapp will return `Hello, Everyone!` in your terminal**
+2. Build and deployed a dapp locally
+
+3. Collect free cycles to power your dapp
+
+4. Create a "cycles wallet" from which you can transfer cycles to any other dapps you want to power
+5. Deploy a dapp on-chain
+
+This simple `Hello` dapp is composed of two link:https://wiki.internetcomputer.org/wiki/Glossary#C[canister smart contracts] (one for backend and one for frontend). The dapp's functionality works as such: it accepts a text argument as input and returns a greeting. For example, if you call the `greet` method with the text argument `Everyone` on the command-line via the canister SDK (see instructions below on how to install the canister SDK), the dapp will return `Hello, Everyone!` in your terminal:
 
 [source,bash]
 ----
@@ -22,84 +29,72 @@ $ dfx canister call hello greet Everyone
 $ "Hello, Everyone"
 ----
 
-* via the dapp in a browser, it will alert pop-up window reading `Hello, Everyone!`**
+* via the dapp in a browser, a pop-up window will appear with the message: `Hello, Everyone!`**
 
 image:front-end-result.png[Hello, everyone! greeting]
 
-This dapp consists of back-end code written in link:language-guide/motoko[Motoko], a programming language specifically designed for interacting with the (IC), and a simple webpack-based front-end. 
+Note that the "Hello World" dapp consists of back-end code written in link:language-guide/motoko[Motoko], a programming language specifically designed for interacting with the (IC), and a simple webpack-based front-end. 
 
-== Topics Discussed in this Tutorial
+== Topics Covered in this Tutorial
 
-* *Canisters* are the type of smart contracts that are installed on the IC. They contain the code that to be run and a state that is produced as a result of running the code. As is the case this tutorial, it is common for a dapp to be composed of multiple canister smart contracts.
+* *Canisters* are the smart contracts installed on the IC. They contain the code to be ran and a state, which is produced as a result of running the code. As is the case of the "Hello World" dapp, it is common for dapps to be composed of multiple canisters.
 
-* *link:developers-guide/concepts/tokens-cycles[Cycles]* are the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, cycles are analogous to Ethereum's gas: they are what one needs to run their dapp, yet they are stable and less expensive for developers to use. Every canister has a cycles account from which the resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] (a basket of currencies) using the convention that one trillion cycles correspond to one SDR. **You can get free cycles from the cycles faucet.**
+* *link:developers-guide/concepts/tokens-cycles[Cycles]* refer to a unit of measurement for resource consumption, typically for processing, memory, storage, and network bandwidth. For the sake of this tutorial, cycles are analogous to Ethereum's gas: cycles are needed to run dapps, but unlike gas they are stable and less expensive. Every canister has a cycles account from which the resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] (a basket of currencies) using the convention that one trillion cycles correspond to one SDR. **Get free cycles from the cycles faucet.**
 
-* A *link:developers-guide/default-wallet[cycles wallet]* is a canister that holds your cycles for you. You will use this canister to power up your dapps.
+* A *link:developers-guide/default-wallet[cycles wallet]* is a canister that holds cycles and powers up dapps.
 
-== 1. Installing Tools
+== 1. link:1-quickstart{outfilesuffix}[Install tools] 
 
-To build a dapp, we need to install the canister SDK and node.js.  
+ Required tools: Canister SDK and node.js. 
 
-link:1-quickstart{outfilesuffix}[Installing tools tutorial] 
+== 2. link:2-quickstart{outfilesuffix}[Create default project] (1 min)
 
-== 2. Create a Default Project (1 min)
+After the SDK is installed, create the default "Hello, World!" project with two canisters (backend and frontend).
 
-With the SDK installed, you can create the default "Hello, World!" project described in this tutorial. This project will have the two canisters you need (backend and frontend).
 
-link:2-quickstart{outfilesuffix}[2-Create default project] 
+== 3. link:3-quickstart{outfilesuffix}[Deploy dapp locally] (3 min)
 
-== 3. Deploying Dapp on Local Machine (3 min)
+Test project by deploying it on your local machine. 
 
-With the project created, you can test it by deploying it on your local machine. 
+ 
 
-link:3-quickstart{outfilesuffix}[3-Deploying dapp locally] 
+== 4. link:4-quickstart{outfilesuffix}[Acquiring cycles] (5 min)
 
-== 4. Acquiring Cycles to Deploy On-chain (5 min)
+Add cycles to your account to deploy dapp on-chain.
 
-To deploy on-chain, you will need to add cycles to your account.
+== 5.link:5-quickstart{outfilesuffix}[Deploy on-chain] (1 min)
 
-link:4-quickstart{outfilesuffix}[4-Acquiring cycles] .
+Use cycles to deploy the "Hello, World!" dapp on-chain.
 
-== 5. Deploying On-chain (1 min)
+ 
 
-Now that you have cycles, you can deploy the "Hello, World!" dapp on-chain.
+== Wrap-up
+Congratulations! You have built a dapp fully on-chain (both backend and frontend) within 10 minutes. 
 
-link:5-quickstart{outfilesuffix}[5-Deploying on-chain] 
+Tutorial takeaways:
 
-== Conclusion
-
-In 10 minutes you have deployed an entire dapp on-chain. This is rare among other smart contract platforms because the IC has dapps fully on-chain (both backend and frontend).
-
-=== Wrap-up: What you have done
-You have done the following in this tutorial:
-
-* Installed the Canister SDK
-* Built and deployed a dapp locally
-* Received free cycles to power your dapp
-* Created a "cycles wallet" from which you can transfer cycles to any other dapps you want to power
-* Deployed your dapp on-chain
-
-=== Using your free cycles to power other dapps
-
-You can use the cycles you received earlier for other dapps.
+* Dapps can be composed of multiple canisters
+* Dapps can be deployed locally and on-chain
+* Cycles are needed power dapps
+* Get free cycles from the cycles wallet
+* Free cycles can be used to power additional dapps
 
 == Troubleshooting
 
-=== Resources
 
-* Developers who hit any blockers are encouraged to search or post in the link:https://forum.dfinity.org[IC developer forum].
 
-* link:https://wiki.internetcomputer.org/wiki/Internet_Computer_wiki[Internet Computer wiki].
+* If you get stuck or run into problems search for solutions or post questions in the link:https://forum.dfinity.org[Developer forum] or link:https://discord.com/invite/cA7y6ezyE2[DISCORD].
 
-=== Starting from scratch
 
-If you wish to start from scratch, You can delete the SDK and associated profiles and re-install it. **Be sure to save your previous identities if they control dapps or ICP.** 
+== Starting from scratch
 
-Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].
+If you wish to start from scratch, delete the SDK and associated profiles and re-install it. Follow the instructions here: link:../developers-guide/install-upgrade-remove{outfilesuffix}[Install, upgrade, or remove software].
 
-== More Sample Code
+**Be sure to save any identities linked to dapps or ICP.** 
 
-Once you finish your first dap, you can see more robust sample code (e.g. DAOs, NFTs, etc...) in link:../samples/index{outfilesuffix}[Sample code and dapps].
+== Ready for the next challenge?
+
+Build DAOs, NFTs and more link:../samples/index{outfilesuffix}[here]. 
 
 == Want to learn more?
 

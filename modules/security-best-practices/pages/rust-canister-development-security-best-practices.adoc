@@ -1,6 +1,6 @@
 = Rust Canister Development Security Best Practices
 
-== Smart Contracts under Canister Control
+== Smart Contracts Canister Control
 
 === Use a decentralized governance system like SNS to make a canister have a decentralized controller
 
@@ -19,11 +19,11 @@ The controller of a canister can change / update the canister whenever they like
 
 ==== Security Concern
 
-If a canister depends on a canister smart contract (i.e. makes inter-canister calls to it), it is essential that the canister smart contract is owned by a decentralized governance system. Otherwise, i.e. if it has a controller, they could modify the smart contract whenever they like, e.g. to steal assets held by the canister.
+If a canister depends on another canister smart contract (i.e. makes inter-canister calls to it), it is essential that the canister smart contract that one depends on is owned by a decentralized governance system. Otherwise, i.e. if it has a controller, they could modify the smart contract without others noticing, e.g. to steal assets held by the canister.
 
 ==== Recommendation
 
-If you interact with a canister that you require to be decentralized, make sure it is controlled by the NNS, service nervous system (SNS) or a decentralized governance system, and review under what conditions and by whom the smart contract can be changed.
+If you interact with a canister that you require to be decentralized, make sure it is controlled by the NNS, a service nervous system (SNS) or a decentralized governance system, and review under what conditions and by whom the smart contract can be changed.
 
 == Authentication
 

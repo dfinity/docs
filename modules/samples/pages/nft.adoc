@@ -54,7 +54,8 @@ Luckily, both `RbTree` and `Vec` implement functions that allow converting to/fr
 After conversion, a separate `StableState` object is used to store data during the upgrade.
 
 ### Certified Data
-To serve assets via http over `<canister-id>.ic0.app` instead of `<canister-id>.raw.ic0.app`, responses have to contain a certificate to validate their content.
+To serve assets via http over `<canister-id>.ic0.app` instead of `<canister-id>.raw.ic0.app`, responses have to
+https://wiki.internetcomputer.org/wiki/HTTP_asset_certification[contain a certificate] to validate their content.
 Obtaining such a certificate can not happen during a query call since it has to go through consensus, so it has to be created during an update call.
 
 A certificate is very limited in its content. At the time of writing, canisters can submit no more than 32 bytes of data to be certified.
@@ -62,8 +63,10 @@ To make the most out of that small amount of data, a `HashTree` (the `RbTree` fr
 A `HashTree` is a tree-shaped data structure where the whole tree can be summarized (hashed) into one small hash of 32 bytes.
 Whenever some content of the tree changes, the hash also changes. If the hash of such a tree is certified, it means that the content of the tree can be considered certified.
 To see how data is certified in the NFT example canister, look at the function `add_hash` in `http.rs`.
+
 For the response to be verified, it has to be checked that a) the served content is part of the tree, and b) the tree containing that content actually can be hashed to the certified hash.
-The function `witness` is responsible for creating a tree with minimal data that still can be verified.
+The function `witness` is responsible for creating a tree with minimal content that still can be verified to fulfill a) and b).
+Once this minimal tree is constructed, certificate and minimal hash tree are sent as part of the `IC-Certificate` header.
 
 For a much more detailed explanation how certification works, see https://dfinity.org/howitworks/response-certification[this explanation video].
 

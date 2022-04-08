@@ -21,7 +21,7 @@ For example, on macOS open the Applications folder, then open Utilities and doub
 +
 [source,bash]
 ----
-sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 ----
 
 [[install-version]]
@@ -39,7 +39,7 @@ For example, to install version 0.9.3, you would run the following command:
 +
 [source,bash]
 ----
-DFX_VERSION=0.9.3 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.9.3 sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 ----
 
 NOTE: If you are using the DFX_VERSION environment variable to install a version of the {sdk-short-name} not yet publicly available, see this link:http-middleware{outfilesuffix}[article] for an overview of what's changed. 

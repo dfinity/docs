@@ -48,7 +48,7 @@ To get started, verify the following:
 +
 [source,bash]
 ----
-sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 ----
 
 * You have created a backup copy of the public/private key for the identity you are using for self-custody.

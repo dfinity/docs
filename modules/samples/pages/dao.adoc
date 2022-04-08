@@ -31,7 +31,7 @@ View the https://github.com/dfinity/examples/blob/master/rust/basic_dao/src/basi
 // * You have installed [didc](https://github.com/dfinity/candid/tree/master/tools/didc)
 
 // * You have downloaded and installed the [DFINITY Canister
-//    SDK](https://sdk.dfinity.org).
+//    SDK](https://smartcontracts.org).
 
 // * You have stopped any Internet Computer or other network process that would
 //    create a port conflict on 8000.

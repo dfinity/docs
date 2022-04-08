@@ -2,11 +2,11 @@
 
 You can get started right away by downloading the Internet Computer Software Development Kit (SDK) and cloning an existing sample project or by exploring the documentation. Check out the links below to begin building smart contract canisters to run on the Internet Computer:
 
-- [*Get the SDK*](https://sdk.dfinity.org/docs/download.html) Download the SDK for the Internet Computer.
-- [*Quick Start*](https://sdk.dfinity.org/docs/quickstart/quickstart-intro.html) Deploy your first app on the Internet Computer.
+- [*Get the SDK*](https://smartcontracts.org/docs/download.html) Download the SDK for the Internet Computer.
+- [*Quick Start*](https://smartcontracts.org/docs/quickstart/quickstart-intro.html) Deploy your first app on the Internet Computer.
 - [*Examples Repository*](https://github.com/dfinity/examples) Explore on your own in the examples repository.
-- [*Language Guide*](https://sdk.dfinity.org/docs/language-guide/motoko.html) Explore the Motoko programming language.
-- [*Videos*](https://sdk.dfinity.org/docs/videos-tutorials.html) Watch the _Building Applications for the Internet Computer: Fundamentals_ video series.
+- [*Language Guide*](https://smartcontracts.org/docs/language-guide/motoko.html) Explore the Motoko programming language.
+- [*Videos*](https://smartcontracts.org/docs/videos-tutorials.html) Watch the _Building Applications for the Internet Computer: Fundamentals_ video series.
 
 # Contributing to the documentation
 

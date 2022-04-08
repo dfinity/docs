@@ -51,6 +51,6 @@ If a newer version of `+dfx+` is available, the command automatically downloads 
 [source,bash]
 ----
 Current version: 0.6.8
-Fetching manifest \https://sdk.dfinity.org/manifest.json
+Fetching manifest \https://smartcontracts.org/manifest.json
 Already up to date
 ----

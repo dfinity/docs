@@ -107,5 +107,5 @@ If you are uninstalling because you want to immediately reinstall a clean versio
 
 [source,bash]
 ----
-~/.cache/dfinity/uninstall.sh && sh -ci "$(curl -sSL https://sdk.dfinity.org/install.sh)"
+~/.cache/dfinity/uninstall.sh && sh -ci "$(curl -sSL https://smartcontracts.org/install.sh)"
 ----

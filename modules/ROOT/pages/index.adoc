@@ -22,11 +22,11 @@ window.location.replace("https://dfinity.org/developers");
 
 [source,bash]
 ----
-sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 ----
 
 ++++
-        <p>By installing the SDK, you agree to our <a href="https://sdk.dfinity.org/sdk-license-agreement.txt">Terms & Conditions</a>.</p>
+        <p>By installing the SDK, you agree to our <a href="https://smartcontracts.org/sdk-license-agreement.txt">Terms & Conditions</a>.</p>
         </div>
     </div>
 

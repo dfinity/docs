@@ -9,7 +9,7 @@ The Canister SDK used to develop on the IC is called `dfx` and it is maintained 
 To install, one needs to run:
 [source,bash]
 ----
-sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 ----
 
 To verify that it has properly installed:

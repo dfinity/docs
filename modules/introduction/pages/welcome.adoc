@@ -14,7 +14,7 @@ To download the Internet Computer SDK, run the following command in your termina
 
 [source,bash]
 ----
-sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 ----
 
 NOTE: Qualified developers can access $20 worth of free cycles to begin deploying canister smart contracts to the Internet Computer blockchain. https://faucet.dfinity.org/auth[Claim your free cycles]

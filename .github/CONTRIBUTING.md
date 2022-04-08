@@ -13,11 +13,11 @@ Your participation is an important factor in the success of the Internet Compute
 This repository contains the documentation source files for the DFINITY Canister Software Development Kit (SDK).
 The files use AsciiDoctor markup language.
 
-This repository also contains the `antora.yml` configuration file that lists the documentation components (modules) and versions included in the [documentation website](https://sdk.dfinity.org).
+This repository also contains the `antora.yml` configuration file that lists the documentation components (modules) and versions included in the [documentation website](https://smartcontracts.org).
 
 The navigation for all modules—including documentation for modules located in other repositories—is stored in the under the ROOT module in the `nav.adoc` file.
 
-The [documentation website](https://sdk.dfinity.org) is generated using the [Antora](https://docs.antora.org/antora/2.2/install/install-antora/) static site generator.
+The [documentation website](https://smartcontracts.org) is generated using the [Antora](https://docs.antora.org/antora/2.2/install/install-antora/) static site generator.
 
 The `antora-playbook.yml` identifies the repository branches and UI bundle to use in building the documentation site.
 The playbook is located in a separate repository.

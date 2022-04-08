@@ -115,3 +115,15 @@ dfx identity whoami
 ----
 dfx wallet --network ic balance
 ----
+
+== 3. Try proxying through your wallet
+
+Sometimes (especially when you created the canisters with `dfx` versions before 0.9.0) your wallet is set as your canister's controller. To have your wallet be the source of the deployment instruction, add the flag `--wallet <insert-your-wallet-id-here>` to the deploy or call command.
+
+If this works and you would like to add your own principal as a controller of the canister (so you don't have to use the `--wallet` option anymore), you can run this:
+
+[source, bash]
+----
+dfx canister --wallet "$(dfx identity get-wallet)" update-settings --all --add-controller "$(dfx identity get-principal)"
+----
+

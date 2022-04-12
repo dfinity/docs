@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-11-30T06:39:31-08:00",
+  "id": "static_website",
+  "duration": 13,
+  "title": "Static Website on the Internet Computer",
+  "summary": "Static Website on the Internet Computer",
+  "source": "static_website.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "codelab",
+    "markdown"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "https://github.com/dfinity",
+  "url": "static_website"
+}

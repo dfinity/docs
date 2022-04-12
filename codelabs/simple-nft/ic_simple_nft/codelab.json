@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-01-10T03:19:44-08:00",
+  "id": "ic_simple_nft",
+  "duration": 33,
+  "title": "Simple NFT Demo",
+  "summary": "Simple NFT demo dapp for the Internet Computer",
+  "source": "ic_simple_nft.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "codelab",
+    "markdown"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "https://github.com/dfinity/docs",
+  "url": "ic_simple_nft"
+}

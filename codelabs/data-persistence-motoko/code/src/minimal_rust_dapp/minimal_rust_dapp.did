@@ -1,0 +1,4 @@
+service : {
+    "get": () -> (nat64) query;
+    "increment": () -> (nat64);
+}

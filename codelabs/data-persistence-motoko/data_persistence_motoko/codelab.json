@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-01-11T09:26:52-08:00",
+  "id": "data_persistence_motoko",
+  "duration": 11,
+  "title": "Data Persistence",
+  "summary": "Data Persistence in Motoko",
+  "source": "data_persistence_motoko.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "codelab",
+    "markdown"
+  ],
+  "tags": [
+    "motoko"
+  ],
+  "feedback": "https://github.com/dfinity/docs",
+  "url": "data_persistence_motoko"
+}

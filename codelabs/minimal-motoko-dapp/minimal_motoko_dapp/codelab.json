@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-11-29T15:53:30-08:00",
+  "id": "minimal_motoko_dapp",
+  "duration": 25,
+  "title": "Minimalistic Motoko Dapp",
+  "summary": "Minimal dapp for the Internet Computer",
+  "source": "minimal_dapp.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "codelab",
+    "markdown"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "https://github.com/dfinity",
+  "url": "minimal_motoko_dapp"
+}

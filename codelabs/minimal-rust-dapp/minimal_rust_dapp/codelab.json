@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-01-10T02:29:19-08:00",
+  "id": "minimal_rust_dapp",
+  "duration": 27,
+  "title": "Minimalistic Motoko Dapp",
+  "summary": "Minimal dapp for the Internet Computer",
+  "source": "codelab/minimal_dapp.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "codelab",
+    "markdown"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "https://github.com/dfinity/docs",
+  "url": "minimal_rust_dapp"
+}

@@ -30,15 +30,16 @@ image:quickstart/dfx-version.png[dfx version]
 
 == 1.2 Node.js
 
-Node.js is necessary for rendering the frontend assets and so is necessary to complete this tutorial. Note however that Node.js in not needed for canister development in general. 
+Node.js is necessary for rendering the frontend assets and so is necessary to complete this tutorial. Note however that Node.js is not needed for canister development in general. 
 
 We support all stable versions of Node.js starting with 12. You can install 12, 14, or 16. Please note that Node 17 does not support Webpack's api proxy tool, so `npm start` may not work correctly.
 
 There are many ways of installing node.js, including from link:https://nodejs.org/en/download[nodejs.org website].
 
 Besides installing node.js, users need to also install:
-* Node Package Manager (NPM). (This comes packaged with Node, but you may want to upgrade with `npm i -g npm`)
-* Node Version Manager (NVM), see link:https://github.com/nvm-sh/nvm#installing-and-updating[installing NVM].
+
+  * Node Package Manager (NPM). (This comes packaged with Node, but you may want to upgrade with `npm i -g npm`)
+  * Node Version Manager (NVM), see link:https://github.com/nvm-sh/nvm#installing-and-updating[installing NVM].
   * Once you have NVM, install the latest stable build with `nvm install --lts`
 
 You are now ready to continue.

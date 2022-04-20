@@ -43,9 +43,9 @@ During canister code upgrades, memory is not persisted between different caniste
 Because of that it is necessary to write all data to stable memory before the upgrade happens, which is usually done in the `pre_upgrade` function.
 This function is called by the system before the upgrade happens. After the upgrade, it is normal to load data from stable memory into memory
 during the `post_upgrade` function. The `post_upgrade` function is called by the system after the upgrade happened.
-In case an error occurs during any part of the upgrade (including `post_upgdrade`), the entire upgrade is reverted.
+In case an error occurs during any part of the upgrade (including `post_upgrade`), the entire upgrade is reverted.
 
-The Rust CDK (Canister Development Kit) currently only supports one value in stable memory, so it is necessary to create an object that can hold everyhing you care about.
+The Rust CDK (Canister Development Kit) currently only supports one value in stable memory, so it is necessary to create an object that can hold everything you care about.
 In addition, not every data type can be stored in stable memory; only ones that implement the https://docs.rs/candid/latest/candid/types/trait.CandidType.html[CandidType trait]
 (usually via the https://docs.rs/candid/latest/candid/derive.CandidType.html[CandidType derive macro]) can be written to stable memory. 
 
@@ -56,7 +56,7 @@ After conversion, a separate `StableState` object is used to store data during t
 ### Certified Data
 To serve assets via http over `<canister-id>.ic0.app` instead of `<canister-id>.raw.ic0.app`, responses have to
 https://wiki.internetcomputer.org/wiki/HTTP_asset_certification[contain a certificate] to validate their content.
-Obtaining such a certificate can not happen during a query call since it has to go through consensus, so it has to be created during an update call.
+Obtaining such a certificate cannot happen during a query call since it has to go through consensus, so it has to be created during an update call.
 
 A certificate is very limited in its content. At the time of writing, canisters can submit no more than 32 bytes of data to be certified.
 To make the most out of that small amount of data, a `HashTree` (the `RbTree` from the previous section is also a `HashTree`) is used.
@@ -72,7 +72,7 @@ For a much more detailed explanation how certification works, see https://dfinit
 
 ### Managing Control over Assets
 {DIP}[DIP-721] specifies multiple levels of control over the NFTs:
-- Owner: This person owns an NFT. They can transfer the NFT, add/reomve operators, or burn the NFT.
+- Owner: This person owns an NFT. They can transfer the NFT, add/remove operators, or burn the NFT.
 - Operator: Sort of a delegated owner. The operator does not own the NFT, but can do the same actions an owner can do.
 - Custodian: Creator of the NFT collection/canister. They can do anything (transfer, add/remove operators, burn, and even un-burn) to NFTs, but also mint new ones or change the symbol or description of the collection.
 

@@ -19,6 +19,7 @@ Depending on the `+dfx ledger+` subcommand you specify, additional arguments, op
 |<<dfx ledger account-id,`+account-id+`>> |Prints the selected identity's Account Identifier.
 |<<dfx ledger balance,`+balance+`>> |Prints the account balance of the user.
 |<<dfx ledger create-canister,`+create-canister+`>> |Creates a canister from ICP.
+|<<dfx ledger fabricate-cycles,`+fabricate-cycles+`>> |Local development only: Fabricate cycles out of thin air and deposit them into the specified canister(s)
 |`+help+` |Displays usage information message for a specified subcommand.
 |<<dfx ledger notify,`+notify+`>> |Notifies the ledger when there is a send transaction to the cycles minting canister.
 |<<dfx ledger top-up,`+top-up+`>> |Tops up a canister with cycles minted from ICP.
@@ -191,6 +192,74 @@ You can create a new canister by specifying separate values for ICP tokens and e
 dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --icp 3 --e8s 5000
 ----
 
+[[fabricate-cycles]]
+== dfx ledger fabricate-cycles
+
+Use the `+dfx ledger fabricate-cycles+` add cycles to a canister while developing locally. The cycles are created out of thin air and are not deducted from anywhere.
+
+=== Basic usage
+
+[source,bash]
+----
+dfx ledger fabricate-cycles [options]
+----
+
+=== Flags
+
+You can use the following optional flags with the `+dfx ledger fabricate-cycles+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Flag |Description
+|`+-h+`, `+--help+` |Displays usage information.
+|`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Options
+
+You can specify the following options for the `+dfx ledger fabricate-cycles+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Option |Description
+|`+--all+` |Deposit cycles to all of the canisters configured in the dfx.json file
+|`+--amount <cycles>+` |Specifies the amount of cycles to fabricate. Defaults to 10000000000000 (10T) cycles.
+|`+--canister <canister name/id>+` |Specifies the name or id of the canister to receive the cycles deposit. You must specify either a canister name/id or the --all option
+|`+--t <trillion cycles>+` |Specifies the amount of cycles to fabricate in trillion cycles. Defaults to 10T cycles.
+|===
+
+=== Examples
+
+If you are developing locally and want to add 8T cycles to all your canisters in your procject, you can do so like this:
+
+[source,bash]
+----
+dfx ledger fabricate-cycles --all --amount 8000000000000
+----
+
+The command displays output similar to the following:
+
+....
+Fabricating 8000000000000 cycles onto hello
+Fabricated 8000000000000 cycles, updated balance: 11_899_662_119_932 cycles
+Fabricating 8000000000000 cycles onto hello_assets
+Fabricated 8000000000000 cycles, updated balance: 11_899_075_504_924 cycles
+....
+
+If you would rather only add the cycles to the canister called 'hello' and don't want to type all the zeros, you can do it like this:
+
+[source,bash]
+----
+dfx ledger fabricate-cycles --canister hello --t 8
+----
+
+The command displays output similar to the following:
+
+....
+Fabricating 8000000000000 cycles onto hello
+Fabricated 8000000000000 cycles, updated balance: 11_899_662_119_932 cycles
+....
+
 [[notify]]
 == dfx ledger notify
 
@@ -338,7 +407,7 @@ You can specify the following argument for the `+dfx ledger transfer+` command.
 
 === Options
 
-You can specify the following argument for the `+dfx ledger transfer+` command.
+You can specify the following options for the `+dfx ledger transfer+` command.
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===

@@ -149,7 +149,7 @@ Use the `+dfx identity import+` command to create a user identity by importing t
 
 [source,bash,subs=quotes]
 ----
-dfx identity import [flag] _identity-name_ _pem_file-name_
+dfx identity import [options] _identity-name_ _pem_file-name_
 ----
 
 === Flags
@@ -161,6 +161,17 @@ You can use the following optional flags with the `+dfx identity import+` comman
 |Flag |Description
 |`+-h+`, `+--help+` |Displays usage information.
 |`+-V+`, `+--version+` |Displays version information.
+|===
+
+=== Options
+
+You can specify the following options for the `+dfx identity import+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Argument|Description
+|`+--disable-encryption+` |DANGEROUS: By default, PEM files are encrypted with a password when writing them to disk. I you want the convenience of not having to type your password (but at the risk of having your PEM file compromised), you can disable the encryption with this flag.
+|`+--force+` |If the identity already exists, remove and re-import it.
 |===
 
 === Examples
@@ -234,7 +245,7 @@ Therefore, you can use any identity you add using the `+dfx identity new+` comma
 
 [source,bash]
 ----
-dfx identity new [flag] _identity-name_
+dfx identity new [options] _identity-name_
 ----
 
 === Flags
@@ -259,6 +270,19 @@ You must specify the following argument for the `+dfx identity new+` command.
 |`+<identity_name>+` |Specifies the name of the identity to create.
 This argument is required.
 
+|===
+
+=== Options
+
+You can specify the following options for the `+dfx identity new+` command.
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|Argument|Description
+|`+--disable-encryption+` |DANGEROUS: By default, PEM files are encrypted with a password when writing them to disk. I you want the convenience of not having to type your password (but at the risk of having your PEM file compromised), you can disable the encryption with this flag.
+|`+--force+` |If the identity already exists, remove and re-import it.
+|`+--hsm-key-id <hsm key id>+` |A sequence of pairs of hex digits.
+|`+--hsm-pkcs11-lib-path <hsm pkcs11 lib path>+` |The file path to the opensc-pkcs11 library e.g. "/usr/local/lib/opensc-pkcs11.so"
 |===
 
 === Examples

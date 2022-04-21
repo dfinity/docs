@@ -530,7 +530,7 @@ Use the `wallet_create_canister` method to register a new canister principal on 
 This method creates a new "empty" canister placeholder with an initial cycle balance and, optionally, with a specific principal as its controller.
 After you have registered the canister principal, you can install code for your canister as a separate step.
 
-For example, you can run a command similar to the following to create a new wallet and assign a principal as a controller:
+For example, you can run a command similar to the following to create a new canister and assign a principal as a controller:
 
 ....
 dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_canister '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'

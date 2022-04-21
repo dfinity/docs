@@ -127,6 +127,9 @@ The valid values are `+idl+` and `+raw+`.
 
 |`+--type <type>+` |Specifies the data format for the argument when making the call using an argument.
 The valid values are `+idl+` and `+raw+`.
+
+|`+--candid <path>+` |Specifies the path to a candid (.did) file that describes the format of the response.  This is useful when calling canisters that are not a part of your project.
+
 |===
 
 === Arguments

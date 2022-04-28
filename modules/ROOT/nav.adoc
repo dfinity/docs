@@ -188,6 +188,7 @@
 *** link:http://faucet.dfinity.org/[Cycles Faucet^]
 
 ** xref:developers-guide:computation-and-storage-costs.adoc[Computation and Storage Costs]
+** xref:samples:codelabs.adoc[CodeLabs Tutorials]
 
 * Community
 ** link:https://discord.gg/cA7y6ezyE2[Developer Discord^]

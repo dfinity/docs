@@ -1,0 +1,173 @@
+= Highlights of what's new in {release}
+:description: DFINITY Canister Software Development Kit Release Notes
+:proglang: Motoko
+:IC: Internet Computer
+:company-id: DFINITY
+:release: 0.10.0
+ifdef::env-github,env-browser[:outfilesuffix:.adoc]
+
+An overview of the {release} release:
+
+The default subnet type is now `application` for local networks.  This means cycles limits will match the values enforced for your canisters on mainnet, and the local replica will track cycle usage for your canisters.   You can top up your local canisters with the new `dfx ledger fabricate-cycles` command.
+
+We've upgraded the cycles wallet to support 128-bit operations.  You will need to upgrade it with `dfx wallet upgrade` and/or `dfx wallet --network ic upgrade`.
+
+dfx can now store private keys in an encrypted format.
+
+== Changes to DFX
+
+=== New feature: Use null as default value for opt arguments
+
+Before this, `deploy` ing a canister with an `opt Foo` init argument without specifying an `--argument` would lead to an error:
+
+[source, bash]
+----
+$ dfx deploy
+Error: Invalid data: Expected arguments but found none.
+----
+
+With this change, this isn't an error anymore, but instead `null` is passed as a value. In general, if the user does _not_ provide an `--argument`, and if the init method expects only `opt` arguments, then `dfx` will supply `null` for each argument.
+
+Note in particular that this does not try to match `opt` arguments for heterogeneous (`opt`/non-`opt`) signatures. Note moreover that this only impacts a case that would previously error out, so no existing (working) workflows should be affected.
+
+=== feat: dfx identity set-wallet now checks that the provided canister is actually a wallet
+
+This check was previously performed on local networks, but not on mainnet.
+
+=== New feature: dfx canister call --candid <path to candid file> ...
+
+Allows one to provide the .did file for calls to an arbitrary canister.
+
+=== New feature: Install arbitrary wasm into canisters
+
+You no longer need a DFX project setup with a build task to install an already-built wasm module into a canister ID. The new `+--wasm <path>+` flag to `+dfx canister install+` will bypass project configuration and install the wasm module at `+<path>+`. A DFX project setup is still recommended for general use; this should mostly be used for installing pre-built canisters. Note that DFX will also not perform its usual checks for API/ABI/stable-memory compatibility in this mode.
+
+=== New feature: Support for 128-bit cycle counts
+
+Cycle counts can now exceed the previously set maximum of 2^64. The new limit is 2^128. A new wallet version has been bundled with this release that supports the new cycle count. You will not be able to use this feature with your existing wallets without running `+dfx wallet upgrade+`, but old wallets will still work just fine with old cycle counts.
+
+=== Fixed: dfx start will once again notice if dfx is already running
+
+dfx will once again display 'dfx is already running' if dfx is already running,
+rather than 'Address already in use'.
+
+As a consequence, after `dfx start` failed to notice that dfx was already running,
+it would replace .dfx/pid with an empty file.  Later invocations of `dfx stop`
+would display no output and return a successful exit code, but leave dfx running.
+
+=== Fixed: dfx canister update-settings <canister id> works even if the canister id is not known to the project.
+
+This makes the behavior match the usage text of the command:
+`<CANISTER> Specifies the canister name or id to update. You must specify either canister name/id or the --all option`
+
+=== New feature: dfx deploy --upgrade-unchanged or dfx canister install --mode upgrade --upgrade-unchanged
+
+When upgrading a canister, `dfx deploy` and `dfx canister install` skip installing the .wasm
+if the wasm hash did not change.  This avoids a round trip through stable memory for all
+assets on every dfx deploy, for example.  By passing this argument, dfx will instead
+install the wasm even if its hash matches the already-installed wasm.
+
+=== New feature: Introduce DFX_CACHE_ROOT environment variable
+
+A new environment variable, `DFX_CACHE_ROOT`, has been introduced to allow setting the cache root directory to a different location than the configuration root directory. Previously `DFX_CONFIG_ROOT` was repurposed for this which only allowed one location to be set for both the cache and configuration root directories.
+
+This is a breaking change since setting `DFX_CONFIG_ROOT` will no longer set the cache root directory to that location.
+
+=== Fixed: Error if nonzero cycles are passed without a wallet proxy
+
+Previously, `dfx canister call --with-cycles 1` would silently ignore the `--with-cycles` argument as the DFX principal has no way to pass cycles and the call must be forwarded through the wallet. Now it will error instead of silently ignoring it. To forward a call through the wallet, use `--wallet $(dfx identity get-wallet)`, or `--wallet $(dfx identity --network ic get-wallet)` for mainnet.
+
+=== New feature: Configure subnet type of local replica
+
+The local replica sets its parameters according to the subnet type defined in defaults.replica.subnet_type, defaulting to 'application' when none is specified.
+This makes it less likely to accidentally hit the 'cycles limit exceeded' error in production.  Since the previous default was `system`, you may see these types errors in development instead.
+Possible values for defaults.replica.subnet_type are: "application", "verifiedapplication", "system"
+
+Example how to specify the subnet type:
+[source, json]
+----
+{
+  "defaults": {
+    "replica": {
+      "subnet_type": "verifiedapplication"
+    }
+  }
+}
+----
+
+=== New feature: Introduce command for local cycles top-up
+
+`dfx ledger fabricate-cycles <canister (id)> <optional amount>` can be used during local development to create cycles out of thin air and add them to a canister. Instead of supplying a canister name or id it is also possible to use `--all` to add the cycles to every canister in the current project. When no amount is supplied, the command uses 10T cycles as default. Using this command with `--network ic` will result in an error.
+
+=== New feature: Private keys can be stored in encrypted format
+
+`dfx identity new` and `dfx identity import` now ask you for a password to encrypt the private key (PEM file) when it is stored on disk.
+If you decide to use a password, your key will never be written to disk in plain text.
+In case you don't want to enter your password all the time and want to take the risk of storing your private key in plain text, you can use the `--disable-encryption` flag.
+
+The `default` identity as well as already existing identities will NOT be encrypted. If you want to encrypt an existing identity, use the following commands:
+[source, bash]
+----
+dfx identity export identity_name > identity.pem
+# if you have set old_identity_name as the identity that is used by default, switch to a different one
+dfx identity use other_identity
+dfx identity remove identity_name
+dfx identity import identity_name identity.pem
+----
+
+=== New feature: Identity export
+
+If you want to get your identity out of dfx, you can use `dfx identity export identityname > exported_identity.pem`. But be careful with storing this file as it is not protected with your password.
+
+=== New feature: Identity new/import now has a --force flag
+
+If you want to script identity creation and don't care about overwriting existing identities, you now can use the `--force` flag for the commands `dfx identity new` and `dfx identity import`.
+
+=== Fixed: Do not automatically create a wallet on IC
+
+When running `dfx deploy --network ic`, `dfx canister --network ic create`, or `dfx identity --network ic get-wallet` dfx no longer automatically creates a cycles wallet for the user if none is configured. Instead, it will simply report that no wallet was found for that user.
+
+Dfx still creates the wallet automatically when running on a local network, so the typical workflow of `dfx start --clean` and `dfx deploy` will still work without having to manually create the wallet.
+
+=== Fixed: Identities cannot exist and not at the same time
+
+When something went wrong during identity creation, the identity was not listed as existing.
+But when trying to create an identity with that name, it was considered to be already existing.
+
+=== Fixed: report context of errors
+
+dfx now displays the context of an error in several places where previously the only error
+message would be something like "No such file or directory."
+
+=== chore: updates starter project for Node 18
+
+Webpack dev server now works for Node 18 (and should work for Node 17). A few packages are also upgraded
+
+== updating dependencies
+
+Updated to version 0.14.0 of agent-rs
+
+== Cycles wallet
+
+Module hash: bb001d1ebff044ba43c060956859f614963d05c77bd778468fce4de095fe8f92
+https://github.com/dfinity/cycles-wallet/commit/f18e9f5c2f96e9807b6f149c975e25638cc3356b
+
+== Replica
+
+Updated replica to elected commit b3788091fbdb8bed7e527d2df4cc5e50312f476c.
+This incorporates the following executed proposals:
+
+* https://dashboard.internetcomputer.org/proposal/57150[57150]
+* https://dashboard.internetcomputer.org/proposal/54964[54964]
+* https://dashboard.internetcomputer.org/proposal/53702[53702]
+* https://dashboard.internetcomputer.org/proposal/53231[53231]
+* https://dashboard.internetcomputer.org/proposal/53134[53134]
+* https://dashboard.internetcomputer.org/proposal/52627[52627]
+* https://dashboard.internetcomputer.org/proposal/52144[52144]
+* https://dashboard.internetcomputer.org/proposal/50282[50282]
+
+Added the ic-btc-adapter binary to the cache.
+
+== Motoko
+
+Updated Motoko from 0.6.25 to 0.6.26.

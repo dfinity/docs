@@ -401,9 +401,19 @@ https://p5deo-6aaaa-aaaab-aaaxq-cai.raw.ic0.app
 === Clean up the air-gapped computer ===
 
 If your claim was successful then do not forget to remove the
-`.pem` file on the air-gapped computer:
+`.pem` file on the air-gapped computer. Note that on many systems, deletion of a file does not delete the data but just the reference to the data, where here you want to ensure the key material is completely removed.
+
+On Linux you can use :
 
 [source,bash]
 ----
+shred identity.pem
 rm identity.pem
+----
+
+On MacOS you can use
+
+[source,bash]
+----
+rm -Pvf identity.pem
 ----
